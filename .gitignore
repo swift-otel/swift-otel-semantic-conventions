@@ -1,0 +1,5 @@
+.build/
+.swiftpm/
+.vscode/
+.DS_Store
+/Package.resolved
