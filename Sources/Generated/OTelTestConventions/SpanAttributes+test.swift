@@ -95,11 +95,12 @@ extension SpanAttributes {
                     ///     - `fail`
                     public var status: Self.Key<StatusEnum> { .init(name: OTelAttributes.test.case.result.status) }
                     
-                    public enum StatusEnum: String, SpanAttributeConvertible {
+                    public struct StatusEnum: SpanAttributeConvertible {
+                        private let rawValue: String
                         /// `pass`: pass
-                        case pass = "pass"
+                        public static let pass = Self.init(rawValue: "pass")
                         /// `fail`: fail
-                        case fail = "fail"
+                        public static let fail = Self.init(rawValue: "fail")
                         public func toSpanAttribute() -> Tracing.SpanAttribute {
                             return .string(self.rawValue)
                         }
@@ -181,19 +182,20 @@ extension SpanAttributes {
                     ///     - `in_progress`
                     public var status: Self.Key<StatusEnum> { .init(name: OTelAttributes.test.suite.run.status) }
                     
-                    public enum StatusEnum: String, SpanAttributeConvertible {
+                    public struct StatusEnum: SpanAttributeConvertible {
+                        private let rawValue: String
                         /// `success`: success
-                        case success = "success"
+                        public static let success = Self.init(rawValue: "success")
                         /// `failure`: failure
-                        case failure = "failure"
+                        public static let failure = Self.init(rawValue: "failure")
                         /// `skipped`: skipped
-                        case skipped = "skipped"
+                        public static let skipped = Self.init(rawValue: "skipped")
                         /// `aborted`: aborted
-                        case aborted = "aborted"
+                        public static let aborted = Self.init(rawValue: "aborted")
                         /// `timed_out`: timed_out
-                        case timed_out = "timed_out"
+                        public static let timed_out = Self.init(rawValue: "timed_out")
                         /// `in_progress`: in_progress
-                        case in_progress = "in_progress"
+                        public static let in_progress = Self.init(rawValue: "in_progress")
                         public func toSpanAttribute() -> Tracing.SpanAttribute {
                             return .string(self.rawValue)
                         }

@@ -44,17 +44,18 @@ extension SpanAttributes {
             ///     - `udp`
             public var transport: Self.Key<TransportEnum> { .init(name: OTelAttributes.network.transport) }
             
-            public enum TransportEnum: String, SpanAttributeConvertible {
+            public struct TransportEnum: SpanAttributeConvertible {
+                private let rawValue: String
                 /// `tcp`: TCP
-                case tcp = "tcp"
+                public static let tcp = Self.init(rawValue: "tcp")
                 /// `udp`: UDP
-                case udp = "udp"
+                public static let udp = Self.init(rawValue: "udp")
                 /// `pipe`: Named or anonymous pipe.
-                case pipe = "pipe"
+                public static let pipe = Self.init(rawValue: "pipe")
                 /// `unix`: Unix domain socket
-                case unix = "unix"
+                public static let unix = Self.init(rawValue: "unix")
                 /// `quic`: QUIC
-                case quic = "quic"
+                public static let quic = Self.init(rawValue: "quic")
                 public func toSpanAttribute() -> Tracing.SpanAttribute {
                     return .string(self.rawValue)
                 }
@@ -75,11 +76,12 @@ extension SpanAttributes {
             ///     - `ipv6`
             public var type: Self.Key<TypeEnum> { .init(name: OTelAttributes.network.type) }
             
-            public enum TypeEnum: String, SpanAttributeConvertible {
+            public struct TypeEnum: SpanAttributeConvertible {
+                private let rawValue: String
                 /// `ipv4`: IPv4
-                case ipv4 = "ipv4"
+                public static let ipv4 = Self.init(rawValue: "ipv4")
                 /// `ipv6`: IPv6
-                case ipv6 = "ipv6"
+                public static let ipv6 = Self.init(rawValue: "ipv6")
                 public func toSpanAttribute() -> Tracing.SpanAttribute {
                     return .string(self.rawValue)
                 }
@@ -196,49 +198,50 @@ extension SpanAttributes {
                 /// - Example: `LTE`
                 public var subtype: Self.Key<SubtypeEnum> { .init(name: OTelAttributes.network.connection.subtype) }
                 
-                public enum SubtypeEnum: String, SpanAttributeConvertible {
+                public struct SubtypeEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `gprs`: GPRS
-                    case gprs = "gprs"
+                    public static let gprs = Self.init(rawValue: "gprs")
                     /// `edge`: EDGE
-                    case edge = "edge"
+                    public static let edge = Self.init(rawValue: "edge")
                     /// `umts`: UMTS
-                    case umts = "umts"
+                    public static let umts = Self.init(rawValue: "umts")
                     /// `cdma`: CDMA
-                    case cdma = "cdma"
+                    public static let cdma = Self.init(rawValue: "cdma")
                     /// `evdo_0`: EVDO Rel. 0
-                    case evdo_0 = "evdo_0"
+                    public static let evdo_0 = Self.init(rawValue: "evdo_0")
                     /// `evdo_a`: EVDO Rev. A
-                    case evdo_a = "evdo_a"
+                    public static let evdo_a = Self.init(rawValue: "evdo_a")
                     /// `cdma2000_1xrtt`: CDMA2000 1XRTT
-                    case cdma2000_1xrtt = "cdma2000_1xrtt"
+                    public static let cdma2000_1xrtt = Self.init(rawValue: "cdma2000_1xrtt")
                     /// `hsdpa`: HSDPA
-                    case hsdpa = "hsdpa"
+                    public static let hsdpa = Self.init(rawValue: "hsdpa")
                     /// `hsupa`: HSUPA
-                    case hsupa = "hsupa"
+                    public static let hsupa = Self.init(rawValue: "hsupa")
                     /// `hspa`: HSPA
-                    case hspa = "hspa"
+                    public static let hspa = Self.init(rawValue: "hspa")
                     /// `iden`: IDEN
-                    case iden = "iden"
+                    public static let iden = Self.init(rawValue: "iden")
                     /// `evdo_b`: EVDO Rev. B
-                    case evdo_b = "evdo_b"
+                    public static let evdo_b = Self.init(rawValue: "evdo_b")
                     /// `lte`: LTE
-                    case lte = "lte"
+                    public static let lte = Self.init(rawValue: "lte")
                     /// `ehrpd`: EHRPD
-                    case ehrpd = "ehrpd"
+                    public static let ehrpd = Self.init(rawValue: "ehrpd")
                     /// `hspap`: HSPAP
-                    case hspap = "hspap"
+                    public static let hspap = Self.init(rawValue: "hspap")
                     /// `gsm`: GSM
-                    case gsm = "gsm"
+                    public static let gsm = Self.init(rawValue: "gsm")
                     /// `td_scdma`: TD-SCDMA
-                    case td_scdma = "td_scdma"
+                    public static let td_scdma = Self.init(rawValue: "td_scdma")
                     /// `iwlan`: IWLAN
-                    case iwlan = "iwlan"
+                    public static let iwlan = Self.init(rawValue: "iwlan")
                     /// `nr`: 5G NR (New Radio)
-                    case nr = "nr"
+                    public static let nr = Self.init(rawValue: "nr")
                     /// `nrnsa`: 5G NRNSA (New Radio Non-Standalone)
-                    case nrnsa = "nrnsa"
+                    public static let nrnsa = Self.init(rawValue: "nrnsa")
                     /// `lte_ca`: LTE CA
-                    case lte_ca = "lte_ca"
+                    public static let lte_ca = Self.init(rawValue: "lte_ca")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }
@@ -258,17 +261,18 @@ extension SpanAttributes {
                 /// - Example: `wifi`
                 public var type: Self.Key<TypeEnum> { .init(name: OTelAttributes.network.connection.type) }
                 
-                public enum TypeEnum: String, SpanAttributeConvertible {
+                public struct TypeEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `wifi`
-                    case wifi = "wifi"
+                    public static let wifi = Self.init(rawValue: "wifi")
                     /// `wired`
-                    case wired = "wired"
+                    public static let wired = Self.init(rawValue: "wired")
                     /// `cell`
-                    case cell = "cell"
+                    public static let cell = Self.init(rawValue: "cell")
                     /// `unavailable`
-                    case unavailable = "unavailable"
+                    public static let unavailable = Self.init(rawValue: "unavailable")
                     /// `unknown`
-                    case unknown = "unknown"
+                    public static let unknown = Self.init(rawValue: "unknown")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }
@@ -344,11 +348,12 @@ extension SpanAttributes {
                 /// - Example: `transmit`
                 public var direction: Self.Key<DirectionEnum> { .init(name: OTelAttributes.network.io.direction) }
                 
-                public enum DirectionEnum: String, SpanAttributeConvertible {
+                public struct DirectionEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `transmit`
-                    case transmit = "transmit"
+                    public static let transmit = Self.init(rawValue: "transmit")
                     /// `receive`
-                    case receive = "receive"
+                    public static let receive = Self.init(rawValue: "receive")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }

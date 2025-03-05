@@ -39,17 +39,18 @@ extension SpanAttributes {
             @available(*, deprecated, message: "Replaced by `network.transport`.")
             public var transport: Self.Key<TransportEnum> { .init(name: OTelAttributes.net.transport) }
             
-            public enum TransportEnum: String, SpanAttributeConvertible {
+            public struct TransportEnum: SpanAttributeConvertible {
+                private let rawValue: String
                 /// `ip_tcp`
-                case ip_tcp = "ip_tcp"
+                public static let ip_tcp = Self.init(rawValue: "ip_tcp")
                 /// `ip_udp`
-                case ip_udp = "ip_udp"
+                public static let ip_udp = Self.init(rawValue: "ip_udp")
                 /// `pipe`: Named or anonymous pipe.
-                case pipe = "pipe"
+                public static let pipe = Self.init(rawValue: "pipe")
                 /// `inproc`: In-process communication.
-                case inproc = "inproc"
+                public static let inproc = Self.init(rawValue: "inproc")
                 /// `other`: Something else (non IP-based).
-                case other = "other"
+                public static let other = Self.init(rawValue: "other")
                 public func toSpanAttribute() -> Tracing.SpanAttribute {
                     return .string(self.rawValue)
                 }
@@ -242,13 +243,14 @@ extension SpanAttributes {
                 @available(*, deprecated, message: "Split to `network.transport` and `network.type`.")
                 public var family: Self.Key<FamilyEnum> { .init(name: OTelAttributes.net.sock.family) }
                 
-                public enum FamilyEnum: String, SpanAttributeConvertible {
+                public struct FamilyEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `inet`: IPv4 address
-                    case inet = "inet"
+                    public static let inet = Self.init(rawValue: "inet")
                     /// `inet6`: IPv6 address
-                    case inet6 = "inet6"
+                    public static let inet6 = Self.init(rawValue: "inet6")
                     /// `unix`: Unix domain socket path
-                    case unix = "unix"
+                    public static let unix = Self.init(rawValue: "unix")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }

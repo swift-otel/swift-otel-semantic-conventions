@@ -60,17 +60,18 @@ extension SpanAttributes {
             ///     - `connect_rpc`: Connect RPC
             public var system: Self.Key<SystemEnum> { .init(name: OTelAttributes.rpc.system) }
             
-            public enum SystemEnum: String, SpanAttributeConvertible {
+            public struct SystemEnum: SpanAttributeConvertible {
+                private let rawValue: String
                 /// `grpc`: gRPC
-                case grpc = "grpc"
+                public static let grpc = Self.init(rawValue: "grpc")
                 /// `java_rmi`: Java RMI
-                case java_rmi = "java_rmi"
+                public static let java_rmi = Self.init(rawValue: "java_rmi")
                 /// `dotnet_wcf`: .NET WCF
-                case dotnet_wcf = "dotnet_wcf"
+                public static let dotnet_wcf = Self.init(rawValue: "dotnet_wcf")
                 /// `apache_dubbo`: Apache Dubbo
-                case apache_dubbo = "apache_dubbo"
+                public static let apache_dubbo = Self.init(rawValue: "apache_dubbo")
                 /// `connect_rpc`: Connect RPC
-                case connect_rpc = "connect_rpc"
+                public static let connect_rpc = Self.init(rawValue: "connect_rpc")
                 public func toSpanAttribute() -> Tracing.SpanAttribute {
                     return .string(self.rawValue)
                 }
@@ -120,39 +121,40 @@ extension SpanAttributes {
                 ///     - `unauthenticated`
                 public var error_code: Self.Key<Error_CodeEnum> { .init(name: OTelAttributes.rpc.connect_rpc.error_code) }
                 
-                public enum Error_CodeEnum: String, SpanAttributeConvertible {
+                public struct Error_CodeEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `cancelled`
-                    case cancelled = "cancelled"
+                    public static let cancelled = Self.init(rawValue: "cancelled")
                     /// `unknown`
-                    case unknown = "unknown"
+                    public static let unknown = Self.init(rawValue: "unknown")
                     /// `invalid_argument`
-                    case invalid_argument = "invalid_argument"
+                    public static let invalid_argument = Self.init(rawValue: "invalid_argument")
                     /// `deadline_exceeded`
-                    case deadline_exceeded = "deadline_exceeded"
+                    public static let deadline_exceeded = Self.init(rawValue: "deadline_exceeded")
                     /// `not_found`
-                    case not_found = "not_found"
+                    public static let not_found = Self.init(rawValue: "not_found")
                     /// `already_exists`
-                    case already_exists = "already_exists"
+                    public static let already_exists = Self.init(rawValue: "already_exists")
                     /// `permission_denied`
-                    case permission_denied = "permission_denied"
+                    public static let permission_denied = Self.init(rawValue: "permission_denied")
                     /// `resource_exhausted`
-                    case resource_exhausted = "resource_exhausted"
+                    public static let resource_exhausted = Self.init(rawValue: "resource_exhausted")
                     /// `failed_precondition`
-                    case failed_precondition = "failed_precondition"
+                    public static let failed_precondition = Self.init(rawValue: "failed_precondition")
                     /// `aborted`
-                    case aborted = "aborted"
+                    public static let aborted = Self.init(rawValue: "aborted")
                     /// `out_of_range`
-                    case out_of_range = "out_of_range"
+                    public static let out_of_range = Self.init(rawValue: "out_of_range")
                     /// `unimplemented`
-                    case unimplemented = "unimplemented"
+                    public static let unimplemented = Self.init(rawValue: "unimplemented")
                     /// `internal`
-                    case `internal` = "internal"
+                    public static let `internal` = Self.init(rawValue: "internal")
                     /// `unavailable`
-                    case unavailable = "unavailable"
+                    public static let unavailable = Self.init(rawValue: "unavailable")
                     /// `data_loss`
-                    case data_loss = "data_loss"
+                    public static let data_loss = Self.init(rawValue: "data_loss")
                     /// `unauthenticated`
-                    case unauthenticated = "unauthenticated"
+                    public static let unauthenticated = Self.init(rawValue: "unauthenticated")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }
@@ -346,41 +348,42 @@ extension SpanAttributes {
                 ///     - `16`: UNAUTHENTICATED
                 public var status_code: Self.Key<Status_CodeEnum> { .init(name: OTelAttributes.rpc.grpc.status_code) }
                 
-                public enum Status_CodeEnum: String, SpanAttributeConvertible {
+                public struct Status_CodeEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `0`: OK
-                    case ok = "0"
+                    public static let ok = Self.init(rawValue: "0")
                     /// `1`: CANCELLED
-                    case cancelled = "1"
+                    public static let cancelled = Self.init(rawValue: "1")
                     /// `2`: UNKNOWN
-                    case unknown = "2"
+                    public static let unknown = Self.init(rawValue: "2")
                     /// `3`: INVALID_ARGUMENT
-                    case invalid_argument = "3"
+                    public static let invalid_argument = Self.init(rawValue: "3")
                     /// `4`: DEADLINE_EXCEEDED
-                    case deadline_exceeded = "4"
+                    public static let deadline_exceeded = Self.init(rawValue: "4")
                     /// `5`: NOT_FOUND
-                    case not_found = "5"
+                    public static let not_found = Self.init(rawValue: "5")
                     /// `6`: ALREADY_EXISTS
-                    case already_exists = "6"
+                    public static let already_exists = Self.init(rawValue: "6")
                     /// `7`: PERMISSION_DENIED
-                    case permission_denied = "7"
+                    public static let permission_denied = Self.init(rawValue: "7")
                     /// `8`: RESOURCE_EXHAUSTED
-                    case resource_exhausted = "8"
+                    public static let resource_exhausted = Self.init(rawValue: "8")
                     /// `9`: FAILED_PRECONDITION
-                    case failed_precondition = "9"
+                    public static let failed_precondition = Self.init(rawValue: "9")
                     /// `10`: ABORTED
-                    case aborted = "10"
+                    public static let aborted = Self.init(rawValue: "10")
                     /// `11`: OUT_OF_RANGE
-                    case out_of_range = "11"
+                    public static let out_of_range = Self.init(rawValue: "11")
                     /// `12`: UNIMPLEMENTED
-                    case unimplemented = "12"
+                    public static let unimplemented = Self.init(rawValue: "12")
                     /// `13`: INTERNAL
-                    case `internal` = "13"
+                    public static let `internal` = Self.init(rawValue: "13")
                     /// `14`: UNAVAILABLE
-                    case unavailable = "14"
+                    public static let unavailable = Self.init(rawValue: "14")
                     /// `15`: DATA_LOSS
-                    case data_loss = "15"
+                    public static let data_loss = Self.init(rawValue: "15")
                     /// `16`: UNAUTHENTICATED
-                    case unauthenticated = "16"
+                    public static let unauthenticated = Self.init(rawValue: "16")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }
@@ -644,11 +647,12 @@ extension SpanAttributes {
                 ///     - `RECEIVED`
                 public var type: Self.Key<TypeEnum> { .init(name: OTelAttributes.rpc.message.type) }
                 
-                public enum TypeEnum: String, SpanAttributeConvertible {
+                public struct TypeEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `SENT`
-                    case sent = "SENT"
+                    public static let sent = Self.init(rawValue: "SENT")
                     /// `RECEIVED`
-                    case received = "RECEIVED"
+                    public static let received = Self.init(rawValue: "RECEIVED")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }

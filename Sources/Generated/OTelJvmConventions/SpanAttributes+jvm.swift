@@ -173,11 +173,12 @@ extension SpanAttributes {
                 ///     - `non_heap`
                 public var type: Self.Key<TypeEnum> { .init(name: OTelAttributes.jvm.memory.type) }
                 
-                public enum TypeEnum: String, SpanAttributeConvertible {
+                public struct TypeEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `heap`: Heap memory.
-                    case heap = "heap"
+                    public static let heap = Self.init(rawValue: "heap")
                     /// `non_heap`: Non-heap memory
-                    case non_heap = "non_heap"
+                    public static let non_heap = Self.init(rawValue: "non_heap")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }
@@ -267,19 +268,20 @@ extension SpanAttributes {
                 ///     - `blocked`
                 public var state: Self.Key<StateEnum> { .init(name: OTelAttributes.jvm.thread.state) }
                 
-                public enum StateEnum: String, SpanAttributeConvertible {
+                public struct StateEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `new`: A thread that has not yet started is in this state.
-                    case new = "new"
+                    public static let new = Self.init(rawValue: "new")
                     /// `runnable`: A thread executing in the Java virtual machine is in this state.
-                    case runnable = "runnable"
+                    public static let runnable = Self.init(rawValue: "runnable")
                     /// `blocked`: A thread that is blocked waiting for a monitor lock is in this state.
-                    case blocked = "blocked"
+                    public static let blocked = Self.init(rawValue: "blocked")
                     /// `waiting`: A thread that is waiting indefinitely for another thread to perform a particular action is in this state.
-                    case waiting = "waiting"
+                    public static let waiting = Self.init(rawValue: "waiting")
                     /// `timed_waiting`: A thread that is waiting for another thread to perform an action for up to a specified waiting time is in this state.
-                    case timed_waiting = "timed_waiting"
+                    public static let timed_waiting = Self.init(rawValue: "timed_waiting")
                     /// `terminated`: A thread that has exited is in this state.
-                    case terminated = "terminated"
+                    public static let terminated = Self.init(rawValue: "terminated")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }

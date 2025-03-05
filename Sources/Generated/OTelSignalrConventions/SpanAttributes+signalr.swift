@@ -40,13 +40,14 @@ extension SpanAttributes {
             ///     - `long_polling`
             public var transport: Self.Key<TransportEnum> { .init(name: OTelAttributes.signalr.transport) }
             
-            public enum TransportEnum: String, SpanAttributeConvertible {
+            public struct TransportEnum: SpanAttributeConvertible {
+                private let rawValue: String
                 /// `server_sent_events`: ServerSentEvents protocol
-                case server_sent_events = "server_sent_events"
+                public static let server_sent_events = Self.init(rawValue: "server_sent_events")
                 /// `long_polling`: LongPolling protocol
-                case long_polling = "long_polling"
+                public static let long_polling = Self.init(rawValue: "long_polling")
                 /// `web_sockets`: WebSockets protocol
-                case web_sockets = "web_sockets"
+                public static let web_sockets = Self.init(rawValue: "web_sockets")
                 public func toSpanAttribute() -> Tracing.SpanAttribute {
                     return .string(self.rawValue)
                 }
@@ -87,13 +88,14 @@ extension SpanAttributes {
                 ///     - `timeout`
                 public var status: Self.Key<StatusEnum> { .init(name: OTelAttributes.signalr.connection.status) }
                 
-                public enum StatusEnum: String, SpanAttributeConvertible {
+                public struct StatusEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `normal_closure`: The connection was closed normally.
-                    case normal_closure = "normal_closure"
+                    public static let normal_closure = Self.init(rawValue: "normal_closure")
                     /// `timeout`: The connection was closed due to a timeout.
-                    case timeout = "timeout"
+                    public static let timeout = Self.init(rawValue: "timeout")
                     /// `app_shutdown`: The connection was closed because the app is shutting down.
-                    case app_shutdown = "app_shutdown"
+                    public static let app_shutdown = Self.init(rawValue: "app_shutdown")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }

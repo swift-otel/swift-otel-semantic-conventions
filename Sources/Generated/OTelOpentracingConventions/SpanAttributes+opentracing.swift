@@ -37,11 +37,12 @@ extension SpanAttributes {
             /// The causal relationship between a child Span and a parent Span. 
             public var ref_type: Self.Key<Ref_TypeEnum> { .init(name: OTelAttributes.opentracing.ref_type) }
             
-            public enum Ref_TypeEnum: String, SpanAttributeConvertible {
+            public struct Ref_TypeEnum: SpanAttributeConvertible {
+                private let rawValue: String
                 /// `child_of`: The parent Span depends on the child Span in some capacity
-                case child_of = "child_of"
+                public static let child_of = Self.init(rawValue: "child_of")
                 /// `follows_from`: The parent Span doesn't depend in any way on the result of the child Span
-                case follows_from = "follows_from"
+                public static let follows_from = Self.init(rawValue: "follows_from")
                 public func toSpanAttribute() -> Tracing.SpanAttribute {
                     return .string(self.rawValue)
                 }

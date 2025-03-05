@@ -71,29 +71,30 @@ extension SpanAttributes {
             /// The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge. 
             public var system: Self.Key<SystemEnum> { .init(name: OTelAttributes.messaging.system) }
             
-            public enum SystemEnum: String, SpanAttributeConvertible {
+            public struct SystemEnum: SpanAttributeConvertible {
+                private let rawValue: String
                 /// `activemq`: Apache ActiveMQ
-                case activemq = "activemq"
+                public static let activemq = Self.init(rawValue: "activemq")
                 /// `aws_sqs`: Amazon Simple Queue Service (SQS)
-                case aws_sqs = "aws_sqs"
+                public static let aws_sqs = Self.init(rawValue: "aws_sqs")
                 /// `eventgrid`: Azure Event Grid
-                case eventgrid = "eventgrid"
+                public static let eventgrid = Self.init(rawValue: "eventgrid")
                 /// `eventhubs`: Azure Event Hubs
-                case eventhubs = "eventhubs"
+                public static let eventhubs = Self.init(rawValue: "eventhubs")
                 /// `servicebus`: Azure Service Bus
-                case servicebus = "servicebus"
+                public static let servicebus = Self.init(rawValue: "servicebus")
                 /// `gcp_pubsub`: Google Cloud Pub/Sub
-                case gcp_pubsub = "gcp_pubsub"
+                public static let gcp_pubsub = Self.init(rawValue: "gcp_pubsub")
                 /// `jms`: Java Message Service
-                case jms = "jms"
+                public static let jms = Self.init(rawValue: "jms")
                 /// `kafka`: Apache Kafka
-                case kafka = "kafka"
+                public static let kafka = Self.init(rawValue: "kafka")
                 /// `rabbitmq`: RabbitMQ
-                case rabbitmq = "rabbitmq"
+                public static let rabbitmq = Self.init(rawValue: "rabbitmq")
                 /// `rocketmq`: Apache RocketMQ
-                case rocketmq = "rocketmq"
+                public static let rocketmq = Self.init(rawValue: "rocketmq")
                 /// `pulsar`: Apache Pulsar
-                case pulsar = "pulsar"
+                public static let pulsar = Self.init(rawValue: "pulsar")
                 public func toSpanAttribute() -> Tracing.SpanAttribute {
                     return .string(self.rawValue)
                 }
@@ -890,23 +891,24 @@ extension SpanAttributes {
                 /// If a custom value is used, it MUST be of low cardinality.
                 public var type: Self.Key<TypeEnum> { .init(name: OTelAttributes.messaging.operation.type) }
                 
-                public enum TypeEnum: String, SpanAttributeConvertible {
+                public struct TypeEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `create`: A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios.
-                    case create = "create"
+                    public static let create = Self.init(rawValue: "create")
                     /// `send`: One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created.
-                    case send = "send"
+                    public static let send = Self.init(rawValue: "send")
                     /// `receive`: One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages.
-                    case receive = "receive"
+                    public static let receive = Self.init(rawValue: "receive")
                     /// `process`: One or more messages are processed by a consumer.
-                    case process = "process"
+                    public static let process = Self.init(rawValue: "process")
                     /// `settle`: One or more messages are settled.
-                    case settle = "settle"
+                    public static let settle = Self.init(rawValue: "settle")
                     /// `deliver`: Deprecated. Use `process` instead.
                     @available(*, deprecated, message: "Replaced by `process`.")
-                    case deliver = "deliver"
+                    public static let deliver = Self.init(rawValue: "deliver")
                     /// `publish`: Deprecated. Use `send` instead.
                     @available(*, deprecated, message: "Replaced by `send`.")
-                    case publish = "publish"
+                    public static let publish = Self.init(rawValue: "publish")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }
@@ -1045,11 +1047,12 @@ extension SpanAttributes {
                 ///     - `broadcasting`: Broadcasting consumption model
                 public var consumption_model: Self.Key<Consumption_ModelEnum> { .init(name: OTelAttributes.messaging.rocketmq.consumption_model) }
                 
-                public enum Consumption_ModelEnum: String, SpanAttributeConvertible {
+                public struct Consumption_ModelEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `clustering`: Clustering consumption model
-                    case clustering = "clustering"
+                    public static let clustering = Self.init(rawValue: "clustering")
                     /// `broadcasting`: Broadcasting consumption model
-                    case broadcasting = "broadcasting"
+                    public static let broadcasting = Self.init(rawValue: "broadcasting")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }
@@ -1139,15 +1142,16 @@ extension SpanAttributes {
                     ///     - `transaction`: Transaction message
                     public var type: Self.Key<TypeEnum> { .init(name: OTelAttributes.messaging.rocketmq.message.type) }
                     
-                    public enum TypeEnum: String, SpanAttributeConvertible {
+                    public struct TypeEnum: SpanAttributeConvertible {
+                        private let rawValue: String
                         /// `normal`: Normal message
-                        case normal = "normal"
+                        public static let normal = Self.init(rawValue: "normal")
                         /// `fifo`: FIFO message
-                        case fifo = "fifo"
+                        public static let fifo = Self.init(rawValue: "fifo")
                         /// `delay`: Delay message
-                        case delay = "delay"
+                        public static let delay = Self.init(rawValue: "delay")
                         /// `transaction`: Transaction message
-                        case transaction = "transaction"
+                        public static let transaction = Self.init(rawValue: "transaction")
                         public func toSpanAttribute() -> Tracing.SpanAttribute {
                             return .string(self.rawValue)
                         }
@@ -1189,15 +1193,16 @@ extension SpanAttributes {
                 ///     - `defer`: Message is deferred
                 public var disposition_status: Self.Key<Disposition_StatusEnum> { .init(name: OTelAttributes.messaging.servicebus.disposition_status) }
                 
-                public enum Disposition_StatusEnum: String, SpanAttributeConvertible {
+                public struct Disposition_StatusEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `complete`: Message is completed
-                    case complete = "complete"
+                    public static let complete = Self.init(rawValue: "complete")
                     /// `abandon`: Message is abandoned
-                    case abandon = "abandon"
+                    public static let abandon = Self.init(rawValue: "abandon")
                     /// `dead_letter`: Message is sent to dead letter queue
-                    case dead_letter = "dead_letter"
+                    public static let dead_letter = Self.init(rawValue: "dead_letter")
                     /// `defer`: Message is deferred
-                    case `defer` = "defer"
+                    public static let `defer` = Self.init(rawValue: "defer")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }

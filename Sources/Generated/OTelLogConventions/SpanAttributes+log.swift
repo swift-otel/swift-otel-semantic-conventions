@@ -35,11 +35,12 @@ extension SpanAttributes {
             ///     - `stderr`: Events from stderr stream
             public var iostream: Self.Key<IostreamEnum> { .init(name: OTelAttributes.log.iostream) }
             
-            public enum IostreamEnum: String, SpanAttributeConvertible {
+            public struct IostreamEnum: SpanAttributeConvertible {
+                private let rawValue: String
                 /// `stdout`: Logs from stdout stream
-                case stdout = "stdout"
+                public static let stdout = Self.init(rawValue: "stdout")
                 /// `stderr`: Events from stderr stream
-                case stderr = "stderr"
+                public static let stderr = Self.init(rawValue: "stderr")
                 public func toSpanAttribute() -> Tracing.SpanAttribute {
                     return .string(self.rawValue)
                 }

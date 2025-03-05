@@ -89,17 +89,18 @@ extension SpanAttributes {
                     ///     - `gen2`
                     public var generation: Self.Key<GenerationEnum> { .init(name: OTelAttributes.dotnet.gc.heap.generation) }
                     
-                    public enum GenerationEnum: String, SpanAttributeConvertible {
+                    public struct GenerationEnum: SpanAttributeConvertible {
+                        private let rawValue: String
                         /// `gen0`: Generation 0
-                        case gen0 = "gen0"
+                        public static let gen0 = Self.init(rawValue: "gen0")
                         /// `gen1`: Generation 1
-                        case gen1 = "gen1"
+                        public static let gen1 = Self.init(rawValue: "gen1")
                         /// `gen2`: Generation 2
-                        case gen2 = "gen2"
+                        public static let gen2 = Self.init(rawValue: "gen2")
                         /// `loh`: Large Object Heap
-                        case loh = "loh"
+                        public static let loh = Self.init(rawValue: "loh")
                         /// `poh`: Pinned Object Heap
-                        case poh = "poh"
+                        public static let poh = Self.init(rawValue: "poh")
                         public func toSpanAttribute() -> Tracing.SpanAttribute {
                             return .string(self.rawValue)
                         }

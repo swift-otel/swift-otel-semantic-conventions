@@ -82,13 +82,14 @@ extension SpanAttributes {
                 ///     - `subscription`
                 public var type: Self.Key<TypeEnum> { .init(name: OTelAttributes.graphql.operation.type) }
                 
-                public enum TypeEnum: String, SpanAttributeConvertible {
+                public struct TypeEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `query`: GraphQL query
-                    case query = "query"
+                    public static let query = Self.init(rawValue: "query")
                     /// `mutation`: GraphQL mutation
-                    case mutation = "mutation"
+                    public static let mutation = Self.init(rawValue: "mutation")
                     /// `subscription`: GraphQL subscription
-                    case subscription = "subscription"
+                    public static let subscription = Self.init(rawValue: "subscription")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }

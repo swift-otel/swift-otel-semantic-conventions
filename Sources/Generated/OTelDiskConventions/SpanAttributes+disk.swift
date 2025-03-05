@@ -60,11 +60,12 @@ extension SpanAttributes {
                 /// - Example: `read`
                 public var direction: Self.Key<DirectionEnum> { .init(name: OTelAttributes.disk.io.direction) }
                 
-                public enum DirectionEnum: String, SpanAttributeConvertible {
+                public struct DirectionEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `read`
-                    case read = "read"
+                    public static let read = Self.init(rawValue: "read")
                     /// `write`
-                    case write = "write"
+                    public static let write = Self.init(rawValue: "write")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }

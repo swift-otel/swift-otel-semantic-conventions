@@ -112,31 +112,32 @@ extension SpanAttributes {
                 ///     - `webjs`
                 public var language: Self.Key<LanguageEnum> { .init(name: OTelAttributes.telemetry.sdk.language) }
                 
-                public enum LanguageEnum: String, SpanAttributeConvertible {
+                public struct LanguageEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `cpp`
-                    case cpp = "cpp"
+                    public static let cpp = Self.init(rawValue: "cpp")
                     /// `dotnet`
-                    case dotnet = "dotnet"
+                    public static let dotnet = Self.init(rawValue: "dotnet")
                     /// `erlang`
-                    case erlang = "erlang"
+                    public static let erlang = Self.init(rawValue: "erlang")
                     /// `go`
-                    case go = "go"
+                    public static let go = Self.init(rawValue: "go")
                     /// `java`
-                    case java = "java"
+                    public static let java = Self.init(rawValue: "java")
                     /// `nodejs`
-                    case nodejs = "nodejs"
+                    public static let nodejs = Self.init(rawValue: "nodejs")
                     /// `php`
-                    case php = "php"
+                    public static let php = Self.init(rawValue: "php")
                     /// `python`
-                    case python = "python"
+                    public static let python = Self.init(rawValue: "python")
                     /// `ruby`
-                    case ruby = "ruby"
+                    public static let ruby = Self.init(rawValue: "ruby")
                     /// `rust`
-                    case rust = "rust"
+                    public static let rust = Self.init(rawValue: "rust")
                     /// `swift`
-                    case swift = "swift"
+                    public static let swift = Self.init(rawValue: "swift")
                     /// `webjs`
-                    case webjs = "webjs"
+                    public static let webjs = Self.init(rawValue: "webjs")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }

@@ -50,19 +50,20 @@ extension SpanAttributes {
             @available(*, deprecated, message: "Replaced by `network.protocol.name`.")
             public var flavor: Self.Key<FlavorEnum> { .init(name: OTelAttributes.http.flavor) }
             
-            public enum FlavorEnum: String, SpanAttributeConvertible {
+            public struct FlavorEnum: SpanAttributeConvertible {
+                private let rawValue: String
                 /// `1.0`: HTTP/1.0
-                case http_1_0 = "1.0"
+                public static let http_1_0 = Self.init(rawValue: "1.0")
                 /// `1.1`: HTTP/1.1
-                case http_1_1 = "1.1"
+                public static let http_1_1 = Self.init(rawValue: "1.1")
                 /// `2.0`: HTTP/2
-                case http_2_0 = "2.0"
+                public static let http_2_0 = Self.init(rawValue: "2.0")
                 /// `3.0`: HTTP/3
-                case http_3_0 = "3.0"
+                public static let http_3_0 = Self.init(rawValue: "3.0")
                 /// `SPDY`: SPDY protocol.
-                case spdy = "SPDY"
+                public static let spdy = Self.init(rawValue: "SPDY")
                 /// `QUIC`: QUIC protocol.
-                case quic = "QUIC"
+                public static let quic = Self.init(rawValue: "QUIC")
                 public func toSpanAttribute() -> Tracing.SpanAttribute {
                     return .string(self.rawValue)
                 }
@@ -242,11 +243,12 @@ extension SpanAttributes {
                 ///     - `idle`
                 public var state: Self.Key<StateEnum> { .init(name: OTelAttributes.http.connection.state) }
                 
-                public enum StateEnum: String, SpanAttributeConvertible {
+                public struct StateEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `active`: active state.
-                    case active = "active"
+                    public static let active = Self.init(rawValue: "active")
                     /// `idle`: idle state.
-                    case idle = "idle"
+                    public static let idle = Self.init(rawValue: "idle")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }
@@ -347,27 +349,28 @@ extension SpanAttributes {
                 ///     - `HEAD`
                 public var method: Self.Key<MethodEnum> { .init(name: OTelAttributes.http.request.method) }
                 
-                public enum MethodEnum: String, SpanAttributeConvertible {
+                public struct MethodEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `CONNECT`: CONNECT method.
-                    case connect = "CONNECT"
+                    public static let connect = Self.init(rawValue: "CONNECT")
                     /// `DELETE`: DELETE method.
-                    case delete = "DELETE"
+                    public static let delete = Self.init(rawValue: "DELETE")
                     /// `GET`: GET method.
-                    case get = "GET"
+                    public static let get = Self.init(rawValue: "GET")
                     /// `HEAD`: HEAD method.
-                    case head = "HEAD"
+                    public static let head = Self.init(rawValue: "HEAD")
                     /// `OPTIONS`: OPTIONS method.
-                    case options = "OPTIONS"
+                    public static let options = Self.init(rawValue: "OPTIONS")
                     /// `PATCH`: PATCH method.
-                    case patch = "PATCH"
+                    public static let patch = Self.init(rawValue: "PATCH")
                     /// `POST`: POST method.
-                    case post = "POST"
+                    public static let post = Self.init(rawValue: "POST")
                     /// `PUT`: PUT method.
-                    case put = "PUT"
+                    public static let put = Self.init(rawValue: "PUT")
                     /// `TRACE`: TRACE method.
-                    case trace = "TRACE"
+                    public static let trace = Self.init(rawValue: "TRACE")
                     /// `_OTHER`: Any HTTP method that the instrumentation has no prior knowledge of.
-                    case other = "_OTHER"
+                    public static let other = Self.init(rawValue: "_OTHER")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }

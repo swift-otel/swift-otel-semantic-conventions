@@ -64,21 +64,22 @@ extension SpanAttributes {
             /// - Example: `openai`
             public var system: Self.Key<SystemEnum> { .init(name: OTelAttributes.gen_ai.system) }
             
-            public enum SystemEnum: String, SpanAttributeConvertible {
+            public struct SystemEnum: SpanAttributeConvertible {
+                private let rawValue: String
                 /// `openai`: OpenAI
-                case openai = "openai"
+                public static let openai = Self.init(rawValue: "openai")
                 /// `vertex_ai`: Vertex AI
-                case vertex_ai = "vertex_ai"
+                public static let vertex_ai = Self.init(rawValue: "vertex_ai")
                 /// `anthropic`: Anthropic
-                case anthropic = "anthropic"
+                public static let anthropic = Self.init(rawValue: "anthropic")
                 /// `cohere`: Cohere
-                case cohere = "cohere"
+                public static let cohere = Self.init(rawValue: "cohere")
                 /// `az.ai.inference`: Azure AI Inference
-                case az_ai_inference = "az.ai.inference"
+                public static let az_ai_inference = Self.init(rawValue: "az.ai.inference")
                 /// `ibm.watsonx.ai`: IBM Watsonx AI
-                case ibm_watsonx_ai = "ibm.watsonx.ai"
+                public static let ibm_watsonx_ai = Self.init(rawValue: "ibm.watsonx.ai")
                 /// `aws.bedrock`: AWS Bedrock
-                case aws_bedrock = "aws.bedrock"
+                public static let aws_bedrock = Self.init(rawValue: "aws.bedrock")
                 public func toSpanAttribute() -> Tracing.SpanAttribute {
                     return .string(self.rawValue)
                 }
@@ -140,13 +141,14 @@ extension SpanAttributes {
                     /// - Example: `json`
                     public var response_format: Self.Key<Response_FormatEnum> { .init(name: OTelAttributes.gen_ai.openai.request.response_format) }
                     
-                    public enum Response_FormatEnum: String, SpanAttributeConvertible {
+                    public struct Response_FormatEnum: SpanAttributeConvertible {
+                        private let rawValue: String
                         /// `text`: Text response format
-                        case text = "text"
+                        public static let text = Self.init(rawValue: "text")
                         /// `json_object`: JSON object response format
-                        case json_object = "json_object"
+                        public static let json_object = Self.init(rawValue: "json_object")
                         /// `json_schema`: JSON schema response format
-                        case json_schema = "json_schema"
+                        public static let json_schema = Self.init(rawValue: "json_schema")
                         public func toSpanAttribute() -> Tracing.SpanAttribute {
                             return .string(self.rawValue)
                         }
@@ -174,11 +176,12 @@ extension SpanAttributes {
                     ///     - `default`
                     public var service_tier: Self.Key<Service_TierEnum> { .init(name: OTelAttributes.gen_ai.openai.request.service_tier) }
                     
-                    public enum Service_TierEnum: String, SpanAttributeConvertible {
+                    public struct Service_TierEnum: SpanAttributeConvertible {
+                        private let rawValue: String
                         /// `auto`: The system will utilize scale tier credits until they are exhausted.
-                        case auto = "auto"
+                        public static let auto = Self.init(rawValue: "auto")
                         /// `default`: The system will utilize the default scale tier.
-                        case `default` = "default"
+                        public static let `default` = Self.init(rawValue: "default")
                         public func toSpanAttribute() -> Tracing.SpanAttribute {
                             return .string(self.rawValue)
                         }
@@ -265,13 +268,14 @@ extension SpanAttributes {
                 /// If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value. 
                 public var name: Self.Key<NameEnum> { .init(name: OTelAttributes.gen_ai.operation.name) }
                 
-                public enum NameEnum: String, SpanAttributeConvertible {
+                public struct NameEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `chat`: Chat completion operation such as [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat)
-                    case chat = "chat"
+                    public static let chat = Self.init(rawValue: "chat")
                     /// `text_completion`: Text completions operation such as [OpenAI Completions API (Legacy)](https://platform.openai.com/docs/api-reference/completions)
-                    case text_completion = "text_completion"
+                    public static let text_completion = Self.init(rawValue: "text_completion")
                     /// `embeddings`: Embeddings operation such as [OpenAI Create embeddings API](https://platform.openai.com/docs/api-reference/embeddings/create)
-                    case embeddings = "embeddings"
+                    public static let embeddings = Self.init(rawValue: "embeddings")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }
@@ -466,11 +470,12 @@ extension SpanAttributes {
                 ///     - `output`
                 public var type: Self.Key<TypeEnum> { .init(name: OTelAttributes.gen_ai.token.type) }
                 
-                public enum TypeEnum: String, SpanAttributeConvertible {
+                public struct TypeEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `input`: Input tokens (prompt, input, etc.)
-                    case input = "input"
+                    public static let input = Self.init(rawValue: "input")
                     /// `output`: Output tokens (completion, response, etc.)
-                    case completion = "output"
+                    public static let completion = Self.init(rawValue: "output")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }

@@ -60,15 +60,16 @@ extension SpanAttributes {
                 ///     - `weakcb`: Weak Callbacks (Process Weak Callbacks).
                 public var type: Self.Key<TypeEnum> { .init(name: OTelAttributes.v8js.gc.type) }
                 
-                public enum TypeEnum: String, SpanAttributeConvertible {
+                public struct TypeEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `major`: Major (Mark Sweep Compact).
-                    case major = "major"
+                    public static let major = Self.init(rawValue: "major")
                     /// `minor`: Minor (Scavenge).
-                    case minor = "minor"
+                    public static let minor = Self.init(rawValue: "minor")
                     /// `incremental`: Incremental (Incremental Marking).
-                    case incremental = "incremental"
+                    public static let incremental = Self.init(rawValue: "incremental")
                     /// `weakcb`: Weak Callbacks (Process Weak Callbacks).
-                    case weakcb = "weakcb"
+                    public static let weakcb = Self.init(rawValue: "weakcb")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }
@@ -135,17 +136,18 @@ extension SpanAttributes {
                     /// Value can be retrieved from value `space_name` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics) 
                     public var name: Self.Key<NameEnum> { .init(name: OTelAttributes.v8js.heap.space.name) }
                     
-                    public enum NameEnum: String, SpanAttributeConvertible {
+                    public struct NameEnum: SpanAttributeConvertible {
+                        private let rawValue: String
                         /// `new_space`: New memory space.
-                        case new_space = "new_space"
+                        public static let new_space = Self.init(rawValue: "new_space")
                         /// `old_space`: Old memory space.
-                        case old_space = "old_space"
+                        public static let old_space = Self.init(rawValue: "old_space")
                         /// `code_space`: Code memory space.
-                        case code_space = "code_space"
+                        public static let code_space = Self.init(rawValue: "code_space")
                         /// `map_space`: Map memory space.
-                        case map_space = "map_space"
+                        public static let map_space = Self.init(rawValue: "map_space")
                         /// `large_object_space`: Large object memory space.
-                        case large_object_space = "large_object_space"
+                        public static let large_object_space = Self.init(rawValue: "large_object_space")
                         public func toSpanAttribute() -> Tracing.SpanAttribute {
                             return .string(self.rawValue)
                         }

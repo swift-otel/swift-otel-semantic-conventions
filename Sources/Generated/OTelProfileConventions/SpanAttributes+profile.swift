@@ -67,25 +67,26 @@ extension SpanAttributes {
                 /// - Example: `cpython`
                 public var type: Self.Key<TypeEnum> { .init(name: OTelAttributes.profile.frame.type) }
                 
-                public enum TypeEnum: String, SpanAttributeConvertible {
+                public struct TypeEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `dotnet`: [.NET](https://wikipedia.org/wiki/.NET)
-                    case dotnet = "dotnet"
+                    public static let dotnet = Self.init(rawValue: "dotnet")
                     /// `jvm`: [JVM](https://wikipedia.org/wiki/Java_virtual_machine)
-                    case jvm = "jvm"
+                    public static let jvm = Self.init(rawValue: "jvm")
                     /// `kernel`: [Kernel](https://wikipedia.org/wiki/Kernel_(operating_system))
-                    case kernel = "kernel"
+                    public static let kernel = Self.init(rawValue: "kernel")
                     /// `native`: [C](https://wikipedia.org/wiki/C_(programming_language)), [C++](https://wikipedia.org/wiki/C%2B%2B), [Go](https://wikipedia.org/wiki/Go_(programming_language)), [Rust](https://wikipedia.org/wiki/Rust_(programming_language))
-                    case native = "native"
+                    public static let native = Self.init(rawValue: "native")
                     /// `perl`: [Perl](https://wikipedia.org/wiki/Perl)
-                    case perl = "perl"
+                    public static let perl = Self.init(rawValue: "perl")
                     /// `php`: [PHP](https://wikipedia.org/wiki/PHP)
-                    case php = "php"
+                    public static let php = Self.init(rawValue: "php")
                     /// `cpython`: [Python](https://wikipedia.org/wiki/Python_(programming_language))
-                    case cpython = "cpython"
+                    public static let cpython = Self.init(rawValue: "cpython")
                     /// `ruby`: [Ruby](https://wikipedia.org/wiki/Ruby_(programming_language))
-                    case ruby = "ruby"
+                    public static let ruby = Self.init(rawValue: "ruby")
                     /// `v8js`: [V8JS](https://wikipedia.org/wiki/V8_(JavaScript_engine))
-                    case v8js = "v8js"
+                    public static let v8js = Self.init(rawValue: "v8js")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }

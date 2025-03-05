@@ -39,13 +39,14 @@ extension SpanAttributes {
             @available(*, deprecated, message: "Replaced by `device.app.lifecycle`.")
             public var state: Self.Key<StateEnum> { .init(name: OTelAttributes.android.state) }
             
-            public enum StateEnum: String, SpanAttributeConvertible {
+            public struct StateEnum: SpanAttributeConvertible {
+                private let rawValue: String
                 /// `created`: Any time before Activity.onResume() or, if the app has no Activity, Context.startService() has been called in the app for the first time.
-                case created = "created"
+                public static let created = Self.init(rawValue: "created")
                 /// `background`: Any time after Activity.onPause() or, if the app has no Activity, Context.stopService() has been called when the app was in the foreground state.
-                case background = "background"
+                public static let background = Self.init(rawValue: "background")
                 /// `foreground`: Any time after Activity.onResume() or, if the app has no Activity, Context.startService() has been called when the app was in either the created or background states.
-                case foreground = "foreground"
+                public static let foreground = Self.init(rawValue: "foreground")
                 public func toSpanAttribute() -> Tracing.SpanAttribute {
                     return .string(self.rawValue)
                 }

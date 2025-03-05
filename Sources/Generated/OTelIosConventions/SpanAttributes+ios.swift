@@ -41,17 +41,18 @@ extension SpanAttributes {
             @available(*, deprecated, message: "Moved to a payload field of `device.app.lifecycle`.")
             public var state: Self.Key<StateEnum> { .init(name: OTelAttributes.ios.state) }
             
-            public enum StateEnum: String, SpanAttributeConvertible {
+            public struct StateEnum: SpanAttributeConvertible {
+                private let rawValue: String
                 /// `active`: The app has become `active`. Associated with UIKit notification `applicationDidBecomeActive`.
-                case active = "active"
+                public static let active = Self.init(rawValue: "active")
                 /// `inactive`: The app is now `inactive`. Associated with UIKit notification `applicationWillResignActive`.
-                case inactive = "inactive"
+                public static let inactive = Self.init(rawValue: "inactive")
                 /// `background`: The app is now in the background. This value is associated with UIKit notification `applicationDidEnterBackground`.
-                case background = "background"
+                public static let background = Self.init(rawValue: "background")
                 /// `foreground`: The app is now in the foreground. This value is associated with UIKit notification `applicationWillEnterForeground`.
-                case foreground = "foreground"
+                public static let foreground = Self.init(rawValue: "foreground")
                 /// `terminate`: The app is about to terminate. Associated with UIKit notification `applicationWillTerminate`.
-                case terminate = "terminate"
+                public static let terminate = Self.init(rawValue: "terminate")
                 public func toSpanAttribute() -> Tracing.SpanAttribute {
                     return .string(self.rawValue)
                 }

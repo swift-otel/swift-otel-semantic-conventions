@@ -256,11 +256,12 @@ extension SpanAttributes {
                 ///     - `tls`
                 public var name: Self.Key<NameEnum> { .init(name: OTelAttributes.tls.protocol.name) }
                 
-                public enum NameEnum: String, SpanAttributeConvertible {
+                public struct NameEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `ssl`
-                    case ssl = "ssl"
+                    public static let ssl = Self.init(rawValue: "ssl")
                     /// `tls`
-                    case tls = "tls"
+                    public static let tls = Self.init(rawValue: "tls")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }

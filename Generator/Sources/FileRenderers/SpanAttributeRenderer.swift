@@ -109,7 +109,10 @@ struct SpanAttributeRenderer: FileRenderer {
             let enumTypeName = "\(attributeName.capitalized)Enum"
             result.append("\npublic var \(propertyName): Self.Key<\(enumTypeName)> { .init(name: OTelAttributes.\(namespace.id).\(propertyName)) }")
 
-            result.append("\n\npublic enum \(enumTypeName): String, SpanAttributeConvertible {")
+            // Enum types are not represented as Swift enums to avoid breaking changes when new enum values are added.
+            // Instead we use a struct with static properties for each enum value.
+            result.append("\n\npublic struct \(enumTypeName): SpanAttributeConvertible {")
+            result.append("\n    private let rawValue: String")
             for member in type.members {
                 let caseName = swiftName(member.id)
                 result.append("\n    /// `\(member.value)`")
@@ -119,7 +122,7 @@ struct SpanAttributeRenderer: FileRenderer {
                 if let deprecatedMessage = member.deprecated {
                     result.append("\n    @available(*, deprecated, message: \"\(deprecatedMessage)\")")
                 }
-                result.append("\n    case \(caseName) = \"\(member.value)\"")
+                result.append("\n    public static let \(caseName) = Self.init(rawValue: \"\(member.value)\")")
             }
 
             result.append("""

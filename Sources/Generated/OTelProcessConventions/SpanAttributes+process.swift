@@ -71,11 +71,12 @@ extension SpanAttributes {
             ///     - `involuntary`
             public var context_switch_type: Self.Key<Context_Switch_TypeEnum> { .init(name: OTelAttributes.process.context_switch_type) }
             
-            public enum Context_Switch_TypeEnum: String, SpanAttributeConvertible {
+            public struct Context_Switch_TypeEnum: SpanAttributeConvertible {
+                private let rawValue: String
                 /// `voluntary`
-                case voluntary = "voluntary"
+                public static let voluntary = Self.init(rawValue: "voluntary")
                 /// `involuntary`
-                case involuntary = "involuntary"
+                public static let involuntary = Self.init(rawValue: "involuntary")
                 public func toSpanAttribute() -> Tracing.SpanAttribute {
                     return .string(self.rawValue)
                 }
@@ -181,13 +182,14 @@ extension SpanAttributes {
                 @available(*, deprecated, message: "Replaced by `cpu.mode`")
                 public var state: Self.Key<StateEnum> { .init(name: OTelAttributes.process.cpu.state) }
                 
-                public enum StateEnum: String, SpanAttributeConvertible {
+                public struct StateEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `system`
-                    case system = "system"
+                    public static let system = Self.init(rawValue: "system")
                     /// `user`
-                    case user = "user"
+                    public static let user = Self.init(rawValue: "user")
                     /// `wait`
-                    case wait = "wait"
+                    public static let wait = Self.init(rawValue: "wait")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }
@@ -472,11 +474,12 @@ extension SpanAttributes {
                 ///     - `minor`
                 public var fault_type: Self.Key<Fault_TypeEnum> { .init(name: OTelAttributes.process.paging.fault_type) }
                 
-                public enum Fault_TypeEnum: String, SpanAttributeConvertible {
+                public struct Fault_TypeEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `major`
-                    case major = "major"
+                    public static let major = Self.init(rawValue: "major")
                     /// `minor`
-                    case minor = "minor"
+                    public static let minor = Self.init(rawValue: "minor")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }

@@ -62,11 +62,12 @@ extension SpanAttributes {
                 ///     - `stack`
                 public var type: Self.Key<TypeEnum> { .init(name: OTelAttributes.go.memory.type) }
                 
-                public enum TypeEnum: String, SpanAttributeConvertible {
+                public struct TypeEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `stack`: Memory allocated from the heap that is reserved for stack space, whether or not it is currently in-use.
-                    case stack = "stack"
+                    public static let stack = Self.init(rawValue: "stack")
                     /// `other`: Memory used by the Go runtime, excluding other categories of memory usage described in this enumeration.
-                    case other = "other"
+                    public static let other = Self.init(rawValue: "other")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }

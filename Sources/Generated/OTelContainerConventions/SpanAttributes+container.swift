@@ -207,13 +207,14 @@ extension SpanAttributes {
                 @available(*, deprecated, message: "Replaced by `cpu.mode`")
                 public var state: Self.Key<StateEnum> { .init(name: OTelAttributes.container.cpu.state) }
                 
-                public enum StateEnum: String, SpanAttributeConvertible {
+                public struct StateEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `user`: When tasks of the cgroup are in user mode (Linux). When all container processes are in user mode (Windows).
-                    case user = "user"
+                    public static let user = Self.init(rawValue: "user")
                     /// `system`: When CPU is used by the system (host OS)
-                    case system = "system"
+                    public static let system = Self.init(rawValue: "system")
                     /// `kernel`: When tasks of the cgroup are in kernel mode (Linux). When all container processes are in kernel mode (Windows).
-                    case kernel = "kernel"
+                    public static let kernel = Self.init(rawValue: "kernel")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }

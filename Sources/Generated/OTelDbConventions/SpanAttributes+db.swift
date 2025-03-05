@@ -149,120 +149,121 @@ extension SpanAttributes {
             /// The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system` is set to `postgresql` based on the instrumentation's best knowledge. This attribute has stability level RELEASE CANDIDATE. 
             public var system: Self.Key<SystemEnum> { .init(name: OTelAttributes.db.system) }
             
-            public enum SystemEnum: String, SpanAttributeConvertible {
+            public struct SystemEnum: SpanAttributeConvertible {
+                private let rawValue: String
                 /// `other_sql`: Some other SQL database. Fallback only. See notes.
-                case other_sql = "other_sql"
+                public static let other_sql = Self.init(rawValue: "other_sql")
                 /// `adabas`: Adabas (Adaptable Database System)
-                case adabas = "adabas"
+                public static let adabas = Self.init(rawValue: "adabas")
                 /// `cache`: Deprecated, use `intersystems_cache` instead.
                 @available(*, deprecated, message: "Replaced by `intersystems_cache`.")
-                case cache = "cache"
+                public static let cache = Self.init(rawValue: "cache")
                 /// `intersystems_cache`: InterSystems Caché
-                case intersystems_cache = "intersystems_cache"
+                public static let intersystems_cache = Self.init(rawValue: "intersystems_cache")
                 /// `cassandra`: Apache Cassandra
-                case cassandra = "cassandra"
+                public static let cassandra = Self.init(rawValue: "cassandra")
                 /// `clickhouse`: ClickHouse
-                case clickhouse = "clickhouse"
+                public static let clickhouse = Self.init(rawValue: "clickhouse")
                 /// `cloudscape`: Deprecated, use `other_sql` instead.
                 @available(*, deprecated, message: "Replaced by `other_sql`.")
-                case cloudscape = "cloudscape"
+                public static let cloudscape = Self.init(rawValue: "cloudscape")
                 /// `cockroachdb`: CockroachDB
-                case cockroachdb = "cockroachdb"
+                public static let cockroachdb = Self.init(rawValue: "cockroachdb")
                 /// `coldfusion`: Deprecated, no replacement at this time.
                 @available(*, deprecated, message: "Removed.")
-                case coldfusion = "coldfusion"
+                public static let coldfusion = Self.init(rawValue: "coldfusion")
                 /// `cosmosdb`: Microsoft Azure Cosmos DB
-                case cosmosdb = "cosmosdb"
+                public static let cosmosdb = Self.init(rawValue: "cosmosdb")
                 /// `couchbase`: Couchbase
-                case couchbase = "couchbase"
+                public static let couchbase = Self.init(rawValue: "couchbase")
                 /// `couchdb`: CouchDB
-                case couchdb = "couchdb"
+                public static let couchdb = Self.init(rawValue: "couchdb")
                 /// `db2`: IBM Db2
-                case db2 = "db2"
+                public static let db2 = Self.init(rawValue: "db2")
                 /// `derby`: Apache Derby
-                case derby = "derby"
+                public static let derby = Self.init(rawValue: "derby")
                 /// `dynamodb`: Amazon DynamoDB
-                case dynamodb = "dynamodb"
+                public static let dynamodb = Self.init(rawValue: "dynamodb")
                 /// `edb`: EnterpriseDB
-                case edb = "edb"
+                public static let edb = Self.init(rawValue: "edb")
                 /// `elasticsearch`: Elasticsearch
-                case elasticsearch = "elasticsearch"
+                public static let elasticsearch = Self.init(rawValue: "elasticsearch")
                 /// `filemaker`: FileMaker
-                case filemaker = "filemaker"
+                public static let filemaker = Self.init(rawValue: "filemaker")
                 /// `firebird`: Firebird
-                case firebird = "firebird"
+                public static let firebird = Self.init(rawValue: "firebird")
                 /// `firstsql`: Deprecated, use `other_sql` instead.
                 @available(*, deprecated, message: "Replaced by `other_sql`.")
-                case firstsql = "firstsql"
+                public static let firstsql = Self.init(rawValue: "firstsql")
                 /// `geode`: Apache Geode
-                case geode = "geode"
+                public static let geode = Self.init(rawValue: "geode")
                 /// `h2`: H2
-                case h2 = "h2"
+                public static let h2 = Self.init(rawValue: "h2")
                 /// `hanadb`: SAP HANA
-                case hanadb = "hanadb"
+                public static let hanadb = Self.init(rawValue: "hanadb")
                 /// `hbase`: Apache HBase
-                case hbase = "hbase"
+                public static let hbase = Self.init(rawValue: "hbase")
                 /// `hive`: Apache Hive
-                case hive = "hive"
+                public static let hive = Self.init(rawValue: "hive")
                 /// `hsqldb`: HyperSQL DataBase
-                case hsqldb = "hsqldb"
+                public static let hsqldb = Self.init(rawValue: "hsqldb")
                 /// `influxdb`: InfluxDB
-                case influxdb = "influxdb"
+                public static let influxdb = Self.init(rawValue: "influxdb")
                 /// `informix`: Informix
-                case informix = "informix"
+                public static let informix = Self.init(rawValue: "informix")
                 /// `ingres`: Ingres
-                case ingres = "ingres"
+                public static let ingres = Self.init(rawValue: "ingres")
                 /// `instantdb`: InstantDB
-                case instantdb = "instantdb"
+                public static let instantdb = Self.init(rawValue: "instantdb")
                 /// `interbase`: InterBase
-                case interbase = "interbase"
+                public static let interbase = Self.init(rawValue: "interbase")
                 /// `mariadb`: MariaDB (This value has stability level RELEASE CANDIDATE)
-                case mariadb = "mariadb"
+                public static let mariadb = Self.init(rawValue: "mariadb")
                 /// `maxdb`: SAP MaxDB
-                case maxdb = "maxdb"
+                public static let maxdb = Self.init(rawValue: "maxdb")
                 /// `memcached`: Memcached
-                case memcached = "memcached"
+                public static let memcached = Self.init(rawValue: "memcached")
                 /// `mongodb`: MongoDB
-                case mongodb = "mongodb"
+                public static let mongodb = Self.init(rawValue: "mongodb")
                 /// `mssql`: Microsoft SQL Server (This value has stability level RELEASE CANDIDATE)
-                case mssql = "mssql"
+                public static let mssql = Self.init(rawValue: "mssql")
                 /// `mssqlcompact`: Deprecated, Microsoft SQL Server Compact is discontinued.
                 @available(*, deprecated, message: "Removed, use `other_sql` instead.")
-                case mssqlcompact = "mssqlcompact"
+                public static let mssqlcompact = Self.init(rawValue: "mssqlcompact")
                 /// `mysql`: MySQL (This value has stability level RELEASE CANDIDATE)
-                case mysql = "mysql"
+                public static let mysql = Self.init(rawValue: "mysql")
                 /// `neo4j`: Neo4j
-                case neo4j = "neo4j"
+                public static let neo4j = Self.init(rawValue: "neo4j")
                 /// `netezza`: Netezza
-                case netezza = "netezza"
+                public static let netezza = Self.init(rawValue: "netezza")
                 /// `opensearch`: OpenSearch
-                case opensearch = "opensearch"
+                public static let opensearch = Self.init(rawValue: "opensearch")
                 /// `oracle`: Oracle Database
-                case oracle = "oracle"
+                public static let oracle = Self.init(rawValue: "oracle")
                 /// `pervasive`: Pervasive PSQL
-                case pervasive = "pervasive"
+                public static let pervasive = Self.init(rawValue: "pervasive")
                 /// `pointbase`: PointBase
-                case pointbase = "pointbase"
+                public static let pointbase = Self.init(rawValue: "pointbase")
                 /// `postgresql`: PostgreSQL (This value has stability level RELEASE CANDIDATE)
-                case postgresql = "postgresql"
+                public static let postgresql = Self.init(rawValue: "postgresql")
                 /// `progress`: Progress Database
-                case progress = "progress"
+                public static let progress = Self.init(rawValue: "progress")
                 /// `redis`: Redis
-                case redis = "redis"
+                public static let redis = Self.init(rawValue: "redis")
                 /// `redshift`: Amazon Redshift
-                case redshift = "redshift"
+                public static let redshift = Self.init(rawValue: "redshift")
                 /// `spanner`: Cloud Spanner
-                case spanner = "spanner"
+                public static let spanner = Self.init(rawValue: "spanner")
                 /// `sqlite`: SQLite
-                case sqlite = "sqlite"
+                public static let sqlite = Self.init(rawValue: "sqlite")
                 /// `sybase`: Sybase
-                case sybase = "sybase"
+                public static let sybase = Self.init(rawValue: "sybase")
                 /// `teradata`: Teradata
-                case teradata = "teradata"
+                public static let teradata = Self.init(rawValue: "teradata")
                 /// `trino`: Trino
-                case trino = "trino"
+                public static let trino = Self.init(rawValue: "trino")
                 /// `vertica`: Vertica
-                case vertica = "vertica"
+                public static let vertica = Self.init(rawValue: "vertica")
                 public func toSpanAttribute() -> Tracing.SpanAttribute {
                     return .string(self.rawValue)
                 }
@@ -319,29 +320,30 @@ extension SpanAttributes {
                 ///     - `local_serial`
                 public var consistency_level: Self.Key<Consistency_LevelEnum> { .init(name: OTelAttributes.db.cassandra.consistency_level) }
                 
-                public enum Consistency_LevelEnum: String, SpanAttributeConvertible {
+                public struct Consistency_LevelEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `all`
-                    case all = "all"
+                    public static let all = Self.init(rawValue: "all")
                     /// `each_quorum`
-                    case each_quorum = "each_quorum"
+                    public static let each_quorum = Self.init(rawValue: "each_quorum")
                     /// `quorum`
-                    case quorum = "quorum"
+                    public static let quorum = Self.init(rawValue: "quorum")
                     /// `local_quorum`
-                    case local_quorum = "local_quorum"
+                    public static let local_quorum = Self.init(rawValue: "local_quorum")
                     /// `one`
-                    case one = "one"
+                    public static let one = Self.init(rawValue: "one")
                     /// `two`
-                    case two = "two"
+                    public static let two = Self.init(rawValue: "two")
                     /// `three`
-                    case three = "three"
+                    public static let three = Self.init(rawValue: "three")
                     /// `local_one`
-                    case local_one = "local_one"
+                    public static let local_one = Self.init(rawValue: "local_one")
                     /// `any`
-                    case any = "any"
+                    public static let any = Self.init(rawValue: "any")
                     /// `serial`
-                    case serial = "serial"
+                    public static let serial = Self.init(rawValue: "serial")
                     /// `local_serial`
-                    case local_serial = "local_serial"
+                    public static let local_serial = Self.init(rawValue: "local_serial")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }
@@ -482,11 +484,12 @@ extension SpanAttributes {
                     /// - Example: `idle`
                     public var state: Self.Key<StateEnum> { .init(name: OTelAttributes.db.client.connection.state) }
                     
-                    public enum StateEnum: String, SpanAttributeConvertible {
+                    public struct StateEnum: SpanAttributeConvertible {
+                        private let rawValue: String
                         /// `idle`
-                        case idle = "idle"
+                        public static let idle = Self.init(rawValue: "idle")
                         /// `used`
-                        case used = "used"
+                        public static let used = Self.init(rawValue: "used")
                         public func toSpanAttribute() -> Tracing.SpanAttribute {
                             return .string(self.rawValue)
                         }
@@ -559,11 +562,12 @@ extension SpanAttributes {
                     @available(*, deprecated, message: "Replaced by `db.client.connection.state`.")
                     public var state: Self.Key<StateEnum> { .init(name: OTelAttributes.db.client.connections.state) }
                     
-                    public enum StateEnum: String, SpanAttributeConvertible {
+                    public struct StateEnum: SpanAttributeConvertible {
+                        private let rawValue: String
                         /// `idle`
-                        case idle = "idle"
+                        public static let idle = Self.init(rawValue: "idle")
                         /// `used`
-                        case used = "used"
+                        public static let used = Self.init(rawValue: "used")
                         public func toSpanAttribute() -> Tracing.SpanAttribute {
                             return .string(self.rawValue)
                         }
@@ -681,11 +685,12 @@ extension SpanAttributes {
                 ///     - `direct`: Direct connection.
                 public var connection_mode: Self.Key<Connection_ModeEnum> { .init(name: OTelAttributes.db.cosmosdb.connection_mode) }
                 
-                public enum Connection_ModeEnum: String, SpanAttributeConvertible {
+                public struct Connection_ModeEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `gateway`: Gateway (HTTP) connection.
-                    case gateway = "gateway"
+                    public static let gateway = Self.init(rawValue: "gateway")
                     /// `direct`: Direct connection.
-                    case direct = "direct"
+                    public static let direct = Self.init(rawValue: "direct")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }
@@ -710,17 +715,18 @@ extension SpanAttributes {
                 ///     - `Session`
                 public var consistency_level: Self.Key<Consistency_LevelEnum> { .init(name: OTelAttributes.db.cosmosdb.consistency_level) }
                 
-                public enum Consistency_LevelEnum: String, SpanAttributeConvertible {
+                public struct Consistency_LevelEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `Strong`
-                    case strong = "Strong"
+                    public static let strong = Self.init(rawValue: "Strong")
                     /// `BoundedStaleness`
-                    case bounded_staleness = "BoundedStaleness"
+                    public static let bounded_staleness = Self.init(rawValue: "BoundedStaleness")
                     /// `Session`
-                    case session = "Session"
+                    public static let session = Self.init(rawValue: "Session")
                     /// `Eventual`
-                    case eventual = "Eventual"
+                    public static let eventual = Self.init(rawValue: "Eventual")
                     /// `ConsistentPrefix`
-                    case consistent_prefix = "ConsistentPrefix"
+                    public static let consistent_prefix = Self.init(rawValue: "ConsistentPrefix")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }
@@ -759,37 +765,38 @@ extension SpanAttributes {
                 @available(*, deprecated, message: "No replacement at this time.")
                 public var operation_type: Self.Key<Operation_TypeEnum> { .init(name: OTelAttributes.db.cosmosdb.operation_type) }
                 
-                public enum Operation_TypeEnum: String, SpanAttributeConvertible {
+                public struct Operation_TypeEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `batch`
-                    case batch = "batch"
+                    public static let batch = Self.init(rawValue: "batch")
                     /// `create`
-                    case create = "create"
+                    public static let create = Self.init(rawValue: "create")
                     /// `delete`
-                    case delete = "delete"
+                    public static let delete = Self.init(rawValue: "delete")
                     /// `execute`
-                    case execute = "execute"
+                    public static let execute = Self.init(rawValue: "execute")
                     /// `execute_javascript`
-                    case execute_javascript = "execute_javascript"
+                    public static let execute_javascript = Self.init(rawValue: "execute_javascript")
                     /// `invalid`
-                    case invalid = "invalid"
+                    public static let invalid = Self.init(rawValue: "invalid")
                     /// `head`
-                    case head = "head"
+                    public static let head = Self.init(rawValue: "head")
                     /// `head_feed`
-                    case head_feed = "head_feed"
+                    public static let head_feed = Self.init(rawValue: "head_feed")
                     /// `patch`
-                    case patch = "patch"
+                    public static let patch = Self.init(rawValue: "patch")
                     /// `query`
-                    case query = "query"
+                    public static let query = Self.init(rawValue: "query")
                     /// `query_plan`
-                    case query_plan = "query_plan"
+                    public static let query_plan = Self.init(rawValue: "query_plan")
                     /// `read`
-                    case read = "read"
+                    public static let read = Self.init(rawValue: "read")
                     /// `read_feed`
-                    case read_feed = "read_feed"
+                    public static let read_feed = Self.init(rawValue: "read_feed")
                     /// `replace`
-                    case replace = "replace"
+                    public static let replace = Self.init(rawValue: "replace")
                     /// `upsert`
-                    case upsert = "upsert"
+                    public static let upsert = Self.init(rawValue: "upsert")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }

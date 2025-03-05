@@ -144,13 +144,14 @@ extension SpanAttributes {
                     ///     - `deploy`
                     public var type: Self.Key<TypeEnum> { .init(name: OTelAttributes.cicd.pipeline.task.type) }
                     
-                    public enum TypeEnum: String, SpanAttributeConvertible {
+                    public struct TypeEnum: SpanAttributeConvertible {
+                        private let rawValue: String
                         /// `build`: build
-                        case build = "build"
+                        public static let build = Self.init(rawValue: "build")
                         /// `test`: test
-                        case test = "test"
+                        public static let test = Self.init(rawValue: "test")
                         /// `deploy`: deploy
-                        case deploy = "deploy"
+                        public static let deploy = Self.init(rawValue: "deploy")
                         public func toSpanAttribute() -> Tracing.SpanAttribute {
                             return .string(self.rawValue)
                         }

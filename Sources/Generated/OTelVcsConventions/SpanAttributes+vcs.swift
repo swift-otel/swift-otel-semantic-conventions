@@ -74,15 +74,16 @@ extension SpanAttributes {
                 ///     - `merged`
                 public var state: Self.Key<StateEnum> { .init(name: OTelAttributes.vcs.change.state) }
                 
-                public enum StateEnum: String, SpanAttributeConvertible {
+                public struct StateEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `open`: Open means the change is currently active and under review. It hasn't been merged into the target branch yet, and it's still possible to make changes or add comments.
-                    case `open` = "open"
+                    public static let `open` = Self.init(rawValue: "open")
                     /// `wip`: WIP (work-in-progress, draft) means the change is still in progress and not yet ready for a full review. It might still undergo significant changes.
-                    case wip = "wip"
+                    public static let wip = Self.init(rawValue: "wip")
                     /// `closed`: Closed means the merge request has been closed without merging. This can happen for various reasons, such as the changes being deemed unnecessary, the issue being resolved in another way, or the author deciding to withdraw the request.
-                    case closed = "closed"
+                    public static let closed = Self.init(rawValue: "closed")
                     /// `merged`: Merged indicates that the change has been successfully integrated into the target codebase.
-                    case merged = "merged"
+                    public static let merged = Self.init(rawValue: "merged")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }
@@ -137,11 +138,12 @@ extension SpanAttributes {
                 ///     - `removed`
                 public var type: Self.Key<TypeEnum> { .init(name: OTelAttributes.vcs.line_change.type) }
                 
-                public enum TypeEnum: String, SpanAttributeConvertible {
+                public struct TypeEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `added`: How many lines were added.
-                    case added = "added"
+                    public static let added = Self.init(rawValue: "added")
                     /// `removed`: How many lines were removed.
-                    case removed = "removed"
+                    public static let removed = Self.init(rawValue: "removed")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }
@@ -184,11 +186,12 @@ extension SpanAttributes {
                 ///     - `tag`
                 public var type: Self.Key<TypeEnum> { .init(name: OTelAttributes.vcs.ref.type) }
                 
-                public enum TypeEnum: String, SpanAttributeConvertible {
+                public struct TypeEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `branch`: [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch)
-                    case branch = "branch"
+                    public static let branch = Self.init(rawValue: "branch")
                     /// `tag`: [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag)
-                    case tag = "tag"
+                    public static let tag = Self.init(rawValue: "tag")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }
@@ -254,11 +257,12 @@ extension SpanAttributes {
                     ///     - `tag`
                     public var type: Self.Key<TypeEnum> { .init(name: OTelAttributes.vcs.ref.base.type) }
                     
-                    public enum TypeEnum: String, SpanAttributeConvertible {
+                    public struct TypeEnum: SpanAttributeConvertible {
+                        private let rawValue: String
                         /// `branch`: [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch)
-                        case branch = "branch"
+                        public static let branch = Self.init(rawValue: "branch")
                         /// `tag`: [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag)
-                        case tag = "tag"
+                        public static let tag = Self.init(rawValue: "tag")
                         public func toSpanAttribute() -> Tracing.SpanAttribute {
                             return .string(self.rawValue)
                         }
@@ -327,11 +331,12 @@ extension SpanAttributes {
                     ///     - `tag`
                     public var type: Self.Key<TypeEnum> { .init(name: OTelAttributes.vcs.ref.head.type) }
                     
-                    public enum TypeEnum: String, SpanAttributeConvertible {
+                    public struct TypeEnum: SpanAttributeConvertible {
+                        private let rawValue: String
                         /// `branch`: [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch)
-                        case branch = "branch"
+                        public static let branch = Self.init(rawValue: "branch")
                         /// `tag`: [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag)
-                        case tag = "tag"
+                        public static let tag = Self.init(rawValue: "tag")
                         public func toSpanAttribute() -> Tracing.SpanAttribute {
                             return .string(self.rawValue)
                         }
@@ -472,11 +477,12 @@ extension SpanAttributes {
                     @available(*, deprecated, message: "Deprecated, use `vcs.ref.head.type` instead.")
                     public var type: Self.Key<TypeEnum> { .init(name: OTelAttributes.vcs.repository.ref.type) }
                     
-                    public enum TypeEnum: String, SpanAttributeConvertible {
+                    public struct TypeEnum: SpanAttributeConvertible {
+                        private let rawValue: String
                         /// `branch`: [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch)
-                        case branch = "branch"
+                        public static let branch = Self.init(rawValue: "branch")
                         /// `tag`: [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag)
-                        case tag = "tag"
+                        public static let tag = Self.init(rawValue: "tag")
                         public func toSpanAttribute() -> Tracing.SpanAttribute {
                             return .string(self.rawValue)
                         }
@@ -555,11 +561,12 @@ extension SpanAttributes {
                 ///     - `behind`
                 public var direction: Self.Key<DirectionEnum> { .init(name: OTelAttributes.vcs.revision_delta.direction) }
                 
-                public enum DirectionEnum: String, SpanAttributeConvertible {
+                public struct DirectionEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `behind`: How many revisions the change is behind the target ref.
-                    case behind = "behind"
+                    public static let behind = Self.init(rawValue: "behind")
                     /// `ahead`: How many revisions the change is ahead of the target ref.
-                    case ahead = "ahead"
+                    public static let ahead = Self.init(rawValue: "ahead")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }

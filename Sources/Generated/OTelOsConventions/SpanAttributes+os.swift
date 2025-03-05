@@ -79,29 +79,30 @@ extension SpanAttributes {
             ///     - `z_os`: IBM z/OS
             public var type: Self.Key<TypeEnum> { .init(name: OTelAttributes.os.type) }
             
-            public enum TypeEnum: String, SpanAttributeConvertible {
+            public struct TypeEnum: SpanAttributeConvertible {
+                private let rawValue: String
                 /// `windows`: Microsoft Windows
-                case windows = "windows"
+                public static let windows = Self.init(rawValue: "windows")
                 /// `linux`: Linux
-                case linux = "linux"
+                public static let linux = Self.init(rawValue: "linux")
                 /// `darwin`: Apple Darwin
-                case darwin = "darwin"
+                public static let darwin = Self.init(rawValue: "darwin")
                 /// `freebsd`: FreeBSD
-                case freebsd = "freebsd"
+                public static let freebsd = Self.init(rawValue: "freebsd")
                 /// `netbsd`: NetBSD
-                case netbsd = "netbsd"
+                public static let netbsd = Self.init(rawValue: "netbsd")
                 /// `openbsd`: OpenBSD
-                case openbsd = "openbsd"
+                public static let openbsd = Self.init(rawValue: "openbsd")
                 /// `dragonflybsd`: DragonFly BSD
-                case dragonflybsd = "dragonflybsd"
+                public static let dragonflybsd = Self.init(rawValue: "dragonflybsd")
                 /// `hpux`: HP-UX (Hewlett Packard Unix)
-                case hpux = "hpux"
+                public static let hpux = Self.init(rawValue: "hpux")
                 /// `aix`: AIX (Advanced Interactive eXecutive)
-                case aix = "aix"
+                public static let aix = Self.init(rawValue: "aix")
                 /// `solaris`: SunOS, Oracle Solaris
-                case solaris = "solaris"
+                public static let solaris = Self.init(rawValue: "solaris")
                 /// `z_os`: IBM z/OS
-                case z_os = "z_os"
+                public static let z_os = Self.init(rawValue: "z_os")
                 public func toSpanAttribute() -> Tracing.SpanAttribute {
                     return .string(self.rawValue)
                 }

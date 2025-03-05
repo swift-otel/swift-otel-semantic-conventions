@@ -85,11 +85,12 @@ extension SpanAttributes {
                     ///     - `unreclaimable`
                     public var state: Self.Key<StateEnum> { .init(name: OTelAttributes.linux.memory.slab.state) }
                     
-                    public enum StateEnum: String, SpanAttributeConvertible {
+                    public struct StateEnum: SpanAttributeConvertible {
+                        private let rawValue: String
                         /// `reclaimable`
-                        case reclaimable = "reclaimable"
+                        public static let reclaimable = Self.init(rawValue: "reclaimable")
                         /// `unreclaimable`
-                        case unreclaimable = "unreclaimable"
+                        public static let unreclaimable = Self.init(rawValue: "unreclaimable")
                         public func toSpanAttribute() -> Tracing.SpanAttribute {
                             return .string(self.rawValue)
                         }

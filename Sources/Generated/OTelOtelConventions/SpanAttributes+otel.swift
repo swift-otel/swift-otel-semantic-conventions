@@ -35,11 +35,12 @@ extension SpanAttributes {
             ///     - `ERROR`: The operation contains an error.
             public var status_code: Self.Key<Status_CodeEnum> { .init(name: OTelAttributes.otel.status_code) }
             
-            public enum Status_CodeEnum: String, SpanAttributeConvertible {
+            public struct Status_CodeEnum: SpanAttributeConvertible {
+                private let rawValue: String
                 /// `OK`: The operation has been validated by an Application developer or Operator to have completed successfully.
-                case ok = "OK"
+                public static let ok = Self.init(rawValue: "OK")
                 /// `ERROR`: The operation contains an error.
-                case error = "ERROR"
+                public static let error = Self.init(rawValue: "ERROR")
                 public func toSpanAttribute() -> Tracing.SpanAttribute {
                     return .string(self.rawValue)
                 }

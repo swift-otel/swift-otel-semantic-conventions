@@ -41,23 +41,24 @@ extension SpanAttributes {
             ///     - `x86`: 32-bit x86
             public var arch: Self.Key<ArchEnum> { .init(name: OTelAttributes.host.arch) }
             
-            public enum ArchEnum: String, SpanAttributeConvertible {
+            public struct ArchEnum: SpanAttributeConvertible {
+                private let rawValue: String
                 /// `amd64`: AMD64
-                case amd64 = "amd64"
+                public static let amd64 = Self.init(rawValue: "amd64")
                 /// `arm32`: ARM32
-                case arm32 = "arm32"
+                public static let arm32 = Self.init(rawValue: "arm32")
                 /// `arm64`: ARM64
-                case arm64 = "arm64"
+                public static let arm64 = Self.init(rawValue: "arm64")
                 /// `ia64`: Itanium
-                case ia64 = "ia64"
+                public static let ia64 = Self.init(rawValue: "ia64")
                 /// `ppc32`: 32-bit PowerPC
-                case ppc32 = "ppc32"
+                public static let ppc32 = Self.init(rawValue: "ppc32")
                 /// `ppc64`: 64-bit PowerPC
-                case ppc64 = "ppc64"
+                public static let ppc64 = Self.init(rawValue: "ppc64")
                 /// `s390x`: IBM z/Architecture
-                case s390x = "s390x"
+                public static let s390x = Self.init(rawValue: "s390x")
                 /// `x86`: 32-bit x86
-                case x86 = "x86"
+                public static let x86 = Self.init(rawValue: "x86")
                 public func toSpanAttribute() -> Tracing.SpanAttribute {
                     return .string(self.rawValue)
                 }

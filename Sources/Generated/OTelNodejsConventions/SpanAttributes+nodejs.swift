@@ -58,11 +58,12 @@ extension SpanAttributes {
                 ///     - `idle`: Idle time.
                 public var state: Self.Key<StateEnum> { .init(name: OTelAttributes.nodejs.eventloop.state) }
                 
-                public enum StateEnum: String, SpanAttributeConvertible {
+                public struct StateEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `active`: Active time.
-                    case active = "active"
+                    public static let active = Self.init(rawValue: "active")
                     /// `idle`: Idle time.
-                    case idle = "idle"
+                    public static let idle = Self.init(rawValue: "idle")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }

@@ -70,21 +70,22 @@ extension SpanAttributes {
                 ///     - `SA`: South America
                 public var code: Self.Key<CodeEnum> { .init(name: OTelAttributes.geo.continent.code) }
                 
-                public enum CodeEnum: String, SpanAttributeConvertible {
+                public struct CodeEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `AF`: Africa
-                    case af = "AF"
+                    public static let af = Self.init(rawValue: "AF")
                     /// `AN`: Antarctica
-                    case an = "AN"
+                    public static let an = Self.init(rawValue: "AN")
                     /// `AS`: Asia
-                    case `as` = "AS"
+                    public static let `as` = Self.init(rawValue: "AS")
                     /// `EU`: Europe
-                    case eu = "EU"
+                    public static let eu = Self.init(rawValue: "EU")
                     /// `NA`: North America
-                    case na = "NA"
+                    public static let na = Self.init(rawValue: "NA")
                     /// `OC`: Oceania
-                    case oc = "OC"
+                    public static let oc = Self.init(rawValue: "OC")
                     /// `SA`: South America
-                    case sa = "SA"
+                    public static let sa = Self.init(rawValue: "SA")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }

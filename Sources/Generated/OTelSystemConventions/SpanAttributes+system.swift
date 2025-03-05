@@ -84,21 +84,22 @@ extension SpanAttributes {
                 @available(*, deprecated, message: "Replaced by `cpu.mode`")
                 public var state: Self.Key<StateEnum> { .init(name: OTelAttributes.system.cpu.state) }
                 
-                public enum StateEnum: String, SpanAttributeConvertible {
+                public struct StateEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `user`
-                    case user = "user"
+                    public static let user = Self.init(rawValue: "user")
                     /// `system`
-                    case system = "system"
+                    public static let system = Self.init(rawValue: "system")
                     /// `nice`
-                    case nice = "nice"
+                    public static let nice = Self.init(rawValue: "nice")
                     /// `idle`
-                    case idle = "idle"
+                    public static let idle = Self.init(rawValue: "idle")
                     /// `iowait`
-                    case iowait = "iowait"
+                    public static let iowait = Self.init(rawValue: "iowait")
                     /// `interrupt`
-                    case interrupt = "interrupt"
+                    public static let interrupt = Self.init(rawValue: "interrupt")
                     /// `steal`
-                    case steal = "steal"
+                    public static let steal = Self.init(rawValue: "steal")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }
@@ -158,13 +159,14 @@ extension SpanAttributes {
                 /// - Example: `used`
                 public var state: Self.Key<StateEnum> { .init(name: OTelAttributes.system.filesystem.state) }
                 
-                public enum StateEnum: String, SpanAttributeConvertible {
+                public struct StateEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `used`
-                    case used = "used"
+                    public static let used = Self.init(rawValue: "used")
                     /// `free`
-                    case free = "free"
+                    public static let free = Self.init(rawValue: "free")
                     /// `reserved`
-                    case reserved = "reserved"
+                    public static let reserved = Self.init(rawValue: "reserved")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }
@@ -185,19 +187,20 @@ extension SpanAttributes {
                 /// - Example: `ext4`
                 public var type: Self.Key<TypeEnum> { .init(name: OTelAttributes.system.filesystem.type) }
                 
-                public enum TypeEnum: String, SpanAttributeConvertible {
+                public struct TypeEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `fat32`
-                    case fat32 = "fat32"
+                    public static let fat32 = Self.init(rawValue: "fat32")
                     /// `exfat`
-                    case exfat = "exfat"
+                    public static let exfat = Self.init(rawValue: "exfat")
                     /// `ntfs`
-                    case ntfs = "ntfs"
+                    public static let ntfs = Self.init(rawValue: "ntfs")
                     /// `refs`
-                    case refs = "refs"
+                    public static let refs = Self.init(rawValue: "refs")
                     /// `hfsplus`
-                    case hfsplus = "hfsplus"
+                    public static let hfsplus = Self.init(rawValue: "hfsplus")
                     /// `ext4`
-                    case ext4 = "ext4"
+                    public static let ext4 = Self.init(rawValue: "ext4")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }
@@ -243,18 +246,19 @@ extension SpanAttributes {
                 ///     - `cached`
                 public var state: Self.Key<StateEnum> { .init(name: OTelAttributes.system.memory.state) }
                 
-                public enum StateEnum: String, SpanAttributeConvertible {
+                public struct StateEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `used`
-                    case used = "used"
+                    public static let used = Self.init(rawValue: "used")
                     /// `free`
-                    case free = "free"
+                    public static let free = Self.init(rawValue: "free")
                     /// `shared`
                     @available(*, deprecated, message: "Removed, report shared memory usage with `metric.system.memory.shared` metric")
-                    case shared = "shared"
+                    public static let shared = Self.init(rawValue: "shared")
                     /// `buffers`
-                    case buffers = "buffers"
+                    public static let buffers = Self.init(rawValue: "buffers")
                     /// `cached`
-                    case cached = "cached"
+                    public static let cached = Self.init(rawValue: "cached")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }
@@ -305,31 +309,32 @@ extension SpanAttributes {
                 /// - Example: `close_wait`
                 public var state: Self.Key<StateEnum> { .init(name: OTelAttributes.system.network.state) }
                 
-                public enum StateEnum: String, SpanAttributeConvertible {
+                public struct StateEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `close`
-                    case close = "close"
+                    public static let close = Self.init(rawValue: "close")
                     /// `close_wait`
-                    case close_wait = "close_wait"
+                    public static let close_wait = Self.init(rawValue: "close_wait")
                     /// `closing`
-                    case closing = "closing"
+                    public static let closing = Self.init(rawValue: "closing")
                     /// `delete`
-                    case delete = "delete"
+                    public static let delete = Self.init(rawValue: "delete")
                     /// `established`
-                    case established = "established"
+                    public static let established = Self.init(rawValue: "established")
                     /// `fin_wait_1`
-                    case fin_wait_1 = "fin_wait_1"
+                    public static let fin_wait_1 = Self.init(rawValue: "fin_wait_1")
                     /// `fin_wait_2`
-                    case fin_wait_2 = "fin_wait_2"
+                    public static let fin_wait_2 = Self.init(rawValue: "fin_wait_2")
                     /// `last_ack`
-                    case last_ack = "last_ack"
+                    public static let last_ack = Self.init(rawValue: "last_ack")
                     /// `listen`
-                    case listen = "listen"
+                    public static let listen = Self.init(rawValue: "listen")
                     /// `syn_recv`
-                    case syn_recv = "syn_recv"
+                    public static let syn_recv = Self.init(rawValue: "syn_recv")
                     /// `syn_sent`
-                    case syn_sent = "syn_sent"
+                    public static let syn_sent = Self.init(rawValue: "syn_sent")
                     /// `time_wait`
-                    case time_wait = "time_wait"
+                    public static let time_wait = Self.init(rawValue: "time_wait")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }
@@ -370,11 +375,12 @@ extension SpanAttributes {
                 /// - Example: `in`
                 public var direction: Self.Key<DirectionEnum> { .init(name: OTelAttributes.system.paging.direction) }
                 
-                public enum DirectionEnum: String, SpanAttributeConvertible {
+                public struct DirectionEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `in`
-                    case `in` = "in"
+                    public static let `in` = Self.init(rawValue: "in")
                     /// `out`
-                    case out = "out"
+                    public static let out = Self.init(rawValue: "out")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }
@@ -391,11 +397,12 @@ extension SpanAttributes {
                 /// - Example: `free`
                 public var state: Self.Key<StateEnum> { .init(name: OTelAttributes.system.paging.state) }
                 
-                public enum StateEnum: String, SpanAttributeConvertible {
+                public struct StateEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `used`
-                    case used = "used"
+                    public static let used = Self.init(rawValue: "used")
                     /// `free`
-                    case free = "free"
+                    public static let free = Self.init(rawValue: "free")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }
@@ -412,11 +419,12 @@ extension SpanAttributes {
                 /// - Example: `minor`
                 public var type: Self.Key<TypeEnum> { .init(name: OTelAttributes.system.paging.type) }
                 
-                public enum TypeEnum: String, SpanAttributeConvertible {
+                public struct TypeEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `major`
-                    case major = "major"
+                    public static let major = Self.init(rawValue: "major")
                     /// `minor`
-                    case minor = "minor"
+                    public static let minor = Self.init(rawValue: "minor")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }
@@ -459,15 +467,16 @@ extension SpanAttributes {
                 /// - Example: `running`
                 public var status: Self.Key<StatusEnum> { .init(name: OTelAttributes.system.process.status) }
                 
-                public enum StatusEnum: String, SpanAttributeConvertible {
+                public struct StatusEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `running`
-                    case running = "running"
+                    public static let running = Self.init(rawValue: "running")
                     /// `sleeping`
-                    case sleeping = "sleeping"
+                    public static let sleeping = Self.init(rawValue: "sleeping")
                     /// `stopped`
-                    case stopped = "stopped"
+                    public static let stopped = Self.init(rawValue: "stopped")
                     /// `defunct`
-                    case defunct = "defunct"
+                    public static let defunct = Self.init(rawValue: "defunct")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }
@@ -511,15 +520,16 @@ extension SpanAttributes {
                 @available(*, deprecated, message: "Replaced by `system.process.status`.")
                 public var status: Self.Key<StatusEnum> { .init(name: OTelAttributes.system.processes.status) }
                 
-                public enum StatusEnum: String, SpanAttributeConvertible {
+                public struct StatusEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `running`
-                    case running = "running"
+                    public static let running = Self.init(rawValue: "running")
                     /// `sleeping`
-                    case sleeping = "sleeping"
+                    public static let sleeping = Self.init(rawValue: "sleeping")
                     /// `stopped`
-                    case stopped = "stopped"
+                    public static let stopped = Self.init(rawValue: "stopped")
                     /// `defunct`
-                    case defunct = "defunct"
+                    public static let defunct = Self.init(rawValue: "defunct")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }

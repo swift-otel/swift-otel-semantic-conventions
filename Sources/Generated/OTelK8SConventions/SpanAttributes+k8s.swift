@@ -700,19 +700,20 @@ extension SpanAttributes {
                 ///     - `persistentVolumeClaim`
                 public var type: Self.Key<TypeEnum> { .init(name: OTelAttributes.k8s.volume.type) }
                 
-                public enum TypeEnum: String, SpanAttributeConvertible {
+                public struct TypeEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `persistentVolumeClaim`: A [persistentVolumeClaim](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume
-                    case persistent_volume_claim = "persistentVolumeClaim"
+                    public static let persistent_volume_claim = Self.init(rawValue: "persistentVolumeClaim")
                     /// `configMap`: A [configMap](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#configmap) volume
-                    case config_map = "configMap"
+                    public static let config_map = Self.init(rawValue: "configMap")
                     /// `downwardAPI`: A [downwardAPI](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume
-                    case downward_api = "downwardAPI"
+                    public static let downward_api = Self.init(rawValue: "downwardAPI")
                     /// `emptyDir`: An [emptyDir](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume
-                    case empty_dir = "emptyDir"
+                    public static let empty_dir = Self.init(rawValue: "emptyDir")
                     /// `secret`: A [secret](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#secret) volume
-                    case secret = "secret"
+                    public static let secret = Self.init(rawValue: "secret")
                     /// `local`: A [local](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#local) volume
-                    case local = "local"
+                    public static let local = Self.init(rawValue: "local")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }

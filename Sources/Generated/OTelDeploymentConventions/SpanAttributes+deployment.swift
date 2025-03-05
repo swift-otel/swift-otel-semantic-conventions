@@ -67,11 +67,12 @@ extension SpanAttributes {
             ///     - `succeeded`: succeeded
             public var status: Self.Key<StatusEnum> { .init(name: OTelAttributes.deployment.status) }
             
-            public enum StatusEnum: String, SpanAttributeConvertible {
+            public struct StatusEnum: SpanAttributeConvertible {
+                private let rawValue: String
                 /// `failed`: failed
-                case failed = "failed"
+                public static let failed = Self.init(rawValue: "failed")
                 /// `succeeded`: succeeded
-                case succeeded = "succeeded"
+                public static let succeeded = Self.init(rawValue: "succeeded")
                 public func toSpanAttribute() -> Tracing.SpanAttribute {
                     return .string(self.rawValue)
                 }

@@ -145,25 +145,26 @@ extension SpanAttributes {
                 ///     - `default`
                 public var reason: Self.Key<ReasonEnum> { .init(name: OTelAttributes.feature_flag.evaluation.reason) }
                 
-                public enum ReasonEnum: String, SpanAttributeConvertible {
+                public struct ReasonEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `static`: The resolved value is static (no dynamic evaluation).
-                    case `static` = "static"
+                    public static let `static` = Self.init(rawValue: "static")
                     /// `default`: The resolved value fell back to a pre-configured value (no dynamic evaluation occurred or dynamic evaluation yielded no result).
-                    case `default` = "default"
+                    public static let `default` = Self.init(rawValue: "default")
                     /// `targeting_match`: The resolved value was the result of a dynamic evaluation, such as a rule or specific user-targeting.
-                    case targeting_match = "targeting_match"
+                    public static let targeting_match = Self.init(rawValue: "targeting_match")
                     /// `split`: The resolved value was the result of pseudorandom assignment.
-                    case split = "split"
+                    public static let split = Self.init(rawValue: "split")
                     /// `cached`: The resolved value was retrieved from cache.
-                    case cached = "cached"
+                    public static let cached = Self.init(rawValue: "cached")
                     /// `disabled`: The resolved value was the result of the flag being disabled in the management system.
-                    case disabled = "disabled"
+                    public static let disabled = Self.init(rawValue: "disabled")
                     /// `unknown`: The reason for the resolved value could not be determined.
-                    case unknown = "unknown"
+                    public static let unknown = Self.init(rawValue: "unknown")
                     /// `stale`: The resolved value is non-authoritative or possibly out of date
-                    case stale = "stale"
+                    public static let stale = Self.init(rawValue: "stale")
                     /// `error`: The resolved value was the result of an error.
-                    case error = "error"
+                    public static let error = Self.init(rawValue: "error")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }

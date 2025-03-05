@@ -282,11 +282,12 @@ extension SpanAttributes {
                 ///     - `fargate`
                 public var launchtype: Self.Key<LaunchtypeEnum> { .init(name: OTelAttributes.aws.ecs.launchtype) }
                 
-                public enum LaunchtypeEnum: String, SpanAttributeConvertible {
+                public struct LaunchtypeEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `ec2`
-                    case ec2 = "ec2"
+                    public static let ec2 = Self.init(rawValue: "ec2")
                     /// `fargate`
-                    case fargate = "fargate"
+                    public static let fargate = Self.init(rawValue: "fargate")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }

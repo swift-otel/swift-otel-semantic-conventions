@@ -63,13 +63,14 @@ extension SpanAttributes {
             ///     - `failed`: Failed
             public var state: Self.Key<StateEnum> { .init(name: OTelAttributes.hw.state) }
             
-            public enum StateEnum: String, SpanAttributeConvertible {
+            public struct StateEnum: SpanAttributeConvertible {
+                private let rawValue: String
                 /// `ok`: Ok
-                case ok = "ok"
+                public static let ok = Self.init(rawValue: "ok")
                 /// `degraded`: Degraded
-                case degraded = "degraded"
+                public static let degraded = Self.init(rawValue: "degraded")
                 /// `failed`: Failed
-                case failed = "failed"
+                public static let failed = Self.init(rawValue: "failed")
                 public func toSpanAttribute() -> Tracing.SpanAttribute {
                     return .string(self.rawValue)
                 }
@@ -98,35 +99,36 @@ extension SpanAttributes {
             /// Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`. 
             public var type: Self.Key<TypeEnum> { .init(name: OTelAttributes.hw.type) }
             
-            public enum TypeEnum: String, SpanAttributeConvertible {
+            public struct TypeEnum: SpanAttributeConvertible {
+                private let rawValue: String
                 /// `battery`: Battery
-                case battery = "battery"
+                public static let battery = Self.init(rawValue: "battery")
                 /// `cpu`: CPU
-                case cpu = "cpu"
+                public static let cpu = Self.init(rawValue: "cpu")
                 /// `disk_controller`: Disk controller
-                case disk_controller = "disk_controller"
+                public static let disk_controller = Self.init(rawValue: "disk_controller")
                 /// `enclosure`: Enclosure
-                case enclosure = "enclosure"
+                public static let enclosure = Self.init(rawValue: "enclosure")
                 /// `fan`: Fan
-                case fan = "fan"
+                public static let fan = Self.init(rawValue: "fan")
                 /// `gpu`: GPU
-                case gpu = "gpu"
+                public static let gpu = Self.init(rawValue: "gpu")
                 /// `logical_disk`: Logical disk
-                case logical_disk = "logical_disk"
+                public static let logical_disk = Self.init(rawValue: "logical_disk")
                 /// `memory`: Memory
-                case memory = "memory"
+                public static let memory = Self.init(rawValue: "memory")
                 /// `network`: Network
-                case network = "network"
+                public static let network = Self.init(rawValue: "network")
                 /// `physical_disk`: Physical disk
-                case physical_disk = "physical_disk"
+                public static let physical_disk = Self.init(rawValue: "physical_disk")
                 /// `power_supply`: Power supply
-                case power_supply = "power_supply"
+                public static let power_supply = Self.init(rawValue: "power_supply")
                 /// `tape_drive`: Tape drive
-                case tape_drive = "tape_drive"
+                public static let tape_drive = Self.init(rawValue: "tape_drive")
                 /// `temperature`: Temperature
-                case temperature = "temperature"
+                public static let temperature = Self.init(rawValue: "temperature")
                 /// `voltage`: Voltage
-                case voltage = "voltage"
+                public static let voltage = Self.init(rawValue: "voltage")
                 public func toSpanAttribute() -> Tracing.SpanAttribute {
                     return .string(self.rawValue)
                 }

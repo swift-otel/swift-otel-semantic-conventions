@@ -45,23 +45,24 @@ extension SpanAttributes {
             ///     - `system`
             public var mode: Self.Key<ModeEnum> { .init(name: OTelAttributes.cpu.mode) }
             
-            public enum ModeEnum: String, SpanAttributeConvertible {
+            public struct ModeEnum: SpanAttributeConvertible {
+                private let rawValue: String
                 /// `user`
-                case user = "user"
+                public static let user = Self.init(rawValue: "user")
                 /// `system`
-                case system = "system"
+                public static let system = Self.init(rawValue: "system")
                 /// `nice`
-                case nice = "nice"
+                public static let nice = Self.init(rawValue: "nice")
                 /// `idle`
-                case idle = "idle"
+                public static let idle = Self.init(rawValue: "idle")
                 /// `iowait`
-                case iowait = "iowait"
+                public static let iowait = Self.init(rawValue: "iowait")
                 /// `interrupt`
-                case interrupt = "interrupt"
+                public static let interrupt = Self.init(rawValue: "interrupt")
                 /// `steal`
-                case steal = "steal"
+                public static let steal = Self.init(rawValue: "steal")
                 /// `kernel`
-                case kernel = "kernel"
+                public static let kernel = Self.init(rawValue: "kernel")
                 public func toSpanAttribute() -> Tracing.SpanAttribute {
                     return .string(self.rawValue)
                 }

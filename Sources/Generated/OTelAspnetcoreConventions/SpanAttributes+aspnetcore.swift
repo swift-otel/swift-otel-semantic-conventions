@@ -87,15 +87,16 @@ extension SpanAttributes {
                     ///     - `unhandled`
                     public var result: Self.Key<ResultEnum> { .init(name: OTelAttributes.aspnetcore.diagnostics.exception.result) }
                     
-                    public enum ResultEnum: String, SpanAttributeConvertible {
+                    public struct ResultEnum: SpanAttributeConvertible {
+                        private let rawValue: String
                         /// `handled`: Exception was handled by the exception handling middleware.
-                        case handled = "handled"
+                        public static let handled = Self.init(rawValue: "handled")
                         /// `unhandled`: Exception was not handled by the exception handling middleware.
-                        case unhandled = "unhandled"
+                        public static let unhandled = Self.init(rawValue: "unhandled")
                         /// `skipped`: Exception handling was skipped because the response had started.
-                        case skipped = "skipped"
+                        public static let skipped = Self.init(rawValue: "skipped")
                         /// `aborted`: Exception handling didn't run because the request was aborted.
-                        case aborted = "aborted"
+                        public static let aborted = Self.init(rawValue: "aborted")
                         public func toSpanAttribute() -> Tracing.SpanAttribute {
                             return .string(self.rawValue)
                         }
@@ -186,15 +187,16 @@ extension SpanAttributes {
                 ///     - `request_canceled`
                 public var result: Self.Key<ResultEnum> { .init(name: OTelAttributes.aspnetcore.rate_limiting.result) }
                 
-                public enum ResultEnum: String, SpanAttributeConvertible {
+                public struct ResultEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `acquired`: Lease was acquired
-                    case acquired = "acquired"
+                    public static let acquired = Self.init(rawValue: "acquired")
                     /// `endpoint_limiter`: Lease request was rejected by the endpoint limiter
-                    case endpoint_limiter = "endpoint_limiter"
+                    public static let endpoint_limiter = Self.init(rawValue: "endpoint_limiter")
                     /// `global_limiter`: Lease request was rejected by the global limiter
-                    case global_limiter = "global_limiter"
+                    public static let global_limiter = Self.init(rawValue: "global_limiter")
                     /// `request_canceled`: Lease request was canceled
-                    case request_canceled = "request_canceled"
+                    public static let request_canceled = Self.init(rawValue: "request_canceled")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }
@@ -279,11 +281,12 @@ extension SpanAttributes {
                 ///     - `failure`
                 public var match_status: Self.Key<Match_StatusEnum> { .init(name: OTelAttributes.aspnetcore.routing.match_status) }
                 
-                public enum Match_StatusEnum: String, SpanAttributeConvertible {
+                public struct Match_StatusEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `success`: Match succeeded
-                    case success = "success"
+                    public static let success = Self.init(rawValue: "success")
                     /// `failure`: Match failed
-                    case failure = "failure"
+                    public static let failure = Self.init(rawValue: "failure")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }

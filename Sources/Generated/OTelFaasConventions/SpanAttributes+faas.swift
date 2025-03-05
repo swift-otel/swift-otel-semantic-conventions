@@ -87,17 +87,18 @@ extension SpanAttributes {
             /// SHOULD be equal to the `cloud.provider` resource attribute of the invoked function. 
             public var invoked_provider: Self.Key<Invoked_ProviderEnum> { .init(name: OTelAttributes.faas.invoked_provider) }
             
-            public enum Invoked_ProviderEnum: String, SpanAttributeConvertible {
+            public struct Invoked_ProviderEnum: SpanAttributeConvertible {
+                private let rawValue: String
                 /// `alibaba_cloud`: Alibaba Cloud
-                case alibaba_cloud = "alibaba_cloud"
+                public static let alibaba_cloud = Self.init(rawValue: "alibaba_cloud")
                 /// `aws`: Amazon Web Services
-                case aws = "aws"
+                public static let aws = Self.init(rawValue: "aws")
                 /// `azure`: Microsoft Azure
-                case azure = "azure"
+                public static let azure = Self.init(rawValue: "azure")
                 /// `gcp`: Google Cloud Platform
-                case gcp = "gcp"
+                public static let gcp = Self.init(rawValue: "gcp")
                 /// `tencent_cloud`: Tencent Cloud
-                case tencent_cloud = "tencent_cloud"
+                public static let tencent_cloud = Self.init(rawValue: "tencent_cloud")
                 public func toSpanAttribute() -> Tracing.SpanAttribute {
                     return .string(self.rawValue)
                 }
@@ -159,17 +160,18 @@ extension SpanAttributes {
             ///     - `other`: If none of the others apply
             public var trigger: Self.Key<TriggerEnum> { .init(name: OTelAttributes.faas.trigger) }
             
-            public enum TriggerEnum: String, SpanAttributeConvertible {
+            public struct TriggerEnum: SpanAttributeConvertible {
+                private let rawValue: String
                 /// `datasource`: A response to some data source operation such as a database or filesystem read/write
-                case datasource = "datasource"
+                public static let datasource = Self.init(rawValue: "datasource")
                 /// `http`: To provide an answer to an inbound HTTP request
-                case http = "http"
+                public static let http = Self.init(rawValue: "http")
                 /// `pubsub`: A function is set to be executed when messages are sent to a messaging system
-                case pubsub = "pubsub"
+                public static let pubsub = Self.init(rawValue: "pubsub")
                 /// `timer`: A function is scheduled to be executed regularly
-                case timer = "timer"
+                public static let timer = Self.init(rawValue: "timer")
                 /// `other`: If none of the others apply
-                case other = "other"
+                public static let other = Self.init(rawValue: "other")
                 public func toSpanAttribute() -> Tracing.SpanAttribute {
                     return .string(self.rawValue)
                 }
@@ -241,13 +243,14 @@ extension SpanAttributes {
                 ///     - `delete`: When an object is deleted.
                 public var operation: Self.Key<OperationEnum> { .init(name: OTelAttributes.faas.document.operation) }
                 
-                public enum OperationEnum: String, SpanAttributeConvertible {
+                public struct OperationEnum: SpanAttributeConvertible {
+                    private let rawValue: String
                     /// `insert`: When a new object is created.
-                    case insert = "insert"
+                    public static let insert = Self.init(rawValue: "insert")
                     /// `edit`: When an object is modified.
-                    case edit = "edit"
+                    public static let edit = Self.init(rawValue: "edit")
                     /// `delete`: When an object is deleted.
-                    case delete = "delete"
+                    public static let delete = Self.init(rawValue: "delete")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }

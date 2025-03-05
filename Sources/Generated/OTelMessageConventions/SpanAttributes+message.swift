@@ -52,11 +52,12 @@ extension SpanAttributes {
             @available(*, deprecated, message: "Replaced by `rpc.message.type`.")
             public var type: Self.Key<TypeEnum> { .init(name: OTelAttributes.message.type) }
             
-            public enum TypeEnum: String, SpanAttributeConvertible {
+            public struct TypeEnum: SpanAttributeConvertible {
+                private let rawValue: String
                 /// `SENT`
-                case sent = "SENT"
+                public static let sent = Self.init(rawValue: "SENT")
                 /// `RECEIVED`
-                case received = "RECEIVED"
+                public static let received = Self.init(rawValue: "RECEIVED")
                 public func toSpanAttribute() -> Tracing.SpanAttribute {
                     return .string(self.rawValue)
                 }

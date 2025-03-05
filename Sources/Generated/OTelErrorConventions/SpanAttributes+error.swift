@@ -42,9 +42,10 @@ extension SpanAttributes {
             ///     - `500`
             public var type: Self.Key<TypeEnum> { .init(name: OTelAttributes.error.type) }
             
-            public enum TypeEnum: String, SpanAttributeConvertible {
+            public struct TypeEnum: SpanAttributeConvertible {
+                private let rawValue: String
                 /// `_OTHER`: A fallback error value to be used when the instrumentation doesn't define a custom value.
-                case other = "_OTHER"
+                public static let other = Self.init(rawValue: "_OTHER")
                 public func toSpanAttribute() -> Tracing.SpanAttribute {
                     return .string(self.rawValue)
                 }
