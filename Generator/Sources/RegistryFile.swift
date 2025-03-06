@@ -133,6 +133,8 @@ extension Int: AttributeExample {}
 extension String: AttributeExample {}
 
 enum Stability: String, Codable {
+    case development
     case experimental
+    case releaseCandidate = "release_candidate"
     case stable
 }
