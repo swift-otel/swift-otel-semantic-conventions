@@ -43,11 +43,11 @@ extension SpanAttributes {
             public struct TransportEnum: SpanAttributeConvertible {
                 private let rawValue: String
                 /// `server_sent_events`: ServerSentEvents protocol
-                public static let server_sent_events = Self.init(rawValue: "server_sent_events")
+                public static let serverSentEvents = Self.init(rawValue: "server_sent_events")
                 /// `long_polling`: LongPolling protocol
-                public static let long_polling = Self.init(rawValue: "long_polling")
+                public static let longPolling = Self.init(rawValue: "long_polling")
                 /// `web_sockets`: WebSockets protocol
-                public static let web_sockets = Self.init(rawValue: "web_sockets")
+                public static let webSockets = Self.init(rawValue: "web_sockets")
                 public func toSpanAttribute() -> Tracing.SpanAttribute {
                     return .string(self.rawValue)
                 }
@@ -91,11 +91,11 @@ extension SpanAttributes {
                 public struct StatusEnum: SpanAttributeConvertible {
                     private let rawValue: String
                     /// `normal_closure`: The connection was closed normally.
-                    public static let normal_closure = Self.init(rawValue: "normal_closure")
+                    public static let normalClosure = Self.init(rawValue: "normal_closure")
                     /// `timeout`: The connection was closed due to a timeout.
                     public static let timeout = Self.init(rawValue: "timeout")
                     /// `app_shutdown`: The connection was closed because the app is shutting down.
-                    public static let app_shutdown = Self.init(rawValue: "app_shutdown")
+                    public static let appShutdown = Self.init(rawValue: "app_shutdown")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }

@@ -40,7 +40,7 @@ extension OTelAttribute {
         public static let system = "rpc.system"
     
         /// `rpc.connect_rpc` namespace
-        public enum connect_rpc {
+        public enum connectRpc {
             /// `rpc.connect_rpc.error_code`: The [error codes](https://connect.build/docs/protocol/#error-codes) of the Connect request. Error codes are always string values.
             /// 
             /// - Stability: experimental
@@ -62,7 +62,7 @@ extension OTelAttribute {
             ///     - `unavailable`
             ///     - `data_loss`
             ///     - `unauthenticated`
-            public static let error_code = "rpc.connect_rpc.error_code"
+            public static let errorCode = "rpc.connect_rpc.error_code"
         
             /// `rpc.connect_rpc.request` namespace
             public enum request {
@@ -121,7 +121,7 @@ extension OTelAttribute {
             ///     - `14`: UNAVAILABLE
             ///     - `15`: DATA_LOSS
             ///     - `16`: UNAUTHENTICATED
-            public static let status_code = "rpc.grpc.status_code"
+            public static let statusCode = "rpc.grpc.status_code"
         
             /// `rpc.grpc.request` namespace
             public enum request {
@@ -167,7 +167,7 @@ extension OTelAttribute {
             /// - Examples:
             ///     - `-32700`
             ///     - `100`
-            public static let error_code = "rpc.jsonrpc.error_code"
+            public static let errorCode = "rpc.jsonrpc.error_code"
         
             /// `rpc.jsonrpc.error_message`: `error.message` property of response if it is an error response.
             /// 
@@ -178,7 +178,7 @@ extension OTelAttribute {
             /// - Examples:
             ///     - `Parse error`
             ///     - `User already exists`
-            public static let error_message = "rpc.jsonrpc.error_message"
+            public static let errorMessage = "rpc.jsonrpc.error_message"
         
             /// `rpc.jsonrpc.request_id`: `id` property of request or response. Since protocol allows id to be int, string, `null` or missing (for notifications), value is expected to be cast to string for simplicity. Use empty string in case of `null` value. Omit entirely if this is a notification. 
             /// 
@@ -190,7 +190,7 @@ extension OTelAttribute {
             ///     - `10`
             ///     - `request-7`
             ///     - ``
-            public static let request_id = "rpc.jsonrpc.request_id"
+            public static let requestId = "rpc.jsonrpc.request_id"
         
             /// `rpc.jsonrpc.version`: Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 doesn't specify this, the value can be omitted.
             /// 
@@ -213,7 +213,7 @@ extension OTelAttribute {
             /// - Stability: experimental
             /// 
             /// - Type: int
-            public static let compressed_size = "rpc.message.compressed_size"
+            public static let compressedSize = "rpc.message.compressed_size"
         
             /// `rpc.message.id`: MUST be calculated as two different counters starting from `1` one for sent messages and one for received message.
             /// 
@@ -231,14 +231,14 @@ extension OTelAttribute {
             /// - Type: enum
             ///     - `SENT`
             ///     - `RECEIVED`
-            public static let type = "rpc.message.type"
+            public static let `type` = "rpc.message.type"
         
             /// `rpc.message.uncompressed_size`: Uncompressed size of the message in bytes.
             /// 
             /// - Stability: experimental
             /// 
             /// - Type: int
-            public static let uncompressed_size = "rpc.message.uncompressed_size"
+            public static let uncompressedSize = "rpc.message.uncompressed_size"
         
         
         }

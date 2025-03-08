@@ -18,7 +18,7 @@ extension OTelAttribute {
             ///     - `minor`: Minor (Scavenge).
             ///     - `incremental`: Incremental (Incremental Marking).
             ///     - `weakcb`: Weak Callbacks (Process Weak Callbacks).
-            public static let type = "v8js.gc.type"
+            public static let `type` = "v8js.gc.type"
         
         
         }

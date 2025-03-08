@@ -59,7 +59,7 @@ extension SpanAttributes {
                 ///     - `org.example.TestCase1.test1`
                 ///     - `example/tests/TestCase1.test1`
                 ///     - `ExampleTestCase1_test1`
-                public var name: Self.Key<String> { .init(name: OTelAttribute.test.case.name) }
+                public var name: Self.Key<String> { .init(name: OTelAttribute.test.`case`.name) }
             }
         
             /// `test.case.result` namespace
@@ -93,7 +93,7 @@ extension SpanAttributes {
                     /// - Examples:
                     ///     - `pass`
                     ///     - `fail`
-                    public var status: Self.Key<StatusEnum> { .init(name: OTelAttribute.test.case.result.status) }
+                    public var status: Self.Key<StatusEnum> { .init(name: OTelAttribute.test.`case`.result.status) }
                     
                     public struct StatusEnum: SpanAttributeConvertible {
                         private let rawValue: String
@@ -193,9 +193,9 @@ extension SpanAttributes {
                         /// `aborted`: aborted
                         public static let aborted = Self.init(rawValue: "aborted")
                         /// `timed_out`: timed_out
-                        public static let timed_out = Self.init(rawValue: "timed_out")
+                        public static let timedOut = Self.init(rawValue: "timed_out")
                         /// `in_progress`: in_progress
-                        public static let in_progress = Self.init(rawValue: "in_progress")
+                        public static let inProgress = Self.init(rawValue: "in_progress")
                         public func toSpanAttribute() -> Tracing.SpanAttribute {
                             return .string(self.rawValue)
                         }

@@ -97,7 +97,7 @@ extension SpanAttributes {
             ///     - `voltage`: Voltage
             /// 
             /// Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`. 
-            public var type: Self.Key<TypeEnum> { .init(name: OTelAttribute.hw.type) }
+            public var `type`: Self.Key<TypeEnum> { .init(name: OTelAttribute.hw.`type`) }
             
             public struct TypeEnum: SpanAttributeConvertible {
                 private let rawValue: String
@@ -106,7 +106,7 @@ extension SpanAttributes {
                 /// `cpu`: CPU
                 public static let cpu = Self.init(rawValue: "cpu")
                 /// `disk_controller`: Disk controller
-                public static let disk_controller = Self.init(rawValue: "disk_controller")
+                public static let diskController = Self.init(rawValue: "disk_controller")
                 /// `enclosure`: Enclosure
                 public static let enclosure = Self.init(rawValue: "enclosure")
                 /// `fan`: Fan
@@ -114,17 +114,17 @@ extension SpanAttributes {
                 /// `gpu`: GPU
                 public static let gpu = Self.init(rawValue: "gpu")
                 /// `logical_disk`: Logical disk
-                public static let logical_disk = Self.init(rawValue: "logical_disk")
+                public static let logicalDisk = Self.init(rawValue: "logical_disk")
                 /// `memory`: Memory
                 public static let memory = Self.init(rawValue: "memory")
                 /// `network`: Network
                 public static let network = Self.init(rawValue: "network")
                 /// `physical_disk`: Physical disk
-                public static let physical_disk = Self.init(rawValue: "physical_disk")
+                public static let physicalDisk = Self.init(rawValue: "physical_disk")
                 /// `power_supply`: Power supply
-                public static let power_supply = Self.init(rawValue: "power_supply")
+                public static let powerSupply = Self.init(rawValue: "power_supply")
                 /// `tape_drive`: Tape drive
-                public static let tape_drive = Self.init(rawValue: "tape_drive")
+                public static let tapeDrive = Self.init(rawValue: "tape_drive")
                 /// `temperature`: Temperature
                 public static let temperature = Self.init(rawValue: "temperature")
                 /// `voltage`: Voltage

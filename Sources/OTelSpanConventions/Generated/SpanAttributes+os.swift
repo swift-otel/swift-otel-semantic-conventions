@@ -36,7 +36,7 @@ extension SpanAttributes {
             ///     - `TQ3C.230805.001.B2`
             ///     - `20E247`
             ///     - `22621`
-            public var build_id: Self.Key<String> { .init(name: OTelAttribute.os.build_id) }
+            public var buildId: Self.Key<String> { .init(name: OTelAttribute.os.buildId) }
     
             /// `os.description`: Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands. 
             /// 
@@ -77,7 +77,7 @@ extension SpanAttributes {
             ///     - `aix`: AIX (Advanced Interactive eXecutive)
             ///     - `solaris`: SunOS, Oracle Solaris
             ///     - `z_os`: IBM z/OS
-            public var type: Self.Key<TypeEnum> { .init(name: OTelAttribute.os.type) }
+            public var `type`: Self.Key<TypeEnum> { .init(name: OTelAttribute.os.`type`) }
             
             public struct TypeEnum: SpanAttributeConvertible {
                 private let rawValue: String
@@ -102,7 +102,7 @@ extension SpanAttributes {
                 /// `solaris`: SunOS, Oracle Solaris
                 public static let solaris = Self.init(rawValue: "solaris")
                 /// `z_os`: IBM z/OS
-                public static let z_os = Self.init(rawValue: "z_os")
+                public static let zOs = Self.init(rawValue: "z_os")
                 public func toSpanAttribute() -> Tracing.SpanAttribute {
                     return .string(self.rawValue)
                 }

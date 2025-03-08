@@ -74,7 +74,7 @@ extension SpanAttributes {
             /// - Examples:
             ///     - `ipv4`
             ///     - `ipv6`
-            public var type: Self.Key<TypeEnum> { .init(name: OTelAttribute.network.type) }
+            public var `type`: Self.Key<TypeEnum> { .init(name: OTelAttribute.network.`type`) }
             
             public struct TypeEnum: SpanAttributeConvertible {
                 private let rawValue: String
@@ -209,11 +209,11 @@ extension SpanAttributes {
                     /// `cdma`: CDMA
                     public static let cdma = Self.init(rawValue: "cdma")
                     /// `evdo_0`: EVDO Rel. 0
-                    public static let evdo_0 = Self.init(rawValue: "evdo_0")
+                    public static let evdo0 = Self.init(rawValue: "evdo_0")
                     /// `evdo_a`: EVDO Rev. A
-                    public static let evdo_a = Self.init(rawValue: "evdo_a")
+                    public static let evdoA = Self.init(rawValue: "evdo_a")
                     /// `cdma2000_1xrtt`: CDMA2000 1XRTT
-                    public static let cdma2000_1xrtt = Self.init(rawValue: "cdma2000_1xrtt")
+                    public static let cdma20001xrtt = Self.init(rawValue: "cdma2000_1xrtt")
                     /// `hsdpa`: HSDPA
                     public static let hsdpa = Self.init(rawValue: "hsdpa")
                     /// `hsupa`: HSUPA
@@ -223,7 +223,7 @@ extension SpanAttributes {
                     /// `iden`: IDEN
                     public static let iden = Self.init(rawValue: "iden")
                     /// `evdo_b`: EVDO Rev. B
-                    public static let evdo_b = Self.init(rawValue: "evdo_b")
+                    public static let evdoB = Self.init(rawValue: "evdo_b")
                     /// `lte`: LTE
                     public static let lte = Self.init(rawValue: "lte")
                     /// `ehrpd`: EHRPD
@@ -233,7 +233,7 @@ extension SpanAttributes {
                     /// `gsm`: GSM
                     public static let gsm = Self.init(rawValue: "gsm")
                     /// `td_scdma`: TD-SCDMA
-                    public static let td_scdma = Self.init(rawValue: "td_scdma")
+                    public static let tdScdma = Self.init(rawValue: "td_scdma")
                     /// `iwlan`: IWLAN
                     public static let iwlan = Self.init(rawValue: "iwlan")
                     /// `nr`: 5G NR (New Radio)
@@ -241,7 +241,7 @@ extension SpanAttributes {
                     /// `nrnsa`: 5G NRNSA (New Radio Non-Standalone)
                     public static let nrnsa = Self.init(rawValue: "nrnsa")
                     /// `lte_ca`: LTE CA
-                    public static let lte_ca = Self.init(rawValue: "lte_ca")
+                    public static let lteCa = Self.init(rawValue: "lte_ca")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }
@@ -259,7 +259,7 @@ extension SpanAttributes {
                 ///     - `unknown`
                 /// 
                 /// - Example: `wifi`
-                public var type: Self.Key<TypeEnum> { .init(name: OTelAttribute.network.connection.type) }
+                public var `type`: Self.Key<TypeEnum> { .init(name: OTelAttribute.network.connection.`type`) }
                 
                 public struct TypeEnum: SpanAttributeConvertible {
                     private let rawValue: String
@@ -483,7 +483,7 @@ extension SpanAttributes {
                 ///     - `amqp`
                 ///     - `http`
                 ///     - `mqtt`
-                public var name: Self.Key<String> { .init(name: OTelAttribute.network.protocol.name) }
+                public var name: Self.Key<String> { .init(name: OTelAttribute.network.`protocol`.name) }
         
                 /// `network.protocol.version`: The actual version of the protocol used for network communication.
                 /// 
@@ -496,7 +496,7 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `1.1`
                 ///     - `2`
-                public var version: Self.Key<String> { .init(name: OTelAttribute.network.protocol.version) }
+                public var version: Self.Key<String> { .init(name: OTelAttribute.network.`protocol`.version) }
             }
         
         

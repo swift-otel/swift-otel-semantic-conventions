@@ -13,7 +13,7 @@ extension OTelAttribute {
         /// 
         /// - Example: `83.164.160.102`
         @available(*, deprecated, message: "Replaced by `client.address`.")
-        public static let client_ip = "http.client_ip"
+        public static let clientIp = "http.client_ip"
     
         /// `http.flavor`: Deprecated, use `network.protocol.name` instead.
         /// 
@@ -60,7 +60,7 @@ extension OTelAttribute {
         /// 
         /// - Example: `3495`
         @available(*, deprecated, message: "Replaced by `http.request.header.<key>`.")
-        public static let request_content_length = "http.request_content_length"
+        public static let requestContentLength = "http.request_content_length"
     
         /// `http.request_content_length_uncompressed`: Deprecated, use `http.request.body.size` instead.
         /// 
@@ -70,7 +70,7 @@ extension OTelAttribute {
         /// 
         /// - Example: `5493`
         @available(*, deprecated, message: "Replaced by `http.request.body.size`.")
-        public static let request_content_length_uncompressed = "http.request_content_length_uncompressed"
+        public static let requestContentLengthUncompressed = "http.request_content_length_uncompressed"
     
         /// `http.response_content_length`: Deprecated, use `http.response.header.<key>` instead.
         /// 
@@ -80,7 +80,7 @@ extension OTelAttribute {
         /// 
         /// - Example: `3495`
         @available(*, deprecated, message: "Replaced by `http.response.header.<key>`.")
-        public static let response_content_length = "http.response_content_length"
+        public static let responseContentLength = "http.response_content_length"
     
         /// `http.response_content_length_uncompressed`: Deprecated, use `http.response.body.size` instead.
         /// 
@@ -90,7 +90,7 @@ extension OTelAttribute {
         /// 
         /// - Example: `5493`
         @available(*, deprecated, message: "Replace by `http.response.body.size`.")
-        public static let response_content_length_uncompressed = "http.response_content_length_uncompressed"
+        public static let responseContentLengthUncompressed = "http.response_content_length_uncompressed"
     
         /// `http.route`: The matched route, that is, the path template in the format used by the respective server framework. 
         /// 
@@ -125,7 +125,7 @@ extension OTelAttribute {
         /// 
         /// - Example: `example.com`
         @available(*, deprecated, message: "Replaced by `server.address`.")
-        public static let server_name = "http.server_name"
+        public static let serverName = "http.server_name"
     
         /// `http.status_code`: Deprecated, use `http.response.status_code` instead.
         /// 
@@ -135,7 +135,7 @@ extension OTelAttribute {
         /// 
         /// - Example: `200`
         @available(*, deprecated, message: "Replaced by `http.response.status_code`.")
-        public static let status_code = "http.status_code"
+        public static let statusCode = "http.status_code"
     
         /// `http.target`: Deprecated, use `url.path` and `url.query` instead.
         /// 
@@ -167,7 +167,7 @@ extension OTelAttribute {
         ///     - `CERN-LineMode/2.15 libwww/2.17b3`
         ///     - `Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1`
         @available(*, deprecated, message: "Replaced by `user_agent.original`.")
-        public static let user_agent = "http.user_agent"
+        public static let userAgent = "http.user_agent"
     
         /// `http.connection` namespace
         public enum connection {
@@ -236,7 +236,7 @@ extension OTelAttribute {
             ///     - `GeT`
             ///     - `ACL`
             ///     - `foo`
-            public static let method_original = "http.request.method_original"
+            public static let methodOriginal = "http.request.method_original"
         
             /// `http.request.resend_count`: The ordinal number of request resending attempt (for any reason, including redirects). 
             /// 
@@ -247,7 +247,7 @@ extension OTelAttribute {
             /// The resend count SHOULD be updated each time an HTTP request gets resent by the client, regardless of what was the cause of the resending (e.g. redirection, authorization failure, 503 Server Unavailable, network issues, or any other). 
             /// 
             /// - Example: `3`
-            public static let resend_count = "http.request.resend_count"
+            public static let resendCount = "http.request.resend_count"
         
             /// `http.request.size`: The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and request body if any. 
             /// 
@@ -304,7 +304,7 @@ extension OTelAttribute {
             /// - Type: int
             /// 
             /// - Example: `200`
-            public static let status_code = "http.response.status_code"
+            public static let statusCode = "http.response.status_code"
         
             /// `http.response.body` namespace
             public enum body {

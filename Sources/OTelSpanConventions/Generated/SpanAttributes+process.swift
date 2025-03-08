@@ -35,7 +35,7 @@ extension SpanAttributes {
             /// This field can be useful for querying or performing bucket analysis on how many arguments were provided to start a process. More arguments may be an indication of suspicious activity. 
             /// 
             /// - Example: `4`
-            public var args_count: Self.Key<Int> { .init(name: OTelAttribute.process.args_count) }
+            public var argsCount: Self.Key<Int> { .init(name: OTelAttribute.process.argsCount) }
     
             /// `process.command`: The command used to launch the process (i.e. the command name). On Linux based systems, can be set to the zeroth string in `proc/[pid]/cmdline`. On Windows, can be set to the first parameter extracted from `GetCommandLineW`. 
             /// 
@@ -51,7 +51,7 @@ extension SpanAttributes {
             /// - Stability: experimental
             /// 
             /// - Type: stringArray
-            public var command_args: Self.Key<[String]> { .init(name: OTelAttribute.process.command_args) }
+            public var commandArgs: Self.Key<[String]> { .init(name: OTelAttribute.process.commandArgs) }
     
             /// `process.command_line`: The full command used to launch the process as a single string representing the full command. On Windows, can be set to the result of `GetCommandLineW`. Do not set this if you have to assemble it just for monitoring; use `process.command_args` instead. 
             /// 
@@ -60,7 +60,7 @@ extension SpanAttributes {
             /// - Type: string
             /// 
             /// - Example: `C:\cmd\otecol --config="my directory\config.yaml"`
-            public var command_line: Self.Key<String> { .init(name: OTelAttribute.process.command_line) }
+            public var commandLine: Self.Key<String> { .init(name: OTelAttribute.process.commandLine) }
     
             /// `process.context_switch_type`: Specifies whether the context switches for this data point were voluntary or involuntary.
             /// 
@@ -69,9 +69,9 @@ extension SpanAttributes {
             /// - Type: enum
             ///     - `voluntary`
             ///     - `involuntary`
-            public var context_switch_type: Self.Key<Context_Switch_TypeEnum> { .init(name: OTelAttribute.process.context_switch_type) }
+            public var contextSwitchType: Self.Key<ContextSwitchTypeEnum> { .init(name: OTelAttribute.process.contextSwitchType) }
             
-            public struct Context_Switch_TypeEnum: SpanAttributeConvertible {
+            public struct ContextSwitchTypeEnum: SpanAttributeConvertible {
                 private let rawValue: String
                 /// `voluntary`
                 public static let voluntary = Self.init(rawValue: "voluntary")
@@ -105,7 +105,7 @@ extension SpanAttributes {
             /// - Type: int
             /// 
             /// - Example: `111`
-            public var parent_pid: Self.Key<Int> { .init(name: OTelAttribute.process.parent_pid) }
+            public var parentPid: Self.Key<Int> { .init(name: OTelAttribute.process.parentPid) }
     
             /// `process.pid`: Process identifier (PID). 
             /// 
@@ -148,7 +148,7 @@ extension SpanAttributes {
             /// - Type: string
             /// 
             /// - Example: `/root`
-            public var working_directory: Self.Key<String> { .init(name: OTelAttribute.process.working_directory) }
+            public var workingDirectory: Self.Key<String> { .init(name: OTelAttribute.process.workingDirectory) }
         }
     
         /// `process.cpu` namespace
@@ -272,7 +272,7 @@ extension SpanAttributes {
             }
         
             /// `process.executable.build_id` namespace
-            public var build_id: BuildIdAttributes {
+            public var buildId: BuildIdAttributes {
                 get {
                     .init(attributes: self.attributes)
                 }
@@ -298,7 +298,7 @@ extension SpanAttributes {
                     /// - Type: string
                     /// 
                     /// - Example: `c89b11207f6479603b0d49bf291c092c2b719293`
-                    public var gnu: Self.Key<String> { .init(name: OTelAttribute.process.executable.build_id.gnu) }
+                    public var gnu: Self.Key<String> { .init(name: OTelAttribute.process.executable.buildId.gnu) }
             
                     /// `process.executable.build_id.go`: The Go build ID as retrieved by `go tool buildid <go executable>`. 
                     /// 
@@ -307,7 +307,7 @@ extension SpanAttributes {
                     /// - Type: string
                     /// 
                     /// - Example: `foh3mEXu7BLZjsN9pOwG/kATcXlYVCDEFouRMQed_/WwRFB1hPo9LBkekthSPG/x8hMC8emW2cCjXD0_1aY`
-                    public var go: Self.Key<String> { .init(name: OTelAttribute.process.executable.build_id.go) }
+                    public var go: Self.Key<String> { .init(name: OTelAttribute.process.executable.buildId.go) }
             
                     /// `process.executable.build_id.htlhash`: Profiling specific build ID for executables. See the OTel specification for Profiles for more information. 
                     /// 
@@ -316,7 +316,7 @@ extension SpanAttributes {
                     /// - Type: string
                     /// 
                     /// - Example: `600DCAFE4A110000F2BF38C493F5FB92`
-                    public var htlhash: Self.Key<String> { .init(name: OTelAttribute.process.executable.build_id.htlhash) }
+                    public var htlhash: Self.Key<String> { .init(name: OTelAttribute.process.executable.buildId.htlhash) }
             
                     /// `process.executable.build_id.profiling`: "Deprecated, use `process.executable.build_id.htlhash` instead." 
                     /// 
@@ -326,7 +326,7 @@ extension SpanAttributes {
                     /// 
                     /// - Example: `600DCAFE4A110000F2BF38C493F5FB92`
                     @available(*, deprecated, message: "Replaced by `process.executable.build_id.htlhash`")
-                    public var profiling: Self.Key<String> { .init(name: OTelAttribute.process.executable.build_id.profiling) }
+                    public var profiling: Self.Key<String> { .init(name: OTelAttribute.process.executable.buildId.profiling) }
                 }
             
             
@@ -376,7 +376,7 @@ extension SpanAttributes {
         }
     
         /// `process.group_leader` namespace
-        public var group_leader: GroupLeaderAttributes {
+        public var groupLeader: GroupLeaderAttributes {
             get {
                 .init(attributes: self.attributes)
             }
@@ -402,7 +402,7 @@ extension SpanAttributes {
                 /// - Type: int
                 /// 
                 /// - Example: `23`
-                public var pid: Self.Key<Int> { .init(name: OTelAttribute.process.group_leader.pid) }
+                public var pid: Self.Key<Int> { .init(name: OTelAttribute.process.groupLeader.pid) }
             }
         
         
@@ -472,9 +472,9 @@ extension SpanAttributes {
                 /// - Type: enum
                 ///     - `major`
                 ///     - `minor`
-                public var fault_type: Self.Key<Fault_TypeEnum> { .init(name: OTelAttribute.process.paging.fault_type) }
+                public var faultType: Self.Key<FaultTypeEnum> { .init(name: OTelAttribute.process.paging.faultType) }
                 
-                public struct Fault_TypeEnum: SpanAttributeConvertible {
+                public struct FaultTypeEnum: SpanAttributeConvertible {
                     private let rawValue: String
                     /// `major`
                     public static let major = Self.init(rawValue: "major")
@@ -490,7 +490,7 @@ extension SpanAttributes {
         }
     
         /// `process.real_user` namespace
-        public var real_user: RealUserAttributes {
+        public var realUser: RealUserAttributes {
             get {
                 .init(attributes: self.attributes)
             }
@@ -516,7 +516,7 @@ extension SpanAttributes {
                 /// - Type: int
                 /// 
                 /// - Example: `1000`
-                public var id: Self.Key<Int> { .init(name: OTelAttribute.process.real_user.id) }
+                public var id: Self.Key<Int> { .init(name: OTelAttribute.process.realUser.id) }
         
                 /// `process.real_user.name`: The username of the real user of the process. 
                 /// 
@@ -525,7 +525,7 @@ extension SpanAttributes {
                 /// - Type: string
                 /// 
                 /// - Example: `operator`
-                public var name: Self.Key<String> { .init(name: OTelAttribute.process.real_user.name) }
+                public var name: Self.Key<String> { .init(name: OTelAttribute.process.realUser.name) }
             }
         
         
@@ -583,7 +583,7 @@ extension SpanAttributes {
         }
     
         /// `process.saved_user` namespace
-        public var saved_user: SavedUserAttributes {
+        public var savedUser: SavedUserAttributes {
             get {
                 .init(attributes: self.attributes)
             }
@@ -609,7 +609,7 @@ extension SpanAttributes {
                 /// - Type: int
                 /// 
                 /// - Example: `1002`
-                public var id: Self.Key<Int> { .init(name: OTelAttribute.process.saved_user.id) }
+                public var id: Self.Key<Int> { .init(name: OTelAttribute.process.savedUser.id) }
         
                 /// `process.saved_user.name`: The username of the saved user. 
                 /// 
@@ -618,14 +618,14 @@ extension SpanAttributes {
                 /// - Type: string
                 /// 
                 /// - Example: `operator`
-                public var name: Self.Key<String> { .init(name: OTelAttribute.process.saved_user.name) }
+                public var name: Self.Key<String> { .init(name: OTelAttribute.process.savedUser.name) }
             }
         
         
         }
     
         /// `process.session_leader` namespace
-        public var session_leader: SessionLeaderAttributes {
+        public var sessionLeader: SessionLeaderAttributes {
             get {
                 .init(attributes: self.attributes)
             }
@@ -651,7 +651,7 @@ extension SpanAttributes {
                 /// - Type: int
                 /// 
                 /// - Example: `14`
-                public var pid: Self.Key<Int> { .init(name: OTelAttribute.process.session_leader.pid) }
+                public var pid: Self.Key<Int> { .init(name: OTelAttribute.process.sessionLeader.pid) }
             }
         
         

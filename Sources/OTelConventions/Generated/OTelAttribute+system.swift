@@ -23,7 +23,7 @@ extension OTelAttribute {
             /// - Type: int
             /// 
             /// - Example: `1`
-            public static let logical_number = "system.cpu.logical_number"
+            public static let logicalNumber = "system.cpu.logical_number"
         
             /// `system.cpu.state`: Deprecated, use `cpu.mode` instead.
             /// 
@@ -92,7 +92,7 @@ extension OTelAttribute {
             ///     - `ext4`
             /// 
             /// - Example: `ext4`
-            public static let type = "system.filesystem.type"
+            public static let `type` = "system.filesystem.type"
         
         
         }
@@ -177,7 +177,7 @@ extension OTelAttribute {
             ///     - `minor`
             /// 
             /// - Example: `minor`
-            public static let type = "system.paging.type"
+            public static let `type` = "system.paging.type"
         
         
         }

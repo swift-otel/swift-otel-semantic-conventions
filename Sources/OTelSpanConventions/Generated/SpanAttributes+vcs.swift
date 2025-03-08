@@ -77,7 +77,7 @@ extension SpanAttributes {
                 public struct StateEnum: SpanAttributeConvertible {
                     private let rawValue: String
                     /// `open`: Open means the change is currently active and under review. It hasn't been merged into the target branch yet, and it's still possible to make changes or add comments.
-                    public static let `open` = Self.init(rawValue: "open")
+                    public static let open = Self.init(rawValue: "open")
                     /// `wip`: WIP (work-in-progress, draft) means the change is still in progress and not yet ready for a full review. It might still undergo significant changes.
                     public static let wip = Self.init(rawValue: "wip")
                     /// `closed`: Closed means the merge request has been closed without merging. This can happen for various reasons, such as the changes being deemed unnecessary, the issue being resolved in another way, or the author deciding to withdraw the request.
@@ -106,7 +106,7 @@ extension SpanAttributes {
         }
     
         /// `vcs.line_change` namespace
-        public var line_change: LineChangeAttributes {
+        public var lineChange: LineChangeAttributes {
             get {
                 .init(attributes: self.attributes)
             }
@@ -136,7 +136,7 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `added`
                 ///     - `removed`
-                public var type: Self.Key<TypeEnum> { .init(name: OTelAttribute.vcs.line_change.type) }
+                public var `type`: Self.Key<TypeEnum> { .init(name: OTelAttribute.vcs.lineChange.`type`) }
                 
                 public struct TypeEnum: SpanAttributeConvertible {
                     private let rawValue: String
@@ -184,7 +184,7 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `branch`
                 ///     - `tag`
-                public var type: Self.Key<TypeEnum> { .init(name: OTelAttribute.vcs.ref.type) }
+                public var `type`: Self.Key<TypeEnum> { .init(name: OTelAttribute.vcs.ref.`type`) }
                 
                 public struct TypeEnum: SpanAttributeConvertible {
                     private let rawValue: String
@@ -255,7 +255,7 @@ extension SpanAttributes {
                     /// - Examples:
                     ///     - `branch`
                     ///     - `tag`
-                    public var type: Self.Key<TypeEnum> { .init(name: OTelAttribute.vcs.ref.base.type) }
+                    public var `type`: Self.Key<TypeEnum> { .init(name: OTelAttribute.vcs.ref.base.`type`) }
                     
                     public struct TypeEnum: SpanAttributeConvertible {
                         private let rawValue: String
@@ -329,7 +329,7 @@ extension SpanAttributes {
                     /// - Examples:
                     ///     - `branch`
                     ///     - `tag`
-                    public var type: Self.Key<TypeEnum> { .init(name: OTelAttribute.vcs.ref.head.type) }
+                    public var `type`: Self.Key<TypeEnum> { .init(name: OTelAttribute.vcs.ref.head.`type`) }
                     
                     public struct TypeEnum: SpanAttributeConvertible {
                         private let rawValue: String
@@ -475,7 +475,7 @@ extension SpanAttributes {
                     ///     - `branch`
                     ///     - `tag`
                     @available(*, deprecated, message: "Deprecated, use `vcs.ref.head.type` instead.")
-                    public var type: Self.Key<TypeEnum> { .init(name: OTelAttribute.vcs.repository.ref.type) }
+                    public var `type`: Self.Key<TypeEnum> { .init(name: OTelAttribute.vcs.repository.ref.`type`) }
                     
                     public struct TypeEnum: SpanAttributeConvertible {
                         private let rawValue: String
@@ -529,7 +529,7 @@ extension SpanAttributes {
         }
     
         /// `vcs.revision_delta` namespace
-        public var revision_delta: RevisionDeltaAttributes {
+        public var revisionDelta: RevisionDeltaAttributes {
             get {
                 .init(attributes: self.attributes)
             }
@@ -559,7 +559,7 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `ahead`
                 ///     - `behind`
-                public var direction: Self.Key<DirectionEnum> { .init(name: OTelAttribute.vcs.revision_delta.direction) }
+                public var direction: Self.Key<DirectionEnum> { .init(name: OTelAttribute.vcs.revisionDelta.direction) }
                 
                 public struct DirectionEnum: SpanAttributeConvertible {
                     private let rawValue: String

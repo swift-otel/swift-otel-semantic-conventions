@@ -60,7 +60,7 @@ extension SpanAttributes {
             /// - Type: string
             /// 
             /// - Example: `af9d5aa4-a685-4c5f-a22b-444f80b3cc28`
-            public var invocation_id: Self.Key<String> { .init(name: OTelAttribute.faas.invocation_id) }
+            public var invocationId: Self.Key<String> { .init(name: OTelAttribute.faas.invocationId) }
     
             /// `faas.invoked_name`: The name of the invoked function. 
             /// 
@@ -71,7 +71,7 @@ extension SpanAttributes {
             /// SHOULD be equal to the `faas.name` resource attribute of the invoked function. 
             /// 
             /// - Example: `my-function`
-            public var invoked_name: Self.Key<String> { .init(name: OTelAttribute.faas.invoked_name) }
+            public var invokedName: Self.Key<String> { .init(name: OTelAttribute.faas.invokedName) }
     
             /// `faas.invoked_provider`: The cloud provider of the invoked function. 
             /// 
@@ -85,12 +85,12 @@ extension SpanAttributes {
             ///     - `tencent_cloud`: Tencent Cloud
             /// 
             /// SHOULD be equal to the `cloud.provider` resource attribute of the invoked function. 
-            public var invoked_provider: Self.Key<Invoked_ProviderEnum> { .init(name: OTelAttribute.faas.invoked_provider) }
+            public var invokedProvider: Self.Key<InvokedProviderEnum> { .init(name: OTelAttribute.faas.invokedProvider) }
             
-            public struct Invoked_ProviderEnum: SpanAttributeConvertible {
+            public struct InvokedProviderEnum: SpanAttributeConvertible {
                 private let rawValue: String
                 /// `alibaba_cloud`: Alibaba Cloud
-                public static let alibaba_cloud = Self.init(rawValue: "alibaba_cloud")
+                public static let alibabaCloud = Self.init(rawValue: "alibaba_cloud")
                 /// `aws`: Amazon Web Services
                 public static let aws = Self.init(rawValue: "aws")
                 /// `azure`: Microsoft Azure
@@ -98,7 +98,7 @@ extension SpanAttributes {
                 /// `gcp`: Google Cloud Platform
                 public static let gcp = Self.init(rawValue: "gcp")
                 /// `tencent_cloud`: Tencent Cloud
-                public static let tencent_cloud = Self.init(rawValue: "tencent_cloud")
+                public static let tencentCloud = Self.init(rawValue: "tencent_cloud")
                 public func toSpanAttribute() -> Tracing.SpanAttribute {
                     return .string(self.rawValue)
                 }
@@ -113,7 +113,7 @@ extension SpanAttributes {
             /// SHOULD be equal to the `cloud.region` resource attribute of the invoked function. 
             /// 
             /// - Example: `eu-central-1`
-            public var invoked_region: Self.Key<String> { .init(name: OTelAttribute.faas.invoked_region) }
+            public var invokedRegion: Self.Key<String> { .init(name: OTelAttribute.faas.invokedRegion) }
     
             /// `faas.max_memory`: The amount of memory available to the serverless function converted to Bytes. 
             /// 
@@ -124,7 +124,7 @@ extension SpanAttributes {
             /// It's recommended to set this attribute since e.g. too little memory can easily stop a Java AWS Lambda function from working correctly. On AWS Lambda, the environment variable `AWS_LAMBDA_FUNCTION_MEMORY_SIZE` provides this information (which must be multiplied by 1,048,576). 
             /// 
             /// - Example: `134217728`
-            public var max_memory: Self.Key<Int> { .init(name: OTelAttribute.faas.max_memory) }
+            public var maxMemory: Self.Key<Int> { .init(name: OTelAttribute.faas.maxMemory) }
     
             /// `faas.name`: The name of the single function that this runtime instance executes. 
             /// 

@@ -14,7 +14,7 @@ extension OTelAttribute {
         /// This field can be useful for querying or performing bucket analysis on how many arguments were provided to start a process. More arguments may be an indication of suspicious activity. 
         /// 
         /// - Example: `4`
-        public static let args_count = "process.args_count"
+        public static let argsCount = "process.args_count"
     
         /// `process.command`: The command used to launch the process (i.e. the command name). On Linux based systems, can be set to the zeroth string in `proc/[pid]/cmdline`. On Windows, can be set to the first parameter extracted from `GetCommandLineW`. 
         /// 
@@ -30,7 +30,7 @@ extension OTelAttribute {
         /// - Stability: experimental
         /// 
         /// - Type: stringArray
-        public static let command_args = "process.command_args"
+        public static let commandArgs = "process.command_args"
     
         /// `process.command_line`: The full command used to launch the process as a single string representing the full command. On Windows, can be set to the result of `GetCommandLineW`. Do not set this if you have to assemble it just for monitoring; use `process.command_args` instead. 
         /// 
@@ -39,7 +39,7 @@ extension OTelAttribute {
         /// - Type: string
         /// 
         /// - Example: `C:\cmd\otecol --config="my directory\config.yaml"`
-        public static let command_line = "process.command_line"
+        public static let commandLine = "process.command_line"
     
         /// `process.context_switch_type`: Specifies whether the context switches for this data point were voluntary or involuntary.
         /// 
@@ -48,7 +48,7 @@ extension OTelAttribute {
         /// - Type: enum
         ///     - `voluntary`
         ///     - `involuntary`
-        public static let context_switch_type = "process.context_switch_type"
+        public static let contextSwitchType = "process.context_switch_type"
     
         /// `process.interactive`: Whether the process is connected to an interactive shell. 
         /// 
@@ -73,7 +73,7 @@ extension OTelAttribute {
         /// - Type: int
         /// 
         /// - Example: `111`
-        public static let parent_pid = "process.parent_pid"
+        public static let parentPid = "process.parent_pid"
     
         /// `process.pid`: Process identifier (PID). 
         /// 
@@ -116,7 +116,7 @@ extension OTelAttribute {
         /// - Type: string
         /// 
         /// - Example: `/root`
-        public static let working_directory = "process.working_directory"
+        public static let workingDirectory = "process.working_directory"
     
         /// `process.cpu` namespace
         public enum cpu {
@@ -169,7 +169,7 @@ extension OTelAttribute {
             public static let path = "process.executable.path"
         
             /// `process.executable.build_id` namespace
-            public enum build_id {
+            public enum buildId {
                 /// `process.executable.build_id.gnu`: The GNU build ID as found in the `.note.gnu.build-id` ELF section (hex string). 
                 /// 
                 /// - Stability: experimental
@@ -235,7 +235,7 @@ extension OTelAttribute {
         }
     
         /// `process.group_leader` namespace
-        public enum group_leader {
+        public enum groupLeader {
             /// `process.group_leader.pid`: The PID of the process's group leader. This is also the process group ID (PGID) of the process. 
             /// 
             /// - Stability: experimental
@@ -275,13 +275,13 @@ extension OTelAttribute {
             /// - Type: enum
             ///     - `major`
             ///     - `minor`
-            public static let fault_type = "process.paging.fault_type"
+            public static let faultType = "process.paging.fault_type"
         
         
         }
     
         /// `process.real_user` namespace
-        public enum real_user {
+        public enum realUser {
             /// `process.real_user.id`: The real user ID (RUID) of the process. 
             /// 
             /// - Stability: experimental
@@ -336,7 +336,7 @@ extension OTelAttribute {
         }
     
         /// `process.saved_user` namespace
-        public enum saved_user {
+        public enum savedUser {
             /// `process.saved_user.id`: The saved user ID (SUID) of the process. 
             /// 
             /// - Stability: experimental
@@ -359,7 +359,7 @@ extension OTelAttribute {
         }
     
         /// `process.session_leader` namespace
-        public enum session_leader {
+        public enum sessionLeader {
             /// `process.session_leader.pid`: The PID of the process's session leader. This is also the session ID (SID) of the process. 
             /// 
             /// - Stability: experimental

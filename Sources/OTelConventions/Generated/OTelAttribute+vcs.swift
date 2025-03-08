@@ -50,7 +50,7 @@ extension OTelAttribute {
         }
     
         /// `vcs.line_change` namespace
-        public enum line_change {
+        public enum lineChange {
             /// `vcs.line_change.type`: The type of line change being measured on a branch or change. 
             /// 
             /// - Stability: experimental
@@ -62,7 +62,7 @@ extension OTelAttribute {
             /// - Examples:
             ///     - `added`
             ///     - `removed`
-            public static let type = "vcs.line_change.type"
+            public static let `type` = "vcs.line_change.type"
         
         
         }
@@ -80,7 +80,7 @@ extension OTelAttribute {
             /// - Examples:
             ///     - `branch`
             ///     - `tag`
-            public static let type = "vcs.ref.type"
+            public static let `type` = "vcs.ref.type"
         
             /// `vcs.ref.base` namespace
             public enum base {
@@ -121,7 +121,7 @@ extension OTelAttribute {
                 /// - Examples:
                 ///     - `branch`
                 ///     - `tag`
-                public static let type = "vcs.ref.base.type"
+                public static let `type` = "vcs.ref.base.type"
             
             
             }
@@ -165,7 +165,7 @@ extension OTelAttribute {
                 /// - Examples:
                 ///     - `branch`
                 ///     - `tag`
-                public static let type = "vcs.ref.head.type"
+                public static let `type` = "vcs.ref.head.type"
             
             
             }
@@ -243,7 +243,7 @@ extension OTelAttribute {
                 ///     - `branch`
                 ///     - `tag`
                 @available(*, deprecated, message: "Deprecated, use `vcs.ref.head.type` instead.")
-                public static let type = "vcs.repository.ref.type"
+                public static let `type` = "vcs.repository.ref.type"
             
             
             }
@@ -266,7 +266,7 @@ extension OTelAttribute {
         }
     
         /// `vcs.revision_delta` namespace
-        public enum revision_delta {
+        public enum revisionDelta {
             /// `vcs.revision_delta.direction`: The type of revision comparison. 
             /// 
             /// - Stability: experimental

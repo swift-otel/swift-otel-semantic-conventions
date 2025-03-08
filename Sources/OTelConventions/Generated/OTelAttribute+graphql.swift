@@ -40,7 +40,7 @@ extension OTelAttribute {
             ///     - `query`
             ///     - `mutation`
             ///     - `subscription`
-            public static let type = "graphql.operation.type"
+            public static let `type` = "graphql.operation.type"
         
         
         }

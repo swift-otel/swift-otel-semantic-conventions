@@ -63,7 +63,7 @@ extension OTelAttribute {
         ///     - `voltage`: Voltage
         /// 
         /// Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`. 
-        public static let type = "hw.type"
+        public static let `type` = "hw.type"
     
     
     }

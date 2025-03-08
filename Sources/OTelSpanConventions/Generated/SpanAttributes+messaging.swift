@@ -36,7 +36,7 @@ extension SpanAttributes {
             ///     - `client-5`
             ///     - `myhost@8742@s8083jm`
             @available(*, deprecated, message: "Replaced by `messaging.client.id`.")
-            public var client_id: Self.Key<String> { .init(name: OTelAttribute.messaging.client_id) }
+            public var clientId: Self.Key<String> { .init(name: OTelAttribute.messaging.clientId) }
     
             /// `messaging.operation`: Deprecated, use `messaging.operation.type` instead. 
             /// 
@@ -76,7 +76,7 @@ extension SpanAttributes {
                 /// `activemq`: Apache ActiveMQ
                 public static let activemq = Self.init(rawValue: "activemq")
                 /// `aws_sqs`: Amazon Simple Queue Service (SQS)
-                public static let aws_sqs = Self.init(rawValue: "aws_sqs")
+                public static let awsSqs = Self.init(rawValue: "aws_sqs")
                 /// `eventgrid`: Azure Event Grid
                 public static let eventgrid = Self.init(rawValue: "eventgrid")
                 /// `eventhubs`: Azure Event Hubs
@@ -84,7 +84,7 @@ extension SpanAttributes {
                 /// `servicebus`: Azure Service Bus
                 public static let servicebus = Self.init(rawValue: "servicebus")
                 /// `gcp_pubsub`: Google Cloud Pub/Sub
-                public static let gcp_pubsub = Self.init(rawValue: "gcp_pubsub")
+                public static let gcpPubsub = Self.init(rawValue: "gcp_pubsub")
                 /// `jms`: Java Message Service
                 public static let jms = Self.init(rawValue: "jms")
                 /// `kafka`: Apache Kafka
@@ -133,7 +133,7 @@ extension SpanAttributes {
                 ///     - `0`
                 ///     - `1`
                 ///     - `2`
-                public var message_count: Self.Key<Int> { .init(name: OTelAttribute.messaging.batch.message_count) }
+                public var messageCount: Self.Key<Int> { .init(name: OTelAttribute.messaging.batch.messageCount) }
             }
         
         
@@ -364,7 +364,7 @@ extension SpanAttributes {
         }
     
         /// `messaging.destination_publish` namespace
-        public var destination_publish: DestinationPublishAttributes {
+        public var destinationPublish: DestinationPublishAttributes {
             get {
                 .init(attributes: self.attributes)
             }
@@ -389,7 +389,7 @@ extension SpanAttributes {
                 /// 
                 /// - Type: boolean
                 @available(*, deprecated, message: "No replacement at this time.")
-                public var anonymous: Self.Key<Bool> { .init(name: OTelAttribute.messaging.destination_publish.anonymous) }
+                public var anonymous: Self.Key<Bool> { .init(name: OTelAttribute.messaging.destinationPublish.anonymous) }
         
                 /// `messaging.destination_publish.name`: Deprecated, no replacement at this time.
                 /// 
@@ -401,7 +401,7 @@ extension SpanAttributes {
                 ///     - `MyQueue`
                 ///     - `MyTopic`
                 @available(*, deprecated, message: "No replacement at this time.")
-                public var name: Self.Key<String> { .init(name: OTelAttribute.messaging.destination_publish.name) }
+                public var name: Self.Key<String> { .init(name: OTelAttribute.messaging.destinationPublish.name) }
             }
         
         
@@ -491,7 +491,7 @@ extension SpanAttributes {
                     /// - Type: int
                     /// 
                     /// - Example: `1701393730`
-                    public var enqueued_time: Self.Key<Int> { .init(name: OTelAttribute.messaging.eventhubs.message.enqueued_time) }
+                    public var enqueuedTime: Self.Key<Int> { .init(name: OTelAttribute.messaging.eventhubs.message.enqueuedTime) }
                 }
             
             
@@ -499,7 +499,7 @@ extension SpanAttributes {
         }
     
         /// `messaging.gcp_pubsub` namespace
-        public var gcp_pubsub: GcpPubsubAttributes {
+        public var gcpPubsub: GcpPubsubAttributes {
             get {
                 .init(attributes: self.attributes)
             }
@@ -548,7 +548,7 @@ extension SpanAttributes {
                     /// - Type: int
                     /// 
                     /// - Example: `10`
-                    public var ack_deadline: Self.Key<Int> { .init(name: OTelAttribute.messaging.gcp_pubsub.message.ack_deadline) }
+                    public var ackDeadline: Self.Key<Int> { .init(name: OTelAttribute.messaging.gcpPubsub.message.ackDeadline) }
             
                     /// `messaging.gcp_pubsub.message.ack_id`: The ack id for a given message. 
                     /// 
@@ -557,7 +557,7 @@ extension SpanAttributes {
                     /// - Type: string
                     /// 
                     /// - Example: `ack_id`
-                    public var ack_id: Self.Key<String> { .init(name: OTelAttribute.messaging.gcp_pubsub.message.ack_id) }
+                    public var ackId: Self.Key<String> { .init(name: OTelAttribute.messaging.gcpPubsub.message.ackId) }
             
                     /// `messaging.gcp_pubsub.message.delivery_attempt`: The delivery attempt for a given message. 
                     /// 
@@ -566,7 +566,7 @@ extension SpanAttributes {
                     /// - Type: int
                     /// 
                     /// - Example: `2`
-                    public var delivery_attempt: Self.Key<Int> { .init(name: OTelAttribute.messaging.gcp_pubsub.message.delivery_attempt) }
+                    public var deliveryAttempt: Self.Key<Int> { .init(name: OTelAttribute.messaging.gcpPubsub.message.deliveryAttempt) }
             
                     /// `messaging.gcp_pubsub.message.ordering_key`: The ordering key for a given message. If the attribute is not present, the message does not have an ordering key. 
                     /// 
@@ -575,7 +575,7 @@ extension SpanAttributes {
                     /// - Type: string
                     /// 
                     /// - Example: `ordering_key`
-                    public var ordering_key: Self.Key<String> { .init(name: OTelAttribute.messaging.gcp_pubsub.message.ordering_key) }
+                    public var orderingKey: Self.Key<String> { .init(name: OTelAttribute.messaging.gcpPubsub.message.orderingKey) }
                 }
             
             
@@ -760,7 +760,7 @@ extension SpanAttributes {
                 /// - Type: string
                 /// 
                 /// - Example: `MyConversationId`
-                public var conversation_id: Self.Key<String> { .init(name: OTelAttribute.messaging.message.conversation_id) }
+                public var conversationId: Self.Key<String> { .init(name: OTelAttribute.messaging.message.conversationId) }
         
                 /// `messaging.message.id`: A value used by the messaging system as an identifier for the message, represented as a string.
                 /// 
@@ -889,7 +889,7 @@ extension SpanAttributes {
                 ///     - `publish`: Deprecated. Use `send` instead.
                 /// 
                 /// If a custom value is used, it MUST be of low cardinality.
-                public var type: Self.Key<TypeEnum> { .init(name: OTelAttribute.messaging.operation.type) }
+                public var `type`: Self.Key<TypeEnum> { .init(name: OTelAttribute.messaging.operation.`type`) }
                 
                 public struct TypeEnum: SpanAttributeConvertible {
                     private let rawValue: String
@@ -968,7 +968,7 @@ extension SpanAttributes {
                     /// - Type: string
                     /// 
                     /// - Example: `myKey`
-                    public var routing_key: Self.Key<String> { .init(name: OTelAttribute.messaging.rabbitmq.destination.routing_key) }
+                    public var routingKey: Self.Key<String> { .init(name: OTelAttribute.messaging.rabbitmq.destination.routingKey) }
                 }
             
             
@@ -1001,7 +1001,7 @@ extension SpanAttributes {
                     /// - Type: int
                     /// 
                     /// - Example: `123`
-                    public var delivery_tag: Self.Key<Int> { .init(name: OTelAttribute.messaging.rabbitmq.message.delivery_tag) }
+                    public var deliveryTag: Self.Key<Int> { .init(name: OTelAttribute.messaging.rabbitmq.message.deliveryTag) }
                 }
             
             
@@ -1036,7 +1036,7 @@ extension SpanAttributes {
                 /// 
                 /// - Example: `myConsumerGroup`
                 @available(*, deprecated, message: "Replaced by `messaging.consumer.group.name` on the consumer spans. No replacement for producer spans.")
-                public var client_group: Self.Key<String> { .init(name: OTelAttribute.messaging.rocketmq.client_group) }
+                public var clientGroup: Self.Key<String> { .init(name: OTelAttribute.messaging.rocketmq.clientGroup) }
         
                 /// `messaging.rocketmq.consumption_model`: Model of message consumption. This only applies to consumer spans. 
                 /// 
@@ -1045,9 +1045,9 @@ extension SpanAttributes {
                 /// - Type: enum
                 ///     - `clustering`: Clustering consumption model
                 ///     - `broadcasting`: Broadcasting consumption model
-                public var consumption_model: Self.Key<Consumption_ModelEnum> { .init(name: OTelAttribute.messaging.rocketmq.consumption_model) }
+                public var consumptionModel: Self.Key<ConsumptionModelEnum> { .init(name: OTelAttribute.messaging.rocketmq.consumptionModel) }
                 
-                public struct Consumption_ModelEnum: SpanAttributeConvertible {
+                public struct ConsumptionModelEnum: SpanAttributeConvertible {
                     private let rawValue: String
                     /// `clustering`: Clustering consumption model
                     public static let clustering = Self.init(rawValue: "clustering")
@@ -1095,7 +1095,7 @@ extension SpanAttributes {
                     /// - Type: int
                     /// 
                     /// - Example: `3`
-                    public var delay_time_level: Self.Key<Int> { .init(name: OTelAttribute.messaging.rocketmq.message.delay_time_level) }
+                    public var delayTimeLevel: Self.Key<Int> { .init(name: OTelAttribute.messaging.rocketmq.message.delayTimeLevel) }
             
                     /// `messaging.rocketmq.message.delivery_timestamp`: The timestamp in milliseconds that the delay message is expected to be delivered to consumer. 
                     /// 
@@ -1104,7 +1104,7 @@ extension SpanAttributes {
                     /// - Type: int
                     /// 
                     /// - Example: `1665987217045`
-                    public var delivery_timestamp: Self.Key<Int> { .init(name: OTelAttribute.messaging.rocketmq.message.delivery_timestamp) }
+                    public var deliveryTimestamp: Self.Key<Int> { .init(name: OTelAttribute.messaging.rocketmq.message.deliveryTimestamp) }
             
                     /// `messaging.rocketmq.message.group`: It is essential for FIFO message. Messages that belong to the same message group are always processed one by one within the same consumer group. 
                     /// 
@@ -1140,7 +1140,7 @@ extension SpanAttributes {
                     ///     - `fifo`: FIFO message
                     ///     - `delay`: Delay message
                     ///     - `transaction`: Transaction message
-                    public var type: Self.Key<TypeEnum> { .init(name: OTelAttribute.messaging.rocketmq.message.type) }
+                    public var `type`: Self.Key<TypeEnum> { .init(name: OTelAttribute.messaging.rocketmq.message.`type`) }
                     
                     public struct TypeEnum: SpanAttributeConvertible {
                         private let rawValue: String
@@ -1191,16 +1191,16 @@ extension SpanAttributes {
                 ///     - `abandon`: Message is abandoned
                 ///     - `dead_letter`: Message is sent to dead letter queue
                 ///     - `defer`: Message is deferred
-                public var disposition_status: Self.Key<Disposition_StatusEnum> { .init(name: OTelAttribute.messaging.servicebus.disposition_status) }
+                public var dispositionStatus: Self.Key<DispositionStatusEnum> { .init(name: OTelAttribute.messaging.servicebus.dispositionStatus) }
                 
-                public struct Disposition_StatusEnum: SpanAttributeConvertible {
+                public struct DispositionStatusEnum: SpanAttributeConvertible {
                     private let rawValue: String
                     /// `complete`: Message is completed
                     public static let complete = Self.init(rawValue: "complete")
                     /// `abandon`: Message is abandoned
                     public static let abandon = Self.init(rawValue: "abandon")
                     /// `dead_letter`: Message is sent to dead letter queue
-                    public static let dead_letter = Self.init(rawValue: "dead_letter")
+                    public static let deadLetter = Self.init(rawValue: "dead_letter")
                     /// `defer`: Message is deferred
                     public static let `defer` = Self.init(rawValue: "defer")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
@@ -1237,7 +1237,7 @@ extension SpanAttributes {
                     /// 
                     /// - Example: `subscription-a`
                     @available(*, deprecated, message: "Replaced by `messaging.destination.subscription.name`.")
-                    public var subscription_name: Self.Key<String> { .init(name: OTelAttribute.messaging.servicebus.destination.subscription_name) }
+                    public var subscriptionName: Self.Key<String> { .init(name: OTelAttribute.messaging.servicebus.destination.subscriptionName) }
                 }
             
             
@@ -1270,7 +1270,7 @@ extension SpanAttributes {
                     /// - Type: int
                     /// 
                     /// - Example: `2`
-                    public var delivery_count: Self.Key<Int> { .init(name: OTelAttribute.messaging.servicebus.message.delivery_count) }
+                    public var deliveryCount: Self.Key<Int> { .init(name: OTelAttribute.messaging.servicebus.message.deliveryCount) }
             
                     /// `messaging.servicebus.message.enqueued_time`: The UTC epoch seconds at which the message has been accepted and stored in the entity. 
                     /// 
@@ -1279,7 +1279,7 @@ extension SpanAttributes {
                     /// - Type: int
                     /// 
                     /// - Example: `1701393730`
-                    public var enqueued_time: Self.Key<Int> { .init(name: OTelAttribute.messaging.servicebus.message.enqueued_time) }
+                    public var enqueuedTime: Self.Key<Int> { .init(name: OTelAttribute.messaging.servicebus.message.enqueuedTime) }
                 }
             
             

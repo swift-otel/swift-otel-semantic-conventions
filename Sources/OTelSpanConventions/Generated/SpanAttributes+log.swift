@@ -83,7 +83,7 @@ extension SpanAttributes {
                 /// - Type: string
                 /// 
                 /// - Example: `uuid.log`
-                public var name_resolved: Self.Key<String> { .init(name: OTelAttribute.log.file.name_resolved) }
+                public var nameResolved: Self.Key<String> { .init(name: OTelAttribute.log.file.nameResolved) }
         
                 /// `log.file.path`: The full path to the file. 
                 /// 
@@ -101,7 +101,7 @@ extension SpanAttributes {
                 /// - Type: string
                 /// 
                 /// - Example: `/var/lib/docker/uuid.log`
-                public var path_resolved: Self.Key<String> { .init(name: OTelAttribute.log.file.path_resolved) }
+                public var pathResolved: Self.Key<String> { .init(name: OTelAttribute.log.file.pathResolved) }
             }
         
         

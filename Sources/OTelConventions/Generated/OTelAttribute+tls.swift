@@ -43,7 +43,7 @@ extension OTelAttribute {
         /// - Type: string
         /// 
         /// - Example: `http/1.1`
-        public static let next_protocol = "tls.next_protocol"
+        public static let nextProtocol = "tls.next_protocol"
     
         /// `tls.resumed`: Boolean flag indicating if this TLS connection was resumed from an existing TLS negotiation.
         /// 
@@ -70,7 +70,7 @@ extension OTelAttribute {
             /// - Stability: experimental
             /// 
             /// - Type: stringArray
-            public static let certificate_chain = "tls.client.certificate_chain"
+            public static let certificateChain = "tls.client.certificate_chain"
         
             /// `tls.client.issuer`: Distinguished name of [subject](https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.6) of the issuer of the x.509 certificate presented by the client.
             /// 
@@ -97,7 +97,7 @@ extension OTelAttribute {
             /// - Type: string
             /// 
             /// - Example: `2021-01-01T00:00:00.000Z`
-            public static let not_after = "tls.client.not_after"
+            public static let notAfter = "tls.client.not_after"
         
             /// `tls.client.not_before`: Date/Time indicating when client certificate is first considered valid.
             /// 
@@ -106,7 +106,7 @@ extension OTelAttribute {
             /// - Type: string
             /// 
             /// - Example: `1970-01-01T00:00:00.000Z`
-            public static let not_before = "tls.client.not_before"
+            public static let notBefore = "tls.client.not_before"
         
             /// `tls.client.server_name`: Deprecated, use `server.address` instead.
             /// 
@@ -116,7 +116,7 @@ extension OTelAttribute {
             /// 
             /// - Example: `opentelemetry.io`
             @available(*, deprecated, message: "Replaced by `server.address`.")
-            public static let server_name = "tls.client.server_name"
+            public static let serverName = "tls.client.server_name"
         
             /// `tls.client.subject`: Distinguished name of subject of the x.509 certificate presented by the client.
             /// 
@@ -132,7 +132,7 @@ extension OTelAttribute {
             /// - Stability: experimental
             /// 
             /// - Type: stringArray
-            public static let supported_ciphers = "tls.client.supported_ciphers"
+            public static let supportedCiphers = "tls.client.supported_ciphers"
         
             /// `tls.client.hash` namespace
             public enum hash {
@@ -208,7 +208,7 @@ extension OTelAttribute {
             /// - Stability: experimental
             /// 
             /// - Type: stringArray
-            public static let certificate_chain = "tls.server.certificate_chain"
+            public static let certificateChain = "tls.server.certificate_chain"
         
             /// `tls.server.issuer`: Distinguished name of [subject](https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.6) of the issuer of the x.509 certificate presented by the client.
             /// 
@@ -235,7 +235,7 @@ extension OTelAttribute {
             /// - Type: string
             /// 
             /// - Example: `2021-01-01T00:00:00.000Z`
-            public static let not_after = "tls.server.not_after"
+            public static let notAfter = "tls.server.not_after"
         
             /// `tls.server.not_before`: Date/Time indicating when server certificate is first considered valid.
             /// 
@@ -244,7 +244,7 @@ extension OTelAttribute {
             /// - Type: string
             /// 
             /// - Example: `1970-01-01T00:00:00.000Z`
-            public static let not_before = "tls.server.not_before"
+            public static let notBefore = "tls.server.not_before"
         
             /// `tls.server.subject`: Distinguished name of subject of the x.509 certificate presented by the server.
             /// 

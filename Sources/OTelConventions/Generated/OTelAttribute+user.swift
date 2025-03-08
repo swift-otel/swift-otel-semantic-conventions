@@ -21,7 +21,7 @@ extension OTelAttribute {
         /// - Type: string
         /// 
         /// - Example: `Albert Einstein`
-        public static let full_name = "user.full_name"
+        public static let fullName = "user.full_name"
     
         /// `user.hash`: Unique user hash to correlate information for a user in anonymized form. 
         /// 

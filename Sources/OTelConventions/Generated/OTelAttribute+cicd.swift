@@ -64,7 +64,7 @@ extension OTelAttribute {
                 ///     - `build`
                 ///     - `test`
                 ///     - `deploy`
-                public static let type = "cicd.pipeline.task.type"
+                public static let `type` = "cicd.pipeline.task.type"
             
                 /// `cicd.pipeline.task.run` namespace
                 public enum run {

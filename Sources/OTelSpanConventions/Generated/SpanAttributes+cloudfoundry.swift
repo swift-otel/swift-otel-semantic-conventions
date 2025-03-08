@@ -196,7 +196,7 @@ extension SpanAttributes {
                 /// CloudFoundry applications can consist of multiple jobs. Usually the main process will be of type `web`. There can be additional background tasks or side-cars with different process types. 
                 /// 
                 /// - Example: `web`
-                public var type: Self.Key<String> { .init(name: OTelAttribute.cloudfoundry.process.type) }
+                public var `type`: Self.Key<String> { .init(name: OTelAttribute.cloudfoundry.process.`type`) }
             }
         
         

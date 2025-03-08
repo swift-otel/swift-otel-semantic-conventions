@@ -13,7 +13,7 @@ extension OTelAttribute {
         /// 
         /// - Example: `Server=(localdb)\v11.0;Integrated Security=true;`
         @available(*, deprecated, message: "Replaced by `server.address` and `server.port`.")
-        public static let connection_string = "db.connection_string"
+        public static let connectionString = "db.connection_string"
     
         /// `db.name`: Deprecated, use `db.namespace` instead.
         /// 
@@ -158,7 +158,7 @@ extension OTelAttribute {
             ///     - `any`
             ///     - `serial`
             ///     - `local_serial`
-            public static let consistency_level = "db.cassandra.consistency_level"
+            public static let consistencyLevel = "db.cassandra.consistency_level"
         
             /// `db.cassandra.idempotence`: Whether or not the query is idempotent. 
             /// 
@@ -174,7 +174,7 @@ extension OTelAttribute {
             /// - Type: int
             /// 
             /// - Example: `5000`
-            public static let page_size = "db.cassandra.page_size"
+            public static let pageSize = "db.cassandra.page_size"
         
             /// `db.cassandra.speculative_execution_count`: The number of times a query was speculatively executed. Not set or `0` if the query was not executed speculatively. 
             /// 
@@ -185,7 +185,7 @@ extension OTelAttribute {
             /// - Examples:
             ///     - `0`
             ///     - `2`
-            public static let speculative_execution_count = "db.cassandra.speculative_execution_count"
+            public static let speculativeExecutionCount = "db.cassandra.speculative_execution_count"
         
             /// `db.cassandra.table`: Deprecated, use `db.collection.name` instead.
             /// 
@@ -311,7 +311,7 @@ extension OTelAttribute {
             /// - Type: string
             /// 
             /// - Example: `3ba4827d-4422-483f-b59f-85b74211c11d`
-            public static let client_id = "db.cosmosdb.client_id"
+            public static let clientId = "db.cosmosdb.client_id"
         
             /// `db.cosmosdb.connection_mode`: Cosmos client connection mode.
             /// 
@@ -320,7 +320,7 @@ extension OTelAttribute {
             /// - Type: enum
             ///     - `gateway`: Gateway (HTTP) connection.
             ///     - `direct`: Direct connection.
-            public static let connection_mode = "db.cosmosdb.connection_mode"
+            public static let connectionMode = "db.cosmosdb.connection_mode"
         
             /// `db.cosmosdb.consistency_level`: Account or request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels).
             /// 
@@ -339,7 +339,7 @@ extension OTelAttribute {
             ///     - `BoundedStaleness`
             ///     - `Strong`
             ///     - `Session`
-            public static let consistency_level = "db.cosmosdb.consistency_level"
+            public static let consistencyLevel = "db.cosmosdb.consistency_level"
         
             /// `db.cosmosdb.container`: Deprecated, use `db.collection.name` instead.
             /// 
@@ -372,7 +372,7 @@ extension OTelAttribute {
             ///     - `replace`
             ///     - `upsert`
             @available(*, deprecated, message: "No replacement at this time.")
-            public static let operation_type = "db.cosmosdb.operation_type"
+            public static let operationType = "db.cosmosdb.operation_type"
         
             /// `db.cosmosdb.regions_contacted`: List of regions contacted during operation in the order that they were contacted. If there is more than one region listed, it indicates that the operation was performed on multiple regions i.e. cross-regional call. 
             /// 
@@ -381,7 +381,7 @@ extension OTelAttribute {
             /// - Type: stringArray
             /// 
             /// Region name matches the format of `displayName` in [Azure Location API](https://learn.microsoft.com/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location) 
-            public static let regions_contacted = "db.cosmosdb.regions_contacted"
+            public static let regionsContacted = "db.cosmosdb.regions_contacted"
         
             /// `db.cosmosdb.request_charge`: Request units consumed for the operation.
             /// 
@@ -392,14 +392,14 @@ extension OTelAttribute {
             /// - Examples:
             ///     - `46.18`
             ///     - `1.0`
-            public static let request_charge = "db.cosmosdb.request_charge"
+            public static let requestCharge = "db.cosmosdb.request_charge"
         
             /// `db.cosmosdb.request_content_length`: Request payload size in bytes.
             /// 
             /// - Stability: experimental
             /// 
             /// - Type: int
-            public static let request_content_length = "db.cosmosdb.request_content_length"
+            public static let requestContentLength = "db.cosmosdb.request_content_length"
         
             /// `db.cosmosdb.status_code`: Deprecated, use `db.response.status_code` instead.
             /// 
@@ -411,7 +411,7 @@ extension OTelAttribute {
             ///     - `200`
             ///     - `201`
             @available(*, deprecated, message: "Replaced by `db.response.status_code`.")
-            public static let status_code = "db.cosmosdb.status_code"
+            public static let statusCode = "db.cosmosdb.status_code"
         
             /// `db.cosmosdb.sub_status_code`: Cosmos DB sub status code.
             /// 
@@ -422,7 +422,7 @@ extension OTelAttribute {
             /// - Examples:
             ///     - `1000`
             ///     - `1002`
-            public static let sub_status_code = "db.cosmosdb.sub_status_code"
+            public static let subStatusCode = "db.cosmosdb.sub_status_code"
         
         
         }
@@ -440,7 +440,7 @@ extension OTelAttribute {
             /// - Examples:
             ///     - `db.elasticsearch.path_parts.index=test-index`
             ///     - `db.elasticsearch.path_parts.doc_id=123`
-            public static let path_parts = "db.elasticsearch.path_parts"
+            public static let pathParts = "db.elasticsearch.path_parts"
         
             /// `db.elasticsearch.cluster` namespace
             public enum cluster {
@@ -499,7 +499,7 @@ extension OTelAttribute {
             ///     - `org.postgresql.Driver`
             ///     - `com.microsoft.sqlserver.jdbc.SQLServerDriver`
             @available(*, deprecated, message: "Removed as not used.")
-            public static let driver_classname = "db.jdbc.driver_classname"
+            public static let driverClassname = "db.jdbc.driver_classname"
         
         
         }
@@ -529,7 +529,7 @@ extension OTelAttribute {
             /// 
             /// - Example: `MSSQLSERVER`
             @available(*, deprecated, message: "Deprecated, no replacement at this time.")
-            public static let instance_name = "db.mssql.instance_name"
+            public static let instanceName = "db.mssql.instance_name"
         
         
         }
@@ -640,7 +640,7 @@ extension OTelAttribute {
             ///     - `1`
             ///     - `15`
             @available(*, deprecated, message: "Replaced by `db.namespace`.")
-            public static let database_index = "db.redis.database_index"
+            public static let databaseIndex = "db.redis.database_index"
         
         
         }
@@ -657,7 +657,7 @@ extension OTelAttribute {
             ///     - `10`
             ///     - `30`
             ///     - `1000`
-            public static let returned_rows = "db.response.returned_rows"
+            public static let returnedRows = "db.response.returned_rows"
         
             /// `db.response.status_code`: Database response status code.
             /// 
@@ -672,7 +672,7 @@ extension OTelAttribute {
             ///     - `ORA-17002`
             ///     - `08P01`
             ///     - `404`
-            public static let status_code = "db.response.status_code"
+            public static let statusCode = "db.response.status_code"
         
         
         }

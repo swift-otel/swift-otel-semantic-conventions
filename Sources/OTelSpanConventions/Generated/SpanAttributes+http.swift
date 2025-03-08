@@ -34,7 +34,7 @@ extension SpanAttributes {
             /// 
             /// - Example: `83.164.160.102`
             @available(*, deprecated, message: "Replaced by `client.address`.")
-            public var client_ip: Self.Key<String> { .init(name: OTelAttribute.http.client_ip) }
+            public var clientIp: Self.Key<String> { .init(name: OTelAttribute.http.clientIp) }
     
             /// `http.flavor`: Deprecated, use `network.protocol.name` instead.
             /// 
@@ -53,13 +53,13 @@ extension SpanAttributes {
             public struct FlavorEnum: SpanAttributeConvertible {
                 private let rawValue: String
                 /// `1.0`: HTTP/1.0
-                public static let http_1_0 = Self.init(rawValue: "1.0")
+                public static let http10 = Self.init(rawValue: "1.0")
                 /// `1.1`: HTTP/1.1
-                public static let http_1_1 = Self.init(rawValue: "1.1")
+                public static let http11 = Self.init(rawValue: "1.1")
                 /// `2.0`: HTTP/2
-                public static let http_2_0 = Self.init(rawValue: "2.0")
+                public static let http20 = Self.init(rawValue: "2.0")
                 /// `3.0`: HTTP/3
-                public static let http_3_0 = Self.init(rawValue: "3.0")
+                public static let http30 = Self.init(rawValue: "3.0")
                 /// `SPDY`: SPDY protocol.
                 public static let spdy = Self.init(rawValue: "SPDY")
                 /// `QUIC`: QUIC protocol.
@@ -100,7 +100,7 @@ extension SpanAttributes {
             /// 
             /// - Example: `3495`
             @available(*, deprecated, message: "Replaced by `http.request.header.<key>`.")
-            public var request_content_length: Self.Key<Int> { .init(name: OTelAttribute.http.request_content_length) }
+            public var requestContentLength: Self.Key<Int> { .init(name: OTelAttribute.http.requestContentLength) }
     
             /// `http.request_content_length_uncompressed`: Deprecated, use `http.request.body.size` instead.
             /// 
@@ -110,7 +110,7 @@ extension SpanAttributes {
             /// 
             /// - Example: `5493`
             @available(*, deprecated, message: "Replaced by `http.request.body.size`.")
-            public var request_content_length_uncompressed: Self.Key<Int> { .init(name: OTelAttribute.http.request_content_length_uncompressed) }
+            public var requestContentLengthUncompressed: Self.Key<Int> { .init(name: OTelAttribute.http.requestContentLengthUncompressed) }
     
             /// `http.response_content_length`: Deprecated, use `http.response.header.<key>` instead.
             /// 
@@ -120,7 +120,7 @@ extension SpanAttributes {
             /// 
             /// - Example: `3495`
             @available(*, deprecated, message: "Replaced by `http.response.header.<key>`.")
-            public var response_content_length: Self.Key<Int> { .init(name: OTelAttribute.http.response_content_length) }
+            public var responseContentLength: Self.Key<Int> { .init(name: OTelAttribute.http.responseContentLength) }
     
             /// `http.response_content_length_uncompressed`: Deprecated, use `http.response.body.size` instead.
             /// 
@@ -130,7 +130,7 @@ extension SpanAttributes {
             /// 
             /// - Example: `5493`
             @available(*, deprecated, message: "Replace by `http.response.body.size`.")
-            public var response_content_length_uncompressed: Self.Key<Int> { .init(name: OTelAttribute.http.response_content_length_uncompressed) }
+            public var responseContentLengthUncompressed: Self.Key<Int> { .init(name: OTelAttribute.http.responseContentLengthUncompressed) }
     
             /// `http.route`: The matched route, that is, the path template in the format used by the respective server framework. 
             /// 
@@ -165,7 +165,7 @@ extension SpanAttributes {
             /// 
             /// - Example: `example.com`
             @available(*, deprecated, message: "Replaced by `server.address`.")
-            public var server_name: Self.Key<String> { .init(name: OTelAttribute.http.server_name) }
+            public var serverName: Self.Key<String> { .init(name: OTelAttribute.http.serverName) }
     
             /// `http.status_code`: Deprecated, use `http.response.status_code` instead.
             /// 
@@ -175,7 +175,7 @@ extension SpanAttributes {
             /// 
             /// - Example: `200`
             @available(*, deprecated, message: "Replaced by `http.response.status_code`.")
-            public var status_code: Self.Key<Int> { .init(name: OTelAttribute.http.status_code) }
+            public var statusCode: Self.Key<Int> { .init(name: OTelAttribute.http.statusCode) }
     
             /// `http.target`: Deprecated, use `url.path` and `url.query` instead.
             /// 
@@ -207,7 +207,7 @@ extension SpanAttributes {
             ///     - `CERN-LineMode/2.15 libwww/2.17b3`
             ///     - `Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1`
             @available(*, deprecated, message: "Replaced by `user_agent.original`.")
-            public var user_agent: Self.Key<String> { .init(name: OTelAttribute.http.user_agent) }
+            public var userAgent: Self.Key<String> { .init(name: OTelAttribute.http.userAgent) }
         }
     
         /// `http.connection` namespace
@@ -386,7 +386,7 @@ extension SpanAttributes {
                 ///     - `GeT`
                 ///     - `ACL`
                 ///     - `foo`
-                public var method_original: Self.Key<String> { .init(name: OTelAttribute.http.request.method_original) }
+                public var methodOriginal: Self.Key<String> { .init(name: OTelAttribute.http.request.methodOriginal) }
         
                 /// `http.request.resend_count`: The ordinal number of request resending attempt (for any reason, including redirects). 
                 /// 
@@ -397,7 +397,7 @@ extension SpanAttributes {
                 /// The resend count SHOULD be updated each time an HTTP request gets resent by the client, regardless of what was the cause of the resending (e.g. redirection, authorization failure, 503 Server Unavailable, network issues, or any other). 
                 /// 
                 /// - Example: `3`
-                public var resend_count: Self.Key<Int> { .init(name: OTelAttribute.http.request.resend_count) }
+                public var resendCount: Self.Key<Int> { .init(name: OTelAttribute.http.request.resendCount) }
         
                 /// `http.request.size`: The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and request body if any. 
                 /// 
@@ -526,7 +526,7 @@ extension SpanAttributes {
                 /// - Type: int
                 /// 
                 /// - Example: `200`
-                public var status_code: Self.Key<Int> { .init(name: OTelAttribute.http.response.status_code) }
+                public var statusCode: Self.Key<Int> { .init(name: OTelAttribute.http.response.statusCode) }
             }
         
             /// `http.response.body` namespace

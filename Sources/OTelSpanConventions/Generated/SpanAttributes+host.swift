@@ -107,7 +107,7 @@ extension SpanAttributes {
             /// - Type: string
             /// 
             /// - Example: `n1-standard-1`
-            public var type: Self.Key<String> { .init(name: OTelAttribute.host.type) }
+            public var `type`: Self.Key<String> { .init(name: OTelAttribute.host.`type`) }
         }
     
         /// `host.cpu` namespace

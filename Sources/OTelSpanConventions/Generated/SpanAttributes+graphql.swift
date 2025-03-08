@@ -80,7 +80,7 @@ extension SpanAttributes {
                 ///     - `query`
                 ///     - `mutation`
                 ///     - `subscription`
-                public var type: Self.Key<TypeEnum> { .init(name: OTelAttribute.graphql.operation.type) }
+                public var `type`: Self.Key<TypeEnum> { .init(name: OTelAttribute.graphql.operation.`type`) }
                 
                 public struct TypeEnum: SpanAttributeConvertible {
                     private let rawValue: String

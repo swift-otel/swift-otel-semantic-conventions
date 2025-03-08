@@ -64,7 +64,7 @@ extension SpanAttributes {
             /// - Type: string
             /// 
             /// - Example: `http/1.1`
-            public var next_protocol: Self.Key<String> { .init(name: OTelAttribute.tls.next_protocol) }
+            public var nextProtocol: Self.Key<String> { .init(name: OTelAttribute.tls.nextProtocol) }
     
             /// `tls.resumed`: Boolean flag indicating if this TLS connection was resumed from an existing TLS negotiation.
             /// 
@@ -110,7 +110,7 @@ extension SpanAttributes {
                 /// - Stability: experimental
                 /// 
                 /// - Type: stringArray
-                public var certificate_chain: Self.Key<[String]> { .init(name: OTelAttribute.tls.client.certificate_chain) }
+                public var certificateChain: Self.Key<[String]> { .init(name: OTelAttribute.tls.client.certificateChain) }
         
                 /// `tls.client.issuer`: Distinguished name of [subject](https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.6) of the issuer of the x.509 certificate presented by the client.
                 /// 
@@ -137,7 +137,7 @@ extension SpanAttributes {
                 /// - Type: string
                 /// 
                 /// - Example: `2021-01-01T00:00:00.000Z`
-                public var not_after: Self.Key<String> { .init(name: OTelAttribute.tls.client.not_after) }
+                public var notAfter: Self.Key<String> { .init(name: OTelAttribute.tls.client.notAfter) }
         
                 /// `tls.client.not_before`: Date/Time indicating when client certificate is first considered valid.
                 /// 
@@ -146,7 +146,7 @@ extension SpanAttributes {
                 /// - Type: string
                 /// 
                 /// - Example: `1970-01-01T00:00:00.000Z`
-                public var not_before: Self.Key<String> { .init(name: OTelAttribute.tls.client.not_before) }
+                public var notBefore: Self.Key<String> { .init(name: OTelAttribute.tls.client.notBefore) }
         
                 /// `tls.client.server_name`: Deprecated, use `server.address` instead.
                 /// 
@@ -156,7 +156,7 @@ extension SpanAttributes {
                 /// 
                 /// - Example: `opentelemetry.io`
                 @available(*, deprecated, message: "Replaced by `server.address`.")
-                public var server_name: Self.Key<String> { .init(name: OTelAttribute.tls.client.server_name) }
+                public var serverName: Self.Key<String> { .init(name: OTelAttribute.tls.client.serverName) }
         
                 /// `tls.client.subject`: Distinguished name of subject of the x.509 certificate presented by the client.
                 /// 
@@ -172,7 +172,7 @@ extension SpanAttributes {
                 /// - Stability: experimental
                 /// 
                 /// - Type: stringArray
-                public var supported_ciphers: Self.Key<[String]> { .init(name: OTelAttribute.tls.client.supported_ciphers) }
+                public var supportedCiphers: Self.Key<[String]> { .init(name: OTelAttribute.tls.client.supportedCiphers) }
             }
         
             /// `tls.client.hash` namespace
@@ -254,7 +254,7 @@ extension SpanAttributes {
                 /// - Type: enum
                 ///     - `ssl`
                 ///     - `tls`
-                public var name: Self.Key<NameEnum> { .init(name: OTelAttribute.tls.protocol.name) }
+                public var name: Self.Key<NameEnum> { .init(name: OTelAttribute.tls.`protocol`.name) }
                 
                 public struct NameEnum: SpanAttributeConvertible {
                     private let rawValue: String
@@ -276,7 +276,7 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `1.2`
                 ///     - `3`
-                public var version: Self.Key<String> { .init(name: OTelAttribute.tls.protocol.version) }
+                public var version: Self.Key<String> { .init(name: OTelAttribute.tls.`protocol`.version) }
             }
         
         
@@ -316,7 +316,7 @@ extension SpanAttributes {
                 /// - Stability: experimental
                 /// 
                 /// - Type: stringArray
-                public var certificate_chain: Self.Key<[String]> { .init(name: OTelAttribute.tls.server.certificate_chain) }
+                public var certificateChain: Self.Key<[String]> { .init(name: OTelAttribute.tls.server.certificateChain) }
         
                 /// `tls.server.issuer`: Distinguished name of [subject](https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.6) of the issuer of the x.509 certificate presented by the client.
                 /// 
@@ -343,7 +343,7 @@ extension SpanAttributes {
                 /// - Type: string
                 /// 
                 /// - Example: `2021-01-01T00:00:00.000Z`
-                public var not_after: Self.Key<String> { .init(name: OTelAttribute.tls.server.not_after) }
+                public var notAfter: Self.Key<String> { .init(name: OTelAttribute.tls.server.notAfter) }
         
                 /// `tls.server.not_before`: Date/Time indicating when server certificate is first considered valid.
                 /// 
@@ -352,7 +352,7 @@ extension SpanAttributes {
                 /// - Type: string
                 /// 
                 /// - Example: `1970-01-01T00:00:00.000Z`
-                public var not_before: Self.Key<String> { .init(name: OTelAttribute.tls.server.not_before) }
+                public var notBefore: Self.Key<String> { .init(name: OTelAttribute.tls.server.notBefore) }
         
                 /// `tls.server.subject`: Distinguished name of subject of the x.509 certificate presented by the server.
                 /// 

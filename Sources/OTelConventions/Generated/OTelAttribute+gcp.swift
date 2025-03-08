@@ -29,7 +29,7 @@ extension OTelAttribute {
         }
     
         /// `gcp.cloud_run` namespace
-        public enum cloud_run {
+        public enum cloudRun {
         
         
             /// `gcp.cloud_run.job` namespace
@@ -54,7 +54,7 @@ extension OTelAttribute {
                 /// - Examples:
                 ///     - `0`
                 ///     - `1`
-                public static let task_index = "gcp.cloud_run.job.task_index"
+                public static let taskIndex = "gcp.cloud_run.job.task_index"
             
             
             }

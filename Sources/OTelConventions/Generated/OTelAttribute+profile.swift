@@ -25,7 +25,7 @@ extension OTelAttribute {
             ///     - `v8js`: [V8JS](https://wikipedia.org/wiki/V8_(JavaScript_engine))
             /// 
             /// - Example: `cpython`
-            public static let type = "profile.frame.type"
+            public static let `type` = "profile.frame.type"
         
         
         }

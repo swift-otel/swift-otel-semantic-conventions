@@ -82,7 +82,7 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `33`
                 ///     - `32`
-                public var api_level: Self.Key<String> { .init(name: OTelAttribute.android.os.api_level) }
+                public var apiLevel: Self.Key<String> { .init(name: OTelAttribute.android.os.apiLevel) }
             }
         
         

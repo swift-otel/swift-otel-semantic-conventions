@@ -7,7 +7,7 @@ import Tracing
 
 extension SpanAttributes {
     /// `feature_flag` namespace
-    public var feature_flag: FeatureFlagAttributes {
+    public var featureFlag: FeatureFlagAttributes {
         get {
             .init(attributes: self)
         }
@@ -33,7 +33,7 @@ extension SpanAttributes {
             /// - Type: string
             /// 
             /// - Example: `logo-color`
-            public var key: Self.Key<String> { .init(name: OTelAttribute.feature_flag.key) }
+            public var key: Self.Key<String> { .init(name: OTelAttribute.featureFlag.key) }
     
             /// `feature_flag.provider_name`: Identifies the feature flag provider.
             /// 
@@ -42,7 +42,7 @@ extension SpanAttributes {
             /// - Type: string
             /// 
             /// - Example: `Flag Manager`
-            public var provider_name: Self.Key<String> { .init(name: OTelAttribute.feature_flag.provider_name) }
+            public var providerName: Self.Key<String> { .init(name: OTelAttribute.featureFlag.providerName) }
     
             /// `feature_flag.variant`: A semantic identifier for an evaluated flag value. 
             /// 
@@ -56,7 +56,7 @@ extension SpanAttributes {
             ///     - `red`
             ///     - `true`
             ///     - `on`
-            public var variant: Self.Key<String> { .init(name: OTelAttribute.feature_flag.variant) }
+            public var variant: Self.Key<String> { .init(name: OTelAttribute.featureFlag.variant) }
     
             /// `feature_flag.version`: The version of the ruleset used during the evaluation. This may be any stable value which uniquely identifies the ruleset. 
             /// 
@@ -67,7 +67,7 @@ extension SpanAttributes {
             /// - Examples:
             ///     - `1`
             ///     - `01ABCDEF`
-            public var version: Self.Key<String> { .init(name: OTelAttribute.feature_flag.version) }
+            public var version: Self.Key<String> { .init(name: OTelAttribute.featureFlag.version) }
         }
     
         /// `feature_flag.context` namespace
@@ -97,7 +97,7 @@ extension SpanAttributes {
                 /// - Type: string
                 /// 
                 /// - Example: `5157782b-2203-4c80-a857-dbbd5e7761db`
-                public var id: Self.Key<String> { .init(name: OTelAttribute.feature_flag.context.id) }
+                public var id: Self.Key<String> { .init(name: OTelAttribute.featureFlag.context.id) }
             }
         
         
@@ -143,7 +143,7 @@ extension SpanAttributes {
                 ///     - `targeting_match`
                 ///     - `error`
                 ///     - `default`
-                public var reason: Self.Key<ReasonEnum> { .init(name: OTelAttribute.feature_flag.evaluation.reason) }
+                public var reason: Self.Key<ReasonEnum> { .init(name: OTelAttribute.featureFlag.evaluation.reason) }
                 
                 public struct ReasonEnum: SpanAttributeConvertible {
                     private let rawValue: String
@@ -152,7 +152,7 @@ extension SpanAttributes {
                     /// `default`: The resolved value fell back to a pre-configured value (no dynamic evaluation occurred or dynamic evaluation yielded no result).
                     public static let `default` = Self.init(rawValue: "default")
                     /// `targeting_match`: The resolved value was the result of a dynamic evaluation, such as a rule or specific user-targeting.
-                    public static let targeting_match = Self.init(rawValue: "targeting_match")
+                    public static let targetingMatch = Self.init(rawValue: "targeting_match")
                     /// `split`: The resolved value was the result of pseudorandom assignment.
                     public static let split = Self.init(rawValue: "split")
                     /// `cached`: The resolved value was retrieved from cache.
@@ -198,7 +198,7 @@ extension SpanAttributes {
                     /// - Type: string
                     /// 
                     /// - Example: `Flag `header-color` expected type `string` but found type `number``
-                    public var message: Self.Key<String> { .init(name: OTelAttribute.feature_flag.evaluation.error.message) }
+                    public var message: Self.Key<String> { .init(name: OTelAttribute.featureFlag.evaluation.error.message) }
                 }
             
             
@@ -235,7 +235,7 @@ extension SpanAttributes {
                 ///     - `proj-1`
                 ///     - `ab98sgs`
                 ///     - `service1/dev`
-                public var id: Self.Key<String> { .init(name: OTelAttribute.feature_flag.set.id) }
+                public var id: Self.Key<String> { .init(name: OTelAttribute.featureFlag.set.id) }
             }
         
         

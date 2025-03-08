@@ -14,7 +14,7 @@ extension OTelAttribute {
         /// - Examples:
         ///     - `79b9da39-b7ae-508a-a6bc-864b2829c622`
         ///     - `C9ER4AJX75574TDJ`
-        public static let request_id = "aws.request_id"
+        public static let requestId = "aws.request_id"
     
         /// `aws.dynamodb` namespace
         public enum dynamodb {
@@ -23,28 +23,28 @@ extension OTelAttribute {
             /// - Stability: experimental
             /// 
             /// - Type: stringArray
-            public static let attribute_definitions = "aws.dynamodb.attribute_definitions"
+            public static let attributeDefinitions = "aws.dynamodb.attribute_definitions"
         
             /// `aws.dynamodb.attributes_to_get`: The value of the `AttributesToGet` request parameter.
             /// 
             /// - Stability: experimental
             /// 
             /// - Type: stringArray
-            public static let attributes_to_get = "aws.dynamodb.attributes_to_get"
+            public static let attributesToGet = "aws.dynamodb.attributes_to_get"
         
             /// `aws.dynamodb.consistent_read`: The value of the `ConsistentRead` request parameter.
             /// 
             /// - Stability: experimental
             /// 
             /// - Type: boolean
-            public static let consistent_read = "aws.dynamodb.consistent_read"
+            public static let consistentRead = "aws.dynamodb.consistent_read"
         
             /// `aws.dynamodb.consumed_capacity`: The JSON-serialized value of each item in the `ConsumedCapacity` response field.
             /// 
             /// - Stability: experimental
             /// 
             /// - Type: stringArray
-            public static let consumed_capacity = "aws.dynamodb.consumed_capacity"
+            public static let consumedCapacity = "aws.dynamodb.consumed_capacity"
         
             /// `aws.dynamodb.count`: The value of the `Count` response parameter.
             /// 
@@ -64,21 +64,21 @@ extension OTelAttribute {
             /// - Examples:
             ///     - `Users`
             ///     - `CatsTable`
-            public static let exclusive_start_table = "aws.dynamodb.exclusive_start_table"
+            public static let exclusiveStartTable = "aws.dynamodb.exclusive_start_table"
         
             /// `aws.dynamodb.global_secondary_index_updates`: The JSON-serialized value of each item in the `GlobalSecondaryIndexUpdates` request field.
             /// 
             /// - Stability: experimental
             /// 
             /// - Type: stringArray
-            public static let global_secondary_index_updates = "aws.dynamodb.global_secondary_index_updates"
+            public static let globalSecondaryIndexUpdates = "aws.dynamodb.global_secondary_index_updates"
         
             /// `aws.dynamodb.global_secondary_indexes`: The JSON-serialized value of each item of the `GlobalSecondaryIndexes` request field
             /// 
             /// - Stability: experimental
             /// 
             /// - Type: stringArray
-            public static let global_secondary_indexes = "aws.dynamodb.global_secondary_indexes"
+            public static let globalSecondaryIndexes = "aws.dynamodb.global_secondary_indexes"
         
             /// `aws.dynamodb.index_name`: The value of the `IndexName` request parameter.
             /// 
@@ -87,7 +87,7 @@ extension OTelAttribute {
             /// - Type: string
             /// 
             /// - Example: `name_to_group`
-            public static let index_name = "aws.dynamodb.index_name"
+            public static let indexName = "aws.dynamodb.index_name"
         
             /// `aws.dynamodb.item_collection_metrics`: The JSON-serialized value of the `ItemCollectionMetrics` response field.
             /// 
@@ -96,7 +96,7 @@ extension OTelAttribute {
             /// - Type: string
             /// 
             /// - Example: `{ "string" : [ { "ItemCollectionKey": { "string" : { "B": blob, "BOOL": boolean, "BS": [ blob ], "L": [ "AttributeValue" ], "M": { "string" : "AttributeValue" }, "N": "string", "NS": [ "string" ], "NULL": boolean, "S": "string", "SS": [ "string" ] } }, "SizeEstimateRangeGB": [ number ] } ] }`
-            public static let item_collection_metrics = "aws.dynamodb.item_collection_metrics"
+            public static let itemCollectionMetrics = "aws.dynamodb.item_collection_metrics"
         
             /// `aws.dynamodb.limit`: The value of the `Limit` request parameter.
             /// 
@@ -112,7 +112,7 @@ extension OTelAttribute {
             /// - Stability: experimental
             /// 
             /// - Type: stringArray
-            public static let local_secondary_indexes = "aws.dynamodb.local_secondary_indexes"
+            public static let localSecondaryIndexes = "aws.dynamodb.local_secondary_indexes"
         
             /// `aws.dynamodb.projection`: The value of the `ProjectionExpression` request parameter.
             /// 
@@ -135,7 +135,7 @@ extension OTelAttribute {
             /// - Examples:
             ///     - `1.0`
             ///     - `2.0`
-            public static let provisioned_read_capacity = "aws.dynamodb.provisioned_read_capacity"
+            public static let provisionedReadCapacity = "aws.dynamodb.provisioned_read_capacity"
         
             /// `aws.dynamodb.provisioned_write_capacity`: The value of the `ProvisionedThroughput.WriteCapacityUnits` request parameter.
             /// 
@@ -146,14 +146,14 @@ extension OTelAttribute {
             /// - Examples:
             ///     - `1.0`
             ///     - `2.0`
-            public static let provisioned_write_capacity = "aws.dynamodb.provisioned_write_capacity"
+            public static let provisionedWriteCapacity = "aws.dynamodb.provisioned_write_capacity"
         
             /// `aws.dynamodb.scan_forward`: The value of the `ScanIndexForward` request parameter.
             /// 
             /// - Stability: experimental
             /// 
             /// - Type: boolean
-            public static let scan_forward = "aws.dynamodb.scan_forward"
+            public static let scanForward = "aws.dynamodb.scan_forward"
         
             /// `aws.dynamodb.scanned_count`: The value of the `ScannedCount` response parameter.
             /// 
@@ -162,7 +162,7 @@ extension OTelAttribute {
             /// - Type: int
             /// 
             /// - Example: `50`
-            public static let scanned_count = "aws.dynamodb.scanned_count"
+            public static let scannedCount = "aws.dynamodb.scanned_count"
         
             /// `aws.dynamodb.segment`: The value of the `Segment` request parameter.
             /// 
@@ -191,14 +191,14 @@ extension OTelAttribute {
             /// - Type: int
             /// 
             /// - Example: `20`
-            public static let table_count = "aws.dynamodb.table_count"
+            public static let tableCount = "aws.dynamodb.table_count"
         
             /// `aws.dynamodb.table_names`: The keys in the `RequestItems` object field.
             /// 
             /// - Stability: experimental
             /// 
             /// - Type: stringArray
-            public static let table_names = "aws.dynamodb.table_names"
+            public static let tableNames = "aws.dynamodb.table_names"
         
             /// `aws.dynamodb.total_segments`: The value of the `TotalSegments` request parameter.
             /// 
@@ -207,7 +207,7 @@ extension OTelAttribute {
             /// - Type: int
             /// 
             /// - Example: `100`
-            public static let total_segments = "aws.dynamodb.total_segments"
+            public static let totalSegments = "aws.dynamodb.total_segments"
         
         
         }
@@ -329,7 +329,7 @@ extension OTelAttribute {
             /// This may be different from `cloud.resource_id` if an alias is involved.
             /// 
             /// - Example: `arn:aws:lambda:us-east-1:123456:function:myfunction:myalias`
-            public static let invoked_arn = "aws.lambda.invoked_arn"
+            public static let invokedArn = "aws.lambda.invoked_arn"
         
         
         }
@@ -405,7 +405,7 @@ extension OTelAttribute {
             /// The `copy_source` attribute applies to S3 copy operations and corresponds to the `--copy-source` parameter of the [copy-object operation within the S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/copy-object.html). This applies in particular to the following operations:  - [copy-object](https://docs.aws.amazon.com/cli/latest/reference/s3api/copy-object.html) - [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html) 
             /// 
             /// - Example: `someFile.yml`
-            public static let copy_source = "aws.s3.copy_source"
+            public static let copySource = "aws.s3.copy_source"
         
             /// `aws.s3.delete`: The delete request container that specifies the objects to be deleted.
             /// 
@@ -438,7 +438,7 @@ extension OTelAttribute {
             /// The `part_number` attribute is only applicable to the [upload-part](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html) and [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html) operations. The `part_number` attribute corresponds to the `--part-number` parameter of the [upload-part operation within the S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html). 
             /// 
             /// - Example: `3456`
-            public static let part_number = "aws.s3.part_number"
+            public static let partNumber = "aws.s3.part_number"
         
             /// `aws.s3.upload_id`: Upload ID that identifies the multipart upload.
             /// 
@@ -449,7 +449,7 @@ extension OTelAttribute {
             /// The `upload_id` attribute applies to S3 multipart-upload operations and corresponds to the `--upload-id` parameter of the [S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/index.html) multipart operations. This applies in particular to the following operations:  - [abort-multipart-upload](https://docs.aws.amazon.com/cli/latest/reference/s3api/abort-multipart-upload.html) - [complete-multipart-upload](https://docs.aws.amazon.com/cli/latest/reference/s3api/complete-multipart-upload.html) - [list-parts](https://docs.aws.amazon.com/cli/latest/reference/s3api/list-parts.html) - [upload-part](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html) - [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html) 
             /// 
             /// - Example: `dfRtDYWFbkRONycy.Yxwh66Yjlx.cph0gtNBtJ`
-            public static let upload_id = "aws.s3.upload_id"
+            public static let uploadId = "aws.s3.upload_id"
         
         
         }

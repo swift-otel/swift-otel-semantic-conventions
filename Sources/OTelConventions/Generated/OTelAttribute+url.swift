@@ -110,7 +110,7 @@ extension OTelAttribute {
         /// - Examples:
         ///     - `example.com`
         ///     - `foo.co.uk`
-        public static let registered_domain = "url.registered_domain"
+        public static let registeredDomain = "url.registered_domain"
     
         /// `url.scheme`: The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. 
         /// 
@@ -160,7 +160,7 @@ extension OTelAttribute {
         /// - Examples:
         ///     - `com`
         ///     - `co.uk`
-        public static let top_level_domain = "url.top_level_domain"
+        public static let topLevelDomain = "url.top_level_domain"
     
     
     }

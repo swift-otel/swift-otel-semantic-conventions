@@ -40,7 +40,7 @@ extension SpanAttributes {
             ///     - `java.net.UnknownHostException`
             ///     - `server_certificate_invalid`
             ///     - `500`
-            public var type: Self.Key<TypeEnum> { .init(name: OTelAttribute.error.type) }
+            public var `type`: Self.Key<TypeEnum> { .init(name: OTelAttribute.error.`type`) }
             
             public struct TypeEnum: SpanAttributeConvertible {
                 private let rawValue: String

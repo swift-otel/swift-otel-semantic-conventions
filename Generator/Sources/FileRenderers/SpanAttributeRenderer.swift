@@ -14,19 +14,16 @@ struct SpanAttributeRenderer: FileRenderer {
     }
 
     private func renderNamespace(_ namespace: Namespace, inSpanNamespace: Bool = false, indent: Int) throws -> String {
-        guard let namespaceName = namespace.id.split(separator: ".").last else {
-            throw GeneratorError.namespaceNameNotFound(namespace.id)
-        }
-        let varName = swiftName(String(namespaceName))
-        let structName = "\(namespaceName.capitalized.replacingOccurrences(of: "_", with: ""))Attributes"
-
+        let propertyName = namespace.memberName
+        let structName = nameGenerator.swiftTypeName(for: "\(namespace.name)Attributes")
+        
         let standardAttributes = namespace.attributes.values.filter { !isTemplateType($0.type) }
         let templateAttributes = namespace.attributes.values.filter { isTemplateType($0.type) }
 
         var result = "/// `\(namespace.id)` namespace"
         result.append("""
 
-        public var \(varName): \(structName) {
+        public var \(propertyName): \(structName) {
             get {
                 .init(attributes: \(inSpanNamespace ? "self.attributes" : "self"))
             }
@@ -84,7 +81,7 @@ struct SpanAttributeRenderer: FileRenderer {
         if namespace.subNamespaces[propertyName] != nil {
             propertyName = "_\(propertyName)"
         }
-        propertyName = swiftName(propertyName)
+        propertyName = nameGenerator.swiftMemberName(for: propertyName)
 
         var result = renderDocs(attribute)
         if let deprecatedMessage = attribute.deprecated {
@@ -105,17 +102,17 @@ struct SpanAttributeRenderer: FileRenderer {
             default:
                 throw SpanAttributeRendererError.invalidStandardAttributeType(attribute.type)
             }
-            result.append("\npublic var \(propertyName): Self.Key<\(swiftType)> { .init(name: OTelAttribute.\(namespace.id).\(propertyName)) }")
+            try result.append("\npublic var \(propertyName): Self.Key<\(swiftType)> { .init(name: \(swiftOTelAttributePath(attribute, namespace))) }")
         } else if let type = attribute.type as? Attribute.EnumType {
-            let enumTypeName = "\(attributeName.capitalized)Enum"
-            result.append("\npublic var \(propertyName): Self.Key<\(enumTypeName)> { .init(name: OTelAttribute.\(namespace.id).\(propertyName)) }")
+            let enumTypeName = "\(nameGenerator.swiftTypeName(for: "\(attributeName)Enum"))"
+            try result.append("\npublic var \(propertyName): Self.Key<\(enumTypeName)> { .init(name: \(swiftOTelAttributePath(attribute, namespace))) }")
 
             // Enum types are not represented as Swift enums to avoid breaking changes when new enum values are added.
             // Instead we use a struct with static properties for each enum value.
             result.append("\n\npublic struct \(enumTypeName): SpanAttributeConvertible {")
             result.append("\n    private let rawValue: String")
             for member in type.members {
-                let caseName = swiftName(member.id)
+                let caseName = nameGenerator.swiftMemberName(for: member.id)
                 result.append("\n    /// `\(member.value)`")
                 if let brief = member.brief {
                     result.append(": \(brief.trimmingCharacters(in: .whitespacesAndNewlines))")
@@ -146,8 +143,8 @@ struct SpanAttributeRenderer: FileRenderer {
         guard let attributeName = attribute.id.split(separator: ".").last else {
             throw GeneratorError.attributeNameNotFound(attribute.id)
         }
-        let swiftName = swiftName(String(attributeName))
-        let structName = "\(attributeName.capitalized.replacingOccurrences(of: "_", with: ""))Attributes"
+        let swiftName = nameGenerator.swiftMemberName(for: String(attributeName))
+        let structName = nameGenerator.swiftTypeName(for: "\(attributeName)Attributes")
 
         let valueType: String
         guard let type = attribute.type as? Attribute.StandardType else {

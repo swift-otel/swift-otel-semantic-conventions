@@ -99,7 +99,7 @@ extension OTelAttribute {
             /// CloudFoundry applications can consist of multiple jobs. Usually the main process will be of type `web`. There can be additional background tasks or side-cars with different process types. 
             /// 
             /// - Example: `web`
-            public static let type = "cloudfoundry.process.type"
+            public static let `type` = "cloudfoundry.process.type"
         
         
         }

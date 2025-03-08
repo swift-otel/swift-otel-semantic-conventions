@@ -39,7 +39,7 @@ extension OTelAttribute {
             /// - Type: string
             /// 
             /// - Example: `2022-10-23T18:00:42Z`
-            public static let creation_timestamp = "heroku.release.creation_timestamp"
+            public static let creationTimestamp = "heroku.release.creation_timestamp"
         
         
         }

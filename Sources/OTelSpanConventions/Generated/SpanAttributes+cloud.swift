@@ -35,7 +35,7 @@ extension SpanAttributes {
             /// Availability zones are called "zones" on Alibaba Cloud and Google Cloud. 
             /// 
             /// - Example: `us-east-1c`
-            public var availability_zone: Self.Key<String> { .init(name: OTelAttribute.cloud.availability_zone) }
+            public var availabilityZone: Self.Key<String> { .init(name: OTelAttribute.cloud.availabilityZone) }
     
             /// `cloud.platform`: The cloud platform in use. 
             /// 
@@ -77,61 +77,61 @@ extension SpanAttributes {
             public struct PlatformEnum: SpanAttributeConvertible {
                 private let rawValue: String
                 /// `alibaba_cloud_ecs`: Alibaba Cloud Elastic Compute Service
-                public static let alibaba_cloud_ecs = Self.init(rawValue: "alibaba_cloud_ecs")
+                public static let alibabaCloudEcs = Self.init(rawValue: "alibaba_cloud_ecs")
                 /// `alibaba_cloud_fc`: Alibaba Cloud Function Compute
-                public static let alibaba_cloud_fc = Self.init(rawValue: "alibaba_cloud_fc")
+                public static let alibabaCloudFc = Self.init(rawValue: "alibaba_cloud_fc")
                 /// `alibaba_cloud_openshift`: Red Hat OpenShift on Alibaba Cloud
-                public static let alibaba_cloud_openshift = Self.init(rawValue: "alibaba_cloud_openshift")
+                public static let alibabaCloudOpenshift = Self.init(rawValue: "alibaba_cloud_openshift")
                 /// `aws_ec2`: AWS Elastic Compute Cloud
-                public static let aws_ec2 = Self.init(rawValue: "aws_ec2")
+                public static let awsEc2 = Self.init(rawValue: "aws_ec2")
                 /// `aws_ecs`: AWS Elastic Container Service
-                public static let aws_ecs = Self.init(rawValue: "aws_ecs")
+                public static let awsEcs = Self.init(rawValue: "aws_ecs")
                 /// `aws_eks`: AWS Elastic Kubernetes Service
-                public static let aws_eks = Self.init(rawValue: "aws_eks")
+                public static let awsEks = Self.init(rawValue: "aws_eks")
                 /// `aws_lambda`: AWS Lambda
-                public static let aws_lambda = Self.init(rawValue: "aws_lambda")
+                public static let awsLambda = Self.init(rawValue: "aws_lambda")
                 /// `aws_elastic_beanstalk`: AWS Elastic Beanstalk
-                public static let aws_elastic_beanstalk = Self.init(rawValue: "aws_elastic_beanstalk")
+                public static let awsElasticBeanstalk = Self.init(rawValue: "aws_elastic_beanstalk")
                 /// `aws_app_runner`: AWS App Runner
-                public static let aws_app_runner = Self.init(rawValue: "aws_app_runner")
+                public static let awsAppRunner = Self.init(rawValue: "aws_app_runner")
                 /// `aws_openshift`: Red Hat OpenShift on AWS (ROSA)
-                public static let aws_openshift = Self.init(rawValue: "aws_openshift")
+                public static let awsOpenshift = Self.init(rawValue: "aws_openshift")
                 /// `azure_vm`: Azure Virtual Machines
-                public static let azure_vm = Self.init(rawValue: "azure_vm")
+                public static let azureVm = Self.init(rawValue: "azure_vm")
                 /// `azure_container_apps`: Azure Container Apps
-                public static let azure_container_apps = Self.init(rawValue: "azure_container_apps")
+                public static let azureContainerApps = Self.init(rawValue: "azure_container_apps")
                 /// `azure_container_instances`: Azure Container Instances
-                public static let azure_container_instances = Self.init(rawValue: "azure_container_instances")
+                public static let azureContainerInstances = Self.init(rawValue: "azure_container_instances")
                 /// `azure_aks`: Azure Kubernetes Service
-                public static let azure_aks = Self.init(rawValue: "azure_aks")
+                public static let azureAks = Self.init(rawValue: "azure_aks")
                 /// `azure_functions`: Azure Functions
-                public static let azure_functions = Self.init(rawValue: "azure_functions")
+                public static let azureFunctions = Self.init(rawValue: "azure_functions")
                 /// `azure_app_service`: Azure App Service
-                public static let azure_app_service = Self.init(rawValue: "azure_app_service")
+                public static let azureAppService = Self.init(rawValue: "azure_app_service")
                 /// `azure_openshift`: Azure Red Hat OpenShift
-                public static let azure_openshift = Self.init(rawValue: "azure_openshift")
+                public static let azureOpenshift = Self.init(rawValue: "azure_openshift")
                 /// `gcp_bare_metal_solution`: Google Bare Metal Solution (BMS)
-                public static let gcp_bare_metal_solution = Self.init(rawValue: "gcp_bare_metal_solution")
+                public static let gcpBareMetalSolution = Self.init(rawValue: "gcp_bare_metal_solution")
                 /// `gcp_compute_engine`: Google Cloud Compute Engine (GCE)
-                public static let gcp_compute_engine = Self.init(rawValue: "gcp_compute_engine")
+                public static let gcpComputeEngine = Self.init(rawValue: "gcp_compute_engine")
                 /// `gcp_cloud_run`: Google Cloud Run
-                public static let gcp_cloud_run = Self.init(rawValue: "gcp_cloud_run")
+                public static let gcpCloudRun = Self.init(rawValue: "gcp_cloud_run")
                 /// `gcp_kubernetes_engine`: Google Cloud Kubernetes Engine (GKE)
-                public static let gcp_kubernetes_engine = Self.init(rawValue: "gcp_kubernetes_engine")
+                public static let gcpKubernetesEngine = Self.init(rawValue: "gcp_kubernetes_engine")
                 /// `gcp_cloud_functions`: Google Cloud Functions (GCF)
-                public static let gcp_cloud_functions = Self.init(rawValue: "gcp_cloud_functions")
+                public static let gcpCloudFunctions = Self.init(rawValue: "gcp_cloud_functions")
                 /// `gcp_app_engine`: Google Cloud App Engine (GAE)
-                public static let gcp_app_engine = Self.init(rawValue: "gcp_app_engine")
+                public static let gcpAppEngine = Self.init(rawValue: "gcp_app_engine")
                 /// `gcp_openshift`: Red Hat OpenShift on Google Cloud
-                public static let gcp_openshift = Self.init(rawValue: "gcp_openshift")
+                public static let gcpOpenshift = Self.init(rawValue: "gcp_openshift")
                 /// `ibm_cloud_openshift`: Red Hat OpenShift on IBM Cloud
-                public static let ibm_cloud_openshift = Self.init(rawValue: "ibm_cloud_openshift")
+                public static let ibmCloudOpenshift = Self.init(rawValue: "ibm_cloud_openshift")
                 /// `tencent_cloud_cvm`: Tencent Cloud Cloud Virtual Machine (CVM)
-                public static let tencent_cloud_cvm = Self.init(rawValue: "tencent_cloud_cvm")
+                public static let tencentCloudCvm = Self.init(rawValue: "tencent_cloud_cvm")
                 /// `tencent_cloud_eks`: Tencent Cloud Elastic Kubernetes Service (EKS)
-                public static let tencent_cloud_eks = Self.init(rawValue: "tencent_cloud_eks")
+                public static let tencentCloudEks = Self.init(rawValue: "tencent_cloud_eks")
                 /// `tencent_cloud_scf`: Tencent Cloud Serverless Cloud Function (SCF)
-                public static let tencent_cloud_scf = Self.init(rawValue: "tencent_cloud_scf")
+                public static let tencentCloudScf = Self.init(rawValue: "tencent_cloud_scf")
                 public func toSpanAttribute() -> Tracing.SpanAttribute {
                     return .string(self.rawValue)
                 }
@@ -154,7 +154,7 @@ extension SpanAttributes {
             public struct ProviderEnum: SpanAttributeConvertible {
                 private let rawValue: String
                 /// `alibaba_cloud`: Alibaba Cloud
-                public static let alibaba_cloud = Self.init(rawValue: "alibaba_cloud")
+                public static let alibabaCloud = Self.init(rawValue: "alibaba_cloud")
                 /// `aws`: Amazon Web Services
                 public static let aws = Self.init(rawValue: "aws")
                 /// `azure`: Microsoft Azure
@@ -164,9 +164,9 @@ extension SpanAttributes {
                 /// `heroku`: Heroku Platform as a Service
                 public static let heroku = Self.init(rawValue: "heroku")
                 /// `ibm_cloud`: IBM Cloud
-                public static let ibm_cloud = Self.init(rawValue: "ibm_cloud")
+                public static let ibmCloud = Self.init(rawValue: "ibm_cloud")
                 /// `tencent_cloud`: Tencent Cloud
-                public static let tencent_cloud = Self.init(rawValue: "tencent_cloud")
+                public static let tencentCloud = Self.init(rawValue: "tencent_cloud")
                 public func toSpanAttribute() -> Tracing.SpanAttribute {
                     return .string(self.rawValue)
                 }
@@ -197,7 +197,7 @@ extension SpanAttributes {
             ///     - `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`
             ///     - `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`
             ///     - `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>`
-            public var resource_id: Self.Key<String> { .init(name: OTelAttribute.cloud.resource_id) }
+            public var resourceId: Self.Key<String> { .init(name: OTelAttribute.cloud.resourceId) }
         }
     
         /// `cloud.account` namespace

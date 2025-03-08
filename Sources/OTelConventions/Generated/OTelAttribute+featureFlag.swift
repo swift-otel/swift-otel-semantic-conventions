@@ -4,7 +4,7 @@
 
 extension OTelAttribute {
     /// `feature_flag` namespace
-    public enum feature_flag {
+    public enum featureFlag {
         /// `feature_flag.key`: The lookup key of the feature flag.
         /// 
         /// - Stability: experimental
@@ -21,7 +21,7 @@ extension OTelAttribute {
         /// - Type: string
         /// 
         /// - Example: `Flag Manager`
-        public static let provider_name = "feature_flag.provider_name"
+        public static let providerName = "feature_flag.provider_name"
     
         /// `feature_flag.variant`: A semantic identifier for an evaluated flag value. 
         /// 

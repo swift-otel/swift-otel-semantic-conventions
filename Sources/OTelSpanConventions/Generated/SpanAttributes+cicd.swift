@@ -142,7 +142,7 @@ extension SpanAttributes {
                     ///     - `build`
                     ///     - `test`
                     ///     - `deploy`
-                    public var type: Self.Key<TypeEnum> { .init(name: OTelAttribute.cicd.pipeline.task.type) }
+                    public var `type`: Self.Key<TypeEnum> { .init(name: OTelAttribute.cicd.pipeline.task.`type`) }
                     
                     public struct TypeEnum: SpanAttributeConvertible {
                         private let rawValue: String

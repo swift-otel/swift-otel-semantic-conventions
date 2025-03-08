@@ -133,7 +133,7 @@ extension SpanAttributes {
                     /// - Type: string
                     /// 
                     /// - Example: `Contoso.MyHandler`
-                    public var type: Self.Key<String> { .init(name: OTelAttribute.aspnetcore.diagnostics.handler.type) }
+                    public var `type`: Self.Key<String> { .init(name: OTelAttribute.aspnetcore.diagnostics.handler.`type`) }
                 }
             
             
@@ -141,7 +141,7 @@ extension SpanAttributes {
         }
     
         /// `aspnetcore.rate_limiting` namespace
-        public var rate_limiting: RateLimitingAttributes {
+        public var rateLimiting: RateLimitingAttributes {
             get {
                 .init(attributes: self.attributes)
             }
@@ -170,7 +170,7 @@ extension SpanAttributes {
                 ///     - `fixed`
                 ///     - `sliding`
                 ///     - `token`
-                public var policy: Self.Key<String> { .init(name: OTelAttribute.aspnetcore.rate_limiting.policy) }
+                public var policy: Self.Key<String> { .init(name: OTelAttribute.aspnetcore.rateLimiting.policy) }
         
                 /// `aspnetcore.rate_limiting.result`: Rate-limiting result, shows whether the lease was acquired or contains a rejection reason
                 /// 
@@ -185,18 +185,18 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `acquired`
                 ///     - `request_canceled`
-                public var result: Self.Key<ResultEnum> { .init(name: OTelAttribute.aspnetcore.rate_limiting.result) }
+                public var result: Self.Key<ResultEnum> { .init(name: OTelAttribute.aspnetcore.rateLimiting.result) }
                 
                 public struct ResultEnum: SpanAttributeConvertible {
                     private let rawValue: String
                     /// `acquired`: Lease was acquired
                     public static let acquired = Self.init(rawValue: "acquired")
                     /// `endpoint_limiter`: Lease request was rejected by the endpoint limiter
-                    public static let endpoint_limiter = Self.init(rawValue: "endpoint_limiter")
+                    public static let endpointLimiter = Self.init(rawValue: "endpoint_limiter")
                     /// `global_limiter`: Lease request was rejected by the global limiter
-                    public static let global_limiter = Self.init(rawValue: "global_limiter")
+                    public static let globalLimiter = Self.init(rawValue: "global_limiter")
                     /// `request_canceled`: Lease request was canceled
-                    public static let request_canceled = Self.init(rawValue: "request_canceled")
+                    public static let requestCanceled = Self.init(rawValue: "request_canceled")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }
@@ -233,7 +233,7 @@ extension SpanAttributes {
                 /// - Type: boolean
                 /// 
                 /// - Example: `true`
-                public var is_unhandled: Self.Key<Bool> { .init(name: OTelAttribute.aspnetcore.request.is_unhandled) }
+                public var isUnhandled: Self.Key<Bool> { .init(name: OTelAttribute.aspnetcore.request.isUnhandled) }
             }
         
         
@@ -266,7 +266,7 @@ extension SpanAttributes {
                 /// - Type: boolean
                 /// 
                 /// - Example: `true`
-                public var is_fallback: Self.Key<Bool> { .init(name: OTelAttribute.aspnetcore.routing.is_fallback) }
+                public var isFallback: Self.Key<Bool> { .init(name: OTelAttribute.aspnetcore.routing.isFallback) }
         
                 /// `aspnetcore.routing.match_status`: Match result - success or failure
                 /// 
@@ -279,9 +279,9 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `success`
                 ///     - `failure`
-                public var match_status: Self.Key<Match_StatusEnum> { .init(name: OTelAttribute.aspnetcore.routing.match_status) }
+                public var matchStatus: Self.Key<MatchStatusEnum> { .init(name: OTelAttribute.aspnetcore.routing.matchStatus) }
                 
-                public struct Match_StatusEnum: SpanAttributeConvertible {
+                public struct MatchStatusEnum: SpanAttributeConvertible {
                     private let rawValue: String
                     /// `success`: Match succeeded
                     public static let success = Self.init(rawValue: "success")

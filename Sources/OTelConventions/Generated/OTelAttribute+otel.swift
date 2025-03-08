@@ -12,7 +12,7 @@ extension OTelAttribute {
         /// - Type: enum
         ///     - `OK`: The operation has been validated by an Application developer or Operator to have completed successfully.
         ///     - `ERROR`: The operation contains an error.
-        public static let status_code = "otel.status_code"
+        public static let statusCode = "otel.status_code"
     
         /// `otel.status_description`: Description of the Status if it has a value, otherwise not set.
         /// 
@@ -21,7 +21,7 @@ extension OTelAttribute {
         /// - Type: string
         /// 
         /// - Example: `resource not found`
-        public static let status_description = "otel.status_description"
+        public static let statusDescription = "otel.status_description"
     
         /// `otel.library` namespace
         public enum library {

@@ -6,8 +6,8 @@ import XCTest
 class SpanAttributeTests: XCTestCase {
     func testSpanAttributes() async throws {
         var attributes = SpanAttributes()
-        attributes.http.response.status_code = 200
-        XCTAssertEqual(attributes.get(OTelAttribute.http.response.status_code), 200)
+        attributes.http.response.statusCode = 200
+        XCTAssertEqual(attributes.get(OTelAttribute.http.response.statusCode), 200)
         attributes.host.ip = ["192.168.1.140", "fe80::abc2:4a28:737a:609e"]
         XCTAssertEqual(attributes.get(OTelAttribute.host.ip), .stringArray(["192.168.1.140", "fe80::abc2:4a28:737a:609e"]))
     }

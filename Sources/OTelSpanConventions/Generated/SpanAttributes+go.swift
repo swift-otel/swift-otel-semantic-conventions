@@ -60,7 +60,7 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `other`
                 ///     - `stack`
-                public var type: Self.Key<TypeEnum> { .init(name: OTelAttribute.go.memory.type) }
+                public var `type`: Self.Key<TypeEnum> { .init(name: OTelAttribute.go.memory.`type`) }
                 
                 public struct TypeEnum: SpanAttributeConvertible {
                     private let rawValue: String

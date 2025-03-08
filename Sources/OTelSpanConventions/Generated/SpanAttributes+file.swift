@@ -101,7 +101,7 @@ extension SpanAttributes {
             /// On Linux, a resource fork is used to store additional data with a filesystem object. A file always has at least one fork for the data portion, and additional forks may exist. On NTFS, this is analogous to an Alternate Data Stream (ADS), and the default data stream for a file is just called $DATA. Zone.Identifier is commonly used by Windows to track contents downloaded from the Internet. An ADS is typically of the form: C:\path\to\filename.extension:some_fork_name, and some_fork_name is the value that should populate `fork_name`. `filename.extension` should populate `file.name`, and `extension` should populate `file.extension`. The full path, `file.path`, will include the fork name. 
             /// 
             /// - Example: `Zone.Identifer`
-            public var fork_name: Self.Key<String> { .init(name: OTelAttribute.file.fork_name) }
+            public var forkName: Self.Key<String> { .init(name: OTelAttribute.file.forkName) }
     
             /// `file.inode`: Inode representing the file in the filesystem. 
             /// 
@@ -243,7 +243,7 @@ extension SpanAttributes {
         }
     
         /// `file.symbolic_link` namespace
-        public var symbolic_link: SymbolicLinkAttributes {
+        public var symbolicLink: SymbolicLinkAttributes {
             get {
                 .init(attributes: self.attributes)
             }
@@ -271,7 +271,7 @@ extension SpanAttributes {
                 /// This attribute is only applicable to symbolic links. 
                 /// 
                 /// - Example: `/usr/bin/python3`
-                public var target_path: Self.Key<String> { .init(name: OTelAttribute.file.symbolic_link.target_path) }
+                public var targetPath: Self.Key<String> { .init(name: OTelAttribute.file.symbolicLink.targetPath) }
             }
         
         

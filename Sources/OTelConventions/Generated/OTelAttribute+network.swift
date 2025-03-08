@@ -36,7 +36,7 @@ extension OTelAttribute {
         /// - Examples:
         ///     - `ipv4`
         ///     - `ipv6`
-        public static let type = "network.type"
+        public static let `type` = "network.type"
     
         /// `network.carrier` namespace
         public enum carrier {
@@ -123,7 +123,7 @@ extension OTelAttribute {
             ///     - `unknown`
             /// 
             /// - Example: `wifi`
-            public static let type = "network.connection.type"
+            public static let `type` = "network.connection.type"
         
         
         }

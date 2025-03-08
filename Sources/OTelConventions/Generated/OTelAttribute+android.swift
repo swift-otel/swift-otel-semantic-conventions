@@ -29,7 +29,7 @@ extension OTelAttribute {
             /// - Examples:
             ///     - `33`
             ///     - `32`
-            public static let api_level = "android.os.api_level"
+            public static let apiLevel = "android.os.api_level"
         
         
         }

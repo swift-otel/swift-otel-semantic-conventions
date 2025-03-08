@@ -63,7 +63,7 @@ extension SpanAttributes {
                 /// - Type: int
                 /// 
                 /// - Example: `1`
-                public var logical_number: Self.Key<Int> { .init(name: OTelAttribute.system.cpu.logical_number) }
+                public var logicalNumber: Self.Key<Int> { .init(name: OTelAttribute.system.cpu.logicalNumber) }
         
                 /// `system.cpu.state`: Deprecated, use `cpu.mode` instead.
                 /// 
@@ -185,7 +185,7 @@ extension SpanAttributes {
                 ///     - `ext4`
                 /// 
                 /// - Example: `ext4`
-                public var type: Self.Key<TypeEnum> { .init(name: OTelAttribute.system.filesystem.type) }
+                public var `type`: Self.Key<TypeEnum> { .init(name: OTelAttribute.system.filesystem.`type`) }
                 
                 public struct TypeEnum: SpanAttributeConvertible {
                     private let rawValue: String
@@ -314,7 +314,7 @@ extension SpanAttributes {
                     /// `close`
                     public static let close = Self.init(rawValue: "close")
                     /// `close_wait`
-                    public static let close_wait = Self.init(rawValue: "close_wait")
+                    public static let closeWait = Self.init(rawValue: "close_wait")
                     /// `closing`
                     public static let closing = Self.init(rawValue: "closing")
                     /// `delete`
@@ -322,19 +322,19 @@ extension SpanAttributes {
                     /// `established`
                     public static let established = Self.init(rawValue: "established")
                     /// `fin_wait_1`
-                    public static let fin_wait_1 = Self.init(rawValue: "fin_wait_1")
+                    public static let finWait1 = Self.init(rawValue: "fin_wait_1")
                     /// `fin_wait_2`
-                    public static let fin_wait_2 = Self.init(rawValue: "fin_wait_2")
+                    public static let finWait2 = Self.init(rawValue: "fin_wait_2")
                     /// `last_ack`
-                    public static let last_ack = Self.init(rawValue: "last_ack")
+                    public static let lastAck = Self.init(rawValue: "last_ack")
                     /// `listen`
                     public static let listen = Self.init(rawValue: "listen")
                     /// `syn_recv`
-                    public static let syn_recv = Self.init(rawValue: "syn_recv")
+                    public static let synRecv = Self.init(rawValue: "syn_recv")
                     /// `syn_sent`
-                    public static let syn_sent = Self.init(rawValue: "syn_sent")
+                    public static let synSent = Self.init(rawValue: "syn_sent")
                     /// `time_wait`
-                    public static let time_wait = Self.init(rawValue: "time_wait")
+                    public static let timeWait = Self.init(rawValue: "time_wait")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }
@@ -417,7 +417,7 @@ extension SpanAttributes {
                 ///     - `minor`
                 /// 
                 /// - Example: `minor`
-                public var type: Self.Key<TypeEnum> { .init(name: OTelAttribute.system.paging.type) }
+                public var `type`: Self.Key<TypeEnum> { .init(name: OTelAttribute.system.paging.`type`) }
                 
                 public struct TypeEnum: SpanAttributeConvertible {
                     private let rawValue: String

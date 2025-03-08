@@ -80,7 +80,7 @@ extension OTelAttribute {
         /// On Linux, a resource fork is used to store additional data with a filesystem object. A file always has at least one fork for the data portion, and additional forks may exist. On NTFS, this is analogous to an Alternate Data Stream (ADS), and the default data stream for a file is just called $DATA. Zone.Identifier is commonly used by Windows to track contents downloaded from the Internet. An ADS is typically of the form: C:\path\to\filename.extension:some_fork_name, and some_fork_name is the value that should populate `fork_name`. `filename.extension` should populate `file.name`, and `extension` should populate `file.extension`. The full path, `file.path`, will include the fork name. 
         /// 
         /// - Example: `Zone.Identifer`
-        public static let fork_name = "file.fork_name"
+        public static let forkName = "file.fork_name"
     
         /// `file.inode`: Inode representing the file in the filesystem. 
         /// 
@@ -183,7 +183,7 @@ extension OTelAttribute {
         }
     
         /// `file.symbolic_link` namespace
-        public enum symbolic_link {
+        public enum symbolicLink {
             /// `file.symbolic_link.target_path`: Path to the target of a symbolic link. 
             /// 
             /// - Stability: experimental
@@ -193,7 +193,7 @@ extension OTelAttribute {
             /// This attribute is only applicable to symbolic links. 
             /// 
             /// - Example: `/usr/bin/python3`
-            public static let target_path = "file.symbolic_link.target_path"
+            public static let targetPath = "file.symbolic_link.target_path"
         
         
         }

@@ -35,14 +35,14 @@ extension SpanAttributes {
             ///     - `follows_from`: The parent Span doesn't depend in any way on the result of the child Span
             /// 
             /// The causal relationship between a child Span and a parent Span. 
-            public var ref_type: Self.Key<Ref_TypeEnum> { .init(name: OTelAttribute.opentracing.ref_type) }
+            public var refType: Self.Key<RefTypeEnum> { .init(name: OTelAttribute.opentracing.refType) }
             
-            public struct Ref_TypeEnum: SpanAttributeConvertible {
+            public struct RefTypeEnum: SpanAttributeConvertible {
                 private let rawValue: String
                 /// `child_of`: The parent Span depends on the child Span in some capacity
-                public static let child_of = Self.init(rawValue: "child_of")
+                public static let childOf = Self.init(rawValue: "child_of")
                 /// `follows_from`: The parent Span doesn't depend in any way on the result of the child Span
-                public static let follows_from = Self.init(rawValue: "follows_from")
+                public static let followsFrom = Self.init(rawValue: "follows_from")
                 public func toSpanAttribute() -> Tracing.SpanAttribute {
                     return .string(self.rawValue)
                 }

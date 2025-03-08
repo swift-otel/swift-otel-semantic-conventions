@@ -7,7 +7,7 @@ import Tracing
 
 extension SpanAttributes {
     /// `k8s` namespace
-    public var k8s: K8SAttributes {
+    public var k8s: K8sAttributes {
         get {
             .init(attributes: self)
         }
@@ -17,7 +17,7 @@ extension SpanAttributes {
     }
     
     @dynamicMemberLookup
-    public struct K8SAttributes: SpanAttributeNamespace {
+    public struct K8sAttributes: SpanAttributeNamespace {
         public var attributes: SpanAttributes
     
         public init(attributes: SpanAttributes) {
@@ -107,7 +107,7 @@ extension SpanAttributes {
                 /// - Stability: experimental
                 /// 
                 /// - Type: int
-                public var restart_count: Self.Key<Int> { .init(name: OTelAttribute.k8s.container.restart_count) }
+                public var restartCount: Self.Key<Int> { .init(name: OTelAttribute.k8s.container.restartCount) }
             }
         
             /// `k8s.container.status` namespace
@@ -139,7 +139,7 @@ extension SpanAttributes {
                     /// - Examples:
                     ///     - `Evicted`
                     ///     - `Error`
-                    public var last_terminated_reason: Self.Key<String> { .init(name: OTelAttribute.k8s.container.status.last_terminated_reason) }
+                    public var lastTerminatedReason: Self.Key<String> { .init(name: OTelAttribute.k8s.container.status.lastTerminatedReason) }
                 }
             
             
@@ -698,18 +698,18 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `emptyDir`
                 ///     - `persistentVolumeClaim`
-                public var type: Self.Key<TypeEnum> { .init(name: OTelAttribute.k8s.volume.type) }
+                public var `type`: Self.Key<TypeEnum> { .init(name: OTelAttribute.k8s.volume.`type`) }
                 
                 public struct TypeEnum: SpanAttributeConvertible {
                     private let rawValue: String
                     /// `persistentVolumeClaim`: A [persistentVolumeClaim](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume
-                    public static let persistent_volume_claim = Self.init(rawValue: "persistentVolumeClaim")
+                    public static let persistentVolumeClaim = Self.init(rawValue: "persistentVolumeClaim")
                     /// `configMap`: A [configMap](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#configmap) volume
-                    public static let config_map = Self.init(rawValue: "configMap")
+                    public static let configMap = Self.init(rawValue: "configMap")
                     /// `downwardAPI`: A [downwardAPI](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume
-                    public static let downward_api = Self.init(rawValue: "downwardAPI")
+                    public static let downwardApi = Self.init(rawValue: "downwardAPI")
                     /// `emptyDir`: An [emptyDir](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume
-                    public static let empty_dir = Self.init(rawValue: "emptyDir")
+                    public static let emptyDir = Self.init(rawValue: "emptyDir")
                     /// `secret`: A [secret](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#secret) volume
                     public static let secret = Self.init(rawValue: "secret")
                     /// `local`: A [local](https://v1-29.docs.kubernetes.io/docs/concepts/storage/volumes/#local) volume

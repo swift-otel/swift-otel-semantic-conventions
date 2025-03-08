@@ -40,14 +40,14 @@ extension OTelAttribute {
                 /// - Type: string
                 /// 
                 /// - Example: `Contoso.MyHandler`
-                public static let type = "aspnetcore.diagnostics.handler.type"
+                public static let `type` = "aspnetcore.diagnostics.handler.type"
             
             
             }
         }
     
         /// `aspnetcore.rate_limiting` namespace
-        public enum rate_limiting {
+        public enum rateLimiting {
             /// `aspnetcore.rate_limiting.policy`: Rate limiting policy name.
             /// 
             /// - Stability: stable
@@ -87,7 +87,7 @@ extension OTelAttribute {
             /// - Type: boolean
             /// 
             /// - Example: `true`
-            public static let is_unhandled = "aspnetcore.request.is_unhandled"
+            public static let isUnhandled = "aspnetcore.request.is_unhandled"
         
         
         }
@@ -101,7 +101,7 @@ extension OTelAttribute {
             /// - Type: boolean
             /// 
             /// - Example: `true`
-            public static let is_fallback = "aspnetcore.routing.is_fallback"
+            public static let isFallback = "aspnetcore.routing.is_fallback"
         
             /// `aspnetcore.routing.match_status`: Match result - success or failure
             /// 
@@ -114,7 +114,7 @@ extension OTelAttribute {
             /// - Examples:
             ///     - `success`
             ///     - `failure`
-            public static let match_status = "aspnetcore.routing.match_status"
+            public static let matchStatus = "aspnetcore.routing.match_status"
         
         
         }

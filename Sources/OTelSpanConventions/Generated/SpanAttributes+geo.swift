@@ -33,7 +33,7 @@ extension SpanAttributes {
             /// - Type: string
             /// 
             /// - Example: `94040`
-            public var postal_code: Self.Key<String> { .init(name: OTelAttribute.geo.postal_code) }
+            public var postalCode: Self.Key<String> { .init(name: OTelAttribute.geo.postalCode) }
         }
     
         /// `geo.continent` namespace
@@ -122,7 +122,7 @@ extension SpanAttributes {
                 /// - Type: string
                 /// 
                 /// - Example: `CA`
-                public var iso_code: Self.Key<String> { .init(name: OTelAttribute.geo.country.iso_code) }
+                public var isoCode: Self.Key<String> { .init(name: OTelAttribute.geo.country.isoCode) }
             }
         
         
@@ -232,7 +232,7 @@ extension SpanAttributes {
                 /// - Type: string
                 /// 
                 /// - Example: `CA-QC`
-                public var iso_code: Self.Key<String> { .init(name: OTelAttribute.geo.region.iso_code) }
+                public var isoCode: Self.Key<String> { .init(name: OTelAttribute.geo.region.isoCode) }
             }
         
         

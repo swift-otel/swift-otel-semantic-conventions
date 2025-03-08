@@ -39,7 +39,7 @@ extension OTelAttribute {
         /// - Type: string
         /// 
         /// - Example: `af9d5aa4-a685-4c5f-a22b-444f80b3cc28`
-        public static let invocation_id = "faas.invocation_id"
+        public static let invocationId = "faas.invocation_id"
     
         /// `faas.invoked_name`: The name of the invoked function. 
         /// 
@@ -50,7 +50,7 @@ extension OTelAttribute {
         /// SHOULD be equal to the `faas.name` resource attribute of the invoked function. 
         /// 
         /// - Example: `my-function`
-        public static let invoked_name = "faas.invoked_name"
+        public static let invokedName = "faas.invoked_name"
     
         /// `faas.invoked_provider`: The cloud provider of the invoked function. 
         /// 
@@ -64,7 +64,7 @@ extension OTelAttribute {
         ///     - `tencent_cloud`: Tencent Cloud
         /// 
         /// SHOULD be equal to the `cloud.provider` resource attribute of the invoked function. 
-        public static let invoked_provider = "faas.invoked_provider"
+        public static let invokedProvider = "faas.invoked_provider"
     
         /// `faas.invoked_region`: The cloud region of the invoked function. 
         /// 
@@ -75,7 +75,7 @@ extension OTelAttribute {
         /// SHOULD be equal to the `cloud.region` resource attribute of the invoked function. 
         /// 
         /// - Example: `eu-central-1`
-        public static let invoked_region = "faas.invoked_region"
+        public static let invokedRegion = "faas.invoked_region"
     
         /// `faas.max_memory`: The amount of memory available to the serverless function converted to Bytes. 
         /// 
@@ -86,7 +86,7 @@ extension OTelAttribute {
         /// It's recommended to set this attribute since e.g. too little memory can easily stop a Java AWS Lambda function from working correctly. On AWS Lambda, the environment variable `AWS_LAMBDA_FUNCTION_MEMORY_SIZE` provides this information (which must be multiplied by 1,048,576). 
         /// 
         /// - Example: `134217728`
-        public static let max_memory = "faas.max_memory"
+        public static let maxMemory = "faas.max_memory"
     
         /// `faas.name`: The name of the single function that this runtime instance executes. 
         /// 

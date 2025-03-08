@@ -74,7 +74,7 @@ extension OTelAttribute {
             /// - Examples:
             ///     - `heap`
             ///     - `non_heap`
-            public static let type = "jvm.memory.type"
+            public static let `type` = "jvm.memory.type"
         
             /// `jvm.memory.pool` namespace
             public enum pool {

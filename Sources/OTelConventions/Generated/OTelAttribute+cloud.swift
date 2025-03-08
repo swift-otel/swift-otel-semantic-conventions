@@ -14,7 +14,7 @@ extension OTelAttribute {
         /// Availability zones are called "zones" on Alibaba Cloud and Google Cloud. 
         /// 
         /// - Example: `us-east-1c`
-        public static let availability_zone = "cloud.availability_zone"
+        public static let availabilityZone = "cloud.availability_zone"
     
         /// `cloud.platform`: The cloud platform in use. 
         /// 
@@ -92,7 +92,7 @@ extension OTelAttribute {
         ///     - `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`
         ///     - `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`
         ///     - `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>`
-        public static let resource_id = "cloud.resource_id"
+        public static let resourceId = "cloud.resource_id"
     
         /// `cloud.account` namespace
         public enum account {

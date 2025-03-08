@@ -24,7 +24,7 @@ extension OTelAttribute {
         /// - Type: string
         /// 
         /// - Example: `00000000-0000-0000-0000-000000000000`
-        public static let service_request_id = "az.service_request_id"
+        public static let serviceRequestId = "az.service_request_id"
     
     
     }

@@ -119,7 +119,7 @@ struct Generator: AsyncParsableCommand {
                     try fileManager.createDirectory(atPath: directory, withIntermediateDirectories: true)
                 }
                 
-                let filePath = directory + "\(renderer.fileNamePrefix)\(namespace.id).swift"
+                let filePath = directory + "\(renderer.fileNamePrefix)\(namespace.memberName).swift"
                 var fileContents = generatedFileHeader
                 fileContents += try renderer.renderFile(namespace)
 
@@ -138,7 +138,10 @@ struct Generator: AsyncParsableCommand {
 /// A recursive type that is used to collect attributes. Namespaces may contain sub-namespaces.
 /// The attribute and subNamespace properties act as a prefix tree on the attribute and namespace ids.
 class Namespace {
+    // The full dot-separated path of the namespace. For example `http.request`
     let id: String
+    // The final entry in the dot-separated path
+    let name: String
     var attributes: [String: Attribute]
     var subNamespaces: [String: Namespace]
 
@@ -146,6 +149,15 @@ class Namespace {
         self.id = id
         self.attributes = attributes
         self.subNamespaces = subNamespaces
+        self.name = String(id.split(separator: ".").last ?? "")
+    }
+    
+    var typeName: String {
+        nameGenerator.swiftTypeName(for: name)
+    }
+    
+    var memberName: String {
+        nameGenerator.swiftMemberName(for: name)
     }
 }
 
@@ -156,6 +168,7 @@ let generatedFileHeader = """
 
 
 """
+let nameGenerator = IdiomaticSafeNameGenerator(defensive: .init())
 
 enum GeneratorError: Error {
     case attributeNameNotFound(String)

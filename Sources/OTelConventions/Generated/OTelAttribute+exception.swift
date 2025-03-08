@@ -44,7 +44,7 @@ extension OTelAttribute {
         /// - Examples:
         ///     - `java.net.ConnectException`
         ///     - `OSError`
-        public static let type = "exception.type"
+        public static let `type` = "exception.type"
     
     
     }

@@ -12,7 +12,7 @@ extension OTelAttribute {
         /// - Type: string
         /// 
         /// - Example: `94040`
-        public static let postal_code = "geo.postal_code"
+        public static let postalCode = "geo.postal_code"
     
         /// `geo.continent` namespace
         public enum continent {
@@ -42,7 +42,7 @@ extension OTelAttribute {
             /// - Type: string
             /// 
             /// - Example: `CA`
-            public static let iso_code = "geo.country.iso_code"
+            public static let isoCode = "geo.country.iso_code"
         
         
         }
@@ -95,7 +95,7 @@ extension OTelAttribute {
             /// - Type: string
             /// 
             /// - Example: `CA-QC`
-            public static let iso_code = "geo.region.iso_code"
+            public static let isoCode = "geo.region.iso_code"
         
         
         }

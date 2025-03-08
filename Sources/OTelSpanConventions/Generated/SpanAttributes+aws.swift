@@ -35,7 +35,7 @@ extension SpanAttributes {
             /// - Examples:
             ///     - `79b9da39-b7ae-508a-a6bc-864b2829c622`
             ///     - `C9ER4AJX75574TDJ`
-            public var request_id: Self.Key<String> { .init(name: OTelAttribute.aws.request_id) }
+            public var requestId: Self.Key<String> { .init(name: OTelAttribute.aws.requestId) }
         }
     
         /// `aws.dynamodb` namespace
@@ -63,28 +63,28 @@ extension SpanAttributes {
                 /// - Stability: experimental
                 /// 
                 /// - Type: stringArray
-                public var attribute_definitions: Self.Key<[String]> { .init(name: OTelAttribute.aws.dynamodb.attribute_definitions) }
+                public var attributeDefinitions: Self.Key<[String]> { .init(name: OTelAttribute.aws.dynamodb.attributeDefinitions) }
         
                 /// `aws.dynamodb.attributes_to_get`: The value of the `AttributesToGet` request parameter.
                 /// 
                 /// - Stability: experimental
                 /// 
                 /// - Type: stringArray
-                public var attributes_to_get: Self.Key<[String]> { .init(name: OTelAttribute.aws.dynamodb.attributes_to_get) }
+                public var attributesToGet: Self.Key<[String]> { .init(name: OTelAttribute.aws.dynamodb.attributesToGet) }
         
                 /// `aws.dynamodb.consistent_read`: The value of the `ConsistentRead` request parameter.
                 /// 
                 /// - Stability: experimental
                 /// 
                 /// - Type: boolean
-                public var consistent_read: Self.Key<Bool> { .init(name: OTelAttribute.aws.dynamodb.consistent_read) }
+                public var consistentRead: Self.Key<Bool> { .init(name: OTelAttribute.aws.dynamodb.consistentRead) }
         
                 /// `aws.dynamodb.consumed_capacity`: The JSON-serialized value of each item in the `ConsumedCapacity` response field.
                 /// 
                 /// - Stability: experimental
                 /// 
                 /// - Type: stringArray
-                public var consumed_capacity: Self.Key<[String]> { .init(name: OTelAttribute.aws.dynamodb.consumed_capacity) }
+                public var consumedCapacity: Self.Key<[String]> { .init(name: OTelAttribute.aws.dynamodb.consumedCapacity) }
         
                 /// `aws.dynamodb.count`: The value of the `Count` response parameter.
                 /// 
@@ -104,21 +104,21 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `Users`
                 ///     - `CatsTable`
-                public var exclusive_start_table: Self.Key<String> { .init(name: OTelAttribute.aws.dynamodb.exclusive_start_table) }
+                public var exclusiveStartTable: Self.Key<String> { .init(name: OTelAttribute.aws.dynamodb.exclusiveStartTable) }
         
                 /// `aws.dynamodb.global_secondary_index_updates`: The JSON-serialized value of each item in the `GlobalSecondaryIndexUpdates` request field.
                 /// 
                 /// - Stability: experimental
                 /// 
                 /// - Type: stringArray
-                public var global_secondary_index_updates: Self.Key<[String]> { .init(name: OTelAttribute.aws.dynamodb.global_secondary_index_updates) }
+                public var globalSecondaryIndexUpdates: Self.Key<[String]> { .init(name: OTelAttribute.aws.dynamodb.globalSecondaryIndexUpdates) }
         
                 /// `aws.dynamodb.global_secondary_indexes`: The JSON-serialized value of each item of the `GlobalSecondaryIndexes` request field
                 /// 
                 /// - Stability: experimental
                 /// 
                 /// - Type: stringArray
-                public var global_secondary_indexes: Self.Key<[String]> { .init(name: OTelAttribute.aws.dynamodb.global_secondary_indexes) }
+                public var globalSecondaryIndexes: Self.Key<[String]> { .init(name: OTelAttribute.aws.dynamodb.globalSecondaryIndexes) }
         
                 /// `aws.dynamodb.index_name`: The value of the `IndexName` request parameter.
                 /// 
@@ -127,7 +127,7 @@ extension SpanAttributes {
                 /// - Type: string
                 /// 
                 /// - Example: `name_to_group`
-                public var index_name: Self.Key<String> { .init(name: OTelAttribute.aws.dynamodb.index_name) }
+                public var indexName: Self.Key<String> { .init(name: OTelAttribute.aws.dynamodb.indexName) }
         
                 /// `aws.dynamodb.item_collection_metrics`: The JSON-serialized value of the `ItemCollectionMetrics` response field.
                 /// 
@@ -136,7 +136,7 @@ extension SpanAttributes {
                 /// - Type: string
                 /// 
                 /// - Example: `{ "string" : [ { "ItemCollectionKey": { "string" : { "B": blob, "BOOL": boolean, "BS": [ blob ], "L": [ "AttributeValue" ], "M": { "string" : "AttributeValue" }, "N": "string", "NS": [ "string" ], "NULL": boolean, "S": "string", "SS": [ "string" ] } }, "SizeEstimateRangeGB": [ number ] } ] }`
-                public var item_collection_metrics: Self.Key<String> { .init(name: OTelAttribute.aws.dynamodb.item_collection_metrics) }
+                public var itemCollectionMetrics: Self.Key<String> { .init(name: OTelAttribute.aws.dynamodb.itemCollectionMetrics) }
         
                 /// `aws.dynamodb.limit`: The value of the `Limit` request parameter.
                 /// 
@@ -152,7 +152,7 @@ extension SpanAttributes {
                 /// - Stability: experimental
                 /// 
                 /// - Type: stringArray
-                public var local_secondary_indexes: Self.Key<[String]> { .init(name: OTelAttribute.aws.dynamodb.local_secondary_indexes) }
+                public var localSecondaryIndexes: Self.Key<[String]> { .init(name: OTelAttribute.aws.dynamodb.localSecondaryIndexes) }
         
                 /// `aws.dynamodb.projection`: The value of the `ProjectionExpression` request parameter.
                 /// 
@@ -175,7 +175,7 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `1.0`
                 ///     - `2.0`
-                public var provisioned_read_capacity: Self.Key<Double> { .init(name: OTelAttribute.aws.dynamodb.provisioned_read_capacity) }
+                public var provisionedReadCapacity: Self.Key<Double> { .init(name: OTelAttribute.aws.dynamodb.provisionedReadCapacity) }
         
                 /// `aws.dynamodb.provisioned_write_capacity`: The value of the `ProvisionedThroughput.WriteCapacityUnits` request parameter.
                 /// 
@@ -186,14 +186,14 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `1.0`
                 ///     - `2.0`
-                public var provisioned_write_capacity: Self.Key<Double> { .init(name: OTelAttribute.aws.dynamodb.provisioned_write_capacity) }
+                public var provisionedWriteCapacity: Self.Key<Double> { .init(name: OTelAttribute.aws.dynamodb.provisionedWriteCapacity) }
         
                 /// `aws.dynamodb.scan_forward`: The value of the `ScanIndexForward` request parameter.
                 /// 
                 /// - Stability: experimental
                 /// 
                 /// - Type: boolean
-                public var scan_forward: Self.Key<Bool> { .init(name: OTelAttribute.aws.dynamodb.scan_forward) }
+                public var scanForward: Self.Key<Bool> { .init(name: OTelAttribute.aws.dynamodb.scanForward) }
         
                 /// `aws.dynamodb.scanned_count`: The value of the `ScannedCount` response parameter.
                 /// 
@@ -202,7 +202,7 @@ extension SpanAttributes {
                 /// - Type: int
                 /// 
                 /// - Example: `50`
-                public var scanned_count: Self.Key<Int> { .init(name: OTelAttribute.aws.dynamodb.scanned_count) }
+                public var scannedCount: Self.Key<Int> { .init(name: OTelAttribute.aws.dynamodb.scannedCount) }
         
                 /// `aws.dynamodb.segment`: The value of the `Segment` request parameter.
                 /// 
@@ -231,14 +231,14 @@ extension SpanAttributes {
                 /// - Type: int
                 /// 
                 /// - Example: `20`
-                public var table_count: Self.Key<Int> { .init(name: OTelAttribute.aws.dynamodb.table_count) }
+                public var tableCount: Self.Key<Int> { .init(name: OTelAttribute.aws.dynamodb.tableCount) }
         
                 /// `aws.dynamodb.table_names`: The keys in the `RequestItems` object field.
                 /// 
                 /// - Stability: experimental
                 /// 
                 /// - Type: stringArray
-                public var table_names: Self.Key<[String]> { .init(name: OTelAttribute.aws.dynamodb.table_names) }
+                public var tableNames: Self.Key<[String]> { .init(name: OTelAttribute.aws.dynamodb.tableNames) }
         
                 /// `aws.dynamodb.total_segments`: The value of the `TotalSegments` request parameter.
                 /// 
@@ -247,7 +247,7 @@ extension SpanAttributes {
                 /// - Type: int
                 /// 
                 /// - Example: `100`
-                public var total_segments: Self.Key<Int> { .init(name: OTelAttribute.aws.dynamodb.total_segments) }
+                public var totalSegments: Self.Key<Int> { .init(name: OTelAttribute.aws.dynamodb.totalSegments) }
             }
         
         
@@ -513,7 +513,7 @@ extension SpanAttributes {
                 /// This may be different from `cloud.resource_id` if an alias is involved.
                 /// 
                 /// - Example: `arn:aws:lambda:us-east-1:123456:function:myfunction:myalias`
-                public var invoked_arn: Self.Key<String> { .init(name: OTelAttribute.aws.lambda.invoked_arn) }
+                public var invokedArn: Self.Key<String> { .init(name: OTelAttribute.aws.lambda.invokedArn) }
             }
         
         
@@ -665,7 +665,7 @@ extension SpanAttributes {
                 /// The `copy_source` attribute applies to S3 copy operations and corresponds to the `--copy-source` parameter of the [copy-object operation within the S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/copy-object.html). This applies in particular to the following operations:  - [copy-object](https://docs.aws.amazon.com/cli/latest/reference/s3api/copy-object.html) - [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html) 
                 /// 
                 /// - Example: `someFile.yml`
-                public var copy_source: Self.Key<String> { .init(name: OTelAttribute.aws.s3.copy_source) }
+                public var copySource: Self.Key<String> { .init(name: OTelAttribute.aws.s3.copySource) }
         
                 /// `aws.s3.delete`: The delete request container that specifies the objects to be deleted.
                 /// 
@@ -698,7 +698,7 @@ extension SpanAttributes {
                 /// The `part_number` attribute is only applicable to the [upload-part](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html) and [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html) operations. The `part_number` attribute corresponds to the `--part-number` parameter of the [upload-part operation within the S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html). 
                 /// 
                 /// - Example: `3456`
-                public var part_number: Self.Key<Int> { .init(name: OTelAttribute.aws.s3.part_number) }
+                public var partNumber: Self.Key<Int> { .init(name: OTelAttribute.aws.s3.partNumber) }
         
                 /// `aws.s3.upload_id`: Upload ID that identifies the multipart upload.
                 /// 
@@ -709,7 +709,7 @@ extension SpanAttributes {
                 /// The `upload_id` attribute applies to S3 multipart-upload operations and corresponds to the `--upload-id` parameter of the [S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/index.html) multipart operations. This applies in particular to the following operations:  - [abort-multipart-upload](https://docs.aws.amazon.com/cli/latest/reference/s3api/abort-multipart-upload.html) - [complete-multipart-upload](https://docs.aws.amazon.com/cli/latest/reference/s3api/complete-multipart-upload.html) - [list-parts](https://docs.aws.amazon.com/cli/latest/reference/s3api/list-parts.html) - [upload-part](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html) - [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html) 
                 /// 
                 /// - Example: `dfRtDYWFbkRONycy.Yxwh66Yjlx.cph0gtNBtJ`
-                public var upload_id: Self.Key<String> { .init(name: OTelAttribute.aws.s3.upload_id) }
+                public var uploadId: Self.Key<String> { .init(name: OTelAttribute.aws.s3.uploadId) }
             }
         
         

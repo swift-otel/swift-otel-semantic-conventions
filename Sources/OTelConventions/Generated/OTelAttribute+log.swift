@@ -32,7 +32,7 @@ extension OTelAttribute {
             /// - Type: string
             /// 
             /// - Example: `uuid.log`
-            public static let name_resolved = "log.file.name_resolved"
+            public static let nameResolved = "log.file.name_resolved"
         
             /// `log.file.path`: The full path to the file. 
             /// 
@@ -50,7 +50,7 @@ extension OTelAttribute {
             /// - Type: string
             /// 
             /// - Example: `/var/lib/docker/uuid.log`
-            public static let path_resolved = "log.file.path_resolved"
+            public static let pathResolved = "log.file.path_resolved"
         
         
         }

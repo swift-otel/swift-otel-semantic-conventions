@@ -19,7 +19,7 @@ This package vends type-aware extensions on `SpanAttributes` for each OTel attri
 ```swift
 withSpan("showAttributes") { span in
     // Primitive and array types use Swift primitives
-    span.attributes.http.response.status_code = 200
+    span.attributes.http.response.statusCode = 200
     span.attributes.host.ip = ["192.168.1.140", "fe80::abc2:4a28:737a:609e"]
     
     // Enum types are presented as static constants in Swift
@@ -32,18 +32,18 @@ withSpan("showAttributes") { span in
 
 ### Attribute Names
 
-This package vends each OTel attribute name as a static string property on the `SemConv` type. To use them, simply reference the static properties when creating span attributes or log metadata instead of string literals:
+This package vends each OTel attribute name as a static string property on the `OTelAttribute` type. To use them, simply reference the static properties when creating span attributes or log metadata instead of string literals:
 
 ```swift
 // Span Attributes
 withSpan("showAttributes") { span in
-  span.attributes[SemConv.http.request.method] = "POST"
-  span.attributes[SemConv.http.response.status_code] = 200
+  span.attributes[OTelAttribute.http.request.method] = "POST"
+  span.attributes[OTelAttribute.http.response.statusCode] = 200
 }
 
 // Logging Metadata
 logger[metadataKey: .init(name: OTelAttribute.http.request.method)] = "POST"
-logger[metadataKey: .init(name: OTelAttribute.http.response.status_code)] = "200"
+logger[metadataKey: .init(name: OTelAttribute.http.response.statusCode)] = "200"
 ```
 
 ## Contributing

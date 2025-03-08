@@ -15,7 +15,7 @@ extension OTelAttribute {
         ///     - `client-5`
         ///     - `myhost@8742@s8083jm`
         @available(*, deprecated, message: "Replaced by `messaging.client.id`.")
-        public static let client_id = "messaging.client_id"
+        public static let clientId = "messaging.client_id"
     
         /// `messaging.operation`: Deprecated, use `messaging.operation.type` instead. 
         /// 
@@ -64,7 +64,7 @@ extension OTelAttribute {
             ///     - `0`
             ///     - `1`
             ///     - `2`
-            public static let message_count = "messaging.batch.message_count"
+            public static let messageCount = "messaging.batch.message_count"
         
         
         }
@@ -180,7 +180,7 @@ extension OTelAttribute {
         }
     
         /// `messaging.destination_publish` namespace
-        public enum destination_publish {
+        public enum destinationPublish {
             /// `messaging.destination_publish.anonymous`: Deprecated, no replacement at this time.
             /// 
             /// - Stability: experimental
@@ -232,14 +232,14 @@ extension OTelAttribute {
                 /// - Type: int
                 /// 
                 /// - Example: `1701393730`
-                public static let enqueued_time = "messaging.eventhubs.message.enqueued_time"
+                public static let enqueuedTime = "messaging.eventhubs.message.enqueued_time"
             
             
             }
         }
     
         /// `messaging.gcp_pubsub` namespace
-        public enum gcp_pubsub {
+        public enum gcpPubsub {
         
         
             /// `messaging.gcp_pubsub.message` namespace
@@ -251,7 +251,7 @@ extension OTelAttribute {
                 /// - Type: int
                 /// 
                 /// - Example: `10`
-                public static let ack_deadline = "messaging.gcp_pubsub.message.ack_deadline"
+                public static let ackDeadline = "messaging.gcp_pubsub.message.ack_deadline"
             
                 /// `messaging.gcp_pubsub.message.ack_id`: The ack id for a given message. 
                 /// 
@@ -260,7 +260,7 @@ extension OTelAttribute {
                 /// - Type: string
                 /// 
                 /// - Example: `ack_id`
-                public static let ack_id = "messaging.gcp_pubsub.message.ack_id"
+                public static let ackId = "messaging.gcp_pubsub.message.ack_id"
             
                 /// `messaging.gcp_pubsub.message.delivery_attempt`: The delivery attempt for a given message. 
                 /// 
@@ -269,7 +269,7 @@ extension OTelAttribute {
                 /// - Type: int
                 /// 
                 /// - Example: `2`
-                public static let delivery_attempt = "messaging.gcp_pubsub.message.delivery_attempt"
+                public static let deliveryAttempt = "messaging.gcp_pubsub.message.delivery_attempt"
             
                 /// `messaging.gcp_pubsub.message.ordering_key`: The ordering key for a given message. If the attribute is not present, the message does not have an ordering key. 
                 /// 
@@ -278,7 +278,7 @@ extension OTelAttribute {
                 /// - Type: string
                 /// 
                 /// - Example: `ordering_key`
-                public static let ordering_key = "messaging.gcp_pubsub.message.ordering_key"
+                public static let orderingKey = "messaging.gcp_pubsub.message.ordering_key"
             
             
             }
@@ -368,7 +368,7 @@ extension OTelAttribute {
             /// - Type: string
             /// 
             /// - Example: `MyConversationId`
-            public static let conversation_id = "messaging.message.conversation_id"
+            public static let conversationId = "messaging.message.conversation_id"
         
             /// `messaging.message.id`: A value used by the messaging system as an identifier for the message, represented as a string.
             /// 
@@ -440,7 +440,7 @@ extension OTelAttribute {
             ///     - `publish`: Deprecated. Use `send` instead.
             /// 
             /// If a custom value is used, it MUST be of low cardinality.
-            public static let type = "messaging.operation.type"
+            public static let `type` = "messaging.operation.type"
         
         
         }
@@ -458,7 +458,7 @@ extension OTelAttribute {
                 /// - Type: string
                 /// 
                 /// - Example: `myKey`
-                public static let routing_key = "messaging.rabbitmq.destination.routing_key"
+                public static let routingKey = "messaging.rabbitmq.destination.routing_key"
             
             
             }
@@ -472,7 +472,7 @@ extension OTelAttribute {
                 /// - Type: int
                 /// 
                 /// - Example: `123`
-                public static let delivery_tag = "messaging.rabbitmq.message.delivery_tag"
+                public static let deliveryTag = "messaging.rabbitmq.message.delivery_tag"
             
             
             }
@@ -488,7 +488,7 @@ extension OTelAttribute {
             /// 
             /// - Example: `myConsumerGroup`
             @available(*, deprecated, message: "Replaced by `messaging.consumer.group.name` on the consumer spans. No replacement for producer spans.")
-            public static let client_group = "messaging.rocketmq.client_group"
+            public static let clientGroup = "messaging.rocketmq.client_group"
         
             /// `messaging.rocketmq.consumption_model`: Model of message consumption. This only applies to consumer spans. 
             /// 
@@ -497,7 +497,7 @@ extension OTelAttribute {
             /// - Type: enum
             ///     - `clustering`: Clustering consumption model
             ///     - `broadcasting`: Broadcasting consumption model
-            public static let consumption_model = "messaging.rocketmq.consumption_model"
+            public static let consumptionModel = "messaging.rocketmq.consumption_model"
         
             /// `messaging.rocketmq.namespace`: Namespace of RocketMQ resources, resources in different namespaces are individual. 
             /// 
@@ -517,7 +517,7 @@ extension OTelAttribute {
                 /// - Type: int
                 /// 
                 /// - Example: `3`
-                public static let delay_time_level = "messaging.rocketmq.message.delay_time_level"
+                public static let delayTimeLevel = "messaging.rocketmq.message.delay_time_level"
             
                 /// `messaging.rocketmq.message.delivery_timestamp`: The timestamp in milliseconds that the delay message is expected to be delivered to consumer. 
                 /// 
@@ -526,7 +526,7 @@ extension OTelAttribute {
                 /// - Type: int
                 /// 
                 /// - Example: `1665987217045`
-                public static let delivery_timestamp = "messaging.rocketmq.message.delivery_timestamp"
+                public static let deliveryTimestamp = "messaging.rocketmq.message.delivery_timestamp"
             
                 /// `messaging.rocketmq.message.group`: It is essential for FIFO message. Messages that belong to the same message group are always processed one by one within the same consumer group. 
                 /// 
@@ -562,7 +562,7 @@ extension OTelAttribute {
                 ///     - `fifo`: FIFO message
                 ///     - `delay`: Delay message
                 ///     - `transaction`: Transaction message
-                public static let type = "messaging.rocketmq.message.type"
+                public static let `type` = "messaging.rocketmq.message.type"
             
             
             }
@@ -579,7 +579,7 @@ extension OTelAttribute {
             ///     - `abandon`: Message is abandoned
             ///     - `dead_letter`: Message is sent to dead letter queue
             ///     - `defer`: Message is deferred
-            public static let disposition_status = "messaging.servicebus.disposition_status"
+            public static let dispositionStatus = "messaging.servicebus.disposition_status"
         
             /// `messaging.servicebus.destination` namespace
             public enum destination {
@@ -591,7 +591,7 @@ extension OTelAttribute {
                 /// 
                 /// - Example: `subscription-a`
                 @available(*, deprecated, message: "Replaced by `messaging.destination.subscription.name`.")
-                public static let subscription_name = "messaging.servicebus.destination.subscription_name"
+                public static let subscriptionName = "messaging.servicebus.destination.subscription_name"
             
             
             }
@@ -605,7 +605,7 @@ extension OTelAttribute {
                 /// - Type: int
                 /// 
                 /// - Example: `2`
-                public static let delivery_count = "messaging.servicebus.message.delivery_count"
+                public static let deliveryCount = "messaging.servicebus.message.delivery_count"
             
                 /// `messaging.servicebus.message.enqueued_time`: The UTC epoch seconds at which the message has been accepted and stored in the entity. 
                 /// 
@@ -614,7 +614,7 @@ extension OTelAttribute {
                 /// - Type: int
                 /// 
                 /// - Example: `1701393730`
-                public static let enqueued_time = "messaging.servicebus.message.enqueued_time"
+                public static let enqueuedTime = "messaging.servicebus.message.enqueued_time"
             
             
             }

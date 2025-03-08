@@ -131,7 +131,7 @@ extension SpanAttributes {
             /// - Examples:
             ///     - `example.com`
             ///     - `foo.co.uk`
-            public var registered_domain: Self.Key<String> { .init(name: OTelAttribute.url.registered_domain) }
+            public var registeredDomain: Self.Key<String> { .init(name: OTelAttribute.url.registeredDomain) }
     
             /// `url.scheme`: The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. 
             /// 
@@ -181,7 +181,7 @@ extension SpanAttributes {
             /// - Examples:
             ///     - `com`
             ///     - `co.uk`
-            public var top_level_domain: Self.Key<String> { .init(name: OTelAttribute.url.top_level_domain) }
+            public var topLevelDomain: Self.Key<String> { .init(name: OTelAttribute.url.topLevelDomain) }
         }
     
     

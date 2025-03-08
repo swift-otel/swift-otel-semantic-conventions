@@ -42,7 +42,7 @@ extension SpanAttributes {
             /// - Type: string
             /// 
             /// - Example: `Albert Einstein`
-            public var full_name: Self.Key<String> { .init(name: OTelAttribute.user.full_name) }
+            public var fullName: Self.Key<String> { .init(name: OTelAttribute.user.fullName) }
     
             /// `user.hash`: Unique user hash to correlate information for a user in anonymized form. 
             /// 

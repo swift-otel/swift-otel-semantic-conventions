@@ -4,7 +4,7 @@
 
 extension OTelAttribute {
     /// `gen_ai` namespace
-    public enum gen_ai {
+    public enum genAi {
         /// `gen_ai.completion`: Deprecated, use Event API to report completions contents.
         /// 
         /// - Stability: experimental
@@ -59,7 +59,7 @@ extension OTelAttribute {
                 ///     - `json_schema`: JSON schema response format
                 /// 
                 /// - Example: `json`
-                public static let response_format = "gen_ai.openai.request.response_format"
+                public static let responseFormat = "gen_ai.openai.request.response_format"
             
                 /// `gen_ai.openai.request.seed`: Requests with same seed value more likely to return same result.
                 /// 
@@ -81,7 +81,7 @@ extension OTelAttribute {
                 /// - Examples:
                 ///     - `auto`
                 ///     - `default`
-                public static let service_tier = "gen_ai.openai.request.service_tier"
+                public static let serviceTier = "gen_ai.openai.request.service_tier"
             
             
             }
@@ -97,7 +97,7 @@ extension OTelAttribute {
                 /// - Examples:
                 ///     - `scale`
                 ///     - `default`
-                public static let service_tier = "gen_ai.openai.response.service_tier"
+                public static let serviceTier = "gen_ai.openai.response.service_tier"
             
                 /// `gen_ai.openai.response.system_fingerprint`: A fingerprint to track any eventual change in the Generative AI environment.
                 /// 
@@ -106,7 +106,7 @@ extension OTelAttribute {
                 /// - Type: string
                 /// 
                 /// - Example: `fp_44709d6fcb`
-                public static let system_fingerprint = "gen_ai.openai.response.system_fingerprint"
+                public static let systemFingerprint = "gen_ai.openai.response.system_fingerprint"
             
             
             }
@@ -138,7 +138,7 @@ extension OTelAttribute {
             /// - Type: stringArray
             /// 
             /// In some GenAI systems the encoding formats are called embedding types. Also, some GenAI systems only accept a single format per request. 
-            public static let encoding_formats = "gen_ai.request.encoding_formats"
+            public static let encodingFormats = "gen_ai.request.encoding_formats"
         
             /// `gen_ai.request.frequency_penalty`: The frequency penalty setting for the GenAI request.
             /// 
@@ -147,7 +147,7 @@ extension OTelAttribute {
             /// - Type: double
             /// 
             /// - Example: `0.1`
-            public static let frequency_penalty = "gen_ai.request.frequency_penalty"
+            public static let frequencyPenalty = "gen_ai.request.frequency_penalty"
         
             /// `gen_ai.request.max_tokens`: The maximum number of tokens the model generates for a request.
             /// 
@@ -156,7 +156,7 @@ extension OTelAttribute {
             /// - Type: int
             /// 
             /// - Example: `100`
-            public static let max_tokens = "gen_ai.request.max_tokens"
+            public static let maxTokens = "gen_ai.request.max_tokens"
         
             /// `gen_ai.request.model`: The name of the GenAI model a request is being made to.
             /// 
@@ -174,14 +174,14 @@ extension OTelAttribute {
             /// - Type: double
             /// 
             /// - Example: `0.1`
-            public static let presence_penalty = "gen_ai.request.presence_penalty"
+            public static let presencePenalty = "gen_ai.request.presence_penalty"
         
             /// `gen_ai.request.stop_sequences`: List of sequences that the model will use to stop generating further tokens.
             /// 
             /// - Stability: experimental
             /// 
             /// - Type: stringArray
-            public static let stop_sequences = "gen_ai.request.stop_sequences"
+            public static let stopSequences = "gen_ai.request.stop_sequences"
         
             /// `gen_ai.request.temperature`: The temperature setting for the GenAI request.
             /// 
@@ -199,7 +199,7 @@ extension OTelAttribute {
             /// - Type: double
             /// 
             /// - Example: `1.0`
-            public static let top_k = "gen_ai.request.top_k"
+            public static let topK = "gen_ai.request.top_k"
         
             /// `gen_ai.request.top_p`: The top_p sampling setting for the GenAI request.
             /// 
@@ -208,7 +208,7 @@ extension OTelAttribute {
             /// - Type: double
             /// 
             /// - Example: `1.0`
-            public static let top_p = "gen_ai.request.top_p"
+            public static let topP = "gen_ai.request.top_p"
         
         
         }
@@ -220,7 +220,7 @@ extension OTelAttribute {
             /// - Stability: experimental
             /// 
             /// - Type: stringArray
-            public static let finish_reasons = "gen_ai.response.finish_reasons"
+            public static let finishReasons = "gen_ai.response.finish_reasons"
         
             /// `gen_ai.response.id`: The unique identifier for the completion.
             /// 
@@ -256,7 +256,7 @@ extension OTelAttribute {
             /// - Examples:
             ///     - `input`
             ///     - `output`
-            public static let type = "gen_ai.token.type"
+            public static let `type` = "gen_ai.token.type"
         
         
         }
@@ -271,7 +271,7 @@ extension OTelAttribute {
             /// 
             /// - Example: `42`
             @available(*, deprecated, message: "Replaced by `gen_ai.usage.output_tokens` attribute.")
-            public static let completion_tokens = "gen_ai.usage.completion_tokens"
+            public static let completionTokens = "gen_ai.usage.completion_tokens"
         
             /// `gen_ai.usage.input_tokens`: The number of tokens used in the GenAI input (prompt).
             /// 
@@ -280,7 +280,7 @@ extension OTelAttribute {
             /// - Type: int
             /// 
             /// - Example: `100`
-            public static let input_tokens = "gen_ai.usage.input_tokens"
+            public static let inputTokens = "gen_ai.usage.input_tokens"
         
             /// `gen_ai.usage.output_tokens`: The number of tokens used in the GenAI response (completion).
             /// 
@@ -289,7 +289,7 @@ extension OTelAttribute {
             /// - Type: int
             /// 
             /// - Example: `180`
-            public static let output_tokens = "gen_ai.usage.output_tokens"
+            public static let outputTokens = "gen_ai.usage.output_tokens"
         
             /// `gen_ai.usage.prompt_tokens`: Deprecated, use `gen_ai.usage.input_tokens` instead.
             /// 
@@ -299,7 +299,7 @@ extension OTelAttribute {
             /// 
             /// - Example: `42`
             @available(*, deprecated, message: "Replaced by `gen_ai.usage.input_tokens` attribute.")
-            public static let prompt_tokens = "gen_ai.usage.prompt_tokens"
+            public static let promptTokens = "gen_ai.usage.prompt_tokens"
         
         
         }

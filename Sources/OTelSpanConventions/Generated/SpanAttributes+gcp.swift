@@ -70,7 +70,7 @@ extension SpanAttributes {
         }
     
         /// `gcp.cloud_run` namespace
-        public var cloud_run: CloudRunAttributes {
+        public var cloudRun: CloudRunAttributes {
             get {
                 .init(attributes: self.attributes)
             }
@@ -121,7 +121,7 @@ extension SpanAttributes {
                     /// - Examples:
                     ///     - `job-name-xxxx`
                     ///     - `sample-job-mdw84`
-                    public var execution: Self.Key<String> { .init(name: OTelAttribute.gcp.cloud_run.job.execution) }
+                    public var execution: Self.Key<String> { .init(name: OTelAttribute.gcp.cloudRun.job.execution) }
             
                     /// `gcp.cloud_run.job.task_index`: The index for a task within an execution as provided by the [`CLOUD_RUN_TASK_INDEX`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars) environment variable. 
                     /// 
@@ -132,7 +132,7 @@ extension SpanAttributes {
                     /// - Examples:
                     ///     - `0`
                     ///     - `1`
-                    public var task_index: Self.Key<Int> { .init(name: OTelAttribute.gcp.cloud_run.job.task_index) }
+                    public var taskIndex: Self.Key<Int> { .init(name: OTelAttribute.gcp.cloudRun.job.taskIndex) }
                 }
             
             

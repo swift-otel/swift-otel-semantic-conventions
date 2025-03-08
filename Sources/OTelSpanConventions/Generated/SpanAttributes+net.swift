@@ -42,9 +42,9 @@ extension SpanAttributes {
             public struct TransportEnum: SpanAttributeConvertible {
                 private let rawValue: String
                 /// `ip_tcp`
-                public static let ip_tcp = Self.init(rawValue: "ip_tcp")
+                public static let ipTcp = Self.init(rawValue: "ip_tcp")
                 /// `ip_udp`
-                public static let ip_udp = Self.init(rawValue: "ip_udp")
+                public static let ipUdp = Self.init(rawValue: "ip_udp")
                 /// `pipe`: Named or anonymous pipe.
                 public static let pipe = Self.init(rawValue: "pipe")
                 /// `inproc`: In-process communication.
@@ -196,7 +196,7 @@ extension SpanAttributes {
                 ///     - `http`
                 ///     - `mqtt`
                 @available(*, deprecated, message: "Replaced by `network.protocol.name`.")
-                public var name: Self.Key<String> { .init(name: OTelAttribute.net.protocol.name) }
+                public var name: Self.Key<String> { .init(name: OTelAttribute.net.`protocol`.name) }
         
                 /// `net.protocol.version`: Deprecated, use `network.protocol.version`.
                 /// 
@@ -206,7 +206,7 @@ extension SpanAttributes {
                 /// 
                 /// - Example: `3.1.1`
                 @available(*, deprecated, message: "Replaced by `network.protocol.version`.")
-                public var version: Self.Key<String> { .init(name: OTelAttribute.net.protocol.version) }
+                public var version: Self.Key<String> { .init(name: OTelAttribute.net.`protocol`.version) }
             }
         
         

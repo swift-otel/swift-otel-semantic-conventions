@@ -14,7 +14,7 @@ extension OTelAttribute {
         ///     - `follows_from`: The parent Span doesn't depend in any way on the result of the child Span
         /// 
         /// The causal relationship between a child Span and a parent Span. 
-        public static let ref_type = "opentracing.ref_type"
+        public static let refType = "opentracing.ref_type"
     
     
     }

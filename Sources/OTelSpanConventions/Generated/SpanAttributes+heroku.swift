@@ -98,7 +98,7 @@ extension SpanAttributes {
                 /// - Type: string
                 /// 
                 /// - Example: `2022-10-23T18:00:42Z`
-                public var creation_timestamp: Self.Key<String> { .init(name: OTelAttribute.heroku.release.creation_timestamp) }
+                public var creationTimestamp: Self.Key<String> { .init(name: OTelAttribute.heroku.release.creationTimestamp) }
             }
         
         

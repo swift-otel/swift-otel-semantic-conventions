@@ -63,7 +63,7 @@ extension OTelAttribute {
         /// - Type: string
         /// 
         /// - Example: `n1-standard-1`
-        public static let type = "host.type"
+        public static let `type` = "host.type"
     
         /// `host.cpu` namespace
         public enum cpu {

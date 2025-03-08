@@ -15,7 +15,7 @@ extension OTelAttribute {
         ///     - `TQ3C.230805.001.B2`
         ///     - `20E247`
         ///     - `22621`
-        public static let build_id = "os.build_id"
+        public static let buildId = "os.build_id"
     
         /// `os.description`: Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands. 
         /// 
@@ -56,7 +56,7 @@ extension OTelAttribute {
         ///     - `aix`: AIX (Advanced Interactive eXecutive)
         ///     - `solaris`: SunOS, Oracle Solaris
         ///     - `z_os`: IBM z/OS
-        public static let type = "os.type"
+        public static let `type` = "os.type"
     
         /// `os.version`: The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). 
         /// 

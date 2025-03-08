@@ -65,7 +65,7 @@ extension SpanAttributes {
             /// - Examples:
             ///     - `java.net.ConnectException`
             ///     - `OSError`
-            public var type: Self.Key<String> { .init(name: OTelAttribute.exception.type) }
+            public var `type`: Self.Key<String> { .init(name: OTelAttribute.exception.`type`) }
         }
     
     

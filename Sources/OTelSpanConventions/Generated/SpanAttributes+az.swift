@@ -45,7 +45,7 @@ extension SpanAttributes {
             /// - Type: string
             /// 
             /// - Example: `00000000-0000-0000-0000-000000000000`
-            public var service_request_id: Self.Key<String> { .init(name: OTelAttribute.az.service_request_id) }
+            public var serviceRequestId: Self.Key<String> { .init(name: OTelAttribute.az.serviceRequestId) }
         }
     
     

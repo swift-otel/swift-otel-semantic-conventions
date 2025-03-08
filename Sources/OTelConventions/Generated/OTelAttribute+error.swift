@@ -19,7 +19,7 @@ extension OTelAttribute {
         ///     - `java.net.UnknownHostException`
         ///     - `server_certificate_invalid`
         ///     - `500`
-        public static let type = "error.type"
+        public static let `type` = "error.type"
     
     
     }

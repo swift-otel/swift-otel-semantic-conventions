@@ -171,14 +171,14 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `heap`
                 ///     - `non_heap`
-                public var type: Self.Key<TypeEnum> { .init(name: OTelAttribute.jvm.memory.type) }
+                public var `type`: Self.Key<TypeEnum> { .init(name: OTelAttribute.jvm.memory.`type`) }
                 
                 public struct TypeEnum: SpanAttributeConvertible {
                     private let rawValue: String
                     /// `heap`: Heap memory.
                     public static let heap = Self.init(rawValue: "heap")
                     /// `non_heap`: Non-heap memory
-                    public static let non_heap = Self.init(rawValue: "non_heap")
+                    public static let nonHeap = Self.init(rawValue: "non_heap")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         return .string(self.rawValue)
                     }
@@ -279,7 +279,7 @@ extension SpanAttributes {
                     /// `waiting`: A thread that is waiting indefinitely for another thread to perform a particular action is in this state.
                     public static let waiting = Self.init(rawValue: "waiting")
                     /// `timed_waiting`: A thread that is waiting for another thread to perform an action for up to a specified waiting time is in this state.
-                    public static let timed_waiting = Self.init(rawValue: "timed_waiting")
+                    public static let timedWaiting = Self.init(rawValue: "timed_waiting")
                     /// `terminated`: A thread that has exited is in this state.
                     public static let terminated = Self.init(rawValue: "terminated")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {

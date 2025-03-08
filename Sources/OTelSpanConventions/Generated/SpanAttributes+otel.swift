@@ -33,9 +33,9 @@ extension SpanAttributes {
             /// - Type: enum
             ///     - `OK`: The operation has been validated by an Application developer or Operator to have completed successfully.
             ///     - `ERROR`: The operation contains an error.
-            public var status_code: Self.Key<Status_CodeEnum> { .init(name: OTelAttribute.otel.status_code) }
+            public var statusCode: Self.Key<StatusCodeEnum> { .init(name: OTelAttribute.otel.statusCode) }
             
-            public struct Status_CodeEnum: SpanAttributeConvertible {
+            public struct StatusCodeEnum: SpanAttributeConvertible {
                 private let rawValue: String
                 /// `OK`: The operation has been validated by an Application developer or Operator to have completed successfully.
                 public static let ok = Self.init(rawValue: "OK")
@@ -53,7 +53,7 @@ extension SpanAttributes {
             /// - Type: string
             /// 
             /// - Example: `resource not found`
-            public var status_description: Self.Key<String> { .init(name: OTelAttribute.otel.status_description) }
+            public var statusDescription: Self.Key<String> { .init(name: OTelAttribute.otel.statusDescription) }
         }
     
         /// `otel.library` namespace

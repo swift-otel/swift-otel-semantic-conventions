@@ -20,7 +20,7 @@ extension OTelAttribute {
             /// - Examples:
             ///     - `other`
             ///     - `stack`
-            public static let type = "go.memory.type"
+            public static let `type` = "go.memory.type"
         
         
         }

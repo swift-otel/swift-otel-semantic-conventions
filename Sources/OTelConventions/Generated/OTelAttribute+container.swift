@@ -21,7 +21,7 @@ extension OTelAttribute {
         /// - Stability: experimental
         /// 
         /// - Type: stringArray
-        public static let command_args = "container.command_args"
+        public static let commandArgs = "container.command_args"
     
         /// `container.command_line`: The full command run by the container as a single string representing the full command. 
         /// 
@@ -30,7 +30,7 @@ extension OTelAttribute {
         /// - Type: string
         /// 
         /// - Example: `otelcontribcol --config config.yaml`
-        public static let command_line = "container.command_line"
+        public static let commandLine = "container.command_line"
     
         /// `container.id`: Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/containers/run/#container-identification). The UUID might be abbreviated. 
         /// 
@@ -167,7 +167,7 @@ extension OTelAttribute {
             /// - Type: stringArray
             /// 
             /// [Docker](https://docs.docker.com/engine/api/v1.43/#tag/Image/operation/ImageInspect) and [CRI](https://github.com/kubernetes/cri-api/blob/c75ef5b473bbe2d0a4fc92f82235efd665ea8e9f/pkg/apis/runtime/v1/api.proto#L1237-L1238) report those under the `RepoDigests` field. 
-            public static let repo_digests = "container.image.repo_digests"
+            public static let repoDigests = "container.image.repo_digests"
         
             /// `container.image.tags`: Container image tags. An example can be found in [Docker Image Inspect](https://docs.docker.com/engine/api/v1.43/#tag/Image/operation/ImageInspect). Should be only the `<tag>` section of the full name for example from `registry.example.com/my-org/my-image:<tag>`. 
             /// 

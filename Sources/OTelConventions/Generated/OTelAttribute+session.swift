@@ -21,7 +21,7 @@ extension OTelAttribute {
         /// - Type: string
         /// 
         /// - Example: `00112233-4455-6677-8899-aabbccddeeff`
-        public static let previous_id = "session.previous_id"
+        public static let previousId = "session.previous_id"
     
     
     }

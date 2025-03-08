@@ -65,13 +65,13 @@ extension SpanAttributes {
                 /// `grpc`: gRPC
                 public static let grpc = Self.init(rawValue: "grpc")
                 /// `java_rmi`: Java RMI
-                public static let java_rmi = Self.init(rawValue: "java_rmi")
+                public static let javaRmi = Self.init(rawValue: "java_rmi")
                 /// `dotnet_wcf`: .NET WCF
-                public static let dotnet_wcf = Self.init(rawValue: "dotnet_wcf")
+                public static let dotnetWcf = Self.init(rawValue: "dotnet_wcf")
                 /// `apache_dubbo`: Apache Dubbo
-                public static let apache_dubbo = Self.init(rawValue: "apache_dubbo")
+                public static let apacheDubbo = Self.init(rawValue: "apache_dubbo")
                 /// `connect_rpc`: Connect RPC
-                public static let connect_rpc = Self.init(rawValue: "connect_rpc")
+                public static let connectRpc = Self.init(rawValue: "connect_rpc")
                 public func toSpanAttribute() -> Tracing.SpanAttribute {
                     return .string(self.rawValue)
                 }
@@ -79,7 +79,7 @@ extension SpanAttributes {
         }
     
         /// `rpc.connect_rpc` namespace
-        public var connect_rpc: ConnectRpcAttributes {
+        public var connectRpc: ConnectRpcAttributes {
             get {
                 .init(attributes: self.attributes)
             }
@@ -119,32 +119,32 @@ extension SpanAttributes {
                 ///     - `unavailable`
                 ///     - `data_loss`
                 ///     - `unauthenticated`
-                public var error_code: Self.Key<Error_CodeEnum> { .init(name: OTelAttribute.rpc.connect_rpc.error_code) }
+                public var errorCode: Self.Key<ErrorCodeEnum> { .init(name: OTelAttribute.rpc.connectRpc.errorCode) }
                 
-                public struct Error_CodeEnum: SpanAttributeConvertible {
+                public struct ErrorCodeEnum: SpanAttributeConvertible {
                     private let rawValue: String
                     /// `cancelled`
                     public static let cancelled = Self.init(rawValue: "cancelled")
                     /// `unknown`
                     public static let unknown = Self.init(rawValue: "unknown")
                     /// `invalid_argument`
-                    public static let invalid_argument = Self.init(rawValue: "invalid_argument")
+                    public static let invalidArgument = Self.init(rawValue: "invalid_argument")
                     /// `deadline_exceeded`
-                    public static let deadline_exceeded = Self.init(rawValue: "deadline_exceeded")
+                    public static let deadlineExceeded = Self.init(rawValue: "deadline_exceeded")
                     /// `not_found`
-                    public static let not_found = Self.init(rawValue: "not_found")
+                    public static let notFound = Self.init(rawValue: "not_found")
                     /// `already_exists`
-                    public static let already_exists = Self.init(rawValue: "already_exists")
+                    public static let alreadyExists = Self.init(rawValue: "already_exists")
                     /// `permission_denied`
-                    public static let permission_denied = Self.init(rawValue: "permission_denied")
+                    public static let permissionDenied = Self.init(rawValue: "permission_denied")
                     /// `resource_exhausted`
-                    public static let resource_exhausted = Self.init(rawValue: "resource_exhausted")
+                    public static let resourceExhausted = Self.init(rawValue: "resource_exhausted")
                     /// `failed_precondition`
-                    public static let failed_precondition = Self.init(rawValue: "failed_precondition")
+                    public static let failedPrecondition = Self.init(rawValue: "failed_precondition")
                     /// `aborted`
                     public static let aborted = Self.init(rawValue: "aborted")
                     /// `out_of_range`
-                    public static let out_of_range = Self.init(rawValue: "out_of_range")
+                    public static let outOfRange = Self.init(rawValue: "out_of_range")
                     /// `unimplemented`
                     public static let unimplemented = Self.init(rawValue: "unimplemented")
                     /// `internal`
@@ -152,7 +152,7 @@ extension SpanAttributes {
                     /// `unavailable`
                     public static let unavailable = Self.init(rawValue: "unavailable")
                     /// `data_loss`
-                    public static let data_loss = Self.init(rawValue: "data_loss")
+                    public static let dataLoss = Self.init(rawValue: "data_loss")
                     /// `unauthenticated`
                     public static let unauthenticated = Self.init(rawValue: "unauthenticated")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
@@ -346,9 +346,9 @@ extension SpanAttributes {
                 ///     - `14`: UNAVAILABLE
                 ///     - `15`: DATA_LOSS
                 ///     - `16`: UNAUTHENTICATED
-                public var status_code: Self.Key<Status_CodeEnum> { .init(name: OTelAttribute.rpc.grpc.status_code) }
+                public var statusCode: Self.Key<StatusCodeEnum> { .init(name: OTelAttribute.rpc.grpc.statusCode) }
                 
-                public struct Status_CodeEnum: SpanAttributeConvertible {
+                public struct StatusCodeEnum: SpanAttributeConvertible {
                     private let rawValue: String
                     /// `0`: OK
                     public static let ok = Self.init(rawValue: "0")
@@ -357,23 +357,23 @@ extension SpanAttributes {
                     /// `2`: UNKNOWN
                     public static let unknown = Self.init(rawValue: "2")
                     /// `3`: INVALID_ARGUMENT
-                    public static let invalid_argument = Self.init(rawValue: "3")
+                    public static let invalidArgument = Self.init(rawValue: "3")
                     /// `4`: DEADLINE_EXCEEDED
-                    public static let deadline_exceeded = Self.init(rawValue: "4")
+                    public static let deadlineExceeded = Self.init(rawValue: "4")
                     /// `5`: NOT_FOUND
-                    public static let not_found = Self.init(rawValue: "5")
+                    public static let notFound = Self.init(rawValue: "5")
                     /// `6`: ALREADY_EXISTS
-                    public static let already_exists = Self.init(rawValue: "6")
+                    public static let alreadyExists = Self.init(rawValue: "6")
                     /// `7`: PERMISSION_DENIED
-                    public static let permission_denied = Self.init(rawValue: "7")
+                    public static let permissionDenied = Self.init(rawValue: "7")
                     /// `8`: RESOURCE_EXHAUSTED
-                    public static let resource_exhausted = Self.init(rawValue: "8")
+                    public static let resourceExhausted = Self.init(rawValue: "8")
                     /// `9`: FAILED_PRECONDITION
-                    public static let failed_precondition = Self.init(rawValue: "9")
+                    public static let failedPrecondition = Self.init(rawValue: "9")
                     /// `10`: ABORTED
                     public static let aborted = Self.init(rawValue: "10")
                     /// `11`: OUT_OF_RANGE
-                    public static let out_of_range = Self.init(rawValue: "11")
+                    public static let outOfRange = Self.init(rawValue: "11")
                     /// `12`: UNIMPLEMENTED
                     public static let unimplemented = Self.init(rawValue: "12")
                     /// `13`: INTERNAL
@@ -381,7 +381,7 @@ extension SpanAttributes {
                     /// `14`: UNAVAILABLE
                     public static let unavailable = Self.init(rawValue: "14")
                     /// `15`: DATA_LOSS
-                    public static let data_loss = Self.init(rawValue: "15")
+                    public static let dataLoss = Self.init(rawValue: "15")
                     /// `16`: UNAUTHENTICATED
                     public static let unauthenticated = Self.init(rawValue: "16")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
@@ -562,7 +562,7 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `-32700`
                 ///     - `100`
-                public var error_code: Self.Key<Int> { .init(name: OTelAttribute.rpc.jsonrpc.error_code) }
+                public var errorCode: Self.Key<Int> { .init(name: OTelAttribute.rpc.jsonrpc.errorCode) }
         
                 /// `rpc.jsonrpc.error_message`: `error.message` property of response if it is an error response.
                 /// 
@@ -573,7 +573,7 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `Parse error`
                 ///     - `User already exists`
-                public var error_message: Self.Key<String> { .init(name: OTelAttribute.rpc.jsonrpc.error_message) }
+                public var errorMessage: Self.Key<String> { .init(name: OTelAttribute.rpc.jsonrpc.errorMessage) }
         
                 /// `rpc.jsonrpc.request_id`: `id` property of request or response. Since protocol allows id to be int, string, `null` or missing (for notifications), value is expected to be cast to string for simplicity. Use empty string in case of `null` value. Omit entirely if this is a notification. 
                 /// 
@@ -585,7 +585,7 @@ extension SpanAttributes {
                 ///     - `10`
                 ///     - `request-7`
                 ///     - ``
-                public var request_id: Self.Key<String> { .init(name: OTelAttribute.rpc.jsonrpc.request_id) }
+                public var requestId: Self.Key<String> { .init(name: OTelAttribute.rpc.jsonrpc.requestId) }
         
                 /// `rpc.jsonrpc.version`: Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 doesn't specify this, the value can be omitted.
                 /// 
@@ -627,7 +627,7 @@ extension SpanAttributes {
                 /// - Stability: experimental
                 /// 
                 /// - Type: int
-                public var compressed_size: Self.Key<Int> { .init(name: OTelAttribute.rpc.message.compressed_size) }
+                public var compressedSize: Self.Key<Int> { .init(name: OTelAttribute.rpc.message.compressedSize) }
         
                 /// `rpc.message.id`: MUST be calculated as two different counters starting from `1` one for sent messages and one for received message.
                 /// 
@@ -645,7 +645,7 @@ extension SpanAttributes {
                 /// - Type: enum
                 ///     - `SENT`
                 ///     - `RECEIVED`
-                public var type: Self.Key<TypeEnum> { .init(name: OTelAttribute.rpc.message.type) }
+                public var `type`: Self.Key<TypeEnum> { .init(name: OTelAttribute.rpc.message.`type`) }
                 
                 public struct TypeEnum: SpanAttributeConvertible {
                     private let rawValue: String
@@ -663,7 +663,7 @@ extension SpanAttributes {
                 /// - Stability: experimental
                 /// 
                 /// - Type: int
-                public var uncompressed_size: Self.Key<Int> { .init(name: OTelAttribute.rpc.message.uncompressed_size) }
+                public var uncompressedSize: Self.Key<Int> { .init(name: OTelAttribute.rpc.message.uncompressedSize) }
             }
         
         

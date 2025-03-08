@@ -48,7 +48,7 @@ extension OTelAttribute {
             /// - Stability: experimental
             /// 
             /// - Type: int
-            public static let restart_count = "k8s.container.restart_count"
+            public static let restartCount = "k8s.container.restart_count"
         
             /// `k8s.container.status` namespace
             public enum status {
@@ -61,7 +61,7 @@ extension OTelAttribute {
                 /// - Examples:
                 ///     - `Evicted`
                 ///     - `Error`
-                public static let last_terminated_reason = "k8s.container.status.last_terminated_reason"
+                public static let lastTerminatedReason = "k8s.container.status.last_terminated_reason"
             
             
             }
@@ -325,7 +325,7 @@ extension OTelAttribute {
             /// - Examples:
             ///     - `emptyDir`
             ///     - `persistentVolumeClaim`
-            public static let type = "k8s.volume.type"
+            public static let `type` = "k8s.volume.type"
         
         
         }
