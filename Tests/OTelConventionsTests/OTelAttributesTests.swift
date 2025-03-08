@@ -1,5 +1,4 @@
 import OTelConventions
-import OTelHttpConventions
 import XCTest
 
 class OTelHttpAttributesTests: XCTestCase {

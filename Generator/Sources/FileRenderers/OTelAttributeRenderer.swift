@@ -1,11 +1,10 @@
 /// Renders a file that extends `OTelAttribute` with a static property for each attribute name
 struct OTelAttributeRenderer: FileRenderer {
+    let targetDirectory = "OTelConventions/"
     let fileNamePrefix = "OTelAttributes+"
     
     func renderFile(_ namespace: Namespace) throws -> String {
         return try """
-        import OTelConventions
-        
         extension OTelAttributes {
         \(renderNamespace(namespace, indent: 4))
         }

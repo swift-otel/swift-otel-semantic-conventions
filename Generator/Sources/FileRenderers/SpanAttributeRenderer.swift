@@ -1,4 +1,5 @@
 struct SpanAttributeRenderer: FileRenderer {
+    let targetDirectory = "OTelSpanConventions/"
     let fileNamePrefix = "SpanAttributes+"
 
     func renderFile(_ namespace: Namespace) throws -> String {

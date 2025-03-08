@@ -1,6 +1,5 @@
 import OTelConventions
-import OTelHostConventions
-import OTelHttpConventions
+import OTelSpanConventions
 import Tracing
 import XCTest
 
