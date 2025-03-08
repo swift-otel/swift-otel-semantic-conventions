@@ -56,7 +56,7 @@ extension SpanAttributes {
                 /// - Type: string
                 /// 
                 /// - Example: `123`
-                public var id: Self.Key<String> { .init(name: OTelAttributes.vcs.change.id) }
+                public var id: Self.Key<String> { .init(name: OTelAttribute.vcs.change.id) }
         
                 /// `vcs.change.state`: The state of the change (pull request/merge request/changelist). 
                 /// 
@@ -72,7 +72,7 @@ extension SpanAttributes {
                 ///     - `open`
                 ///     - `closed`
                 ///     - `merged`
-                public var state: Self.Key<StateEnum> { .init(name: OTelAttributes.vcs.change.state) }
+                public var state: Self.Key<StateEnum> { .init(name: OTelAttribute.vcs.change.state) }
                 
                 public struct StateEnum: SpanAttributeConvertible {
                     private let rawValue: String
@@ -99,7 +99,7 @@ extension SpanAttributes {
                 ///     - `Fixes broken thing`
                 ///     - `feat: add my new feature`
                 ///     - `[chore] update dependency`
-                public var title: Self.Key<String> { .init(name: OTelAttributes.vcs.change.title) }
+                public var title: Self.Key<String> { .init(name: OTelAttribute.vcs.change.title) }
             }
         
         
@@ -136,7 +136,7 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `added`
                 ///     - `removed`
-                public var type: Self.Key<TypeEnum> { .init(name: OTelAttributes.vcs.line_change.type) }
+                public var type: Self.Key<TypeEnum> { .init(name: OTelAttribute.vcs.line_change.type) }
                 
                 public struct TypeEnum: SpanAttributeConvertible {
                     private let rawValue: String
@@ -184,7 +184,7 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `branch`
                 ///     - `tag`
-                public var type: Self.Key<TypeEnum> { .init(name: OTelAttributes.vcs.ref.type) }
+                public var type: Self.Key<TypeEnum> { .init(name: OTelAttribute.vcs.ref.type) }
                 
                 public struct TypeEnum: SpanAttributeConvertible {
                     private let rawValue: String
@@ -227,7 +227,7 @@ extension SpanAttributes {
                     /// - Examples:
                     ///     - `my-feature-branch`
                     ///     - `tag-1-test`
-                    public var name: Self.Key<String> { .init(name: OTelAttributes.vcs.ref.base.name) }
+                    public var name: Self.Key<String> { .init(name: OTelAttribute.vcs.ref.base.name) }
             
                     /// `vcs.ref.base.revision`: The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. 
                     /// 
@@ -242,7 +242,7 @@ extension SpanAttributes {
                     ///     - `main`
                     ///     - `123`
                     ///     - `HEAD`
-                    public var revision: Self.Key<String> { .init(name: OTelAttributes.vcs.ref.base.revision) }
+                    public var revision: Self.Key<String> { .init(name: OTelAttribute.vcs.ref.base.revision) }
             
                     /// `vcs.ref.base.type`: The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. 
                     /// 
@@ -255,7 +255,7 @@ extension SpanAttributes {
                     /// - Examples:
                     ///     - `branch`
                     ///     - `tag`
-                    public var type: Self.Key<TypeEnum> { .init(name: OTelAttributes.vcs.ref.base.type) }
+                    public var type: Self.Key<TypeEnum> { .init(name: OTelAttribute.vcs.ref.base.type) }
                     
                     public struct TypeEnum: SpanAttributeConvertible {
                         private let rawValue: String
@@ -301,7 +301,7 @@ extension SpanAttributes {
                     /// - Examples:
                     ///     - `my-feature-branch`
                     ///     - `tag-1-test`
-                    public var name: Self.Key<String> { .init(name: OTelAttributes.vcs.ref.head.name) }
+                    public var name: Self.Key<String> { .init(name: OTelAttribute.vcs.ref.head.name) }
             
                     /// `vcs.ref.head.revision`: The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. 
                     /// 
@@ -316,7 +316,7 @@ extension SpanAttributes {
                     ///     - `main`
                     ///     - `123`
                     ///     - `HEAD`
-                    public var revision: Self.Key<String> { .init(name: OTelAttributes.vcs.ref.head.revision) }
+                    public var revision: Self.Key<String> { .init(name: OTelAttribute.vcs.ref.head.revision) }
             
                     /// `vcs.ref.head.type`: The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. 
                     /// 
@@ -329,7 +329,7 @@ extension SpanAttributes {
                     /// - Examples:
                     ///     - `branch`
                     ///     - `tag`
-                    public var type: Self.Key<TypeEnum> { .init(name: OTelAttributes.vcs.ref.head.type) }
+                    public var type: Self.Key<TypeEnum> { .init(name: OTelAttribute.vcs.ref.head.type) }
                     
                     public struct TypeEnum: SpanAttributeConvertible {
                         private let rawValue: String
@@ -398,7 +398,7 @@ extension SpanAttributes {
                     /// 
                     /// - Example: `123`
                     @available(*, deprecated, message: "Deprecated, use `vcs.change.id` instead.")
-                    public var id: Self.Key<String> { .init(name: OTelAttributes.vcs.repository.change.id) }
+                    public var id: Self.Key<String> { .init(name: OTelAttribute.vcs.repository.change.id) }
             
                     /// `vcs.repository.change.title`: Deprecated, use `vcs.change.title` instead. 
                     /// 
@@ -411,7 +411,7 @@ extension SpanAttributes {
                     ///     - `feat: add my new feature`
                     ///     - `[chore] update dependency`
                     @available(*, deprecated, message: "Deprecated, use `vcs.change.title` instead.")
-                    public var title: Self.Key<String> { .init(name: OTelAttributes.vcs.repository.change.title) }
+                    public var title: Self.Key<String> { .init(name: OTelAttribute.vcs.repository.change.title) }
                 }
             
             
@@ -447,7 +447,7 @@ extension SpanAttributes {
                     ///     - `my-feature-branch`
                     ///     - `tag-1-test`
                     @available(*, deprecated, message: "Deprecated, use `vcs.ref.head.name` instead.")
-                    public var name: Self.Key<String> { .init(name: OTelAttributes.vcs.repository.ref.name) }
+                    public var name: Self.Key<String> { .init(name: OTelAttribute.vcs.repository.ref.name) }
             
                     /// `vcs.repository.ref.revision`: Deprecated, use `vcs.ref.head.revision` instead. 
                     /// 
@@ -461,7 +461,7 @@ extension SpanAttributes {
                     ///     - `123`
                     ///     - `HEAD`
                     @available(*, deprecated, message: "Deprecated, use `vcs.ref.head.revision` instead.")
-                    public var revision: Self.Key<String> { .init(name: OTelAttributes.vcs.repository.ref.revision) }
+                    public var revision: Self.Key<String> { .init(name: OTelAttribute.vcs.repository.ref.revision) }
             
                     /// `vcs.repository.ref.type`: Deprecated, use `vcs.ref.head.type` instead. 
                     /// 
@@ -475,7 +475,7 @@ extension SpanAttributes {
                     ///     - `branch`
                     ///     - `tag`
                     @available(*, deprecated, message: "Deprecated, use `vcs.ref.head.type` instead.")
-                    public var type: Self.Key<TypeEnum> { .init(name: OTelAttributes.vcs.repository.ref.type) }
+                    public var type: Self.Key<TypeEnum> { .init(name: OTelAttribute.vcs.repository.ref.type) }
                     
                     public struct TypeEnum: SpanAttributeConvertible {
                         private let rawValue: String
@@ -521,7 +521,7 @@ extension SpanAttributes {
                     /// - Examples:
                     ///     - `https://github.com/opentelemetry/open-telemetry-collector-contrib`
                     ///     - `https://gitlab.com/my-org/my-project/my-projects-project/repo`
-                    public var full: Self.Key<String> { .init(name: OTelAttributes.vcs.repository.url.full) }
+                    public var full: Self.Key<String> { .init(name: OTelAttribute.vcs.repository.url.full) }
                 }
             
             
@@ -559,7 +559,7 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `ahead`
                 ///     - `behind`
-                public var direction: Self.Key<DirectionEnum> { .init(name: OTelAttributes.vcs.revision_delta.direction) }
+                public var direction: Self.Key<DirectionEnum> { .init(name: OTelAttribute.vcs.revision_delta.direction) }
                 
                 public struct DirectionEnum: SpanAttributeConvertible {
                     private let rawValue: String

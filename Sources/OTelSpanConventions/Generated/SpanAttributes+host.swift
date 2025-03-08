@@ -39,7 +39,7 @@ extension SpanAttributes {
             ///     - `ppc64`: 64-bit PowerPC
             ///     - `s390x`: IBM z/Architecture
             ///     - `x86`: 32-bit x86
-            public var arch: Self.Key<ArchEnum> { .init(name: OTelAttributes.host.arch) }
+            public var arch: Self.Key<ArchEnum> { .init(name: OTelAttribute.host.arch) }
             
             public struct ArchEnum: SpanAttributeConvertible {
                 private let rawValue: String
@@ -71,7 +71,7 @@ extension SpanAttributes {
             /// - Type: string
             /// 
             /// - Example: `fdbf79e8af94cb7f9e8df36789187052`
-            public var id: Self.Key<String> { .init(name: OTelAttributes.host.id) }
+            public var id: Self.Key<String> { .init(name: OTelAttribute.host.id) }
     
             /// `host.ip`: Available IP addresses of the host, excluding loopback interfaces. 
             /// 
@@ -80,7 +80,7 @@ extension SpanAttributes {
             /// - Type: stringArray
             /// 
             /// IPv4 Addresses MUST be specified in dotted-quad notation. IPv6 addresses MUST be specified in the [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html) format. 
-            public var ip: Self.Key<[String]> { .init(name: OTelAttributes.host.ip) }
+            public var ip: Self.Key<[String]> { .init(name: OTelAttribute.host.ip) }
     
             /// `host.mac`: Available MAC addresses of the host, excluding loopback interfaces. 
             /// 
@@ -89,7 +89,7 @@ extension SpanAttributes {
             /// - Type: stringArray
             /// 
             /// MAC Addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf): as hyphen-separated octets in uppercase hexadecimal form from most to least significant. 
-            public var mac: Self.Key<[String]> { .init(name: OTelAttributes.host.mac) }
+            public var mac: Self.Key<[String]> { .init(name: OTelAttribute.host.mac) }
     
             /// `host.name`: Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. 
             /// 
@@ -98,7 +98,7 @@ extension SpanAttributes {
             /// - Type: string
             /// 
             /// - Example: `opentelemetry-test`
-            public var name: Self.Key<String> { .init(name: OTelAttributes.host.name) }
+            public var name: Self.Key<String> { .init(name: OTelAttribute.host.name) }
     
             /// `host.type`: Type of host. For Cloud, this must be the machine type. 
             /// 
@@ -107,7 +107,7 @@ extension SpanAttributes {
             /// - Type: string
             /// 
             /// - Example: `n1-standard-1`
-            public var type: Self.Key<String> { .init(name: OTelAttributes.host.type) }
+            public var type: Self.Key<String> { .init(name: OTelAttribute.host.type) }
         }
     
         /// `host.cpu` namespace
@@ -139,7 +139,7 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `6`
                 ///     - `PA-RISC 1.1e`
-                public var family: Self.Key<String> { .init(name: OTelAttributes.host.cpu.family) }
+                public var family: Self.Key<String> { .init(name: OTelAttribute.host.cpu.family) }
         
                 /// `host.cpu.stepping`: Stepping or core revisions. 
                 /// 
@@ -150,7 +150,7 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `1`
                 ///     - `r1p1`
-                public var stepping: Self.Key<String> { .init(name: OTelAttributes.host.cpu.stepping) }
+                public var stepping: Self.Key<String> { .init(name: OTelAttribute.host.cpu.stepping) }
             }
         
             /// `host.cpu.cache` namespace
@@ -203,7 +203,7 @@ extension SpanAttributes {
                         /// - Type: int
                         /// 
                         /// - Example: `12288000`
-                        public var size: Self.Key<Int> { .init(name: OTelAttributes.host.cpu.cache.l2.size) }
+                        public var size: Self.Key<Int> { .init(name: OTelAttribute.host.cpu.cache.l2.size) }
                     }
                 
                 
@@ -239,7 +239,7 @@ extension SpanAttributes {
                     /// - Examples:
                     ///     - `6`
                     ///     - `9000/778/B180L`
-                    public var id: Self.Key<String> { .init(name: OTelAttributes.host.cpu.model.id) }
+                    public var id: Self.Key<String> { .init(name: OTelAttribute.host.cpu.model.id) }
             
                     /// `host.cpu.model.name`: Model designation of the processor. 
                     /// 
@@ -248,7 +248,7 @@ extension SpanAttributes {
                     /// - Type: string
                     /// 
                     /// - Example: `11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz`
-                    public var name: Self.Key<String> { .init(name: OTelAttributes.host.cpu.model.name) }
+                    public var name: Self.Key<String> { .init(name: OTelAttribute.host.cpu.model.name) }
                 }
             
             
@@ -283,7 +283,7 @@ extension SpanAttributes {
                     /// [CPUID](https://wiki.osdev.org/CPUID) command returns the vendor ID string in EBX, EDX and ECX registers. Writing these to memory in this order results in a 12-character string. 
                     /// 
                     /// - Example: `GenuineIntel`
-                    public var id: Self.Key<String> { .init(name: OTelAttributes.host.cpu.vendor.id) }
+                    public var id: Self.Key<String> { .init(name: OTelAttribute.host.cpu.vendor.id) }
                 }
             
             
@@ -317,7 +317,7 @@ extension SpanAttributes {
                 /// - Type: string
                 /// 
                 /// - Example: `ami-07b06b442921831e5`
-                public var id: Self.Key<String> { .init(name: OTelAttributes.host.image.id) }
+                public var id: Self.Key<String> { .init(name: OTelAttribute.host.image.id) }
         
                 /// `host.image.name`: Name of the VM image or OS install the host was instantiated from. 
                 /// 
@@ -328,7 +328,7 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `infra-ami-eks-worker-node-7d4ec78312`
                 ///     - `CentOS-8-x86_64-1905`
-                public var name: Self.Key<String> { .init(name: OTelAttributes.host.image.name) }
+                public var name: Self.Key<String> { .init(name: OTelAttribute.host.image.name) }
         
                 /// `host.image.version`: The version string of the VM image or host OS as defined in [Version Attributes](/docs/resource/README.md#version-attributes). 
                 /// 
@@ -337,7 +337,7 @@ extension SpanAttributes {
                 /// - Type: string
                 /// 
                 /// - Example: `0.1`
-                public var version: Self.Key<String> { .init(name: OTelAttributes.host.image.version) }
+                public var version: Self.Key<String> { .init(name: OTelAttribute.host.image.version) }
             }
         
         

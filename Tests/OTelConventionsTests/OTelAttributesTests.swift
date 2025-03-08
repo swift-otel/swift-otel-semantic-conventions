@@ -3,6 +3,6 @@ import XCTest
 
 class OTelHttpAttributesTests: XCTestCase {
     func testAttribute() async throws {
-        XCTAssertEqual(OTelAttributes.http.response.status_code, "http.response.status_code")
+        XCTAssertEqual(OTelAttribute.http.response.status_code, "http.response.status_code")
     }
 }

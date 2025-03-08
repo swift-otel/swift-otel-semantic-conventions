@@ -58,7 +58,7 @@ extension SpanAttributes {
                 /// Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`. 
                 /// 
                 /// - Example: `parts-unlimited-java`
-                public var name: Self.Key<String> { .init(name: OTelAttributes.telemetry.distro.name) }
+                public var name: Self.Key<String> { .init(name: OTelAttribute.telemetry.distro.name) }
         
                 /// `telemetry.distro.version`: The version string of the auto instrumentation agent or distribution, if used. 
                 /// 
@@ -67,7 +67,7 @@ extension SpanAttributes {
                 /// - Type: string
                 /// 
                 /// - Example: `1.2.3`
-                public var version: Self.Key<String> { .init(name: OTelAttributes.telemetry.distro.version) }
+                public var version: Self.Key<String> { .init(name: OTelAttribute.telemetry.distro.version) }
             }
         
         
@@ -110,7 +110,7 @@ extension SpanAttributes {
                 ///     - `rust`
                 ///     - `swift`
                 ///     - `webjs`
-                public var language: Self.Key<LanguageEnum> { .init(name: OTelAttributes.telemetry.sdk.language) }
+                public var language: Self.Key<LanguageEnum> { .init(name: OTelAttribute.telemetry.sdk.language) }
                 
                 public struct LanguageEnum: SpanAttributeConvertible {
                     private let rawValue: String
@@ -152,7 +152,7 @@ extension SpanAttributes {
                 /// The OpenTelemetry SDK MUST set the `telemetry.sdk.name` attribute to `opentelemetry`. If another SDK, like a fork or a vendor-provided implementation, is used, this SDK MUST set the `telemetry.sdk.name` attribute to the fully-qualified class or module name of this SDK's main entry point or another suitable identifier depending on the language. The identifier `opentelemetry` is reserved and MUST NOT be used in this case. All custom identifiers SHOULD be stable across different versions of an implementation. 
                 /// 
                 /// - Example: `opentelemetry`
-                public var name: Self.Key<String> { .init(name: OTelAttributes.telemetry.sdk.name) }
+                public var name: Self.Key<String> { .init(name: OTelAttribute.telemetry.sdk.name) }
         
                 /// `telemetry.sdk.version`: The version string of the telemetry SDK. 
                 /// 
@@ -161,7 +161,7 @@ extension SpanAttributes {
                 /// - Type: string
                 /// 
                 /// - Example: `1.2.3`
-                public var version: Self.Key<String> { .init(name: OTelAttributes.telemetry.sdk.version) }
+                public var version: Self.Key<String> { .init(name: OTelAttribute.telemetry.sdk.version) }
             }
         
         

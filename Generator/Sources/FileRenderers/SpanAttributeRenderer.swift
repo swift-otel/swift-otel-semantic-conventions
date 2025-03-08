@@ -105,10 +105,10 @@ struct SpanAttributeRenderer: FileRenderer {
             default:
                 throw SpanAttributeRendererError.invalidStandardAttributeType(attribute.type)
             }
-            result.append("\npublic var \(propertyName): Self.Key<\(swiftType)> { .init(name: OTelAttributes.\(namespace.id).\(propertyName)) }")
+            result.append("\npublic var \(propertyName): Self.Key<\(swiftType)> { .init(name: OTelAttribute.\(namespace.id).\(propertyName)) }")
         } else if let type = attribute.type as? Attribute.EnumType {
             let enumTypeName = "\(attributeName.capitalized)Enum"
-            result.append("\npublic var \(propertyName): Self.Key<\(enumTypeName)> { .init(name: OTelAttributes.\(namespace.id).\(propertyName)) }")
+            result.append("\npublic var \(propertyName): Self.Key<\(enumTypeName)> { .init(name: OTelAttribute.\(namespace.id).\(propertyName)) }")
 
             // Enum types are not represented as Swift enums to avoid breaking changes when new enum values are added.
             // Instead we use a struct with static properties for each enum value.

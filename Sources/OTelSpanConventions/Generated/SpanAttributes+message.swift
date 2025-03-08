@@ -32,7 +32,7 @@ extension SpanAttributes {
             /// 
             /// - Type: int
             @available(*, deprecated, message: "Replaced by `rpc.message.compressed_size`.")
-            public var compressed_size: Self.Key<Int> { .init(name: OTelAttributes.message.compressed_size) }
+            public var compressed_size: Self.Key<Int> { .init(name: OTelAttribute.message.compressed_size) }
     
             /// `message.id`: Deprecated, use `rpc.message.id` instead.
             /// 
@@ -40,7 +40,7 @@ extension SpanAttributes {
             /// 
             /// - Type: int
             @available(*, deprecated, message: "Replaced by `rpc.message.id`.")
-            public var id: Self.Key<Int> { .init(name: OTelAttributes.message.id) }
+            public var id: Self.Key<Int> { .init(name: OTelAttribute.message.id) }
     
             /// `message.type`: Deprecated, use `rpc.message.type` instead.
             /// 
@@ -50,7 +50,7 @@ extension SpanAttributes {
             ///     - `SENT`
             ///     - `RECEIVED`
             @available(*, deprecated, message: "Replaced by `rpc.message.type`.")
-            public var type: Self.Key<TypeEnum> { .init(name: OTelAttributes.message.type) }
+            public var type: Self.Key<TypeEnum> { .init(name: OTelAttribute.message.type) }
             
             public struct TypeEnum: SpanAttributeConvertible {
                 private let rawValue: String
@@ -69,7 +69,7 @@ extension SpanAttributes {
             /// 
             /// - Type: int
             @available(*, deprecated, message: "Replaced by `rpc.message.uncompressed_size`.")
-            public var uncompressed_size: Self.Key<Int> { .init(name: OTelAttributes.message.uncompressed_size) }
+            public var uncompressed_size: Self.Key<Int> { .init(name: OTelAttribute.message.uncompressed_size) }
         }
     
     

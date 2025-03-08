@@ -59,7 +59,7 @@ extension SpanAttributes {
                 ///     - `org.example.TestCase1.test1`
                 ///     - `example/tests/TestCase1.test1`
                 ///     - `ExampleTestCase1_test1`
-                public var name: Self.Key<String> { .init(name: OTelAttributes.test.case.name) }
+                public var name: Self.Key<String> { .init(name: OTelAttribute.test.case.name) }
             }
         
             /// `test.case.result` namespace
@@ -93,7 +93,7 @@ extension SpanAttributes {
                     /// - Examples:
                     ///     - `pass`
                     ///     - `fail`
-                    public var status: Self.Key<StatusEnum> { .init(name: OTelAttributes.test.case.result.status) }
+                    public var status: Self.Key<StatusEnum> { .init(name: OTelAttribute.test.case.result.status) }
                     
                     public struct StatusEnum: SpanAttributeConvertible {
                         private let rawValue: String
@@ -138,7 +138,7 @@ extension SpanAttributes {
                 /// - Type: string
                 /// 
                 /// - Example: `TestSuite1`
-                public var name: Self.Key<String> { .init(name: OTelAttributes.test.suite.name) }
+                public var name: Self.Key<String> { .init(name: OTelAttribute.test.suite.name) }
             }
         
             /// `test.suite.run` namespace
@@ -180,7 +180,7 @@ extension SpanAttributes {
                     ///     - `aborted`
                     ///     - `timed_out`
                     ///     - `in_progress`
-                    public var status: Self.Key<StatusEnum> { .init(name: OTelAttributes.test.suite.run.status) }
+                    public var status: Self.Key<StatusEnum> { .init(name: OTelAttribute.test.suite.run.status) }
                     
                     public struct StatusEnum: SpanAttributeConvertible {
                         private let rawValue: String

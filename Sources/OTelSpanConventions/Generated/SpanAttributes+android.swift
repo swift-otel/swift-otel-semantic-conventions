@@ -37,7 +37,7 @@ extension SpanAttributes {
             /// 
             /// The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc), and from which the `OS identifiers` are derived. 
             @available(*, deprecated, message: "Replaced by `device.app.lifecycle`.")
-            public var state: Self.Key<StateEnum> { .init(name: OTelAttributes.android.state) }
+            public var state: Self.Key<StateEnum> { .init(name: OTelAttribute.android.state) }
             
             public struct StateEnum: SpanAttributeConvertible {
                 private let rawValue: String
@@ -82,7 +82,7 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `33`
                 ///     - `32`
-                public var api_level: Self.Key<String> { .init(name: OTelAttributes.android.os.api_level) }
+                public var api_level: Self.Key<String> { .init(name: OTelAttribute.android.os.api_level) }
             }
         
         

@@ -58,7 +58,7 @@ extension SpanAttributes {
                 ///     - `minor`: Minor (Scavenge).
                 ///     - `incremental`: Incremental (Incremental Marking).
                 ///     - `weakcb`: Weak Callbacks (Process Weak Callbacks).
-                public var type: Self.Key<TypeEnum> { .init(name: OTelAttributes.v8js.gc.type) }
+                public var type: Self.Key<TypeEnum> { .init(name: OTelAttribute.v8js.gc.type) }
                 
                 public struct TypeEnum: SpanAttributeConvertible {
                     private let rawValue: String
@@ -134,7 +134,7 @@ extension SpanAttributes {
                     ///     - `large_object_space`: Large object memory space.
                     /// 
                     /// Value can be retrieved from value `space_name` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics) 
-                    public var name: Self.Key<NameEnum> { .init(name: OTelAttributes.v8js.heap.space.name) }
+                    public var name: Self.Key<NameEnum> { .init(name: OTelAttribute.v8js.heap.space.name) }
                     
                     public struct NameEnum: SpanAttributeConvertible {
                         private let rawValue: String

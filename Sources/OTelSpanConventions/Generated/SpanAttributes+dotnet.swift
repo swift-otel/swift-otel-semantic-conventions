@@ -87,7 +87,7 @@ extension SpanAttributes {
                     ///     - `gen0`
                     ///     - `gen1`
                     ///     - `gen2`
-                    public var generation: Self.Key<GenerationEnum> { .init(name: OTelAttributes.dotnet.gc.heap.generation) }
+                    public var generation: Self.Key<GenerationEnum> { .init(name: OTelAttribute.dotnet.gc.heap.generation) }
                     
                     public struct GenerationEnum: SpanAttributeConvertible {
                         private let rawValue: String

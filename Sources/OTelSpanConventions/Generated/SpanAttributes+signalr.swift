@@ -38,7 +38,7 @@ extension SpanAttributes {
             /// - Examples:
             ///     - `web_sockets`
             ///     - `long_polling`
-            public var transport: Self.Key<TransportEnum> { .init(name: OTelAttributes.signalr.transport) }
+            public var transport: Self.Key<TransportEnum> { .init(name: OTelAttribute.signalr.transport) }
             
             public struct TransportEnum: SpanAttributeConvertible {
                 private let rawValue: String
@@ -86,7 +86,7 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `app_shutdown`
                 ///     - `timeout`
-                public var status: Self.Key<StatusEnum> { .init(name: OTelAttributes.signalr.connection.status) }
+                public var status: Self.Key<StatusEnum> { .init(name: OTelAttribute.signalr.connection.status) }
                 
                 public struct StatusEnum: SpanAttributeConvertible {
                     private let rawValue: String

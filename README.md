@@ -42,8 +42,8 @@ withSpan("showAttributes") { span in
 }
 
 // Logging Metadata
-logger[metadataKey: .init(name: OTelAttributes.http.request.method)] = "POST"
-logger[metadataKey: .init(name: OTelAttributes.http.response.status_code)] = "200"
+logger[metadataKey: .init(name: OTelAttribute.http.request.method)] = "POST"
+logger[metadataKey: .init(name: OTelAttribute.http.response.status_code)] = "200"
 ```
 
 ## Contributing

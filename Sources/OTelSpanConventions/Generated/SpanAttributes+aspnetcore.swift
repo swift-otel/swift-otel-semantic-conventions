@@ -85,7 +85,7 @@ extension SpanAttributes {
                     /// - Examples:
                     ///     - `handled`
                     ///     - `unhandled`
-                    public var result: Self.Key<ResultEnum> { .init(name: OTelAttributes.aspnetcore.diagnostics.exception.result) }
+                    public var result: Self.Key<ResultEnum> { .init(name: OTelAttribute.aspnetcore.diagnostics.exception.result) }
                     
                     public struct ResultEnum: SpanAttributeConvertible {
                         private let rawValue: String
@@ -133,7 +133,7 @@ extension SpanAttributes {
                     /// - Type: string
                     /// 
                     /// - Example: `Contoso.MyHandler`
-                    public var type: Self.Key<String> { .init(name: OTelAttributes.aspnetcore.diagnostics.handler.type) }
+                    public var type: Self.Key<String> { .init(name: OTelAttribute.aspnetcore.diagnostics.handler.type) }
                 }
             
             
@@ -170,7 +170,7 @@ extension SpanAttributes {
                 ///     - `fixed`
                 ///     - `sliding`
                 ///     - `token`
-                public var policy: Self.Key<String> { .init(name: OTelAttributes.aspnetcore.rate_limiting.policy) }
+                public var policy: Self.Key<String> { .init(name: OTelAttribute.aspnetcore.rate_limiting.policy) }
         
                 /// `aspnetcore.rate_limiting.result`: Rate-limiting result, shows whether the lease was acquired or contains a rejection reason
                 /// 
@@ -185,7 +185,7 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `acquired`
                 ///     - `request_canceled`
-                public var result: Self.Key<ResultEnum> { .init(name: OTelAttributes.aspnetcore.rate_limiting.result) }
+                public var result: Self.Key<ResultEnum> { .init(name: OTelAttribute.aspnetcore.rate_limiting.result) }
                 
                 public struct ResultEnum: SpanAttributeConvertible {
                     private let rawValue: String
@@ -233,7 +233,7 @@ extension SpanAttributes {
                 /// - Type: boolean
                 /// 
                 /// - Example: `true`
-                public var is_unhandled: Self.Key<Bool> { .init(name: OTelAttributes.aspnetcore.request.is_unhandled) }
+                public var is_unhandled: Self.Key<Bool> { .init(name: OTelAttribute.aspnetcore.request.is_unhandled) }
             }
         
         
@@ -266,7 +266,7 @@ extension SpanAttributes {
                 /// - Type: boolean
                 /// 
                 /// - Example: `true`
-                public var is_fallback: Self.Key<Bool> { .init(name: OTelAttributes.aspnetcore.routing.is_fallback) }
+                public var is_fallback: Self.Key<Bool> { .init(name: OTelAttribute.aspnetcore.routing.is_fallback) }
         
                 /// `aspnetcore.routing.match_status`: Match result - success or failure
                 /// 
@@ -279,7 +279,7 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `success`
                 ///     - `failure`
-                public var match_status: Self.Key<Match_StatusEnum> { .init(name: OTelAttributes.aspnetcore.routing.match_status) }
+                public var match_status: Self.Key<Match_StatusEnum> { .init(name: OTelAttribute.aspnetcore.routing.match_status) }
                 
                 public struct Match_StatusEnum: SpanAttributeConvertible {
                     private let rawValue: String

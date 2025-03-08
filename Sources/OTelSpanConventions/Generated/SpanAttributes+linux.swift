@@ -83,7 +83,7 @@ extension SpanAttributes {
                     /// - Examples:
                     ///     - `reclaimable`
                     ///     - `unreclaimable`
-                    public var state: Self.Key<StateEnum> { .init(name: OTelAttributes.linux.memory.slab.state) }
+                    public var state: Self.Key<StateEnum> { .init(name: OTelAttribute.linux.memory.slab.state) }
                     
                     public struct StateEnum: SpanAttributeConvertible {
                         private let rawValue: String

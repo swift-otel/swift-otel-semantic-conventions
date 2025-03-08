@@ -37,7 +37,7 @@ extension SpanAttributes {
             /// - Examples:
             ///     - `browser.mouse.click`
             ///     - `device.app.lifecycle`
-            public var name: Self.Key<String> { .init(name: OTelAttributes.event.name) }
+            public var name: Self.Key<String> { .init(name: OTelAttribute.event.name) }
         }
     
     

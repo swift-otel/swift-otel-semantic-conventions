@@ -56,7 +56,7 @@ extension SpanAttributes {
                 /// - Type: enum
                 ///     - `active`: Active time.
                 ///     - `idle`: Idle time.
-                public var state: Self.Key<StateEnum> { .init(name: OTelAttributes.nodejs.eventloop.state) }
+                public var state: Self.Key<StateEnum> { .init(name: OTelAttribute.nodejs.eventloop.state) }
                 
                 public struct StateEnum: SpanAttributeConvertible {
                     private let rawValue: String

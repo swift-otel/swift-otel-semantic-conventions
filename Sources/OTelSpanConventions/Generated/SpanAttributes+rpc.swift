@@ -35,7 +35,7 @@ extension SpanAttributes {
             /// This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side). 
             /// 
             /// - Example: `exampleMethod`
-            public var method: Self.Key<String> { .init(name: OTelAttributes.rpc.method) }
+            public var method: Self.Key<String> { .init(name: OTelAttribute.rpc.method) }
     
             /// `rpc.service`: The full (logical) name of the service being called, including its package name, if applicable.
             /// 
@@ -46,7 +46,7 @@ extension SpanAttributes {
             /// This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side). 
             /// 
             /// - Example: `myservice.EchoService`
-            public var service: Self.Key<String> { .init(name: OTelAttributes.rpc.service) }
+            public var service: Self.Key<String> { .init(name: OTelAttribute.rpc.service) }
     
             /// `rpc.system`: A string identifying the remoting system. See below for a list of well-known identifiers.
             /// 
@@ -58,7 +58,7 @@ extension SpanAttributes {
             ///     - `dotnet_wcf`: .NET WCF
             ///     - `apache_dubbo`: Apache Dubbo
             ///     - `connect_rpc`: Connect RPC
-            public var system: Self.Key<SystemEnum> { .init(name: OTelAttributes.rpc.system) }
+            public var system: Self.Key<SystemEnum> { .init(name: OTelAttribute.rpc.system) }
             
             public struct SystemEnum: SpanAttributeConvertible {
                 private let rawValue: String
@@ -119,7 +119,7 @@ extension SpanAttributes {
                 ///     - `unavailable`
                 ///     - `data_loss`
                 ///     - `unauthenticated`
-                public var error_code: Self.Key<Error_CodeEnum> { .init(name: OTelAttributes.rpc.connect_rpc.error_code) }
+                public var error_code: Self.Key<Error_CodeEnum> { .init(name: OTelAttribute.rpc.connect_rpc.error_code) }
                 
                 public struct Error_CodeEnum: SpanAttributeConvertible {
                     private let rawValue: String
@@ -346,7 +346,7 @@ extension SpanAttributes {
                 ///     - `14`: UNAVAILABLE
                 ///     - `15`: DATA_LOSS
                 ///     - `16`: UNAUTHENTICATED
-                public var status_code: Self.Key<Status_CodeEnum> { .init(name: OTelAttributes.rpc.grpc.status_code) }
+                public var status_code: Self.Key<Status_CodeEnum> { .init(name: OTelAttribute.rpc.grpc.status_code) }
                 
                 public struct Status_CodeEnum: SpanAttributeConvertible {
                     private let rawValue: String
@@ -562,7 +562,7 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `-32700`
                 ///     - `100`
-                public var error_code: Self.Key<Int> { .init(name: OTelAttributes.rpc.jsonrpc.error_code) }
+                public var error_code: Self.Key<Int> { .init(name: OTelAttribute.rpc.jsonrpc.error_code) }
         
                 /// `rpc.jsonrpc.error_message`: `error.message` property of response if it is an error response.
                 /// 
@@ -573,7 +573,7 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `Parse error`
                 ///     - `User already exists`
-                public var error_message: Self.Key<String> { .init(name: OTelAttributes.rpc.jsonrpc.error_message) }
+                public var error_message: Self.Key<String> { .init(name: OTelAttribute.rpc.jsonrpc.error_message) }
         
                 /// `rpc.jsonrpc.request_id`: `id` property of request or response. Since protocol allows id to be int, string, `null` or missing (for notifications), value is expected to be cast to string for simplicity. Use empty string in case of `null` value. Omit entirely if this is a notification. 
                 /// 
@@ -585,7 +585,7 @@ extension SpanAttributes {
                 ///     - `10`
                 ///     - `request-7`
                 ///     - ``
-                public var request_id: Self.Key<String> { .init(name: OTelAttributes.rpc.jsonrpc.request_id) }
+                public var request_id: Self.Key<String> { .init(name: OTelAttribute.rpc.jsonrpc.request_id) }
         
                 /// `rpc.jsonrpc.version`: Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 doesn't specify this, the value can be omitted.
                 /// 
@@ -596,7 +596,7 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `2.0`
                 ///     - `1.0`
-                public var version: Self.Key<String> { .init(name: OTelAttributes.rpc.jsonrpc.version) }
+                public var version: Self.Key<String> { .init(name: OTelAttribute.rpc.jsonrpc.version) }
             }
         
         
@@ -627,7 +627,7 @@ extension SpanAttributes {
                 /// - Stability: experimental
                 /// 
                 /// - Type: int
-                public var compressed_size: Self.Key<Int> { .init(name: OTelAttributes.rpc.message.compressed_size) }
+                public var compressed_size: Self.Key<Int> { .init(name: OTelAttribute.rpc.message.compressed_size) }
         
                 /// `rpc.message.id`: MUST be calculated as two different counters starting from `1` one for sent messages and one for received message.
                 /// 
@@ -636,7 +636,7 @@ extension SpanAttributes {
                 /// - Type: int
                 /// 
                 /// This way we guarantee that the values will be consistent between different implementations.
-                public var id: Self.Key<Int> { .init(name: OTelAttributes.rpc.message.id) }
+                public var id: Self.Key<Int> { .init(name: OTelAttribute.rpc.message.id) }
         
                 /// `rpc.message.type`: Whether this is a received or sent message.
                 /// 
@@ -645,7 +645,7 @@ extension SpanAttributes {
                 /// - Type: enum
                 ///     - `SENT`
                 ///     - `RECEIVED`
-                public var type: Self.Key<TypeEnum> { .init(name: OTelAttributes.rpc.message.type) }
+                public var type: Self.Key<TypeEnum> { .init(name: OTelAttribute.rpc.message.type) }
                 
                 public struct TypeEnum: SpanAttributeConvertible {
                     private let rawValue: String
@@ -663,7 +663,7 @@ extension SpanAttributes {
                 /// - Stability: experimental
                 /// 
                 /// - Type: int
-                public var uncompressed_size: Self.Key<Int> { .init(name: OTelAttributes.rpc.message.uncompressed_size) }
+                public var uncompressed_size: Self.Key<Int> { .init(name: OTelAttribute.rpc.message.uncompressed_size) }
             }
         
         

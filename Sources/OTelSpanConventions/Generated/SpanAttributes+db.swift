@@ -34,7 +34,7 @@ extension SpanAttributes {
             /// 
             /// - Example: `Server=(localdb)\v11.0;Integrated Security=true;`
             @available(*, deprecated, message: "Replaced by `server.address` and `server.port`.")
-            public var connection_string: Self.Key<String> { .init(name: OTelAttributes.db.connection_string) }
+            public var connection_string: Self.Key<String> { .init(name: OTelAttribute.db.connection_string) }
     
             /// `db.name`: Deprecated, use `db.namespace` instead.
             /// 
@@ -46,7 +46,7 @@ extension SpanAttributes {
             ///     - `customers`
             ///     - `main`
             @available(*, deprecated, message: "Replaced by `db.namespace`.")
-            public var name: Self.Key<String> { .init(name: OTelAttributes.db.name) }
+            public var name: Self.Key<String> { .init(name: OTelAttribute.db.name) }
     
             /// `db.namespace`: The name of the database, fully qualified within the server address and port. 
             /// 
@@ -59,7 +59,7 @@ extension SpanAttributes {
             /// - Examples:
             ///     - `customers`
             ///     - `test.users`
-            public var namespace: Self.Key<String> { .init(name: OTelAttributes.db.namespace) }
+            public var namespace: Self.Key<String> { .init(name: OTelAttribute.db.namespace) }
     
             /// `db.operation`: Deprecated, use `db.operation.name` instead.
             /// 
@@ -72,7 +72,7 @@ extension SpanAttributes {
             ///     - `HMSET`
             ///     - `SELECT`
             @available(*, deprecated, message: "Replaced by `db.operation.name`.")
-            public var _operation: Self.Key<String> { .init(name: OTelAttributes.db._operation) }
+            public var _operation: Self.Key<String> { .init(name: OTelAttribute.db._operation) }
     
             /// `db.statement`: The database statement being executed.
             /// 
@@ -84,7 +84,7 @@ extension SpanAttributes {
             ///     - `SELECT * FROM wuser_table`
             ///     - `SET mykey "WuValue"`
             @available(*, deprecated, message: "Replaced by `db.query.text`.")
-            public var statement: Self.Key<String> { .init(name: OTelAttributes.db.statement) }
+            public var statement: Self.Key<String> { .init(name: OTelAttribute.db.statement) }
     
             /// `db.system`: The database management system (DBMS) product as identified by the client instrumentation.
             /// 
@@ -147,7 +147,7 @@ extension SpanAttributes {
             ///     - `vertica`: Vertica
             /// 
             /// The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system` is set to `postgresql` based on the instrumentation's best knowledge. This attribute has stability level RELEASE CANDIDATE. 
-            public var system: Self.Key<SystemEnum> { .init(name: OTelAttributes.db.system) }
+            public var system: Self.Key<SystemEnum> { .init(name: OTelAttribute.db.system) }
             
             public struct SystemEnum: SpanAttributeConvertible {
                 private let rawValue: String
@@ -279,7 +279,7 @@ extension SpanAttributes {
             ///     - `readonly_user`
             ///     - `reporting_user`
             @available(*, deprecated, message: "No replacement at this time.")
-            public var user: Self.Key<String> { .init(name: OTelAttributes.db.user) }
+            public var user: Self.Key<String> { .init(name: OTelAttribute.db.user) }
         }
     
         /// `db.cassandra` namespace
@@ -318,7 +318,7 @@ extension SpanAttributes {
                 ///     - `any`
                 ///     - `serial`
                 ///     - `local_serial`
-                public var consistency_level: Self.Key<Consistency_LevelEnum> { .init(name: OTelAttributes.db.cassandra.consistency_level) }
+                public var consistency_level: Self.Key<Consistency_LevelEnum> { .init(name: OTelAttribute.db.cassandra.consistency_level) }
                 
                 public struct Consistency_LevelEnum: SpanAttributeConvertible {
                     private let rawValue: String
@@ -354,7 +354,7 @@ extension SpanAttributes {
                 /// - Stability: experimental
                 /// 
                 /// - Type: boolean
-                public var idempotence: Self.Key<Bool> { .init(name: OTelAttributes.db.cassandra.idempotence) }
+                public var idempotence: Self.Key<Bool> { .init(name: OTelAttribute.db.cassandra.idempotence) }
         
                 /// `db.cassandra.page_size`: The fetch size used for paging, i.e. how many rows will be returned at once. 
                 /// 
@@ -363,7 +363,7 @@ extension SpanAttributes {
                 /// - Type: int
                 /// 
                 /// - Example: `5000`
-                public var page_size: Self.Key<Int> { .init(name: OTelAttributes.db.cassandra.page_size) }
+                public var page_size: Self.Key<Int> { .init(name: OTelAttribute.db.cassandra.page_size) }
         
                 /// `db.cassandra.speculative_execution_count`: The number of times a query was speculatively executed. Not set or `0` if the query was not executed speculatively. 
                 /// 
@@ -374,7 +374,7 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `0`
                 ///     - `2`
-                public var speculative_execution_count: Self.Key<Int> { .init(name: OTelAttributes.db.cassandra.speculative_execution_count) }
+                public var speculative_execution_count: Self.Key<Int> { .init(name: OTelAttribute.db.cassandra.speculative_execution_count) }
         
                 /// `db.cassandra.table`: Deprecated, use `db.collection.name` instead.
                 /// 
@@ -384,7 +384,7 @@ extension SpanAttributes {
                 /// 
                 /// - Example: `mytable`
                 @available(*, deprecated, message: "Replaced by `db.collection.name`.")
-                public var table: Self.Key<String> { .init(name: OTelAttributes.db.cassandra.table) }
+                public var table: Self.Key<String> { .init(name: OTelAttribute.db.cassandra.table) }
             }
         
             /// `db.cassandra.coordinator` namespace
@@ -414,7 +414,7 @@ extension SpanAttributes {
                     /// - Type: string
                     /// 
                     /// - Example: `us-west-2`
-                    public var dc: Self.Key<String> { .init(name: OTelAttributes.db.cassandra.coordinator.dc) }
+                    public var dc: Self.Key<String> { .init(name: OTelAttribute.db.cassandra.coordinator.dc) }
             
                     /// `db.cassandra.coordinator.id`: The ID of the coordinating node for a query. 
                     /// 
@@ -423,7 +423,7 @@ extension SpanAttributes {
                     /// - Type: string
                     /// 
                     /// - Example: `be13faa2-8574-4d71-926d-27f16cf8a7af`
-                    public var id: Self.Key<String> { .init(name: OTelAttributes.db.cassandra.coordinator.id) }
+                    public var id: Self.Key<String> { .init(name: OTelAttribute.db.cassandra.coordinator.id) }
                 }
             
             
@@ -482,7 +482,7 @@ extension SpanAttributes {
                     ///     - `used`
                     /// 
                     /// - Example: `idle`
-                    public var state: Self.Key<StateEnum> { .init(name: OTelAttributes.db.client.connection.state) }
+                    public var state: Self.Key<StateEnum> { .init(name: OTelAttribute.db.client.connection.state) }
                     
                     public struct StateEnum: SpanAttributeConvertible {
                         private let rawValue: String
@@ -523,7 +523,7 @@ extension SpanAttributes {
                         /// - Type: string
                         /// 
                         /// - Example: `myDataSource`
-                        public var name: Self.Key<String> { .init(name: OTelAttributes.db.client.connection.pool.name) }
+                        public var name: Self.Key<String> { .init(name: OTelAttribute.db.client.connection.pool.name) }
                     }
                 
                 
@@ -560,7 +560,7 @@ extension SpanAttributes {
                     /// 
                     /// - Example: `idle`
                     @available(*, deprecated, message: "Replaced by `db.client.connection.state`.")
-                    public var state: Self.Key<StateEnum> { .init(name: OTelAttributes.db.client.connections.state) }
+                    public var state: Self.Key<StateEnum> { .init(name: OTelAttribute.db.client.connections.state) }
                     
                     public struct StateEnum: SpanAttributeConvertible {
                         private let rawValue: String
@@ -602,7 +602,7 @@ extension SpanAttributes {
                         /// 
                         /// - Example: `myDataSource`
                         @available(*, deprecated, message: "Replaced by `db.client.connection.pool.name`.")
-                        public var name: Self.Key<String> { .init(name: OTelAttributes.db.client.connections.pool.name) }
+                        public var name: Self.Key<String> { .init(name: OTelAttribute.db.client.connections.pool.name) }
                     }
                 
                 
@@ -641,7 +641,7 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `public.users`
                 ///     - `customers`
-                public var name: Self.Key<String> { .init(name: OTelAttributes.db.collection.name) }
+                public var name: Self.Key<String> { .init(name: OTelAttribute.db.collection.name) }
             }
         
         
@@ -674,7 +674,7 @@ extension SpanAttributes {
                 /// - Type: string
                 /// 
                 /// - Example: `3ba4827d-4422-483f-b59f-85b74211c11d`
-                public var client_id: Self.Key<String> { .init(name: OTelAttributes.db.cosmosdb.client_id) }
+                public var client_id: Self.Key<String> { .init(name: OTelAttribute.db.cosmosdb.client_id) }
         
                 /// `db.cosmosdb.connection_mode`: Cosmos client connection mode.
                 /// 
@@ -683,7 +683,7 @@ extension SpanAttributes {
                 /// - Type: enum
                 ///     - `gateway`: Gateway (HTTP) connection.
                 ///     - `direct`: Direct connection.
-                public var connection_mode: Self.Key<Connection_ModeEnum> { .init(name: OTelAttributes.db.cosmosdb.connection_mode) }
+                public var connection_mode: Self.Key<Connection_ModeEnum> { .init(name: OTelAttribute.db.cosmosdb.connection_mode) }
                 
                 public struct Connection_ModeEnum: SpanAttributeConvertible {
                     private let rawValue: String
@@ -713,7 +713,7 @@ extension SpanAttributes {
                 ///     - `BoundedStaleness`
                 ///     - `Strong`
                 ///     - `Session`
-                public var consistency_level: Self.Key<Consistency_LevelEnum> { .init(name: OTelAttributes.db.cosmosdb.consistency_level) }
+                public var consistency_level: Self.Key<Consistency_LevelEnum> { .init(name: OTelAttribute.db.cosmosdb.consistency_level) }
                 
                 public struct Consistency_LevelEnum: SpanAttributeConvertible {
                     private let rawValue: String
@@ -740,7 +740,7 @@ extension SpanAttributes {
                 /// 
                 /// - Example: `mytable`
                 @available(*, deprecated, message: "Replaced by `db.collection.name`.")
-                public var container: Self.Key<String> { .init(name: OTelAttributes.db.cosmosdb.container) }
+                public var container: Self.Key<String> { .init(name: OTelAttribute.db.cosmosdb.container) }
         
                 /// `db.cosmosdb.operation_type`: Deprecated, no replacement at this time.
                 /// 
@@ -763,7 +763,7 @@ extension SpanAttributes {
                 ///     - `replace`
                 ///     - `upsert`
                 @available(*, deprecated, message: "No replacement at this time.")
-                public var operation_type: Self.Key<Operation_TypeEnum> { .init(name: OTelAttributes.db.cosmosdb.operation_type) }
+                public var operation_type: Self.Key<Operation_TypeEnum> { .init(name: OTelAttribute.db.cosmosdb.operation_type) }
                 
                 public struct Operation_TypeEnum: SpanAttributeConvertible {
                     private let rawValue: String
@@ -809,7 +809,7 @@ extension SpanAttributes {
                 /// - Type: stringArray
                 /// 
                 /// Region name matches the format of `displayName` in [Azure Location API](https://learn.microsoft.com/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location) 
-                public var regions_contacted: Self.Key<[String]> { .init(name: OTelAttributes.db.cosmosdb.regions_contacted) }
+                public var regions_contacted: Self.Key<[String]> { .init(name: OTelAttribute.db.cosmosdb.regions_contacted) }
         
                 /// `db.cosmosdb.request_charge`: Request units consumed for the operation.
                 /// 
@@ -820,14 +820,14 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `46.18`
                 ///     - `1.0`
-                public var request_charge: Self.Key<Double> { .init(name: OTelAttributes.db.cosmosdb.request_charge) }
+                public var request_charge: Self.Key<Double> { .init(name: OTelAttribute.db.cosmosdb.request_charge) }
         
                 /// `db.cosmosdb.request_content_length`: Request payload size in bytes.
                 /// 
                 /// - Stability: experimental
                 /// 
                 /// - Type: int
-                public var request_content_length: Self.Key<Int> { .init(name: OTelAttributes.db.cosmosdb.request_content_length) }
+                public var request_content_length: Self.Key<Int> { .init(name: OTelAttribute.db.cosmosdb.request_content_length) }
         
                 /// `db.cosmosdb.status_code`: Deprecated, use `db.response.status_code` instead.
                 /// 
@@ -839,7 +839,7 @@ extension SpanAttributes {
                 ///     - `200`
                 ///     - `201`
                 @available(*, deprecated, message: "Replaced by `db.response.status_code`.")
-                public var status_code: Self.Key<Int> { .init(name: OTelAttributes.db.cosmosdb.status_code) }
+                public var status_code: Self.Key<Int> { .init(name: OTelAttribute.db.cosmosdb.status_code) }
         
                 /// `db.cosmosdb.sub_status_code`: Cosmos DB sub status code.
                 /// 
@@ -850,7 +850,7 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `1000`
                 ///     - `1002`
-                public var sub_status_code: Self.Key<Int> { .init(name: OTelAttributes.db.cosmosdb.sub_status_code) }
+                public var sub_status_code: Self.Key<Int> { .init(name: OTelAttribute.db.cosmosdb.sub_status_code) }
             }
         
         
@@ -954,7 +954,7 @@ extension SpanAttributes {
                     /// 
                     /// - Example: `e9106fc68e3044f0b1475b04bf4ffd5f`
                     @available(*, deprecated, message: "Replaced by `db.namespace`.")
-                    public var name: Self.Key<String> { .init(name: OTelAttributes.db.elasticsearch.cluster.name) }
+                    public var name: Self.Key<String> { .init(name: OTelAttribute.db.elasticsearch.cluster.name) }
                 }
             
             
@@ -987,7 +987,7 @@ extension SpanAttributes {
                     /// - Type: string
                     /// 
                     /// - Example: `instance-0000000001`
-                    public var name: Self.Key<String> { .init(name: OTelAttributes.db.elasticsearch.node.name) }
+                    public var name: Self.Key<String> { .init(name: OTelAttribute.db.elasticsearch.node.name) }
                 }
             
             
@@ -1022,7 +1022,7 @@ extension SpanAttributes {
                 /// 
                 /// - Example: `mysql-e26b99z.example.com`
                 @available(*, deprecated, message: "Deprecated, no general replacement at this time. For Elasticsearch, use `db.elasticsearch.node.name` instead.")
-                public var id: Self.Key<String> { .init(name: OTelAttributes.db.instance.id) }
+                public var id: Self.Key<String> { .init(name: OTelAttribute.db.instance.id) }
             }
         
         
@@ -1058,7 +1058,7 @@ extension SpanAttributes {
                 ///     - `org.postgresql.Driver`
                 ///     - `com.microsoft.sqlserver.jdbc.SQLServerDriver`
                 @available(*, deprecated, message: "Removed as not used.")
-                public var driver_classname: Self.Key<String> { .init(name: OTelAttributes.db.jdbc.driver_classname) }
+                public var driver_classname: Self.Key<String> { .init(name: OTelAttribute.db.jdbc.driver_classname) }
             }
         
         
@@ -1092,7 +1092,7 @@ extension SpanAttributes {
                 /// 
                 /// - Example: `mytable`
                 @available(*, deprecated, message: "Replaced by `db.collection.name`.")
-                public var collection: Self.Key<String> { .init(name: OTelAttributes.db.mongodb.collection) }
+                public var collection: Self.Key<String> { .init(name: OTelAttribute.db.mongodb.collection) }
             }
         
         
@@ -1126,7 +1126,7 @@ extension SpanAttributes {
                 /// 
                 /// - Example: `MSSQLSERVER`
                 @available(*, deprecated, message: "Deprecated, no replacement at this time.")
-                public var instance_name: Self.Key<String> { .init(name: OTelAttributes.db.mssql.instance_name) }
+                public var instance_name: Self.Key<String> { .init(name: OTelAttribute.db.mssql.instance_name) }
             }
         
         
@@ -1211,7 +1211,7 @@ extension SpanAttributes {
                 ///     - `findAndModify`
                 ///     - `HMSET`
                 ///     - `SELECT`
-                public var name: Self.Key<String> { .init(name: OTelAttributes.db.operation.name) }
+                public var name: Self.Key<String> { .init(name: OTelAttribute.db.operation.name) }
             }
         
             /// `db.operation.batch` namespace
@@ -1246,7 +1246,7 @@ extension SpanAttributes {
                     ///     - `2`
                     ///     - `3`
                     ///     - `4`
-                    public var size: Self.Key<Int> { .init(name: OTelAttributes.db.operation.batch.size) }
+                    public var size: Self.Key<Int> { .init(name: OTelAttribute.db.operation.batch.size) }
                 }
             
             
@@ -1330,7 +1330,7 @@ extension SpanAttributes {
                 ///     - `SELECT wuser_table`
                 ///     - `INSERT shipping_details SELECT orders`
                 ///     - `get user by id`
-                public var summary: Self.Key<String> { .init(name: OTelAttributes.db.query.summary) }
+                public var summary: Self.Key<String> { .init(name: OTelAttribute.db.query.summary) }
         
                 /// `db.query.text`: The database query being executed. 
                 /// 
@@ -1343,7 +1343,7 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `SELECT * FROM wuser_table where username = ?`
                 ///     - `SET mykey ?`
-                public var text: Self.Key<String> { .init(name: OTelAttributes.db.query.text) }
+                public var text: Self.Key<String> { .init(name: OTelAttribute.db.query.text) }
             }
         
         
@@ -1380,7 +1380,7 @@ extension SpanAttributes {
                 ///     - `1`
                 ///     - `15`
                 @available(*, deprecated, message: "Replaced by `db.namespace`.")
-                public var database_index: Self.Key<Int> { .init(name: OTelAttributes.db.redis.database_index) }
+                public var database_index: Self.Key<Int> { .init(name: OTelAttribute.db.redis.database_index) }
             }
         
         
@@ -1416,7 +1416,7 @@ extension SpanAttributes {
                 ///     - `10`
                 ///     - `30`
                 ///     - `1000`
-                public var returned_rows: Self.Key<Int> { .init(name: OTelAttributes.db.response.returned_rows) }
+                public var returned_rows: Self.Key<Int> { .init(name: OTelAttribute.db.response.returned_rows) }
         
                 /// `db.response.status_code`: Database response status code.
                 /// 
@@ -1431,7 +1431,7 @@ extension SpanAttributes {
                 ///     - `ORA-17002`
                 ///     - `08P01`
                 ///     - `404`
-                public var status_code: Self.Key<String> { .init(name: OTelAttributes.db.response.status_code) }
+                public var status_code: Self.Key<String> { .init(name: OTelAttribute.db.response.status_code) }
             }
         
         
@@ -1465,7 +1465,7 @@ extension SpanAttributes {
                 /// 
                 /// - Example: `mytable`
                 @available(*, deprecated, message: "Replaced by `db.collection.name`.")
-                public var table: Self.Key<String> { .init(name: OTelAttributes.db.sql.table) }
+                public var table: Self.Key<String> { .init(name: OTelAttribute.db.sql.table) }
             }
         
         
