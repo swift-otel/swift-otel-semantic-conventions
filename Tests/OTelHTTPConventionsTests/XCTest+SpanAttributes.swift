@@ -4,7 +4,7 @@ import XCTest
 func XCTAssertSpanAttributesEqual(
     _ lhs: @autoclosure () -> SpanAttributes,
     _ rhs: @autoclosure () -> [String: SpanAttribute],
-    file: StaticString = #file,
+    file: StaticString = #filePath,
     line: UInt = #line
 ) {
     var rhs = rhs()
