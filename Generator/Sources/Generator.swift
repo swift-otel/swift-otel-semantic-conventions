@@ -101,24 +101,25 @@ struct Generator: AsyncParsableCommand {
             }
             namespace.attributes[attributeName] = attribute
         }
-        
+
         // Generate files
-        
-        
+
+
         let topLevelNamespaces = namespaceTree.subNamespaces.values.sorted(by: { $0.id < $1.id })
-        
+
         // Generate individual target files
         let renderers: [FileRenderer] = [
             OTelAttributeRenderer(),
             SpanAttributeRenderer(),
         ]
         for renderer in renderers {
+            let directory = "\(repoDirectory)Sources/\(renderer.targetDirectory)Generated/"
+            if fileManager.fileExists(atPath: directory) {
+                try fileManager.removeItem(atPath: directory)
+            }
+            try fileManager.createDirectory(atPath: directory, withIntermediateDirectories: true)
+
             for namespace in topLevelNamespaces {
-                let directory = "\(repoDirectory)Sources/\(renderer.targetDirectory)Generated/"
-                if !fileManager.fileExists(atPath: directory) {
-                    try fileManager.createDirectory(atPath: directory, withIntermediateDirectories: true)
-                }
-                
                 let filePath = directory + "\(renderer.fileNamePrefix)\(namespace.memberName).swift"
                 var fileContents = generatedFileHeader
                 fileContents += try renderer.renderFile(namespace)
@@ -151,11 +152,11 @@ class Namespace {
         self.subNamespaces = subNamespaces
         self.name = String(id.split(separator: ".").last ?? "")
     }
-    
+
     var typeName: String {
         nameGenerator.swiftTypeName(for: name)
     }
-    
+
     var memberName: String {
         nameGenerator.swiftMemberName(for: name)
     }
