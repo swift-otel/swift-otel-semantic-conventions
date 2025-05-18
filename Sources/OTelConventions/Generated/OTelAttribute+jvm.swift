@@ -7,29 +7,6 @@ extension OTelAttribute {
     public enum jvm {
     
     
-        /// `jvm.buffer` namespace
-        public enum buffer {
-        
-        
-            /// `jvm.buffer.pool` namespace
-            public enum pool {
-                /// `jvm.buffer.pool.name`: Name of the buffer pool.
-                /// 
-                /// - Stability: experimental
-                /// 
-                /// - Type: string
-                /// 
-                /// Pool names are generally obtained via [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()). 
-                /// 
-                /// - Examples:
-                ///     - `mapped`
-                ///     - `direct`
-                public static let name = "jvm.buffer.pool.name"
-            
-            
-            }
-        }
-    
         /// `jvm.gc` namespace
         public enum gc {
             /// `jvm.gc.action`: Name of the garbage collector action.

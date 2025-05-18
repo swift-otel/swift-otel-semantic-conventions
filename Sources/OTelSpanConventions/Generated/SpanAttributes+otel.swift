@@ -56,50 +56,6 @@ extension SpanAttributes {
             public var statusDescription: Self.Key<String> { .init(name: OTelAttribute.otel.statusDescription) }
         }
     
-        /// `otel.library` namespace
-        public var library: LibraryAttributes {
-            get {
-                .init(attributes: self.attributes)
-            }
-            set {
-                self.attributes = newValue.attributes
-            }
-        }
-        
-        @dynamicMemberLookup
-        public struct LibraryAttributes: SpanAttributeNamespace {
-            public var attributes: SpanAttributes
-        
-            public init(attributes: SpanAttributes) {
-                self.attributes = attributes
-            }
-        
-            public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
-                public init() {}
-                /// `otel.library.name`: Deprecated. Use the `otel.scope.name` attribute
-                /// 
-                /// - Stability: experimental
-                /// 
-                /// - Type: string
-                /// 
-                /// - Example: `io.opentelemetry.contrib.mongodb`
-                @available(*, deprecated, message: "Use the `otel.scope.name` attribute.")
-                public var name: Self.Key<String> { .init(name: OTelAttribute.otel.library.name) }
-        
-                /// `otel.library.version`: Deprecated. Use the `otel.scope.version` attribute.
-                /// 
-                /// - Stability: experimental
-                /// 
-                /// - Type: string
-                /// 
-                /// - Example: `1.0.0`
-                @available(*, deprecated, message: "Use the `otel.scope.version` attribute.")
-                public var version: Self.Key<String> { .init(name: OTelAttribute.otel.library.version) }
-            }
-        
-        
-        }
-    
         /// `otel.scope` namespace
         public var scope: ScopeAttributes {
             get {

@@ -29,50 +29,6 @@ extension SpanAttributes {
     
         }
     
-        /// `telemetry.distro` namespace
-        public var distro: DistroAttributes {
-            get {
-                .init(attributes: self.attributes)
-            }
-            set {
-                self.attributes = newValue.attributes
-            }
-        }
-        
-        @dynamicMemberLookup
-        public struct DistroAttributes: SpanAttributeNamespace {
-            public var attributes: SpanAttributes
-        
-            public init(attributes: SpanAttributes) {
-                self.attributes = attributes
-            }
-        
-            public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
-                public init() {}
-                /// `telemetry.distro.name`: The name of the auto instrumentation agent or distribution, if used. 
-                /// 
-                /// - Stability: experimental
-                /// 
-                /// - Type: string
-                /// 
-                /// Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`. 
-                /// 
-                /// - Example: `parts-unlimited-java`
-                public var name: Self.Key<String> { .init(name: OTelAttribute.telemetry.distro.name) }
-        
-                /// `telemetry.distro.version`: The version string of the auto instrumentation agent or distribution, if used. 
-                /// 
-                /// - Stability: experimental
-                /// 
-                /// - Type: string
-                /// 
-                /// - Example: `1.2.3`
-                public var version: Self.Key<String> { .init(name: OTelAttribute.telemetry.distro.version) }
-            }
-        
-        
-        }
-    
         /// `telemetry.sdk` namespace
         public var sdk: SdkAttributes {
             get {

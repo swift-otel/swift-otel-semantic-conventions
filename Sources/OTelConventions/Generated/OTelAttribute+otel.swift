@@ -23,31 +23,6 @@ extension OTelAttribute {
         /// - Example: `resource not found`
         public static let statusDescription = "otel.status_description"
     
-        /// `otel.library` namespace
-        public enum library {
-            /// `otel.library.name`: Deprecated. Use the `otel.scope.name` attribute
-            /// 
-            /// - Stability: experimental
-            /// 
-            /// - Type: string
-            /// 
-            /// - Example: `io.opentelemetry.contrib.mongodb`
-            @available(*, deprecated, message: "Use the `otel.scope.name` attribute.")
-            public static let name = "otel.library.name"
-        
-            /// `otel.library.version`: Deprecated. Use the `otel.scope.version` attribute.
-            /// 
-            /// - Stability: experimental
-            /// 
-            /// - Type: string
-            /// 
-            /// - Example: `1.0.0`
-            @available(*, deprecated, message: "Use the `otel.scope.version` attribute.")
-            public static let version = "otel.library.version"
-        
-        
-        }
-    
         /// `otel.scope` namespace
         public enum scope {
             /// `otel.scope.name`: The name of the instrumentation scope - (`InstrumentationScope.Name` in OTLP).

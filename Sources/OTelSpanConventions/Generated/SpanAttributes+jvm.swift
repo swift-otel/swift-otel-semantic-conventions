@@ -29,67 +29,6 @@ extension SpanAttributes {
     
         }
     
-        /// `jvm.buffer` namespace
-        public var buffer: BufferAttributes {
-            get {
-                .init(attributes: self.attributes)
-            }
-            set {
-                self.attributes = newValue.attributes
-            }
-        }
-        
-        @dynamicMemberLookup
-        public struct BufferAttributes: SpanAttributeNamespace {
-            public var attributes: SpanAttributes
-        
-            public init(attributes: SpanAttributes) {
-                self.attributes = attributes
-            }
-        
-            public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
-                public init() {}
-        
-            }
-        
-            /// `jvm.buffer.pool` namespace
-            public var pool: PoolAttributes {
-                get {
-                    .init(attributes: self.attributes)
-                }
-                set {
-                    self.attributes = newValue.attributes
-                }
-            }
-            
-            @dynamicMemberLookup
-            public struct PoolAttributes: SpanAttributeNamespace {
-                public var attributes: SpanAttributes
-            
-                public init(attributes: SpanAttributes) {
-                    self.attributes = attributes
-                }
-            
-                public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
-                    public init() {}
-                    /// `jvm.buffer.pool.name`: Name of the buffer pool.
-                    /// 
-                    /// - Stability: experimental
-                    /// 
-                    /// - Type: string
-                    /// 
-                    /// Pool names are generally obtained via [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()). 
-                    /// 
-                    /// - Examples:
-                    ///     - `mapped`
-                    ///     - `direct`
-                    public var name: Self.Key<String> { .init(name: OTelAttribute.jvm.buffer.pool.name) }
-                }
-            
-            
-            }
-        }
-    
         /// `jvm.gc` namespace
         public var gc: GcAttributes {
             get {

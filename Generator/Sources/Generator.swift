@@ -79,6 +79,11 @@ struct Generator: AsyncParsableCommand {
             }
         }
 
+        // Filter out attributes that are not stable
+        parsedAttributes = parsedAttributes.filter { attribute in
+            return attribute.stability != .development && attribute.stability != .experimental
+        }
+
         // Create semconv namespace tree
         let namespaceTree = Namespace(id: "")
         for attribute in parsedAttributes {
@@ -103,8 +108,6 @@ struct Generator: AsyncParsableCommand {
         }
 
         // Generate files
-
-
         let topLevelNamespaces = namespaceTree.subNamespaces.values.sorted(by: { $0.id < $1.id })
 
         // Generate individual target files
