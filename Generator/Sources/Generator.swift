@@ -10,6 +10,9 @@ struct Generator: AsyncParsableCommand {
     @Option(name: .shortAndLong, help: "The version of semantic conventions to generate from.")
     var version: String
 
+    @Option(name: .shortAndLong, help: "A comma-separated list of top-level namespace to generate for. If not included, all namespaces will be generated.")
+    var namespaces: String? = nil
+
     @Option(name: .shortAndLong, help: "The root of the swift-otel-semantic-conventions directory in which the generated files should be saved.")
     var repoDirectory: String = "../"
 
@@ -108,7 +111,13 @@ struct Generator: AsyncParsableCommand {
         }
 
         // Generate files
-        let topLevelNamespaces = namespaceTree.subNamespaces.values.sorted(by: { $0.id < $1.id })
+        var topLevelNamespaces = namespaceTree.subNamespaces.values.sorted(by: { $0.id < $1.id })
+
+        if let namespaces = namespaces {
+            let namespaceSet = Set(namespaces.split(separator: ",").map { String($0) })
+            // Filter to only include the specified namespace
+            topLevelNamespaces = topLevelNamespaces.filter { namespaceSet.contains($0.id) }
+        }
 
         // Generate individual target files
         let renderers: [FileRenderer] = [
