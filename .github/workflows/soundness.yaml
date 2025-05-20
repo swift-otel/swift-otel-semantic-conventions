@@ -1,0 +1,22 @@
+name: Soundness
+on:
+  workflow_call:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-soundness
+  cancel-in-progress: true
+jobs:
+  format-check:
+    name: Format check
+    runs-on: ubuntu-22.04
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install Swift
+        uses: vapor/swiftly-action@v0.2
+        with:
+          toolchain: latest
+        env:
+          SWIFTLY_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run format check
+        run: ./scripts/check-swift-format.sh

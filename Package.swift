@@ -29,7 +29,7 @@ let package = Package(
         .target(
             name: "OTelHTTPTracingConventions",
             dependencies: [
-                .product(name: "Tracing", package: "swift-distributed-tracing"),
+                .product(name: "Tracing", package: "swift-distributed-tracing")
             ]
         ),
         .testTarget(
