@@ -1,11 +1,11 @@
 /// Structure of an OTel semconv registry.yaml file.
 /// All registry files are of type `attribute_group`
 /// See: https://github.com/open-telemetry/weaver/blob/main/schemas/semconv-syntax.md#attribute-group-semantic-convention
-struct RegistryFile: Codable {
+struct RegistryFile: Decodable {
     let groups: [Group]
 }
 
-struct Group: Codable {
+struct Group: Decodable {
     let id: String
     let type: GroupType
     let stability: Stability?
@@ -25,7 +25,7 @@ struct Group: Codable {
     }
 }
 
-struct Attribute: Codable {
+struct Attribute: Decodable {
     let id: String
     let type: AttributeType
     let stability: Stability
@@ -60,23 +60,6 @@ struct Attribute: Codable {
             let examples = try? container.decode([String].self, forKey: .examples)
             self.examples = examples
         }
-    }
-
-    func encode(to encoder: any Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        if let type = type as? EnumType {
-            try container.encode(type.self, forKey: .type)
-        } else if let type = type as? StandardType {
-            try container.encode(type.self, forKey: .type)
-        } else {
-            throw EncodingError.invalidValue(type, EncodingError.Context(codingPath: [CodingKeys.type], debugDescription: "Unexpected `type` value"))
-        }
-        try container.encode(stability, forKey: .stability)
-        try container.encodeIfPresent(brief, forKey: .brief)
-        try container.encodeIfPresent(note, forKey: .note)
-        try container.encodeIfPresent(deprecated, forKey: .deprecated)
-        try container.encodeIfPresent(examples, forKey: .examples)
     }
 
     enum CodingKeys: String, CodingKey {
