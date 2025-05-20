@@ -8,7 +8,7 @@ extension SpanAttributes {
         set {
             self = newValue.attributes
         }
-    }    
+    }
 }
 
 @dynamicMemberLookup
