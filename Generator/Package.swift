@@ -5,6 +5,9 @@ import PackageDescription
 
 let package = Package(
     name: "Generator",
+    platforms: [
+        .macOS(.v13),
+    ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.0.0"),
         .package(url: "https://github.com/jpsim/Yams.git", from: "1.0.0"),

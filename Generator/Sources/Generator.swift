@@ -4,7 +4,6 @@ import Foundation
 import Yams
 import ZIPFoundation
 
-@available(macOS 13, *)
 @main
 struct Generator: AsyncParsableCommand {
     @Option(name: .shortAndLong, help: "The version of semantic conventions to generate from.")
