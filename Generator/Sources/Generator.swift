@@ -9,7 +9,7 @@ struct Generator: AsyncParsableCommand {
     @Option(name: .shortAndLong, help: "The version of semantic conventions to generate from.")
     var version: String
 
-    @Option(name: .shortAndLong, help: "A comma-separated list of top-level namespace to generate for. If not included, all namespaces will be generated.")
+    @Option(name: .shortAndLong, help: "A comma-separated list of top-level namespaces to use in the generation. If not included, all namespaces will be generated.")
     var namespaces: String? = nil
 
     @Option(name: .shortAndLong, help: "The root of the swift-otel-semantic-conventions directory in which the generated files should be saved.")
@@ -114,7 +114,7 @@ struct Generator: AsyncParsableCommand {
 
         if let namespaces = namespaces {
             let namespaceSet = Set(namespaces.split(separator: ",").map { String($0) })
-            // Filter to only include the specified namespace
+            // Filter to only include the specified namespaces
             topLevelNamespaces = topLevelNamespaces.filter { namespaceSet.contains($0.id) }
         }
 

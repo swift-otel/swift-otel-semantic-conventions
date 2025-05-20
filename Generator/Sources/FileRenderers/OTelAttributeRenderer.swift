@@ -2,7 +2,7 @@
 struct OTelAttributeRenderer: FileRenderer {
     let targetDirectory = "OTelConventions/"
     let fileNamePrefix = "OTelAttribute+"
-    
+
     func renderFile(_ namespace: Namespace) throws -> String {
         return try """
         extension OTelAttribute {
@@ -46,7 +46,7 @@ struct OTelAttributeRenderer: FileRenderer {
     }
 }
 
-// Returns the Swift path to any input attribute based on its
+// Returns the Swift path to any input attribute based on the input namespace
 func swiftOTelAttributePath(_ attribute: Attribute, _ namespace: Namespace) throws -> String {
     return try swiftOTelNamespacePath(namespace) + "." + swiftOTelAttributePropertyName(attribute, namespace)
 }
@@ -63,7 +63,7 @@ private func swiftOTelAttributePropertyName(_ attribute: Attribute, _ namespace:
     guard let attributeName = attribute.id.split(separator: ".").last else {
         throw GeneratorError.attributeNameNotFound(namespace.id)
     }
-    var propertyName =  nameGenerator.swiftMemberName(for: String(attributeName))
+    var propertyName = nameGenerator.swiftMemberName(for: String(attributeName))
     // In the case where we have both an attribute and a namespace overlapping (deployment.environment & deployment.environment.name), the attribute gets an underscore in order to avoid name clobbering.
     if namespace.subNamespaces[propertyName] != nil {
         propertyName = "_\(propertyName)"

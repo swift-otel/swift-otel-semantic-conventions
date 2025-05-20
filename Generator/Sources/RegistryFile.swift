@@ -1,4 +1,4 @@
-/// Structure of an OTEL semconv registry.yaml file.
+/// Structure of an OTel semconv registry.yaml file.
 /// All registry files are of type `attribute_group`
 /// See: https://github.com/open-telemetry/weaver/blob/main/schemas/semconv-syntax.md#attribute-group-semantic-convention
 struct RegistryFile: Codable {
