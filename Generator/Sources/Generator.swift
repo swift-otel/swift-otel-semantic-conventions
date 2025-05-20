@@ -25,10 +25,53 @@ struct Generator: AsyncParsableCommand {
     }
 
     mutating func run() async throws {
-        let semConvRepoDirectory = cacheDirectory.appending(path: "semantic-conventions-\(version.dropFirst())/")
-
-        // Get semconv & cache locally
         let fileManager = FileManager()
+
+        // Download the semantic conventions repository
+        let semConvRepoDirectory = cacheDirectory.appending(path: "semantic-conventions-\(version.dropFirst())/")
+        try await cacheSemConv(
+            fileManager: fileManager,
+            cacheDirectory: cacheDirectory,
+            semConvRepoDirectory: semConvRepoDirectory
+        )
+
+        // Parse semconv registry files
+        let semConvModelsDirectory = semConvRepoDirectory.appending(path: "model/")
+        var parsedAttributes = try await parseAttributes(
+            fileManager: fileManager,
+            semConvModelsDirectory: semConvModelsDirectory
+        )
+
+        // Filter out attributes that are not stable
+        parsedAttributes = parsedAttributes.filter { attribute in
+            return attribute.stability != .development && attribute.stability != .experimental
+        }
+
+        // Create semconv namespace tree
+        let namespaceTree = try constructNamespaceTree(attributes: parsedAttributes)
+
+        // Collect and filter top-level namespaces
+        var topLevelNamespaces = namespaceTree.subNamespaces.values.sorted(by: { $0.id < $1.id })
+        if let namespaces = namespaces {
+            let namespaceSet = Set(namespaces.split(separator: ",").map { String($0) })
+            // Filter to only include the specified namespaces
+            topLevelNamespaces = topLevelNamespaces.filter { namespaceSet.contains($0.id) }
+        }
+
+        // Generate individual target files
+        try render(
+            fileManager: fileManager,
+            repoDirectory: repoDirectory,
+            topLevelNamespaces: topLevelNamespaces,
+            renderers: [
+                OTelAttributeRenderer(),
+                SpanAttributeRenderer(),
+            ]
+        )
+    }
+
+    /// Checks cache, and if necessary downloads and unzips the semantic conventions repository
+    private func cacheSemConv(fileManager: FileManager, cacheDirectory: URL, semConvRepoDirectory: URL) async throws {
         if !fileManager.fileExists(atPath: semConvRepoDirectory.path()) {
             try fileManager.createDirectory(at: cacheDirectory, withIntermediateDirectories: true)
 
@@ -46,9 +89,10 @@ struct Generator: AsyncParsableCommand {
             assert(fileManager.fileExists(atPath: semConvRepoDirectory.path()), "Expected \(semConvRepoDirectory) to exist. Check zip file structure.")
             print("Unzipped to \(semConvRepoDirectory.path()).")
         }
+    }
 
-        // Parse semconv registry files
-        let semConvModelsDirectory = semConvRepoDirectory.appending(path: "model/")
+    /// Checks cache, and if necessary downloads and unzips the semantic conventions repository
+    private func parseAttributes(fileManager: FileManager, semConvModelsDirectory: URL) async throws -> [Attribute]{
         var parsedAttributes = [Attribute]()
         for element in try fileManager.subpathsOfDirectory(atPath: semConvModelsDirectory.path()) {
             // Currently we only support parsing the `registry` files.
@@ -78,17 +122,17 @@ struct Generator: AsyncParsableCommand {
                 }
             }
         }
+        return parsedAttributes
+    }
 
-        // Filter out attributes that are not stable
-        parsedAttributes = parsedAttributes.filter { attribute in
-            return attribute.stability != .development && attribute.stability != .experimental
-        }
-
-        // Create semconv namespace tree
-        let namespaceTree = Namespace(id: "")
-        for attribute in parsedAttributes {
+    /// Constructs a tree of namespaces from a list of attributes.
+    private func constructNamespaceTree(
+        attributes: [Attribute]
+    ) throws -> Namespace{
+        let root = Namespace(id: "")
+        for attribute in attributes {
             let path = attribute.id.split(separator: ".")
-            var namespace = namespaceTree
+            var namespace = root
             var walkedPath = [String]()
             for pathElement in path[0 ..< (path.count - 1)] {
                 let pathElement = String(pathElement)
@@ -106,21 +150,16 @@ struct Generator: AsyncParsableCommand {
             }
             namespace.attributes[attributeName] = attribute
         }
+        return root
+    }
 
-        // Generate files
-        var topLevelNamespaces = namespaceTree.subNamespaces.values.sorted(by: { $0.id < $1.id })
-
-        if let namespaces = namespaces {
-            let namespaceSet = Set(namespaces.split(separator: ",").map { String($0) })
-            // Filter to only include the specified namespaces
-            topLevelNamespaces = topLevelNamespaces.filter { namespaceSet.contains($0.id) }
-        }
-
-        // Generate individual target files
-        let renderers: [FileRenderer] = [
-            OTelAttributeRenderer(),
-            SpanAttributeRenderer(),
-        ]
+    /// Generates files based on the provided namespaces and renderers.
+    private func render(
+        fileManager: FileManager,
+        repoDirectory: URL,
+        topLevelNamespaces: [Namespace],
+        renderers: [FileRenderer]
+    ) throws {
         for renderer in renderers {
             let directory = repoDirectory.appending(path: "Sources/\(renderer.targetDirectory)Generated/")
             if fileManager.fileExists(atPath: directory.path()) {
