@@ -1,24 +1,24 @@
 import OTelConventions
 import OTelSpanConventions
+import Testing
 import Tracing
-import XCTest
 
-class SpanAttributeTests: XCTestCase {
-    func testSpanAttributes() async throws {
+struct SpanAttributeTests {
+    @Test func spanAttributes() async throws {
         var attributes = SpanAttributes()
         attributes.http.response.statusCode = 200
-        XCTAssertEqual(attributes.get(OTelAttribute.http.response.statusCode), 200)
+        #expect(attributes.get(OTelAttribute.http.response.statusCode) == 200)
     }
 
-    func testSpanAttributesEnum() async throws {
+    @Test func spanAttributesEnum() async throws {
         var attributes = SpanAttributes()
         attributes.http.request.method = .post
-        XCTAssertEqual(attributes.get(OTelAttribute.http.request.method), "POST")
+        #expect(attributes.get(OTelAttribute.http.request.method) == "POST")
     }
 
-    func testSpanAttributesTemplate() async throws {
+    @Test func spanAttributesTemplate() async throws {
         var attributes = SpanAttributes()
         attributes.http.request.header.set("X-Foo", to: ["bar", "baz"])
-        XCTAssertEqual(attributes.get(OTelAttribute.http.request.header + ".x_foo"), .stringArray(["bar", "baz"]))
+        #expect(attributes.get(OTelAttribute.http.request.header + ".x_foo") == .stringArray(["bar", "baz"]))
     }
 }
