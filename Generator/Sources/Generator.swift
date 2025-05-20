@@ -13,64 +13,58 @@ struct Generator: AsyncParsableCommand {
     var namespaces: String? = nil
 
     @Option(name: .shortAndLong, help: "The root of the swift-otel-semantic-conventions directory in which the generated files should be saved.")
-    var repoDirectory: String = "../"
+    var repoDirectory: URL = URL.currentDirectory().deletingLastPathComponent()
 
     @Option(name: .shortAndLong, help: "The directory in which to cache the semantic conventions source files.")
-    var cacheDirectory: String = "/tmp/swift-otel-semantic-conventions/"
+    var cacheDirectory: URL = URL.temporaryDirectory.appending(path: "swift-otel-semantic-conventions/")
 
     mutating func run() async throws {
         assert(version.starts(with: "v"), "Version must start with 'v'")
-        if !repoDirectory.hasSuffix("/") {
-            repoDirectory += "/"
-        }
-        if !cacheDirectory.hasSuffix("/") {
-            cacheDirectory += "/"
-        }
 
-        let semConvRepoDirectory = cacheDirectory + "semantic-conventions-\(version.dropFirst())/"
+        let semConvRepoDirectory = cacheDirectory.appending(path: "semantic-conventions-\(version.dropFirst())/")
 
         // Get semconv & cache locally
         let fileManager = FileManager()
-        if !fileManager.fileExists(atPath: semConvRepoDirectory) {
-            try fileManager.createDirectory(at: URL(fileURLWithPath: cacheDirectory), withIntermediateDirectories: true)
+        if !fileManager.fileExists(atPath: semConvRepoDirectory.path()) {
+            try fileManager.createDirectory(at: cacheDirectory, withIntermediateDirectories: true)
 
             // Download
-            let semConvArchive = cacheDirectory + "\(version).zip"
+            let semConvArchive = cacheDirectory.appending(path: "\(version).zip")
             let request = try HTTPClient.Request(url: "https://github.com/open-telemetry/semantic-conventions/archive/refs/tags/\(version).zip")
-            let fileDownloadDelegate = try FileDownloadDelegate(path: semConvArchive)
+            let fileDownloadDelegate = try FileDownloadDelegate(path: semConvArchive.path())
             let _ = try await HTTPClient.shared.execute(request: request, delegate: fileDownloadDelegate).get()
-            print("Downloded version \(version) to \(semConvArchive)")
+            print("Downloded version \(version) to \(semConvArchive.path())")
 
             // Unzip
-            let sourceURL = URL(fileURLWithPath: semConvArchive)
-            let destinationURL = URL(fileURLWithPath: cacheDirectory)
+            let sourceURL = semConvArchive
+            let destinationURL = cacheDirectory
             try fileManager.unzipItem(at: sourceURL, to: destinationURL)
-            assert(fileManager.fileExists(atPath: semConvRepoDirectory), "Expected \(semConvRepoDirectory) to exist. Check zip file structure.")
-            print("Unzipped to \(semConvRepoDirectory).")
+            assert(fileManager.fileExists(atPath: semConvRepoDirectory.path()), "Expected \(semConvRepoDirectory) to exist. Check zip file structure.")
+            print("Unzipped to \(semConvRepoDirectory.path()).")
         }
 
         // Parse semconv registry files
-        let semConvModelsDirectory = semConvRepoDirectory + "model/"
+        let semConvModelsDirectory = semConvRepoDirectory.appending(path: "model/")
         var parsedAttributes = [Attribute]()
-        for element in try fileManager.subpathsOfDirectory(atPath: semConvModelsDirectory) {
+        for element in try fileManager.subpathsOfDirectory(atPath: semConvModelsDirectory.path()) {
             // Currently we only support parsing the `registry` files.
             // TODO: Expand support to metric/span files, which involves handling `ref` type attributes.
             guard element.hasSuffix("registry.yaml") || element.hasSuffix("registry-deprecated.yaml") else {
                 continue
             }
-            let filePath = semConvModelsDirectory + element
+            let filePath = semConvModelsDirectory.appending(path: element)
             guard
-                let fileData = fileManager.contents(atPath: filePath),
+                let fileData = fileManager.contents(atPath: filePath.path()),
                 let fileContents = String(data: fileData, encoding: .utf8)
             else {
-                print("warning: No data found at \(filePath)")
+                print("warning: No data found at \(filePath.path())")
                 continue
             }
             let file: RegistryFile
             do {
                 file = try YAMLDecoder().decode(RegistryFile.self, from: fileContents)
             } catch {
-                print("Error decoding \(filePath)")
+                print("Error decoding \(filePath.path())")
                 throw error
             }
 
@@ -124,24 +118,24 @@ struct Generator: AsyncParsableCommand {
             SpanAttributeRenderer(),
         ]
         for renderer in renderers {
-            let directory = "\(repoDirectory)Sources/\(renderer.targetDirectory)Generated/"
-            if fileManager.fileExists(atPath: directory) {
-                try fileManager.removeItem(atPath: directory)
+            let directory = repoDirectory.appending(path: "Sources/\(renderer.targetDirectory)Generated/")
+            if fileManager.fileExists(atPath: directory.path()) {
+                try fileManager.removeItem(at: directory)
             }
-            try fileManager.createDirectory(atPath: directory, withIntermediateDirectories: true)
+            try fileManager.createDirectory(at: directory, withIntermediateDirectories: true)
 
             for namespace in topLevelNamespaces {
-                let filePath = directory + "\(renderer.fileNamePrefix)\(namespace.memberName).swift"
+                let filePath = directory.appending(path: "\(renderer.fileNamePrefix)\(namespace.memberName).swift")
                 var fileContents = generatedFileHeader
                 fileContents += try renderer.renderFile(namespace)
 
-                try? fileManager.removeItem(atPath: filePath)
+                try? fileManager.removeItem(at: filePath)
                 guard let fileData = fileContents.data(using: .utf8) else {
-                    print("File data for \(filePath) could not be encoded as UTF8")
+                    print("File data for \(filePath.path()) could not be encoded as UTF8")
                     continue
                 }
-                fileManager.createFile(atPath: filePath, contents: fileData)
-                print("Wrote file \(filePath).")
+                fileManager.createFile(atPath: filePath.path(), contents: fileData)
+                print("Wrote file \(filePath.path()).")
             }
         }
     }
@@ -185,4 +179,10 @@ let nameGenerator = IdiomaticSafeNameGenerator(defensive: .init())
 enum GeneratorError: Error {
     case attributeNameNotFound(String)
     case namespaceNameNotFound(String)
+}
+
+extension URL: @retroactive ExpressibleByArgument {
+    public init?(argument: String) {
+        self.init(fileURLWithPath: argument)
+    }
 }
