@@ -10,13 +10,14 @@ struct SpanAttributeRenderer: FileRenderer {
         extension SpanAttributes {
         \(renderNamespace(namespace, indent: 4))
         }
+
         """
     }
 
     private func renderNamespace(_ namespace: Namespace, inSpanNamespace: Bool = false, indent: Int) throws -> String {
         let propertyName = namespace.memberName
         let structName = nameGenerator.swiftTypeName(for: "\(namespace.name)Attributes")
-        
+
         let standardAttributes = namespace.attributes.values.filter { !isTemplateType($0.type) }
         let templateAttributes = namespace.attributes.values.filter { isTemplateType($0.type) }
 

@@ -8,6 +8,7 @@ struct OTelAttributeRenderer: FileRenderer {
         extension OTelAttribute {
         \(renderNamespace(namespace, indent: 4))
         }
+
         """
     }
 
