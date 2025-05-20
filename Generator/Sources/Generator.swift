@@ -18,9 +18,13 @@ struct Generator: AsyncParsableCommand {
     @Option(name: .shortAndLong, help: "The directory in which to cache the semantic conventions source files.")
     var cacheDirectory: URL = URL.temporaryDirectory.appending(path: "swift-otel-semantic-conventions/")
 
-    mutating func run() async throws {
-        assert(version.starts(with: "v"), "Version must start with 'v'")
+    mutating func validate() throws {
+        guard version.starts(with: "v") else {
+            throw ValidationError("Version must start with 'v'")
+        }
+    }
 
+    mutating func run() async throws {
         let semConvRepoDirectory = cacheDirectory.appending(path: "semantic-conventions-\(version.dropFirst())/")
 
         // Get semconv & cache locally
