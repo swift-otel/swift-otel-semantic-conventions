@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "Generator",
     platforms: [
-        .macOS(.v13),
+        .macOS(.v13)
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.0.0"),
@@ -23,6 +23,6 @@ let package = Package(
                 .product(name: "Yams", package: "Yams"),
                 .product(name: "ZIPFoundation", package: "ZIPFoundation"),
             ]
-        ),
+        )
     ]
 )

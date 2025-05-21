@@ -4,7 +4,7 @@ struct OTelAttributeRenderer: FileRenderer {
     let fileNamePrefix = "OTelAttribute+"
 
     func renderFile(_ namespace: Namespace) throws -> String {
-        return try """
+        try """
         extension OTelAttribute {
         \(renderNamespace(namespace, indent: 4))
         }
@@ -16,19 +16,20 @@ struct OTelAttributeRenderer: FileRenderer {
         var result = "/// `\(namespace.id)` namespace"
         result.append("\npublic enum \(namespace.memberName) {")
         try result.append(
-            "\n" +
-                namespace.attributes.values.sorted { $0.id < $1.id }.map { attribute in
+            "\n"
+                + namespace.attributes.values.sorted { $0.id < $1.id }.map { attribute in
                     try renderAttribute(attribute, namespace, indent: 4)
                 }.joined(separator: "\n\n")
         )
         try result.append(
-            "\n\n" +
-                namespace.subNamespaces.values.sorted { $0.id < $1.id }.map { child in
+            "\n\n"
+                + namespace.subNamespaces.values.sorted { $0.id < $1.id }.map { child in
                     try renderNamespace(child, indent: 4)
                 }.joined(separator: "\n\n")
         )
         result.append("\n}")
-        return result
+        return
+            result
             .split(separator: "\n", omittingEmptySubsequences: false)
             .map { String(repeating: " ", count: indent) + $0 }
             .joined(separator: "\n")
@@ -39,7 +40,9 @@ struct OTelAttributeRenderer: FileRenderer {
         if let deprecatedMessage = attribute.deprecated {
             result.append("\n@available(*, deprecated, message: \"\(deprecatedMessage)\")")
         }
-        try result.append("\npublic static let \(swiftOTelAttributePropertyName(attribute, namespace)) = \"\(attribute.id)\"")
+        try result.append(
+            "\npublic static let \(swiftOTelAttributePropertyName(attribute, namespace)) = \"\(attribute.id)\""
+        )
 
         return result.split(separator: "\n", omittingEmptySubsequences: false)
             .map { String(repeating: " ", count: indent) + $0 }
@@ -49,7 +52,7 @@ struct OTelAttributeRenderer: FileRenderer {
 
 // Returns the Swift path to any input attribute based on the input namespace
 func swiftOTelAttributePath(_ attribute: Attribute, _ namespace: Namespace) throws -> String {
-    return try swiftOTelNamespacePath(namespace) + "." + swiftOTelAttributePropertyName(attribute, namespace)
+    try swiftOTelNamespacePath(namespace) + "." + swiftOTelAttributePropertyName(attribute, namespace)
 }
 
 private func swiftOTelNamespacePath(_ namespace: Namespace) -> String {

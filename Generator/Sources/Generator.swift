@@ -9,10 +9,17 @@ struct Generator: AsyncParsableCommand {
     @Option(name: .shortAndLong, help: "The version of semantic conventions to generate from.")
     var version: String
 
-    @Option(name: .shortAndLong, help: "A comma-separated list of top-level namespaces to use in the generation. If not included, all namespaces will be generated.")
+    @Option(
+        name: .shortAndLong,
+        help:
+            "A comma-separated list of top-level namespaces to use in the generation. If not included, all namespaces will be generated."
+    )
     var namespaces: String? = nil
 
-    @Option(name: .shortAndLong, help: "The root of the swift-otel-semantic-conventions directory in which the generated files should be saved.")
+    @Option(
+        name: .shortAndLong,
+        help: "The root of the swift-otel-semantic-conventions directory in which the generated files should be saved."
+    )
     var repoDirectory: URL = URL.currentDirectory().deletingLastPathComponent()
 
     @Option(name: .shortAndLong, help: "The directory in which to cache the semantic conventions source files.")
@@ -44,7 +51,7 @@ struct Generator: AsyncParsableCommand {
 
         // Filter out attributes that are not stable
         parsedAttributes = parsedAttributes.filter { attribute in
-            return attribute.stability != .development && attribute.stability != .experimental
+            attribute.stability != .development && attribute.stability != .experimental
         }
 
         // Create semconv namespace tree
@@ -77,7 +84,9 @@ struct Generator: AsyncParsableCommand {
 
             // Download
             let semConvArchive = cacheDirectory.appending(path: "\(version).zip")
-            let request = try HTTPClient.Request(url: "https://github.com/open-telemetry/semantic-conventions/archive/refs/tags/\(version).zip")
+            let request = try HTTPClient.Request(
+                url: "https://github.com/open-telemetry/semantic-conventions/archive/refs/tags/\(version).zip"
+            )
             let fileDownloadDelegate = try FileDownloadDelegate(path: semConvArchive.path())
             let _ = try await HTTPClient.shared.execute(request: request, delegate: fileDownloadDelegate).get()
             print("Downloded version \(version) to \(semConvArchive.path())")
@@ -86,13 +95,16 @@ struct Generator: AsyncParsableCommand {
             let sourceURL = semConvArchive
             let destinationURL = cacheDirectory
             try fileManager.unzipItem(at: sourceURL, to: destinationURL)
-            assert(fileManager.fileExists(atPath: semConvRepoDirectory.path()), "Expected \(semConvRepoDirectory) to exist. Check zip file structure.")
+            assert(
+                fileManager.fileExists(atPath: semConvRepoDirectory.path()),
+                "Expected \(semConvRepoDirectory) to exist. Check zip file structure."
+            )
             print("Unzipped to \(semConvRepoDirectory.path()).")
         }
     }
 
     /// Checks cache, and if necessary downloads and unzips the semantic conventions repository
-    private func parseAttributes(fileManager: FileManager, semConvModelsDirectory: URL) async throws -> [Attribute]{
+    private func parseAttributes(fileManager: FileManager, semConvModelsDirectory: URL) async throws -> [Attribute] {
         var parsedAttributes = [Attribute]()
         for element in try fileManager.subpathsOfDirectory(atPath: semConvModelsDirectory.path()) {
             // Currently we only support parsing the `registry` files.
@@ -128,21 +140,23 @@ struct Generator: AsyncParsableCommand {
     /// Constructs a tree of namespaces from a list of attributes.
     private func constructNamespaceTree(
         attributes: [Attribute]
-    ) throws -> Namespace{
+    ) throws -> Namespace {
         let root = Namespace(id: "")
         for attribute in attributes {
             let path = attribute.id.split(separator: ".")
             var namespace = root
             var walkedPath = [String]()
-            for pathElement in path[0 ..< (path.count - 1)] {
+            for pathElement in path[0..<(path.count - 1)] {
                 let pathElement = String(pathElement)
                 walkedPath.append(pathElement)
 
-                let nextNamespace = namespace.subNamespaces[pathElement] ?? {
-                    let newNamespace = Namespace(id: walkedPath.joined(separator: "."))
-                    namespace.subNamespaces[pathElement] = newNamespace
-                    return newNamespace
-                }()
+                let nextNamespace =
+                    namespace.subNamespaces[pathElement]
+                    ?? {
+                        let newNamespace = Namespace(id: walkedPath.joined(separator: "."))
+                        namespace.subNamespaces[pathElement] = newNamespace
+                        return newNamespace
+                    }()
                 namespace = nextNamespace
             }
             guard let attributeName = path.last.map({ String($0) }) else {
@@ -211,12 +225,12 @@ class Namespace {
 }
 
 let generatedFileHeader = """
-// DO NOT EDIT. This file is generated automatically. See README for details.
+    // DO NOT EDIT. This file is generated automatically. See README for details.
 
-// swiftlint:disable all
+    // swiftlint:disable all
 
 
-"""
+    """
 let nameGenerator = IdiomaticSafeNameGenerator(defensive: .init())
 
 enum GeneratorError: Error {

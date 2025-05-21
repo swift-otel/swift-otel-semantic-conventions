@@ -46,7 +46,9 @@ struct Attribute: Decodable {
         } else if let type = try? container.decode(EnumType.self, forKey: .type) {
             self.type = type
         } else {
-            throw DecodingError.dataCorrupted(.init(codingPath: container.codingPath, debugDescription: "Unexpected `type` value"))
+            throw DecodingError.dataCorrupted(
+                .init(codingPath: container.codingPath, debugDescription: "Unexpected `type` value")
+            )
         }
         stability = try container.decodeIfPresent(Stability.self, forKey: .stability) ?? .experimental
         brief = try container.decodeIfPresent(String.self, forKey: .brief)

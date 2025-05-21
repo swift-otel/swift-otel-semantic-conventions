@@ -3,7 +3,7 @@ struct SpanAttributeRenderer: FileRenderer {
     let fileNamePrefix = "SpanAttributes+"
 
     func renderFile(_ namespace: Namespace) throws -> String {
-        return try """
+        try """
         import OTelConventions
         import Tracing
 
@@ -22,52 +22,57 @@ struct SpanAttributeRenderer: FileRenderer {
         let templateAttributes = namespace.attributes.values.filter { isTemplateType($0.type) }
 
         var result = "/// `\(namespace.id)` namespace"
-        result.append("""
+        result.append(
+            """
 
-        public var \(propertyName): \(structName) {
-            get {
-                .init(attributes: \(inSpanNamespace ? "self.attributes" : "self"))
+            public var \(propertyName): \(structName) {
+                get {
+                    .init(attributes: \(inSpanNamespace ? "self.attributes" : "self"))
+                }
+                set {
+                    \(inSpanNamespace ? "self.attributes" : "self") = newValue.attributes
+                }
             }
-            set {
-                \(inSpanNamespace ? "self.attributes" : "self") = newValue.attributes
-            }
-        }
 
-        @dynamicMemberLookup
-        public struct \(structName): SpanAttributeNamespace {
-            public var attributes: SpanAttributes
+            @dynamicMemberLookup
+            public struct \(structName): SpanAttributeNamespace {
+                public var attributes: SpanAttributes
 
-            public init(attributes: SpanAttributes) {
-                self.attributes = attributes
-            }
-        """)
+                public init(attributes: SpanAttributes) {
+                    self.attributes = attributes
+                }
+            """
+        )
         try result.append(
-            "\n" +
-                templateAttributes.sorted { $0.id < $1.id }.map { attribute in
+            "\n"
+                + templateAttributes.sorted { $0.id < $1.id }.map { attribute in
                     try renderTemplateAttribute(attribute, indent: 4)
                 }.joined(separator: "\n\n")
         )
-        result.append("""
+        result.append(
+            """
 
-            public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
-                public init() {}
-        """)
+                public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                    public init() {}
+            """
+        )
         try result.append(
-            "\n" +
-                standardAttributes.sorted { $0.id < $1.id }.map { attribute in
+            "\n"
+                + standardAttributes.sorted { $0.id < $1.id }.map { attribute in
                     try renderStandardAttribute(attribute, namespace, indent: 8)
                 }.joined(separator: "\n\n")
         )
 
         result.append("\n    }")
         try result.append(
-            "\n\n" +
-                namespace.subNamespaces.values.sorted { $0.id < $1.id }.map { child in
+            "\n\n"
+                + namespace.subNamespaces.values.sorted { $0.id < $1.id }.map { child in
                     try renderNamespace(child, inSpanNamespace: true, indent: 4)
                 }.joined(separator: "\n\n")
         )
         result.append("\n}")
-        return result
+        return
+            result
             .split(separator: "\n", omittingEmptySubsequences: false)
             .map { String(repeating: " ", count: indent) + $0 }
             .joined(separator: "\n")
@@ -103,10 +108,14 @@ struct SpanAttributeRenderer: FileRenderer {
             default:
                 throw SpanAttributeRendererError.invalidStandardAttributeType(attribute.type)
             }
-            try result.append("\npublic var \(propertyName): Self.Key<\(swiftType)> { .init(name: \(swiftOTelAttributePath(attribute, namespace))) }")
+            try result.append(
+                "\npublic var \(propertyName): Self.Key<\(swiftType)> { .init(name: \(swiftOTelAttributePath(attribute, namespace))) }"
+            )
         } else if let type = attribute.type as? Attribute.EnumType {
             let enumTypeName = "\(nameGenerator.swiftTypeName(for: "\(attributeName)Enum"))"
-            try result.append("\npublic var \(propertyName): Self.Key<\(enumTypeName)> { .init(name: \(swiftOTelAttributePath(attribute, namespace))) }")
+            try result.append(
+                "\npublic var \(propertyName): Self.Key<\(enumTypeName)> { .init(name: \(swiftOTelAttributePath(attribute, namespace))) }"
+            )
 
             // Enum types are not represented as Swift enums to avoid breaking changes when new enum values are added.
             // Instead we use a struct with static properties for each enum value.
@@ -124,13 +133,15 @@ struct SpanAttributeRenderer: FileRenderer {
                 result.append("\n    public static let \(caseName) = Self.init(rawValue: \"\(member.value)\")")
             }
 
-            result.append("""
+            result.append(
+                """
 
-                public func toSpanAttribute() -> Tracing.SpanAttribute {
-                    return .string(self.rawValue)
+                    public func toSpanAttribute() -> Tracing.SpanAttribute {
+                        return .string(self.rawValue)
+                    }
                 }
-            }
-            """)
+                """
+            )
         } else {
             throw SpanAttributeRendererError.invalidStandardAttributeType(attribute.type)
         }
@@ -167,46 +178,48 @@ struct SpanAttributeRenderer: FileRenderer {
         // getTemplateType
 
         var result = renderDocs(attribute)
-        result.append("""
+        result.append(
+            """
 
-        public var \(swiftName): \(structName) {
-            get {
-                .init(attributes: self.attributes)
-            }
-            set {
-                self.attributes = newValue.attributes
-            }
-        }
-
-        public struct \(structName) {
-            public var attributes: SpanAttributes
-
-            public init(attributes: SpanAttributes) {
-                self.attributes = attributes
+            public var \(swiftName): \(structName) {
+                get {
+                    .init(attributes: self.attributes)
+                }
+                set {
+                    self.attributes = newValue.attributes
+                }
             }
 
-            public mutating func set(_ key: String, to value: \(valueType)) {
-                let attributeId = self.attributeId(forKey: key)
-                self.attributes[attributeId] = value
-            }
+            public struct \(structName) {
+                public var attributes: SpanAttributes
 
-            private func attributeId(forKey key: String) -> String {
-                var attributeId = "\(attribute.id)."
-
-                for index in key.indices {
-                    let character = key[index]
-
-                    if character == "-" {
-                        attributeId.append("_")
-                    } else {
-                        attributeId.append(character.lowercased())
-                    }
+                public init(attributes: SpanAttributes) {
+                    self.attributes = attributes
                 }
 
-                return attributeId
+                public mutating func set(_ key: String, to value: \(valueType)) {
+                    let attributeId = self.attributeId(forKey: key)
+                    self.attributes[attributeId] = value
+                }
+
+                private func attributeId(forKey key: String) -> String {
+                    var attributeId = "\(attribute.id)."
+
+                    for index in key.indices {
+                        let character = key[index]
+
+                        if character == "-" {
+                            attributeId.append("_")
+                        } else {
+                            attributeId.append(character.lowercased())
+                        }
+                    }
+
+                    return attributeId
+                }
             }
-        }
-        """)
+            """
+        )
         return result.split(separator: "\n", omittingEmptySubsequences: false)
             .map { String(repeating: " ", count: indent) + $0 }
             .joined(separator: "\n")
@@ -215,7 +228,8 @@ struct SpanAttributeRenderer: FileRenderer {
     private func isTemplateType(_ type: Attribute.AttributeType) -> Bool {
         if let standardType = type as? Attribute.StandardType {
             switch standardType {
-            case .templateBoolean, .templateBooleanArray, .templateInt, .templateIntArray, .templateDouble, .templateDoubleArray, .templateString, .templateStringArray:
+            case .templateBoolean, .templateBooleanArray, .templateInt, .templateIntArray, .templateDouble,
+                .templateDoubleArray, .templateString, .templateStringArray:
                 return true
             case .boolean, .booleanArray, .int, .intArray, .double, .doubleArray, .string, .stringArray:
                 return false
