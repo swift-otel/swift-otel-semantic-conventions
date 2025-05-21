@@ -13,26 +13,27 @@ struct OTelAttributeRenderer: FileRenderer {
     }
 
     private func renderNamespace(_ namespace: Namespace, indent: Int) throws -> String {
+        var properties: [String] = []
+        try properties.append(
+            contentsOf: namespace.attributes.values.sorted {
+                $0.id < $1.id
+            }.map { attribute in
+                try renderAttribute(attribute, namespace, indent: 4)
+            }
+        )
+        try properties.append(
+            contentsOf: namespace.subNamespaces.values.sorted {
+                $0.id < $1.id
+            }.map { child in
+                try renderNamespace(child, indent: 4)
+            }
+        )
+
         var result = "/// `\(namespace.id)` namespace"
         result.append("\npublic enum \(namespace.memberName) {")
-        try result.append(
-            "\n"
-                + namespace.attributes.values.sorted { $0.id < $1.id }.map { attribute in
-                    try renderAttribute(attribute, namespace, indent: 4)
-                }.joined(separator: "\n\n")
-        )
-        try result.append(
-            "\n\n"
-                + namespace.subNamespaces.values.sorted { $0.id < $1.id }.map { child in
-                    try renderNamespace(child, indent: 4)
-                }.joined(separator: "\n\n")
-        )
+        result.append("\n" + properties.joined(separator: "\n\n"))
         result.append("\n}")
-        return
-            result
-            .split(separator: "\n", omittingEmptySubsequences: false)
-            .map { String(repeating: " ", count: indent) + $0 }
-            .joined(separator: "\n")
+        return result.indent(by: indent)
     }
 
     private func renderAttribute(_ attribute: Attribute, _ namespace: Namespace, indent: Int) throws -> String {
@@ -44,9 +45,7 @@ struct OTelAttributeRenderer: FileRenderer {
             "\npublic static let \(swiftOTelAttributePropertyName(attribute, namespace)) = \"\(attribute.id)\""
         )
 
-        return result.split(separator: "\n", omittingEmptySubsequences: false)
-            .map { String(repeating: " ", count: indent) + $0 }
-            .joined(separator: "\n")
+        return result.indent(by: indent)
     }
 }
 

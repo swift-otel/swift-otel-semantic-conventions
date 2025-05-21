@@ -79,7 +79,6 @@ extension OTelAttribute {
             ///
             /// - Example: `3`
             public static let resendCount = "http.request.resend_count"
-
         }
 
         /// `http.response` namespace
@@ -105,7 +104,6 @@ extension OTelAttribute {
             ///
             /// - Example: `200`
             public static let statusCode = "http.response.status_code"
-
         }
     }
 }

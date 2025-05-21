@@ -39,7 +39,25 @@ func renderDocs(_ attribute: Attribute) -> String {
         }
     }
 
-    return result.split(separator: "\n", omittingEmptySubsequences: false)
-        .map { "/// " + $0 }
-        .joined(separator: "\n")
+    return result.prefixLines(with: "/// ")
+}
+
+extension String {
+    func prefixLines(with prefix: String) -> String {
+        self.split(separator: "\n", omittingEmptySubsequences: false)
+            .map { prefix + $0 }
+            .joined(separator: "\n")
+    }
+
+    func indent(by spaces: Int) -> String {
+        self.split(separator: "\n", omittingEmptySubsequences: false)
+            .map { line in
+                guard !line.isEmpty else {
+                    // Don't indent empty lines
+                    return line
+                }
+                return String(repeating: " ", count: spaces) + line
+            }
+            .joined(separator: "\n")
+    }
 }

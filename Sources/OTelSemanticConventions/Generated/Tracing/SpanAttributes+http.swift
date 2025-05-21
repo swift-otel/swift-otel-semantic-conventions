@@ -27,6 +27,7 @@ extension SpanAttributes {
 
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
+
             /// `http.route`: The matched route, that is, the path template in the format used by the respective server framework.
             ///
             /// - Stability: stable
@@ -58,6 +59,7 @@ extension SpanAttributes {
             public init(attributes: SpanAttributes) {
                 self.attributes = attributes
             }
+
             /// `http.request.header`: HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values.
             ///
             /// - Stability: stable
@@ -106,8 +108,10 @@ extension SpanAttributes {
                     return attributeId
                 }
             }
+
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
+
                 /// `http.request.method`: HTTP request method.
                 ///
                 /// - Stability: stable
@@ -182,7 +186,6 @@ extension SpanAttributes {
                 /// - Example: `3`
                 public var resendCount: Self.Key<Int> { .init(name: OTelAttribute.http.request.resendCount) }
             }
-
         }
 
         /// `http.response` namespace
@@ -202,6 +205,7 @@ extension SpanAttributes {
             public init(attributes: SpanAttributes) {
                 self.attributes = attributes
             }
+
             /// `http.response.header`: HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values.
             ///
             /// - Stability: stable
@@ -250,8 +254,10 @@ extension SpanAttributes {
                     return attributeId
                 }
             }
+
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
+
                 /// `http.response.status_code`: [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6).
                 ///
                 /// - Stability: stable
@@ -261,7 +267,6 @@ extension SpanAttributes {
                 /// - Example: `200`
                 public var statusCode: Self.Key<Int> { .init(name: OTelAttribute.http.response.statusCode) }
             }
-
         }
     }
 }

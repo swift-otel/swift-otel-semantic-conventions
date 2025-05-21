@@ -46,39 +46,42 @@ struct SpanAttributeRenderer: FileRenderer {
                 }
             """
         )
-        try result.append(
-            "\n"
-                + templateAttributes.sorted { $0.id < $1.id }.map { attribute in
-                    try renderTemplateAttribute(attribute, indent: 4)
-                }.joined(separator: "\n\n")
-        )
+        if !templateAttributes.isEmpty {
+            try result.append(
+                "\n\n"
+                    + templateAttributes.sorted { $0.id < $1.id }.map { attribute in
+                        try renderTemplateAttribute(attribute, indent: 4)
+                    }.joined(separator: "\n\n")
+            )
+        }
         result.append(
             """
+
 
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
             """
         )
-        try result.append(
-            "\n"
-                + standardAttributes.sorted { $0.id < $1.id }.map { attribute in
-                    try renderStandardAttribute(attribute, namespace, indent: 8)
-                }.joined(separator: "\n\n")
-        )
+        if !standardAttributes.isEmpty {
+            try result.append(
+                "\n\n"
+                    + standardAttributes.sorted { $0.id < $1.id }.map { attribute in
+                        try renderStandardAttribute(attribute, namespace, indent: 8)
+                    }.joined(separator: "\n\n")
+            )
+        }
 
         result.append("\n    }")
-        try result.append(
-            "\n\n"
-                + namespace.subNamespaces.values.sorted { $0.id < $1.id }.map { child in
-                    try renderNamespace(child, inSpanNamespace: true, indent: 4)
-                }.joined(separator: "\n\n")
-        )
+        if !namespace.subNamespaces.values.isEmpty {
+            try result.append(
+                "\n\n"
+                    + namespace.subNamespaces.values.sorted { $0.id < $1.id }.map { child in
+                        try renderNamespace(child, inSpanNamespace: true, indent: 4)
+                    }.joined(separator: "\n\n")
+            )
+        }
         result.append("\n}")
-        return
-            result
-            .split(separator: "\n", omittingEmptySubsequences: false)
-            .map { String(repeating: " ", count: indent) + $0 }
-            .joined(separator: "\n")
+        return result.indent(by: indent)
     }
 
     private func renderStandardAttribute(_ attribute: Attribute, _ namespace: Namespace, indent: Int) throws -> String {
@@ -149,9 +152,7 @@ struct SpanAttributeRenderer: FileRenderer {
             throw SpanAttributeRendererError.invalidStandardAttributeType(attribute.type)
         }
 
-        return result.split(separator: "\n", omittingEmptySubsequences: false)
-            .map { String(repeating: " ", count: indent) + $0 }
-            .joined(separator: "\n")
+        return result.indent(by: indent)
     }
 
     private func renderTemplateAttribute(_ attribute: Attribute, indent: Int) throws -> String {
@@ -223,9 +224,7 @@ struct SpanAttributeRenderer: FileRenderer {
             }
             """
         )
-        return result.split(separator: "\n", omittingEmptySubsequences: false)
-            .map { String(repeating: " ", count: indent) + $0 }
-            .joined(separator: "\n")
+        return result.indent(by: indent)
     }
 
     private func isTemplateType(_ type: Attribute.AttributeType) -> Bool {
