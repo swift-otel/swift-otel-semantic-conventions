@@ -1,5 +1,6 @@
+#if Tracing
+
 import OTelSemanticConventions
-import OTelSpanConventions
 import Testing
 import Tracing
 
@@ -22,3 +23,5 @@ struct SpanAttributeTests {
         #expect(attributes.get(OTelAttribute.http.request.header + ".x_foo") == .stringArray(["bar", "baz"]))
     }
 }
+
+#endif

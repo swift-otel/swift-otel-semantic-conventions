@@ -100,6 +100,8 @@ struct Generator: AsyncParsableCommand {
                 "Expected \(semConvRepoDirectory) to exist. Check zip file structure."
             )
             print("Unzipped to \(semConvRepoDirectory.path()).")
+        } else {
+            print("Using cached version at \(semConvRepoDirectory.path()).")
         }
     }
 
@@ -175,7 +177,13 @@ struct Generator: AsyncParsableCommand {
         renderers: [FileRenderer]
     ) throws {
         for renderer in renderers {
-            let directory = repoDirectory.appending(components: "Sources", renderer.targetDirectory, "Generated")
+            let directory = repoDirectory.appending(
+                components:
+                    "Sources",
+                "OTelSemanticConventions",
+                "Generated",
+                renderer.targetDirectory
+            )
             if fileManager.fileExists(atPath: directory.path()) {
                 try fileManager.removeItem(at: directory)
             }

@@ -4,27 +4,27 @@ import PackageDescription
 let package = Package(
     name: "swift-otel-semantic-conventions",
     products: [
-        .library(name: "OTelSemanticConventions", targets: ["OTelSemanticConventions"]),
-        .library(name: "OTelSpanConventions", targets: ["OTelSpanConventions"]),
+        .library(name: "OTelSemanticConventions", targets: ["OTelSemanticConventions"])
+    ],
+    traits: [
+        .trait(name: "Tracing"),
+        .default(enabledTraits: ["Tracing"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-distributed-tracing.git", from: "1.0.0"),
+        .package(url: "https://github.com/apple/swift-distributed-tracing.git", from: "1.0.0")
     ],
     targets: [
-        .target(name: "OTelSemanticConventions"),
         .target(
-            name: "OTelSpanConventions",
+            name: "OTelSemanticConventions",
             dependencies: [
-                .target(name: "OTelSemanticConventions"),
-                .product(name: "Tracing", package: "swift-distributed-tracing"),
+                .product(name: "Tracing", package: "swift-distributed-tracing", condition: .when(traits: ["Tracing"]))
             ]
         ),
         .testTarget(
             name: "OTelSemanticConventionsTests",
             dependencies: [
-                .target(name: "OTelSemanticConventions"),
-                .target(name: "OTelSpanConventions"),
+                .target(name: "OTelSemanticConventions")
             ]
         ),
-    ]
+    ],
 )

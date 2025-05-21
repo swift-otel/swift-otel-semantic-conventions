@@ -1,15 +1,18 @@
 struct SpanAttributeRenderer: FileRenderer {
-    let targetDirectory = "OTelSpanConventions"
+    let targetDirectory = "Tracing"
     let fileNamePrefix = "SpanAttributes+"
 
     func renderFile(_ namespace: Namespace) throws -> String {
         try """
-        import OTelSemanticConventions
+        #if Tracing
+
         import Tracing
 
         extension SpanAttributes {
         \(renderNamespace(namespace, indent: 4))
         }
+
+        #endif
 
         """
     }
