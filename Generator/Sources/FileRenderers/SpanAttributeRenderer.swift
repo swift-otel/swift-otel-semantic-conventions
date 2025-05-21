@@ -119,7 +119,7 @@ struct SpanAttributeRenderer: FileRenderer {
 
             // Enum types are not represented as Swift enums to avoid breaking changes when new enum values are added.
             // Instead we use a struct with static properties for each enum value.
-            result.append("\n\npublic struct \(enumTypeName): SpanAttributeConvertible {")
+            result.append("\n\npublic struct \(enumTypeName): SpanAttributeConvertible, Sendable {")
             result.append("\n    private let rawValue: String")
             for member in type.members {
                 let caseName = nameGenerator.swiftMemberName(for: member.id)

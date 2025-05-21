@@ -75,7 +75,7 @@ struct Attribute: Decodable {
     }
 
     // Attributes may have a declared type or be a list of enum values
-    protocol AttributeType: Codable {}
+    protocol AttributeType: Codable, Sendable {}
 
     enum StandardType: String, Codable, AttributeType {
         case boolean

@@ -131,7 +131,7 @@ extension SpanAttributes {
                 ///     - `HEAD`
                 public var method: Self.Key<MethodEnum> { .init(name: OTelAttribute.http.request.method) }
 
-                public struct MethodEnum: SpanAttributeConvertible {
+                public struct MethodEnum: SpanAttributeConvertible, Sendable {
                     private let rawValue: String
                     /// `CONNECT`: CONNECT method.
                     public static let connect = Self.init(rawValue: "CONNECT")
