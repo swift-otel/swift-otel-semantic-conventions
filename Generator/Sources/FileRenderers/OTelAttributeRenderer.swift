@@ -1,6 +1,6 @@
 /// Renders a file that extends `OTelAttribute` with a static property for each attribute name
 struct OTelAttributeRenderer: FileRenderer {
-    let targetDirectory = "OTelConventions/"
+    let targetDirectory = "OTelSemanticConventions/"
     let fileNamePrefix = "OTelAttribute+"
 
     func renderFile(_ namespace: Namespace) throws -> String {

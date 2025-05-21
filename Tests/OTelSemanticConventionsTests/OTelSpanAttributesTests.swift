@@ -1,4 +1,4 @@
-import OTelConventions
+import OTelSemanticConventions
 import OTelSpanConventions
 import Testing
 import Tracing

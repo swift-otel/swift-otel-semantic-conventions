@@ -10,7 +10,7 @@ let package = Package(
             targets: ["OTelHTTPMetricsConventions"]
         ),
         .library(name: "OTelHTTPMetricsConventions", targets: ["OTelHTTPMetricsConventions"]),
-        .library(name: "OTelConventions", targets: ["OTelConventions"]),
+        .library(name: "OTelSemanticConventions", targets: ["OTelSemanticConventions"]),
         .library(name: "OTelSpanConventions", targets: ["OTelSpanConventions"]),
     ],
     dependencies: [
@@ -38,18 +38,18 @@ let package = Package(
         .target(name: "OTelMetricsConventionsCore"),
         .target(name: "OTelMetricsConventionsTestSupport"),
 
-        .target(name: "OTelConventions"),
+        .target(name: "OTelSemanticConventions"),
         .target(
             name: "OTelSpanConventions",
             dependencies: [
-                .target(name: "OTelConventions"),
+                .target(name: "OTelSemanticConventions"),
                 .product(name: "Tracing", package: "swift-distributed-tracing"),
             ]
         ),
         .testTarget(
-            name: "OTelConventionsTests",
+            name: "OTelSemanticConventionsTests",
             dependencies: [
-                .target(name: "OTelConventions"),
+                .target(name: "OTelSemanticConventions"),
                 .target(name: "OTelSpanConventions"),
             ]
         ),

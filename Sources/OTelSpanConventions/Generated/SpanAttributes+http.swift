@@ -2,7 +2,7 @@
 
 // swiftlint:disable all
 
-import OTelConventions
+import OTelSemanticConventions
 import Tracing
 
 extension SpanAttributes {

@@ -4,7 +4,7 @@ struct SpanAttributeRenderer: FileRenderer {
 
     func renderFile(_ namespace: Namespace) throws -> String {
         try """
-        import OTelConventions
+        import OTelSemanticConventions
         import Tracing
 
         extension SpanAttributes {

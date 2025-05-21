@@ -1,4 +1,4 @@
-import OTelConventions
+import OTelSemanticConventions
 import Testing
 
 struct OTelHttpAttributesTests {
