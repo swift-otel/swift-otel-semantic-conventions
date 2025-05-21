@@ -175,7 +175,7 @@ struct Generator: AsyncParsableCommand {
         renderers: [FileRenderer]
     ) throws {
         for renderer in renderers {
-            let directory = repoDirectory.appending(path: "Sources/\(renderer.targetDirectory)Generated/")
+            let directory = repoDirectory.appending(components: "Sources", renderer.targetDirectory, "Generated")
             if fileManager.fileExists(atPath: directory.path()) {
                 try fileManager.removeItem(at: directory)
             }
