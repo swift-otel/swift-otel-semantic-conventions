@@ -1,7 +1,5 @@
 // DO NOT EDIT. This file is generated automatically. See README for details.
 
-// swiftlint:disable all
-
 extension OTelAttribute {
     /// `http` namespace
     public enum http {

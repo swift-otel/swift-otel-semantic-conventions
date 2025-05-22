@@ -235,8 +235,6 @@ class Namespace {
 let generatedFileHeader = """
     // DO NOT EDIT. This file is generated automatically. See README for details.
 
-    // swiftlint:disable all
-
 
     """
 let nameGenerator = IdiomaticSafeNameGenerator(defensive: .init())
