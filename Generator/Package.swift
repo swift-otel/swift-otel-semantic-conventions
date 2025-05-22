@@ -22,5 +22,6 @@ let package = Package(
                 .product(name: "ZIPFoundation", package: "ZIPFoundation"),
             ]
         )
-    ]
+    ],
+    swiftLanguageModes: [.v6]
 )
