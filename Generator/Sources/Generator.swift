@@ -12,7 +12,7 @@ struct Generator: AsyncParsableCommand {
     @Option(
         name: .shortAndLong,
         help:
-            "A comma-separated list of top-level namespaces to use in the generation. If not included, all namespaces will be generated."
+            "A comma-separated list of top-level namespaces to use in the generation. If not included, all namespaces except `aspnetcore`, `jvm`, `nodejs`, `signalr`, and `v8js` will be generated."
     )
     var namespaces: String? = nil
 
@@ -63,6 +63,10 @@ struct Generator: AsyncParsableCommand {
             let namespaceSet = Set(namespaces.split(separator: ",").map { String($0) })
             // Filter to only include the specified namespaces
             topLevelNamespaces = topLevelNamespaces.filter { namespaceSet.contains($0.id) }
+        } else {
+            // Filter to exclude these namespaces by default
+            let excludedNamespaces: Set<String> = ["aspnetcore", "jvm", "nodejs", "signalr", "v8js"]
+            topLevelNamespaces = topLevelNamespaces.filter { !excludedNamespaces.contains($0.id) }
         }
 
         // Generate individual target files
