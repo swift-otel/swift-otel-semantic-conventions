@@ -75,6 +75,8 @@ struct Generator: AsyncParsableCommand {
                 SpanAttributeRenderer(),
             ]
         )
+
+        try updateReadmeSemConvBadge(repoDirectory: repoDirectory)
     }
 
     /// Checks cache, and if necessary downloads and unzips the semantic conventions repository
@@ -203,6 +205,18 @@ struct Generator: AsyncParsableCommand {
                 print("Wrote file \(filePath.path()).")
             }
         }
+    }
+
+    /// Updates the README file with the new version of the semantic convention badge.
+    private func updateReadmeSemConvBadge(repoDirectory: URL) throws {
+        let readmePath = repoDirectory.appending(path: "README.md")
+        var readmeContents = try String(contentsOf: readmePath)
+        readmeContents.replace(
+            /https:\/\/img\.shields\.io\/badge\/semconv-\d+\.\d+.\d+-blue\.svg/,
+            with: "https://img.shields.io/badge/semconv-\(version.dropFirst())-blue.svg"
+        )
+        try readmeContents.write(to: readmePath, atomically: true, encoding: .utf8)
+        print("Updated README with semconv badge with version \(version).")
     }
 }
 
