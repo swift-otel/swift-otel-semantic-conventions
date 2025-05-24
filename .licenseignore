@@ -8,6 +8,7 @@
 *.yaml
 Package.swift
 Package.resolved
+CODEOWNERS
 **/.gitignore
 **/Package.swift
 **/Package.resolved
