@@ -1,3 +1,16 @@
+//===----------------------------------------------------------------------===//
+//
+// This source file is part of the Swift OTel open source project
+//
+// Copyright (c) 2025 the Swift OTel project authors
+// Licensed under Apache License v2.0
+//
+// See LICENSE.txt for license information
+//
+// SPDX-License-Identifier: Apache-2.0
+//
+//===----------------------------------------------------------------------===//
+
 /// Structure of an OTel semconv registry.yaml file.
 /// All registry files are of type `attribute_group`
 /// See: https://github.com/open-telemetry/weaver/blob/main/schemas/semconv-syntax.md#attribute-group-semantic-convention

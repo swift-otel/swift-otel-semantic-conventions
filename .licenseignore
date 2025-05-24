@@ -1,0 +1,13 @@
+.gitignore
+.licenseignore
+.swift-format
+.editorconfig
+*.md
+*.txt
+*.yml
+*.yaml
+Package.swift
+Package.resolved
+**/.gitignore
+**/Package.swift
+**/Package.resolved
