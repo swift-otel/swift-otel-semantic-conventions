@@ -44,7 +44,7 @@ struct Attribute: Decodable {
     let stability: Stability
     let brief: String?
     let note: String?
-    let deprecated: String?
+    let deprecated: Deprecated?
     let examples: [String]?
 
     enum RequirementLevel: String, Codable {
@@ -66,7 +66,7 @@ struct Attribute: Decodable {
         stability = try container.decodeIfPresent(Stability.self, forKey: .stability) ?? .experimental
         brief = try container.decodeIfPresent(String.self, forKey: .brief)
         note = try container.decodeIfPresent(String.self, forKey: .note)
-        deprecated = try container.decodeIfPresent(String.self, forKey: .deprecated)
+        deprecated = try container.decodeIfPresent(Deprecated.self, forKey: .deprecated)
         if !container.contains(.examples) {
             examples = nil
         } else if let example = try? container.decode(String.self, forKey: .examples) {
@@ -107,6 +107,7 @@ struct Attribute: Decodable {
         case stringArray = "string[]"
         case templateString = "template[string]"
         case templateStringArray = "template[string[]]"
+        case any
     }
 
     struct EnumType: AttributeType {
@@ -129,6 +130,10 @@ extension Bool: AttributeExample {}
 extension Double: AttributeExample {}
 extension Int: AttributeExample {}
 extension String: AttributeExample {}
+
+struct Deprecated: Codable {
+    let note: String?
+}
 
 enum Stability: String, Codable {
     case development

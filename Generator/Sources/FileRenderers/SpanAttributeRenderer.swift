@@ -110,7 +110,7 @@ struct SpanAttributeRenderer: FileRenderer {
         propertyName = nameGenerator.swiftMemberName(for: propertyName)
 
         var result = renderDocs(attribute)
-        if let deprecatedMessage = attribute.deprecated {
+        if let deprecatedMessage = attribute.deprecated?.note?.trimmingCharacters(in: .whitespacesAndNewlines) {
             result.append("\n@available(*, deprecated, message: \"\(deprecatedMessage)\")")
         }
 
@@ -247,7 +247,7 @@ struct SpanAttributeRenderer: FileRenderer {
             case .templateBoolean, .templateBooleanArray, .templateInt, .templateIntArray, .templateDouble,
                 .templateDoubleArray, .templateString, .templateStringArray:
                 return true
-            case .boolean, .booleanArray, .int, .intArray, .double, .doubleArray, .string, .stringArray:
+            case .boolean, .booleanArray, .int, .intArray, .double, .doubleArray, .string, .stringArray, .any:
                 return false
             }
         } else {
