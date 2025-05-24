@@ -25,7 +25,7 @@ struct Generator: AsyncParsableCommand {
     @Option(
         name: .shortAndLong,
         help:
-            "A comma-separated list of top-level namespaces to use in the generation. If not included, all namespaces except `aspnetcore`, `jvm`, `nodejs`, `signalr`, and `v8js` will be generated."
+            "A comma-separated list of top-level namespaces to use in the generation. If not included, all namespaces except `aspnetcore`, `jvm`, `nodejs`, `signalr`, `dotnet`, and `v8js` will be generated."
     )
     var namespaces: String? = nil
 
@@ -78,7 +78,7 @@ struct Generator: AsyncParsableCommand {
             topLevelNamespaces = topLevelNamespaces.filter { namespaceSet.contains($0.id) }
         } else {
             // Filter to exclude these namespaces by default
-            let excludedNamespaces: Set<String> = ["aspnetcore", "jvm", "nodejs", "signalr", "v8js"]
+            let excludedNamespaces: Set<String> = ["aspnetcore", "jvm", "nodejs", "signalr", "dotnet", "v8js"]
             topLevelNamespaces = topLevelNamespaces.filter { !excludedNamespaces.contains($0.id) }
         }
 
