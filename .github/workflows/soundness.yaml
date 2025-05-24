@@ -5,6 +5,23 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}-soundness
   cancel-in-progress: true
 jobs:
+  api-check:
+    name: API check
+    runs-on: ubuntu-22.04
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with: { 'fetch-depth': 0 }
+      - name: Install Swift
+        uses: vapor/swiftly-action@v0.2
+        with:
+          toolchain: latest
+        env:
+          SWIFTLY_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run API breakage check
+        run: swift package diagnose-api-breaking-changes "origin/$GITHUB_BASE_REF"
+
   format-check:
     name: Format check
     runs-on: ubuntu-22.04
@@ -20,3 +37,13 @@ jobs:
           SWIFTLY_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Run format check
         run: ./scripts/check-swift-format.sh
+
+  license-header-check:
+    name: License headers check
+    runs-on: ubuntu-22.04
+    timeout-minutes: 1
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Run license header check
+        run: ./scripts/check-license-headers.sh

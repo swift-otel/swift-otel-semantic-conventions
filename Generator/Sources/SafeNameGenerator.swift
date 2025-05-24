@@ -1,4 +1,31 @@
-// Sourced from https://github.com/apple/swift-openapi-generator/blob/84b693f9d0559dc488e691edb4837bafbce2aaea/Sources/_OpenAPIGeneratorCore/Translator/TypeAssignment/SafeNameGenerator
+//===----------------------------------------------------------------------===//
+//
+// This source file is part of the Swift OTel open source project
+//
+// Copyright (c) 2025 the Swift OTel project authors
+// Licensed under Apache License v2.0
+//
+// See LICENSE.txt for license information
+//
+// SPDX-License-Identifier: Apache-2.0
+//
+//===----------------------------------------------------------------------===//
+
+//===----------------------------------------------------------------------===//
+//
+// This source file is part of the SwiftOpenAPIGenerator open source project
+//
+// Copyright (c) 2023 Apple Inc. and the SwiftOpenAPIGenerator project authors
+// Licensed under Apache License v2.0
+//
+// See LICENSE.txt for license information
+// See CONTRIBUTORS.txt for the list of SwiftOpenAPIGenerator project authors
+//
+// SPDX-License-Identifier: Apache-2.0
+//
+//===----------------------------------------------------------------------===//
+
+// Sourced from https://github.com/apple/swift-openapi-generator/blob/1.7.2/Sources/_OpenAPIGeneratorCore/Translator/TypeAssignment/SafeNameGenerator.swift
 // Modifications:
 // - Changed keyword escaping from `_` prefix to surrounding with backticks
 // - Removed `ContentType` support, which is HTTP specific

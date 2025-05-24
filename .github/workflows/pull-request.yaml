@@ -8,6 +8,3 @@ jobs:
   soundness:
     name: Soundness
     uses: ./.github/workflows/soundness.yaml
-  api-check:
-    name: API Check
-    uses: ./.github/workflows/api-check.yaml
