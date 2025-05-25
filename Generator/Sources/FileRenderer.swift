@@ -20,8 +20,8 @@ protocol FileRenderer {
 
 func renderDocs(_ attribute: Attribute) -> String {
     var result = "`\(attribute.id)`"
-    if let brief = attribute.brief {
-        result.append(": \(brief.replacingOccurrences(of: "\n", with: " "))")
+    if let brief = attribute.brief?.trimmingCharacters(in: .whitespacesAndNewlines), !brief.isEmpty {
+        result.append(": \(brief)")
     }
     result.append("\n\n- Stability: \(attribute.stability)")
 
@@ -29,8 +29,8 @@ func renderDocs(_ attribute: Attribute) -> String {
         result.append("\n\n- Type: enum")
         for member in attributeType.members {
             result.append("\n    - `\(member.value)`")
-            if let brief = member.brief {
-                result.append(": \(brief.trimmingCharacters(in: .whitespacesAndNewlines))")
+            if let brief = member.brief?.trimmingCharacters(in: .whitespacesAndNewlines), !brief.isEmpty {
+                result.append(": \(brief)")
             }
         }
     } else {
