@@ -42,23 +42,21 @@ extension SpanAttributes {
             /// `network.transport`: [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication).
             ///
             /// - Stability: stable
-            ///
             /// - Type: enum
             ///     - `tcp`: TCP
             ///     - `udp`: UDP
             ///     - `pipe`: Named or anonymous pipe.
             ///     - `unix`: Unix domain socket
             ///     - `quic`: QUIC
+            /// - Examples:
+            ///     - `tcp`
+            ///     - `udp`
             ///
             /// The value SHOULD be normalized to lowercase.
             ///
             /// Consider always setting the transport when setting a port number, since
             /// a port number is ambiguous without knowing the transport. For example
             /// different processes could be listening on TCP port 12345 and UDP port 12345.
-            ///
-            /// - Examples:
-            ///     - `tcp`
-            ///     - `udp`
             public var transport: Self.Key<TransportEnum> { .init(name: OTelAttribute.network.transport) }
 
             public struct TransportEnum: SpanAttributeConvertible, Sendable {
@@ -81,16 +79,14 @@ extension SpanAttributes {
             /// `network.type`: [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent.
             ///
             /// - Stability: stable
-            ///
             /// - Type: enum
             ///     - `ipv4`: IPv4
             ///     - `ipv6`: IPv6
-            ///
-            /// The value SHOULD be normalized to lowercase.
-            ///
             /// - Examples:
             ///     - `ipv4`
             ///     - `ipv6`
+            ///
+            /// The value SHOULD be normalized to lowercase.
             public var `type`: Self.Key<TypeEnum> { .init(name: OTelAttribute.network.`type`) }
 
             public struct TypeEnum: SpanAttributeConvertible, Sendable {
@@ -129,9 +125,7 @@ extension SpanAttributes {
                 /// `network.local.address`: Local address of the network connection - IP address or Unix domain socket name.
                 ///
                 /// - Stability: stable
-                ///
                 /// - Type: string
-                ///
                 /// - Examples:
                 ///     - `10.1.2.80`
                 ///     - `/tmp/my.sock`
@@ -140,9 +134,7 @@ extension SpanAttributes {
                 /// `network.local.port`: Local port number of the network connection.
                 ///
                 /// - Stability: stable
-                ///
                 /// - Type: int
-                ///
                 /// - Example: `65123`
                 public var port: Self.Key<Int> { .init(name: OTelAttribute.network.local.port) }
             }
@@ -172,9 +164,7 @@ extension SpanAttributes {
                 /// `network.peer.address`: Peer address of the network connection - IP address or Unix domain socket name.
                 ///
                 /// - Stability: stable
-                ///
                 /// - Type: string
-                ///
                 /// - Examples:
                 ///     - `10.1.2.80`
                 ///     - `/tmp/my.sock`
@@ -183,9 +173,7 @@ extension SpanAttributes {
                 /// `network.peer.port`: Peer port number of the network connection.
                 ///
                 /// - Stability: stable
-                ///
                 /// - Type: int
-                ///
                 /// - Example: `65123`
                 public var port: Self.Key<Int> { .init(name: OTelAttribute.network.peer.port) }
             }
@@ -215,28 +203,24 @@ extension SpanAttributes {
                 /// `network.protocol.name`: [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent.
                 ///
                 /// - Stability: stable
-                ///
                 /// - Type: string
-                ///
-                /// The value SHOULD be normalized to lowercase.
-                ///
                 /// - Examples:
                 ///     - `amqp`
                 ///     - `http`
                 ///     - `mqtt`
+                ///
+                /// The value SHOULD be normalized to lowercase.
                 public var name: Self.Key<String> { .init(name: OTelAttribute.network.`protocol`.name) }
 
                 /// `network.protocol.version`: The actual version of the protocol used for network communication.
                 ///
                 /// - Stability: stable
-                ///
                 /// - Type: string
-                ///
-                /// If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
-                ///
                 /// - Examples:
                 ///     - `1.1`
                 ///     - `2`
+                ///
+                /// If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
                 public var version: Self.Key<String> { .init(name: OTelAttribute.network.`protocol`.version) }
             }
         }

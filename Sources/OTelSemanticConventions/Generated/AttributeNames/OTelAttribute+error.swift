@@ -19,9 +19,13 @@ extension OTelAttribute {
         /// `error.type`: Describes a class of error the operation ended with.
         ///
         /// - Stability: stable
-        ///
         /// - Type: enum
         ///     - `_OTHER`: A fallback error value to be used when the instrumentation doesn't define a custom value.
+        /// - Examples:
+        ///     - `timeout`
+        ///     - `java.net.UnknownHostException`
+        ///     - `server_certificate_invalid`
+        ///     - `500`
         ///
         /// The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
         ///
@@ -42,12 +46,6 @@ extension OTelAttribute {
         ///
         /// - Use a domain-specific attribute
         /// - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
-        ///
-        /// - Examples:
-        ///     - `timeout`
-        ///     - `java.net.UnknownHostException`
-        ///     - `server_certificate_invalid`
-        ///     - `500`
         public static let `type` = "error.type"
     }
 }

@@ -42,15 +42,13 @@ extension SpanAttributes {
             /// `http.route`: The matched route, that is, the path template in the format used by the respective server framework.
             ///
             /// - Stability: stable
-            ///
             /// - Type: string
-            ///
-            /// MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
-            /// SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
-            ///
             /// - Examples:
             ///     - `/users/:userID?`
             ///     - `{controller}/{action}/{id?}`
+            ///
+            /// MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
+            /// SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
             public var route: Self.Key<String> { .init(name: OTelAttribute.http.route) }
         }
 
@@ -75,7 +73,6 @@ extension SpanAttributes {
             /// `http.request.header`: HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values.
             ///
             /// - Stability: stable
-            ///
             /// - Type: templateStringArray
             ///
             /// Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
@@ -138,7 +135,6 @@ extension SpanAttributes {
                 /// `http.request.method`: HTTP request method.
                 ///
                 /// - Stability: stable
-                ///
                 /// - Type: enum
                 ///     - `CONNECT`: CONNECT method.
                 ///     - `DELETE`: DELETE method.
@@ -150,6 +146,10 @@ extension SpanAttributes {
                 ///     - `PUT`: PUT method.
                 ///     - `TRACE`: TRACE method.
                 ///     - `_OTHER`: Any HTTP method that the instrumentation has no prior knowledge of.
+                /// - Examples:
+                ///     - `GET`
+                ///     - `POST`
+                ///     - `HEAD`
                 ///
                 /// HTTP request method value SHOULD be "known" to the instrumentation.
                 /// By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
@@ -165,11 +165,6 @@ extension SpanAttributes {
                 /// HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
                 /// Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
                 /// Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
-                ///
-                /// - Examples:
-                ///     - `GET`
-                ///     - `POST`
-                ///     - `HEAD`
                 public var method: Self.Key<MethodEnum> { .init(name: OTelAttribute.http.request.method) }
 
                 public struct MethodEnum: SpanAttributeConvertible, Sendable {
@@ -202,9 +197,7 @@ extension SpanAttributes {
                 /// `http.request.method_original`: Original HTTP method sent by the client in the request line.
                 ///
                 /// - Stability: stable
-                ///
                 /// - Type: string
-                ///
                 /// - Examples:
                 ///     - `GeT`
                 ///     - `ACL`
@@ -214,12 +207,10 @@ extension SpanAttributes {
                 /// `http.request.resend_count`: The ordinal number of request resending attempt (for any reason, including redirects).
                 ///
                 /// - Stability: stable
-                ///
                 /// - Type: int
+                /// - Example: `3`
                 ///
                 /// The resend count SHOULD be updated each time an HTTP request gets resent by the client, regardless of what was the cause of the resending (e.g. redirection, authorization failure, 503 Server Unavailable, network issues, or any other).
-                ///
-                /// - Example: `3`
                 public var resendCount: Self.Key<Int> { .init(name: OTelAttribute.http.request.resendCount) }
             }
         }
@@ -245,7 +236,6 @@ extension SpanAttributes {
             /// `http.response.header`: HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values.
             ///
             /// - Stability: stable
-            ///
             /// - Type: templateStringArray
             ///
             /// Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
@@ -307,9 +297,7 @@ extension SpanAttributes {
                 /// `http.response.status_code`: [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6).
                 ///
                 /// - Stability: stable
-                ///
                 /// - Type: int
-                ///
                 /// - Example: `200`
                 public var statusCode: Self.Key<Int> { .init(name: OTelAttribute.http.response.statusCode) }
             }

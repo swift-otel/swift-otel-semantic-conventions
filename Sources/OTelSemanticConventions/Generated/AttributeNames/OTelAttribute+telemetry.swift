@@ -21,7 +21,6 @@ extension OTelAttribute {
             /// `telemetry.sdk.language`: The language of the telemetry SDK.
             ///
             /// - Stability: stable
-            ///
             /// - Type: enum
             ///     - `cpp`
             ///     - `dotnet`
@@ -40,8 +39,8 @@ extension OTelAttribute {
             /// `telemetry.sdk.name`: The name of the telemetry SDK as defined above.
             ///
             /// - Stability: stable
-            ///
             /// - Type: string
+            /// - Example: `opentelemetry`
             ///
             /// The OpenTelemetry SDK MUST set the `telemetry.sdk.name` attribute to `opentelemetry`.
             /// If another SDK, like a fork or a vendor-provided implementation, is used, this SDK MUST set the
@@ -49,16 +48,12 @@ extension OTelAttribute {
             /// or another suitable identifier depending on the language.
             /// The identifier `opentelemetry` is reserved and MUST NOT be used in this case.
             /// All custom identifiers SHOULD be stable across different versions of an implementation.
-            ///
-            /// - Example: `opentelemetry`
             public static let name = "telemetry.sdk.name"
 
             /// `telemetry.sdk.version`: The version string of the telemetry SDK.
             ///
             /// - Stability: stable
-            ///
             /// - Type: string
-            ///
             /// - Example: `1.2.3`
             public static let version = "telemetry.sdk.version"
         }

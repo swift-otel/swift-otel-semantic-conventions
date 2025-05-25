@@ -19,7 +19,6 @@ extension OTelAttribute {
         /// `otel.status_code`: Name of the code, either "OK" or "ERROR". MUST NOT be set if the status code is UNSET.
         ///
         /// - Stability: stable
-        ///
         /// - Type: enum
         ///     - `OK`: The operation has been validated by an Application developer or Operator to have completed successfully.
         ///     - `ERROR`: The operation contains an error.
@@ -28,9 +27,7 @@ extension OTelAttribute {
         /// `otel.status_description`: Description of the Status if it has a value, otherwise not set.
         ///
         /// - Stability: stable
-        ///
         /// - Type: string
-        ///
         /// - Example: `resource not found`
         public static let statusDescription = "otel.status_description"
 
@@ -39,18 +36,14 @@ extension OTelAttribute {
             /// `otel.scope.name`: The name of the instrumentation scope - (`InstrumentationScope.Name` in OTLP).
             ///
             /// - Stability: stable
-            ///
             /// - Type: string
-            ///
             /// - Example: `io.opentelemetry.contrib.mongodb`
             public static let name = "otel.scope.name"
 
             /// `otel.scope.version`: The version of the instrumentation scope - (`InstrumentationScope.Version` in OTLP).
             ///
             /// - Stability: stable
-            ///
             /// - Type: string
-            ///
             /// - Example: `1.0.0`
             public static let version = "otel.scope.version"
         }

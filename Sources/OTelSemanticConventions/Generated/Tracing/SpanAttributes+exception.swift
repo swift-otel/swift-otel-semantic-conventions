@@ -42,7 +42,6 @@ extension SpanAttributes {
             /// `exception.escaped`: Indicates that the exception is escaping the scope of the span.
             ///
             /// - Stability: stable
-            ///
             /// - Type: boolean
             @available(
                 *,
@@ -55,9 +54,7 @@ extension SpanAttributes {
             /// `exception.message`: The exception message.
             ///
             /// - Stability: stable
-            ///
             /// - Type: string
-            ///
             /// - Examples:
             ///     - `Division by zero`
             ///     - `Can't convert 'int' object to str implicitly`
@@ -66,9 +63,7 @@ extension SpanAttributes {
             /// `exception.stacktrace`: A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG.
             ///
             /// - Stability: stable
-            ///
             /// - Type: string
-            ///
             /// - Example: `Exception in thread "main" java.lang.RuntimeException: Test exception\n at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)
             /// `
             public var stacktrace: Self.Key<String> { .init(name: OTelAttribute.exception.stacktrace) }
@@ -76,9 +71,7 @@ extension SpanAttributes {
             /// `exception.type`: The type of the exception (its fully-qualified class name, if applicable). The dynamic type of the exception should be preferred over the static type in languages that support it.
             ///
             /// - Stability: stable
-            ///
             /// - Type: string
-            ///
             /// - Examples:
             ///     - `java.net.ConnectException`
             ///     - `OSError`

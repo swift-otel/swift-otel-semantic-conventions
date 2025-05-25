@@ -23,10 +23,10 @@ func renderDocs(_ attribute: Attribute) -> String {
     if let brief = attribute.brief?.trimmingCharacters(in: .whitespacesAndNewlines), !brief.isEmpty {
         result.append(": \(brief)")
     }
-    result.append("\n\n- Stability: \(attribute.stability)")
 
+    result.append("\n\n- Stability: \(attribute.stability)")
     if let attributeType = attribute.type as? Attribute.EnumType {
-        result.append("\n\n- Type: enum")
+        result.append("\n- Type: enum")
         for member in attributeType.members {
             result.append("\n    - `\(member.value)`")
             if let brief = member.brief?.trimmingCharacters(in: .whitespacesAndNewlines), !brief.isEmpty {
@@ -34,22 +34,21 @@ func renderDocs(_ attribute: Attribute) -> String {
             }
         }
     } else {
-        result.append("\n\n- Type: \(attribute.type)")
+        result.append("\n- Type: \(attribute.type)")
     }
-
-    if let note = attribute.note?.trimmingCharacters(in: .whitespacesAndNewlines), !note.isEmpty {
-        result.append("\n\n\(note)")
-    }
-
     if let examples = attribute.examples {
         if examples.count == 1 {
-            result.append("\n\n- Example: `\(examples[0])`")
+            result.append("\n- Example: `\(examples[0])`")
         } else {
-            result.append("\n\n- Examples:")
+            result.append("\n- Examples:")
             for example in examples {
                 result.append("\n    - `\(example)`")
             }
         }
+    }
+
+    if let note = attribute.note?.trimmingCharacters(in: .whitespacesAndNewlines), !note.isEmpty {
+        result.append("\n\n\(note)")
     }
 
     return result.prefixLines(with: "/// ")
