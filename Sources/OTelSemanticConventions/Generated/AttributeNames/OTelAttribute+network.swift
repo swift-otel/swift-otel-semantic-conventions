@@ -27,7 +27,11 @@ extension OTelAttribute {
         ///     - `unix`: Unix domain socket
         ///     - `quic`: QUIC
         ///
-        /// The value SHOULD be normalized to lowercase.  Consider always setting the transport when setting a port number, since a port number is ambiguous without knowing the transport. For example different processes could be listening on TCP port 12345 and UDP port 12345.
+        /// The value SHOULD be normalized to lowercase.
+        ///
+        /// Consider always setting the transport when setting a port number, since
+        /// a port number is ambiguous without knowing the transport. For example
+        /// different processes could be listening on TCP port 12345 and UDP port 12345.
         ///
         /// - Examples:
         ///     - `tcp`

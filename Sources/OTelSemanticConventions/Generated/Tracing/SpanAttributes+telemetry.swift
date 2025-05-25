@@ -117,7 +117,12 @@ extension SpanAttributes {
                 ///
                 /// - Type: string
                 ///
-                /// The OpenTelemetry SDK MUST set the `telemetry.sdk.name` attribute to `opentelemetry`. If another SDK, like a fork or a vendor-provided implementation, is used, this SDK MUST set the `telemetry.sdk.name` attribute to the fully-qualified class or module name of this SDK's main entry point or another suitable identifier depending on the language. The identifier `opentelemetry` is reserved and MUST NOT be used in this case. All custom identifiers SHOULD be stable across different versions of an implementation.
+                /// The OpenTelemetry SDK MUST set the `telemetry.sdk.name` attribute to `opentelemetry`.
+                /// If another SDK, like a fork or a vendor-provided implementation, is used, this SDK MUST set the
+                /// `telemetry.sdk.name` attribute to the fully-qualified class or module name of this SDK's main entry point
+                /// or another suitable identifier depending on the language.
+                /// The identifier `opentelemetry` is reserved and MUST NOT be used in this case.
+                /// All custom identifiers SHOULD be stable across different versions of an implementation.
                 ///
                 /// - Example: `opentelemetry`
                 public var name: Self.Key<String> { .init(name: OTelAttribute.telemetry.sdk.name) }

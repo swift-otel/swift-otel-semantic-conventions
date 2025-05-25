@@ -37,8 +37,8 @@ func renderDocs(_ attribute: Attribute) -> String {
         result.append("\n\n- Type: \(attribute.type)")
     }
 
-    if let note = attribute.note {
-        result.append("\n\n\(note.replacingOccurrences(of: "\n", with: " "))")
+    if let note = attribute.note?.trimmingCharacters(in: .whitespacesAndNewlines), !note.isEmpty {
+        result.append("\n\n\(note)")
     }
 
     if let examples = attribute.examples {

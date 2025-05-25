@@ -58,7 +58,21 @@ extension OTelAttribute {
             ///
             /// - Type: string
             ///
-            /// Values and format depends on each language runtime, thus it is impossible to provide an exhaustive list of examples. The values are usually the same (or prefixes of) the ones found in native stack trace representation stored in `code.stacktrace` without information on arguments.  Examples:  * Java method: `com.example.MyHttpService.serveRequest` * Java anonymous class method: `com.mycompany.Main$1.myMethod` * Java lambda method: `com.mycompany.Main$$Lambda/0x0000748ae4149c00.myMethod` * PHP function: `GuzzleHttp\Client::transfer` * Go function: `github.com/my/repo/pkg.foo.func5` * Elixir: `OpenTelemetry.Ctx.new` * Erlang: `opentelemetry_ctx:new` * Rust: `playground::my_module::my_cool_func` * C function: `fopen`
+            /// Values and format depends on each language runtime, thus it is impossible to provide an exhaustive list of examples.
+            /// The values are usually the same (or prefixes of) the ones found in native stack trace representation stored in
+            /// `code.stacktrace` without information on arguments.
+            ///
+            /// Examples:
+            ///
+            /// * Java method: `com.example.MyHttpService.serveRequest`
+            /// * Java anonymous class method: `com.mycompany.Main$1.myMethod`
+            /// * Java lambda method: `com.mycompany.Main$$Lambda/0x0000748ae4149c00.myMethod`
+            /// * PHP function: `GuzzleHttp\Client::transfer`
+            /// * Go function: `github.com/my/repo/pkg.foo.func5`
+            /// * Elixir: `OpenTelemetry.Ctx.new`
+            /// * Erlang: `opentelemetry_ctx:new`
+            /// * Rust: `playground::my_module::my_cool_func`
+            /// * C function: `fopen`
             ///
             /// - Examples:
             ///     - `com.example.MyHttpService.serveRequest`
