@@ -47,7 +47,7 @@ extension SpanAttributes {
                 *,
                 deprecated,
                 message:
-                    "It's no longer recommended to record exceptions that are handled and do not escape the scope of a span."
+                    "Obsoleted: It's no longer recommended to record exceptions that are handled and do not escape the scope of a span."
             )
             public var escaped: Self.Key<Bool> { .init(name: OTelAttribute.exception.escaped) }
 

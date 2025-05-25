@@ -51,8 +51,8 @@ struct OTelAttributeRenderer: FileRenderer {
 
     private func renderAttribute(_ attribute: Attribute, _ namespace: Namespace, indent: Int) throws -> String {
         var result = renderDocs(attribute)
-        if let deprecatedMessage = attribute.deprecated?.note?.trimmingCharacters(in: .whitespacesAndNewlines) {
-            result.append("\n@available(*, deprecated, message: \"\(deprecatedMessage)\")")
+        if let deprecated = attribute.deprecated {
+            result.append("\n" + renderDeprecatedAttribute(deprecated, extendedTypeName: "OTelAttribute"))
         }
         try result.append(
             "\npublic static let \(swiftOTelAttributePropertyName(attribute, namespace)) = \"\(attribute.id)\""

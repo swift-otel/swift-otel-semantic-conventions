@@ -110,8 +110,8 @@ struct SpanAttributeRenderer: FileRenderer {
         propertyName = nameGenerator.swiftMemberName(for: propertyName)
 
         var result = renderDocs(attribute)
-        if let deprecatedMessage = attribute.deprecated?.note?.trimmingCharacters(in: .whitespacesAndNewlines) {
-            result.append("\n@available(*, deprecated, message: \"\(deprecatedMessage)\")")
+        if let deprecated = attribute.deprecated {
+            result.append("\n" + renderDeprecatedAttribute(deprecated, extendedTypeName: "SpanAttributes"))
         }
 
         let swiftType: String

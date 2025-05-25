@@ -54,6 +54,36 @@ func renderDocs(_ attribute: Attribute) -> String {
     return result.prefixLines(with: "/// ")
 }
 
+/// Render the `@available` Swift attribute for a deprecated OTel attribute
+///
+/// - Parameters:
+///   - deprecated: The `Deprecated` enum that describes the deprecation
+///   - extendedTypeName: The name of the type being extended with this attribute (i.e. OTelAttribute, or SpanAttributes). Used in the `renamed` argument, if applicable.
+/// - Returns: A string representing the `@available` attribute for Swift
+func renderDeprecatedAttribute(_ deprecated: Deprecated, extendedTypeName: String) -> String {
+    var result = "@available(*, deprecated"
+    switch deprecated {
+    case let .renamed(renamed_to, note):
+        let renamedTo = renamed_to
+        result.append(", renamed: \"\(extendedTypeName).\(renamedTo)\"")
+        if let note = note?.trimmingCharacters(in: .whitespacesAndNewlines) {
+            result.append(", message: \"\(note)\"")
+        }
+    case let .obsoleted(note):
+        var message = "Obsoleted"
+        if let note = note?.trimmingCharacters(in: .whitespacesAndNewlines) {
+            message.append(": \(note)")
+        }
+        result.append(", message: \"\(message)\"")
+    case let .uncategorized(note):
+        if let note = note?.trimmingCharacters(in: .whitespacesAndNewlines) {
+            result.append(", message: \"\(note)\"")
+        }
+    }
+    result.append(")")
+    return result
+}
+
 extension String {
     func prefixLines(with prefix: String) -> String {
         self.split(separator: "\n", omittingEmptySubsequences: false)

@@ -21,7 +21,14 @@ let package = Package(
                 .product(name: "Yams", package: "Yams"),
                 .product(name: "ZIPFoundation", package: "ZIPFoundation"),
             ]
-        )
+        ),
+        .testTarget(
+            name: "GeneratorTests",
+            dependencies: [
+                "Generator",
+                .product(name: "Yams", package: "Yams"),
+            ]
+        ),
     ],
     swiftLanguageModes: [.v6]
 )

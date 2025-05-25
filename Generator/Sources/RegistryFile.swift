@@ -131,8 +131,52 @@ extension Double: AttributeExample {}
 extension Int: AttributeExample {}
 extension String: AttributeExample {}
 
-struct Deprecated: Codable {
-    let note: String?
+enum Deprecated: Decodable, Equatable {
+    case obsoleted(note: String?)
+    case renamed(renamed_to: String, note: String?)
+    case uncategorized(note: String?)
+
+    init(from decoder: any Decoder) throws {
+        if let container = try? decoder.singleValueContainer(),
+            let note = try? container.decode(String.self)
+        {
+            self = .uncategorized(note: note)
+        } else if let container = try? decoder.container(keyedBy: CodingKeys.self),
+            let reason = try? container.decode(Reason.self, forKey: .reason)
+        {
+            switch reason {
+            case .obsoleted:
+                let note = try container.decodeIfPresent(String.self, forKey: .note)
+                self = .obsoleted(note: note)
+            case .renamed:
+                let renamed_to = try container.decode(String.self, forKey: .renamed_to)
+                let note = try container.decodeIfPresent(String.self, forKey: .note)
+                self = .renamed(renamed_to: renamed_to, note: note)
+            case .uncategorized:
+                let note = try container.decodeIfPresent(String.self, forKey: .note)
+                self = .uncategorized(note: note)
+            }
+        } else {
+            throw DecodingError.dataCorrupted(
+                .init(
+                    codingPath: decoder.codingPath,
+                    debugDescription: "Unexpected format for `deprecated`. Expected an object or string."
+                )
+            )
+        }
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case reason
+        case renamed_to
+        case note
+    }
+
+    enum Reason: String, Codable {
+        case obsoleted
+        case renamed
+        case uncategorized
+    }
 }
 
 enum Stability: String, Codable {
