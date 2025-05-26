@@ -17,29 +17,54 @@ import Yams
 @testable import Generator
 
 struct DecodingTests {
-    @Test func decodeDeprecated() throws {
+
+    @Test func decodeDeprecatedString() throws {
         let actual = try YAMLDecoder().decode(
-            [Deprecated].self,
+            Deprecated.self,
+            from: "'Replaced by `jvm.buffer.memory.used`.'"
+        )
+        #expect(actual == .uncategorized(note: "Replaced by `jvm.buffer.memory.used`."))
+    }
+
+    @Test func decodeDeprecatedObsoleted() throws {
+        let actual = try YAMLDecoder().decode(
+            Deprecated.self,
+            from: "reason: obsoleted"
+        )
+        #expect(actual == .obsoleted(note: nil))
+    }
+
+    @Test func decodeDeprecatedRenamed() throws {
+        let actual = try YAMLDecoder().decode(
+            Deprecated.self,
             from: """
-                - 'Replaced by `jvm.buffer.memory.used`.'
-                - reason: obsoleted
-                - reason: renamed
-                  renamed_to: foo.unique_id
-                - reason: uncategorized
-                  note: This field is deprecated for some complex reasons.
-                - reason: renamed
-                  renamed_to: foo.unique_id
-                  note: Replaced by a new attribute `foo.unique_id`.
+                reason: renamed
+                renamed_to: foo.unique_id
+                note: Replaced by a new attribute `foo.unique_id`.
                 """
         )
-        #expect(
-            actual == [
-                .uncategorized(note: "Replaced by `jvm.buffer.memory.used`."),
-                .obsoleted(note: nil),
-                .renamed(renamed_to: "foo.unique_id", note: nil),
-                .uncategorized(note: "This field is deprecated for some complex reasons."),
-                .renamed(renamed_to: "foo.unique_id", note: "Replaced by a new attribute `foo.unique_id`."),
-            ]
+        #expect(actual == .renamed(renamed_to: "foo.unique_id", note: "Replaced by a new attribute `foo.unique_id`."))
+    }
+
+    @Test func decodeDeprecatedRenamedNoNote() throws {
+        let actual = try YAMLDecoder().decode(
+            Deprecated.self,
+            from: """
+                reason: renamed
+                renamed_to: foo.unique_id
+                """
         )
+        #expect(actual == .renamed(renamed_to: "foo.unique_id", note: nil))
+    }
+
+    @Test func decodeDeprecatedUncategorized() throws {
+        let actual = try YAMLDecoder().decode(
+            Deprecated.self,
+            from: """
+                reason: uncategorized
+                note: This field is deprecated for some complex reasons.
+                """
+        )
+        #expect(actual == .uncategorized(note: "This field is deprecated for some complex reasons."))
     }
 }
