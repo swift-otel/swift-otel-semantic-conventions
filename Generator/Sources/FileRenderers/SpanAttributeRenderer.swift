@@ -88,7 +88,7 @@ struct SpanAttributeRenderer: FileRenderer {
             try result.append(
                 "\n\n"
                     + templateAttributes.sorted { $0.id < $1.id }.map { attribute in
-                        try renderTemplateAttribute(attribute, indent: 4)
+                        try renderTemplateAttribute(attribute, namespace, indent: 4)
                     }.joined(separator: "\n\n")
             )
         }
@@ -126,12 +126,7 @@ struct SpanAttributeRenderer: FileRenderer {
         guard let attributeName = attribute.id.split(separator: ".").last else {
             throw GeneratorError.attributeNameNotFound(attribute.id)
         }
-        var propertyName = String(attributeName)
-        // In the case where we have both an attribute and a namespace overlapping (deployment.environment & deployment.environment.name), the attribute gets an underscore in order to avoid name clobbering.
-        if namespace.subNamespaces[propertyName] != nil {
-            propertyName = "_\(propertyName)"
-        }
-        propertyName = nameGenerator.swiftMemberName(for: propertyName)
+        let propertyName = try attributeMemberName(attribute.id, namespace)
 
         var result = renderDocs(attribute)
         if let deprecated = attribute.deprecated {
@@ -196,11 +191,11 @@ struct SpanAttributeRenderer: FileRenderer {
         return result.indent(by: indent)
     }
 
-    private func renderTemplateAttribute(_ attribute: Attribute, indent: Int) throws -> String {
+    private func renderTemplateAttribute(_ attribute: Attribute, _ namespace: Namespace, indent: Int) throws -> String {
         guard let attributeName = attribute.id.split(separator: ".").last else {
             throw GeneratorError.attributeNameNotFound(attribute.id)
         }
-        let swiftName = nameGenerator.swiftMemberName(for: String(attributeName))
+        let swiftName = try attributeMemberName(attribute.id, namespace)
         let structName = nameGenerator.swiftTypeName(for: "\(attributeName)Attributes")
 
         let valueType: String
