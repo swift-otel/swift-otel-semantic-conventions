@@ -63,10 +63,10 @@ struct OTelAttributeRenderer: FileRenderer {
         return result.indent(by: indent)
     }
 
-    func attributeIdToSwiftMemberPath(_ attributeId: String) throws -> String {
+    func attributeIDToSwiftMemberPath(_ attributeID: String) throws -> String {
         var path = ["OTelAttribute"]
 
-        let components = attributeId.split(separator: ".").map { String($0) }
+        let components = attributeID.split(separator: ".").map { String($0) }
         guard components.count > 1 else {
             path.append(nameGenerator.swiftMemberName(for: components[0]))
             return path.joined(separator: ".")
@@ -81,7 +81,7 @@ struct OTelAttributeRenderer: FileRenderer {
             path.append(nextNamespace.memberName)
             namespace = nextNamespace
         }
-        try path.append(attributeMemberName(attributeId, namespace))
+        try path.append(attributeMemberName(attributeID, namespace))
         return path.joined(separator: ".")
     }
 }

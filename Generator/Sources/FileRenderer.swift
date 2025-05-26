@@ -21,10 +21,10 @@ protocol FileRenderer {
 
     /// Converts an attribute ID to a Swift member path based on the type structure of the renderer.
     /// Example: "foo.bar_baz" -> "OTelAttribute.foo.barBaz"
-    func attributeIdToSwiftMemberPath(_ attributeId: String) throws -> String
+    func attributeIDToSwiftMemberPath(_ attributeID: String) throws -> String
 }
 
-/// Contains top-level informatino about the rendering execution
+/// Contains top-level information about the rendering execution
 struct Context {
     let rootNamespace: Namespace
 }
@@ -76,7 +76,7 @@ extension FileRenderer {
         var result = "@available(*, deprecated"
         switch deprecated {
         case let .renamed(renamed_to, note):
-            if let renamedTo = try? attributeIdToSwiftMemberPath(renamed_to) {
+            if let renamedTo = try? attributeIDToSwiftMemberPath(renamed_to) {
                 result.append(", renamed: \"\(renamedTo)\"")
             }
             if let note = note?.trimmingCharacters(in: .whitespacesAndNewlines) {
@@ -101,14 +101,14 @@ extension FileRenderer {
 /// Return the standard Swift member name for an attribute, on the final type that contains the attribute.
 /// Example: "foo.bar_baz" -> "barBaz"
 /// The provided namespace must be the parent of the attribute ID.
-func attributeMemberName(_ attributeId: String, _ namespace: Namespace) throws -> String {
-    let attributePath = attributeId.split(separator: ".")
+func attributeMemberName(_ attributeID: String, _ namespace: Namespace) throws -> String {
+    let attributePath = attributeID.split(separator: ".")
     guard attributePath.count > 1 else {
-        throw GeneratorError.invalidAttributeId(attributeId)
+        throw GeneratorError.invalidAttributeID(attributeID)
     }
     guard namespace.name == attributePath[attributePath.count - 2] else {
         throw GeneratorError.renderingError(
-            "The provided namespace `\(namespace.name)` is not the parent of the attribute `\(attributeId)`"
+            "The provided namespace `\(namespace.name)` is not the parent of the attribute `\(attributeID)`"
         )
     }
     let attributeName = attributePath[attributePath.count - 1]

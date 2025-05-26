@@ -297,7 +297,7 @@ let nameGenerator = IdiomaticSafeNameGenerator(defensive: .init())
 enum GeneratorError: Error {
     case attributeNameNotFound(String)
     case namespaceNameNotFound(String)
-    case invalidAttributeId(String)
+    case invalidAttributeID(String)
     case renderingError(String)
 }
 

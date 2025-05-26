@@ -33,10 +33,10 @@ struct SpanAttributeRenderer: FileRenderer {
         """
     }
 
-    func attributeIdToSwiftMemberPath(_ attributeId: String) throws -> String {
+    func attributeIDToSwiftMemberPath(_ attributeID: String) throws -> String {
         var path = ["SpanAttributes"]
 
-        let components = attributeId.split(separator: ".").map { String($0) }
+        let components = attributeID.split(separator: ".").map { String($0) }
         guard components.count > 1 else {
             path.append(nameGenerator.swiftMemberName(for: components[0]))
             return path.joined(separator: ".")
@@ -51,7 +51,7 @@ struct SpanAttributeRenderer: FileRenderer {
             path.append(nextNamespace.memberName)
             namespace = nextNamespace
         }
-        try path.append(attributeMemberName(attributeId, namespace))
+        try path.append(attributeMemberName(attributeID, namespace))
         return path.joined(separator: ".")
     }
 
@@ -136,7 +136,7 @@ struct SpanAttributeRenderer: FileRenderer {
         let swiftType: String
         // Use the OTelAttributeRenderer to get the Swift path for the attribute.
         let otelAttributeFileRenderer = OTelAttributeRenderer(context: context)
-        let otelAttributePath = try otelAttributeFileRenderer.attributeIdToSwiftMemberPath(attribute.id)
+        let otelAttributePath = try otelAttributeFileRenderer.attributeIDToSwiftMemberPath(attribute.id)
         if let type = attribute.type as? Attribute.StandardType {
             switch type {
             case .boolean: swiftType = "Bool"
@@ -238,24 +238,24 @@ struct SpanAttributeRenderer: FileRenderer {
                 }
 
                 public mutating func set(_ key: String, to value: \(valueType)) {
-                    let attributeId = self.attributeId(forKey: key)
-                    self.attributes[attributeId] = value
+                    let attributeID = self.attributeID(forKey: key)
+                    self.attributes[attributeID] = value
                 }
 
-                private func attributeId(forKey key: String) -> String {
-                    var attributeId = "\(attribute.id)."
+                private func attributeID(forKey key: String) -> String {
+                    var attributeID = "\(attribute.id)."
 
                     for index in key.indices {
                         let character = key[index]
 
                         if character == "-" {
-                            attributeId.append("_")
+                            attributeID.append("_")
                         } else {
-                            attributeId.append(character.lowercased())
+                            attributeID.append(character.lowercased())
                         }
                     }
 
-                    return attributeId
+                    return attributeID
                 }
             }
             """
