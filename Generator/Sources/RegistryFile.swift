@@ -184,13 +184,13 @@ enum Deprecated: Decodable, Equatable {
         }
     }
 
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case reason
         case renamed_to
         case note
     }
 
-    enum Reason: String, Codable {
+    private enum Reason: String, Codable {
         case obsoleted
         case renamed
         case uncategorized
