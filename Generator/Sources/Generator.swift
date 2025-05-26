@@ -71,25 +71,34 @@ struct Generator: AsyncParsableCommand {
         let namespaceTree = try constructNamespaceTree(attributes: parsedAttributes)
 
         // Collect and filter top-level namespaces
-        var topLevelNamespaces = namespaceTree.subNamespaces.values.sorted(by: { $0.id < $1.id })
         if let namespaces = namespaces {
             let namespaceSet = Set(namespaces.split(separator: ",").map { String($0) })
             // Filter to only include the specified namespaces
-            topLevelNamespaces = topLevelNamespaces.filter { namespaceSet.contains($0.id) }
+            for (id, _) in namespaceTree.subNamespaces {
+                if !namespaceSet.contains(id) {
+                    namespaceTree.subNamespaces.removeValue(forKey: id)
+                }
+            }
         } else {
             // Filter to exclude these namespaces by default
             let excludedNamespaces: Set<String> = ["aspnetcore", "jvm", "nodejs", "signalr", "dotnet", "v8js"]
-            topLevelNamespaces = topLevelNamespaces.filter { !excludedNamespaces.contains($0.id) }
+            for (id, _) in namespaceTree.subNamespaces {
+                if excludedNamespaces.contains(id) {
+                    namespaceTree.subNamespaces.removeValue(forKey: id)
+                }
+            }
         }
+
+        let context = Context(rootNamespace: namespaceTree)
 
         // Generate individual target files
         try render(
             fileManager: fileManager,
             repoDirectory: repoDirectory,
-            topLevelNamespaces: topLevelNamespaces,
+            rootNamespace: namespaceTree,
             renderers: [
-                OTelAttributeRenderer(),
-                SpanAttributeRenderer(),
+                OTelAttributeRenderer(context: context),
+                SpanAttributeRenderer(context: context),
             ]
         )
 
@@ -192,7 +201,7 @@ struct Generator: AsyncParsableCommand {
     private func render(
         fileManager: FileManager,
         repoDirectory: URL,
-        topLevelNamespaces: [Namespace],
+        rootNamespace: Namespace,
         renderers: [FileRenderer]
     ) throws {
         for renderer in renderers {
@@ -207,6 +216,8 @@ struct Generator: AsyncParsableCommand {
                 try fileManager.removeItem(at: directory)
             }
             try fileManager.createDirectory(at: directory, withIntermediateDirectories: true)
+
+            let topLevelNamespaces = rootNamespace.subNamespaces.values.sorted(by: { $0.id < $1.id })
 
             for namespace in topLevelNamespaces {
                 let filePath = directory.appending(path: "\(renderer.fileNamePrefix)\(namespace.memberName).swift")
@@ -286,6 +297,8 @@ let nameGenerator = IdiomaticSafeNameGenerator(defensive: .init())
 enum GeneratorError: Error {
     case attributeNameNotFound(String)
     case namespaceNameNotFound(String)
+    case invalidAttributeId(String)
+    case renderingError(String)
 }
 
 extension URL: @retroactive ExpressibleByArgument {

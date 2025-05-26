@@ -16,6 +16,8 @@ struct SpanAttributeRenderer: FileRenderer {
     let targetDirectory = "Tracing"
     let fileNamePrefix = "SpanAttributes+"
 
+    let context: Context
+
     func renderFile(_ namespace: Namespace) throws -> String {
         try """
         #if Tracing
@@ -29,6 +31,28 @@ struct SpanAttributeRenderer: FileRenderer {
         #endif
 
         """
+    }
+
+    func attributeIdToSwiftMemberPath(_ attributeId: String) throws -> String {
+        var path = ["SpanAttributes"]
+
+        let components = attributeId.split(separator: ".").map { String($0) }
+        guard components.count > 1 else {
+            path.append(nameGenerator.swiftMemberName(for: components[0]))
+            return path.joined(separator: ".")
+        }
+
+        // Walk the namespace tree, appending each name. Record the namespace so we can resolve the attribute name at the end.
+        var namespace = context.rootNamespace
+        for subNamespaceName in components[0..<components.count - 1] {
+            guard let nextNamespace = namespace.subNamespaces[subNamespaceName] else {
+                throw GeneratorError.namespaceNameNotFound(subNamespaceName)
+            }
+            path.append(nextNamespace.memberName)
+            namespace = nextNamespace
+        }
+        try path.append(attributeMemberName(attributeId, namespace))
+        return path.joined(separator: ".")
     }
 
     private func renderNamespace(_ namespace: Namespace, inSpanNamespace: Bool = false, indent: Int) throws -> String {
@@ -111,10 +135,13 @@ struct SpanAttributeRenderer: FileRenderer {
 
         var result = renderDocs(attribute)
         if let deprecated = attribute.deprecated {
-            result.append("\n" + renderDeprecatedAttribute(deprecated, extendedTypeName: "SpanAttributes"))
+            result.append("\n" + renderDeprecatedAttribute(deprecated))
         }
 
         let swiftType: String
+        // Use the OTelAttributeRenderer to get the Swift path for the attribute.
+        let otelAttributeFileRenderer = OTelAttributeRenderer(context: context)
+        let otelAttributePath = try otelAttributeFileRenderer.attributeIdToSwiftMemberPath(attribute.id)
         if let type = attribute.type as? Attribute.StandardType {
             switch type {
             case .boolean: swiftType = "Bool"
@@ -128,13 +155,13 @@ struct SpanAttributeRenderer: FileRenderer {
             default:
                 throw SpanAttributeRendererError.invalidStandardAttributeType(attribute.type)
             }
-            try result.append(
-                "\npublic var \(propertyName): Self.Key<\(swiftType)> { .init(name: \(swiftOTelAttributePath(attribute, namespace))) }"
+            result.append(
+                "\npublic var \(propertyName): Self.Key<\(swiftType)> { .init(name: \(otelAttributePath)) }"
             )
         } else if let type = attribute.type as? Attribute.EnumType {
             let enumTypeName = "\(nameGenerator.swiftTypeName(for: "\(attributeName)Enum"))"
-            try result.append(
-                "\npublic var \(propertyName): Self.Key<\(enumTypeName)> { .init(name: \(swiftOTelAttributePath(attribute, namespace))) }"
+            result.append(
+                "\npublic var \(propertyName): Self.Key<\(enumTypeName)> { .init(name: \(otelAttributePath)) }"
             )
 
             // Enum types are not represented as Swift enums to avoid breaking changes when new enum values are added.

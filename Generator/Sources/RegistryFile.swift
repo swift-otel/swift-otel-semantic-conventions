@@ -51,6 +51,24 @@ struct Attribute: Decodable {
         case required
     }
 
+    init(
+        id: String,
+        type: AttributeType,
+        stability: Stability = .experimental,
+        brief: String? = nil,
+        note: String? = nil,
+        deprecated: Deprecated? = nil,
+        examples: [String]? = nil
+    ) {
+        self.id = id
+        self.type = type
+        self.stability = stability
+        self.brief = brief
+        self.note = note
+        self.deprecated = deprecated
+        self.examples = examples
+    }
+
     init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
