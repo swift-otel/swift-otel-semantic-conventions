@@ -12,3 +12,7 @@ jobs:
   unit-test:
     name: Unit Test
     uses: ./.github/workflows/unit-test.yaml
+
+  generator-unit-test:
+    name: Generator Unit Test
+    uses: ./.github/workflows/generator-unit-test.yaml

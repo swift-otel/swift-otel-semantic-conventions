@@ -108,24 +108,24 @@ extension SpanAttributes {
                 }
 
                 public mutating func set(_ key: String, to value: [String]) {
-                    let attributeId = self.attributeId(forKey: key)
-                    self.attributes[attributeId] = value
+                    let attributeID = self.attributeID(forKey: key)
+                    self.attributes[attributeID] = value
                 }
 
-                private func attributeId(forKey key: String) -> String {
-                    var attributeId = "http.request.header."
+                private func attributeID(forKey key: String) -> String {
+                    var attributeID = "http.request.header."
 
                     for index in key.indices {
                         let character = key[index]
 
                         if character == "-" {
-                            attributeId.append("_")
+                            attributeID.append("_")
                         } else {
-                            attributeId.append(character.lowercased())
+                            attributeID.append(character.lowercased())
                         }
                     }
 
-                    return attributeId
+                    return attributeID
                 }
             }
 
@@ -270,24 +270,24 @@ extension SpanAttributes {
                 }
 
                 public mutating func set(_ key: String, to value: [String]) {
-                    let attributeId = self.attributeId(forKey: key)
-                    self.attributes[attributeId] = value
+                    let attributeID = self.attributeID(forKey: key)
+                    self.attributes[attributeID] = value
                 }
 
-                private func attributeId(forKey key: String) -> String {
-                    var attributeId = "http.response.header."
+                private func attributeID(forKey key: String) -> String {
+                    var attributeID = "http.response.header."
 
                     for index in key.indices {
                         let character = key[index]
 
                         if character == "-" {
-                            attributeId.append("_")
+                            attributeID.append("_")
                         } else {
-                            attributeId.append(character.lowercased())
+                            attributeID.append(character.lowercased())
                         }
                     }
 
-                    return attributeId
+                    return attributeID
                 }
             }
 

@@ -16,6 +16,8 @@ struct SpanAttributeRenderer: FileRenderer {
     let targetDirectory = "Tracing"
     let fileNamePrefix = "SpanAttributes+"
 
+    let context: Context
+
     func renderFile(_ namespace: Namespace) throws -> String {
         try """
         #if Tracing
@@ -29,6 +31,28 @@ struct SpanAttributeRenderer: FileRenderer {
         #endif
 
         """
+    }
+
+    func attributeIDToSwiftMemberPath(_ attributeID: String) throws -> String {
+        var path = ["SpanAttributes"]
+
+        let components = attributeID.split(separator: ".").map { String($0) }
+        guard components.count > 1 else {
+            path.append(nameGenerator.swiftMemberName(for: components[0]))
+            return path.joined(separator: ".")
+        }
+
+        // Walk the namespace tree, appending each name. Record the namespace so we can resolve the attribute name at the end.
+        var namespace = context.rootNamespace
+        for subNamespaceName in components[0..<components.count - 1] {
+            guard let nextNamespace = namespace.subNamespaces[subNamespaceName] else {
+                throw GeneratorError.namespaceNameNotFound(subNamespaceName)
+            }
+            path.append(nextNamespace.memberName)
+            namespace = nextNamespace
+        }
+        try path.append(attributeMemberName(attributeID, namespace))
+        return path.joined(separator: ".")
     }
 
     private func renderNamespace(_ namespace: Namespace, inSpanNamespace: Bool = false, indent: Int) throws -> String {
@@ -64,7 +88,7 @@ struct SpanAttributeRenderer: FileRenderer {
             try result.append(
                 "\n\n"
                     + templateAttributes.sorted { $0.id < $1.id }.map { attribute in
-                        try renderTemplateAttribute(attribute, indent: 4)
+                        try renderTemplateAttribute(attribute, namespace, indent: 4)
                     }.joined(separator: "\n\n")
             )
         }
@@ -102,19 +126,17 @@ struct SpanAttributeRenderer: FileRenderer {
         guard let attributeName = attribute.id.split(separator: ".").last else {
             throw GeneratorError.attributeNameNotFound(attribute.id)
         }
-        var propertyName = String(attributeName)
-        // In the case where we have both an attribute and a namespace overlapping (deployment.environment & deployment.environment.name), the attribute gets an underscore in order to avoid name clobbering.
-        if namespace.subNamespaces[propertyName] != nil {
-            propertyName = "_\(propertyName)"
-        }
-        propertyName = nameGenerator.swiftMemberName(for: propertyName)
+        let propertyName = try attributeMemberName(attribute.id, namespace)
 
         var result = renderDocs(attribute)
-        if let deprecatedMessage = attribute.deprecated?.note?.trimmingCharacters(in: .whitespacesAndNewlines) {
-            result.append("\n@available(*, deprecated, message: \"\(deprecatedMessage)\")")
+        if let deprecated = attribute.deprecated {
+            result.append("\n" + renderDeprecatedAttribute(deprecated))
         }
 
         let swiftType: String
+        // Use the OTelAttributeRenderer to get the Swift path for the attribute.
+        let otelAttributeFileRenderer = OTelAttributeRenderer(context: context)
+        let otelAttributePath = try otelAttributeFileRenderer.attributeIDToSwiftMemberPath(attribute.id)
         if let type = attribute.type as? Attribute.StandardType {
             switch type {
             case .boolean: swiftType = "Bool"
@@ -128,13 +150,13 @@ struct SpanAttributeRenderer: FileRenderer {
             default:
                 throw SpanAttributeRendererError.invalidStandardAttributeType(attribute.type)
             }
-            try result.append(
-                "\npublic var \(propertyName): Self.Key<\(swiftType)> { .init(name: \(swiftOTelAttributePath(attribute, namespace))) }"
+            result.append(
+                "\npublic var \(propertyName): Self.Key<\(swiftType)> { .init(name: \(otelAttributePath)) }"
             )
         } else if let type = attribute.type as? Attribute.EnumType {
             let enumTypeName = "\(nameGenerator.swiftTypeName(for: "\(attributeName)Enum"))"
-            try result.append(
-                "\npublic var \(propertyName): Self.Key<\(enumTypeName)> { .init(name: \(swiftOTelAttributePath(attribute, namespace))) }"
+            result.append(
+                "\npublic var \(propertyName): Self.Key<\(enumTypeName)> { .init(name: \(otelAttributePath)) }"
             )
 
             // Enum types are not represented as Swift enums to avoid breaking changes when new enum values are added.
@@ -169,11 +191,11 @@ struct SpanAttributeRenderer: FileRenderer {
         return result.indent(by: indent)
     }
 
-    private func renderTemplateAttribute(_ attribute: Attribute, indent: Int) throws -> String {
+    private func renderTemplateAttribute(_ attribute: Attribute, _ namespace: Namespace, indent: Int) throws -> String {
         guard let attributeName = attribute.id.split(separator: ".").last else {
             throw GeneratorError.attributeNameNotFound(attribute.id)
         }
-        let swiftName = nameGenerator.swiftMemberName(for: String(attributeName))
+        let swiftName = try attributeMemberName(attribute.id, namespace)
         let structName = nameGenerator.swiftTypeName(for: "\(attributeName)Attributes")
 
         let valueType: String
@@ -216,24 +238,24 @@ struct SpanAttributeRenderer: FileRenderer {
                 }
 
                 public mutating func set(_ key: String, to value: \(valueType)) {
-                    let attributeId = self.attributeId(forKey: key)
-                    self.attributes[attributeId] = value
+                    let attributeID = self.attributeID(forKey: key)
+                    self.attributes[attributeID] = value
                 }
 
-                private func attributeId(forKey key: String) -> String {
-                    var attributeId = "\(attribute.id)."
+                private func attributeID(forKey key: String) -> String {
+                    var attributeID = "\(attribute.id)."
 
                     for index in key.indices {
                         let character = key[index]
 
                         if character == "-" {
-                            attributeId.append("_")
+                            attributeID.append("_")
                         } else {
-                            attributeId.append(character.lowercased())
+                            attributeID.append(character.lowercased())
                         }
                     }
 
-                    return attributeId
+                    return attributeID
                 }
             }
             """

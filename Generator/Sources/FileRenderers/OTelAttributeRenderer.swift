@@ -16,6 +16,8 @@ struct OTelAttributeRenderer: FileRenderer {
     let targetDirectory = "AttributeNames"
     let fileNamePrefix = "OTelAttribute+"
 
+    let context: Context
+
     func renderFile(_ namespace: Namespace) throws -> String {
         try """
         extension OTelAttribute {
@@ -51,38 +53,35 @@ struct OTelAttributeRenderer: FileRenderer {
 
     private func renderAttribute(_ attribute: Attribute, _ namespace: Namespace, indent: Int) throws -> String {
         var result = renderDocs(attribute)
-        if let deprecatedMessage = attribute.deprecated?.note?.trimmingCharacters(in: .whitespacesAndNewlines) {
-            result.append("\n@available(*, deprecated, message: \"\(deprecatedMessage)\")")
+        if let deprecated = attribute.deprecated {
+            result.append("\n" + renderDeprecatedAttribute(deprecated))
         }
         try result.append(
-            "\npublic static let \(swiftOTelAttributePropertyName(attribute, namespace)) = \"\(attribute.id)\""
+            "\npublic static let \(attributeMemberName(attribute.id, namespace)) = \"\(attribute.id)\""
         )
 
         return result.indent(by: indent)
     }
-}
 
-// Returns the Swift path to any input attribute based on the input namespace
-func swiftOTelAttributePath(_ attribute: Attribute, _ namespace: Namespace) throws -> String {
-    try swiftOTelNamespacePath(namespace) + "." + swiftOTelAttributePropertyName(attribute, namespace)
-}
+    func attributeIDToSwiftMemberPath(_ attributeID: String) throws -> String {
+        var path = ["OTelAttribute"]
 
-private func swiftOTelNamespacePath(_ namespace: Namespace) -> String {
-    var path = ["OTelAttribute"]
-    for subNamespaceName in namespace.id.split(separator: ".") {
-        path.append(nameGenerator.swiftMemberName(for: String(subNamespaceName)))
-    }
-    return path.joined(separator: ".")
-}
+        let components = attributeID.split(separator: ".").map { String($0) }
+        guard components.count > 1 else {
+            path.append(nameGenerator.swiftMemberName(for: components[0]))
+            return path.joined(separator: ".")
+        }
 
-private func swiftOTelAttributePropertyName(_ attribute: Attribute, _ namespace: Namespace) throws -> String {
-    guard let attributeName = attribute.id.split(separator: ".").last else {
-        throw GeneratorError.attributeNameNotFound(namespace.id)
+        // Walk the namespace tree, appending each name. Record the namespace so we can resolve the attribute name at the end.
+        var namespace = context.rootNamespace
+        for subNamespaceName in components[0..<components.count - 1] {
+            guard let nextNamespace = namespace.subNamespaces[subNamespaceName] else {
+                throw GeneratorError.namespaceNameNotFound(subNamespaceName)
+            }
+            path.append(nextNamespace.memberName)
+            namespace = nextNamespace
+        }
+        try path.append(attributeMemberName(attributeID, namespace))
+        return path.joined(separator: ".")
     }
-    var propertyName = nameGenerator.swiftMemberName(for: String(attributeName))
-    // In the case where we have both an attribute and a namespace overlapping (deployment.environment & deployment.environment.name), the attribute gets an underscore in order to avoid name clobbering.
-    if namespace.subNamespaces[propertyName] != nil {
-        propertyName = "_\(propertyName)"
-    }
-    return propertyName
 }

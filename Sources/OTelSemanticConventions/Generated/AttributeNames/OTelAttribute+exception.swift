@@ -24,7 +24,7 @@ extension OTelAttribute {
             *,
             deprecated,
             message:
-                "It's no longer recommended to record exceptions that are handled and do not escape the scope of a span."
+                "Obsoleted: It's no longer recommended to record exceptions that are handled and do not escape the scope of a span."
         )
         public static let escaped = "exception.escaped"
 
