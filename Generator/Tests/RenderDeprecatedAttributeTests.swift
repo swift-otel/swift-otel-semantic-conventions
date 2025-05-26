@@ -42,7 +42,7 @@ struct RenderDeprecatedAttributeTests {
         )
         #expect(
             actual
-                == "@available(*, deprecated, renamed: \"OTelAttribute.foo.barBaz\", message: \"Replaced by a new attribute `foo.bar_baz`\")"
+                == #"@available(*, deprecated, renamed: "OTelAttribute.foo.barBaz", message: "Replaced by a new attribute `foo.bar_baz`")"#
         )
     }
 
@@ -52,7 +52,7 @@ struct RenderDeprecatedAttributeTests {
         )
         #expect(
             actual
-                == "@available(*, deprecated, renamed: \"OTelAttribute.foo.barBaz\")"
+                == #"@available(*, deprecated, renamed: "OTelAttribute.foo.barBaz")"#
         )
     }
 
@@ -62,7 +62,7 @@ struct RenderDeprecatedAttributeTests {
         )
         #expect(
             actual
-                == "@available(*, deprecated, message: \"Obsoleted: Don't use `foo.bar_baz`\")"
+                == #"@available(*, deprecated, message: "Obsoleted: Don't use `foo.bar_baz`")"#
         )
     }
 
@@ -72,7 +72,7 @@ struct RenderDeprecatedAttributeTests {
         )
         #expect(
             actual
-                == "@available(*, deprecated, message: \"Obsoleted\")"
+                == #"@available(*, deprecated, message: "Obsoleted")"#
         )
     }
 
@@ -82,7 +82,7 @@ struct RenderDeprecatedAttributeTests {
         )
         #expect(
             actual
-                == "@available(*, deprecated, message: \"No additional information about `foo.bar_baz`\")"
+                == #"@available(*, deprecated, message: "No additional information about `foo.bar_baz`")"#
         )
     }
 
