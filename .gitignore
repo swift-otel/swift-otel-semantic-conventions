@@ -3,3 +3,4 @@
 .vscode/
 .DS_Store
 /Package.resolved
+swift-otel-semantic-conventions.xcworkspace/

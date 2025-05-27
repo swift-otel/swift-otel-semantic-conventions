@@ -9,6 +9,7 @@
 Package.swift
 Package.resolved
 CODEOWNERS
+Makefile
 **/.gitignore
 **/Package.swift
 **/Package.resolved
