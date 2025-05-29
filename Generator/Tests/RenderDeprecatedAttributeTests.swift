@@ -32,7 +32,8 @@ struct RenderDeprecatedAttributeTests {
                         ],
                     )
                 ]
-            )
+            ),
+            doccSymbolReferences: [:]
         )
     )
 

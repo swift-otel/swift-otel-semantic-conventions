@@ -89,7 +89,7 @@ struct Generator: AsyncParsableCommand {
             }
         }
 
-        let context = Context(rootNamespace: namespaceTree)
+        let context = Context(rootNamespace: namespaceTree, doccSymbolReferences: [:])
 
         // Generate individual target files
         try render(

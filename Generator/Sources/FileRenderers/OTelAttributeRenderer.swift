@@ -21,26 +21,40 @@ struct OTelAttributeRenderer: FileRenderer {
     func renderFile(_ namespace: Namespace) throws -> String {
         try """
         extension OTelAttribute {
-        \(renderNamespace(namespace, indent: 4))
+        \(renderNamespace(namespace, indent: 4, doccSymbolPrefix: ["OTelAttribute"]))
         }
 
         """
     }
 
-    private func renderNamespace(_ namespace: Namespace, indent: Int) throws -> String {
+    private func renderNamespace(
+        _ namespace: Namespace,
+        indent: Int,
+        doccSymbolPrefix: [String]
+    ) throws -> String {
         var properties: [String] = []
+        let doccSymbolPrefix = doccSymbolPrefix + [namespace.memberName]
         try properties.append(
             contentsOf: namespace.attributes.values.sorted {
                 $0.id < $1.id
             }.map { attribute in
-                try renderAttribute(attribute, namespace, indent: 4)
+                try renderAttribute(
+                    attribute,
+                    namespace,
+                    indent: 4,
+                    doccSymbolPrefix: doccSymbolPrefix
+                )
             }
         )
         try properties.append(
             contentsOf: namespace.subNamespaces.values.sorted {
                 $0.id < $1.id
             }.map { child in
-                try renderNamespace(child, indent: 4)
+                try renderNamespace(
+                    child,
+                    indent: 4,
+                    doccSymbolPrefix: doccSymbolPrefix
+                )
             }
         )
 
@@ -51,13 +65,23 @@ struct OTelAttributeRenderer: FileRenderer {
         return result.indent(by: indent)
     }
 
-    private func renderAttribute(_ attribute: Attribute, _ namespace: Namespace, indent: Int) throws -> String {
+    private func renderAttribute(
+        _ attribute: Attribute,
+        _ namespace: Namespace,
+        indent: Int,
+        doccSymbolPrefix: [String]
+    ) throws -> String {
         var result = renderDocs(attribute)
         if let deprecated = attribute.deprecated {
             result.append("\n" + renderDeprecatedAttribute(deprecated))
         }
-        try result.append(
-            "\npublic static let \(attributeMemberName(attribute.id, namespace)) = \"\(attribute.id)\""
+
+        let attributeMemberName = try attributeMemberName(attribute.id, namespace)
+        let doccSymbolReference = (doccSymbolPrefix + [attributeMemberName]).joined(separator: "/")
+        context.doccSymbolReferences[attribute.id, default: [:]]["String Constants"] = doccSymbolReference
+
+        result.append(
+            "\npublic static let \(attributeMemberName) = \"\(attribute.id)\""
         )
 
         return result.indent(by: indent)

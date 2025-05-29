@@ -25,7 +25,7 @@ struct SpanAttributeRenderer: FileRenderer {
         import Tracing
 
         extension SpanAttributes {
-        \(renderNamespace(namespace, indent: 4))
+        \(renderNamespace(namespace, indent: 4, doccSymbolPrefix: ["Tracing", "SpanAttributes"]))
         }
 
         #endif
@@ -55,7 +55,12 @@ struct SpanAttributeRenderer: FileRenderer {
         return path.joined(separator: ".")
     }
 
-    private func renderNamespace(_ namespace: Namespace, inSpanNamespace: Bool = false, indent: Int) throws -> String {
+    private func renderNamespace(
+        _ namespace: Namespace,
+        inSpanNamespace: Bool = false,
+        indent: Int,
+        doccSymbolPrefix: [String]
+    ) throws -> String {
         let propertyName = namespace.memberName
         let structName = nameGenerator.swiftTypeName(for: "\(namespace.name)Attributes")
 
@@ -87,8 +92,15 @@ struct SpanAttributeRenderer: FileRenderer {
         if !templateAttributes.isEmpty {
             try result.append(
                 "\n\n"
-                    + templateAttributes.sorted { $0.id < $1.id }.map { attribute in
-                        try renderTemplateAttribute(attribute, namespace, indent: 4)
+                    + templateAttributes.sorted {
+                        $0.id < $1.id
+                    }.map { attribute in
+                        try renderTemplateAttribute(
+                            attribute,
+                            namespace,
+                            indent: 4,
+                            doccSymbolPrefix: doccSymbolPrefix + [structName]
+                        )
                     }.joined(separator: "\n\n")
             )
         }
@@ -103,8 +115,15 @@ struct SpanAttributeRenderer: FileRenderer {
         if !standardAttributes.isEmpty {
             try result.append(
                 "\n\n"
-                    + standardAttributes.sorted { $0.id < $1.id }.map { attribute in
-                        try renderStandardAttribute(attribute, namespace, indent: 8)
+                    + standardAttributes.sorted {
+                        $0.id < $1.id
+                    }.map { attribute in
+                        try renderStandardAttribute(
+                            attribute,
+                            namespace,
+                            indent: 8,
+                            doccSymbolPrefix: doccSymbolPrefix + [structName, "NestedSpanAttributes"]
+                        )
                     }.joined(separator: "\n\n")
             )
         }
@@ -113,8 +132,15 @@ struct SpanAttributeRenderer: FileRenderer {
         if !namespace.subNamespaces.values.isEmpty {
             try result.append(
                 "\n\n"
-                    + namespace.subNamespaces.values.sorted { $0.id < $1.id }.map { child in
-                        try renderNamespace(child, inSpanNamespace: true, indent: 4)
+                    + namespace.subNamespaces.values.sorted {
+                        $0.id < $1.id
+                    }.map { child in
+                        try renderNamespace(
+                            child,
+                            inSpanNamespace: true,
+                            indent: 4,
+                            doccSymbolPrefix: doccSymbolPrefix + [structName]
+                        )
                     }.joined(separator: "\n\n")
             )
         }
@@ -122,11 +148,18 @@ struct SpanAttributeRenderer: FileRenderer {
         return result.indent(by: indent)
     }
 
-    private func renderStandardAttribute(_ attribute: Attribute, _ namespace: Namespace, indent: Int) throws -> String {
+    private func renderStandardAttribute(
+        _ attribute: Attribute,
+        _ namespace: Namespace,
+        indent: Int,
+        doccSymbolPrefix: [String]
+    ) throws -> String {
         guard let attributeName = attribute.id.split(separator: ".").last else {
             throw GeneratorError.attributeNameNotFound(attribute.id)
         }
         let propertyName = try attributeMemberName(attribute.id, namespace)
+        let symbolReference = (doccSymbolPrefix + [propertyName]).joined(separator: "/")
+        context.doccSymbolReferences[attribute.id, default: [:]]["Span Attributes"] = symbolReference
 
         var result = renderDocs(attribute)
         if let deprecated = attribute.deprecated {
@@ -191,11 +224,18 @@ struct SpanAttributeRenderer: FileRenderer {
         return result.indent(by: indent)
     }
 
-    private func renderTemplateAttribute(_ attribute: Attribute, _ namespace: Namespace, indent: Int) throws -> String {
+    private func renderTemplateAttribute(
+        _ attribute: Attribute,
+        _ namespace: Namespace,
+        indent: Int,
+        doccSymbolPrefix: [String]
+    ) throws -> String {
         guard let attributeName = attribute.id.split(separator: ".").last else {
             throw GeneratorError.attributeNameNotFound(attribute.id)
         }
         let swiftName = try attributeMemberName(attribute.id, namespace)
+        let symbolReference = (doccSymbolPrefix + [swiftName]).joined(separator: "/")
+        context.doccSymbolReferences[attribute.id, default: [:]]["Span Attributes"] = symbolReference
         let structName = nameGenerator.swiftTypeName(for: "\(attributeName)Attributes")
 
         let valueType: String
