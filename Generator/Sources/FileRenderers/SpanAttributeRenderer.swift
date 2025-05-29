@@ -158,7 +158,9 @@ struct SpanAttributeRenderer: FileRenderer {
             throw GeneratorError.attributeNameNotFound(attribute.id)
         }
         let propertyName = try attributeMemberName(attribute.id, namespace)
-        let symbolReference = (doccSymbolPrefix + [propertyName]).joined(separator: "/")
+        let symbolReference = (doccSymbolPrefix + [propertyName])
+            .joined(separator: "/")
+            .replacingOccurrences(of: "`", with: "")
         context.doccSymbolReferences[attribute.id, default: [:]]["Span Attributes"] = symbolReference
 
         var result = renderDocs(attribute)
@@ -234,7 +236,9 @@ struct SpanAttributeRenderer: FileRenderer {
             throw GeneratorError.attributeNameNotFound(attribute.id)
         }
         let swiftName = try attributeMemberName(attribute.id, namespace)
-        let symbolReference = (doccSymbolPrefix + [swiftName]).joined(separator: "/")
+        let symbolReference = (doccSymbolPrefix + [swiftName])
+            .joined(separator: "/")
+            .replacingOccurrences(of: "`", with: "")
         context.doccSymbolReferences[attribute.id, default: [:]]["Span Attributes"] = symbolReference
         let structName = nameGenerator.swiftTypeName(for: "\(attributeName)Attributes")
 

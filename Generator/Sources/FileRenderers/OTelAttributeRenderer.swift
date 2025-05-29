@@ -77,7 +77,9 @@ struct OTelAttributeRenderer: FileRenderer {
         }
 
         let attributeMemberName = try attributeMemberName(attribute.id, namespace)
-        let doccSymbolReference = (doccSymbolPrefix + [attributeMemberName]).joined(separator: "/")
+        let doccSymbolReference = (doccSymbolPrefix + [attributeMemberName])
+            .joined(separator: "/")
+            .replacingOccurrences(of: "`", with: "")
         context.doccSymbolReferences[attribute.id, default: [:]]["String Constants"] = doccSymbolReference
 
         result.append(

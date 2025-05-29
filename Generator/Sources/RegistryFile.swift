@@ -26,6 +26,10 @@ struct Group: Decodable {
     let brief: String?
     let attributes: [Attribute]
 
+    var documentationTopic: String {
+        display_name ?? id
+    }
+
     enum GroupType: String, Codable {
         case attribute_group
         case metric
