@@ -50,7 +50,7 @@ extension SpanAttributes {
             /// If a database system has multiple namespace components, they SHOULD be concatenated from the most general to the most specific namespace component, using `|` as a separator between the components. Any missing components (and their associated separators) SHOULD be omitted.
             /// Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
             /// It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
-            public var namespace: Self.Key<String> { .init(name: OTelAttribute.db.namespace) }
+            public var namespace: SpanAttributeKey<String> { .init(name: OTelAttribute.db.namespace) }
         }
 
         /// `db.collection` namespace
@@ -91,7 +91,7 @@ extension SpanAttributes {
                 ///
                 /// For batch operations, if the individual operations are known to have the same
                 /// collection name then that collection name SHOULD be used.
-                public var name: Self.Key<String> { .init(name: OTelAttribute.db.collection.name) }
+                public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.db.collection.name) }
             }
         }
 
@@ -139,7 +139,7 @@ extension SpanAttributes {
                 /// then that operation name SHOULD be used prepended by `BATCH `,
                 /// otherwise `db.operation.name` SHOULD be `BATCH` or some other database
                 /// system specific term if more applicable.
-                public var name: Self.Key<String> { .init(name: OTelAttribute.db.operation.name) }
+                public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.db.operation.name) }
             }
 
             /// `db.operation.batch` namespace
@@ -173,7 +173,7 @@ extension SpanAttributes {
                     ///     - `4`
                     ///
                     /// Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
-                    public var size: Self.Key<Int> { .init(name: OTelAttribute.db.operation.batch.size) }
+                    public var size: SpanAttributeKey<Int> { .init(name: OTelAttribute.db.operation.batch.size) }
                 }
             }
         }
@@ -217,7 +217,7 @@ extension SpanAttributes {
                 /// that support query parsing SHOULD generate a summary following
                 /// [Generating query summary](/docs/database/database-spans.md#generating-a-summary-of-the-query)
                 /// section.
-                public var summary: Self.Key<String> { .init(name: OTelAttribute.db.query.summary) }
+                public var summary: SpanAttributeKey<String> { .init(name: OTelAttribute.db.query.summary) }
 
                 /// `db.query.text`: The database query being executed.
                 ///
@@ -230,7 +230,7 @@ extension SpanAttributes {
                 /// For sanitization see [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
                 /// For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
                 /// Parameterized query text SHOULD NOT be sanitized. Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
-                public var text: Self.Key<String> { .init(name: OTelAttribute.db.query.text) }
+                public var text: SpanAttributeKey<String> { .init(name: OTelAttribute.db.query.text) }
             }
         }
 
@@ -267,7 +267,7 @@ extension SpanAttributes {
                 ///
                 /// The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
                 /// Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
-                public var statusCode: Self.Key<String> { .init(name: OTelAttribute.db.response.statusCode) }
+                public var statusCode: SpanAttributeKey<String> { .init(name: OTelAttribute.db.response.statusCode) }
             }
         }
 
@@ -303,7 +303,7 @@ extension SpanAttributes {
                 ///
                 /// For batch operations, if the individual operations are known to have the same
                 /// stored procedure name then that stored procedure name SHOULD be used.
-                public var name: Self.Key<String> { .init(name: OTelAttribute.db.storedProcedure.name) }
+                public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.db.storedProcedure.name) }
             }
         }
 
@@ -375,7 +375,7 @@ extension SpanAttributes {
                 ///     - `trino`: [Trino](https://trino.io/)
                 ///
                 /// The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
-                public var name: Self.Key<NameEnum> { .init(name: OTelAttribute.db.system.name) }
+                public var name: SpanAttributeKey<NameEnum> { .init(name: OTelAttribute.db.system.name) }
 
                 public struct NameEnum: SpanAttributeConvertible, Sendable {
                     private let rawValue: String

@@ -49,7 +49,7 @@ extension SpanAttributes {
             ///     - `/tmp/my.sock`
             ///
             /// When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
-            public var address: Self.Key<String> { .init(name: OTelAttribute.server.address) }
+            public var address: SpanAttributeKey<String> { .init(name: OTelAttribute.server.address) }
 
             /// `server.port`: Server port number.
             ///
@@ -61,7 +61,7 @@ extension SpanAttributes {
             ///     - `443`
             ///
             /// When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
-            public var port: Self.Key<Int> { .init(name: OTelAttribute.server.port) }
+            public var port: SpanAttributeKey<Int> { .init(name: OTelAttribute.server.port) }
         }
     }
 }

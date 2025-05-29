@@ -49,7 +49,7 @@ extension SpanAttributes {
             ///
             /// MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
             /// SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
-            public var route: Self.Key<String> { .init(name: OTelAttribute.http.route) }
+            public var route: SpanAttributeKey<String> { .init(name: OTelAttribute.http.route) }
         }
 
         /// `http.request` namespace
@@ -165,7 +165,7 @@ extension SpanAttributes {
                 /// HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
                 /// Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
                 /// Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
-                public var method: Self.Key<MethodEnum> { .init(name: OTelAttribute.http.request.method) }
+                public var method: SpanAttributeKey<MethodEnum> { .init(name: OTelAttribute.http.request.method) }
 
                 public struct MethodEnum: SpanAttributeConvertible, Sendable {
                     private let rawValue: String
@@ -202,7 +202,9 @@ extension SpanAttributes {
                 ///     - `GeT`
                 ///     - `ACL`
                 ///     - `foo`
-                public var methodOriginal: Self.Key<String> { .init(name: OTelAttribute.http.request.methodOriginal) }
+                public var methodOriginal: SpanAttributeKey<String> {
+                    .init(name: OTelAttribute.http.request.methodOriginal)
+                }
 
                 /// `http.request.resend_count`: The ordinal number of request resending attempt (for any reason, including redirects).
                 ///
@@ -211,7 +213,7 @@ extension SpanAttributes {
                 /// - Example: `3`
                 ///
                 /// The resend count SHOULD be updated each time an HTTP request gets resent by the client, regardless of what was the cause of the resending (e.g. redirection, authorization failure, 503 Server Unavailable, network issues, or any other).
-                public var resendCount: Self.Key<Int> { .init(name: OTelAttribute.http.request.resendCount) }
+                public var resendCount: SpanAttributeKey<Int> { .init(name: OTelAttribute.http.request.resendCount) }
             }
         }
 
@@ -299,7 +301,7 @@ extension SpanAttributes {
                 /// - Stability: stable
                 /// - Type: int
                 /// - Example: `200`
-                public var statusCode: Self.Key<Int> { .init(name: OTelAttribute.http.response.statusCode) }
+                public var statusCode: SpanAttributeKey<Int> { .init(name: OTelAttribute.http.response.statusCode) }
             }
         }
     }

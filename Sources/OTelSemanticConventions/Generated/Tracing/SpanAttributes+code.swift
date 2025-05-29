@@ -45,7 +45,7 @@ extension SpanAttributes {
             /// - Type: string
             /// - Example: `at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)
             /// `
-            public var stacktrace: Self.Key<String> { .init(name: OTelAttribute.code.stacktrace) }
+            public var stacktrace: SpanAttributeKey<String> { .init(name: OTelAttribute.code.stacktrace) }
         }
 
         /// `code.column` namespace
@@ -74,7 +74,7 @@ extension SpanAttributes {
                 /// - Stability: stable
                 /// - Type: int
                 /// - Example: `16`
-                public var number: Self.Key<Int> { .init(name: OTelAttribute.code.column.number) }
+                public var number: SpanAttributeKey<Int> { .init(name: OTelAttribute.code.column.number) }
             }
         }
 
@@ -104,7 +104,7 @@ extension SpanAttributes {
                 /// - Stability: stable
                 /// - Type: string
                 /// - Example: `/usr/local/MyApplication/content_root/app/index.php`
-                public var path: Self.Key<String> { .init(name: OTelAttribute.code.file.path) }
+                public var path: SpanAttributeKey<String> { .init(name: OTelAttribute.code.file.path) }
             }
         }
 
@@ -153,7 +153,7 @@ extension SpanAttributes {
                 /// * Erlang: `opentelemetry_ctx:new`
                 /// * Rust: `playground::my_module::my_cool_func`
                 /// * C function: `fopen`
-                public var name: Self.Key<String> { .init(name: OTelAttribute.code.function.name) }
+                public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.code.function.name) }
             }
         }
 
@@ -183,7 +183,7 @@ extension SpanAttributes {
                 /// - Stability: stable
                 /// - Type: int
                 /// - Example: `42`
-                public var number: Self.Key<Int> { .init(name: OTelAttribute.code.line.number) }
+                public var number: SpanAttributeKey<Int> { .init(name: OTelAttribute.code.line.number) }
             }
         }
     }

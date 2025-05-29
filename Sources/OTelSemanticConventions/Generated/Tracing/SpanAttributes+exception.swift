@@ -49,7 +49,7 @@ extension SpanAttributes {
                 message:
                     "Obsoleted: It's no longer recommended to record exceptions that are handled and do not escape the scope of a span."
             )
-            public var escaped: Self.Key<Bool> { .init(name: OTelAttribute.exception.escaped) }
+            public var escaped: SpanAttributeKey<Bool> { .init(name: OTelAttribute.exception.escaped) }
 
             /// `exception.message`: The exception message.
             ///
@@ -58,7 +58,7 @@ extension SpanAttributes {
             /// - Examples:
             ///     - `Division by zero`
             ///     - `Can't convert 'int' object to str implicitly`
-            public var message: Self.Key<String> { .init(name: OTelAttribute.exception.message) }
+            public var message: SpanAttributeKey<String> { .init(name: OTelAttribute.exception.message) }
 
             /// `exception.stacktrace`: A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG.
             ///
@@ -66,7 +66,7 @@ extension SpanAttributes {
             /// - Type: string
             /// - Example: `Exception in thread "main" java.lang.RuntimeException: Test exception\n at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)
             /// `
-            public var stacktrace: Self.Key<String> { .init(name: OTelAttribute.exception.stacktrace) }
+            public var stacktrace: SpanAttributeKey<String> { .init(name: OTelAttribute.exception.stacktrace) }
 
             /// `exception.type`: The type of the exception (its fully-qualified class name, if applicable). The dynamic type of the exception should be preferred over the static type in languages that support it.
             ///
@@ -75,7 +75,7 @@ extension SpanAttributes {
             /// - Examples:
             ///     - `java.net.ConnectException`
             ///     - `OSError`
-            public var `type`: Self.Key<String> { .init(name: OTelAttribute.exception.`type`) }
+            public var `type`: SpanAttributeKey<String> { .init(name: OTelAttribute.exception.`type`) }
         }
     }
 }

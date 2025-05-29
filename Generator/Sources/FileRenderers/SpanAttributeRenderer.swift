@@ -151,12 +151,12 @@ struct SpanAttributeRenderer: FileRenderer {
                 throw SpanAttributeRendererError.invalidStandardAttributeType(attribute.type)
             }
             result.append(
-                "\npublic var \(propertyName): Self.Key<\(swiftType)> { .init(name: \(otelAttributePath)) }"
+                "\npublic var \(propertyName): SpanAttributeKey<\(swiftType)> { .init(name: \(otelAttributePath)) }"
             )
         } else if let type = attribute.type as? Attribute.EnumType {
             let enumTypeName = "\(nameGenerator.swiftTypeName(for: "\(attributeName)Enum"))"
             result.append(
-                "\npublic var \(propertyName): Self.Key<\(enumTypeName)> { .init(name: \(otelAttributePath)) }"
+                "\npublic var \(propertyName): SpanAttributeKey<\(enumTypeName)> { .init(name: \(otelAttributePath)) }"
             )
 
             // Enum types are not represented as Swift enums to avoid breaking changes when new enum values are added.

@@ -47,7 +47,7 @@ extension SpanAttributes {
             ///     - `CERN-LineMode/2.15 libwww/2.17b3`
             ///     - `Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1`
             ///     - `YourApp/1.0.0 grpc-java-okhttp/1.27.2`
-            public var original: Self.Key<String> { .init(name: OTelAttribute.userAgent.original) }
+            public var original: SpanAttributeKey<String> { .init(name: OTelAttribute.userAgent.original) }
         }
     }
 }

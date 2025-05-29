@@ -44,7 +44,7 @@ extension SpanAttributes {
             /// - Stability: stable
             /// - Type: string
             /// - Example: `SemConv`
-            public var fragment: Self.Key<String> { .init(name: OTelAttribute.url.fragment) }
+            public var fragment: SpanAttributeKey<String> { .init(name: OTelAttribute.url.fragment) }
 
             /// `url.full`: Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986)
             ///
@@ -77,7 +77,7 @@ extension SpanAttributes {
             ///
             /// When a query string value is redacted, the query string key SHOULD still be preserved, e.g.
             /// `https://www.example.com/path?color=blue&sig=REDACTED`.
-            public var full: Self.Key<String> { .init(name: OTelAttribute.url.full) }
+            public var full: SpanAttributeKey<String> { .init(name: OTelAttribute.url.full) }
 
             /// `url.path`: The [URI path](https://www.rfc-editor.org/rfc/rfc3986#section-3.3) component
             ///
@@ -86,7 +86,7 @@ extension SpanAttributes {
             /// - Example: `/search`
             ///
             /// Sensitive content provided in `url.path` SHOULD be scrubbed when instrumentations can identify it.
-            public var path: Self.Key<String> { .init(name: OTelAttribute.url.path) }
+            public var path: SpanAttributeKey<String> { .init(name: OTelAttribute.url.path) }
 
             /// `url.query`: The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component
             ///
@@ -108,7 +108,7 @@ extension SpanAttributes {
             ///
             /// When a query string value is redacted, the query string key SHOULD still be preserved, e.g.
             /// `q=OpenTelemetry&sig=REDACTED`.
-            public var query: Self.Key<String> { .init(name: OTelAttribute.url.query) }
+            public var query: SpanAttributeKey<String> { .init(name: OTelAttribute.url.query) }
 
             /// `url.scheme`: The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol.
             ///
@@ -118,7 +118,7 @@ extension SpanAttributes {
             ///     - `https`
             ///     - `ftp`
             ///     - `telnet`
-            public var scheme: Self.Key<String> { .init(name: OTelAttribute.url.scheme) }
+            public var scheme: SpanAttributeKey<String> { .init(name: OTelAttribute.url.scheme) }
         }
     }
 }
