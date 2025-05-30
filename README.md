@@ -1,10 +1,16 @@
-# Swift OpenTelemetry Semantic Conventions
+# Swift OTel Semantic Conventions
 
+OpenTelemetry [semantic conventions](https://opentelemetry.io/docs/specs/semconv/) for Swift.
+
+[![Swift Package Index](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fswift-otel%2Fswift-otel-semantic-conventions%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/swift-otel/swift-otel-semantic-conventions)
 [![SemConv][semconv-badge]][semconv-url]
+[![Unit Test](https://github.com/swift-otel/swift-otel-semantic-conventions/actions/workflows/unit-test.yaml/badge.svg)](https://github.com/swift-otel/swift-otel-semantic-conventions/actions/workflows/unit-test.yaml)
+
+## Overview
 
 This repo contains Swift support for the [OpenTelemetry Semantic Convention Attribute Registry](https://opentelemetry.io/docs/specs/semconv/attributes-registry/).
 
-Using this repo has the following benefits:
+Using Swift OTel Semantic Conventions has the following benefits:
 
 1. Avoids misspellings or propagation of nonstandard attribute names
 2. OpenTelemetry deprecation is automatically marked in Swift
@@ -21,13 +27,31 @@ withSpan("showAttributes") { span in
     // Primitive and array types use Swift primitives
     span.attributes.http.response.statusCode = 200
     span.attributes.host.ip = ["192.168.1.140", "fe80::abc2:4a28:737a:609e"]
-    
+
     // Enum types are presented as static constants in Swift
     span.attributes.http.request.method = .post
-    
+
     // Template types can be set dynamically
     span.attributes.http.request.header.set("X-Foo", to: ["bar", "baz"])
 }
+```
+
+#### Opting out of Span Attributes
+
+`SpanAttributes` extensions are included by default. You can opt out by excluding the `Tracing` trait
+in your dependency declaration, potentially saving some compilation time:
+
+```swift
+let package = Package(
+    name: "my-package",
+    dependencies: [
+        .package(
+            url: "https://github.com/swift-otel/swift-otel-semantic-conventions.git",
+            from: "1.34.0",
+            traits: []
+        )
+    ]
+)
 ```
 
 ### Attribute Names
