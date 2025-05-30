@@ -167,8 +167,11 @@ extension SpanAttributes {
                 /// Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
                 public var method: SpanAttributeKey<MethodEnum> { .init(name: OTelAttribute.http.request.method) }
 
-                public struct MethodEnum: SpanAttributeConvertible, Sendable {
-                    private let rawValue: String
+                public struct MethodEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
+                    public let rawValue: String
+                    public init(rawValue: String) {
+                        self.rawValue = rawValue
+                    }
                     /// `CONNECT`: CONNECT method.
                     public static let connect = Self.init(rawValue: "CONNECT")
                     /// `DELETE`: DELETE method.

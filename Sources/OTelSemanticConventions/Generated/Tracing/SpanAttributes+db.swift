@@ -377,8 +377,11 @@ extension SpanAttributes {
                 /// The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
                 public var name: SpanAttributeKey<NameEnum> { .init(name: OTelAttribute.db.system.name) }
 
-                public struct NameEnum: SpanAttributeConvertible, Sendable {
-                    private let rawValue: String
+                public struct NameEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
+                    public let rawValue: String
+                    public init(rawValue: String) {
+                        self.rawValue = rawValue
+                    }
                     /// `other_sql`: Some other SQL database. Fallback only.
                     public static let otherSql = Self.init(rawValue: "other_sql")
                     /// `softwareag.adabas`: [Adabas (Adaptable Database System)](https://documentation.softwareag.com/?pf=adabas)

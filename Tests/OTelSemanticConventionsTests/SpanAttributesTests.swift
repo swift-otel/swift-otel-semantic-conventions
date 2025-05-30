@@ -30,6 +30,12 @@ struct SpanAttributeTests {
         #expect(attributes.get(OTelAttribute.http.request.method) == "POST")
     }
 
+    @Test func spanAttributesEnumCustomValue() async throws {
+        var attributes = SpanAttributes()
+        attributes.error.type = .init(rawValue: "🏎️")
+        #expect(attributes.get(OTelAttribute.error.type) == "🏎️")
+    }
+
     @Test func spanAttributesTemplate() async throws {
         var attributes = SpanAttributes()
         attributes.http.request.header.set("X-Foo", to: ["bar", "baz"])
