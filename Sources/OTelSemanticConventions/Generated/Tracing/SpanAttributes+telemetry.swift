@@ -81,8 +81,11 @@ extension SpanAttributes {
                     .init(name: OTelAttribute.telemetry.sdk.language)
                 }
 
-                public struct LanguageEnum: SpanAttributeConvertible, Sendable {
-                    private let rawValue: String
+                public struct LanguageEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
+                    public let rawValue: String
+                    public init(rawValue: String) {
+                        self.rawValue = rawValue
+                    }
                     /// `cpp`
                     public static let cpp = Self.init(rawValue: "cpp")
                     /// `dotnet`

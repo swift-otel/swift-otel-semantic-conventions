@@ -71,8 +71,11 @@ extension SpanAttributes {
             /// - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
             public var `type`: SpanAttributeKey<TypeEnum> { .init(name: OTelAttribute.error.`type`) }
 
-            public struct TypeEnum: SpanAttributeConvertible, Sendable {
-                private let rawValue: String
+            public struct TypeEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
+                public let rawValue: String
+                public init(rawValue: String) {
+                    self.rawValue = rawValue
+                }
                 /// `_OTHER`: A fallback error value to be used when the instrumentation doesn't define a custom value.
                 public static let other = Self.init(rawValue: "_OTHER")
                 public func toSpanAttribute() -> Tracing.SpanAttribute {

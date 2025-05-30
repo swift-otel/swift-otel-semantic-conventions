@@ -47,8 +47,11 @@ extension SpanAttributes {
             ///     - `ERROR`: The operation contains an error.
             public var statusCode: SpanAttributeKey<StatusCodeEnum> { .init(name: OTelAttribute.otel.statusCode) }
 
-            public struct StatusCodeEnum: SpanAttributeConvertible, Sendable {
-                private let rawValue: String
+            public struct StatusCodeEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
+                public let rawValue: String
+                public init(rawValue: String) {
+                    self.rawValue = rawValue
+                }
                 /// `OK`: The operation has been validated by an Application developer or Operator to have completed successfully.
                 public static let ok = Self.init(rawValue: "OK")
                 /// `ERROR`: The operation contains an error.

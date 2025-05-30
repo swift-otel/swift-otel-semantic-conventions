@@ -59,8 +59,11 @@ extension SpanAttributes {
             /// different processes could be listening on TCP port 12345 and UDP port 12345.
             public var transport: SpanAttributeKey<TransportEnum> { .init(name: OTelAttribute.network.transport) }
 
-            public struct TransportEnum: SpanAttributeConvertible, Sendable {
-                private let rawValue: String
+            public struct TransportEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
+                public let rawValue: String
+                public init(rawValue: String) {
+                    self.rawValue = rawValue
+                }
                 /// `tcp`: TCP
                 public static let tcp = Self.init(rawValue: "tcp")
                 /// `udp`: UDP
@@ -89,8 +92,11 @@ extension SpanAttributes {
             /// The value SHOULD be normalized to lowercase.
             public var `type`: SpanAttributeKey<TypeEnum> { .init(name: OTelAttribute.network.`type`) }
 
-            public struct TypeEnum: SpanAttributeConvertible, Sendable {
-                private let rawValue: String
+            public struct TypeEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
+                public let rawValue: String
+                public init(rawValue: String) {
+                    self.rawValue = rawValue
+                }
                 /// `ipv4`: IPv4
                 public static let ipv4 = Self.init(rawValue: "ipv4")
                 /// `ipv6`: IPv6

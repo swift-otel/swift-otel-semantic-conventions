@@ -14,10 +14,13 @@
 import OTelSemanticConventions
 import Testing
 
-struct OTelHTTPAttributesTests {
+struct OTelAttributesTests {
     @Test func attributes() {
         #expect(OTelAttribute.http.response.statusCode == "http.response.status_code")
-        // TODO: Re-enable this check when we have generated attributes that overlap with Swift keywords
-        // #expect(OTelAttribute.error.type == "error.type") // Check Swift keywords (in this case, type)
+    }
+
+    @Test func avoidsSwiftKeywordOverlap() {
+        // Check Swift keywords are escaped (in this case, type)
+        #expect(OTelAttribute.error.type == "error.type")
     }
 }
