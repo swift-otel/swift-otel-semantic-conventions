@@ -57,7 +57,7 @@ struct Generator: AsyncParsableCommand {
 
         // Parse semconv registry files
         let semConvModelsDirectory = semConvRepoDirectory.appending(path: "model/")
-        var parsedAttributes = try await parseAttributes(
+        var (groups, parsedAttributes) = try await parseAttributes(
             fileManager: fileManager,
             semConvModelsDirectory: semConvModelsDirectory
         )
@@ -89,7 +89,7 @@ struct Generator: AsyncParsableCommand {
             }
         }
 
-        let context = Context(rootNamespace: namespaceTree)
+        let context = Context(rootNamespace: namespaceTree, doccSymbolReferences: [:])
 
         // Generate individual target files
         try render(
@@ -102,6 +102,7 @@ struct Generator: AsyncParsableCommand {
             ]
         )
 
+        try generateDocumentationCatalog(context: context, groups: groups, repoDirectory: repoDirectory)
         try updateReadmeSemConvBadge(repoDirectory: repoDirectory)
     }
 
@@ -134,7 +135,11 @@ struct Generator: AsyncParsableCommand {
     }
 
     /// Checks cache, and if necessary downloads and unzips the semantic conventions repository
-    private func parseAttributes(fileManager: FileManager, semConvModelsDirectory: URL) async throws -> [Attribute] {
+    private func parseAttributes(
+        fileManager: FileManager,
+        semConvModelsDirectory: URL
+    ) async throws -> ([Group], [Attribute]) {
+        var groups = [Group]()
         var parsedAttributes = [Attribute]()
         for element in try fileManager.subpathsOfDirectory(atPath: semConvModelsDirectory.path()) {
             // Currently we only support parsing the `registry` files.
@@ -159,12 +164,13 @@ struct Generator: AsyncParsableCommand {
             }
 
             for group in file.groups {
+                groups.append(group)
                 for groupAttribute in group.attributes {
                     parsedAttributes.append(groupAttribute)
                 }
             }
         }
-        return parsedAttributes
+        return (groups, parsedAttributes)
     }
 
     /// Constructs a tree of namespaces from a list of attributes.
@@ -233,6 +239,89 @@ struct Generator: AsyncParsableCommand {
                 print("Wrote file \(filePath.path()).")
             }
         }
+    }
+
+    /// Generate the DocC documentation catalog given the generated symbols.
+    private func generateDocumentationCatalog(context: Context, groups: [Group], repoDirectory: URL) throws {
+        var indexPage = """
+            # ``OTelSemanticConventions``
+
+            OpenTelemetry semantic conventions for Swift.
+
+            @Metadata {
+                @DisplayName("OTel Semantic Conventions")
+                @PageColor(orange)
+                @Available(Swift, introduced: 6.1)
+            }
+
+            @Options {
+                @TopicsVisualStyle(hidden)
+            }
+            """
+
+        let groups = groups.sorted { $0.id.localizedStandardCompare($1.id) == .orderedAscending }
+
+        // render topics section
+
+        var attributesSection = "\n\n"
+        var topicsSection = "\n\n## Topics\n"
+
+        for group in groups {
+            var targetSymbols = [String: [String: String]]()
+            for attribute in group.attributes {
+                if let symbolReferences = context.doccSymbolReferences[attribute.id] {
+                    for (target, symbolReference) in symbolReferences.sorted(by: { $0.key < $1.key }) {
+                        targetSymbols[target, default: [:]][attribute.id] = symbolReference
+                    }
+                }
+            }
+
+            guard !targetSymbols.isEmpty else {
+                // ignore empty group
+                continue
+            }
+
+            attributesSection += "\n## \(group.documentationTopic)\n\n"
+            if let brief = group.brief {
+                attributesSection += "\(brief)\n"
+            }
+            attributesSection += "@TabNavigator {\n"
+
+            topicsSection += "\n### \(group.documentationTopic)\n\n"
+
+            for (target, symbols) in targetSymbols.sorted(by: {
+                $0.key.localizedStandardCompare($1.key) == .orderedAscending
+            }) {
+                attributesSection += """
+                        @Tab("\(target)") {
+                            @Links(visualStyle: list) { 
+
+                    """
+
+                for (_, symbol) in symbols.sorted(by: { $0.key.localizedStandardCompare($1.key) == .orderedAscending })
+                {
+                    attributesSection += "            - ``\(symbol)``\n"
+                    topicsSection += "- ``\(symbol)``\n"
+                }
+
+                attributesSection += "        }\n"
+                attributesSection += "    }\n"
+            }
+
+            attributesSection += "}\n"
+        }
+
+        indexPage += attributesSection
+        indexPage += topicsSection
+
+        let catalogDirectory = repoDirectory.appending(
+            components: "Sources",
+            "OTelSemanticConventions",
+            "Documentation.docc"
+        )
+        let indexPageURL = catalogDirectory.appending(path: "Documentation.md")
+        try (indexPage).write(to: indexPageURL, atomically: true, encoding: .utf8)
+        print("Generated DocC documentation catalog.")
     }
 
     /// Updates the README file with the new version of the semantic convention badge.

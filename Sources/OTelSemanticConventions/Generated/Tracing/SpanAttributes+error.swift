@@ -69,7 +69,7 @@ extension SpanAttributes {
             ///
             /// - Use a domain-specific attribute
             /// - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
-            public var `type`: Self.Key<TypeEnum> { .init(name: OTelAttribute.error.`type`) }
+            public var `type`: SpanAttributeKey<TypeEnum> { .init(name: OTelAttribute.error.`type`) }
 
             public struct TypeEnum: SpanAttributeConvertible, Sendable {
                 private let rawValue: String

@@ -45,7 +45,7 @@ extension SpanAttributes {
             /// - Type: enum
             ///     - `OK`: The operation has been validated by an Application developer or Operator to have completed successfully.
             ///     - `ERROR`: The operation contains an error.
-            public var statusCode: Self.Key<StatusCodeEnum> { .init(name: OTelAttribute.otel.statusCode) }
+            public var statusCode: SpanAttributeKey<StatusCodeEnum> { .init(name: OTelAttribute.otel.statusCode) }
 
             public struct StatusCodeEnum: SpanAttributeConvertible, Sendable {
                 private let rawValue: String
@@ -63,7 +63,7 @@ extension SpanAttributes {
             /// - Stability: stable
             /// - Type: string
             /// - Example: `resource not found`
-            public var statusDescription: Self.Key<String> { .init(name: OTelAttribute.otel.statusDescription) }
+            public var statusDescription: SpanAttributeKey<String> { .init(name: OTelAttribute.otel.statusDescription) }
         }
 
         /// `otel.scope` namespace
@@ -92,14 +92,14 @@ extension SpanAttributes {
                 /// - Stability: stable
                 /// - Type: string
                 /// - Example: `io.opentelemetry.contrib.mongodb`
-                public var name: Self.Key<String> { .init(name: OTelAttribute.otel.scope.name) }
+                public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.otel.scope.name) }
 
                 /// `otel.scope.version`: The version of the instrumentation scope - (`InstrumentationScope.Version` in OTLP).
                 ///
                 /// - Stability: stable
                 /// - Type: string
                 /// - Example: `1.0.0`
-                public var version: Self.Key<String> { .init(name: OTelAttribute.otel.scope.version) }
+                public var version: SpanAttributeKey<String> { .init(name: OTelAttribute.otel.scope.version) }
             }
         }
     }

@@ -77,7 +77,9 @@ extension SpanAttributes {
                 ///     - `rust`
                 ///     - `swift`
                 ///     - `webjs`
-                public var language: Self.Key<LanguageEnum> { .init(name: OTelAttribute.telemetry.sdk.language) }
+                public var language: SpanAttributeKey<LanguageEnum> {
+                    .init(name: OTelAttribute.telemetry.sdk.language)
+                }
 
                 public struct LanguageEnum: SpanAttributeConvertible, Sendable {
                     private let rawValue: String
@@ -122,14 +124,14 @@ extension SpanAttributes {
                 /// or another suitable identifier depending on the language.
                 /// The identifier `opentelemetry` is reserved and MUST NOT be used in this case.
                 /// All custom identifiers SHOULD be stable across different versions of an implementation.
-                public var name: Self.Key<String> { .init(name: OTelAttribute.telemetry.sdk.name) }
+                public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.telemetry.sdk.name) }
 
                 /// `telemetry.sdk.version`: The version string of the telemetry SDK.
                 ///
                 /// - Stability: stable
                 /// - Type: string
                 /// - Example: `1.2.3`
-                public var version: Self.Key<String> { .init(name: OTelAttribute.telemetry.sdk.version) }
+                public var version: SpanAttributeKey<String> { .init(name: OTelAttribute.telemetry.sdk.version) }
             }
         }
     }

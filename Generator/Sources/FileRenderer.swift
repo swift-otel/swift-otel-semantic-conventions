@@ -25,8 +25,23 @@ protocol FileRenderer {
 }
 
 /// Contains top-level information about the rendering execution
-struct Context {
+final class Context {
     let rootNamespace: Namespace
+
+    /// The symbols generated for each attribute, separated by the human-readable renderer name.
+    ///
+    /// Example:
+    /// ```swift
+    /// ["code.column.number": ["String Constants": "OTelAttribute/code/column/number"]]
+    /// ```
+    ///
+    /// `FileRenderer`s are expected to populate this dictionary while generating.
+    var doccSymbolReferences: [String: [String: String]]
+
+    init(rootNamespace: Namespace, doccSymbolReferences: [String: [String: String]]) {
+        self.rootNamespace = rootNamespace
+        self.doccSymbolReferences = doccSymbolReferences
+    }
 }
 
 extension FileRenderer {
