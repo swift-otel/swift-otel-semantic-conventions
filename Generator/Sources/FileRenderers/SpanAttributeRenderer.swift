@@ -207,6 +207,7 @@ struct SpanAttributeRenderer: FileRenderer {
                 """
             )
             for member in type.members {
+                guard member.stability == .stable else { continue }
                 let caseName = nameGenerator.swiftMemberName(for: member.id)
                 result.append("\n    /// `\(member.value)`")
                 if let brief = member.brief {
