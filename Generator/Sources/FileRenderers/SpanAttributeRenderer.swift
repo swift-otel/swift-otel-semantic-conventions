@@ -182,6 +182,7 @@ struct SpanAttributeRenderer: FileRenderer {
             case .intArray: swiftType = "[Int]"
             case .string: swiftType = "String"
             case .stringArray: swiftType = "[String]"
+            case .any: swiftType = "SpanAttribute"
             default:
                 throw SpanAttributeRendererError.invalidStandardAttributeType(attribute.type)
             }

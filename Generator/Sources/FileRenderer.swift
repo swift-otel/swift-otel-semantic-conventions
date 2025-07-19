@@ -85,7 +85,6 @@ extension FileRenderer {
     ///
     /// - Parameters:
     ///   - deprecated: The `Deprecated` enum that describes the deprecation
-    ///   - extendedTypeName: The name of the type being extended with this attribute (i.e. OTelAttribute, or SpanAttributes). Used in the `renamed` argument, if applicable.
     /// - Returns: A string representing the `@available` attribute for Swift
     func renderDeprecatedAttribute(_ deprecated: Deprecated) -> String {
         var result = "@available(*, deprecated"
