@@ -64,7 +64,7 @@ struct Generator: AsyncParsableCommand {
 
         // Filter out attributes that are not stable
         parsedAttributes = parsedAttributes.filter { attribute in
-            attribute.stability != .development && attribute.stability != .experimental
+            attribute.stability == .stable
         }
 
         // Create semconv namespace tree
