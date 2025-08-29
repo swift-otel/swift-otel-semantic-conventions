@@ -24,7 +24,7 @@ struct Group: Decodable {
     let stability: Stability?
     let display_name: String?
     let brief: String?
-    let attributes: [Attribute]
+    let attributes: [AttributeContainer]
 
     var documentationTopic: String {
         display_name ?? id
@@ -40,6 +40,30 @@ struct Group: Decodable {
         case gauge
         case updowncounter
     }
+}
+
+enum AttributeContainer: Decodable {
+    case attribute(Attribute)
+    case reference(AttributeRef)
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        do {
+            let attribute = try container.decode(Attribute.self)
+            self = .attribute(attribute)
+        } catch let attributeError {
+            do {
+                let reference = try container.decode(AttributeRef.self)
+                self = .reference(reference)
+            } catch {
+                throw attributeError
+            }
+        }
+    }
+}
+
+struct AttributeRef: Decodable {
+    let ref: String
 }
 
 struct Attribute: Decodable {
@@ -76,14 +100,22 @@ struct Attribute: Decodable {
     init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
-        if let type = try? container.decode(StandardType.self, forKey: .type) {
+        do {
+            let type = try container.decode(StandardType.self, forKey: .type)
             self.type = type
-        } else if let type = try? container.decode(EnumType.self, forKey: .type) {
-            self.type = type
-        } else {
-            throw DecodingError.dataCorrupted(
-                .init(codingPath: container.codingPath, debugDescription: "Unexpected `type` value")
-            )
+        } catch let standardTypeError {
+            do {
+                let type = try container.decode(EnumType.self, forKey: .type)
+                self.type = type
+            } catch let enumTypeError {
+                throw DecodingError.dataCorrupted(
+                    .init(
+                        codingPath: container.codingPath,
+                        debugDescription:
+                            "Unexpected `type` value: StandardType error: \(standardTypeError), EnumType error: \(enumTypeError)"
+                    )
+                )
+            }
         }
         stability = try container.decodeIfPresent(Stability.self, forKey: .stability) ?? .experimental
         brief = try container.decodeIfPresent(String.self, forKey: .brief)
