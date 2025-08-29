@@ -138,7 +138,7 @@ struct Attribute: Decodable {
         struct EnumMember: Codable {
             let id: String
             let value: String
-            let deprecated: String?
+            let deprecated: Deprecated?
             let brief: String?
             let stability: Stability?
         }
@@ -153,7 +153,7 @@ extension Double: AttributeExample {}
 extension Int: AttributeExample {}
 extension String: AttributeExample {}
 
-enum Deprecated: Decodable, Equatable {
+enum Deprecated: Codable, Equatable {
     case obsoleted(note: String?)
     case renamed(renamed_to: String, note: String?)
     case uncategorized(note: String?)
@@ -185,6 +185,22 @@ enum Deprecated: Decodable, Equatable {
                     debugDescription: "Unexpected format for `deprecated`. Expected an object or string."
                 )
             )
+        }
+    }
+
+    func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        switch self {
+        case .obsoleted(let note):
+            try container.encode(Reason.obsoleted, forKey: .reason)
+            try container.encodeIfPresent(note, forKey: .note)
+        case .renamed(let renamed_to, let note):
+            try container.encode(Reason.renamed, forKey: .reason)
+            try container.encode(renamed_to, forKey: .renamed_to)
+            try container.encodeIfPresent(note, forKey: .note)
+        case .uncategorized(let note):
+            try container.encode(Reason.uncategorized, forKey: .reason)
+            try container.encodeIfPresent(note, forKey: .note)
         }
     }
 
