@@ -19,13 +19,13 @@ These attributes may be used to describe the client in a connection-based networ
 
 @TabNavigator {
     @Tab("Span Attributes") {
-        @Links(visualStyle: list) { 
+        @Links(visualStyle: list) {
             - ``Tracing/SpanAttributes/ClientAttributes/NestedSpanAttributes/address``
             - ``Tracing/SpanAttributes/ClientAttributes/NestedSpanAttributes/port``
         }
     }
     @Tab("String Constants") {
-        @Links(visualStyle: list) { 
+        @Links(visualStyle: list) {
             - ``OTelAttribute/client/address``
             - ``OTelAttribute/client/port``
         }
@@ -38,7 +38,7 @@ These attributes provide context about source code
 
 @TabNavigator {
     @Tab("Span Attributes") {
-        @Links(visualStyle: list) { 
+        @Links(visualStyle: list) {
             - ``Tracing/SpanAttributes/CodeAttributes/ColumnAttributes/NestedSpanAttributes/number``
             - ``Tracing/SpanAttributes/CodeAttributes/FileAttributes/NestedSpanAttributes/path``
             - ``Tracing/SpanAttributes/CodeAttributes/FunctionAttributes/NestedSpanAttributes/name``
@@ -47,7 +47,7 @@ These attributes provide context about source code
         }
     }
     @Tab("String Constants") {
-        @Links(visualStyle: list) { 
+        @Links(visualStyle: list) {
             - ``OTelAttribute/code/column/number``
             - ``OTelAttribute/code/file/path``
             - ``OTelAttribute/code/function/name``
@@ -63,7 +63,7 @@ This group defines the attributes used to describe telemetry in the context of d
 
 @TabNavigator {
     @Tab("Span Attributes") {
-        @Links(visualStyle: list) { 
+        @Links(visualStyle: list) {
             - ``Tracing/SpanAttributes/DbAttributes/CollectionAttributes/NestedSpanAttributes/name``
             - ``Tracing/SpanAttributes/DbAttributes/NestedSpanAttributes/namespace``
             - ``Tracing/SpanAttributes/DbAttributes/OperationAttributes/BatchAttributes/NestedSpanAttributes/size``
@@ -76,7 +76,7 @@ This group defines the attributes used to describe telemetry in the context of d
         }
     }
     @Tab("String Constants") {
-        @Links(visualStyle: list) { 
+        @Links(visualStyle: list) {
             - ``OTelAttribute/db/collection/name``
             - ``OTelAttribute/db/namespace``
             - ``OTelAttribute/db/operation/batch/size``
@@ -96,12 +96,12 @@ This document defines the shared attributes used to report an error.
 
 @TabNavigator {
     @Tab("Span Attributes") {
-        @Links(visualStyle: list) { 
+        @Links(visualStyle: list) {
             - ``Tracing/SpanAttributes/ErrorAttributes/NestedSpanAttributes/type``
         }
     }
     @Tab("String Constants") {
-        @Links(visualStyle: list) { 
+        @Links(visualStyle: list) {
             - ``OTelAttribute/error/type``
         }
     }
@@ -113,14 +113,14 @@ This document defines the shared attributes used to report a single exception as
 
 @TabNavigator {
     @Tab("Span Attributes") {
-        @Links(visualStyle: list) { 
+        @Links(visualStyle: list) {
             - ``Tracing/SpanAttributes/ExceptionAttributes/NestedSpanAttributes/message``
             - ``Tracing/SpanAttributes/ExceptionAttributes/NestedSpanAttributes/stacktrace``
             - ``Tracing/SpanAttributes/ExceptionAttributes/NestedSpanAttributes/type``
         }
     }
     @Tab("String Constants") {
-        @Links(visualStyle: list) { 
+        @Links(visualStyle: list) {
             - ``OTelAttribute/exception/message``
             - ``OTelAttribute/exception/stacktrace``
             - ``OTelAttribute/exception/type``
@@ -134,12 +134,12 @@ Deprecated exception attributes.
 
 @TabNavigator {
     @Tab("Span Attributes") {
-        @Links(visualStyle: list) { 
+        @Links(visualStyle: list) {
             - ``Tracing/SpanAttributes/ExceptionAttributes/NestedSpanAttributes/escaped``
         }
     }
     @Tab("String Constants") {
-        @Links(visualStyle: list) { 
+        @Links(visualStyle: list) {
             - ``OTelAttribute/exception/escaped``
         }
     }
@@ -150,7 +150,7 @@ Deprecated exception attributes.
 This document defines semantic convention attributes in the HTTP namespace.
 @TabNavigator {
     @Tab("Span Attributes") {
-        @Links(visualStyle: list) { 
+        @Links(visualStyle: list) {
             - ``Tracing/SpanAttributes/HttpAttributes/RequestAttributes/header``
             - ``Tracing/SpanAttributes/HttpAttributes/RequestAttributes/NestedSpanAttributes/method``
             - ``Tracing/SpanAttributes/HttpAttributes/RequestAttributes/NestedSpanAttributes/methodOriginal``
@@ -161,7 +161,7 @@ This document defines semantic convention attributes in the HTTP namespace.
         }
     }
     @Tab("String Constants") {
-        @Links(visualStyle: list) { 
+        @Links(visualStyle: list) {
             - ``OTelAttribute/http/request/header``
             - ``OTelAttribute/http/request/method``
             - ``OTelAttribute/http/request/methodOriginal``
@@ -179,7 +179,7 @@ These attributes may be used for any network related operation.
 
 @TabNavigator {
     @Tab("Span Attributes") {
-        @Links(visualStyle: list) { 
+        @Links(visualStyle: list) {
             - ``Tracing/SpanAttributes/NetworkAttributes/LocalAttributes/NestedSpanAttributes/address``
             - ``Tracing/SpanAttributes/NetworkAttributes/LocalAttributes/NestedSpanAttributes/port``
             - ``Tracing/SpanAttributes/NetworkAttributes/PeerAttributes/NestedSpanAttributes/address``
@@ -191,7 +191,7 @@ These attributes may be used for any network related operation.
         }
     }
     @Tab("String Constants") {
-        @Links(visualStyle: list) { 
+        @Links(visualStyle: list) {
             - ``OTelAttribute/network/local/address``
             - ``OTelAttribute/network/local/port``
             - ``OTelAttribute/network/peer/address``
@@ -209,13 +209,13 @@ These attributes may be used for any network related operation.
 Attributes reserved for OpenTelemetry
 @TabNavigator {
     @Tab("Span Attributes") {
-        @Links(visualStyle: list) { 
+        @Links(visualStyle: list) {
             - ``Tracing/SpanAttributes/OtelAttributes/NestedSpanAttributes/statusCode``
             - ``Tracing/SpanAttributes/OtelAttributes/NestedSpanAttributes/statusDescription``
         }
     }
     @Tab("String Constants") {
-        @Links(visualStyle: list) { 
+        @Links(visualStyle: list) {
             - ``OTelAttribute/otel/statusCode``
             - ``OTelAttribute/otel/statusDescription``
         }
@@ -227,13 +227,13 @@ Attributes reserved for OpenTelemetry
 Attributes used by non-OTLP exporters to represent OpenTelemetry Scope's concepts.
 @TabNavigator {
     @Tab("Span Attributes") {
-        @Links(visualStyle: list) { 
+        @Links(visualStyle: list) {
             - ``Tracing/SpanAttributes/OtelAttributes/ScopeAttributes/NestedSpanAttributes/name``
             - ``Tracing/SpanAttributes/OtelAttributes/ScopeAttributes/NestedSpanAttributes/version``
         }
     }
     @Tab("String Constants") {
-        @Links(visualStyle: list) { 
+        @Links(visualStyle: list) {
             - ``OTelAttribute/otel/scope/name``
             - ``OTelAttribute/otel/scope/version``
         }
@@ -246,13 +246,13 @@ These attributes may be used to describe the server in a connection-based networ
 
 @TabNavigator {
     @Tab("Span Attributes") {
-        @Links(visualStyle: list) { 
+        @Links(visualStyle: list) {
             - ``Tracing/SpanAttributes/ServerAttributes/NestedSpanAttributes/address``
             - ``Tracing/SpanAttributes/ServerAttributes/NestedSpanAttributes/port``
         }
     }
     @Tab("String Constants") {
-        @Links(visualStyle: list) { 
+        @Links(visualStyle: list) {
             - ``OTelAttribute/server/address``
             - ``OTelAttribute/server/port``
         }
@@ -265,13 +265,13 @@ A service instance.
 
 @TabNavigator {
     @Tab("Span Attributes") {
-        @Links(visualStyle: list) { 
+        @Links(visualStyle: list) {
             - ``Tracing/SpanAttributes/ServiceAttributes/NestedSpanAttributes/name``
             - ``Tracing/SpanAttributes/ServiceAttributes/NestedSpanAttributes/version``
         }
     }
     @Tab("String Constants") {
-        @Links(visualStyle: list) { 
+        @Links(visualStyle: list) {
             - ``OTelAttribute/service/name``
             - ``OTelAttribute/service/version``
         }
@@ -284,14 +284,14 @@ This document defines attributes for telemetry SDK.
 
 @TabNavigator {
     @Tab("Span Attributes") {
-        @Links(visualStyle: list) { 
+        @Links(visualStyle: list) {
             - ``Tracing/SpanAttributes/TelemetryAttributes/SdkAttributes/NestedSpanAttributes/language``
             - ``Tracing/SpanAttributes/TelemetryAttributes/SdkAttributes/NestedSpanAttributes/name``
             - ``Tracing/SpanAttributes/TelemetryAttributes/SdkAttributes/NestedSpanAttributes/version``
         }
     }
     @Tab("String Constants") {
-        @Links(visualStyle: list) { 
+        @Links(visualStyle: list) {
             - ``OTelAttribute/telemetry/sdk/language``
             - ``OTelAttribute/telemetry/sdk/name``
             - ``OTelAttribute/telemetry/sdk/version``
@@ -304,7 +304,7 @@ This document defines attributes for telemetry SDK.
 Attributes describing URL.
 @TabNavigator {
     @Tab("Span Attributes") {
-        @Links(visualStyle: list) { 
+        @Links(visualStyle: list) {
             - ``Tracing/SpanAttributes/UrlAttributes/NestedSpanAttributes/fragment``
             - ``Tracing/SpanAttributes/UrlAttributes/NestedSpanAttributes/full``
             - ``Tracing/SpanAttributes/UrlAttributes/NestedSpanAttributes/path``
@@ -313,7 +313,7 @@ Attributes describing URL.
         }
     }
     @Tab("String Constants") {
-        @Links(visualStyle: list) { 
+        @Links(visualStyle: list) {
             - ``OTelAttribute/url/fragment``
             - ``OTelAttribute/url/full``
             - ``OTelAttribute/url/path``
@@ -328,12 +328,12 @@ Attributes describing URL.
 Describes user-agent attributes.
 @TabNavigator {
     @Tab("Span Attributes") {
-        @Links(visualStyle: list) { 
+        @Links(visualStyle: list) {
             - ``Tracing/SpanAttributes/UserAgentAttributes/NestedSpanAttributes/original``
         }
     }
     @Tab("String Constants") {
-        @Links(visualStyle: list) { 
+        @Links(visualStyle: list) {
             - ``OTelAttribute/userAgent/original``
         }
     }
