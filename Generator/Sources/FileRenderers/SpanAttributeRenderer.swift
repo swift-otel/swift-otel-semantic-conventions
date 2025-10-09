@@ -25,7 +25,7 @@ struct SpanAttributeRenderer: FileRenderer {
         import Tracing
 
         extension SpanAttributes {
-        \(renderNamespace(namespace, indent: 4, doccSymbolPrefix: ["Tracing", "SpanAttributes"]))
+        \(renderNamespace(namespace, parent: nil, indent: 4, doccSymbolPrefix: ["Tracing", "SpanAttributes"]))
         }
 
         #endif
@@ -57,7 +57,7 @@ struct SpanAttributeRenderer: FileRenderer {
 
     private func renderNamespace(
         _ namespace: Namespace,
-        inSpanNamespace: Bool = false,
+        parent: Namespace?,
         indent: Int,
         doccSymbolPrefix: [String]
     ) throws -> String {
@@ -67,24 +67,31 @@ struct SpanAttributeRenderer: FileRenderer {
         let standardAttributes = namespace.attributes.values.filter { !isTemplateType($0.type) }
         let templateAttributes = namespace.attributes.values.filter { isTemplateType($0.type) }
 
-        var result = "/// `\(namespace.id)` namespace"
+        let parentMarkedExperimental = parent?.containsNoStableAttributes ?? false
+        let shouldMarkExperimental = !parentMarkedExperimental && namespace.containsNoStableAttributes
+
+        var result = ""
+        if shouldMarkExperimental {
+            result.append("#if Experimental\n")
+        }
+        result.append("/// `\(namespace.id)` namespace")
         result.append(
             """
 
             public var \(propertyName): \(structName) {
                 get {
-                    .init(attributes: \(inSpanNamespace ? "self.attributes" : "self"))
+                    .init(attributes: \(parent == nil ? "self" : "self.attributes"))
                 }
                 set {
-                    \(inSpanNamespace ? "self.attributes" : "self") = newValue.attributes
+                    \(parent == nil ? "self" : "self.attributes") = newValue.attributes
                 }
             }
 
             @dynamicMemberLookup
             public struct \(structName): SpanAttributeNamespace {
-                public var attributes: SpanAttributes
+                public var attributes: Tracing.SpanAttributes
 
-                public init(attributes: SpanAttributes) {
+                public init(attributes: Tracing.SpanAttributes) {
                     self.attributes = attributes
                 }
             """
@@ -137,7 +144,7 @@ struct SpanAttributeRenderer: FileRenderer {
                     }.map { child in
                         try renderNamespace(
                             child,
-                            inSpanNamespace: true,
+                            parent: namespace,
                             indent: 4,
                             doccSymbolPrefix: doccSymbolPrefix + [structName]
                         )
@@ -145,6 +152,9 @@ struct SpanAttributeRenderer: FileRenderer {
             )
         }
         result.append("\n}")
+        if shouldMarkExperimental {
+            result.append("\n#endif")
+        }
         return result.indent(by: indent)
     }
 
@@ -163,7 +173,13 @@ struct SpanAttributeRenderer: FileRenderer {
             .replacingOccurrences(of: "`", with: "")
         context.doccSymbolReferences[attribute.id, default: [:]]["Span Attributes"] = symbolReference
 
-        var result = renderDocs(attribute)
+        let shouldMarkExperimental = !namespace.containsNoStableAttributes && attribute.stability != .stable
+
+        var result = ""
+        if shouldMarkExperimental {
+            result.append("#if Experimental\n")
+        }
+        result.append(renderDocs(attribute))
         if let deprecated = attribute.deprecated {
             result.append("\n" + renderDeprecatedAttribute(deprecated))
         }
@@ -232,6 +248,9 @@ struct SpanAttributeRenderer: FileRenderer {
         } else {
             throw SpanAttributeRendererError.invalidStandardAttributeType(attribute.type)
         }
+        if shouldMarkExperimental {
+            result.append("\n#endif")
+        }
 
         return result.indent(by: indent)
     }
@@ -269,9 +288,13 @@ struct SpanAttributeRenderer: FileRenderer {
             throw SpanAttributeRendererError.invalidTemplateAttributeType(attribute.type)
         }
 
-        // getTemplateType
+        let shouldMarkExperimental = !namespace.containsNoStableAttributes && attribute.stability != .stable
 
-        var result = renderDocs(attribute)
+        var result = ""
+        if shouldMarkExperimental {
+            result.append("#if Experimental\n")
+        }
+        result.append(renderDocs(attribute))
         result.append(
             """
 
@@ -285,9 +308,9 @@ struct SpanAttributeRenderer: FileRenderer {
             }
 
             public struct \(structName) {
-                public var attributes: SpanAttributes
+                public var attributes: Tracing.SpanAttributes
 
-                public init(attributes: SpanAttributes) {
+                public init(attributes: Tracing.SpanAttributes) {
                     self.attributes = attributes
                 }
 
@@ -314,6 +337,9 @@ struct SpanAttributeRenderer: FileRenderer {
             }
             """
         )
+        if shouldMarkExperimental {
+            result.append("\n#endif")
+        }
         return result.indent(by: indent)
     }
 

@@ -21,7 +21,7 @@ struct OTelAttributeRenderer: FileRenderer {
     func renderFile(_ namespace: Namespace) throws -> String {
         try """
         extension OTelAttribute {
-        \(renderNamespace(namespace, indent: 4, doccSymbolPrefix: ["OTelAttribute"]))
+        \(renderNamespace(namespace, parent: nil, indent: 4, doccSymbolPrefix: ["OTelAttribute"]))
         }
 
         """
@@ -29,6 +29,7 @@ struct OTelAttributeRenderer: FileRenderer {
 
     private func renderNamespace(
         _ namespace: Namespace,
+        parent: Namespace?,
         indent: Int,
         doccSymbolPrefix: [String]
     ) throws -> String {
@@ -52,16 +53,27 @@ struct OTelAttributeRenderer: FileRenderer {
             }.map { child in
                 try renderNamespace(
                     child,
+                    parent: namespace,
                     indent: 4,
                     doccSymbolPrefix: doccSymbolPrefix
                 )
             }
         )
 
-        var result = "/// `\(namespace.id)` namespace"
+        let parentMarkedExperimental = parent?.containsNoStableAttributes ?? false
+        let shouldMarkExperimental = !parentMarkedExperimental && namespace.containsNoStableAttributes
+
+        var result = ""
+        if shouldMarkExperimental {
+            result.append("#if Experimental\n")
+        }
+        result.append("/// `\(namespace.id)` namespace")
         result.append("\npublic enum \(namespace.memberName) {")
         result.append("\n" + properties.joined(separator: "\n\n"))
         result.append("\n}")
+        if shouldMarkExperimental {
+            result.append("\n#endif")
+        }
         return result.indent(by: indent)
     }
 
@@ -71,7 +83,12 @@ struct OTelAttributeRenderer: FileRenderer {
         indent: Int,
         doccSymbolPrefix: [String]
     ) throws -> String {
-        var result = renderDocs(attribute)
+        let shouldMarkExperimental = !namespace.containsNoStableAttributes && attribute.stability != .stable
+        var result = ""
+        if shouldMarkExperimental {
+            result.append("#if Experimental\n")
+        }
+        result.append(renderDocs(attribute))
         if let deprecated = attribute.deprecated {
             result.append("\n" + renderDeprecatedAttribute(deprecated))
         }
@@ -85,6 +102,9 @@ struct OTelAttributeRenderer: FileRenderer {
         result.append(
             "\npublic static let \(attributeMemberName) = \"\(attribute.id)\""
         )
+        if shouldMarkExperimental {
+            result.append("\n#endif")
+        }
 
         return result.indent(by: indent)
     }
