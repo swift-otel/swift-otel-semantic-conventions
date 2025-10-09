@@ -91,7 +91,9 @@ extension FileRenderer {
         switch deprecated {
         case let .renamed(renamed_to, note):
             if let renamedTo = try? attributeIDToSwiftMemberPath(renamed_to) {
-                result.append(", renamed: \"\(renamedTo)\"")
+                // Swift disallows backticks in the `renamed` value
+                let sanitizedRenamedTo = renamedTo.replacingOccurrences(of: "`", with: "")
+                result.append(", renamed: \"\(sanitizedRenamedTo)\"")
             }
             if let note = note?.trimmingCharacters(in: .whitespacesAndNewlines) {
                 result.append(", message: \"\(note)\"")
