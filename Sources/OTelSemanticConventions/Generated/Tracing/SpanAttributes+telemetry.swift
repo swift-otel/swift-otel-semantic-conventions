@@ -30,15 +30,57 @@ extension SpanAttributes {
 
     @dynamicMemberLookup
     public struct TelemetryAttributes: SpanAttributeNamespace {
-        public var attributes: SpanAttributes
+        public var attributes: Tracing.SpanAttributes
 
-        public init(attributes: SpanAttributes) {
+        public init(attributes: Tracing.SpanAttributes) {
             self.attributes = attributes
         }
 
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
         }
+
+        #if Experimental
+        /// `telemetry.distro` namespace
+        public var distro: DistroAttributes {
+            get {
+                .init(attributes: self.attributes)
+            }
+            set {
+                self.attributes = newValue.attributes
+            }
+        }
+
+        @dynamicMemberLookup
+        public struct DistroAttributes: SpanAttributeNamespace {
+            public var attributes: Tracing.SpanAttributes
+
+            public init(attributes: Tracing.SpanAttributes) {
+                self.attributes = attributes
+            }
+
+            public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                public init() {}
+
+                /// `telemetry.distro.name`: The name of the auto instrumentation agent or distribution, if used.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Example: `parts-unlimited-java`
+                ///
+                /// Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to
+                /// a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`.
+                public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.telemetry.distro.name) }
+
+                /// `telemetry.distro.version`: The version string of the auto instrumentation agent or distribution, if used.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Example: `1.2.3`
+                public var version: SpanAttributeKey<String> { .init(name: OTelAttribute.telemetry.distro.version) }
+            }
+        }
+        #endif
 
         /// `telemetry.sdk` namespace
         public var sdk: SdkAttributes {
@@ -52,9 +94,9 @@ extension SpanAttributes {
 
         @dynamicMemberLookup
         public struct SdkAttributes: SpanAttributeNamespace {
-            public var attributes: SpanAttributes
+            public var attributes: Tracing.SpanAttributes
 
-            public init(attributes: SpanAttributes) {
+            public init(attributes: Tracing.SpanAttributes) {
                 self.attributes = attributes
             }
 

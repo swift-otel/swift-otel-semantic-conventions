@@ -30,14 +30,31 @@ extension SpanAttributes {
 
     @dynamicMemberLookup
     public struct ErrorAttributes: SpanAttributeNamespace {
-        public var attributes: SpanAttributes
+        public var attributes: Tracing.SpanAttributes
 
-        public init(attributes: SpanAttributes) {
+        public init(attributes: Tracing.SpanAttributes) {
             self.attributes = attributes
         }
 
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
+
+            #if Experimental
+            /// `error.message`: A message providing more detail about an error in human-readable form.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Examples:
+            ///     - `Unexpected input type: string`
+            ///     - `The user has exceeded their storage quota`
+            ///
+            /// `error.message` should provide additional context and detail about an error.
+            /// It is NOT RECOMMENDED to duplicate the value of `error.type` in `error.message`.
+            /// It is also NOT RECOMMENDED to duplicate the value of `exception.message` in `error.message`.
+            ///
+            /// `error.message` is NOT RECOMMENDED for metrics or spans due to its unbounded cardinality and overlap with span status.
+            public var message: SpanAttributeKey<String> { .init(name: OTelAttribute.error.message) }
+            #endif
 
             /// `error.type`: Describes a class of error the operation ended with.
             ///
