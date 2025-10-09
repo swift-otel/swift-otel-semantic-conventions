@@ -63,7 +63,7 @@ struct Generator: AsyncParsableCommand {
         )
 
         // Filter out attributes that are not stable
-        parsedAttributes = parsedAttributes.filter { attribute in
+        parsedAttributes = parsedAttributes.filter { id, attribute in
             attribute.stability == .stable
         }
 
@@ -138,9 +138,9 @@ struct Generator: AsyncParsableCommand {
     private func parseAttributes(
         fileManager: FileManager,
         semConvModelsDirectory: URL
-    ) async throws -> ([Group], [Attribute]) {
+    ) async throws -> ([Group], [String: Attribute]) {
         var groups = [Group]()
-        var parsedAttributes = [Attribute]()
+        var parsedAttributes = [String: Attribute]()
         for element in try fileManager.subpathsOfDirectory(atPath: semConvModelsDirectory.path()) {
             // Currently we only support parsing the `registry` files.
             // TODO: Expand support to metric/span files, which involves handling `ref` type attributes.
@@ -166,7 +166,13 @@ struct Generator: AsyncParsableCommand {
             for group in file.groups {
                 groups.append(group)
                 for groupAttribute in group.attributes {
-                    parsedAttributes.append(groupAttribute)
+                    switch groupAttribute {
+                    case let .attribute(attribute):
+                        parsedAttributes[attribute.id] = attribute
+                    default:
+                        // Since refs don't introduce new names, we just resolve them later
+                        break
+                    }
                 }
             }
         }
@@ -175,10 +181,10 @@ struct Generator: AsyncParsableCommand {
 
     /// Constructs a tree of namespaces from a list of attributes.
     private func constructNamespaceTree(
-        attributes: [Attribute]
+        attributes: [String: Attribute]
     ) throws -> Namespace {
         let root = Namespace(id: "")
-        for attribute in attributes {
+        for (_, attribute) in attributes {
             let path = attribute.id.split(separator: ".")
             var namespace = root
             var walkedPath = [String]()
@@ -269,10 +275,16 @@ struct Generator: AsyncParsableCommand {
         for group in groups {
             var targetSymbols = [String: [String: String]]()
             for attribute in group.attributes {
-                if let symbolReferences = context.doccSymbolReferences[attribute.id] {
-                    for (target, symbolReference) in symbolReferences.sorted(by: { $0.key < $1.key }) {
-                        targetSymbols[target, default: [:]][attribute.id] = symbolReference
+                switch attribute {
+                case let .attribute(attribute):
+                    if let symbolReferences = context.doccSymbolReferences[attribute.id] {
+                        for (target, symbolReference) in symbolReferences.sorted(by: { $0.key < $1.key }) {
+                            targetSymbols[target, default: [:]][attribute.id] = symbolReference
+                        }
                     }
+                default:
+                    // TODO
+                    break
                 }
             }
 
@@ -294,7 +306,7 @@ struct Generator: AsyncParsableCommand {
             }) {
                 attributesSection += """
                         @Tab("\(target)") {
-                            @Links(visualStyle: list) { 
+                            @Links(visualStyle: list) {
 
                     """
 

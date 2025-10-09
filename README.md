@@ -82,5 +82,5 @@ However, this package uses a Swift generator instead for the following reasons:
 - To support the desired API where Swift usage nests namespaces with the `.` notation just like the attributes, a namespace tree must be constructed and traversed. Doing this in the Weaver Jinja templating language is difficult.
 - Swift will be more familiar than Jinja templates to users of this package, leading to easier maintenance.
 
-[semconv-badge]: https://img.shields.io/badge/semconv-1.36.0-blue.svg
+[semconv-badge]: https://img.shields.io/badge/semconv-1.37.0-blue.svg
 [semconv-url]: https://github.com/open-telemetry/semantic-conventions.git
