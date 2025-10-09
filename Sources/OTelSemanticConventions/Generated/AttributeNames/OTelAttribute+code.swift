@@ -16,6 +16,64 @@
 extension OTelAttribute {
     /// `code` namespace
     public enum code {
+        #if Experimental
+        /// `code.column`: Deprecated, use `code.column.number`
+        ///
+        /// - Stability: development
+        /// - Type: int
+        /// - Example: `16`
+        @available(*, deprecated, renamed: "OTelAttribute.code.column.number")
+        public static let _column = "code.column"
+        #endif
+
+        #if Experimental
+        /// `code.filepath`: Deprecated, use `code.file.path` instead
+        ///
+        /// - Stability: development
+        /// - Type: string
+        /// - Example: `/usr/local/MyApplication/content_root/app/index.php`
+        @available(*, deprecated, renamed: "OTelAttribute.code.file.path")
+        public static let filepath = "code.filepath"
+        #endif
+
+        #if Experimental
+        /// `code.function`: Deprecated, use `code.function.name` instead
+        ///
+        /// - Stability: development
+        /// - Type: string
+        /// - Example: `serveRequest`
+        @available(
+            *,
+            deprecated,
+            message: "Value should be included in `code.function.name` which is expected to be a fully-qualified name."
+        )
+        public static let _function = "code.function"
+        #endif
+
+        #if Experimental
+        /// `code.lineno`: Deprecated, use `code.line.number` instead
+        ///
+        /// - Stability: development
+        /// - Type: int
+        /// - Example: `42`
+        @available(*, deprecated, renamed: "OTelAttribute.code.line.number")
+        public static let lineno = "code.lineno"
+        #endif
+
+        #if Experimental
+        /// `code.namespace`: Deprecated, namespace is now included into `code.function.name`
+        ///
+        /// - Stability: development
+        /// - Type: string
+        /// - Example: `com.example.MyHttpService`
+        @available(
+            *,
+            deprecated,
+            message: "Value should be included in `code.function.name` which is expected to be a fully-qualified name."
+        )
+        public static let namespace = "code.namespace"
+        #endif
+
         /// `code.stacktrace`: A stacktrace as a string in the natural representation for the language runtime. The representation is identical to [`exception.stacktrace`](/docs/exceptions/exceptions-spans.md#stacktrace-representation). This attribute MUST NOT be used on the Profile signal since the data is already captured in 'message Location'. This constraint is imposed to prevent redundancy and maintain data integrity.
         ///
         /// - Stability: stable

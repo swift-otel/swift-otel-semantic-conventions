@@ -16,6 +16,28 @@
 extension OTelAttribute {
     /// `db` namespace
     public enum db {
+        #if Experimental
+        /// `db.connection_string`: Deprecated, use `server.address`, `server.port` attributes instead.
+        ///
+        /// - Stability: development
+        /// - Type: string
+        /// - Example: `Server=(localdb)\v11.0;Integrated Security=true;`
+        @available(*, deprecated, message: "Replaced by `server.address` and `server.port`.")
+        public static let connectionString = "db.connection_string"
+        #endif
+
+        #if Experimental
+        /// `db.name`: Deprecated, use `db.namespace` instead.
+        ///
+        /// - Stability: development
+        /// - Type: string
+        /// - Examples:
+        ///     - `customers`
+        ///     - `main`
+        @available(*, deprecated, renamed: "OTelAttribute.db.namespace")
+        public static let name = "db.name"
+        #endif
+
         /// `db.namespace`: The name of the database, fully qualified within the server address and port.
         ///
         /// - Stability: stable
@@ -28,6 +50,232 @@ extension OTelAttribute {
         /// Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
         /// It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
         public static let namespace = "db.namespace"
+
+        #if Experimental
+        /// `db.operation`: Deprecated, use `db.operation.name` instead.
+        ///
+        /// - Stability: development
+        /// - Type: string
+        /// - Examples:
+        ///     - `findAndModify`
+        ///     - `HMSET`
+        ///     - `SELECT`
+        @available(*, deprecated, renamed: "OTelAttribute.db.operation.name")
+        public static let _operation = "db.operation"
+        #endif
+
+        #if Experimental
+        /// `db.statement`: The database statement being executed.
+        ///
+        /// - Stability: development
+        /// - Type: string
+        /// - Examples:
+        ///     - `SELECT * FROM wuser_table`
+        ///     - `SET mykey "WuValue"`
+        @available(*, deprecated, renamed: "OTelAttribute.db.query.text")
+        public static let statement = "db.statement"
+        #endif
+
+        #if Experimental
+        /// `db.system`: Deprecated, use `db.system.name` instead.
+        ///
+        /// - Stability: development
+        /// - Type: enum
+        ///     - `other_sql`: Some other SQL database. Fallback only. See notes.
+        ///     - `adabas`: Adabas (Adaptable Database System)
+        ///     - `cache`: Deprecated, use `intersystems_cache` instead.
+        ///     - `intersystems_cache`: InterSystems Caché
+        ///     - `cassandra`: Apache Cassandra
+        ///     - `clickhouse`: ClickHouse
+        ///     - `cloudscape`: Deprecated, use `other_sql` instead.
+        ///     - `cockroachdb`: CockroachDB
+        ///     - `coldfusion`: Deprecated, no replacement at this time.
+        ///     - `cosmosdb`: Microsoft Azure Cosmos DB
+        ///     - `couchbase`: Couchbase
+        ///     - `couchdb`: CouchDB
+        ///     - `db2`: IBM Db2
+        ///     - `derby`: Apache Derby
+        ///     - `dynamodb`: Amazon DynamoDB
+        ///     - `edb`: EnterpriseDB
+        ///     - `elasticsearch`: Elasticsearch
+        ///     - `filemaker`: FileMaker
+        ///     - `firebird`: Firebird
+        ///     - `firstsql`: Deprecated, use `other_sql` instead.
+        ///     - `geode`: Apache Geode
+        ///     - `h2`: H2
+        ///     - `hanadb`: SAP HANA
+        ///     - `hbase`: Apache HBase
+        ///     - `hive`: Apache Hive
+        ///     - `hsqldb`: HyperSQL DataBase
+        ///     - `influxdb`: InfluxDB
+        ///     - `informix`: Informix
+        ///     - `ingres`: Ingres
+        ///     - `instantdb`: InstantDB
+        ///     - `interbase`: InterBase
+        ///     - `mariadb`: MariaDB
+        ///     - `maxdb`: SAP MaxDB
+        ///     - `memcached`: Memcached
+        ///     - `mongodb`: MongoDB
+        ///     - `mssql`: Microsoft SQL Server
+        ///     - `mssqlcompact`: Deprecated, Microsoft SQL Server Compact is discontinued.
+        ///     - `mysql`: MySQL
+        ///     - `neo4j`: Neo4j
+        ///     - `netezza`: Netezza
+        ///     - `opensearch`: OpenSearch
+        ///     - `oracle`: Oracle Database
+        ///     - `pervasive`: Pervasive PSQL
+        ///     - `pointbase`: PointBase
+        ///     - `postgresql`: PostgreSQL
+        ///     - `progress`: Progress Database
+        ///     - `redis`: Redis
+        ///     - `redshift`: Amazon Redshift
+        ///     - `spanner`: Cloud Spanner
+        ///     - `sqlite`: SQLite
+        ///     - `sybase`: Sybase
+        ///     - `teradata`: Teradata
+        ///     - `trino`: Trino
+        ///     - `vertica`: Vertica
+        @available(*, deprecated, renamed: "OTelAttribute.db.system.name")
+        public static let _system = "db.system"
+        #endif
+
+        #if Experimental
+        /// `db.user`: Deprecated, no replacement at this time.
+        ///
+        /// - Stability: development
+        /// - Type: string
+        /// - Examples:
+        ///     - `readonly_user`
+        ///     - `reporting_user`
+        @available(*, deprecated, message: "Obsoleted: Removed, no replacement at this time.")
+        public static let user = "db.user"
+        #endif
+
+        #if Experimental
+        /// `db.cassandra` namespace
+        public enum cassandra {
+            /// `db.cassandra.consistency_level`: Deprecated, use `cassandra.consistency.level` instead.
+            ///
+            /// - Stability: development
+            /// - Type: enum
+            ///     - `all`
+            ///     - `each_quorum`
+            ///     - `quorum`
+            ///     - `local_quorum`
+            ///     - `one`
+            ///     - `two`
+            ///     - `three`
+            ///     - `local_one`
+            ///     - `any`
+            ///     - `serial`
+            ///     - `local_serial`
+            @available(*, deprecated, renamed: "OTelAttribute.cassandra.consistency.level")
+            public static let consistencyLevel = "db.cassandra.consistency_level"
+
+            /// `db.cassandra.idempotence`: Deprecated, use `cassandra.query.idempotent` instead.
+            ///
+            /// - Stability: development
+            /// - Type: boolean
+            @available(*, deprecated, renamed: "OTelAttribute.cassandra.query.idempotent")
+            public static let idempotence = "db.cassandra.idempotence"
+
+            /// `db.cassandra.page_size`: Deprecated, use `cassandra.page.size` instead.
+            ///
+            /// - Stability: development
+            /// - Type: int
+            /// - Example: `5000`
+            @available(*, deprecated, renamed: "OTelAttribute.cassandra.page.size")
+            public static let pageSize = "db.cassandra.page_size"
+
+            /// `db.cassandra.speculative_execution_count`: Deprecated, use `cassandra.speculative_execution.count` instead.
+            ///
+            /// - Stability: development
+            /// - Type: int
+            /// - Examples:
+            ///     - `0`
+            ///     - `2`
+            @available(*, deprecated, renamed: "OTelAttribute.cassandra.speculativeExecution.count")
+            public static let speculativeExecutionCount = "db.cassandra.speculative_execution_count"
+
+            /// `db.cassandra.table`: Deprecated, use `db.collection.name` instead.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `mytable`
+            @available(*, deprecated, renamed: "OTelAttribute.db.collection.name")
+            public static let table = "db.cassandra.table"
+
+            /// `db.cassandra.coordinator` namespace
+            public enum coordinator {
+                /// `db.cassandra.coordinator.dc`: Deprecated, use `cassandra.coordinator.dc` instead.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Example: `us-west-2`
+                @available(*, deprecated, renamed: "OTelAttribute.cassandra.coordinator.dc")
+                public static let dc = "db.cassandra.coordinator.dc"
+
+                /// `db.cassandra.coordinator.id`: Deprecated, use `cassandra.coordinator.id` instead.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Example: `be13faa2-8574-4d71-926d-27f16cf8a7af`
+                @available(*, deprecated, renamed: "OTelAttribute.cassandra.coordinator.id")
+                public static let id = "db.cassandra.coordinator.id"
+            }
+        }
+        #endif
+
+        #if Experimental
+        /// `db.client` namespace
+        public enum client {
+            /// `db.client.connection` namespace
+            public enum connection {
+                /// `db.client.connection.state`: The state of a connection in the pool
+                ///
+                /// - Stability: development
+                /// - Type: enum
+                ///     - `idle`
+                ///     - `used`
+                /// - Example: `idle`
+                public static let state = "db.client.connection.state"
+
+                /// `db.client.connection.pool` namespace
+                public enum pool {
+                    /// `db.client.connection.pool.name`: The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it.
+                    ///
+                    /// - Stability: development
+                    /// - Type: string
+                    /// - Example: `myDataSource`
+                    public static let name = "db.client.connection.pool.name"
+                }
+            }
+
+            /// `db.client.connections` namespace
+            public enum connections {
+                /// `db.client.connections.state`: Deprecated, use `db.client.connection.state` instead.
+                ///
+                /// - Stability: development
+                /// - Type: enum
+                ///     - `idle`
+                ///     - `used`
+                /// - Example: `idle`
+                @available(*, deprecated, renamed: "OTelAttribute.db.client.connection.state")
+                public static let state = "db.client.connections.state"
+
+                /// `db.client.connections.pool` namespace
+                public enum pool {
+                    /// `db.client.connections.pool.name`: Deprecated, use `db.client.connection.pool.name` instead.
+                    ///
+                    /// - Stability: development
+                    /// - Type: string
+                    /// - Example: `myDataSource`
+                    @available(*, deprecated, renamed: "OTelAttribute.db.client.connection.pool.name")
+                    public static let name = "db.client.connections.pool.name"
+                }
+            }
+        }
+        #endif
 
         /// `db.collection` namespace
         public enum collection {
@@ -50,6 +298,216 @@ extension OTelAttribute {
             /// collection name then that collection name SHOULD be used.
             public static let name = "db.collection.name"
         }
+
+        #if Experimental
+        /// `db.cosmosdb` namespace
+        public enum cosmosdb {
+            /// `db.cosmosdb.client_id`: Deprecated, use `azure.client.id` instead.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `3ba4827d-4422-483f-b59f-85b74211c11d`
+            @available(*, deprecated, renamed: "OTelAttribute.azure.client.id")
+            public static let clientId = "db.cosmosdb.client_id"
+
+            /// `db.cosmosdb.connection_mode`: Deprecated, use `azure.cosmosdb.connection.mode` instead.
+            ///
+            /// - Stability: development
+            /// - Type: enum
+            ///     - `gateway`: Gateway (HTTP) connection.
+            ///     - `direct`: Direct connection.
+            @available(*, deprecated, renamed: "OTelAttribute.azure.cosmosdb.connection.mode")
+            public static let connectionMode = "db.cosmosdb.connection_mode"
+
+            /// `db.cosmosdb.consistency_level`: Deprecated, use `cosmosdb.consistency.level` instead.
+            ///
+            /// - Stability: development
+            /// - Type: enum
+            ///     - `Strong`
+            ///     - `BoundedStaleness`
+            ///     - `Session`
+            ///     - `Eventual`
+            ///     - `ConsistentPrefix`
+            /// - Examples:
+            ///     - `Eventual`
+            ///     - `ConsistentPrefix`
+            ///     - `BoundedStaleness`
+            ///     - `Strong`
+            ///     - `Session`
+            @available(*, deprecated, renamed: "OTelAttribute.azure.cosmosdb.consistency.level")
+            public static let consistencyLevel = "db.cosmosdb.consistency_level"
+
+            /// `db.cosmosdb.container`: Deprecated, use `db.collection.name` instead.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `mytable`
+            @available(*, deprecated, renamed: "OTelAttribute.db.collection.name")
+            public static let container = "db.cosmosdb.container"
+
+            /// `db.cosmosdb.operation_type`: Deprecated, no replacement at this time.
+            ///
+            /// - Stability: development
+            /// - Type: enum
+            ///     - `batch`
+            ///     - `create`
+            ///     - `delete`
+            ///     - `execute`
+            ///     - `execute_javascript`
+            ///     - `invalid`
+            ///     - `head`
+            ///     - `head_feed`
+            ///     - `patch`
+            ///     - `query`
+            ///     - `query_plan`
+            ///     - `read`
+            ///     - `read_feed`
+            ///     - `replace`
+            ///     - `upsert`
+            @available(*, deprecated, message: "Obsoleted: Removed, no replacement at this time.")
+            public static let operationType = "db.cosmosdb.operation_type"
+
+            /// `db.cosmosdb.regions_contacted`: Deprecated, use `azure.cosmosdb.operation.contacted_regions` instead.
+            ///
+            /// - Stability: development
+            /// - Type: stringArray
+            @available(*, deprecated, renamed: "OTelAttribute.azure.cosmosdb.operation.contactedRegions")
+            public static let regionsContacted = "db.cosmosdb.regions_contacted"
+
+            /// `db.cosmosdb.request_charge`: Deprecated, use `azure.cosmosdb.operation.request_charge` instead.
+            ///
+            /// - Stability: development
+            /// - Type: double
+            /// - Examples:
+            ///     - `46.18`
+            ///     - `1.0`
+            @available(*, deprecated, renamed: "OTelAttribute.azure.cosmosdb.operation.requestCharge")
+            public static let requestCharge = "db.cosmosdb.request_charge"
+
+            /// `db.cosmosdb.request_content_length`: Deprecated, use `azure.cosmosdb.request.body.size` instead.
+            ///
+            /// - Stability: development
+            /// - Type: int
+            @available(*, deprecated, renamed: "OTelAttribute.azure.cosmosdb.request.body.size")
+            public static let requestContentLength = "db.cosmosdb.request_content_length"
+
+            /// `db.cosmosdb.status_code`: Deprecated, use `db.response.status_code` instead.
+            ///
+            /// - Stability: development
+            /// - Type: int
+            /// - Examples:
+            ///     - `200`
+            ///     - `201`
+            @available(*, deprecated, renamed: "OTelAttribute.db.response.statusCode")
+            public static let statusCode = "db.cosmosdb.status_code"
+
+            /// `db.cosmosdb.sub_status_code`: Deprecated, use `azure.cosmosdb.response.sub_status_code` instead.
+            ///
+            /// - Stability: development
+            /// - Type: int
+            /// - Examples:
+            ///     - `1000`
+            ///     - `1002`
+            @available(*, deprecated, renamed: "OTelAttribute.azure.cosmosdb.response.subStatusCode")
+            public static let subStatusCode = "db.cosmosdb.sub_status_code"
+        }
+        #endif
+
+        #if Experimental
+        /// `db.elasticsearch` namespace
+        public enum elasticsearch {
+            /// `db.elasticsearch.path_parts`: Deprecated, use `db.operation.parameter` instead.
+            ///
+            /// - Stability: development
+            /// - Type: templateString
+            /// - Examples:
+            ///     - `test-index`
+            ///     - `123`
+            @available(*, deprecated, renamed: "OTelAttribute.db.operation.parameter")
+            public static let pathParts = "db.elasticsearch.path_parts"
+
+            /// `db.elasticsearch.cluster` namespace
+            public enum cluster {
+                /// `db.elasticsearch.cluster.name`: Deprecated, use `db.namespace` instead.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Example: `e9106fc68e3044f0b1475b04bf4ffd5f`
+                @available(*, deprecated, renamed: "OTelAttribute.db.namespace")
+                public static let name = "db.elasticsearch.cluster.name"
+            }
+
+            /// `db.elasticsearch.node` namespace
+            public enum node {
+                /// `db.elasticsearch.node.name`: Deprecated, use `elasticsearch.node.name` instead.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Example: `instance-0000000001`
+                @available(*, deprecated, renamed: "OTelAttribute.elasticsearch.node.name")
+                public static let name = "db.elasticsearch.node.name"
+            }
+        }
+        #endif
+
+        #if Experimental
+        /// `db.instance` namespace
+        public enum instance {
+            /// `db.instance.id`: Deprecated, no general replacement at this time. For Elasticsearch, use `db.elasticsearch.node.name` instead.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `mysql-e26b99z.example.com`
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Obsoleted: Removed, no general replacement at this time. For Elasticsearch, use `db.elasticsearch.node.name` instead."
+            )
+            public static let id = "db.instance.id"
+        }
+        #endif
+
+        #if Experimental
+        /// `db.jdbc` namespace
+        public enum jdbc {
+            /// `db.jdbc.driver_classname`: Removed, no replacement at this time.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Examples:
+            ///     - `org.postgresql.Driver`
+            ///     - `com.microsoft.sqlserver.jdbc.SQLServerDriver`
+            @available(*, deprecated, message: "Obsoleted: Removed, no replacement at this time.")
+            public static let driverClassname = "db.jdbc.driver_classname"
+        }
+        #endif
+
+        #if Experimental
+        /// `db.mongodb` namespace
+        public enum mongodb {
+            /// `db.mongodb.collection`: Deprecated, use `db.collection.name` instead.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `mytable`
+            @available(*, deprecated, renamed: "OTelAttribute.db.collection.name")
+            public static let collection = "db.mongodb.collection"
+        }
+        #endif
+
+        #if Experimental
+        /// `db.mssql` namespace
+        public enum mssql {
+            /// `db.mssql.instance_name`: Deprecated, SQL Server instance is now populated as a part of `db.namespace` attribute.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `MSSQLSERVER`
+            @available(*, deprecated, message: "Obsoleted: Removed, no replacement at this time.")
+            public static let instanceName = "db.mssql.instance_name"
+        }
+        #endif
 
         /// `db.operation` namespace
         public enum operation {
@@ -78,6 +536,23 @@ extension OTelAttribute {
             /// system specific term if more applicable.
             public static let name = "db.operation.name"
 
+            #if Experimental
+            /// `db.operation.parameter`: A database operation parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value.
+            ///
+            /// - Stability: development
+            /// - Type: templateString
+            /// - Examples:
+            ///     - `someval`
+            ///     - `55`
+            ///
+            /// For example, a client-side maximum number of rows to read from the database
+            /// MAY be recorded as the `db.operation.parameter.max_rows` attribute.
+            ///
+            /// `db.query.text` parameters SHOULD be captured using `db.query.parameter.<key>`
+            /// instead of `db.operation.parameter.<key>`.
+            public static let parameter = "db.operation.parameter"
+            #endif
+
             /// `db.operation.batch` namespace
             public enum batch {
                 /// `db.operation.batch.size`: The number of queries included in a batch operation.
@@ -96,6 +571,33 @@ extension OTelAttribute {
 
         /// `db.query` namespace
         public enum query {
+            #if Experimental
+            /// `db.query.parameter`: A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value.
+            ///
+            /// - Stability: development
+            /// - Type: templateString
+            /// - Examples:
+            ///     - `someval`
+            ///     - `55`
+            ///
+            /// If a query parameter has no name and instead is referenced only by index,
+            /// then `<key>` SHOULD be the 0-based index.
+            ///
+            /// `db.query.parameter.<key>` SHOULD match
+            /// up with the parameterized placeholders present in `db.query.text`.
+            ///
+            /// `db.query.parameter.<key>` SHOULD NOT be captured on batch operations.
+            ///
+            /// Examples:
+            ///
+            /// - For a query `SELECT * FROM users where username =  %s` with the parameter `"jdoe"`,
+            ///   the attribute `db.query.parameter.0` SHOULD be set to `"jdoe"`.
+            ///
+            /// - For a query `"SELECT * FROM users WHERE username = %(username)s;` with parameter
+            ///   `username = "jdoe"`, the attribute `db.query.parameter.username` SHOULD be set to `"jdoe"`.
+            public static let parameter = "db.query.parameter"
+            #endif
+
             /// `db.query.summary`: Low cardinality summary of a database query.
             ///
             /// - Stability: stable
@@ -130,8 +632,36 @@ extension OTelAttribute {
             public static let text = "db.query.text"
         }
 
+        #if Experimental
+        /// `db.redis` namespace
+        public enum redis {
+            /// `db.redis.database_index`: Deprecated, use `db.namespace` instead.
+            ///
+            /// - Stability: development
+            /// - Type: int
+            /// - Examples:
+            ///     - `0`
+            ///     - `1`
+            ///     - `15`
+            @available(*, deprecated, renamed: "OTelAttribute.db.namespace")
+            public static let databaseIndex = "db.redis.database_index"
+        }
+        #endif
+
         /// `db.response` namespace
         public enum response {
+            #if Experimental
+            /// `db.response.returned_rows`: Number of rows returned by the operation.
+            ///
+            /// - Stability: development
+            /// - Type: int
+            /// - Examples:
+            ///     - `10`
+            ///     - `30`
+            ///     - `1000`
+            public static let returnedRows = "db.response.returned_rows"
+            #endif
+
             /// `db.response.status_code`: Database response status code.
             ///
             /// - Stability: stable
@@ -146,6 +676,23 @@ extension OTelAttribute {
             /// Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
             public static let statusCode = "db.response.status_code"
         }
+
+        #if Experimental
+        /// `db.sql` namespace
+        public enum sql {
+            /// `db.sql.table`: Deprecated, use `db.collection.name` instead.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `mytable`
+            @available(
+                *,
+                deprecated,
+                message: "Replaced by `db.collection.name`, but only if not extracting the value from `db.query.text`."
+            )
+            public static let table = "db.sql.table"
+        }
+        #endif
 
         /// `db.stored_procedure` namespace
         public enum storedProcedure {

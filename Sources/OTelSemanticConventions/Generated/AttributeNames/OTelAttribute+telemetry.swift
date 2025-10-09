@@ -16,6 +16,28 @@
 extension OTelAttribute {
     /// `telemetry` namespace
     public enum telemetry {
+        #if Experimental
+        /// `telemetry.distro` namespace
+        public enum distro {
+            /// `telemetry.distro.name`: The name of the auto instrumentation agent or distribution, if used.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `parts-unlimited-java`
+            ///
+            /// Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to
+            /// a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`.
+            public static let name = "telemetry.distro.name"
+
+            /// `telemetry.distro.version`: The version string of the auto instrumentation agent or distribution, if used.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `1.2.3`
+            public static let version = "telemetry.distro.version"
+        }
+        #endif
+
         /// `telemetry.sdk` namespace
         public enum sdk {
             /// `telemetry.sdk.language`: The language of the telemetry SDK.
