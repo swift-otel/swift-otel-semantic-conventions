@@ -70,6 +70,12 @@ logger[metadataKey: .init(name: OTelAttribute.http.request.method)] = "POST"
 logger[metadataKey: .init(name: OTelAttribute.http.response.statusCode)] = "200"
 ```
 
+### Unstable Instrumentations
+
+[Unstable](https://opentelemetry.io/docs/specs/otel/versioning-and-stability/#semantic-conventions-stability) attributes are available, but are gated behind a non-default `Experimental` trait. To use them, you must explicitly include the this trait in your `Package.swift`.
+
+**Be aware that unstable attributes may experience breaking changes on minor version updates of this package, so use with caution!** If this breakage is unacceptable, but non-standard tags are still required, a version dependency range that only allows patch updates should be used.
+
 ## Contributing
 
 ### Generation
