@@ -19,7 +19,7 @@ extension OTelAttribute {
     public enum disk {
         /// `disk.io` namespace
         public enum io {
-            /// `disk.io.direction`: The disk IO operation direction.
+            /// `disk.io.direction` **UNSTABLE**: The disk IO operation direction.
             ///
             /// - Stability: development
             /// - Type: enum

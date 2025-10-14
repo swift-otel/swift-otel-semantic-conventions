@@ -40,21 +40,21 @@ extension SpanAttributes {
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
 
-            /// `message.compressed_size`: Deprecated, use `rpc.message.compressed_size` instead.
+            /// `message.compressed_size` **UNSTABLE**: Deprecated, use `rpc.message.compressed_size` instead.
             ///
             /// - Stability: development
             /// - Type: int
             @available(*, deprecated, renamed: "SpanAttributes.rpc.message.compressedSize")
             public var compressedSize: SpanAttributeKey<Int> { .init(name: OTelAttribute.message.compressedSize) }
 
-            /// `message.id`: Deprecated, use `rpc.message.id` instead.
+            /// `message.id` **UNSTABLE**: Deprecated, use `rpc.message.id` instead.
             ///
             /// - Stability: development
             /// - Type: int
             @available(*, deprecated, renamed: "SpanAttributes.rpc.message.id")
             public var id: SpanAttributeKey<Int> { .init(name: OTelAttribute.message.id) }
 
-            /// `message.type`: Deprecated, use `rpc.message.type` instead.
+            /// `message.type` **UNSTABLE**: Deprecated, use `rpc.message.type` instead.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -73,7 +73,7 @@ extension SpanAttributes {
                 }
             }
 
-            /// `message.uncompressed_size`: Deprecated, use `rpc.message.uncompressed_size` instead.
+            /// `message.uncompressed_size` **UNSTABLE**: Deprecated, use `rpc.message.uncompressed_size` instead.
             ///
             /// - Stability: development
             /// - Type: int

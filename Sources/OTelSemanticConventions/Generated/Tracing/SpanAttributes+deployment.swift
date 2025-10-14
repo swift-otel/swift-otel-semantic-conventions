@@ -40,7 +40,7 @@ extension SpanAttributes {
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
 
-            /// `deployment.environment`: Deprecated, use `deployment.environment.name` instead.
+            /// `deployment.environment` **UNSTABLE**: Deprecated, use `deployment.environment.name` instead.
             ///
             /// - Stability: development
             /// - Type: string
@@ -50,14 +50,14 @@ extension SpanAttributes {
             @available(*, deprecated, renamed: "SpanAttributes.deployment.environment.name")
             public var _environment: SpanAttributeKey<String> { .init(name: OTelAttribute.deployment._environment) }
 
-            /// `deployment.id`: The id of the deployment.
+            /// `deployment.id` **UNSTABLE**: The id of the deployment.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `1208`
             public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.deployment.id) }
 
-            /// `deployment.name`: The name of the deployment.
+            /// `deployment.name` **UNSTABLE**: The name of the deployment.
             ///
             /// - Stability: development
             /// - Type: string
@@ -66,7 +66,7 @@ extension SpanAttributes {
             ///     - `deploy-frontend`
             public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.deployment.name) }
 
-            /// `deployment.status`: The status of the deployment.
+            /// `deployment.status` **UNSTABLE**: The status of the deployment.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -106,7 +106,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `deployment.environment.name`: Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment) (aka deployment tier).
+                /// `deployment.environment.name` **UNSTABLE**: Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment) (aka deployment tier).
                 ///
                 /// - Stability: development
                 /// - Type: string

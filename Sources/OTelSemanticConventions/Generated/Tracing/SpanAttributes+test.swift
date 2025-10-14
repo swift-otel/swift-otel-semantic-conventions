@@ -62,7 +62,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `test.case.name`: The fully qualified human readable name of the [test case](https://wikipedia.org/wiki/Test_case).
+                /// `test.case.name` **UNSTABLE**: The fully qualified human readable name of the [test case](https://wikipedia.org/wiki/Test_case).
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -94,7 +94,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `test.case.result.status`: The status of the actual test case result from test execution.
+                    /// `test.case.result.status` **UNSTABLE**: The status of the actual test case result from test execution.
                     ///
                     /// - Stability: development
                     /// - Type: enum
@@ -141,7 +141,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `test.suite.name`: The human readable name of a [test suite](https://wikipedia.org/wiki/Test_suite).
+                /// `test.suite.name` **UNSTABLE**: The human readable name of a [test suite](https://wikipedia.org/wiki/Test_suite).
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -170,7 +170,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `test.suite.run.status`: The status of the test suite run.
+                    /// `test.suite.run.status` **UNSTABLE**: The status of the test suite run.
                     ///
                     /// - Stability: development
                     /// - Type: enum

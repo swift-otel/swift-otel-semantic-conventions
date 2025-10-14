@@ -40,7 +40,7 @@ extension SpanAttributes {
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
 
-            /// `ios.state`: Deprecated. Use the `ios.app.state` attribute.
+            /// `ios.state` **UNSTABLE**: Deprecated. Use the `ios.app.state` attribute.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -86,7 +86,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `ios.app.state`: This attribute represents the state of the application.
+                /// `ios.app.state` **UNSTABLE**: This attribute represents the state of the application.
                 ///
                 /// - Stability: development
                 /// - Type: enum

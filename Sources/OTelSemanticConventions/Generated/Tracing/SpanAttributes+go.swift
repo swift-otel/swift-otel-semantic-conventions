@@ -62,7 +62,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `go.memory.type`: The type of memory.
+                /// `go.memory.type` **UNSTABLE**: The type of memory.
                 ///
                 /// - Stability: development
                 /// - Type: enum

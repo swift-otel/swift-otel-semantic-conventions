@@ -40,7 +40,7 @@ extension SpanAttributes {
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
 
-            /// `gen_ai.completion`: Deprecated, use Event API to report completions contents.
+            /// `gen_ai.completion` **UNSTABLE**: Deprecated, use Event API to report completions contents.
             ///
             /// - Stability: development
             /// - Type: string
@@ -48,7 +48,7 @@ extension SpanAttributes {
             @available(*, deprecated, message: "Obsoleted: Removed, no replacement at this time.")
             public var completion: SpanAttributeKey<String> { .init(name: OTelAttribute.genAi.completion) }
 
-            /// `gen_ai.prompt`: Deprecated, use Event API to report prompt contents.
+            /// `gen_ai.prompt` **UNSTABLE**: Deprecated, use Event API to report prompt contents.
             ///
             /// - Stability: development
             /// - Type: string
@@ -56,7 +56,7 @@ extension SpanAttributes {
             @available(*, deprecated, message: "Obsoleted: Removed, no replacement at this time.")
             public var prompt: SpanAttributeKey<String> { .init(name: OTelAttribute.genAi.prompt) }
 
-            /// `gen_ai.system`: Deprecated, use `gen_ai.provider.name` instead.
+            /// `gen_ai.system` **UNSTABLE**: Deprecated, use `gen_ai.provider.name` instead.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -92,7 +92,7 @@ extension SpanAttributes {
                 }
             }
 
-            /// `gen_ai.system_instructions`: The system message or instructions provided to the GenAI model separately from the chat history.
+            /// `gen_ai.system_instructions` **UNSTABLE**: The system message or instructions provided to the GenAI model separately from the chat history.
             ///
             /// - Stability: development
             /// - Type: any
@@ -162,7 +162,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `gen_ai.agent.description`: Free-form description of the GenAI agent provided by the application.
+                /// `gen_ai.agent.description` **UNSTABLE**: Free-form description of the GenAI agent provided by the application.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -171,14 +171,14 @@ extension SpanAttributes {
                 ///     - `Generates fiction stories`
                 public var description: SpanAttributeKey<String> { .init(name: OTelAttribute.genAi.agent.description) }
 
-                /// `gen_ai.agent.id`: The unique identifier of the GenAI agent.
+                /// `gen_ai.agent.id` **UNSTABLE**: The unique identifier of the GenAI agent.
                 ///
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `asst_5j66UpCpwteGg4YSxUnt7lPY`
                 public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.genAi.agent.id) }
 
-                /// `gen_ai.agent.name`: Human-readable name of the GenAI agent provided by the application.
+                /// `gen_ai.agent.name` **UNSTABLE**: Human-readable name of the GenAI agent provided by the application.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -210,7 +210,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `gen_ai.conversation.id`: The unique identifier for a conversation (session, thread), used to store and correlate messages within this conversation.
+                /// `gen_ai.conversation.id` **UNSTABLE**: The unique identifier for a conversation (session, thread), used to store and correlate messages within this conversation.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -240,7 +240,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `gen_ai.data_source.id`: The data source identifier.
+                /// `gen_ai.data_source.id` **UNSTABLE**: The data source identifier.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -272,7 +272,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `gen_ai.input.messages`: The chat history provided to the model as an input.
+                /// `gen_ai.input.messages` **UNSTABLE**: The chat history provided to the model as an input.
                 ///
                 /// - Stability: development
                 /// - Type: any
@@ -373,7 +373,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `gen_ai.openai.request.response_format`: Deprecated, use `gen_ai.output.type`.
+                    /// `gen_ai.openai.request.response_format` **UNSTABLE**: Deprecated, use `gen_ai.output.type`.
                     ///
                     /// - Stability: development
                     /// - Type: enum
@@ -395,7 +395,7 @@ extension SpanAttributes {
                         }
                     }
 
-                    /// `gen_ai.openai.request.seed`: Deprecated, use `gen_ai.request.seed`.
+                    /// `gen_ai.openai.request.seed` **UNSTABLE**: Deprecated, use `gen_ai.request.seed`.
                     ///
                     /// - Stability: development
                     /// - Type: int
@@ -403,7 +403,7 @@ extension SpanAttributes {
                     @available(*, deprecated, renamed: "SpanAttributes.genAi.request.seed")
                     public var seed: SpanAttributeKey<Int> { .init(name: OTelAttribute.genAi.openai.request.seed) }
 
-                    /// `gen_ai.openai.request.service_tier`: Deprecated, use `openai.request.service_tier`.
+                    /// `gen_ai.openai.request.service_tier` **UNSTABLE**: Deprecated, use `openai.request.service_tier`.
                     ///
                     /// - Stability: development
                     /// - Type: enum
@@ -447,7 +447,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `gen_ai.openai.response.service_tier`: Deprecated, use `openai.response.service_tier`.
+                    /// `gen_ai.openai.response.service_tier` **UNSTABLE**: Deprecated, use `openai.response.service_tier`.
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -459,7 +459,7 @@ extension SpanAttributes {
                         .init(name: OTelAttribute.genAi.openai.response.serviceTier)
                     }
 
-                    /// `gen_ai.openai.response.system_fingerprint`: Deprecated, use `openai.response.system_fingerprint`.
+                    /// `gen_ai.openai.response.system_fingerprint` **UNSTABLE**: Deprecated, use `openai.response.system_fingerprint`.
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -493,7 +493,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `gen_ai.operation.name`: The name of the operation being performed.
+                /// `gen_ai.operation.name` **UNSTABLE**: The name of the operation being performed.
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -541,7 +541,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `gen_ai.output.messages`: Messages returned by the model where each message represents a specific model response (choice, candidate).
+                /// `gen_ai.output.messages` **UNSTABLE**: Messages returned by the model where each message represents a specific model response (choice, candidate).
                 ///
                 /// - Stability: development
                 /// - Type: any
@@ -582,7 +582,7 @@ extension SpanAttributes {
                     .init(name: OTelAttribute.genAi.output.messages)
                 }
 
-                /// `gen_ai.output.type`: Represents the content type requested by the client.
+                /// `gen_ai.output.type` **UNSTABLE**: Represents the content type requested by the client.
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -629,7 +629,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `gen_ai.provider.name`: The Generative AI provider as identified by the client or server instrumentation.
+                /// `gen_ai.provider.name` **UNSTABLE**: The Generative AI provider as identified by the client or server instrumentation.
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -702,7 +702,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `gen_ai.request.encoding_formats`: The encoding formats requested in an embeddings operation, if specified.
+                /// `gen_ai.request.encoding_formats` **UNSTABLE**: The encoding formats requested in an embeddings operation, if specified.
                 ///
                 /// - Stability: development
                 /// - Type: stringArray
@@ -712,7 +712,7 @@ extension SpanAttributes {
                     .init(name: OTelAttribute.genAi.request.encodingFormats)
                 }
 
-                /// `gen_ai.request.frequency_penalty`: The frequency penalty setting for the GenAI request.
+                /// `gen_ai.request.frequency_penalty` **UNSTABLE**: The frequency penalty setting for the GenAI request.
                 ///
                 /// - Stability: development
                 /// - Type: double
@@ -721,21 +721,21 @@ extension SpanAttributes {
                     .init(name: OTelAttribute.genAi.request.frequencyPenalty)
                 }
 
-                /// `gen_ai.request.max_tokens`: The maximum number of tokens the model generates for a request.
+                /// `gen_ai.request.max_tokens` **UNSTABLE**: The maximum number of tokens the model generates for a request.
                 ///
                 /// - Stability: development
                 /// - Type: int
                 /// - Example: `100`
                 public var maxTokens: SpanAttributeKey<Int> { .init(name: OTelAttribute.genAi.request.maxTokens) }
 
-                /// `gen_ai.request.model`: The name of the GenAI model a request is being made to.
+                /// `gen_ai.request.model` **UNSTABLE**: The name of the GenAI model a request is being made to.
                 ///
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `gpt-4`
                 public var model: SpanAttributeKey<String> { .init(name: OTelAttribute.genAi.request.model) }
 
-                /// `gen_ai.request.presence_penalty`: The presence penalty setting for the GenAI request.
+                /// `gen_ai.request.presence_penalty` **UNSTABLE**: The presence penalty setting for the GenAI request.
                 ///
                 /// - Stability: development
                 /// - Type: double
@@ -744,14 +744,14 @@ extension SpanAttributes {
                     .init(name: OTelAttribute.genAi.request.presencePenalty)
                 }
 
-                /// `gen_ai.request.seed`: Requests with same seed value more likely to return same result.
+                /// `gen_ai.request.seed` **UNSTABLE**: Requests with same seed value more likely to return same result.
                 ///
                 /// - Stability: development
                 /// - Type: int
                 /// - Example: `100`
                 public var seed: SpanAttributeKey<Int> { .init(name: OTelAttribute.genAi.request.seed) }
 
-                /// `gen_ai.request.stop_sequences`: List of sequences that the model will use to stop generating further tokens.
+                /// `gen_ai.request.stop_sequences` **UNSTABLE**: List of sequences that the model will use to stop generating further tokens.
                 ///
                 /// - Stability: development
                 /// - Type: stringArray
@@ -759,7 +759,7 @@ extension SpanAttributes {
                     .init(name: OTelAttribute.genAi.request.stopSequences)
                 }
 
-                /// `gen_ai.request.temperature`: The temperature setting for the GenAI request.
+                /// `gen_ai.request.temperature` **UNSTABLE**: The temperature setting for the GenAI request.
                 ///
                 /// - Stability: development
                 /// - Type: double
@@ -768,14 +768,14 @@ extension SpanAttributes {
                     .init(name: OTelAttribute.genAi.request.temperature)
                 }
 
-                /// `gen_ai.request.top_k`: The top_k sampling setting for the GenAI request.
+                /// `gen_ai.request.top_k` **UNSTABLE**: The top_k sampling setting for the GenAI request.
                 ///
                 /// - Stability: development
                 /// - Type: double
                 /// - Example: `1.0`
                 public var topK: SpanAttributeKey<Double> { .init(name: OTelAttribute.genAi.request.topK) }
 
-                /// `gen_ai.request.top_p`: The top_p sampling setting for the GenAI request.
+                /// `gen_ai.request.top_p` **UNSTABLE**: The top_p sampling setting for the GenAI request.
                 ///
                 /// - Stability: development
                 /// - Type: double
@@ -804,7 +804,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `gen_ai.request.choice.count`: The target number of candidate completions to return.
+                    /// `gen_ai.request.choice.count` **UNSTABLE**: The target number of candidate completions to return.
                     ///
                     /// - Stability: development
                     /// - Type: int
@@ -835,7 +835,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `gen_ai.response.finish_reasons`: Array of reasons the model stopped generating tokens, corresponding to each generation received.
+                /// `gen_ai.response.finish_reasons` **UNSTABLE**: Array of reasons the model stopped generating tokens, corresponding to each generation received.
                 ///
                 /// - Stability: development
                 /// - Type: stringArray
@@ -843,14 +843,14 @@ extension SpanAttributes {
                     .init(name: OTelAttribute.genAi.response.finishReasons)
                 }
 
-                /// `gen_ai.response.id`: The unique identifier for the completion.
+                /// `gen_ai.response.id` **UNSTABLE**: The unique identifier for the completion.
                 ///
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `chatcmpl-123`
                 public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.genAi.response.id) }
 
-                /// `gen_ai.response.model`: The name of the model that generated the response.
+                /// `gen_ai.response.model` **UNSTABLE**: The name of the model that generated the response.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -880,7 +880,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `gen_ai.token.type`: The type of token being counted.
+                /// `gen_ai.token.type` **UNSTABLE**: The type of token being counted.
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -925,21 +925,21 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `gen_ai.tool.description`: The tool description.
+                /// `gen_ai.tool.description` **UNSTABLE**: The tool description.
                 ///
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `Multiply two numbers`
                 public var description: SpanAttributeKey<String> { .init(name: OTelAttribute.genAi.tool.description) }
 
-                /// `gen_ai.tool.name`: Name of the tool utilized by the agent.
+                /// `gen_ai.tool.name` **UNSTABLE**: Name of the tool utilized by the agent.
                 ///
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `Flights`
                 public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.genAi.tool.name) }
 
-                /// `gen_ai.tool.type`: Type of the tool utilized by the agent
+                /// `gen_ai.tool.type` **UNSTABLE**: Type of the tool utilized by the agent
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -977,7 +977,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `gen_ai.tool.call.id`: The tool call identifier.
+                    /// `gen_ai.tool.call.id` **UNSTABLE**: The tool call identifier.
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -1008,7 +1008,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `gen_ai.usage.completion_tokens`: Deprecated, use `gen_ai.usage.output_tokens` instead.
+                /// `gen_ai.usage.completion_tokens` **UNSTABLE**: Deprecated, use `gen_ai.usage.output_tokens` instead.
                 ///
                 /// - Stability: development
                 /// - Type: int
@@ -1018,21 +1018,21 @@ extension SpanAttributes {
                     .init(name: OTelAttribute.genAi.usage.completionTokens)
                 }
 
-                /// `gen_ai.usage.input_tokens`: The number of tokens used in the GenAI input (prompt).
+                /// `gen_ai.usage.input_tokens` **UNSTABLE**: The number of tokens used in the GenAI input (prompt).
                 ///
                 /// - Stability: development
                 /// - Type: int
                 /// - Example: `100`
                 public var inputTokens: SpanAttributeKey<Int> { .init(name: OTelAttribute.genAi.usage.inputTokens) }
 
-                /// `gen_ai.usage.output_tokens`: The number of tokens used in the GenAI response (completion).
+                /// `gen_ai.usage.output_tokens` **UNSTABLE**: The number of tokens used in the GenAI response (completion).
                 ///
                 /// - Stability: development
                 /// - Type: int
                 /// - Example: `180`
                 public var outputTokens: SpanAttributeKey<Int> { .init(name: OTelAttribute.genAi.usage.outputTokens) }
 
-                /// `gen_ai.usage.prompt_tokens`: Deprecated, use `gen_ai.usage.input_tokens` instead.
+                /// `gen_ai.usage.prompt_tokens` **UNSTABLE**: Deprecated, use `gen_ai.usage.input_tokens` instead.
                 ///
                 /// - Stability: development
                 /// - Type: int

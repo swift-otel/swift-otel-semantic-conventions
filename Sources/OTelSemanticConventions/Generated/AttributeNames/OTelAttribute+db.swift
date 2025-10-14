@@ -17,7 +17,7 @@ extension OTelAttribute {
     /// `db` namespace
     public enum db {
         #if Experimental
-        /// `db.connection_string`: Deprecated, use `server.address`, `server.port` attributes instead.
+        /// `db.connection_string` **UNSTABLE**: Deprecated, use `server.address`, `server.port` attributes instead.
         ///
         /// - Stability: development
         /// - Type: string
@@ -27,7 +27,7 @@ extension OTelAttribute {
         #endif
 
         #if Experimental
-        /// `db.name`: Deprecated, use `db.namespace` instead.
+        /// `db.name` **UNSTABLE**: Deprecated, use `db.namespace` instead.
         ///
         /// - Stability: development
         /// - Type: string
@@ -52,7 +52,7 @@ extension OTelAttribute {
         public static let namespace = "db.namespace"
 
         #if Experimental
-        /// `db.operation`: Deprecated, use `db.operation.name` instead.
+        /// `db.operation` **UNSTABLE**: Deprecated, use `db.operation.name` instead.
         ///
         /// - Stability: development
         /// - Type: string
@@ -65,7 +65,7 @@ extension OTelAttribute {
         #endif
 
         #if Experimental
-        /// `db.statement`: The database statement being executed.
+        /// `db.statement` **UNSTABLE**: The database statement being executed.
         ///
         /// - Stability: development
         /// - Type: string
@@ -77,7 +77,7 @@ extension OTelAttribute {
         #endif
 
         #if Experimental
-        /// `db.system`: Deprecated, use `db.system.name` instead.
+        /// `db.system` **UNSTABLE**: Deprecated, use `db.system.name` instead.
         ///
         /// - Stability: development
         /// - Type: enum
@@ -140,7 +140,7 @@ extension OTelAttribute {
         #endif
 
         #if Experimental
-        /// `db.user`: Deprecated, no replacement at this time.
+        /// `db.user` **UNSTABLE**: Deprecated, no replacement at this time.
         ///
         /// - Stability: development
         /// - Type: string
@@ -154,7 +154,7 @@ extension OTelAttribute {
         #if Experimental
         /// `db.cassandra` namespace
         public enum cassandra {
-            /// `db.cassandra.consistency_level`: Deprecated, use `cassandra.consistency.level` instead.
+            /// `db.cassandra.consistency_level` **UNSTABLE**: Deprecated, use `cassandra.consistency.level` instead.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -172,14 +172,14 @@ extension OTelAttribute {
             @available(*, deprecated, renamed: "OTelAttribute.cassandra.consistency.level")
             public static let consistencyLevel = "db.cassandra.consistency_level"
 
-            /// `db.cassandra.idempotence`: Deprecated, use `cassandra.query.idempotent` instead.
+            /// `db.cassandra.idempotence` **UNSTABLE**: Deprecated, use `cassandra.query.idempotent` instead.
             ///
             /// - Stability: development
             /// - Type: boolean
             @available(*, deprecated, renamed: "OTelAttribute.cassandra.query.idempotent")
             public static let idempotence = "db.cassandra.idempotence"
 
-            /// `db.cassandra.page_size`: Deprecated, use `cassandra.page.size` instead.
+            /// `db.cassandra.page_size` **UNSTABLE**: Deprecated, use `cassandra.page.size` instead.
             ///
             /// - Stability: development
             /// - Type: int
@@ -187,7 +187,7 @@ extension OTelAttribute {
             @available(*, deprecated, renamed: "OTelAttribute.cassandra.page.size")
             public static let pageSize = "db.cassandra.page_size"
 
-            /// `db.cassandra.speculative_execution_count`: Deprecated, use `cassandra.speculative_execution.count` instead.
+            /// `db.cassandra.speculative_execution_count` **UNSTABLE**: Deprecated, use `cassandra.speculative_execution.count` instead.
             ///
             /// - Stability: development
             /// - Type: int
@@ -197,7 +197,7 @@ extension OTelAttribute {
             @available(*, deprecated, renamed: "OTelAttribute.cassandra.speculativeExecution.count")
             public static let speculativeExecutionCount = "db.cassandra.speculative_execution_count"
 
-            /// `db.cassandra.table`: Deprecated, use `db.collection.name` instead.
+            /// `db.cassandra.table` **UNSTABLE**: Deprecated, use `db.collection.name` instead.
             ///
             /// - Stability: development
             /// - Type: string
@@ -207,7 +207,7 @@ extension OTelAttribute {
 
             /// `db.cassandra.coordinator` namespace
             public enum coordinator {
-                /// `db.cassandra.coordinator.dc`: Deprecated, use `cassandra.coordinator.dc` instead.
+                /// `db.cassandra.coordinator.dc` **UNSTABLE**: Deprecated, use `cassandra.coordinator.dc` instead.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -215,7 +215,7 @@ extension OTelAttribute {
                 @available(*, deprecated, renamed: "OTelAttribute.cassandra.coordinator.dc")
                 public static let dc = "db.cassandra.coordinator.dc"
 
-                /// `db.cassandra.coordinator.id`: Deprecated, use `cassandra.coordinator.id` instead.
+                /// `db.cassandra.coordinator.id` **UNSTABLE**: Deprecated, use `cassandra.coordinator.id` instead.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -231,7 +231,7 @@ extension OTelAttribute {
         public enum client {
             /// `db.client.connection` namespace
             public enum connection {
-                /// `db.client.connection.state`: The state of a connection in the pool
+                /// `db.client.connection.state` **UNSTABLE**: The state of a connection in the pool
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -242,7 +242,7 @@ extension OTelAttribute {
 
                 /// `db.client.connection.pool` namespace
                 public enum pool {
-                    /// `db.client.connection.pool.name`: The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it.
+                    /// `db.client.connection.pool.name` **UNSTABLE**: The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it.
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -253,7 +253,7 @@ extension OTelAttribute {
 
             /// `db.client.connections` namespace
             public enum connections {
-                /// `db.client.connections.state`: Deprecated, use `db.client.connection.state` instead.
+                /// `db.client.connections.state` **UNSTABLE**: Deprecated, use `db.client.connection.state` instead.
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -265,7 +265,7 @@ extension OTelAttribute {
 
                 /// `db.client.connections.pool` namespace
                 public enum pool {
-                    /// `db.client.connections.pool.name`: Deprecated, use `db.client.connection.pool.name` instead.
+                    /// `db.client.connections.pool.name` **UNSTABLE**: Deprecated, use `db.client.connection.pool.name` instead.
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -302,7 +302,7 @@ extension OTelAttribute {
         #if Experimental
         /// `db.cosmosdb` namespace
         public enum cosmosdb {
-            /// `db.cosmosdb.client_id`: Deprecated, use `azure.client.id` instead.
+            /// `db.cosmosdb.client_id` **UNSTABLE**: Deprecated, use `azure.client.id` instead.
             ///
             /// - Stability: development
             /// - Type: string
@@ -310,7 +310,7 @@ extension OTelAttribute {
             @available(*, deprecated, renamed: "OTelAttribute.azure.client.id")
             public static let clientId = "db.cosmosdb.client_id"
 
-            /// `db.cosmosdb.connection_mode`: Deprecated, use `azure.cosmosdb.connection.mode` instead.
+            /// `db.cosmosdb.connection_mode` **UNSTABLE**: Deprecated, use `azure.cosmosdb.connection.mode` instead.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -319,7 +319,7 @@ extension OTelAttribute {
             @available(*, deprecated, renamed: "OTelAttribute.azure.cosmosdb.connection.mode")
             public static let connectionMode = "db.cosmosdb.connection_mode"
 
-            /// `db.cosmosdb.consistency_level`: Deprecated, use `cosmosdb.consistency.level` instead.
+            /// `db.cosmosdb.consistency_level` **UNSTABLE**: Deprecated, use `cosmosdb.consistency.level` instead.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -337,7 +337,7 @@ extension OTelAttribute {
             @available(*, deprecated, renamed: "OTelAttribute.azure.cosmosdb.consistency.level")
             public static let consistencyLevel = "db.cosmosdb.consistency_level"
 
-            /// `db.cosmosdb.container`: Deprecated, use `db.collection.name` instead.
+            /// `db.cosmosdb.container` **UNSTABLE**: Deprecated, use `db.collection.name` instead.
             ///
             /// - Stability: development
             /// - Type: string
@@ -345,7 +345,7 @@ extension OTelAttribute {
             @available(*, deprecated, renamed: "OTelAttribute.db.collection.name")
             public static let container = "db.cosmosdb.container"
 
-            /// `db.cosmosdb.operation_type`: Deprecated, no replacement at this time.
+            /// `db.cosmosdb.operation_type` **UNSTABLE**: Deprecated, no replacement at this time.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -367,14 +367,14 @@ extension OTelAttribute {
             @available(*, deprecated, message: "Obsoleted: Removed, no replacement at this time.")
             public static let operationType = "db.cosmosdb.operation_type"
 
-            /// `db.cosmosdb.regions_contacted`: Deprecated, use `azure.cosmosdb.operation.contacted_regions` instead.
+            /// `db.cosmosdb.regions_contacted` **UNSTABLE**: Deprecated, use `azure.cosmosdb.operation.contacted_regions` instead.
             ///
             /// - Stability: development
             /// - Type: stringArray
             @available(*, deprecated, renamed: "OTelAttribute.azure.cosmosdb.operation.contactedRegions")
             public static let regionsContacted = "db.cosmosdb.regions_contacted"
 
-            /// `db.cosmosdb.request_charge`: Deprecated, use `azure.cosmosdb.operation.request_charge` instead.
+            /// `db.cosmosdb.request_charge` **UNSTABLE**: Deprecated, use `azure.cosmosdb.operation.request_charge` instead.
             ///
             /// - Stability: development
             /// - Type: double
@@ -384,14 +384,14 @@ extension OTelAttribute {
             @available(*, deprecated, renamed: "OTelAttribute.azure.cosmosdb.operation.requestCharge")
             public static let requestCharge = "db.cosmosdb.request_charge"
 
-            /// `db.cosmosdb.request_content_length`: Deprecated, use `azure.cosmosdb.request.body.size` instead.
+            /// `db.cosmosdb.request_content_length` **UNSTABLE**: Deprecated, use `azure.cosmosdb.request.body.size` instead.
             ///
             /// - Stability: development
             /// - Type: int
             @available(*, deprecated, renamed: "OTelAttribute.azure.cosmosdb.request.body.size")
             public static let requestContentLength = "db.cosmosdb.request_content_length"
 
-            /// `db.cosmosdb.status_code`: Deprecated, use `db.response.status_code` instead.
+            /// `db.cosmosdb.status_code` **UNSTABLE**: Deprecated, use `db.response.status_code` instead.
             ///
             /// - Stability: development
             /// - Type: int
@@ -401,7 +401,7 @@ extension OTelAttribute {
             @available(*, deprecated, renamed: "OTelAttribute.db.response.statusCode")
             public static let statusCode = "db.cosmosdb.status_code"
 
-            /// `db.cosmosdb.sub_status_code`: Deprecated, use `azure.cosmosdb.response.sub_status_code` instead.
+            /// `db.cosmosdb.sub_status_code` **UNSTABLE**: Deprecated, use `azure.cosmosdb.response.sub_status_code` instead.
             ///
             /// - Stability: development
             /// - Type: int
@@ -416,7 +416,7 @@ extension OTelAttribute {
         #if Experimental
         /// `db.elasticsearch` namespace
         public enum elasticsearch {
-            /// `db.elasticsearch.path_parts`: Deprecated, use `db.operation.parameter` instead.
+            /// `db.elasticsearch.path_parts` **UNSTABLE**: Deprecated, use `db.operation.parameter` instead.
             ///
             /// - Stability: development
             /// - Type: templateString
@@ -428,7 +428,7 @@ extension OTelAttribute {
 
             /// `db.elasticsearch.cluster` namespace
             public enum cluster {
-                /// `db.elasticsearch.cluster.name`: Deprecated, use `db.namespace` instead.
+                /// `db.elasticsearch.cluster.name` **UNSTABLE**: Deprecated, use `db.namespace` instead.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -439,7 +439,7 @@ extension OTelAttribute {
 
             /// `db.elasticsearch.node` namespace
             public enum node {
-                /// `db.elasticsearch.node.name`: Deprecated, use `elasticsearch.node.name` instead.
+                /// `db.elasticsearch.node.name` **UNSTABLE**: Deprecated, use `elasticsearch.node.name` instead.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -453,7 +453,7 @@ extension OTelAttribute {
         #if Experimental
         /// `db.instance` namespace
         public enum instance {
-            /// `db.instance.id`: Deprecated, no general replacement at this time. For Elasticsearch, use `db.elasticsearch.node.name` instead.
+            /// `db.instance.id` **UNSTABLE**: Deprecated, no general replacement at this time. For Elasticsearch, use `db.elasticsearch.node.name` instead.
             ///
             /// - Stability: development
             /// - Type: string
@@ -471,7 +471,7 @@ extension OTelAttribute {
         #if Experimental
         /// `db.jdbc` namespace
         public enum jdbc {
-            /// `db.jdbc.driver_classname`: Removed, no replacement at this time.
+            /// `db.jdbc.driver_classname` **UNSTABLE**: Removed, no replacement at this time.
             ///
             /// - Stability: development
             /// - Type: string
@@ -486,7 +486,7 @@ extension OTelAttribute {
         #if Experimental
         /// `db.mongodb` namespace
         public enum mongodb {
-            /// `db.mongodb.collection`: Deprecated, use `db.collection.name` instead.
+            /// `db.mongodb.collection` **UNSTABLE**: Deprecated, use `db.collection.name` instead.
             ///
             /// - Stability: development
             /// - Type: string
@@ -499,7 +499,7 @@ extension OTelAttribute {
         #if Experimental
         /// `db.mssql` namespace
         public enum mssql {
-            /// `db.mssql.instance_name`: Deprecated, SQL Server instance is now populated as a part of `db.namespace` attribute.
+            /// `db.mssql.instance_name` **UNSTABLE**: Deprecated, SQL Server instance is now populated as a part of `db.namespace` attribute.
             ///
             /// - Stability: development
             /// - Type: string
@@ -537,7 +537,7 @@ extension OTelAttribute {
             public static let name = "db.operation.name"
 
             #if Experimental
-            /// `db.operation.parameter`: A database operation parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value.
+            /// `db.operation.parameter` **UNSTABLE**: A database operation parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value.
             ///
             /// - Stability: development
             /// - Type: templateString
@@ -572,7 +572,7 @@ extension OTelAttribute {
         /// `db.query` namespace
         public enum query {
             #if Experimental
-            /// `db.query.parameter`: A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value.
+            /// `db.query.parameter` **UNSTABLE**: A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value.
             ///
             /// - Stability: development
             /// - Type: templateString
@@ -635,7 +635,7 @@ extension OTelAttribute {
         #if Experimental
         /// `db.redis` namespace
         public enum redis {
-            /// `db.redis.database_index`: Deprecated, use `db.namespace` instead.
+            /// `db.redis.database_index` **UNSTABLE**: Deprecated, use `db.namespace` instead.
             ///
             /// - Stability: development
             /// - Type: int
@@ -651,7 +651,7 @@ extension OTelAttribute {
         /// `db.response` namespace
         public enum response {
             #if Experimental
-            /// `db.response.returned_rows`: Number of rows returned by the operation.
+            /// `db.response.returned_rows` **UNSTABLE**: Number of rows returned by the operation.
             ///
             /// - Stability: development
             /// - Type: int
@@ -680,7 +680,7 @@ extension OTelAttribute {
         #if Experimental
         /// `db.sql` namespace
         public enum sql {
-            /// `db.sql.table`: Deprecated, use `db.collection.name` instead.
+            /// `db.sql.table` **UNSTABLE**: Deprecated, use `db.collection.name` instead.
             ///
             /// - Stability: development
             /// - Type: string

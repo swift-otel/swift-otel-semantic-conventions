@@ -17,7 +17,7 @@ extension OTelAttribute {
     #if Experimental
     /// `dns` namespace
     public enum dns {
-        /// `dns.answers`: The list of IPv4 or IPv6 addresses resolved during DNS lookup.
+        /// `dns.answers` **UNSTABLE**: The list of IPv4 or IPv6 addresses resolved during DNS lookup.
         ///
         /// - Stability: development
         /// - Type: stringArray
@@ -25,7 +25,7 @@ extension OTelAttribute {
 
         /// `dns.question` namespace
         public enum question {
-            /// `dns.question.name`: The name being queried.
+            /// `dns.question.name` **UNSTABLE**: The name being queried.
             ///
             /// - Stability: development
             /// - Type: string

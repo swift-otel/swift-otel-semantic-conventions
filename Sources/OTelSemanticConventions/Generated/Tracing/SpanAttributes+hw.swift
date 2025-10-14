@@ -40,35 +40,35 @@ extension SpanAttributes {
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
 
-            /// `hw.bios_version`: BIOS version of the hardware component
+            /// `hw.bios_version` **UNSTABLE**: BIOS version of the hardware component
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `1.2.3`
             public var biosVersion: SpanAttributeKey<String> { .init(name: OTelAttribute.hw.biosVersion) }
 
-            /// `hw.driver_version`: Driver version for the hardware component
+            /// `hw.driver_version` **UNSTABLE**: Driver version for the hardware component
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `10.2.1-3`
             public var driverVersion: SpanAttributeKey<String> { .init(name: OTelAttribute.hw.driverVersion) }
 
-            /// `hw.firmware_version`: Firmware version of the hardware component
+            /// `hw.firmware_version` **UNSTABLE**: Firmware version of the hardware component
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `2.0.1`
             public var firmwareVersion: SpanAttributeKey<String> { .init(name: OTelAttribute.hw.firmwareVersion) }
 
-            /// `hw.id`: An identifier for the hardware component, unique within the monitored host
+            /// `hw.id` **UNSTABLE**: An identifier for the hardware component, unique within the monitored host
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `win32battery_battery_testsysa33_1`
             public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.hw.id) }
 
-            /// `hw.limit_type`: Type of limit for hardware components
+            /// `hw.limit_type` **UNSTABLE**: Type of limit for hardware components
             ///
             /// - Stability: development
             /// - Type: enum
@@ -93,7 +93,7 @@ extension SpanAttributes {
                 }
             }
 
-            /// `hw.model`: Descriptive model name of the hardware component
+            /// `hw.model` **UNSTABLE**: Descriptive model name of the hardware component
             ///
             /// - Stability: development
             /// - Type: string
@@ -103,21 +103,21 @@ extension SpanAttributes {
             ///     - `Dell XPS 15 Battery`
             public var model: SpanAttributeKey<String> { .init(name: OTelAttribute.hw.model) }
 
-            /// `hw.name`: An easily-recognizable name for the hardware component
+            /// `hw.name` **UNSTABLE**: An easily-recognizable name for the hardware component
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `eth0`
             public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.hw.name) }
 
-            /// `hw.parent`: Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller)
+            /// `hw.parent` **UNSTABLE**: Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller)
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `dellStorage_perc_0`
             public var parent: SpanAttributeKey<String> { .init(name: OTelAttribute.hw.parent) }
 
-            /// `hw.sensor_location`: Location of the sensor
+            /// `hw.sensor_location` **UNSTABLE**: Location of the sensor
             ///
             /// - Stability: development
             /// - Type: string
@@ -133,14 +133,14 @@ extension SpanAttributes {
             ///     - `CPU_VCORE`
             public var sensorLocation: SpanAttributeKey<String> { .init(name: OTelAttribute.hw.sensorLocation) }
 
-            /// `hw.serial_number`: Serial number of the hardware component
+            /// `hw.serial_number` **UNSTABLE**: Serial number of the hardware component
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `CNFCP0123456789`
             public var serialNumber: SpanAttributeKey<String> { .init(name: OTelAttribute.hw.serialNumber) }
 
-            /// `hw.state`: The current state of the component
+            /// `hw.state` **UNSTABLE**: The current state of the component
             ///
             /// - Stability: development
             /// - Type: enum
@@ -161,7 +161,7 @@ extension SpanAttributes {
                 }
             }
 
-            /// `hw.type`: Type of the component
+            /// `hw.type` **UNSTABLE**: Type of the component
             ///
             /// - Stability: development
             /// - Type: enum
@@ -193,7 +193,7 @@ extension SpanAttributes {
                 }
             }
 
-            /// `hw.vendor`: Vendor name of the hardware component
+            /// `hw.vendor` **UNSTABLE**: Vendor name of the hardware component
             ///
             /// - Stability: development
             /// - Type: string
@@ -228,7 +228,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `hw.battery.capacity`: Design capacity in Watts-hours or Amper-hours
+                /// `hw.battery.capacity` **UNSTABLE**: Design capacity in Watts-hours or Amper-hours
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -237,7 +237,7 @@ extension SpanAttributes {
                 ///     - `50Wh`
                 public var capacity: SpanAttributeKey<String> { .init(name: OTelAttribute.hw.battery.capacity) }
 
-                /// `hw.battery.chemistry`: Battery [chemistry](https://schemas.dmtf.org/wbem/cim-html/2.31.0/CIM_Battery.html), e.g. Lithium-Ion, Nickel-Cadmium, etc.
+                /// `hw.battery.chemistry` **UNSTABLE**: Battery [chemistry](https://schemas.dmtf.org/wbem/cim-html/2.31.0/CIM_Battery.html), e.g. Lithium-Ion, Nickel-Cadmium, etc.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -246,7 +246,7 @@ extension SpanAttributes {
                 ///     - `NiMH`
                 public var chemistry: SpanAttributeKey<String> { .init(name: OTelAttribute.hw.battery.chemistry) }
 
-                /// `hw.battery.state`: The current state of the battery
+                /// `hw.battery.state` **UNSTABLE**: The current state of the battery
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -287,7 +287,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `hw.enclosure.type`: Type of the enclosure (useful for modular systems)
+                /// `hw.enclosure.type` **UNSTABLE**: Type of the enclosure (useful for modular systems)
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -320,7 +320,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `hw.gpu.task`: Type of task the GPU is performing
+                /// `hw.gpu.task` **UNSTABLE**: Type of task the GPU is performing
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -362,7 +362,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `hw.logical_disk.raid_level`: RAID Level of the logical disk
+                /// `hw.logical_disk.raid_level` **UNSTABLE**: RAID Level of the logical disk
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -372,7 +372,7 @@ extension SpanAttributes {
                 ///     - `RAID10`
                 public var raidLevel: SpanAttributeKey<String> { .init(name: OTelAttribute.hw.logicalDisk.raidLevel) }
 
-                /// `hw.logical_disk.state`: State of the logical disk space usage
+                /// `hw.logical_disk.state` **UNSTABLE**: State of the logical disk space usage
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -413,7 +413,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `hw.memory.type`: Type of the memory module
+                /// `hw.memory.type` **UNSTABLE**: Type of the memory module
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -446,7 +446,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `hw.network.logical_addresses`: Logical addresses of the adapter (e.g. IP address, or WWPN)
+                /// `hw.network.logical_addresses` **UNSTABLE**: Logical addresses of the adapter (e.g. IP address, or WWPN)
                 ///
                 /// - Stability: development
                 /// - Type: stringArray
@@ -454,7 +454,7 @@ extension SpanAttributes {
                     .init(name: OTelAttribute.hw.network.logicalAddresses)
                 }
 
-                /// `hw.network.physical_address`: Physical address of the adapter (e.g. MAC address, or WWNN)
+                /// `hw.network.physical_address` **UNSTABLE**: Physical address of the adapter (e.g. MAC address, or WWNN)
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -486,7 +486,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `hw.physical_disk.smart_attribute`: [S.M.A.R.T.](https://wikipedia.org/wiki/S.M.A.R.T.) (Self-Monitoring, Analysis, and Reporting Technology) attribute of the physical disk
+                /// `hw.physical_disk.smart_attribute` **UNSTABLE**: [S.M.A.R.T.](https://wikipedia.org/wiki/S.M.A.R.T.) (Self-Monitoring, Analysis, and Reporting Technology) attribute of the physical disk
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -498,7 +498,7 @@ extension SpanAttributes {
                     .init(name: OTelAttribute.hw.physicalDisk.smartAttribute)
                 }
 
-                /// `hw.physical_disk.state`: State of the physical disk endurance utilization
+                /// `hw.physical_disk.state` **UNSTABLE**: State of the physical disk endurance utilization
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -515,7 +515,7 @@ extension SpanAttributes {
                     }
                 }
 
-                /// `hw.physical_disk.type`: Type of the physical disk
+                /// `hw.physical_disk.type` **UNSTABLE**: Type of the physical disk
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -548,7 +548,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `hw.tape_drive.operation_type`: Type of tape drive operation
+                /// `hw.tape_drive.operation_type` **UNSTABLE**: Type of tape drive operation
                 ///
                 /// - Stability: development
                 /// - Type: enum

@@ -62,7 +62,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `cassandra.consistency.level`: The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html).
+                /// `cassandra.consistency.level` **UNSTABLE**: The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html).
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -112,14 +112,14 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `cassandra.coordinator.dc`: The data center of the coordinating node for a query.
+                /// `cassandra.coordinator.dc` **UNSTABLE**: The data center of the coordinating node for a query.
                 ///
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `us-west-2`
                 public var dc: SpanAttributeKey<String> { .init(name: OTelAttribute.cassandra.coordinator.dc) }
 
-                /// `cassandra.coordinator.id`: The ID of the coordinating node for a query.
+                /// `cassandra.coordinator.id` **UNSTABLE**: The ID of the coordinating node for a query.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -149,7 +149,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `cassandra.page.size`: The fetch size used for paging, i.e. how many rows will be returned at once.
+                /// `cassandra.page.size` **UNSTABLE**: The fetch size used for paging, i.e. how many rows will be returned at once.
                 ///
                 /// - Stability: development
                 /// - Type: int
@@ -179,7 +179,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `cassandra.query.idempotent`: Whether or not the query is idempotent.
+                /// `cassandra.query.idempotent` **UNSTABLE**: Whether or not the query is idempotent.
                 ///
                 /// - Stability: development
                 /// - Type: boolean
@@ -208,7 +208,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `cassandra.speculative_execution.count`: The number of times a query was speculatively executed. Not set or `0` if the query was not executed speculatively.
+                /// `cassandra.speculative_execution.count` **UNSTABLE**: The number of times a query was speculatively executed. Not set or `0` if the query was not executed speculatively.
                 ///
                 /// - Stability: development
                 /// - Type: int

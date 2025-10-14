@@ -19,7 +19,7 @@ extension OTelAttribute {
     public enum go {
         /// `go.memory` namespace
         public enum memory {
-            /// `go.memory.type`: The type of memory.
+            /// `go.memory.type` **UNSTABLE**: The type of memory.
             ///
             /// - Stability: development
             /// - Type: enum

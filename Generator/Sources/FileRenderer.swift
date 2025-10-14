@@ -47,6 +47,10 @@ final class Context {
 extension FileRenderer {
     func renderDocs(_ attribute: Attribute) -> String {
         var result = "`\(attribute.id)`"
+        if attribute.stability != .stable {
+            result.append(" **UNSTABLE**")
+        }
+
         if let brief = attribute.brief?.trimmingCharacters(in: .whitespacesAndNewlines), !brief.isEmpty {
             result.append(": \(brief)")
         }

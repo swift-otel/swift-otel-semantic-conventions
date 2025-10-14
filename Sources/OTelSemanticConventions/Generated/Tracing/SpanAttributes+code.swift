@@ -40,7 +40,7 @@ extension SpanAttributes {
             public init() {}
 
             #if Experimental
-            /// `code.column`: Deprecated, use `code.column.number`
+            /// `code.column` **UNSTABLE**: Deprecated, use `code.column.number`
             ///
             /// - Stability: development
             /// - Type: int
@@ -50,7 +50,7 @@ extension SpanAttributes {
             #endif
 
             #if Experimental
-            /// `code.filepath`: Deprecated, use `code.file.path` instead
+            /// `code.filepath` **UNSTABLE**: Deprecated, use `code.file.path` instead
             ///
             /// - Stability: development
             /// - Type: string
@@ -60,7 +60,7 @@ extension SpanAttributes {
             #endif
 
             #if Experimental
-            /// `code.function`: Deprecated, use `code.function.name` instead
+            /// `code.function` **UNSTABLE**: Deprecated, use `code.function.name` instead
             ///
             /// - Stability: development
             /// - Type: string
@@ -75,7 +75,7 @@ extension SpanAttributes {
             #endif
 
             #if Experimental
-            /// `code.lineno`: Deprecated, use `code.line.number` instead
+            /// `code.lineno` **UNSTABLE**: Deprecated, use `code.line.number` instead
             ///
             /// - Stability: development
             /// - Type: int
@@ -85,7 +85,7 @@ extension SpanAttributes {
             #endif
 
             #if Experimental
-            /// `code.namespace`: Deprecated, namespace is now included into `code.function.name`
+            /// `code.namespace` **UNSTABLE**: Deprecated, namespace is now included into `code.function.name`
             ///
             /// - Stability: development
             /// - Type: string

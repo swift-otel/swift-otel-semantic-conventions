@@ -40,7 +40,7 @@ extension SpanAttributes {
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
 
-            /// `az.namespace`: Deprecated, use `azure.resource_provider.namespace` instead.
+            /// `az.namespace` **UNSTABLE**: Deprecated, use `azure.resource_provider.namespace` instead.
             ///
             /// - Stability: development
             /// - Type: string
@@ -51,7 +51,7 @@ extension SpanAttributes {
             @available(*, deprecated, renamed: "SpanAttributes.azure.resourceProvider.namespace")
             public var namespace: SpanAttributeKey<String> { .init(name: OTelAttribute.az.namespace) }
 
-            /// `az.service_request_id`: Deprecated, use `azure.service.request.id` instead.
+            /// `az.service_request_id` **UNSTABLE**: Deprecated, use `azure.service.request.id` instead.
             ///
             /// - Stability: development
             /// - Type: string

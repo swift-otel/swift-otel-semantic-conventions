@@ -26,7 +26,7 @@ extension OTelAttribute {
         public static let name = "service.name"
 
         #if Experimental
-        /// `service.namespace`: A namespace for `service.name`.
+        /// `service.namespace` **UNSTABLE**: A namespace for `service.name`.
         ///
         /// - Stability: development
         /// - Type: string
@@ -48,7 +48,7 @@ extension OTelAttribute {
         #if Experimental
         /// `service.instance` namespace
         public enum instance {
-            /// `service.instance.id`: The string ID of the service instance.
+            /// `service.instance.id` **UNSTABLE**: The string ID of the service instance.
             ///
             /// - Stability: development
             /// - Type: string

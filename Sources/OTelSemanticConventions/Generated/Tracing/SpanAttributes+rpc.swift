@@ -40,7 +40,7 @@ extension SpanAttributes {
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
 
-            /// `rpc.method`: The name of the (logical) method being called, must be equal to the $method part in the span name.
+            /// `rpc.method` **UNSTABLE**: The name of the (logical) method being called, must be equal to the $method part in the span name.
             ///
             /// - Stability: development
             /// - Type: string
@@ -49,7 +49,7 @@ extension SpanAttributes {
             /// This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
             public var method: SpanAttributeKey<String> { .init(name: OTelAttribute.rpc.method) }
 
-            /// `rpc.service`: The full (logical) name of the service being called, including its package name, if applicable.
+            /// `rpc.service` **UNSTABLE**: The full (logical) name of the service being called, including its package name, if applicable.
             ///
             /// - Stability: development
             /// - Type: string
@@ -58,7 +58,7 @@ extension SpanAttributes {
             /// This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
             public var service: SpanAttributeKey<String> { .init(name: OTelAttribute.rpc.service) }
 
-            /// `rpc.system`: A string identifying the remoting system. See below for a list of well-known identifiers.
+            /// `rpc.system` **UNSTABLE**: A string identifying the remoting system. See below for a list of well-known identifiers.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -101,7 +101,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `rpc.connect_rpc.error_code`: The [error codes](https://connectrpc.com//docs/protocol/#error-codes) of the Connect request. Error codes are always string values.
+                /// `rpc.connect_rpc.error_code` **UNSTABLE**: The [error codes](https://connectrpc.com//docs/protocol/#error-codes) of the Connect request. Error codes are always string values.
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -154,7 +154,7 @@ extension SpanAttributes {
                     self.attributes = attributes
                 }
 
-                /// `rpc.connect_rpc.request.metadata`: Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
+                /// `rpc.connect_rpc.request.metadata` **UNSTABLE**: Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
                 ///
                 /// - Stability: development
                 /// - Type: templateStringArray
@@ -225,7 +225,7 @@ extension SpanAttributes {
                     self.attributes = attributes
                 }
 
-                /// `rpc.connect_rpc.response.metadata`: Connect response metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
+                /// `rpc.connect_rpc.response.metadata` **UNSTABLE**: Connect response metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
                 ///
                 /// - Stability: development
                 /// - Type: templateStringArray
@@ -300,7 +300,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `rpc.grpc.status_code`: The [numeric status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md) of the gRPC request.
+                /// `rpc.grpc.status_code` **UNSTABLE**: The [numeric status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md) of the gRPC request.
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -354,7 +354,7 @@ extension SpanAttributes {
                     self.attributes = attributes
                 }
 
-                /// `rpc.grpc.request.metadata`: gRPC request metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values.
+                /// `rpc.grpc.request.metadata` **UNSTABLE**: gRPC request metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values.
                 ///
                 /// - Stability: development
                 /// - Type: templateStringArray
@@ -425,7 +425,7 @@ extension SpanAttributes {
                     self.attributes = attributes
                 }
 
-                /// `rpc.grpc.response.metadata`: gRPC response metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values.
+                /// `rpc.grpc.response.metadata` **UNSTABLE**: gRPC response metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values.
                 ///
                 /// - Stability: development
                 /// - Type: templateStringArray
@@ -500,7 +500,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `rpc.jsonrpc.error_code`: `error.code` property of response if it is an error response.
+                /// `rpc.jsonrpc.error_code` **UNSTABLE**: `error.code` property of response if it is an error response.
                 ///
                 /// - Stability: development
                 /// - Type: int
@@ -509,7 +509,7 @@ extension SpanAttributes {
                 ///     - `100`
                 public var errorCode: SpanAttributeKey<Int> { .init(name: OTelAttribute.rpc.jsonrpc.errorCode) }
 
-                /// `rpc.jsonrpc.error_message`: `error.message` property of response if it is an error response.
+                /// `rpc.jsonrpc.error_message` **UNSTABLE**: `error.message` property of response if it is an error response.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -520,7 +520,7 @@ extension SpanAttributes {
                     .init(name: OTelAttribute.rpc.jsonrpc.errorMessage)
                 }
 
-                /// `rpc.jsonrpc.request_id`: `id` property of request or response. Since protocol allows id to be int, string, `null` or missing (for notifications), value is expected to be cast to string for simplicity. Use empty string in case of `null` value. Omit entirely if this is a notification.
+                /// `rpc.jsonrpc.request_id` **UNSTABLE**: `id` property of request or response. Since protocol allows id to be int, string, `null` or missing (for notifications), value is expected to be cast to string for simplicity. Use empty string in case of `null` value. Omit entirely if this is a notification.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -530,7 +530,7 @@ extension SpanAttributes {
                 ///     - ``
                 public var requestId: SpanAttributeKey<String> { .init(name: OTelAttribute.rpc.jsonrpc.requestId) }
 
-                /// `rpc.jsonrpc.version`: Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 doesn't specify this, the value can be omitted.
+                /// `rpc.jsonrpc.version` **UNSTABLE**: Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 doesn't specify this, the value can be omitted.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -562,7 +562,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `rpc.message.compressed_size`: Compressed size of the message in bytes.
+                /// `rpc.message.compressed_size` **UNSTABLE**: Compressed size of the message in bytes.
                 ///
                 /// - Stability: development
                 /// - Type: int
@@ -570,7 +570,7 @@ extension SpanAttributes {
                     .init(name: OTelAttribute.rpc.message.compressedSize)
                 }
 
-                /// `rpc.message.id`: MUST be calculated as two different counters starting from `1` one for sent messages and one for received message.
+                /// `rpc.message.id` **UNSTABLE**: MUST be calculated as two different counters starting from `1` one for sent messages and one for received message.
                 ///
                 /// - Stability: development
                 /// - Type: int
@@ -578,7 +578,7 @@ extension SpanAttributes {
                 /// This way we guarantee that the values will be consistent between different implementations.
                 public var id: SpanAttributeKey<Int> { .init(name: OTelAttribute.rpc.message.id) }
 
-                /// `rpc.message.type`: Whether this is a received or sent message.
+                /// `rpc.message.type` **UNSTABLE**: Whether this is a received or sent message.
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -596,7 +596,7 @@ extension SpanAttributes {
                     }
                 }
 
-                /// `rpc.message.uncompressed_size`: Uncompressed size of the message in bytes.
+                /// `rpc.message.uncompressed_size` **UNSTABLE**: Uncompressed size of the message in bytes.
                 ///
                 /// - Stability: development
                 /// - Type: int

@@ -40,21 +40,21 @@ extension SpanAttributes {
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
 
-            /// `webengine.description`: Additional description of the web engine (e.g. detailed version and edition information).
+            /// `webengine.description` **UNSTABLE**: Additional description of the web engine (e.g. detailed version and edition information).
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `WildFly Full 21.0.0.Final (WildFly Core 13.0.1.Final) - 2.2.2.Final`
             public var description: SpanAttributeKey<String> { .init(name: OTelAttribute.webengine.description) }
 
-            /// `webengine.name`: The name of the web engine.
+            /// `webengine.name` **UNSTABLE**: The name of the web engine.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `WildFly`
             public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.webengine.name) }
 
-            /// `webengine.version`: The version of the web engine.
+            /// `webengine.version` **UNSTABLE**: The version of the web engine.
             ///
             /// - Stability: development
             /// - Type: string

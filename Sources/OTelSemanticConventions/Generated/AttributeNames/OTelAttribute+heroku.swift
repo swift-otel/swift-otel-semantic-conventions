@@ -19,7 +19,7 @@ extension OTelAttribute {
     public enum heroku {
         /// `heroku.app` namespace
         public enum app {
-            /// `heroku.app.id`: Unique identifier for the application
+            /// `heroku.app.id` **UNSTABLE**: Unique identifier for the application
             ///
             /// - Stability: development
             /// - Type: string
@@ -29,14 +29,14 @@ extension OTelAttribute {
 
         /// `heroku.release` namespace
         public enum release {
-            /// `heroku.release.commit`: Commit hash for the current release
+            /// `heroku.release.commit` **UNSTABLE**: Commit hash for the current release
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `e6134959463efd8966b20e75b913cafe3f5ec`
             public static let commit = "heroku.release.commit"
 
-            /// `heroku.release.creation_timestamp`: Time and date the release was created
+            /// `heroku.release.creation_timestamp` **UNSTABLE**: Time and date the release was created
             ///
             /// - Stability: development
             /// - Type: string

@@ -62,7 +62,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `profile.frame.type`: Describes the interpreter or compiler of a single frame.
+                /// `profile.frame.type` **UNSTABLE**: Describes the interpreter or compiler of a single frame.
                 ///
                 /// - Stability: development
                 /// - Type: enum

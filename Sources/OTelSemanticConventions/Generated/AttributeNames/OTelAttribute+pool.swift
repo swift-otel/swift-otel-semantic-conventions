@@ -17,7 +17,7 @@ extension OTelAttribute {
     #if Experimental
     /// `pool` namespace
     public enum pool {
-        /// `pool.name`: Deprecated, use `db.client.connection.pool.name` instead.
+        /// `pool.name` **UNSTABLE**: Deprecated, use `db.client.connection.pool.name` instead.
         ///
         /// - Stability: development
         /// - Type: string

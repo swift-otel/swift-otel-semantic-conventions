@@ -17,7 +17,7 @@ extension OTelAttribute {
     #if Experimental
     /// `net` namespace
     public enum net {
-        /// `net.transport`: Deprecated, use `network.transport`.
+        /// `net.transport` **UNSTABLE**: Deprecated, use `network.transport`.
         ///
         /// - Stability: development
         /// - Type: enum
@@ -31,7 +31,7 @@ extension OTelAttribute {
 
         /// `net.host` namespace
         public enum host {
-            /// `net.host.ip`: Deprecated, use `network.local.address`.
+            /// `net.host.ip` **UNSTABLE**: Deprecated, use `network.local.address`.
             ///
             /// - Stability: development
             /// - Type: string
@@ -39,7 +39,7 @@ extension OTelAttribute {
             @available(*, deprecated, renamed: "OTelAttribute.network.local.address")
             public static let ip = "net.host.ip"
 
-            /// `net.host.name`: Deprecated, use `server.address`.
+            /// `net.host.name` **UNSTABLE**: Deprecated, use `server.address`.
             ///
             /// - Stability: development
             /// - Type: string
@@ -47,7 +47,7 @@ extension OTelAttribute {
             @available(*, deprecated, renamed: "OTelAttribute.server.address")
             public static let name = "net.host.name"
 
-            /// `net.host.port`: Deprecated, use `server.port`.
+            /// `net.host.port` **UNSTABLE**: Deprecated, use `server.port`.
             ///
             /// - Stability: development
             /// - Type: int
@@ -58,7 +58,7 @@ extension OTelAttribute {
 
         /// `net.peer` namespace
         public enum peer {
-            /// `net.peer.ip`: Deprecated, use `network.peer.address`.
+            /// `net.peer.ip` **UNSTABLE**: Deprecated, use `network.peer.address`.
             ///
             /// - Stability: development
             /// - Type: string
@@ -66,7 +66,7 @@ extension OTelAttribute {
             @available(*, deprecated, renamed: "OTelAttribute.network.peer.address")
             public static let ip = "net.peer.ip"
 
-            /// `net.peer.name`: Deprecated, use `server.address` on client spans and `client.address` on server spans.
+            /// `net.peer.name` **UNSTABLE**: Deprecated, use `server.address` on client spans and `client.address` on server spans.
             ///
             /// - Stability: development
             /// - Type: string
@@ -78,7 +78,7 @@ extension OTelAttribute {
             )
             public static let name = "net.peer.name"
 
-            /// `net.peer.port`: Deprecated, use `server.port` on client spans and `client.port` on server spans.
+            /// `net.peer.port` **UNSTABLE**: Deprecated, use `server.port` on client spans and `client.port` on server spans.
             ///
             /// - Stability: development
             /// - Type: int
@@ -93,7 +93,7 @@ extension OTelAttribute {
 
         /// `net.protocol` namespace
         public enum `protocol` {
-            /// `net.protocol.name`: Deprecated, use `network.protocol.name`.
+            /// `net.protocol.name` **UNSTABLE**: Deprecated, use `network.protocol.name`.
             ///
             /// - Stability: development
             /// - Type: string
@@ -104,7 +104,7 @@ extension OTelAttribute {
             @available(*, deprecated, renamed: "OTelAttribute.network.protocol.name")
             public static let name = "net.protocol.name"
 
-            /// `net.protocol.version`: Deprecated, use `network.protocol.version`.
+            /// `net.protocol.version` **UNSTABLE**: Deprecated, use `network.protocol.version`.
             ///
             /// - Stability: development
             /// - Type: string
@@ -115,7 +115,7 @@ extension OTelAttribute {
 
         /// `net.sock` namespace
         public enum sock {
-            /// `net.sock.family`: Deprecated, use `network.transport` and `network.type`.
+            /// `net.sock.family` **UNSTABLE**: Deprecated, use `network.transport` and `network.type`.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -127,7 +127,7 @@ extension OTelAttribute {
 
             /// `net.sock.host` namespace
             public enum host {
-                /// `net.sock.host.addr`: Deprecated, use `network.local.address`.
+                /// `net.sock.host.addr` **UNSTABLE**: Deprecated, use `network.local.address`.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -135,7 +135,7 @@ extension OTelAttribute {
                 @available(*, deprecated, renamed: "OTelAttribute.network.local.address")
                 public static let addr = "net.sock.host.addr"
 
-                /// `net.sock.host.port`: Deprecated, use `network.local.port`.
+                /// `net.sock.host.port` **UNSTABLE**: Deprecated, use `network.local.port`.
                 ///
                 /// - Stability: development
                 /// - Type: int
@@ -146,7 +146,7 @@ extension OTelAttribute {
 
             /// `net.sock.peer` namespace
             public enum peer {
-                /// `net.sock.peer.addr`: Deprecated, use `network.peer.address`.
+                /// `net.sock.peer.addr` **UNSTABLE**: Deprecated, use `network.peer.address`.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -154,7 +154,7 @@ extension OTelAttribute {
                 @available(*, deprecated, renamed: "OTelAttribute.network.peer.address")
                 public static let addr = "net.sock.peer.addr"
 
-                /// `net.sock.peer.name`: Deprecated, no replacement at this time.
+                /// `net.sock.peer.name` **UNSTABLE**: Deprecated, no replacement at this time.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -162,7 +162,7 @@ extension OTelAttribute {
                 @available(*, deprecated, message: "Obsoleted: Removed. No replacement at this time.")
                 public static let name = "net.sock.peer.name"
 
-                /// `net.sock.peer.port`: Deprecated, use `network.peer.port`.
+                /// `net.sock.peer.port` **UNSTABLE**: Deprecated, use `network.peer.port`.
                 ///
                 /// - Stability: development
                 /// - Type: int

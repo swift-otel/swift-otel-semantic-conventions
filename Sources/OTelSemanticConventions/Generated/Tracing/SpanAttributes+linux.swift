@@ -84,7 +84,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `linux.memory.slab.state`: The Linux Slab memory state
+                    /// `linux.memory.slab.state` **UNSTABLE**: The Linux Slab memory state
                     ///
                     /// - Stability: development
                     /// - Type: enum

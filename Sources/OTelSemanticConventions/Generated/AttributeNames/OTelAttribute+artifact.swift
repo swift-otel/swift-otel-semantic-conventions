@@ -17,7 +17,7 @@ extension OTelAttribute {
     #if Experimental
     /// `artifact` namespace
     public enum artifact {
-        /// `artifact.filename`: The human readable file name of the artifact, typically generated during build and release processes. Often includes the package name and version in the file name.
+        /// `artifact.filename` **UNSTABLE**: The human readable file name of the artifact, typically generated during build and release processes. Often includes the package name and version in the file name.
         ///
         /// - Stability: development
         /// - Type: string
@@ -33,7 +33,7 @@ extension OTelAttribute {
         /// for others, but that is not a guarantee.
         public static let filename = "artifact.filename"
 
-        /// `artifact.hash`: The full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf), often found in checksum.txt on a release of the artifact and used to verify package integrity.
+        /// `artifact.hash` **UNSTABLE**: The full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf), often found in checksum.txt on a release of the artifact and used to verify package integrity.
         ///
         /// - Stability: development
         /// - Type: string
@@ -49,7 +49,7 @@ extension OTelAttribute {
         /// deem necessary.
         public static let hash = "artifact.hash"
 
-        /// `artifact.purl`: The [Package URL](https://github.com/package-url/purl-spec) of the [package artifact](https://slsa.dev/spec/v1.0/terminology#package-model) provides a standard way to identify and locate the packaged artifact.
+        /// `artifact.purl` **UNSTABLE**: The [Package URL](https://github.com/package-url/purl-spec) of the [package artifact](https://slsa.dev/spec/v1.0/terminology#package-model) provides a standard way to identify and locate the packaged artifact.
         ///
         /// - Stability: development
         /// - Type: string
@@ -58,7 +58,7 @@ extension OTelAttribute {
         ///     - `pkg:npm/foo@12.12.3`
         public static let purl = "artifact.purl"
 
-        /// `artifact.version`: The version of the artifact.
+        /// `artifact.version` **UNSTABLE**: The version of the artifact.
         ///
         /// - Stability: development
         /// - Type: string
@@ -70,7 +70,7 @@ extension OTelAttribute {
 
         /// `artifact.attestation` namespace
         public enum attestation {
-            /// `artifact.attestation.filename`: The provenance filename of the built attestation which directly relates to the build artifact filename. This filename SHOULD accompany the artifact at publish time. See the [SLSA Relationship](https://slsa.dev/spec/v1.0/distributing-provenance#relationship-between-artifacts-and-attestations) specification for more information.
+            /// `artifact.attestation.filename` **UNSTABLE**: The provenance filename of the built attestation which directly relates to the build artifact filename. This filename SHOULD accompany the artifact at publish time. See the [SLSA Relationship](https://slsa.dev/spec/v1.0/distributing-provenance#relationship-between-artifacts-and-attestations) specification for more information.
             ///
             /// - Stability: development
             /// - Type: string
@@ -81,14 +81,14 @@ extension OTelAttribute {
             ///     - `file-name-package.tar.gz.intoto.json1`
             public static let filename = "artifact.attestation.filename"
 
-            /// `artifact.attestation.hash`: The full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf), of the built attestation. Some envelopes in the [software attestation space](https://github.com/in-toto/attestation/tree/main/spec) also refer to this as the **digest**.
+            /// `artifact.attestation.hash` **UNSTABLE**: The full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf), of the built attestation. Some envelopes in the [software attestation space](https://github.com/in-toto/attestation/tree/main/spec) also refer to this as the **digest**.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `1b31dfcd5b7f9267bf2ff47651df1cfb9147b9e4df1f335accf65b4cda498408`
             public static let hash = "artifact.attestation.hash"
 
-            /// `artifact.attestation.id`: The id of the build [software attestation](https://slsa.dev/attestation-model).
+            /// `artifact.attestation.id` **UNSTABLE**: The id of the build [software attestation](https://slsa.dev/attestation-model).
             ///
             /// - Stability: development
             /// - Type: string

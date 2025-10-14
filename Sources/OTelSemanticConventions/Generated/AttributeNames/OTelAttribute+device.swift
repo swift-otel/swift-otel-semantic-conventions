@@ -17,7 +17,7 @@ extension OTelAttribute {
     #if Experimental
     /// `device` namespace
     public enum device {
-        /// `device.id`: A unique identifier representing the device
+        /// `device.id` **UNSTABLE**: A unique identifier representing the device
         ///
         /// - Stability: development
         /// - Type: string
@@ -43,7 +43,7 @@ extension OTelAttribute {
         /// > See [`app.installation.id`](/docs/registry/attributes/app.md#app-installation-id) for a more privacy-preserving alternative.
         public static let id = "device.id"
 
-        /// `device.manufacturer`: The name of the device manufacturer
+        /// `device.manufacturer` **UNSTABLE**: The name of the device manufacturer
         ///
         /// - Stability: development
         /// - Type: string
@@ -56,7 +56,7 @@ extension OTelAttribute {
 
         /// `device.model` namespace
         public enum model {
-            /// `device.model.identifier`: The model identifier for the device
+            /// `device.model.identifier` **UNSTABLE**: The model identifier for the device
             ///
             /// - Stability: development
             /// - Type: string
@@ -67,7 +67,7 @@ extension OTelAttribute {
             /// It's recommended this value represents a machine-readable version of the model identifier rather than the market or consumer-friendly name of the device.
             public static let identifier = "device.model.identifier"
 
-            /// `device.model.name`: The marketing name for the device model
+            /// `device.model.name` **UNSTABLE**: The marketing name for the device model
             ///
             /// - Stability: development
             /// - Type: string

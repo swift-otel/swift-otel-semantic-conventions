@@ -40,7 +40,7 @@ extension SpanAttributes {
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
 
-            /// `dns.answers`: The list of IPv4 or IPv6 addresses resolved during DNS lookup.
+            /// `dns.answers` **UNSTABLE**: The list of IPv4 or IPv6 addresses resolved during DNS lookup.
             ///
             /// - Stability: development
             /// - Type: stringArray
@@ -68,7 +68,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `dns.question.name`: The name being queried.
+                /// `dns.question.name` **UNSTABLE**: The name being queried.
                 ///
                 /// - Stability: development
                 /// - Type: string

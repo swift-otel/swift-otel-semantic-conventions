@@ -62,7 +62,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `openai.request.service_tier`: The service tier requested. May be a specific tier, default, or auto.
+                /// `openai.request.service_tier` **UNSTABLE**: The service tier requested. May be a specific tier, default, or auto.
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -108,7 +108,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `openai.response.service_tier`: The service tier used for the response.
+                /// `openai.response.service_tier` **UNSTABLE**: The service tier used for the response.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -119,7 +119,7 @@ extension SpanAttributes {
                     .init(name: OTelAttribute.openai.response.serviceTier)
                 }
 
-                /// `openai.response.system_fingerprint`: A fingerprint to track any eventual change in the Generative AI environment.
+                /// `openai.response.system_fingerprint` **UNSTABLE**: A fingerprint to track any eventual change in the Generative AI environment.
                 ///
                 /// - Stability: development
                 /// - Type: string

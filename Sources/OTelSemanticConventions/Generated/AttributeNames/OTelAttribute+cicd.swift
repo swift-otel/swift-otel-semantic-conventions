@@ -19,7 +19,7 @@ extension OTelAttribute {
     public enum cicd {
         /// `cicd.pipeline` namespace
         public enum pipeline {
-            /// `cicd.pipeline.name`: The human readable name of the pipeline within a CI/CD system.
+            /// `cicd.pipeline.name` **UNSTABLE**: The human readable name of the pipeline within a CI/CD system.
             ///
             /// - Stability: development
             /// - Type: string
@@ -30,7 +30,7 @@ extension OTelAttribute {
             ///     - `deploy_to_environment`
             public static let name = "cicd.pipeline.name"
 
-            /// `cicd.pipeline.result`: The result of a pipeline run.
+            /// `cicd.pipeline.result` **UNSTABLE**: The result of a pipeline run.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -49,7 +49,7 @@ extension OTelAttribute {
 
             /// `cicd.pipeline.action` namespace
             public enum action {
-                /// `cicd.pipeline.action.name`: The kind of action a pipeline run is performing.
+                /// `cicd.pipeline.action.name` **UNSTABLE**: The kind of action a pipeline run is performing.
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -65,14 +65,14 @@ extension OTelAttribute {
 
             /// `cicd.pipeline.run` namespace
             public enum run {
-                /// `cicd.pipeline.run.id`: The unique identifier of a pipeline run within a CI/CD system.
+                /// `cicd.pipeline.run.id` **UNSTABLE**: The unique identifier of a pipeline run within a CI/CD system.
                 ///
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `120912`
                 public static let id = "cicd.pipeline.run.id"
 
-                /// `cicd.pipeline.run.state`: The pipeline run goes through these states during its lifecycle.
+                /// `cicd.pipeline.run.state` **UNSTABLE**: The pipeline run goes through these states during its lifecycle.
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -87,7 +87,7 @@ extension OTelAttribute {
 
                 /// `cicd.pipeline.run.url` namespace
                 public enum url {
-                    /// `cicd.pipeline.run.url.full`: The [URL](https://wikipedia.org/wiki/URL) of the pipeline run, providing the complete address in order to locate and identify the pipeline run.
+                    /// `cicd.pipeline.run.url.full` **UNSTABLE**: The [URL](https://wikipedia.org/wiki/URL) of the pipeline run, providing the complete address in order to locate and identify the pipeline run.
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -98,7 +98,7 @@ extension OTelAttribute {
 
             /// `cicd.pipeline.task` namespace
             public enum task {
-                /// `cicd.pipeline.task.name`: The human readable name of a task within a pipeline. Task here most closely aligns with a [computing process](https://wikipedia.org/wiki/Pipeline_(computing)) in a pipeline. Other terms for tasks include commands, steps, and procedures.
+                /// `cicd.pipeline.task.name` **UNSTABLE**: The human readable name of a task within a pipeline. Task here most closely aligns with a [computing process](https://wikipedia.org/wiki/Pipeline_(computing)) in a pipeline. Other terms for tasks include commands, steps, and procedures.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -109,7 +109,7 @@ extension OTelAttribute {
                 ///     - `deploy_binary`
                 public static let name = "cicd.pipeline.task.name"
 
-                /// `cicd.pipeline.task.type`: The type of the task within a pipeline.
+                /// `cicd.pipeline.task.type` **UNSTABLE**: The type of the task within a pipeline.
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -124,14 +124,14 @@ extension OTelAttribute {
 
                 /// `cicd.pipeline.task.run` namespace
                 public enum run {
-                    /// `cicd.pipeline.task.run.id`: The unique identifier of a task run within a pipeline.
+                    /// `cicd.pipeline.task.run.id` **UNSTABLE**: The unique identifier of a task run within a pipeline.
                     ///
                     /// - Stability: development
                     /// - Type: string
                     /// - Example: `12097`
                     public static let id = "cicd.pipeline.task.run.id"
 
-                    /// `cicd.pipeline.task.run.result`: The result of a task run.
+                    /// `cicd.pipeline.task.run.result` **UNSTABLE**: The result of a task run.
                     ///
                     /// - Stability: development
                     /// - Type: enum
@@ -150,7 +150,7 @@ extension OTelAttribute {
 
                     /// `cicd.pipeline.task.run.url` namespace
                     public enum url {
-                        /// `cicd.pipeline.task.run.url.full`: The [URL](https://wikipedia.org/wiki/URL) of the pipeline task run, providing the complete address in order to locate and identify the pipeline task run.
+                        /// `cicd.pipeline.task.run.url.full` **UNSTABLE**: The [URL](https://wikipedia.org/wiki/URL) of the pipeline task run, providing the complete address in order to locate and identify the pipeline task run.
                         ///
                         /// - Stability: development
                         /// - Type: string
@@ -163,7 +163,7 @@ extension OTelAttribute {
 
         /// `cicd.system` namespace
         public enum system {
-            /// `cicd.system.component`: The name of a component of the CICD system.
+            /// `cicd.system.component` **UNSTABLE**: The name of a component of the CICD system.
             ///
             /// - Stability: development
             /// - Type: string
@@ -176,7 +176,7 @@ extension OTelAttribute {
 
         /// `cicd.worker` namespace
         public enum worker {
-            /// `cicd.worker.id`: The unique identifier of a worker within a CICD system.
+            /// `cicd.worker.id` **UNSTABLE**: The unique identifier of a worker within a CICD system.
             ///
             /// - Stability: development
             /// - Type: string
@@ -186,7 +186,7 @@ extension OTelAttribute {
             ///     - `controller`
             public static let id = "cicd.worker.id"
 
-            /// `cicd.worker.name`: The name of a worker within a CICD system.
+            /// `cicd.worker.name` **UNSTABLE**: The name of a worker within a CICD system.
             ///
             /// - Stability: development
             /// - Type: string
@@ -196,7 +196,7 @@ extension OTelAttribute {
             ///     - `Ubuntu LTS`
             public static let name = "cicd.worker.name"
 
-            /// `cicd.worker.state`: The state of a CICD worker / agent.
+            /// `cicd.worker.state` **UNSTABLE**: The state of a CICD worker / agent.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -211,7 +211,7 @@ extension OTelAttribute {
 
             /// `cicd.worker.url` namespace
             public enum url {
-                /// `cicd.worker.url.full`: The [URL](https://wikipedia.org/wiki/URL) of the worker, providing the complete address in order to locate and identify the worker.
+                /// `cicd.worker.url.full` **UNSTABLE**: The [URL](https://wikipedia.org/wiki/URL) of the worker, providing the complete address in order to locate and identify the worker.
                 ///
                 /// - Stability: development
                 /// - Type: string

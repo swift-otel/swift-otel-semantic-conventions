@@ -40,7 +40,7 @@ extension SpanAttributes {
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
 
-            /// `cloudevents.event_id`: The [event_id](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#id) uniquely identifies the event.
+            /// `cloudevents.event_id` **UNSTABLE**: The [event_id](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#id) uniquely identifies the event.
             ///
             /// - Stability: development
             /// - Type: string
@@ -49,7 +49,7 @@ extension SpanAttributes {
             ///     - `0001`
             public var eventId: SpanAttributeKey<String> { .init(name: OTelAttribute.cloudevents.eventId) }
 
-            /// `cloudevents.event_source`: The [source](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#source-1) identifies the context in which an event happened.
+            /// `cloudevents.event_source` **UNSTABLE**: The [source](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#source-1) identifies the context in which an event happened.
             ///
             /// - Stability: development
             /// - Type: string
@@ -59,7 +59,7 @@ extension SpanAttributes {
             ///     - `my-service`
             public var eventSource: SpanAttributeKey<String> { .init(name: OTelAttribute.cloudevents.eventSource) }
 
-            /// `cloudevents.event_spec_version`: The [version of the CloudEvents specification](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#specversion) which the event uses.
+            /// `cloudevents.event_spec_version` **UNSTABLE**: The [version of the CloudEvents specification](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#specversion) which the event uses.
             ///
             /// - Stability: development
             /// - Type: string
@@ -68,14 +68,14 @@ extension SpanAttributes {
                 .init(name: OTelAttribute.cloudevents.eventSpecVersion)
             }
 
-            /// `cloudevents.event_subject`: The [subject](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#subject) of the event in the context of the event producer (identified by source).
+            /// `cloudevents.event_subject` **UNSTABLE**: The [subject](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#subject) of the event in the context of the event producer (identified by source).
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `mynewfile.jpg`
             public var eventSubject: SpanAttributeKey<String> { .init(name: OTelAttribute.cloudevents.eventSubject) }
 
-            /// `cloudevents.event_type`: The [event_type](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#type) contains a value describing the type of event related to the originating occurrence.
+            /// `cloudevents.event_type` **UNSTABLE**: The [event_type](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#type) contains a value describing the type of event related to the originating occurrence.
             ///
             /// - Stability: development
             /// - Type: string

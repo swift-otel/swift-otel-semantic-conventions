@@ -40,7 +40,7 @@ extension SpanAttributes {
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
 
-            /// `graphql.document`: The GraphQL document being executed.
+            /// `graphql.document` **UNSTABLE**: The GraphQL document being executed.
             ///
             /// - Stability: development
             /// - Type: string
@@ -71,14 +71,14 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `graphql.operation.name`: The name of the operation being executed.
+                /// `graphql.operation.name` **UNSTABLE**: The name of the operation being executed.
                 ///
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `findBookById`
                 public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.graphql.operation.name) }
 
-                /// `graphql.operation.type`: The type of the operation being executed.
+                /// `graphql.operation.type` **UNSTABLE**: The type of the operation being executed.
                 ///
                 /// - Stability: development
                 /// - Type: enum

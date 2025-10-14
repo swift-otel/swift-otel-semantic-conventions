@@ -52,28 +52,28 @@ extension OTelAttribute {
         #if Experimental
         /// `network.carrier` namespace
         public enum carrier {
-            /// `network.carrier.icc`: The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network.
+            /// `network.carrier.icc` **UNSTABLE**: The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `DE`
             public static let icc = "network.carrier.icc"
 
-            /// `network.carrier.mcc`: The mobile carrier country code.
+            /// `network.carrier.mcc` **UNSTABLE**: The mobile carrier country code.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `310`
             public static let mcc = "network.carrier.mcc"
 
-            /// `network.carrier.mnc`: The mobile carrier network code.
+            /// `network.carrier.mnc` **UNSTABLE**: The mobile carrier network code.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `001`
             public static let mnc = "network.carrier.mnc"
 
-            /// `network.carrier.name`: The name of the mobile carrier.
+            /// `network.carrier.name` **UNSTABLE**: The name of the mobile carrier.
             ///
             /// - Stability: development
             /// - Type: string
@@ -85,7 +85,7 @@ extension OTelAttribute {
         #if Experimental
         /// `network.connection` namespace
         public enum connection {
-            /// `network.connection.state`: The state of network connection
+            /// `network.connection.state` **UNSTABLE**: The state of network connection
             ///
             /// - Stability: development
             /// - Type: enum
@@ -105,7 +105,7 @@ extension OTelAttribute {
             /// Connection states are defined as part of the [rfc9293](https://datatracker.ietf.org/doc/html/rfc9293#section-3.3.2)
             public static let state = "network.connection.state"
 
-            /// `network.connection.subtype`: This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection.
+            /// `network.connection.subtype` **UNSTABLE**: This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -133,7 +133,7 @@ extension OTelAttribute {
             /// - Example: `LTE`
             public static let subtype = "network.connection.subtype"
 
-            /// `network.connection.type`: The internet connection type.
+            /// `network.connection.type` **UNSTABLE**: The internet connection type.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -150,7 +150,7 @@ extension OTelAttribute {
         #if Experimental
         /// `network.interface` namespace
         public enum interface {
-            /// `network.interface.name`: The network interface name.
+            /// `network.interface.name` **UNSTABLE**: The network interface name.
             ///
             /// - Stability: development
             /// - Type: string
@@ -164,7 +164,7 @@ extension OTelAttribute {
         #if Experimental
         /// `network.io` namespace
         public enum io {
-            /// `network.io.direction`: The network IO operation direction.
+            /// `network.io.direction` **UNSTABLE**: The network IO operation direction.
             ///
             /// - Stability: development
             /// - Type: enum

@@ -19,7 +19,7 @@ extension OTelAttribute {
     public enum elasticsearch {
         /// `elasticsearch.node` namespace
         public enum node {
-            /// `elasticsearch.node.name`: Represents the human-readable identifier of the node/instance to which a request was routed.
+            /// `elasticsearch.node.name` **UNSTABLE**: Represents the human-readable identifier of the node/instance to which a request was routed.
             ///
             /// - Stability: development
             /// - Type: string

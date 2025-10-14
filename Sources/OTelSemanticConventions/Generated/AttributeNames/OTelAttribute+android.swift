@@ -17,7 +17,7 @@ extension OTelAttribute {
     #if Experimental
     /// `android` namespace
     public enum android {
-        /// `android.state`: Deprecated. Use `android.app.state` attribute instead.
+        /// `android.state` **UNSTABLE**: Deprecated. Use `android.app.state` attribute instead.
         ///
         /// - Stability: development
         /// - Type: enum
@@ -29,7 +29,7 @@ extension OTelAttribute {
 
         /// `android.app` namespace
         public enum app {
-            /// `android.app.state`: This attribute represents the state of the application.
+            /// `android.app.state` **UNSTABLE**: This attribute represents the state of the application.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -44,7 +44,7 @@ extension OTelAttribute {
 
         /// `android.os` namespace
         public enum os {
-            /// `android.os.api_level`: Uniquely identifies the framework API revision offered by a version (`os.version`) of the android operating system. More information can be found in the [Android API levels documentation](https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels).
+            /// `android.os.api_level` **UNSTABLE**: Uniquely identifies the framework API revision offered by a version (`os.version`) of the android operating system. More information can be found in the [Android API levels documentation](https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels).
             ///
             /// - Stability: development
             /// - Type: string

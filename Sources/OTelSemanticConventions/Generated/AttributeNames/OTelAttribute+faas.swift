@@ -17,20 +17,20 @@ extension OTelAttribute {
     #if Experimental
     /// `faas` namespace
     public enum faas {
-        /// `faas.coldstart`: A boolean that is true if the serverless function is executed for the first time (aka cold-start).
+        /// `faas.coldstart` **UNSTABLE**: A boolean that is true if the serverless function is executed for the first time (aka cold-start).
         ///
         /// - Stability: development
         /// - Type: boolean
         public static let coldstart = "faas.coldstart"
 
-        /// `faas.cron`: A string containing the schedule period as [Cron Expression](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm).
+        /// `faas.cron` **UNSTABLE**: A string containing the schedule period as [Cron Expression](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm).
         ///
         /// - Stability: development
         /// - Type: string
         /// - Example: `0/5 * * * ? *`
         public static let cron = "faas.cron"
 
-        /// `faas.instance`: The execution environment ID as a string, that will be potentially reused for other invocations to the same function/function version.
+        /// `faas.instance` **UNSTABLE**: The execution environment ID as a string, that will be potentially reused for other invocations to the same function/function version.
         ///
         /// - Stability: development
         /// - Type: string
@@ -39,14 +39,14 @@ extension OTelAttribute {
         /// - **AWS Lambda:** Use the (full) log stream name.
         public static let instance = "faas.instance"
 
-        /// `faas.invocation_id`: The invocation ID of the current function invocation.
+        /// `faas.invocation_id` **UNSTABLE**: The invocation ID of the current function invocation.
         ///
         /// - Stability: development
         /// - Type: string
         /// - Example: `af9d5aa4-a685-4c5f-a22b-444f80b3cc28`
         public static let invocationId = "faas.invocation_id"
 
-        /// `faas.invoked_name`: The name of the invoked function.
+        /// `faas.invoked_name` **UNSTABLE**: The name of the invoked function.
         ///
         /// - Stability: development
         /// - Type: string
@@ -55,7 +55,7 @@ extension OTelAttribute {
         /// SHOULD be equal to the `faas.name` resource attribute of the invoked function.
         public static let invokedName = "faas.invoked_name"
 
-        /// `faas.invoked_provider`: The cloud provider of the invoked function.
+        /// `faas.invoked_provider` **UNSTABLE**: The cloud provider of the invoked function.
         ///
         /// - Stability: development
         /// - Type: enum
@@ -68,7 +68,7 @@ extension OTelAttribute {
         /// SHOULD be equal to the `cloud.provider` resource attribute of the invoked function.
         public static let invokedProvider = "faas.invoked_provider"
 
-        /// `faas.invoked_region`: The cloud region of the invoked function.
+        /// `faas.invoked_region` **UNSTABLE**: The cloud region of the invoked function.
         ///
         /// - Stability: development
         /// - Type: string
@@ -77,7 +77,7 @@ extension OTelAttribute {
         /// SHOULD be equal to the `cloud.region` resource attribute of the invoked function.
         public static let invokedRegion = "faas.invoked_region"
 
-        /// `faas.max_memory`: The amount of memory available to the serverless function converted to Bytes.
+        /// `faas.max_memory` **UNSTABLE**: The amount of memory available to the serverless function converted to Bytes.
         ///
         /// - Stability: development
         /// - Type: int
@@ -86,7 +86,7 @@ extension OTelAttribute {
         /// It's recommended to set this attribute since e.g. too little memory can easily stop a Java AWS Lambda function from working correctly. On AWS Lambda, the environment variable `AWS_LAMBDA_FUNCTION_MEMORY_SIZE` provides this information (which must be multiplied by 1,048,576).
         public static let maxMemory = "faas.max_memory"
 
-        /// `faas.name`: The name of the single function that this runtime instance executes.
+        /// `faas.name` **UNSTABLE**: The name of the single function that this runtime instance executes.
         ///
         /// - Stability: development
         /// - Type: string
@@ -112,14 +112,14 @@ extension OTelAttribute {
         ///   a TracerProvider (see also the `cloud.resource_id` attribute).
         public static let name = "faas.name"
 
-        /// `faas.time`: A string containing the function invocation time in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime).
+        /// `faas.time` **UNSTABLE**: A string containing the function invocation time in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime).
         ///
         /// - Stability: development
         /// - Type: string
         /// - Example: `2020-01-23T13:47:06Z`
         public static let time = "faas.time"
 
-        /// `faas.trigger`: Type of the trigger which caused this function invocation.
+        /// `faas.trigger` **UNSTABLE**: Type of the trigger which caused this function invocation.
         ///
         /// - Stability: development
         /// - Type: enum
@@ -130,7 +130,7 @@ extension OTelAttribute {
         ///     - `other`: If none of the others apply
         public static let trigger = "faas.trigger"
 
-        /// `faas.version`: The immutable version of the function being executed.
+        /// `faas.version` **UNSTABLE**: The immutable version of the function being executed.
         ///
         /// - Stability: development
         /// - Type: string
@@ -151,7 +151,7 @@ extension OTelAttribute {
 
         /// `faas.document` namespace
         public enum document {
-            /// `faas.document.collection`: The name of the source on which the triggering operation was performed. For example, in Cloud Storage or S3 corresponds to the bucket name, and in Cosmos DB to the database name.
+            /// `faas.document.collection` **UNSTABLE**: The name of the source on which the triggering operation was performed. For example, in Cloud Storage or S3 corresponds to the bucket name, and in Cosmos DB to the database name.
             ///
             /// - Stability: development
             /// - Type: string
@@ -160,7 +160,7 @@ extension OTelAttribute {
             ///     - `myDbName`
             public static let collection = "faas.document.collection"
 
-            /// `faas.document.name`: The document name/table subjected to the operation. For example, in Cloud Storage or S3 is the name of the file, and in Cosmos DB the table name.
+            /// `faas.document.name` **UNSTABLE**: The document name/table subjected to the operation. For example, in Cloud Storage or S3 is the name of the file, and in Cosmos DB the table name.
             ///
             /// - Stability: development
             /// - Type: string
@@ -169,7 +169,7 @@ extension OTelAttribute {
             ///     - `myTableName`
             public static let name = "faas.document.name"
 
-            /// `faas.document.operation`: Describes the type of the operation that was performed on the data.
+            /// `faas.document.operation` **UNSTABLE**: Describes the type of the operation that was performed on the data.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -178,7 +178,7 @@ extension OTelAttribute {
             ///     - `delete`: When an object is deleted.
             public static let operation = "faas.document.operation"
 
-            /// `faas.document.time`: A string containing the time when the data was accessed in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime).
+            /// `faas.document.time` **UNSTABLE**: A string containing the time when the data was accessed in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime).
             ///
             /// - Stability: development
             /// - Type: string

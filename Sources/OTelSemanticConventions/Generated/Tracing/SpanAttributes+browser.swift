@@ -40,7 +40,7 @@ extension SpanAttributes {
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
 
-            /// `browser.brands`: Array of brand name and version separated by a space
+            /// `browser.brands` **UNSTABLE**: Array of brand name and version separated by a space
             ///
             /// - Stability: development
             /// - Type: stringArray
@@ -48,7 +48,7 @@ extension SpanAttributes {
             /// This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.brands`).
             public var brands: SpanAttributeKey<[String]> { .init(name: OTelAttribute.browser.brands) }
 
-            /// `browser.language`: Preferred language of the user using the browser
+            /// `browser.language` **UNSTABLE**: Preferred language of the user using the browser
             ///
             /// - Stability: development
             /// - Type: string
@@ -61,7 +61,7 @@ extension SpanAttributes {
             /// This value is intended to be taken from the Navigator API `navigator.language`.
             public var language: SpanAttributeKey<String> { .init(name: OTelAttribute.browser.language) }
 
-            /// `browser.mobile`: A boolean that is true if the browser is running on a mobile device
+            /// `browser.mobile` **UNSTABLE**: A boolean that is true if the browser is running on a mobile device
             ///
             /// - Stability: development
             /// - Type: boolean
@@ -69,7 +69,7 @@ extension SpanAttributes {
             /// This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.mobile`). If unavailable, this attribute SHOULD be left unset.
             public var mobile: SpanAttributeKey<Bool> { .init(name: OTelAttribute.browser.mobile) }
 
-            /// `browser.platform`: The platform on which the browser is running
+            /// `browser.platform` **UNSTABLE**: The platform on which the browser is running
             ///
             /// - Stability: development
             /// - Type: string

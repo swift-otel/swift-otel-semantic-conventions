@@ -17,7 +17,7 @@ extension OTelAttribute {
     #if Experimental
     /// `ios` namespace
     public enum ios {
-        /// `ios.state`: Deprecated. Use the `ios.app.state` attribute.
+        /// `ios.state` **UNSTABLE**: Deprecated. Use the `ios.app.state` attribute.
         ///
         /// - Stability: development
         /// - Type: enum
@@ -33,7 +33,7 @@ extension OTelAttribute {
 
         /// `ios.app` namespace
         public enum app {
-            /// `ios.app.state`: This attribute represents the state of the application.
+            /// `ios.app.state` **UNSTABLE**: This attribute represents the state of the application.
             ///
             /// - Stability: development
             /// - Type: enum

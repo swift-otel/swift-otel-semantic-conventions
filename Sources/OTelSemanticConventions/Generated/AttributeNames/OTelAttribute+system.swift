@@ -17,7 +17,7 @@ extension OTelAttribute {
     #if Experimental
     /// `system` namespace
     public enum system {
-        /// `system.device`: The device identifier
+        /// `system.device` **UNSTABLE**: The device identifier
         ///
         /// - Stability: development
         /// - Type: string
@@ -26,14 +26,14 @@ extension OTelAttribute {
 
         /// `system.cpu` namespace
         public enum cpu {
-            /// `system.cpu.logical_number`: Deprecated, use `cpu.logical_number` instead.
+            /// `system.cpu.logical_number` **UNSTABLE**: Deprecated, use `cpu.logical_number` instead.
             ///
             /// - Stability: development
             /// - Type: int
             /// - Example: `1`
             public static let logicalNumber = "system.cpu.logical_number"
 
-            /// `system.cpu.state`: Deprecated, use `cpu.mode` instead.
+            /// `system.cpu.state` **UNSTABLE**: Deprecated, use `cpu.mode` instead.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -53,21 +53,21 @@ extension OTelAttribute {
 
         /// `system.filesystem` namespace
         public enum filesystem {
-            /// `system.filesystem.mode`: The filesystem mode
+            /// `system.filesystem.mode` **UNSTABLE**: The filesystem mode
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `rw, ro`
             public static let mode = "system.filesystem.mode"
 
-            /// `system.filesystem.mountpoint`: The filesystem mount path
+            /// `system.filesystem.mountpoint` **UNSTABLE**: The filesystem mount path
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `/mnt/data`
             public static let mountpoint = "system.filesystem.mountpoint"
 
-            /// `system.filesystem.state`: The filesystem state
+            /// `system.filesystem.state` **UNSTABLE**: The filesystem state
             ///
             /// - Stability: development
             /// - Type: enum
@@ -77,7 +77,7 @@ extension OTelAttribute {
             /// - Example: `used`
             public static let state = "system.filesystem.state"
 
-            /// `system.filesystem.type`: The filesystem type
+            /// `system.filesystem.type` **UNSTABLE**: The filesystem type
             ///
             /// - Stability: development
             /// - Type: enum
@@ -93,7 +93,7 @@ extension OTelAttribute {
 
         /// `system.memory` namespace
         public enum memory {
-            /// `system.memory.state`: The memory state
+            /// `system.memory.state` **UNSTABLE**: The memory state
             ///
             /// - Stability: development
             /// - Type: enum
@@ -110,7 +110,7 @@ extension OTelAttribute {
 
         /// `system.network` namespace
         public enum network {
-            /// `system.network.state`: Deprecated, use `network.connection.state` instead.
+            /// `system.network.state` **UNSTABLE**: Deprecated, use `network.connection.state` instead.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -133,7 +133,7 @@ extension OTelAttribute {
 
         /// `system.paging` namespace
         public enum paging {
-            /// `system.paging.direction`: The paging access direction
+            /// `system.paging.direction` **UNSTABLE**: The paging access direction
             ///
             /// - Stability: development
             /// - Type: enum
@@ -142,7 +142,7 @@ extension OTelAttribute {
             /// - Example: `in`
             public static let direction = "system.paging.direction"
 
-            /// `system.paging.state`: The memory paging state
+            /// `system.paging.state` **UNSTABLE**: The memory paging state
             ///
             /// - Stability: development
             /// - Type: enum
@@ -151,7 +151,7 @@ extension OTelAttribute {
             /// - Example: `free`
             public static let state = "system.paging.state"
 
-            /// `system.paging.type`: The memory paging type
+            /// `system.paging.type` **UNSTABLE**: The memory paging type
             ///
             /// - Stability: development
             /// - Type: enum
@@ -163,7 +163,7 @@ extension OTelAttribute {
 
         /// `system.process` namespace
         public enum process {
-            /// `system.process.status`: The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES)
+            /// `system.process.status` **UNSTABLE**: The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES)
             ///
             /// - Stability: development
             /// - Type: enum
@@ -177,7 +177,7 @@ extension OTelAttribute {
 
         /// `system.processes` namespace
         public enum processes {
-            /// `system.processes.status`: Deprecated, use `system.process.status` instead.
+            /// `system.processes.status` **UNSTABLE**: Deprecated, use `system.process.status` instead.
             ///
             /// - Stability: development
             /// - Type: enum

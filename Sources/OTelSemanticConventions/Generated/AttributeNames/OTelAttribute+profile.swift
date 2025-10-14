@@ -19,7 +19,7 @@ extension OTelAttribute {
     public enum profile {
         /// `profile.frame` namespace
         public enum frame {
-            /// `profile.frame.type`: Describes the interpreter or compiler of a single frame.
+            /// `profile.frame.type` **UNSTABLE**: Describes the interpreter or compiler of a single frame.
             ///
             /// - Stability: development
             /// - Type: enum

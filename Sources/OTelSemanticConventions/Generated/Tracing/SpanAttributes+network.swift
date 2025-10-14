@@ -129,28 +129,28 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `network.carrier.icc`: The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network.
+                /// `network.carrier.icc` **UNSTABLE**: The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network.
                 ///
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `DE`
                 public var icc: SpanAttributeKey<String> { .init(name: OTelAttribute.network.carrier.icc) }
 
-                /// `network.carrier.mcc`: The mobile carrier country code.
+                /// `network.carrier.mcc` **UNSTABLE**: The mobile carrier country code.
                 ///
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `310`
                 public var mcc: SpanAttributeKey<String> { .init(name: OTelAttribute.network.carrier.mcc) }
 
-                /// `network.carrier.mnc`: The mobile carrier network code.
+                /// `network.carrier.mnc` **UNSTABLE**: The mobile carrier network code.
                 ///
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `001`
                 public var mnc: SpanAttributeKey<String> { .init(name: OTelAttribute.network.carrier.mnc) }
 
-                /// `network.carrier.name`: The name of the mobile carrier.
+                /// `network.carrier.name` **UNSTABLE**: The name of the mobile carrier.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -182,7 +182,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `network.connection.state`: The state of network connection
+                /// `network.connection.state` **UNSTABLE**: The state of network connection
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -212,7 +212,7 @@ extension SpanAttributes {
                     }
                 }
 
-                /// `network.connection.subtype`: This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection.
+                /// `network.connection.subtype` **UNSTABLE**: This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection.
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -252,7 +252,7 @@ extension SpanAttributes {
                     }
                 }
 
-                /// `network.connection.type`: The internet connection type.
+                /// `network.connection.type` **UNSTABLE**: The internet connection type.
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -299,7 +299,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `network.interface.name`: The network interface name.
+                /// `network.interface.name` **UNSTABLE**: The network interface name.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -333,7 +333,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `network.io.direction`: The network IO operation direction.
+                /// `network.io.direction` **UNSTABLE**: The network IO operation direction.
                 ///
                 /// - Stability: development
                 /// - Type: enum

@@ -40,7 +40,7 @@ extension SpanAttributes {
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
 
-            /// `app.build_id`: Unique identifier for a particular build or compilation of the application.
+            /// `app.build_id` **UNSTABLE**: Unique identifier for a particular build or compilation of the application.
             ///
             /// - Stability: development
             /// - Type: string
@@ -72,7 +72,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `app.installation.id`: A unique identifier representing the installation of an application on a specific device
+                /// `app.installation.id` **UNSTABLE**: A unique identifier representing the installation of an application on a specific device
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -120,7 +120,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `app.jank.frame_count`: A number of frame renders that experienced jank.
+                /// `app.jank.frame_count` **UNSTABLE**: A number of frame renders that experienced jank.
                 ///
                 /// - Stability: development
                 /// - Type: int
@@ -131,7 +131,7 @@ extension SpanAttributes {
                 /// Depending on platform limitations, the value provided MAY be approximation.
                 public var frameCount: SpanAttributeKey<Int> { .init(name: OTelAttribute.app.jank.frameCount) }
 
-                /// `app.jank.period`: The time period, in seconds, for which this jank is being reported.
+                /// `app.jank.period` **UNSTABLE**: The time period, in seconds, for which this jank is being reported.
                 ///
                 /// - Stability: development
                 /// - Type: double
@@ -141,7 +141,7 @@ extension SpanAttributes {
                 ///     - `10.24`
                 public var period: SpanAttributeKey<Double> { .init(name: OTelAttribute.app.jank.period) }
 
-                /// `app.jank.threshold`: The minimum rendering threshold for this jank, in seconds.
+                /// `app.jank.threshold` **UNSTABLE**: The minimum rendering threshold for this jank, in seconds.
                 ///
                 /// - Stability: development
                 /// - Type: double
@@ -196,7 +196,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `app.screen.coordinate.x`: The x (horizontal) coordinate of a screen coordinate, in screen pixels.
+                    /// `app.screen.coordinate.x` **UNSTABLE**: The x (horizontal) coordinate of a screen coordinate, in screen pixels.
                     ///
                     /// - Stability: development
                     /// - Type: int
@@ -205,7 +205,7 @@ extension SpanAttributes {
                     ///     - `131`
                     public var x: SpanAttributeKey<Int> { .init(name: OTelAttribute.app.screen.coordinate.x) }
 
-                    /// `app.screen.coordinate.y`: The y (vertical) component of a screen coordinate, in screen pixels.
+                    /// `app.screen.coordinate.y` **UNSTABLE**: The y (vertical) component of a screen coordinate, in screen pixels.
                     ///
                     /// - Stability: development
                     /// - Type: int
@@ -238,7 +238,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `app.widget.id`: An identifier that uniquely differentiates this widget from other widgets in the same application.
+                /// `app.widget.id` **UNSTABLE**: An identifier that uniquely differentiates this widget from other widgets in the same application.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -249,7 +249,7 @@ extension SpanAttributes {
                 /// A widget is an application component, typically an on-screen visual GUI element.
                 public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.app.widget.id) }
 
-                /// `app.widget.name`: The name of an application widget.
+                /// `app.widget.name` **UNSTABLE**: The name of an application widget.
                 ///
                 /// - Stability: development
                 /// - Type: string
