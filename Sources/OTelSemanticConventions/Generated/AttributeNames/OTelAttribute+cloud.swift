@@ -17,7 +17,7 @@ extension OTelAttribute {
     #if Experimental
     /// `cloud` namespace
     public enum cloud {
-        /// `cloud.availability_zone`: Cloud regions often have multiple, isolated locations known as zones to increase availability. Availability zone represents the zone where the resource is running.
+        /// `cloud.availability_zone` **UNSTABLE**: Cloud regions often have multiple, isolated locations known as zones to increase availability. Availability zone represents the zone where the resource is running.
         ///
         /// - Stability: development
         /// - Type: string
@@ -26,7 +26,7 @@ extension OTelAttribute {
         /// Availability zones are called "zones" on Alibaba Cloud and Google Cloud.
         public static let availabilityZone = "cloud.availability_zone"
 
-        /// `cloud.platform`: The cloud platform in use.
+        /// `cloud.platform` **UNSTABLE**: The cloud platform in use.
         ///
         /// - Stability: development
         /// - Type: enum
@@ -71,7 +71,7 @@ extension OTelAttribute {
         /// The prefix of the service SHOULD match the one specified in `cloud.provider`.
         public static let platform = "cloud.platform"
 
-        /// `cloud.provider`: Name of the cloud provider.
+        /// `cloud.provider` **UNSTABLE**: Name of the cloud provider.
         ///
         /// - Stability: development
         /// - Type: enum
@@ -85,7 +85,7 @@ extension OTelAttribute {
         ///     - `tencent_cloud`: Tencent Cloud
         public static let provider = "cloud.provider"
 
-        /// `cloud.region`: The geographical region within a cloud provider. When associated with a resource, this attribute specifies the region where the resource operates. When calling services or APIs deployed on a cloud, this attribute identifies the region where the called destination is deployed.
+        /// `cloud.region` **UNSTABLE**: The geographical region within a cloud provider. When associated with a resource, this attribute specifies the region where the resource operates. When calling services or APIs deployed on a cloud, this attribute identifies the region where the called destination is deployed.
         ///
         /// - Stability: development
         /// - Type: string
@@ -96,7 +96,7 @@ extension OTelAttribute {
         /// Refer to your provider's docs to see the available regions, for example [Alibaba Cloud regions](https://www.alibabacloud.com/help/doc-detail/40654.htm), [AWS regions](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/), [Azure regions](https://azure.microsoft.com/global-infrastructure/geographies/), [Google Cloud regions](https://cloud.google.com/about/locations), or [Tencent Cloud regions](https://www.tencentcloud.com/document/product/213/6091).
         public static let region = "cloud.region"
 
-        /// `cloud.resource_id`: Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://google.aip.dev/122#full-resource-names) on GCP)
+        /// `cloud.resource_id` **UNSTABLE**: Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://google.aip.dev/122#full-resource-names) on GCP)
         ///
         /// - Stability: development
         /// - Type: string
@@ -126,7 +126,7 @@ extension OTelAttribute {
 
         /// `cloud.account` namespace
         public enum account {
-            /// `cloud.account.id`: The cloud account ID the resource is assigned to.
+            /// `cloud.account.id` **UNSTABLE**: The cloud account ID the resource is assigned to.
             ///
             /// - Stability: development
             /// - Type: string

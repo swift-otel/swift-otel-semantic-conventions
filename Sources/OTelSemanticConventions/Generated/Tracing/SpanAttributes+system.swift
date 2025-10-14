@@ -40,7 +40,7 @@ extension SpanAttributes {
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
 
-            /// `system.device`: The device identifier
+            /// `system.device` **UNSTABLE**: The device identifier
             ///
             /// - Stability: development
             /// - Type: string
@@ -69,14 +69,14 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `system.cpu.logical_number`: Deprecated, use `cpu.logical_number` instead.
+                /// `system.cpu.logical_number` **UNSTABLE**: Deprecated, use `cpu.logical_number` instead.
                 ///
                 /// - Stability: development
                 /// - Type: int
                 /// - Example: `1`
                 public var logicalNumber: SpanAttributeKey<Int> { .init(name: OTelAttribute.system.cpu.logicalNumber) }
 
-                /// `system.cpu.state`: Deprecated, use `cpu.mode` instead.
+                /// `system.cpu.state` **UNSTABLE**: Deprecated, use `cpu.mode` instead.
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -126,14 +126,14 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `system.filesystem.mode`: The filesystem mode
+                /// `system.filesystem.mode` **UNSTABLE**: The filesystem mode
                 ///
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `rw, ro`
                 public var mode: SpanAttributeKey<String> { .init(name: OTelAttribute.system.filesystem.mode) }
 
-                /// `system.filesystem.mountpoint`: The filesystem mount path
+                /// `system.filesystem.mountpoint` **UNSTABLE**: The filesystem mount path
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -142,7 +142,7 @@ extension SpanAttributes {
                     .init(name: OTelAttribute.system.filesystem.mountpoint)
                 }
 
-                /// `system.filesystem.state`: The filesystem state
+                /// `system.filesystem.state` **UNSTABLE**: The filesystem state
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -162,7 +162,7 @@ extension SpanAttributes {
                     }
                 }
 
-                /// `system.filesystem.type`: The filesystem type
+                /// `system.filesystem.type` **UNSTABLE**: The filesystem type
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -208,7 +208,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `system.memory.state`: The memory state
+                /// `system.memory.state` **UNSTABLE**: The memory state
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -255,7 +255,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `system.network.state`: Deprecated, use `network.connection.state` instead.
+                /// `system.network.state` **UNSTABLE**: Deprecated, use `network.connection.state` instead.
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -308,7 +308,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `system.paging.direction`: The paging access direction
+                /// `system.paging.direction` **UNSTABLE**: The paging access direction
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -329,7 +329,7 @@ extension SpanAttributes {
                     }
                 }
 
-                /// `system.paging.state`: The memory paging state
+                /// `system.paging.state` **UNSTABLE**: The memory paging state
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -348,7 +348,7 @@ extension SpanAttributes {
                     }
                 }
 
-                /// `system.paging.type`: The memory paging type
+                /// `system.paging.type` **UNSTABLE**: The memory paging type
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -390,7 +390,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `system.process.status`: The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES)
+                /// `system.process.status` **UNSTABLE**: The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES)
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -434,7 +434,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `system.processes.status`: Deprecated, use `system.process.status` instead.
+                /// `system.processes.status` **UNSTABLE**: Deprecated, use `system.process.status` instead.
                 ///
                 /// - Stability: development
                 /// - Type: enum

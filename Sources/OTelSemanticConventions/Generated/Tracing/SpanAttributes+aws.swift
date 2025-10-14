@@ -40,14 +40,14 @@ extension SpanAttributes {
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
 
-            /// `aws.extended_request_id`: The AWS extended request ID as returned in the response header `x-amz-id-2`.
+            /// `aws.extended_request_id` **UNSTABLE**: The AWS extended request ID as returned in the response header `x-amz-id-2`.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=`
             public var extendedRequestId: SpanAttributeKey<String> { .init(name: OTelAttribute.aws.extendedRequestId) }
 
-            /// `aws.request_id`: The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`.
+            /// `aws.request_id` **UNSTABLE**: The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`.
             ///
             /// - Stability: development
             /// - Type: string
@@ -100,7 +100,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `aws.bedrock.guardrail.id`: The unique identifier of the AWS Bedrock Guardrail. A [guardrail](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html) helps safeguard and prevent unwanted behavior from model responses or user messages.
+                    /// `aws.bedrock.guardrail.id` **UNSTABLE**: The unique identifier of the AWS Bedrock Guardrail. A [guardrail](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html) helps safeguard and prevent unwanted behavior from model responses or user messages.
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -130,7 +130,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `aws.bedrock.knowledge_base.id`: The unique identifier of the AWS Bedrock Knowledge base. A [knowledge base](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html) is a bank of information that can be queried by models to generate more relevant responses and augment prompts.
+                    /// `aws.bedrock.knowledge_base.id` **UNSTABLE**: The unique identifier of the AWS Bedrock Knowledge base. A [knowledge base](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html) is a bank of information that can be queried by models to generate more relevant responses and augment prompts.
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -161,7 +161,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `aws.dynamodb.attribute_definitions`: The JSON-serialized value of each item in the `AttributeDefinitions` request field.
+                /// `aws.dynamodb.attribute_definitions` **UNSTABLE**: The JSON-serialized value of each item in the `AttributeDefinitions` request field.
                 ///
                 /// - Stability: development
                 /// - Type: stringArray
@@ -169,7 +169,7 @@ extension SpanAttributes {
                     .init(name: OTelAttribute.aws.dynamodb.attributeDefinitions)
                 }
 
-                /// `aws.dynamodb.attributes_to_get`: The value of the `AttributesToGet` request parameter.
+                /// `aws.dynamodb.attributes_to_get` **UNSTABLE**: The value of the `AttributesToGet` request parameter.
                 ///
                 /// - Stability: development
                 /// - Type: stringArray
@@ -177,7 +177,7 @@ extension SpanAttributes {
                     .init(name: OTelAttribute.aws.dynamodb.attributesToGet)
                 }
 
-                /// `aws.dynamodb.consistent_read`: The value of the `ConsistentRead` request parameter.
+                /// `aws.dynamodb.consistent_read` **UNSTABLE**: The value of the `ConsistentRead` request parameter.
                 ///
                 /// - Stability: development
                 /// - Type: boolean
@@ -185,7 +185,7 @@ extension SpanAttributes {
                     .init(name: OTelAttribute.aws.dynamodb.consistentRead)
                 }
 
-                /// `aws.dynamodb.consumed_capacity`: The JSON-serialized value of each item in the `ConsumedCapacity` response field.
+                /// `aws.dynamodb.consumed_capacity` **UNSTABLE**: The JSON-serialized value of each item in the `ConsumedCapacity` response field.
                 ///
                 /// - Stability: development
                 /// - Type: stringArray
@@ -193,14 +193,14 @@ extension SpanAttributes {
                     .init(name: OTelAttribute.aws.dynamodb.consumedCapacity)
                 }
 
-                /// `aws.dynamodb.count`: The value of the `Count` response parameter.
+                /// `aws.dynamodb.count` **UNSTABLE**: The value of the `Count` response parameter.
                 ///
                 /// - Stability: development
                 /// - Type: int
                 /// - Example: `10`
                 public var count: SpanAttributeKey<Int> { .init(name: OTelAttribute.aws.dynamodb.count) }
 
-                /// `aws.dynamodb.exclusive_start_table`: The value of the `ExclusiveStartTableName` request parameter.
+                /// `aws.dynamodb.exclusive_start_table` **UNSTABLE**: The value of the `ExclusiveStartTableName` request parameter.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -211,7 +211,7 @@ extension SpanAttributes {
                     .init(name: OTelAttribute.aws.dynamodb.exclusiveStartTable)
                 }
 
-                /// `aws.dynamodb.global_secondary_index_updates`: The JSON-serialized value of each item in the `GlobalSecondaryIndexUpdates` request field.
+                /// `aws.dynamodb.global_secondary_index_updates` **UNSTABLE**: The JSON-serialized value of each item in the `GlobalSecondaryIndexUpdates` request field.
                 ///
                 /// - Stability: development
                 /// - Type: stringArray
@@ -219,7 +219,7 @@ extension SpanAttributes {
                     .init(name: OTelAttribute.aws.dynamodb.globalSecondaryIndexUpdates)
                 }
 
-                /// `aws.dynamodb.global_secondary_indexes`: The JSON-serialized value of each item of the `GlobalSecondaryIndexes` request field
+                /// `aws.dynamodb.global_secondary_indexes` **UNSTABLE**: The JSON-serialized value of each item of the `GlobalSecondaryIndexes` request field
                 ///
                 /// - Stability: development
                 /// - Type: stringArray
@@ -227,14 +227,14 @@ extension SpanAttributes {
                     .init(name: OTelAttribute.aws.dynamodb.globalSecondaryIndexes)
                 }
 
-                /// `aws.dynamodb.index_name`: The value of the `IndexName` request parameter.
+                /// `aws.dynamodb.index_name` **UNSTABLE**: The value of the `IndexName` request parameter.
                 ///
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `name_to_group`
                 public var indexName: SpanAttributeKey<String> { .init(name: OTelAttribute.aws.dynamodb.indexName) }
 
-                /// `aws.dynamodb.item_collection_metrics`: The JSON-serialized value of the `ItemCollectionMetrics` response field.
+                /// `aws.dynamodb.item_collection_metrics` **UNSTABLE**: The JSON-serialized value of the `ItemCollectionMetrics` response field.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -243,14 +243,14 @@ extension SpanAttributes {
                     .init(name: OTelAttribute.aws.dynamodb.itemCollectionMetrics)
                 }
 
-                /// `aws.dynamodb.limit`: The value of the `Limit` request parameter.
+                /// `aws.dynamodb.limit` **UNSTABLE**: The value of the `Limit` request parameter.
                 ///
                 /// - Stability: development
                 /// - Type: int
                 /// - Example: `10`
                 public var limit: SpanAttributeKey<Int> { .init(name: OTelAttribute.aws.dynamodb.limit) }
 
-                /// `aws.dynamodb.local_secondary_indexes`: The JSON-serialized value of each item of the `LocalSecondaryIndexes` request field.
+                /// `aws.dynamodb.local_secondary_indexes` **UNSTABLE**: The JSON-serialized value of each item of the `LocalSecondaryIndexes` request field.
                 ///
                 /// - Stability: development
                 /// - Type: stringArray
@@ -258,7 +258,7 @@ extension SpanAttributes {
                     .init(name: OTelAttribute.aws.dynamodb.localSecondaryIndexes)
                 }
 
-                /// `aws.dynamodb.projection`: The value of the `ProjectionExpression` request parameter.
+                /// `aws.dynamodb.projection` **UNSTABLE**: The value of the `ProjectionExpression` request parameter.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -268,7 +268,7 @@ extension SpanAttributes {
                 ///     - `Title, Description, RelatedItems, ProductReviews`
                 public var projection: SpanAttributeKey<String> { .init(name: OTelAttribute.aws.dynamodb.projection) }
 
-                /// `aws.dynamodb.provisioned_read_capacity`: The value of the `ProvisionedThroughput.ReadCapacityUnits` request parameter.
+                /// `aws.dynamodb.provisioned_read_capacity` **UNSTABLE**: The value of the `ProvisionedThroughput.ReadCapacityUnits` request parameter.
                 ///
                 /// - Stability: development
                 /// - Type: double
@@ -279,7 +279,7 @@ extension SpanAttributes {
                     .init(name: OTelAttribute.aws.dynamodb.provisionedReadCapacity)
                 }
 
-                /// `aws.dynamodb.provisioned_write_capacity`: The value of the `ProvisionedThroughput.WriteCapacityUnits` request parameter.
+                /// `aws.dynamodb.provisioned_write_capacity` **UNSTABLE**: The value of the `ProvisionedThroughput.WriteCapacityUnits` request parameter.
                 ///
                 /// - Stability: development
                 /// - Type: double
@@ -290,27 +290,27 @@ extension SpanAttributes {
                     .init(name: OTelAttribute.aws.dynamodb.provisionedWriteCapacity)
                 }
 
-                /// `aws.dynamodb.scan_forward`: The value of the `ScanIndexForward` request parameter.
+                /// `aws.dynamodb.scan_forward` **UNSTABLE**: The value of the `ScanIndexForward` request parameter.
                 ///
                 /// - Stability: development
                 /// - Type: boolean
                 public var scanForward: SpanAttributeKey<Bool> { .init(name: OTelAttribute.aws.dynamodb.scanForward) }
 
-                /// `aws.dynamodb.scanned_count`: The value of the `ScannedCount` response parameter.
+                /// `aws.dynamodb.scanned_count` **UNSTABLE**: The value of the `ScannedCount` response parameter.
                 ///
                 /// - Stability: development
                 /// - Type: int
                 /// - Example: `50`
                 public var scannedCount: SpanAttributeKey<Int> { .init(name: OTelAttribute.aws.dynamodb.scannedCount) }
 
-                /// `aws.dynamodb.segment`: The value of the `Segment` request parameter.
+                /// `aws.dynamodb.segment` **UNSTABLE**: The value of the `Segment` request parameter.
                 ///
                 /// - Stability: development
                 /// - Type: int
                 /// - Example: `10`
                 public var segment: SpanAttributeKey<Int> { .init(name: OTelAttribute.aws.dynamodb.segment) }
 
-                /// `aws.dynamodb.select`: The value of the `Select` request parameter.
+                /// `aws.dynamodb.select` **UNSTABLE**: The value of the `Select` request parameter.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -319,20 +319,20 @@ extension SpanAttributes {
                 ///     - `COUNT`
                 public var select: SpanAttributeKey<String> { .init(name: OTelAttribute.aws.dynamodb.select) }
 
-                /// `aws.dynamodb.table_count`: The number of items in the `TableNames` response parameter.
+                /// `aws.dynamodb.table_count` **UNSTABLE**: The number of items in the `TableNames` response parameter.
                 ///
                 /// - Stability: development
                 /// - Type: int
                 /// - Example: `20`
                 public var tableCount: SpanAttributeKey<Int> { .init(name: OTelAttribute.aws.dynamodb.tableCount) }
 
-                /// `aws.dynamodb.table_names`: The keys in the `RequestItems` object field.
+                /// `aws.dynamodb.table_names` **UNSTABLE**: The keys in the `RequestItems` object field.
                 ///
                 /// - Stability: development
                 /// - Type: stringArray
                 public var tableNames: SpanAttributeKey<[String]> { .init(name: OTelAttribute.aws.dynamodb.tableNames) }
 
-                /// `aws.dynamodb.total_segments`: The value of the `TotalSegments` request parameter.
+                /// `aws.dynamodb.total_segments` **UNSTABLE**: The value of the `TotalSegments` request parameter.
                 ///
                 /// - Stability: development
                 /// - Type: int
@@ -364,7 +364,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `aws.ecs.launchtype`: The [launch type](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html) for an ECS task.
+                /// `aws.ecs.launchtype` **UNSTABLE**: The [launch type](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html) for an ECS task.
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -406,7 +406,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `aws.ecs.cluster.arn`: The ARN of an [ECS cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html).
+                    /// `aws.ecs.cluster.arn` **UNSTABLE**: The ARN of an [ECS cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html).
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -436,7 +436,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `aws.ecs.container.arn`: The Amazon Resource Name (ARN) of an [ECS container instance](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_instances.html).
+                    /// `aws.ecs.container.arn` **UNSTABLE**: The Amazon Resource Name (ARN) of an [ECS container instance](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_instances.html).
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -466,7 +466,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `aws.ecs.task.arn`: The ARN of a running [ECS task](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-account-settings.html#ecs-resource-ids).
+                    /// `aws.ecs.task.arn` **UNSTABLE**: The ARN of a running [ECS task](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-account-settings.html#ecs-resource-ids).
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -475,14 +475,14 @@ extension SpanAttributes {
                     ///     - `arn:aws:ecs:us-west-1:123456789123:task/my-cluster/task-id/23ebb8ac-c18f-46c6-8bbe-d55d0e37cfbd`
                     public var arn: SpanAttributeKey<String> { .init(name: OTelAttribute.aws.ecs.task.arn) }
 
-                    /// `aws.ecs.task.family`: The family name of the [ECS task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) used to create the ECS task.
+                    /// `aws.ecs.task.family` **UNSTABLE**: The family name of the [ECS task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) used to create the ECS task.
                     ///
                     /// - Stability: development
                     /// - Type: string
                     /// - Example: `opentelemetry-family`
                     public var family: SpanAttributeKey<String> { .init(name: OTelAttribute.aws.ecs.task.family) }
 
-                    /// `aws.ecs.task.id`: The ID of a running ECS task. The ID MUST be extracted from `task.arn`.
+                    /// `aws.ecs.task.id` **UNSTABLE**: The ID of a running ECS task. The ID MUST be extracted from `task.arn`.
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -491,7 +491,7 @@ extension SpanAttributes {
                     ///     - `23ebb8ac-c18f-46c6-8bbe-d55d0e37cfbd`
                     public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.aws.ecs.task.id) }
 
-                    /// `aws.ecs.task.revision`: The revision for the task definition used to create the ECS task.
+                    /// `aws.ecs.task.revision` **UNSTABLE**: The revision for the task definition used to create the ECS task.
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -546,7 +546,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `aws.eks.cluster.arn`: The ARN of an EKS cluster.
+                    /// `aws.eks.cluster.arn` **UNSTABLE**: The ARN of an EKS cluster.
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -577,7 +577,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `aws.kinesis.stream_name`: The name of the AWS Kinesis [stream](https://docs.aws.amazon.com/streams/latest/dev/introduction.html) the request refers to. Corresponds to the `--stream-name` parameter of the Kinesis [describe-stream](https://docs.aws.amazon.com/cli/latest/reference/kinesis/describe-stream.html) operation.
+                /// `aws.kinesis.stream_name` **UNSTABLE**: The name of the AWS Kinesis [stream](https://docs.aws.amazon.com/streams/latest/dev/introduction.html) the request refers to. Corresponds to the `--stream-name` parameter of the Kinesis [describe-stream](https://docs.aws.amazon.com/cli/latest/reference/kinesis/describe-stream.html) operation.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -607,7 +607,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `aws.lambda.invoked_arn`: The full invoked ARN as provided on the `Context` passed to the function (`Lambda-Runtime-Invoked-Function-Arn` header on the `/runtime/invocation/next` applicable).
+                /// `aws.lambda.invoked_arn` **UNSTABLE**: The full invoked ARN as provided on the `Context` passed to the function (`Lambda-Runtime-Invoked-Function-Arn` header on the `/runtime/invocation/next` applicable).
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -638,7 +638,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `aws.lambda.resource_mapping.id`: The UUID of the [AWS Lambda EvenSource Mapping](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html). An event source is mapped to a lambda function. It's contents are read by Lambda and used to trigger a function. This isn't available in the lambda execution context or the lambda runtime environtment. This is going to be populated by the AWS SDK for each language when that UUID is present. Some of these operations are Create/Delete/Get/List/Update EventSourceMapping.
+                    /// `aws.lambda.resource_mapping.id` **UNSTABLE**: The UUID of the [AWS Lambda EvenSource Mapping](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html). An event source is mapped to a lambda function. It's contents are read by Lambda and used to trigger a function. This isn't available in the lambda execution context or the lambda runtime environtment. This is going to be populated by the AWS SDK for each language when that UUID is present. Some of these operations are Create/Delete/Get/List/Update EventSourceMapping.
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -691,7 +691,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `aws.log.group.arns`: The Amazon Resource Name(s) (ARN) of the AWS log group(s).
+                    /// `aws.log.group.arns` **UNSTABLE**: The Amazon Resource Name(s) (ARN) of the AWS log group(s).
                     ///
                     /// - Stability: development
                     /// - Type: stringArray
@@ -699,7 +699,7 @@ extension SpanAttributes {
                     /// See the [log group ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format).
                     public var arns: SpanAttributeKey<[String]> { .init(name: OTelAttribute.aws.log.group.arns) }
 
-                    /// `aws.log.group.names`: The name(s) of the AWS log group(s) an application is writing to.
+                    /// `aws.log.group.names` **UNSTABLE**: The name(s) of the AWS log group(s) an application is writing to.
                     ///
                     /// - Stability: development
                     /// - Type: stringArray
@@ -730,7 +730,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `aws.log.stream.arns`: The ARN(s) of the AWS log stream(s).
+                    /// `aws.log.stream.arns` **UNSTABLE**: The ARN(s) of the AWS log stream(s).
                     ///
                     /// - Stability: development
                     /// - Type: stringArray
@@ -738,7 +738,7 @@ extension SpanAttributes {
                     /// See the [log stream ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format). One log group can contain several log streams, so these ARNs necessarily identify both a log group and a log stream.
                     public var arns: SpanAttributeKey<[String]> { .init(name: OTelAttribute.aws.log.stream.arns) }
 
-                    /// `aws.log.stream.names`: The name(s) of the AWS log stream(s) an application is writing to.
+                    /// `aws.log.stream.names` **UNSTABLE**: The name(s) of the AWS log stream(s) an application is writing to.
                     ///
                     /// - Stability: development
                     /// - Type: stringArray
@@ -768,7 +768,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `aws.s3.bucket`: The S3 bucket name the request refers to. Corresponds to the `--bucket` parameter of the [S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/index.html) operations.
+                /// `aws.s3.bucket` **UNSTABLE**: The S3 bucket name the request refers to. Corresponds to the `--bucket` parameter of the [S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/index.html) operations.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -778,7 +778,7 @@ extension SpanAttributes {
                 /// This applies to almost all S3 operations except `list-buckets`.
                 public var bucket: SpanAttributeKey<String> { .init(name: OTelAttribute.aws.s3.bucket) }
 
-                /// `aws.s3.copy_source`: The source object (in the form `bucket`/`key`) for the copy operation.
+                /// `aws.s3.copy_source` **UNSTABLE**: The source object (in the form `bucket`/`key`) for the copy operation.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -792,7 +792,7 @@ extension SpanAttributes {
                 /// - [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html)
                 public var copySource: SpanAttributeKey<String> { .init(name: OTelAttribute.aws.s3.copySource) }
 
-                /// `aws.s3.delete`: The delete request container that specifies the objects to be deleted.
+                /// `aws.s3.delete` **UNSTABLE**: The delete request container that specifies the objects to be deleted.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -803,7 +803,7 @@ extension SpanAttributes {
                 /// [delete-objects operation within the S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/delete-objects.html).
                 public var delete: SpanAttributeKey<String> { .init(name: OTelAttribute.aws.s3.delete) }
 
-                /// `aws.s3.key`: The S3 object key the request refers to. Corresponds to the `--key` parameter of the [S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/index.html) operations.
+                /// `aws.s3.key` **UNSTABLE**: The S3 object key the request refers to. Corresponds to the `--key` parameter of the [S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/index.html) operations.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -827,7 +827,7 @@ extension SpanAttributes {
                 /// - [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html)
                 public var key: SpanAttributeKey<String> { .init(name: OTelAttribute.aws.s3.key) }
 
-                /// `aws.s3.part_number`: The part number of the part being uploaded in a multipart-upload operation. This is a positive integer between 1 and 10,000.
+                /// `aws.s3.part_number` **UNSTABLE**: The part number of the part being uploaded in a multipart-upload operation. This is a positive integer between 1 and 10,000.
                 ///
                 /// - Stability: development
                 /// - Type: int
@@ -839,7 +839,7 @@ extension SpanAttributes {
                 /// [upload-part operation within the S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html).
                 public var partNumber: SpanAttributeKey<Int> { .init(name: OTelAttribute.aws.s3.partNumber) }
 
-                /// `aws.s3.upload_id`: Upload ID that identifies the multipart upload.
+                /// `aws.s3.upload_id` **UNSTABLE**: Upload ID that identifies the multipart upload.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -901,7 +901,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `aws.secretsmanager.secret.arn`: The ARN of the Secret stored in the Secrets Mangger
+                    /// `aws.secretsmanager.secret.arn` **UNSTABLE**: The ARN of the Secret stored in the Secrets Mangger
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -956,7 +956,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `aws.sns.topic.arn`: The ARN of the AWS SNS Topic. An Amazon SNS [topic](https://docs.aws.amazon.com/sns/latest/dg/sns-create-topic.html) is a logical access point that acts as a communication channel.
+                    /// `aws.sns.topic.arn` **UNSTABLE**: The ARN of the AWS SNS Topic. An Amazon SNS [topic](https://docs.aws.amazon.com/sns/latest/dg/sns-create-topic.html) is a logical access point that acts as a communication channel.
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -1009,7 +1009,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `aws.sqs.queue.url`: The URL of the AWS SQS Queue. It's a unique identifier for a queue in Amazon Simple Queue Service (SQS) and is used to access the queue and perform actions on it.
+                    /// `aws.sqs.queue.url` **UNSTABLE**: The URL of the AWS SQS Queue. It's a unique identifier for a queue in Amazon Simple Queue Service (SQS) and is used to access the queue and perform actions on it.
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -1062,7 +1062,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `aws.step_functions.activity.arn`: The ARN of the AWS Step Functions Activity.
+                    /// `aws.step_functions.activity.arn` **UNSTABLE**: The ARN of the AWS Step Functions Activity.
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -1094,7 +1094,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `aws.step_functions.state_machine.arn`: The ARN of the AWS Step Functions State Machine.
+                    /// `aws.step_functions.state_machine.arn` **UNSTABLE**: The ARN of the AWS Step Functions State Machine.
                     ///
                     /// - Stability: development
                     /// - Type: string

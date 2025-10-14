@@ -40,35 +40,35 @@ extension SpanAttributes {
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
 
-            /// `security_rule.category`: A categorization value keyword used by the entity using the rule for detection of this event
+            /// `security_rule.category` **UNSTABLE**: A categorization value keyword used by the entity using the rule for detection of this event
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `Attempted Information Leak`
             public var category: SpanAttributeKey<String> { .init(name: OTelAttribute.securityRule.category) }
 
-            /// `security_rule.description`: The description of the rule generating the event.
+            /// `security_rule.description` **UNSTABLE**: The description of the rule generating the event.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `Block requests to public DNS over HTTPS / TLS protocols`
             public var description: SpanAttributeKey<String> { .init(name: OTelAttribute.securityRule.description) }
 
-            /// `security_rule.license`: Name of the license under which the rule used to generate this event is made available.
+            /// `security_rule.license` **UNSTABLE**: Name of the license under which the rule used to generate this event is made available.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `Apache 2.0`
             public var license: SpanAttributeKey<String> { .init(name: OTelAttribute.securityRule.license) }
 
-            /// `security_rule.name`: The name of the rule or signature generating the event.
+            /// `security_rule.name` **UNSTABLE**: The name of the rule or signature generating the event.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `BLOCK_DNS_over_TLS`
             public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.securityRule.name) }
 
-            /// `security_rule.reference`: Reference URL to additional information about the rule used to generate this event.
+            /// `security_rule.reference` **UNSTABLE**: Reference URL to additional information about the rule used to generate this event.
             ///
             /// - Stability: development
             /// - Type: string
@@ -77,7 +77,7 @@ extension SpanAttributes {
             /// The URL can point to the vendor’s documentation about the rule. If that’s not available, it can also be a link to a more general page describing this type of alert.
             public var reference: SpanAttributeKey<String> { .init(name: OTelAttribute.securityRule.reference) }
 
-            /// `security_rule.uuid`: A rule ID that is unique within the scope of a set or group of agents, observers, or other entities using the rule for detection of this event.
+            /// `security_rule.uuid` **UNSTABLE**: A rule ID that is unique within the scope of a set or group of agents, observers, or other entities using the rule for detection of this event.
             ///
             /// - Stability: development
             /// - Type: string
@@ -86,7 +86,7 @@ extension SpanAttributes {
             ///     - `1100110011`
             public var uuid: SpanAttributeKey<String> { .init(name: OTelAttribute.securityRule.uuid) }
 
-            /// `security_rule.version`: The version / revision of the rule being used for analysis.
+            /// `security_rule.version` **UNSTABLE**: The version / revision of the rule being used for analysis.
             ///
             /// - Stability: development
             /// - Type: string
@@ -115,7 +115,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `security_rule.ruleset.name`: Name of the ruleset, policy, group, or parent category in which the rule used to generate this event is a member.
+                /// `security_rule.ruleset.name` **UNSTABLE**: Name of the ruleset, policy, group, or parent category in which the rule used to generate this event is a member.
                 ///
                 /// - Stability: development
                 /// - Type: string

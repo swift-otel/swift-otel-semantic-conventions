@@ -34,7 +34,7 @@ extension OTelAttribute {
         #if Experimental
         /// `otel.component` namespace
         public enum component {
-            /// `otel.component.name`: A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance.
+            /// `otel.component.name` **UNSTABLE**: A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance.
             ///
             /// - Stability: development
             /// - Type: string
@@ -57,7 +57,7 @@ extension OTelAttribute {
             /// These values will therefore be reused in the case of an application restart.
             public static let name = "otel.component.name"
 
-            /// `otel.component.type`: A name identifying the type of the OpenTelemetry component.
+            /// `otel.component.type` **UNSTABLE**: A name identifying the type of the OpenTelemetry component.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -90,7 +90,7 @@ extension OTelAttribute {
         #if Experimental
         /// `otel.library` namespace
         public enum library {
-            /// `otel.library.name`: Deprecated. Use the `otel.scope.name` attribute
+            /// `otel.library.name` **UNSTABLE**: Deprecated. Use the `otel.scope.name` attribute
             ///
             /// - Stability: development
             /// - Type: string
@@ -98,7 +98,7 @@ extension OTelAttribute {
             @available(*, deprecated, renamed: "OTelAttribute.otel.scope.name")
             public static let name = "otel.library.name"
 
-            /// `otel.library.version`: Deprecated. Use the `otel.scope.version` attribute.
+            /// `otel.library.version` **UNSTABLE**: Deprecated. Use the `otel.scope.version` attribute.
             ///
             /// - Stability: development
             /// - Type: string
@@ -118,7 +118,7 @@ extension OTelAttribute {
             public static let name = "otel.scope.name"
 
             #if Experimental
-            /// `otel.scope.schema_url`: The schema URL of the instrumentation scope.
+            /// `otel.scope.schema_url` **UNSTABLE**: The schema URL of the instrumentation scope.
             ///
             /// - Stability: development
             /// - Type: string
@@ -137,7 +137,7 @@ extension OTelAttribute {
         #if Experimental
         /// `otel.span` namespace
         public enum span {
-            /// `otel.span.sampling_result`: The result value of the sampler for this span
+            /// `otel.span.sampling_result` **UNSTABLE**: The result value of the sampler for this span
             ///
             /// - Stability: development
             /// - Type: enum
@@ -148,7 +148,7 @@ extension OTelAttribute {
 
             /// `otel.span.parent` namespace
             public enum parent {
-                /// `otel.span.parent.origin`: Determines whether the span has a parent span, and if so, [whether it is a remote parent](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote)
+                /// `otel.span.parent.origin` **UNSTABLE**: Determines whether the span has a parent span, and if so, [whether it is a remote parent](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote)
                 ///
                 /// - Stability: development
                 /// - Type: enum

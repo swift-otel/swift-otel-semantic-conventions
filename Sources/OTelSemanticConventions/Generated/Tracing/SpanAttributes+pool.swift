@@ -40,7 +40,7 @@ extension SpanAttributes {
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
 
-            /// `pool.name`: Deprecated, use `db.client.connection.pool.name` instead.
+            /// `pool.name` **UNSTABLE**: Deprecated, use `db.client.connection.pool.name` instead.
             ///
             /// - Stability: development
             /// - Type: string

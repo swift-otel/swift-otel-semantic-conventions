@@ -62,7 +62,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `telemetry.distro.name`: The name of the auto instrumentation agent or distribution, if used.
+                /// `telemetry.distro.name` **UNSTABLE**: The name of the auto instrumentation agent or distribution, if used.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -72,7 +72,7 @@ extension SpanAttributes {
                 /// a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`.
                 public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.telemetry.distro.name) }
 
-                /// `telemetry.distro.version`: The version string of the auto instrumentation agent or distribution, if used.
+                /// `telemetry.distro.version` **UNSTABLE**: The version string of the auto instrumentation agent or distribution, if used.
                 ///
                 /// - Stability: development
                 /// - Type: string

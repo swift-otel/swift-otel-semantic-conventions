@@ -17,7 +17,7 @@ extension OTelAttribute {
     #if Experimental
     /// `graphql` namespace
     public enum graphql {
-        /// `graphql.document`: The GraphQL document being executed.
+        /// `graphql.document` **UNSTABLE**: The GraphQL document being executed.
         ///
         /// - Stability: development
         /// - Type: string
@@ -28,14 +28,14 @@ extension OTelAttribute {
 
         /// `graphql.operation` namespace
         public enum operation {
-            /// `graphql.operation.name`: The name of the operation being executed.
+            /// `graphql.operation.name` **UNSTABLE**: The name of the operation being executed.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `findBookById`
             public static let name = "graphql.operation.name"
 
-            /// `graphql.operation.type`: The type of the operation being executed.
+            /// `graphql.operation.type` **UNSTABLE**: The type of the operation being executed.
             ///
             /// - Stability: development
             /// - Type: enum

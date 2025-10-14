@@ -17,7 +17,7 @@ extension OTelAttribute {
     /// `user_agent` namespace
     public enum userAgent {
         #if Experimental
-        /// `user_agent.name`: Name of the user-agent extracted from original. Usually refers to the browser's name.
+        /// `user_agent.name` **UNSTABLE**: Name of the user-agent extracted from original. Usually refers to the browser's name.
         ///
         /// - Stability: development
         /// - Type: string
@@ -40,7 +40,7 @@ extension OTelAttribute {
         public static let original = "user_agent.original"
 
         #if Experimental
-        /// `user_agent.version`: Version of the user-agent extracted from original. Usually refers to the browser's version
+        /// `user_agent.version` **UNSTABLE**: Version of the user-agent extracted from original. Usually refers to the browser's version
         ///
         /// - Stability: development
         /// - Type: string
@@ -55,7 +55,7 @@ extension OTelAttribute {
         #if Experimental
         /// `user_agent.os` namespace
         public enum os {
-            /// `user_agent.os.name`: Human readable operating system name.
+            /// `user_agent.os.name` **UNSTABLE**: Human readable operating system name.
             ///
             /// - Stability: development
             /// - Type: string
@@ -67,7 +67,7 @@ extension OTelAttribute {
             /// For mapping user agent strings to OS names, libraries such as [ua-parser](https://github.com/ua-parser) can be utilized.
             public static let name = "user_agent.os.name"
 
-            /// `user_agent.os.version`: The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes).
+            /// `user_agent.os.version` **UNSTABLE**: The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes).
             ///
             /// - Stability: development
             /// - Type: string
@@ -83,7 +83,7 @@ extension OTelAttribute {
         #if Experimental
         /// `user_agent.synthetic` namespace
         public enum synthetic {
-            /// `user_agent.synthetic.type`: Specifies the category of synthetic traffic, such as tests or bots.
+            /// `user_agent.synthetic.type` **UNSTABLE**: Specifies the category of synthetic traffic, such as tests or bots.
             ///
             /// - Stability: development
             /// - Type: enum

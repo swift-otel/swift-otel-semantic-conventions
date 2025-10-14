@@ -84,7 +84,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `gcp.apphub.application.container`: The container within GCP where the AppHub application is defined.
+                    /// `gcp.apphub.application.container` **UNSTABLE**: The container within GCP where the AppHub application is defined.
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -93,14 +93,14 @@ extension SpanAttributes {
                         .init(name: OTelAttribute.gcp.apphub.application.container)
                     }
 
-                    /// `gcp.apphub.application.id`: The name of the application as configured in AppHub.
+                    /// `gcp.apphub.application.id` **UNSTABLE**: The name of the application as configured in AppHub.
                     ///
                     /// - Stability: development
                     /// - Type: string
                     /// - Example: `my-application`
                     public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.gcp.apphub.application.id) }
 
-                    /// `gcp.apphub.application.location`: The GCP zone or region where the application is defined.
+                    /// `gcp.apphub.application.location` **UNSTABLE**: The GCP zone or region where the application is defined.
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -132,7 +132,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `gcp.apphub.service.criticality_type`: Criticality of a service indicates its importance to the business.
+                    /// `gcp.apphub.service.criticality_type` **UNSTABLE**: Criticality of a service indicates its importance to the business.
                     ///
                     /// - Stability: development
                     /// - Type: enum
@@ -156,7 +156,7 @@ extension SpanAttributes {
                         }
                     }
 
-                    /// `gcp.apphub.service.environment_type`: Environment of a service is the stage of a software lifecycle.
+                    /// `gcp.apphub.service.environment_type` **UNSTABLE**: Environment of a service is the stage of a software lifecycle.
                     ///
                     /// - Stability: development
                     /// - Type: enum
@@ -180,7 +180,7 @@ extension SpanAttributes {
                         }
                     }
 
-                    /// `gcp.apphub.service.id`: The name of the service as configured in AppHub.
+                    /// `gcp.apphub.service.id` **UNSTABLE**: The name of the service as configured in AppHub.
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -210,7 +210,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `gcp.apphub.workload.criticality_type`: Criticality of a workload indicates its importance to the business.
+                    /// `gcp.apphub.workload.criticality_type` **UNSTABLE**: Criticality of a workload indicates its importance to the business.
                     ///
                     /// - Stability: development
                     /// - Type: enum
@@ -234,7 +234,7 @@ extension SpanAttributes {
                         }
                     }
 
-                    /// `gcp.apphub.workload.environment_type`: Environment of a workload is the stage of a software lifecycle.
+                    /// `gcp.apphub.workload.environment_type` **UNSTABLE**: Environment of a workload is the stage of a software lifecycle.
                     ///
                     /// - Stability: development
                     /// - Type: enum
@@ -258,7 +258,7 @@ extension SpanAttributes {
                         }
                     }
 
-                    /// `gcp.apphub.workload.id`: The name of the workload as configured in AppHub.
+                    /// `gcp.apphub.workload.id` **UNSTABLE**: The name of the workload as configured in AppHub.
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -289,7 +289,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `gcp.client.service`: Identifies the Google Cloud service for which the official client library is intended.
+                /// `gcp.client.service` **UNSTABLE**: Identifies the Google Cloud service for which the official client library is intended.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -348,7 +348,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `gcp.cloud_run.job.execution`: The name of the Cloud Run [execution](https://cloud.google.com/run/docs/managing/job-executions) being run for the Job, as set by the [`CLOUD_RUN_EXECUTION`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars) environment variable.
+                    /// `gcp.cloud_run.job.execution` **UNSTABLE**: The name of the Cloud Run [execution](https://cloud.google.com/run/docs/managing/job-executions) being run for the Job, as set by the [`CLOUD_RUN_EXECUTION`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars) environment variable.
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -359,7 +359,7 @@ extension SpanAttributes {
                         .init(name: OTelAttribute.gcp.cloudRun.job.execution)
                     }
 
-                    /// `gcp.cloud_run.job.task_index`: The index for a task within an execution as provided by the [`CLOUD_RUN_TASK_INDEX`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars) environment variable.
+                    /// `gcp.cloud_run.job.task_index` **UNSTABLE**: The index for a task within an execution as provided by the [`CLOUD_RUN_TASK_INDEX`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars) environment variable.
                     ///
                     /// - Stability: development
                     /// - Type: int
@@ -416,7 +416,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `gcp.gce.instance.hostname`: The hostname of a GCE instance. This is the full value of the default or [custom hostname](https://cloud.google.com/compute/docs/instances/custom-hostname-vm).
+                    /// `gcp.gce.instance.hostname` **UNSTABLE**: The hostname of a GCE instance. This is the full value of the default or [custom hostname](https://cloud.google.com/compute/docs/instances/custom-hostname-vm).
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -427,7 +427,7 @@ extension SpanAttributes {
                         .init(name: OTelAttribute.gcp.gce.instance.hostname)
                     }
 
-                    /// `gcp.gce.instance.name`: The instance name of a GCE instance. This is the value provided by `host.name`, the visible name of the instance in the Cloud Console UI, and the prefix for the default hostname of the instance as defined by the [default internal DNS name](https://cloud.google.com/compute/docs/internal-dns#instance-fully-qualified-domain-names).
+                    /// `gcp.gce.instance.name` **UNSTABLE**: The instance name of a GCE instance. This is the value provided by `host.name`, the visible name of the instance in the Cloud Console UI, and the prefix for the default hostname of the instance as defined by the [default internal DNS name](https://cloud.google.com/compute/docs/internal-dns#instance-fully-qualified-domain-names).
                     ///
                     /// - Stability: development
                     /// - Type: string

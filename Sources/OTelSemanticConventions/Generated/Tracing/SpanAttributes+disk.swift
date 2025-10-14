@@ -62,7 +62,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `disk.io.direction`: The disk IO operation direction.
+                /// `disk.io.direction` **UNSTABLE**: The disk IO operation direction.
                 ///
                 /// - Stability: development
                 /// - Type: enum

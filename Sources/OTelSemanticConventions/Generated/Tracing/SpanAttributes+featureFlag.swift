@@ -40,14 +40,14 @@ extension SpanAttributes {
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
 
-            /// `feature_flag.key`: The lookup key of the feature flag.
+            /// `feature_flag.key` **UNSTABLE**: The lookup key of the feature flag.
             ///
             /// - Stability: releaseCandidate
             /// - Type: string
             /// - Example: `logo-color`
             public var key: SpanAttributeKey<String> { .init(name: OTelAttribute.featureFlag.key) }
 
-            /// `feature_flag.provider_name`: Deprecated, use `feature_flag.provider.name` instead.
+            /// `feature_flag.provider_name` **UNSTABLE**: Deprecated, use `feature_flag.provider.name` instead.
             ///
             /// - Stability: development
             /// - Type: string
@@ -55,7 +55,7 @@ extension SpanAttributes {
             @available(*, deprecated, renamed: "SpanAttributes.featureFlag.provider.name")
             public var providerName: SpanAttributeKey<String> { .init(name: OTelAttribute.featureFlag.providerName) }
 
-            /// `feature_flag.variant`: Deprecated, use `feature_flag.result.variant` instead.
+            /// `feature_flag.variant` **UNSTABLE**: Deprecated, use `feature_flag.result.variant` instead.
             ///
             /// - Stability: development
             /// - Type: string
@@ -66,7 +66,7 @@ extension SpanAttributes {
             @available(*, deprecated, renamed: "SpanAttributes.featureFlag.result.variant")
             public var variant: SpanAttributeKey<String> { .init(name: OTelAttribute.featureFlag.variant) }
 
-            /// `feature_flag.version`: The version of the ruleset used during the evaluation. This may be any stable value which uniquely identifies the ruleset.
+            /// `feature_flag.version` **UNSTABLE**: The version of the ruleset used during the evaluation. This may be any stable value which uniquely identifies the ruleset.
             ///
             /// - Stability: releaseCandidate
             /// - Type: string
@@ -97,7 +97,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `feature_flag.context.id`: The unique identifier for the flag evaluation context. For example, the targeting key.
+                /// `feature_flag.context.id` **UNSTABLE**: The unique identifier for the flag evaluation context. For example, the targeting key.
                 ///
                 /// - Stability: releaseCandidate
                 /// - Type: string
@@ -127,7 +127,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `feature_flag.evaluation.reason`: Deprecated, use `feature_flag.result.reason` instead.
+                /// `feature_flag.evaluation.reason` **UNSTABLE**: Deprecated, use `feature_flag.result.reason` instead.
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -182,7 +182,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `feature_flag.evaluation.error.message`: Deprecated, use `error.message` instead.
+                    /// `feature_flag.evaluation.error.message` **UNSTABLE**: Deprecated, use `error.message` instead.
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -216,7 +216,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `feature_flag.provider.name`: Identifies the feature flag provider.
+                /// `feature_flag.provider.name` **UNSTABLE**: Identifies the feature flag provider.
                 ///
                 /// - Stability: releaseCandidate
                 /// - Type: string
@@ -246,7 +246,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `feature_flag.result.reason`: The reason code which shows how a feature flag value was determined.
+                /// `feature_flag.result.reason` **UNSTABLE**: The reason code which shows how a feature flag value was determined.
                 ///
                 /// - Stability: releaseCandidate
                 /// - Type: enum
@@ -276,7 +276,7 @@ extension SpanAttributes {
                     }
                 }
 
-                /// `feature_flag.result.value`: The evaluated value of the feature flag.
+                /// `feature_flag.result.value` **UNSTABLE**: The evaluated value of the feature flag.
                 ///
                 /// - Stability: releaseCandidate
                 /// - Type: any
@@ -294,7 +294,7 @@ extension SpanAttributes {
                     .init(name: OTelAttribute.featureFlag.result.value)
                 }
 
-                /// `feature_flag.result.variant`: A semantic identifier for an evaluated flag value.
+                /// `feature_flag.result.variant` **UNSTABLE**: A semantic identifier for an evaluated flag value.
                 ///
                 /// - Stability: releaseCandidate
                 /// - Type: string
@@ -332,7 +332,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `feature_flag.set.id`: The identifier of the [flag set](https://openfeature.dev/specification/glossary/#flag-set) to which the feature flag belongs.
+                /// `feature_flag.set.id` **UNSTABLE**: The identifier of the [flag set](https://openfeature.dev/specification/glossary/#flag-set) to which the feature flag belongs.
                 ///
                 /// - Stability: releaseCandidate
                 /// - Type: string

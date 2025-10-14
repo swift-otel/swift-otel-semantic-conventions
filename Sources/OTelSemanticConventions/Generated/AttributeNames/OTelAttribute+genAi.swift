@@ -17,7 +17,7 @@ extension OTelAttribute {
     #if Experimental
     /// `gen_ai` namespace
     public enum genAi {
-        /// `gen_ai.completion`: Deprecated, use Event API to report completions contents.
+        /// `gen_ai.completion` **UNSTABLE**: Deprecated, use Event API to report completions contents.
         ///
         /// - Stability: development
         /// - Type: string
@@ -25,7 +25,7 @@ extension OTelAttribute {
         @available(*, deprecated, message: "Obsoleted: Removed, no replacement at this time.")
         public static let completion = "gen_ai.completion"
 
-        /// `gen_ai.prompt`: Deprecated, use Event API to report prompt contents.
+        /// `gen_ai.prompt` **UNSTABLE**: Deprecated, use Event API to report prompt contents.
         ///
         /// - Stability: development
         /// - Type: string
@@ -33,7 +33,7 @@ extension OTelAttribute {
         @available(*, deprecated, message: "Obsoleted: Removed, no replacement at this time.")
         public static let prompt = "gen_ai.prompt"
 
-        /// `gen_ai.system`: Deprecated, use `gen_ai.provider.name` instead.
+        /// `gen_ai.system` **UNSTABLE**: Deprecated, use `gen_ai.provider.name` instead.
         ///
         /// - Stability: development
         /// - Type: enum
@@ -59,7 +59,7 @@ extension OTelAttribute {
         @available(*, deprecated, renamed: "OTelAttribute.genAi.provider.name")
         public static let system = "gen_ai.system"
 
-        /// `gen_ai.system_instructions`: The system message or instructions provided to the GenAI model separately from the chat history.
+        /// `gen_ai.system_instructions` **UNSTABLE**: The system message or instructions provided to the GenAI model separately from the chat history.
         ///
         /// - Stability: development
         /// - Type: any
@@ -107,7 +107,7 @@ extension OTelAttribute {
 
         /// `gen_ai.agent` namespace
         public enum agent {
-            /// `gen_ai.agent.description`: Free-form description of the GenAI agent provided by the application.
+            /// `gen_ai.agent.description` **UNSTABLE**: Free-form description of the GenAI agent provided by the application.
             ///
             /// - Stability: development
             /// - Type: string
@@ -116,14 +116,14 @@ extension OTelAttribute {
             ///     - `Generates fiction stories`
             public static let description = "gen_ai.agent.description"
 
-            /// `gen_ai.agent.id`: The unique identifier of the GenAI agent.
+            /// `gen_ai.agent.id` **UNSTABLE**: The unique identifier of the GenAI agent.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `asst_5j66UpCpwteGg4YSxUnt7lPY`
             public static let id = "gen_ai.agent.id"
 
-            /// `gen_ai.agent.name`: Human-readable name of the GenAI agent provided by the application.
+            /// `gen_ai.agent.name` **UNSTABLE**: Human-readable name of the GenAI agent provided by the application.
             ///
             /// - Stability: development
             /// - Type: string
@@ -135,7 +135,7 @@ extension OTelAttribute {
 
         /// `gen_ai.conversation` namespace
         public enum conversation {
-            /// `gen_ai.conversation.id`: The unique identifier for a conversation (session, thread), used to store and correlate messages within this conversation.
+            /// `gen_ai.conversation.id` **UNSTABLE**: The unique identifier for a conversation (session, thread), used to store and correlate messages within this conversation.
             ///
             /// - Stability: development
             /// - Type: string
@@ -145,7 +145,7 @@ extension OTelAttribute {
 
         /// `gen_ai.data_source` namespace
         public enum dataSource {
-            /// `gen_ai.data_source.id`: The data source identifier.
+            /// `gen_ai.data_source.id` **UNSTABLE**: The data source identifier.
             ///
             /// - Stability: development
             /// - Type: string
@@ -157,7 +157,7 @@ extension OTelAttribute {
 
         /// `gen_ai.input` namespace
         public enum input {
-            /// `gen_ai.input.messages`: The chat history provided to the model as an input.
+            /// `gen_ai.input.messages` **UNSTABLE**: The chat history provided to the model as an input.
             ///
             /// - Stability: development
             /// - Type: any
@@ -218,7 +218,7 @@ extension OTelAttribute {
         public enum openai {
             /// `gen_ai.openai.request` namespace
             public enum request {
-                /// `gen_ai.openai.request.response_format`: Deprecated, use `gen_ai.output.type`.
+                /// `gen_ai.openai.request.response_format` **UNSTABLE**: Deprecated, use `gen_ai.output.type`.
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -228,7 +228,7 @@ extension OTelAttribute {
                 @available(*, deprecated, renamed: "OTelAttribute.genAi.output.type")
                 public static let responseFormat = "gen_ai.openai.request.response_format"
 
-                /// `gen_ai.openai.request.seed`: Deprecated, use `gen_ai.request.seed`.
+                /// `gen_ai.openai.request.seed` **UNSTABLE**: Deprecated, use `gen_ai.request.seed`.
                 ///
                 /// - Stability: development
                 /// - Type: int
@@ -236,7 +236,7 @@ extension OTelAttribute {
                 @available(*, deprecated, renamed: "OTelAttribute.genAi.request.seed")
                 public static let seed = "gen_ai.openai.request.seed"
 
-                /// `gen_ai.openai.request.service_tier`: Deprecated, use `openai.request.service_tier`.
+                /// `gen_ai.openai.request.service_tier` **UNSTABLE**: Deprecated, use `openai.request.service_tier`.
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -248,7 +248,7 @@ extension OTelAttribute {
 
             /// `gen_ai.openai.response` namespace
             public enum response {
-                /// `gen_ai.openai.response.service_tier`: Deprecated, use `openai.response.service_tier`.
+                /// `gen_ai.openai.response.service_tier` **UNSTABLE**: Deprecated, use `openai.response.service_tier`.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -258,7 +258,7 @@ extension OTelAttribute {
                 @available(*, deprecated, renamed: "OTelAttribute.openai.response.serviceTier")
                 public static let serviceTier = "gen_ai.openai.response.service_tier"
 
-                /// `gen_ai.openai.response.system_fingerprint`: Deprecated, use `openai.response.system_fingerprint`.
+                /// `gen_ai.openai.response.system_fingerprint` **UNSTABLE**: Deprecated, use `openai.response.system_fingerprint`.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -270,7 +270,7 @@ extension OTelAttribute {
 
         /// `gen_ai.operation` namespace
         public enum operation {
-            /// `gen_ai.operation.name`: The name of the operation being performed.
+            /// `gen_ai.operation.name` **UNSTABLE**: The name of the operation being performed.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -288,7 +288,7 @@ extension OTelAttribute {
 
         /// `gen_ai.output` namespace
         public enum output {
-            /// `gen_ai.output.messages`: Messages returned by the model where each message represents a specific model response (choice, candidate).
+            /// `gen_ai.output.messages` **UNSTABLE**: Messages returned by the model where each message represents a specific model response (choice, candidate).
             ///
             /// - Stability: development
             /// - Type: any
@@ -327,7 +327,7 @@ extension OTelAttribute {
             /// section for more details.
             public static let messages = "gen_ai.output.messages"
 
-            /// `gen_ai.output.type`: Represents the content type requested by the client.
+            /// `gen_ai.output.type` **UNSTABLE**: Represents the content type requested by the client.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -344,7 +344,7 @@ extension OTelAttribute {
 
         /// `gen_ai.provider` namespace
         public enum provider {
-            /// `gen_ai.provider.name`: The Generative AI provider as identified by the client or server instrumentation.
+            /// `gen_ai.provider.name` **UNSTABLE**: The Generative AI provider as identified by the client or server instrumentation.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -387,7 +387,7 @@ extension OTelAttribute {
 
         /// `gen_ai.request` namespace
         public enum request {
-            /// `gen_ai.request.encoding_formats`: The encoding formats requested in an embeddings operation, if specified.
+            /// `gen_ai.request.encoding_formats` **UNSTABLE**: The encoding formats requested in an embeddings operation, if specified.
             ///
             /// - Stability: development
             /// - Type: stringArray
@@ -395,62 +395,62 @@ extension OTelAttribute {
             /// In some GenAI systems the encoding formats are called embedding types. Also, some GenAI systems only accept a single format per request.
             public static let encodingFormats = "gen_ai.request.encoding_formats"
 
-            /// `gen_ai.request.frequency_penalty`: The frequency penalty setting for the GenAI request.
+            /// `gen_ai.request.frequency_penalty` **UNSTABLE**: The frequency penalty setting for the GenAI request.
             ///
             /// - Stability: development
             /// - Type: double
             /// - Example: `0.1`
             public static let frequencyPenalty = "gen_ai.request.frequency_penalty"
 
-            /// `gen_ai.request.max_tokens`: The maximum number of tokens the model generates for a request.
+            /// `gen_ai.request.max_tokens` **UNSTABLE**: The maximum number of tokens the model generates for a request.
             ///
             /// - Stability: development
             /// - Type: int
             /// - Example: `100`
             public static let maxTokens = "gen_ai.request.max_tokens"
 
-            /// `gen_ai.request.model`: The name of the GenAI model a request is being made to.
+            /// `gen_ai.request.model` **UNSTABLE**: The name of the GenAI model a request is being made to.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `gpt-4`
             public static let model = "gen_ai.request.model"
 
-            /// `gen_ai.request.presence_penalty`: The presence penalty setting for the GenAI request.
+            /// `gen_ai.request.presence_penalty` **UNSTABLE**: The presence penalty setting for the GenAI request.
             ///
             /// - Stability: development
             /// - Type: double
             /// - Example: `0.1`
             public static let presencePenalty = "gen_ai.request.presence_penalty"
 
-            /// `gen_ai.request.seed`: Requests with same seed value more likely to return same result.
+            /// `gen_ai.request.seed` **UNSTABLE**: Requests with same seed value more likely to return same result.
             ///
             /// - Stability: development
             /// - Type: int
             /// - Example: `100`
             public static let seed = "gen_ai.request.seed"
 
-            /// `gen_ai.request.stop_sequences`: List of sequences that the model will use to stop generating further tokens.
+            /// `gen_ai.request.stop_sequences` **UNSTABLE**: List of sequences that the model will use to stop generating further tokens.
             ///
             /// - Stability: development
             /// - Type: stringArray
             public static let stopSequences = "gen_ai.request.stop_sequences"
 
-            /// `gen_ai.request.temperature`: The temperature setting for the GenAI request.
+            /// `gen_ai.request.temperature` **UNSTABLE**: The temperature setting for the GenAI request.
             ///
             /// - Stability: development
             /// - Type: double
             /// - Example: `0.0`
             public static let temperature = "gen_ai.request.temperature"
 
-            /// `gen_ai.request.top_k`: The top_k sampling setting for the GenAI request.
+            /// `gen_ai.request.top_k` **UNSTABLE**: The top_k sampling setting for the GenAI request.
             ///
             /// - Stability: development
             /// - Type: double
             /// - Example: `1.0`
             public static let topK = "gen_ai.request.top_k"
 
-            /// `gen_ai.request.top_p`: The top_p sampling setting for the GenAI request.
+            /// `gen_ai.request.top_p` **UNSTABLE**: The top_p sampling setting for the GenAI request.
             ///
             /// - Stability: development
             /// - Type: double
@@ -459,7 +459,7 @@ extension OTelAttribute {
 
             /// `gen_ai.request.choice` namespace
             public enum choice {
-                /// `gen_ai.request.choice.count`: The target number of candidate completions to return.
+                /// `gen_ai.request.choice.count` **UNSTABLE**: The target number of candidate completions to return.
                 ///
                 /// - Stability: development
                 /// - Type: int
@@ -470,20 +470,20 @@ extension OTelAttribute {
 
         /// `gen_ai.response` namespace
         public enum response {
-            /// `gen_ai.response.finish_reasons`: Array of reasons the model stopped generating tokens, corresponding to each generation received.
+            /// `gen_ai.response.finish_reasons` **UNSTABLE**: Array of reasons the model stopped generating tokens, corresponding to each generation received.
             ///
             /// - Stability: development
             /// - Type: stringArray
             public static let finishReasons = "gen_ai.response.finish_reasons"
 
-            /// `gen_ai.response.id`: The unique identifier for the completion.
+            /// `gen_ai.response.id` **UNSTABLE**: The unique identifier for the completion.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `chatcmpl-123`
             public static let id = "gen_ai.response.id"
 
-            /// `gen_ai.response.model`: The name of the model that generated the response.
+            /// `gen_ai.response.model` **UNSTABLE**: The name of the model that generated the response.
             ///
             /// - Stability: development
             /// - Type: string
@@ -493,7 +493,7 @@ extension OTelAttribute {
 
         /// `gen_ai.token` namespace
         public enum token {
-            /// `gen_ai.token.type`: The type of token being counted.
+            /// `gen_ai.token.type` **UNSTABLE**: The type of token being counted.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -508,21 +508,21 @@ extension OTelAttribute {
 
         /// `gen_ai.tool` namespace
         public enum tool {
-            /// `gen_ai.tool.description`: The tool description.
+            /// `gen_ai.tool.description` **UNSTABLE**: The tool description.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `Multiply two numbers`
             public static let description = "gen_ai.tool.description"
 
-            /// `gen_ai.tool.name`: Name of the tool utilized by the agent.
+            /// `gen_ai.tool.name` **UNSTABLE**: Name of the tool utilized by the agent.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `Flights`
             public static let name = "gen_ai.tool.name"
 
-            /// `gen_ai.tool.type`: Type of the tool utilized by the agent
+            /// `gen_ai.tool.type` **UNSTABLE**: Type of the tool utilized by the agent
             ///
             /// - Stability: development
             /// - Type: string
@@ -540,7 +540,7 @@ extension OTelAttribute {
 
             /// `gen_ai.tool.call` namespace
             public enum call {
-                /// `gen_ai.tool.call.id`: The tool call identifier.
+                /// `gen_ai.tool.call.id` **UNSTABLE**: The tool call identifier.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -551,7 +551,7 @@ extension OTelAttribute {
 
         /// `gen_ai.usage` namespace
         public enum usage {
-            /// `gen_ai.usage.completion_tokens`: Deprecated, use `gen_ai.usage.output_tokens` instead.
+            /// `gen_ai.usage.completion_tokens` **UNSTABLE**: Deprecated, use `gen_ai.usage.output_tokens` instead.
             ///
             /// - Stability: development
             /// - Type: int
@@ -559,21 +559,21 @@ extension OTelAttribute {
             @available(*, deprecated, renamed: "OTelAttribute.genAi.usage.outputTokens")
             public static let completionTokens = "gen_ai.usage.completion_tokens"
 
-            /// `gen_ai.usage.input_tokens`: The number of tokens used in the GenAI input (prompt).
+            /// `gen_ai.usage.input_tokens` **UNSTABLE**: The number of tokens used in the GenAI input (prompt).
             ///
             /// - Stability: development
             /// - Type: int
             /// - Example: `100`
             public static let inputTokens = "gen_ai.usage.input_tokens"
 
-            /// `gen_ai.usage.output_tokens`: The number of tokens used in the GenAI response (completion).
+            /// `gen_ai.usage.output_tokens` **UNSTABLE**: The number of tokens used in the GenAI response (completion).
             ///
             /// - Stability: development
             /// - Type: int
             /// - Example: `180`
             public static let outputTokens = "gen_ai.usage.output_tokens"
 
-            /// `gen_ai.usage.prompt_tokens`: Deprecated, use `gen_ai.usage.input_tokens` instead.
+            /// `gen_ai.usage.prompt_tokens` **UNSTABLE**: Deprecated, use `gen_ai.usage.input_tokens` instead.
             ///
             /// - Stability: development
             /// - Type: int

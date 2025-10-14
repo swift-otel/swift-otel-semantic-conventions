@@ -62,7 +62,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `zos.smf.id`: The System Management Facility (SMF) Identifier uniquely identified a z/OS system within a SYSPLEX or mainframe environment and is used for system and performance analysis.
+                /// `zos.smf.id` **UNSTABLE**: The System Management Facility (SMF) Identifier uniquely identified a z/OS system within a SYSPLEX or mainframe environment and is used for system and performance analysis.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -92,7 +92,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `zos.sysplex.name`: The name of the SYSPLEX to which the z/OS system belongs too.
+                /// `zos.sysplex.name` **UNSTABLE**: The name of the SYSPLEX to which the z/OS system belongs too.
                 ///
                 /// - Stability: development
                 /// - Type: string

@@ -17,7 +17,7 @@ extension OTelAttribute {
     #if Experimental
     /// `log` namespace
     public enum log {
-        /// `log.iostream`: The stream associated with the log. See below for a list of well-known values.
+        /// `log.iostream` **UNSTABLE**: The stream associated with the log. See below for a list of well-known values.
         ///
         /// - Stability: development
         /// - Type: enum
@@ -27,28 +27,28 @@ extension OTelAttribute {
 
         /// `log.file` namespace
         public enum file {
-            /// `log.file.name`: The basename of the file.
+            /// `log.file.name` **UNSTABLE**: The basename of the file.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `audit.log`
             public static let name = "log.file.name"
 
-            /// `log.file.name_resolved`: The basename of the file, with symlinks resolved.
+            /// `log.file.name_resolved` **UNSTABLE**: The basename of the file, with symlinks resolved.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `uuid.log`
             public static let nameResolved = "log.file.name_resolved"
 
-            /// `log.file.path`: The full path to the file.
+            /// `log.file.path` **UNSTABLE**: The full path to the file.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `/var/log/mysql/audit.log`
             public static let path = "log.file.path"
 
-            /// `log.file.path_resolved`: The full path to the file, with symlinks resolved.
+            /// `log.file.path_resolved` **UNSTABLE**: The full path to the file, with symlinks resolved.
             ///
             /// - Stability: development
             /// - Type: string
@@ -58,7 +58,7 @@ extension OTelAttribute {
 
         /// `log.record` namespace
         public enum record {
-            /// `log.record.original`: The complete original Log Record.
+            /// `log.record.original` **UNSTABLE**: The complete original Log Record.
             ///
             /// - Stability: development
             /// - Type: string
@@ -69,7 +69,7 @@ extension OTelAttribute {
             /// This value MAY be added when processing a Log Record which was originally transmitted as a string or equivalent data type AND the Body field of the Log Record does not contain the same value. (e.g. a syslog or a log record read from a file.)
             public static let original = "log.record.original"
 
-            /// `log.record.uid`: A unique identifier for the Log Record.
+            /// `log.record.uid` **UNSTABLE**: A unique identifier for the Log Record.
             ///
             /// - Stability: development
             /// - Type: string

@@ -40,7 +40,7 @@ extension SpanAttributes {
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
 
-            /// `event.name`: Identifies the class / type of event.
+            /// `event.name` **UNSTABLE**: Identifies the class / type of event.
             ///
             /// - Stability: development
             /// - Type: string

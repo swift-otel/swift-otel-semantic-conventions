@@ -40,7 +40,7 @@ extension SpanAttributes {
             public init() {}
 
             #if Experimental
-            /// `db.connection_string`: Deprecated, use `server.address`, `server.port` attributes instead.
+            /// `db.connection_string` **UNSTABLE**: Deprecated, use `server.address`, `server.port` attributes instead.
             ///
             /// - Stability: development
             /// - Type: string
@@ -50,7 +50,7 @@ extension SpanAttributes {
             #endif
 
             #if Experimental
-            /// `db.name`: Deprecated, use `db.namespace` instead.
+            /// `db.name` **UNSTABLE**: Deprecated, use `db.namespace` instead.
             ///
             /// - Stability: development
             /// - Type: string
@@ -75,7 +75,7 @@ extension SpanAttributes {
             public var namespace: SpanAttributeKey<String> { .init(name: OTelAttribute.db.namespace) }
 
             #if Experimental
-            /// `db.operation`: Deprecated, use `db.operation.name` instead.
+            /// `db.operation` **UNSTABLE**: Deprecated, use `db.operation.name` instead.
             ///
             /// - Stability: development
             /// - Type: string
@@ -88,7 +88,7 @@ extension SpanAttributes {
             #endif
 
             #if Experimental
-            /// `db.statement`: The database statement being executed.
+            /// `db.statement` **UNSTABLE**: The database statement being executed.
             ///
             /// - Stability: development
             /// - Type: string
@@ -100,7 +100,7 @@ extension SpanAttributes {
             #endif
 
             #if Experimental
-            /// `db.system`: Deprecated, use `db.system.name` instead.
+            /// `db.system` **UNSTABLE**: Deprecated, use `db.system.name` instead.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -173,7 +173,7 @@ extension SpanAttributes {
             #endif
 
             #if Experimental
-            /// `db.user`: Deprecated, no replacement at this time.
+            /// `db.user` **UNSTABLE**: Deprecated, no replacement at this time.
             ///
             /// - Stability: development
             /// - Type: string
@@ -207,7 +207,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `db.cassandra.consistency_level`: Deprecated, use `cassandra.consistency.level` instead.
+                /// `db.cassandra.consistency_level` **UNSTABLE**: Deprecated, use `cassandra.consistency.level` instead.
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -237,14 +237,14 @@ extension SpanAttributes {
                     }
                 }
 
-                /// `db.cassandra.idempotence`: Deprecated, use `cassandra.query.idempotent` instead.
+                /// `db.cassandra.idempotence` **UNSTABLE**: Deprecated, use `cassandra.query.idempotent` instead.
                 ///
                 /// - Stability: development
                 /// - Type: boolean
                 @available(*, deprecated, renamed: "SpanAttributes.cassandra.query.idempotent")
                 public var idempotence: SpanAttributeKey<Bool> { .init(name: OTelAttribute.db.cassandra.idempotence) }
 
-                /// `db.cassandra.page_size`: Deprecated, use `cassandra.page.size` instead.
+                /// `db.cassandra.page_size` **UNSTABLE**: Deprecated, use `cassandra.page.size` instead.
                 ///
                 /// - Stability: development
                 /// - Type: int
@@ -252,7 +252,7 @@ extension SpanAttributes {
                 @available(*, deprecated, renamed: "SpanAttributes.cassandra.page.size")
                 public var pageSize: SpanAttributeKey<Int> { .init(name: OTelAttribute.db.cassandra.pageSize) }
 
-                /// `db.cassandra.speculative_execution_count`: Deprecated, use `cassandra.speculative_execution.count` instead.
+                /// `db.cassandra.speculative_execution_count` **UNSTABLE**: Deprecated, use `cassandra.speculative_execution.count` instead.
                 ///
                 /// - Stability: development
                 /// - Type: int
@@ -264,7 +264,7 @@ extension SpanAttributes {
                     .init(name: OTelAttribute.db.cassandra.speculativeExecutionCount)
                 }
 
-                /// `db.cassandra.table`: Deprecated, use `db.collection.name` instead.
+                /// `db.cassandra.table` **UNSTABLE**: Deprecated, use `db.collection.name` instead.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -294,7 +294,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `db.cassandra.coordinator.dc`: Deprecated, use `cassandra.coordinator.dc` instead.
+                    /// `db.cassandra.coordinator.dc` **UNSTABLE**: Deprecated, use `cassandra.coordinator.dc` instead.
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -302,7 +302,7 @@ extension SpanAttributes {
                     @available(*, deprecated, renamed: "SpanAttributes.cassandra.coordinator.dc")
                     public var dc: SpanAttributeKey<String> { .init(name: OTelAttribute.db.cassandra.coordinator.dc) }
 
-                    /// `db.cassandra.coordinator.id`: Deprecated, use `cassandra.coordinator.id` instead.
+                    /// `db.cassandra.coordinator.id` **UNSTABLE**: Deprecated, use `cassandra.coordinator.id` instead.
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -358,7 +358,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `db.client.connection.state`: The state of a connection in the pool
+                    /// `db.client.connection.state` **UNSTABLE**: The state of a connection in the pool
                     ///
                     /// - Stability: development
                     /// - Type: enum
@@ -401,7 +401,7 @@ extension SpanAttributes {
                     public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                         public init() {}
 
-                        /// `db.client.connection.pool.name`: The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it.
+                        /// `db.client.connection.pool.name` **UNSTABLE**: The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it.
                         ///
                         /// - Stability: development
                         /// - Type: string
@@ -434,7 +434,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `db.client.connections.state`: Deprecated, use `db.client.connection.state` instead.
+                    /// `db.client.connections.state` **UNSTABLE**: Deprecated, use `db.client.connection.state` instead.
                     ///
                     /// - Stability: development
                     /// - Type: enum
@@ -478,7 +478,7 @@ extension SpanAttributes {
                     public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                         public init() {}
 
-                        /// `db.client.connections.pool.name`: Deprecated, use `db.client.connection.pool.name` instead.
+                        /// `db.client.connections.pool.name` **UNSTABLE**: Deprecated, use `db.client.connection.pool.name` instead.
                         ///
                         /// - Stability: development
                         /// - Type: string
@@ -557,7 +557,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `db.cosmosdb.client_id`: Deprecated, use `azure.client.id` instead.
+                /// `db.cosmosdb.client_id` **UNSTABLE**: Deprecated, use `azure.client.id` instead.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -565,7 +565,7 @@ extension SpanAttributes {
                 @available(*, deprecated, renamed: "SpanAttributes.azure.client.id")
                 public var clientId: SpanAttributeKey<String> { .init(name: OTelAttribute.db.cosmosdb.clientId) }
 
-                /// `db.cosmosdb.connection_mode`: Deprecated, use `azure.cosmosdb.connection.mode` instead.
+                /// `db.cosmosdb.connection_mode` **UNSTABLE**: Deprecated, use `azure.cosmosdb.connection.mode` instead.
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -586,7 +586,7 @@ extension SpanAttributes {
                     }
                 }
 
-                /// `db.cosmosdb.consistency_level`: Deprecated, use `cosmosdb.consistency.level` instead.
+                /// `db.cosmosdb.consistency_level` **UNSTABLE**: Deprecated, use `cosmosdb.consistency.level` instead.
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -616,7 +616,7 @@ extension SpanAttributes {
                     }
                 }
 
-                /// `db.cosmosdb.container`: Deprecated, use `db.collection.name` instead.
+                /// `db.cosmosdb.container` **UNSTABLE**: Deprecated, use `db.collection.name` instead.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -624,7 +624,7 @@ extension SpanAttributes {
                 @available(*, deprecated, renamed: "SpanAttributes.db.collection.name")
                 public var container: SpanAttributeKey<String> { .init(name: OTelAttribute.db.cosmosdb.container) }
 
-                /// `db.cosmosdb.operation_type`: Deprecated, no replacement at this time.
+                /// `db.cosmosdb.operation_type` **UNSTABLE**: Deprecated, no replacement at this time.
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -658,7 +658,7 @@ extension SpanAttributes {
                     }
                 }
 
-                /// `db.cosmosdb.regions_contacted`: Deprecated, use `azure.cosmosdb.operation.contacted_regions` instead.
+                /// `db.cosmosdb.regions_contacted` **UNSTABLE**: Deprecated, use `azure.cosmosdb.operation.contacted_regions` instead.
                 ///
                 /// - Stability: development
                 /// - Type: stringArray
@@ -667,7 +667,7 @@ extension SpanAttributes {
                     .init(name: OTelAttribute.db.cosmosdb.regionsContacted)
                 }
 
-                /// `db.cosmosdb.request_charge`: Deprecated, use `azure.cosmosdb.operation.request_charge` instead.
+                /// `db.cosmosdb.request_charge` **UNSTABLE**: Deprecated, use `azure.cosmosdb.operation.request_charge` instead.
                 ///
                 /// - Stability: development
                 /// - Type: double
@@ -679,7 +679,7 @@ extension SpanAttributes {
                     .init(name: OTelAttribute.db.cosmosdb.requestCharge)
                 }
 
-                /// `db.cosmosdb.request_content_length`: Deprecated, use `azure.cosmosdb.request.body.size` instead.
+                /// `db.cosmosdb.request_content_length` **UNSTABLE**: Deprecated, use `azure.cosmosdb.request.body.size` instead.
                 ///
                 /// - Stability: development
                 /// - Type: int
@@ -688,7 +688,7 @@ extension SpanAttributes {
                     .init(name: OTelAttribute.db.cosmosdb.requestContentLength)
                 }
 
-                /// `db.cosmosdb.status_code`: Deprecated, use `db.response.status_code` instead.
+                /// `db.cosmosdb.status_code` **UNSTABLE**: Deprecated, use `db.response.status_code` instead.
                 ///
                 /// - Stability: development
                 /// - Type: int
@@ -698,7 +698,7 @@ extension SpanAttributes {
                 @available(*, deprecated, renamed: "SpanAttributes.db.response.statusCode")
                 public var statusCode: SpanAttributeKey<Int> { .init(name: OTelAttribute.db.cosmosdb.statusCode) }
 
-                /// `db.cosmosdb.sub_status_code`: Deprecated, use `azure.cosmosdb.response.sub_status_code` instead.
+                /// `db.cosmosdb.sub_status_code` **UNSTABLE**: Deprecated, use `azure.cosmosdb.response.sub_status_code` instead.
                 ///
                 /// - Stability: development
                 /// - Type: int
@@ -730,7 +730,7 @@ extension SpanAttributes {
                 self.attributes = attributes
             }
 
-            /// `db.elasticsearch.path_parts`: Deprecated, use `db.operation.parameter` instead.
+            /// `db.elasticsearch.path_parts` **UNSTABLE**: Deprecated, use `db.operation.parameter` instead.
             ///
             /// - Stability: development
             /// - Type: templateString
@@ -800,7 +800,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `db.elasticsearch.cluster.name`: Deprecated, use `db.namespace` instead.
+                    /// `db.elasticsearch.cluster.name` **UNSTABLE**: Deprecated, use `db.namespace` instead.
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -833,7 +833,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `db.elasticsearch.node.name`: Deprecated, use `elasticsearch.node.name` instead.
+                    /// `db.elasticsearch.node.name` **UNSTABLE**: Deprecated, use `elasticsearch.node.name` instead.
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -867,7 +867,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `db.instance.id`: Deprecated, no general replacement at this time. For Elasticsearch, use `db.elasticsearch.node.name` instead.
+                /// `db.instance.id` **UNSTABLE**: Deprecated, no general replacement at this time. For Elasticsearch, use `db.elasticsearch.node.name` instead.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -905,7 +905,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `db.jdbc.driver_classname`: Removed, no replacement at this time.
+                /// `db.jdbc.driver_classname` **UNSTABLE**: Removed, no replacement at this time.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -942,7 +942,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `db.mongodb.collection`: Deprecated, use `db.collection.name` instead.
+                /// `db.mongodb.collection` **UNSTABLE**: Deprecated, use `db.collection.name` instead.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -975,7 +975,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `db.mssql.instance_name`: Deprecated, SQL Server instance is now populated as a part of `db.namespace` attribute.
+                /// `db.mssql.instance_name` **UNSTABLE**: Deprecated, SQL Server instance is now populated as a part of `db.namespace` attribute.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -1005,7 +1005,7 @@ extension SpanAttributes {
             }
 
             #if Experimental
-            /// `db.operation.parameter`: A database operation parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value.
+            /// `db.operation.parameter` **UNSTABLE**: A database operation parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value.
             ///
             /// - Stability: development
             /// - Type: templateString
@@ -1141,7 +1141,7 @@ extension SpanAttributes {
             }
 
             #if Experimental
-            /// `db.query.parameter`: A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value.
+            /// `db.query.parameter` **UNSTABLE**: A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value.
             ///
             /// - Stability: development
             /// - Type: templateString
@@ -1263,7 +1263,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `db.redis.database_index`: Deprecated, use `db.namespace` instead.
+                /// `db.redis.database_index` **UNSTABLE**: Deprecated, use `db.namespace` instead.
                 ///
                 /// - Stability: development
                 /// - Type: int
@@ -1299,7 +1299,7 @@ extension SpanAttributes {
                 public init() {}
 
                 #if Experimental
-                /// `db.response.returned_rows`: Number of rows returned by the operation.
+                /// `db.response.returned_rows` **UNSTABLE**: Number of rows returned by the operation.
                 ///
                 /// - Stability: development
                 /// - Type: int
@@ -1348,7 +1348,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `db.sql.table`: Deprecated, use `db.collection.name` instead.
+                /// `db.sql.table` **UNSTABLE**: Deprecated, use `db.collection.name` instead.
                 ///
                 /// - Stability: development
                 /// - Type: string

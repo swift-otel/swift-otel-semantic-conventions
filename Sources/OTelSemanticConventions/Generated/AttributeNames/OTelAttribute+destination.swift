@@ -17,7 +17,7 @@ extension OTelAttribute {
     #if Experimental
     /// `destination` namespace
     public enum destination {
-        /// `destination.address`: Destination address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+        /// `destination.address` **UNSTABLE**: Destination address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
         ///
         /// - Stability: development
         /// - Type: string
@@ -29,7 +29,7 @@ extension OTelAttribute {
         /// When observed from the source side, and when communicating through an intermediary, `destination.address` SHOULD represent the destination address behind any intermediaries, for example proxies, if it's available.
         public static let address = "destination.address"
 
-        /// `destination.port`: Destination port number
+        /// `destination.port` **UNSTABLE**: Destination port number
         ///
         /// - Stability: development
         /// - Type: int

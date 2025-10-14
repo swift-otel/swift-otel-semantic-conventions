@@ -17,7 +17,7 @@ extension OTelAttribute {
     #if Experimental
     /// `process` namespace
     public enum process {
-        /// `process.args_count`: Length of the process.command_args array
+        /// `process.args_count` **UNSTABLE**: Length of the process.command_args array
         ///
         /// - Stability: development
         /// - Type: int
@@ -26,27 +26,27 @@ extension OTelAttribute {
         /// This field can be useful for querying or performing bucket analysis on how many arguments were provided to start a process. More arguments may be an indication of suspicious activity.
         public static let argsCount = "process.args_count"
 
-        /// `process.command`: The command used to launch the process (i.e. the command name). On Linux based systems, can be set to the zeroth string in `proc/[pid]/cmdline`. On Windows, can be set to the first parameter extracted from `GetCommandLineW`.
+        /// `process.command` **UNSTABLE**: The command used to launch the process (i.e. the command name). On Linux based systems, can be set to the zeroth string in `proc/[pid]/cmdline`. On Windows, can be set to the first parameter extracted from `GetCommandLineW`.
         ///
         /// - Stability: development
         /// - Type: string
         /// - Example: `cmd/otelcol`
         public static let command = "process.command"
 
-        /// `process.command_args`: All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data.
+        /// `process.command_args` **UNSTABLE**: All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data.
         ///
         /// - Stability: development
         /// - Type: stringArray
         public static let commandArgs = "process.command_args"
 
-        /// `process.command_line`: The full command used to launch the process as a single string representing the full command. On Windows, can be set to the result of `GetCommandLineW`. Do not set this if you have to assemble it just for monitoring; use `process.command_args` instead. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data.
+        /// `process.command_line` **UNSTABLE**: The full command used to launch the process as a single string representing the full command. On Windows, can be set to the result of `GetCommandLineW`. Do not set this if you have to assemble it just for monitoring; use `process.command_args` instead. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data.
         ///
         /// - Stability: development
         /// - Type: string
         /// - Example: `C:\cmd\otecol --config="my directory\config.yaml"`
         public static let commandLine = "process.command_line"
 
-        /// `process.context_switch_type`: Specifies whether the context switches for this data point were voluntary or involuntary.
+        /// `process.context_switch_type` **UNSTABLE**: Specifies whether the context switches for this data point were voluntary or involuntary.
         ///
         /// - Stability: development
         /// - Type: enum
@@ -54,7 +54,7 @@ extension OTelAttribute {
         ///     - `involuntary`
         public static let contextSwitchType = "process.context_switch_type"
 
-        /// `process.environment_variable`: Process environment variables, `<key>` being the environment variable name, the value being the environment variable value.
+        /// `process.environment_variable` **UNSTABLE**: Process environment variables, `<key>` being the environment variable name, the value being the environment variable value.
         ///
         /// - Stability: development
         /// - Type: templateString
@@ -72,34 +72,34 @@ extension OTelAttribute {
         /// with value `"/usr/local/bin:/usr/bin"`.
         public static let environmentVariable = "process.environment_variable"
 
-        /// `process.interactive`: Whether the process is connected to an interactive shell.
+        /// `process.interactive` **UNSTABLE**: Whether the process is connected to an interactive shell.
         ///
         /// - Stability: development
         /// - Type: boolean
         public static let interactive = "process.interactive"
 
-        /// `process.owner`: The username of the user that owns the process.
+        /// `process.owner` **UNSTABLE**: The username of the user that owns the process.
         ///
         /// - Stability: development
         /// - Type: string
         /// - Example: `root`
         public static let owner = "process.owner"
 
-        /// `process.parent_pid`: Parent Process identifier (PPID).
+        /// `process.parent_pid` **UNSTABLE**: Parent Process identifier (PPID).
         ///
         /// - Stability: development
         /// - Type: int
         /// - Example: `111`
         public static let parentPid = "process.parent_pid"
 
-        /// `process.pid`: Process identifier (PID).
+        /// `process.pid` **UNSTABLE**: Process identifier (PID).
         ///
         /// - Stability: development
         /// - Type: int
         /// - Example: `1234`
         public static let pid = "process.pid"
 
-        /// `process.title`: Process title (proctitle)
+        /// `process.title` **UNSTABLE**: Process title (proctitle)
         ///
         /// - Stability: development
         /// - Type: string
@@ -111,7 +111,7 @@ extension OTelAttribute {
         /// In many Unix-like systems, process title (proctitle), is the string that represents the name or command line of a running process, displayed by system monitoring tools like ps, top, and htop.
         public static let title = "process.title"
 
-        /// `process.vpid`: Virtual process identifier.
+        /// `process.vpid` **UNSTABLE**: Virtual process identifier.
         ///
         /// - Stability: development
         /// - Type: int
@@ -120,7 +120,7 @@ extension OTelAttribute {
         /// The process ID within a PID namespace. This is not necessarily unique across all processes on the host but it is unique within the process namespace that the process exists within.
         public static let vpid = "process.vpid"
 
-        /// `process.working_directory`: The working directory of the process.
+        /// `process.working_directory` **UNSTABLE**: The working directory of the process.
         ///
         /// - Stability: development
         /// - Type: string
@@ -129,7 +129,7 @@ extension OTelAttribute {
 
         /// `process.cpu` namespace
         public enum cpu {
-            /// `process.cpu.state`: Deprecated, use `cpu.mode` instead.
+            /// `process.cpu.state` **UNSTABLE**: Deprecated, use `cpu.mode` instead.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -142,7 +142,7 @@ extension OTelAttribute {
 
         /// `process.creation` namespace
         public enum creation {
-            /// `process.creation.time`: The date and time the process was created, in ISO 8601 format.
+            /// `process.creation.time` **UNSTABLE**: The date and time the process was created, in ISO 8601 format.
             ///
             /// - Stability: development
             /// - Type: string
@@ -152,14 +152,14 @@ extension OTelAttribute {
 
         /// `process.executable` namespace
         public enum executable {
-            /// `process.executable.name`: The name of the process executable. On Linux based systems, this SHOULD be set to the base name of the target of `/proc/[pid]/exe`. On Windows, this SHOULD be set to the base name of `GetProcessImageFileNameW`.
+            /// `process.executable.name` **UNSTABLE**: The name of the process executable. On Linux based systems, this SHOULD be set to the base name of the target of `/proc/[pid]/exe`. On Windows, this SHOULD be set to the base name of `GetProcessImageFileNameW`.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `otelcol`
             public static let name = "process.executable.name"
 
-            /// `process.executable.path`: The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`.
+            /// `process.executable.path` **UNSTABLE**: The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`.
             ///
             /// - Stability: development
             /// - Type: string
@@ -168,28 +168,28 @@ extension OTelAttribute {
 
             /// `process.executable.build_id` namespace
             public enum buildId {
-                /// `process.executable.build_id.gnu`: The GNU build ID as found in the `.note.gnu.build-id` ELF section (hex string).
+                /// `process.executable.build_id.gnu` **UNSTABLE**: The GNU build ID as found in the `.note.gnu.build-id` ELF section (hex string).
                 ///
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `c89b11207f6479603b0d49bf291c092c2b719293`
                 public static let gnu = "process.executable.build_id.gnu"
 
-                /// `process.executable.build_id.go`: The Go build ID as retrieved by `go tool buildid <go executable>`.
+                /// `process.executable.build_id.go` **UNSTABLE**: The Go build ID as retrieved by `go tool buildid <go executable>`.
                 ///
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `foh3mEXu7BLZjsN9pOwG/kATcXlYVCDEFouRMQed_/WwRFB1hPo9LBkekthSPG/x8hMC8emW2cCjXD0_1aY`
                 public static let go = "process.executable.build_id.go"
 
-                /// `process.executable.build_id.htlhash`: Profiling specific build ID for executables. See the OTel specification for Profiles for more information.
+                /// `process.executable.build_id.htlhash` **UNSTABLE**: Profiling specific build ID for executables. See the OTel specification for Profiles for more information.
                 ///
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `600DCAFE4A110000F2BF38C493F5FB92`
                 public static let htlhash = "process.executable.build_id.htlhash"
 
-                /// `process.executable.build_id.profiling`: "Deprecated, use `process.executable.build_id.htlhash` instead."
+                /// `process.executable.build_id.profiling` **UNSTABLE**: "Deprecated, use `process.executable.build_id.htlhash` instead."
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -201,14 +201,14 @@ extension OTelAttribute {
 
         /// `process.exit` namespace
         public enum exit {
-            /// `process.exit.code`: The exit code of the process.
+            /// `process.exit.code` **UNSTABLE**: The exit code of the process.
             ///
             /// - Stability: development
             /// - Type: int
             /// - Example: `127`
             public static let code = "process.exit.code"
 
-            /// `process.exit.time`: The date and time the process exited, in ISO 8601 format.
+            /// `process.exit.time` **UNSTABLE**: The date and time the process exited, in ISO 8601 format.
             ///
             /// - Stability: development
             /// - Type: string
@@ -218,7 +218,7 @@ extension OTelAttribute {
 
         /// `process.group_leader` namespace
         public enum groupLeader {
-            /// `process.group_leader.pid`: The PID of the process's group leader. This is also the process group ID (PGID) of the process.
+            /// `process.group_leader.pid` **UNSTABLE**: The PID of the process's group leader. This is also the process group ID (PGID) of the process.
             ///
             /// - Stability: development
             /// - Type: int
@@ -228,7 +228,7 @@ extension OTelAttribute {
 
         /// `process.linux` namespace
         public enum linux {
-            /// `process.linux.cgroup`: The control group associated with the process.
+            /// `process.linux.cgroup` **UNSTABLE**: The control group associated with the process.
             ///
             /// - Stability: development
             /// - Type: string
@@ -242,7 +242,7 @@ extension OTelAttribute {
 
         /// `process.paging` namespace
         public enum paging {
-            /// `process.paging.fault_type`: The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor` is for minor/soft page faults.
+            /// `process.paging.fault_type` **UNSTABLE**: The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor` is for minor/soft page faults.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -253,14 +253,14 @@ extension OTelAttribute {
 
         /// `process.real_user` namespace
         public enum realUser {
-            /// `process.real_user.id`: The real user ID (RUID) of the process.
+            /// `process.real_user.id` **UNSTABLE**: The real user ID (RUID) of the process.
             ///
             /// - Stability: development
             /// - Type: int
             /// - Example: `1000`
             public static let id = "process.real_user.id"
 
-            /// `process.real_user.name`: The username of the real user of the process.
+            /// `process.real_user.name` **UNSTABLE**: The username of the real user of the process.
             ///
             /// - Stability: development
             /// - Type: string
@@ -270,21 +270,21 @@ extension OTelAttribute {
 
         /// `process.runtime` namespace
         public enum runtime {
-            /// `process.runtime.description`: An additional description about the runtime of the process, for example a specific vendor customization of the runtime environment.
+            /// `process.runtime.description` **UNSTABLE**: An additional description about the runtime of the process, for example a specific vendor customization of the runtime environment.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `Eclipse OpenJ9 Eclipse OpenJ9 VM openj9-0.21.0`
             public static let description = "process.runtime.description"
 
-            /// `process.runtime.name`: The name of the runtime of this process.
+            /// `process.runtime.name` **UNSTABLE**: The name of the runtime of this process.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `OpenJDK Runtime Environment`
             public static let name = "process.runtime.name"
 
-            /// `process.runtime.version`: The version of the runtime of this process, as returned by the runtime without modification.
+            /// `process.runtime.version` **UNSTABLE**: The version of the runtime of this process, as returned by the runtime without modification.
             ///
             /// - Stability: development
             /// - Type: string
@@ -294,14 +294,14 @@ extension OTelAttribute {
 
         /// `process.saved_user` namespace
         public enum savedUser {
-            /// `process.saved_user.id`: The saved user ID (SUID) of the process.
+            /// `process.saved_user.id` **UNSTABLE**: The saved user ID (SUID) of the process.
             ///
             /// - Stability: development
             /// - Type: int
             /// - Example: `1002`
             public static let id = "process.saved_user.id"
 
-            /// `process.saved_user.name`: The username of the saved user.
+            /// `process.saved_user.name` **UNSTABLE**: The username of the saved user.
             ///
             /// - Stability: development
             /// - Type: string
@@ -311,7 +311,7 @@ extension OTelAttribute {
 
         /// `process.session_leader` namespace
         public enum sessionLeader {
-            /// `process.session_leader.pid`: The PID of the process's session leader. This is also the session ID (SID) of the process.
+            /// `process.session_leader.pid` **UNSTABLE**: The PID of the process's session leader. This is also the session ID (SID) of the process.
             ///
             /// - Stability: development
             /// - Type: int
@@ -321,14 +321,14 @@ extension OTelAttribute {
 
         /// `process.user` namespace
         public enum user {
-            /// `process.user.id`: The effective user ID (EUID) of the process.
+            /// `process.user.id` **UNSTABLE**: The effective user ID (EUID) of the process.
             ///
             /// - Stability: development
             /// - Type: int
             /// - Example: `1001`
             public static let id = "process.user.id"
 
-            /// `process.user.name`: The username of the effective user of the process.
+            /// `process.user.name` **UNSTABLE**: The username of the effective user of the process.
             ///
             /// - Stability: development
             /// - Type: string

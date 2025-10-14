@@ -40,7 +40,7 @@ extension SpanAttributes {
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
 
-            /// `net.transport`: Deprecated, use `network.transport`.
+            /// `net.transport` **UNSTABLE**: Deprecated, use `network.transport`.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -84,7 +84,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `net.host.ip`: Deprecated, use `network.local.address`.
+                /// `net.host.ip` **UNSTABLE**: Deprecated, use `network.local.address`.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -92,7 +92,7 @@ extension SpanAttributes {
                 @available(*, deprecated, renamed: "SpanAttributes.network.local.address")
                 public var ip: SpanAttributeKey<String> { .init(name: OTelAttribute.net.host.ip) }
 
-                /// `net.host.name`: Deprecated, use `server.address`.
+                /// `net.host.name` **UNSTABLE**: Deprecated, use `server.address`.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -100,7 +100,7 @@ extension SpanAttributes {
                 @available(*, deprecated, renamed: "SpanAttributes.server.address")
                 public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.net.host.name) }
 
-                /// `net.host.port`: Deprecated, use `server.port`.
+                /// `net.host.port` **UNSTABLE**: Deprecated, use `server.port`.
                 ///
                 /// - Stability: development
                 /// - Type: int
@@ -131,7 +131,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `net.peer.ip`: Deprecated, use `network.peer.address`.
+                /// `net.peer.ip` **UNSTABLE**: Deprecated, use `network.peer.address`.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -139,7 +139,7 @@ extension SpanAttributes {
                 @available(*, deprecated, renamed: "SpanAttributes.network.peer.address")
                 public var ip: SpanAttributeKey<String> { .init(name: OTelAttribute.net.peer.ip) }
 
-                /// `net.peer.name`: Deprecated, use `server.address` on client spans and `client.address` on server spans.
+                /// `net.peer.name` **UNSTABLE**: Deprecated, use `server.address` on client spans and `client.address` on server spans.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -151,7 +151,7 @@ extension SpanAttributes {
                 )
                 public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.net.peer.name) }
 
-                /// `net.peer.port`: Deprecated, use `server.port` on client spans and `client.port` on server spans.
+                /// `net.peer.port` **UNSTABLE**: Deprecated, use `server.port` on client spans and `client.port` on server spans.
                 ///
                 /// - Stability: development
                 /// - Type: int
@@ -186,7 +186,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `net.protocol.name`: Deprecated, use `network.protocol.name`.
+                /// `net.protocol.name` **UNSTABLE**: Deprecated, use `network.protocol.name`.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -197,7 +197,7 @@ extension SpanAttributes {
                 @available(*, deprecated, renamed: "SpanAttributes.network.protocol.name")
                 public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.net.`protocol`.name) }
 
-                /// `net.protocol.version`: Deprecated, use `network.protocol.version`.
+                /// `net.protocol.version` **UNSTABLE**: Deprecated, use `network.protocol.version`.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -228,7 +228,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `net.sock.family`: Deprecated, use `network.transport` and `network.type`.
+                /// `net.sock.family` **UNSTABLE**: Deprecated, use `network.transport` and `network.type`.
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -270,7 +270,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `net.sock.host.addr`: Deprecated, use `network.local.address`.
+                    /// `net.sock.host.addr` **UNSTABLE**: Deprecated, use `network.local.address`.
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -278,7 +278,7 @@ extension SpanAttributes {
                     @available(*, deprecated, renamed: "SpanAttributes.network.local.address")
                     public var addr: SpanAttributeKey<String> { .init(name: OTelAttribute.net.sock.host.addr) }
 
-                    /// `net.sock.host.port`: Deprecated, use `network.local.port`.
+                    /// `net.sock.host.port` **UNSTABLE**: Deprecated, use `network.local.port`.
                     ///
                     /// - Stability: development
                     /// - Type: int
@@ -309,7 +309,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `net.sock.peer.addr`: Deprecated, use `network.peer.address`.
+                    /// `net.sock.peer.addr` **UNSTABLE**: Deprecated, use `network.peer.address`.
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -317,7 +317,7 @@ extension SpanAttributes {
                     @available(*, deprecated, renamed: "SpanAttributes.network.peer.address")
                     public var addr: SpanAttributeKey<String> { .init(name: OTelAttribute.net.sock.peer.addr) }
 
-                    /// `net.sock.peer.name`: Deprecated, no replacement at this time.
+                    /// `net.sock.peer.name` **UNSTABLE**: Deprecated, no replacement at this time.
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -325,7 +325,7 @@ extension SpanAttributes {
                     @available(*, deprecated, message: "Obsoleted: Removed. No replacement at this time.")
                     public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.net.sock.peer.name) }
 
-                    /// `net.sock.peer.port`: Deprecated, use `network.peer.port`.
+                    /// `net.sock.peer.port` **UNSTABLE**: Deprecated, use `network.peer.port`.
                     ///
                     /// - Stability: development
                     /// - Type: int

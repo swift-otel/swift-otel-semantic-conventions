@@ -17,7 +17,7 @@ extension OTelAttribute {
     #if Experimental
     /// `deployment` namespace
     public enum deployment {
-        /// `deployment.environment`: Deprecated, use `deployment.environment.name` instead.
+        /// `deployment.environment` **UNSTABLE**: Deprecated, use `deployment.environment.name` instead.
         ///
         /// - Stability: development
         /// - Type: string
@@ -27,14 +27,14 @@ extension OTelAttribute {
         @available(*, deprecated, renamed: "OTelAttribute.deployment.environment.name")
         public static let _environment = "deployment.environment"
 
-        /// `deployment.id`: The id of the deployment.
+        /// `deployment.id` **UNSTABLE**: The id of the deployment.
         ///
         /// - Stability: development
         /// - Type: string
         /// - Example: `1208`
         public static let id = "deployment.id"
 
-        /// `deployment.name`: The name of the deployment.
+        /// `deployment.name` **UNSTABLE**: The name of the deployment.
         ///
         /// - Stability: development
         /// - Type: string
@@ -43,7 +43,7 @@ extension OTelAttribute {
         ///     - `deploy-frontend`
         public static let name = "deployment.name"
 
-        /// `deployment.status`: The status of the deployment.
+        /// `deployment.status` **UNSTABLE**: The status of the deployment.
         ///
         /// - Stability: development
         /// - Type: enum
@@ -53,7 +53,7 @@ extension OTelAttribute {
 
         /// `deployment.environment` namespace
         public enum environment {
-            /// `deployment.environment.name`: Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment) (aka deployment tier).
+            /// `deployment.environment.name` **UNSTABLE**: Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment) (aka deployment tier).
             ///
             /// - Stability: development
             /// - Type: string

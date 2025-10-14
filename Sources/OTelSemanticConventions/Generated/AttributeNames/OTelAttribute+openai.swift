@@ -19,7 +19,7 @@ extension OTelAttribute {
     public enum openai {
         /// `openai.request` namespace
         public enum request {
-            /// `openai.request.service_tier`: The service tier requested. May be a specific tier, default, or auto.
+            /// `openai.request.service_tier` **UNSTABLE**: The service tier requested. May be a specific tier, default, or auto.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -33,7 +33,7 @@ extension OTelAttribute {
 
         /// `openai.response` namespace
         public enum response {
-            /// `openai.response.service_tier`: The service tier used for the response.
+            /// `openai.response.service_tier` **UNSTABLE**: The service tier used for the response.
             ///
             /// - Stability: development
             /// - Type: string
@@ -42,7 +42,7 @@ extension OTelAttribute {
             ///     - `default`
             public static let serviceTier = "openai.response.service_tier"
 
-            /// `openai.response.system_fingerprint`: A fingerprint to track any eventual change in the Generative AI environment.
+            /// `openai.response.system_fingerprint` **UNSTABLE**: A fingerprint to track any eventual change in the Generative AI environment.
             ///
             /// - Stability: development
             /// - Type: string

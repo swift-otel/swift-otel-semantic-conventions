@@ -40,7 +40,7 @@ extension SpanAttributes {
             public init() {}
 
             #if Experimental
-            /// `http.client_ip`: Deprecated, use `client.address` instead.
+            /// `http.client_ip` **UNSTABLE**: Deprecated, use `client.address` instead.
             ///
             /// - Stability: development
             /// - Type: string
@@ -50,7 +50,7 @@ extension SpanAttributes {
             #endif
 
             #if Experimental
-            /// `http.flavor`: Deprecated, use `network.protocol.name` instead.
+            /// `http.flavor` **UNSTABLE**: Deprecated, use `network.protocol.name` instead.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -75,7 +75,7 @@ extension SpanAttributes {
             #endif
 
             #if Experimental
-            /// `http.host`: Deprecated, use one of `server.address`, `client.address` or `http.request.header.host` instead, depending on the usage.
+            /// `http.host` **UNSTABLE**: Deprecated, use one of `server.address`, `client.address` or `http.request.header.host` instead, depending on the usage.
             ///
             /// - Stability: development
             /// - Type: string
@@ -90,7 +90,7 @@ extension SpanAttributes {
             #endif
 
             #if Experimental
-            /// `http.method`: Deprecated, use `http.request.method` instead.
+            /// `http.method` **UNSTABLE**: Deprecated, use `http.request.method` instead.
             ///
             /// - Stability: development
             /// - Type: string
@@ -103,7 +103,7 @@ extension SpanAttributes {
             #endif
 
             #if Experimental
-            /// `http.request_content_length`: Deprecated, use `http.request.header.content-length` instead.
+            /// `http.request_content_length` **UNSTABLE**: Deprecated, use `http.request.header.content-length` instead.
             ///
             /// - Stability: development
             /// - Type: int
@@ -115,7 +115,7 @@ extension SpanAttributes {
             #endif
 
             #if Experimental
-            /// `http.request_content_length_uncompressed`: Deprecated, use `http.request.body.size` instead.
+            /// `http.request_content_length_uncompressed` **UNSTABLE**: Deprecated, use `http.request.body.size` instead.
             ///
             /// - Stability: development
             /// - Type: int
@@ -127,7 +127,7 @@ extension SpanAttributes {
             #endif
 
             #if Experimental
-            /// `http.response_content_length`: Deprecated, use `http.response.header.content-length` instead.
+            /// `http.response_content_length` **UNSTABLE**: Deprecated, use `http.response.header.content-length` instead.
             ///
             /// - Stability: development
             /// - Type: int
@@ -139,7 +139,7 @@ extension SpanAttributes {
             #endif
 
             #if Experimental
-            /// `http.response_content_length_uncompressed`: Deprecated, use `http.response.body.size` instead.
+            /// `http.response_content_length_uncompressed` **UNSTABLE**: Deprecated, use `http.response.body.size` instead.
             ///
             /// - Stability: development
             /// - Type: int
@@ -163,7 +163,7 @@ extension SpanAttributes {
             public var route: SpanAttributeKey<String> { .init(name: OTelAttribute.http.route) }
 
             #if Experimental
-            /// `http.scheme`: Deprecated, use `url.scheme` instead.
+            /// `http.scheme` **UNSTABLE**: Deprecated, use `url.scheme` instead.
             ///
             /// - Stability: development
             /// - Type: string
@@ -175,7 +175,7 @@ extension SpanAttributes {
             #endif
 
             #if Experimental
-            /// `http.server_name`: Deprecated, use `server.address` instead.
+            /// `http.server_name` **UNSTABLE**: Deprecated, use `server.address` instead.
             ///
             /// - Stability: development
             /// - Type: string
@@ -185,7 +185,7 @@ extension SpanAttributes {
             #endif
 
             #if Experimental
-            /// `http.status_code`: Deprecated, use `http.response.status_code` instead.
+            /// `http.status_code` **UNSTABLE**: Deprecated, use `http.response.status_code` instead.
             ///
             /// - Stability: development
             /// - Type: int
@@ -195,7 +195,7 @@ extension SpanAttributes {
             #endif
 
             #if Experimental
-            /// `http.target`: Deprecated, use `url.path` and `url.query` instead.
+            /// `http.target` **UNSTABLE**: Deprecated, use `url.path` and `url.query` instead.
             ///
             /// - Stability: development
             /// - Type: string
@@ -205,7 +205,7 @@ extension SpanAttributes {
             #endif
 
             #if Experimental
-            /// `http.url`: Deprecated, use `url.full` instead.
+            /// `http.url` **UNSTABLE**: Deprecated, use `url.full` instead.
             ///
             /// - Stability: development
             /// - Type: string
@@ -215,7 +215,7 @@ extension SpanAttributes {
             #endif
 
             #if Experimental
-            /// `http.user_agent`: Deprecated, use `user_agent.original` instead.
+            /// `http.user_agent` **UNSTABLE**: Deprecated, use `user_agent.original` instead.
             ///
             /// - Stability: development
             /// - Type: string
@@ -249,7 +249,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `http.connection.state`: State of the HTTP connection in the HTTP connection pool.
+                /// `http.connection.state` **UNSTABLE**: State of the HTTP connection in the HTTP connection pool.
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -440,7 +440,7 @@ extension SpanAttributes {
                 public var resendCount: SpanAttributeKey<Int> { .init(name: OTelAttribute.http.request.resendCount) }
 
                 #if Experimental
-                /// `http.request.size`: The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and request body if any.
+                /// `http.request.size` **UNSTABLE**: The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and request body if any.
                 ///
                 /// - Stability: development
                 /// - Type: int
@@ -471,7 +471,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `http.request.body.size`: The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
+                    /// `http.request.body.size` **UNSTABLE**: The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
                     ///
                     /// - Stability: development
                     /// - Type: int
@@ -562,7 +562,7 @@ extension SpanAttributes {
                 public init() {}
 
                 #if Experimental
-                /// `http.response.size`: The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any.
+                /// `http.response.size` **UNSTABLE**: The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any.
                 ///
                 /// - Stability: development
                 /// - Type: int
@@ -600,7 +600,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `http.response.body.size`: The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
+                    /// `http.response.body.size` **UNSTABLE**: The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
                     ///
                     /// - Stability: development
                     /// - Type: int

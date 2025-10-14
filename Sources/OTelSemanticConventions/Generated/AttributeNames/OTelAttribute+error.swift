@@ -17,7 +17,7 @@ extension OTelAttribute {
     /// `error` namespace
     public enum error {
         #if Experimental
-        /// `error.message`: A message providing more detail about an error in human-readable form.
+        /// `error.message` **UNSTABLE**: A message providing more detail about an error in human-readable form.
         ///
         /// - Stability: development
         /// - Type: string

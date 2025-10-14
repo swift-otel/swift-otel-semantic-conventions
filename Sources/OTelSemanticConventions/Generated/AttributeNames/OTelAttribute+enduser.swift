@@ -17,7 +17,7 @@ extension OTelAttribute {
     #if Experimental
     /// `enduser` namespace
     public enum enduser {
-        /// `enduser.id`: Unique identifier of an end user in the system. It maybe a username, email address, or other identifier.
+        /// `enduser.id` **UNSTABLE**: Unique identifier of an end user in the system. It maybe a username, email address, or other identifier.
         ///
         /// - Stability: development
         /// - Type: string
@@ -29,7 +29,7 @@ extension OTelAttribute {
         /// > This field contains sensitive (PII) information.
         public static let id = "enduser.id"
 
-        /// `enduser.role`: Deprecated, use `user.roles` instead.
+        /// `enduser.role` **UNSTABLE**: Deprecated, use `user.roles` instead.
         ///
         /// - Stability: development
         /// - Type: string
@@ -37,7 +37,7 @@ extension OTelAttribute {
         @available(*, deprecated, renamed: "OTelAttribute.user.roles")
         public static let role = "enduser.role"
 
-        /// `enduser.scope`: Deprecated, no replacement at this time.
+        /// `enduser.scope` **UNSTABLE**: Deprecated, no replacement at this time.
         ///
         /// - Stability: development
         /// - Type: string
@@ -47,7 +47,7 @@ extension OTelAttribute {
 
         /// `enduser.pseudo` namespace
         public enum pseudo {
-            /// `enduser.pseudo.id`: Pseudonymous identifier of an end user. This identifier should be a random value that is not directly linked or associated with the end user's actual identity.
+            /// `enduser.pseudo.id` **UNSTABLE**: Pseudonymous identifier of an end user. This identifier should be a random value that is not directly linked or associated with the end user's actual identity.
             ///
             /// - Stability: development
             /// - Type: string

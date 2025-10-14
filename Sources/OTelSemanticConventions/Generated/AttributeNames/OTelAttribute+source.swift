@@ -17,7 +17,7 @@ extension OTelAttribute {
     #if Experimental
     /// `source` namespace
     public enum source {
-        /// `source.address`: Source address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+        /// `source.address` **UNSTABLE**: Source address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
         ///
         /// - Stability: development
         /// - Type: string
@@ -29,7 +29,7 @@ extension OTelAttribute {
         /// When observed from the destination side, and when communicating through an intermediary, `source.address` SHOULD represent the source address behind any intermediaries, for example proxies, if it's available.
         public static let address = "source.address"
 
-        /// `source.port`: Source port number
+        /// `source.port` **UNSTABLE**: Source port number
         ///
         /// - Stability: development
         /// - Type: int

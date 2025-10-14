@@ -17,14 +17,14 @@ extension OTelAttribute {
     #if Experimental
     /// `aws` namespace
     public enum aws {
-        /// `aws.extended_request_id`: The AWS extended request ID as returned in the response header `x-amz-id-2`.
+        /// `aws.extended_request_id` **UNSTABLE**: The AWS extended request ID as returned in the response header `x-amz-id-2`.
         ///
         /// - Stability: development
         /// - Type: string
         /// - Example: `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=`
         public static let extendedRequestId = "aws.extended_request_id"
 
-        /// `aws.request_id`: The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`.
+        /// `aws.request_id` **UNSTABLE**: The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`.
         ///
         /// - Stability: development
         /// - Type: string
@@ -37,7 +37,7 @@ extension OTelAttribute {
         public enum bedrock {
             /// `aws.bedrock.guardrail` namespace
             public enum guardrail {
-                /// `aws.bedrock.guardrail.id`: The unique identifier of the AWS Bedrock Guardrail. A [guardrail](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html) helps safeguard and prevent unwanted behavior from model responses or user messages.
+                /// `aws.bedrock.guardrail.id` **UNSTABLE**: The unique identifier of the AWS Bedrock Guardrail. A [guardrail](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html) helps safeguard and prevent unwanted behavior from model responses or user messages.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -47,7 +47,7 @@ extension OTelAttribute {
 
             /// `aws.bedrock.knowledge_base` namespace
             public enum knowledgeBase {
-                /// `aws.bedrock.knowledge_base.id`: The unique identifier of the AWS Bedrock Knowledge base. A [knowledge base](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html) is a bank of information that can be queried by models to generate more relevant responses and augment prompts.
+                /// `aws.bedrock.knowledge_base.id` **UNSTABLE**: The unique identifier of the AWS Bedrock Knowledge base. A [knowledge base](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html) is a bank of information that can be queried by models to generate more relevant responses and augment prompts.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -58,38 +58,38 @@ extension OTelAttribute {
 
         /// `aws.dynamodb` namespace
         public enum dynamodb {
-            /// `aws.dynamodb.attribute_definitions`: The JSON-serialized value of each item in the `AttributeDefinitions` request field.
+            /// `aws.dynamodb.attribute_definitions` **UNSTABLE**: The JSON-serialized value of each item in the `AttributeDefinitions` request field.
             ///
             /// - Stability: development
             /// - Type: stringArray
             public static let attributeDefinitions = "aws.dynamodb.attribute_definitions"
 
-            /// `aws.dynamodb.attributes_to_get`: The value of the `AttributesToGet` request parameter.
+            /// `aws.dynamodb.attributes_to_get` **UNSTABLE**: The value of the `AttributesToGet` request parameter.
             ///
             /// - Stability: development
             /// - Type: stringArray
             public static let attributesToGet = "aws.dynamodb.attributes_to_get"
 
-            /// `aws.dynamodb.consistent_read`: The value of the `ConsistentRead` request parameter.
+            /// `aws.dynamodb.consistent_read` **UNSTABLE**: The value of the `ConsistentRead` request parameter.
             ///
             /// - Stability: development
             /// - Type: boolean
             public static let consistentRead = "aws.dynamodb.consistent_read"
 
-            /// `aws.dynamodb.consumed_capacity`: The JSON-serialized value of each item in the `ConsumedCapacity` response field.
+            /// `aws.dynamodb.consumed_capacity` **UNSTABLE**: The JSON-serialized value of each item in the `ConsumedCapacity` response field.
             ///
             /// - Stability: development
             /// - Type: stringArray
             public static let consumedCapacity = "aws.dynamodb.consumed_capacity"
 
-            /// `aws.dynamodb.count`: The value of the `Count` response parameter.
+            /// `aws.dynamodb.count` **UNSTABLE**: The value of the `Count` response parameter.
             ///
             /// - Stability: development
             /// - Type: int
             /// - Example: `10`
             public static let count = "aws.dynamodb.count"
 
-            /// `aws.dynamodb.exclusive_start_table`: The value of the `ExclusiveStartTableName` request parameter.
+            /// `aws.dynamodb.exclusive_start_table` **UNSTABLE**: The value of the `ExclusiveStartTableName` request parameter.
             ///
             /// - Stability: development
             /// - Type: string
@@ -98,46 +98,46 @@ extension OTelAttribute {
             ///     - `CatsTable`
             public static let exclusiveStartTable = "aws.dynamodb.exclusive_start_table"
 
-            /// `aws.dynamodb.global_secondary_index_updates`: The JSON-serialized value of each item in the `GlobalSecondaryIndexUpdates` request field.
+            /// `aws.dynamodb.global_secondary_index_updates` **UNSTABLE**: The JSON-serialized value of each item in the `GlobalSecondaryIndexUpdates` request field.
             ///
             /// - Stability: development
             /// - Type: stringArray
             public static let globalSecondaryIndexUpdates = "aws.dynamodb.global_secondary_index_updates"
 
-            /// `aws.dynamodb.global_secondary_indexes`: The JSON-serialized value of each item of the `GlobalSecondaryIndexes` request field
+            /// `aws.dynamodb.global_secondary_indexes` **UNSTABLE**: The JSON-serialized value of each item of the `GlobalSecondaryIndexes` request field
             ///
             /// - Stability: development
             /// - Type: stringArray
             public static let globalSecondaryIndexes = "aws.dynamodb.global_secondary_indexes"
 
-            /// `aws.dynamodb.index_name`: The value of the `IndexName` request parameter.
+            /// `aws.dynamodb.index_name` **UNSTABLE**: The value of the `IndexName` request parameter.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `name_to_group`
             public static let indexName = "aws.dynamodb.index_name"
 
-            /// `aws.dynamodb.item_collection_metrics`: The JSON-serialized value of the `ItemCollectionMetrics` response field.
+            /// `aws.dynamodb.item_collection_metrics` **UNSTABLE**: The JSON-serialized value of the `ItemCollectionMetrics` response field.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `{ "string" : [ { "ItemCollectionKey": { "string" : { "B": blob, "BOOL": boolean, "BS": [ blob ], "L": [ "AttributeValue" ], "M": { "string" : "AttributeValue" }, "N": "string", "NS": [ "string" ], "NULL": boolean, "S": "string", "SS": [ "string" ] } }, "SizeEstimateRangeGB": [ number ] } ] }`
             public static let itemCollectionMetrics = "aws.dynamodb.item_collection_metrics"
 
-            /// `aws.dynamodb.limit`: The value of the `Limit` request parameter.
+            /// `aws.dynamodb.limit` **UNSTABLE**: The value of the `Limit` request parameter.
             ///
             /// - Stability: development
             /// - Type: int
             /// - Example: `10`
             public static let limit = "aws.dynamodb.limit"
 
-            /// `aws.dynamodb.local_secondary_indexes`: The JSON-serialized value of each item of the `LocalSecondaryIndexes` request field.
+            /// `aws.dynamodb.local_secondary_indexes` **UNSTABLE**: The JSON-serialized value of each item of the `LocalSecondaryIndexes` request field.
             ///
             /// - Stability: development
             /// - Type: stringArray
             public static let localSecondaryIndexes = "aws.dynamodb.local_secondary_indexes"
 
-            /// `aws.dynamodb.projection`: The value of the `ProjectionExpression` request parameter.
+            /// `aws.dynamodb.projection` **UNSTABLE**: The value of the `ProjectionExpression` request parameter.
             ///
             /// - Stability: development
             /// - Type: string
@@ -147,7 +147,7 @@ extension OTelAttribute {
             ///     - `Title, Description, RelatedItems, ProductReviews`
             public static let projection = "aws.dynamodb.projection"
 
-            /// `aws.dynamodb.provisioned_read_capacity`: The value of the `ProvisionedThroughput.ReadCapacityUnits` request parameter.
+            /// `aws.dynamodb.provisioned_read_capacity` **UNSTABLE**: The value of the `ProvisionedThroughput.ReadCapacityUnits` request parameter.
             ///
             /// - Stability: development
             /// - Type: double
@@ -156,7 +156,7 @@ extension OTelAttribute {
             ///     - `2.0`
             public static let provisionedReadCapacity = "aws.dynamodb.provisioned_read_capacity"
 
-            /// `aws.dynamodb.provisioned_write_capacity`: The value of the `ProvisionedThroughput.WriteCapacityUnits` request parameter.
+            /// `aws.dynamodb.provisioned_write_capacity` **UNSTABLE**: The value of the `ProvisionedThroughput.WriteCapacityUnits` request parameter.
             ///
             /// - Stability: development
             /// - Type: double
@@ -165,27 +165,27 @@ extension OTelAttribute {
             ///     - `2.0`
             public static let provisionedWriteCapacity = "aws.dynamodb.provisioned_write_capacity"
 
-            /// `aws.dynamodb.scan_forward`: The value of the `ScanIndexForward` request parameter.
+            /// `aws.dynamodb.scan_forward` **UNSTABLE**: The value of the `ScanIndexForward` request parameter.
             ///
             /// - Stability: development
             /// - Type: boolean
             public static let scanForward = "aws.dynamodb.scan_forward"
 
-            /// `aws.dynamodb.scanned_count`: The value of the `ScannedCount` response parameter.
+            /// `aws.dynamodb.scanned_count` **UNSTABLE**: The value of the `ScannedCount` response parameter.
             ///
             /// - Stability: development
             /// - Type: int
             /// - Example: `50`
             public static let scannedCount = "aws.dynamodb.scanned_count"
 
-            /// `aws.dynamodb.segment`: The value of the `Segment` request parameter.
+            /// `aws.dynamodb.segment` **UNSTABLE**: The value of the `Segment` request parameter.
             ///
             /// - Stability: development
             /// - Type: int
             /// - Example: `10`
             public static let segment = "aws.dynamodb.segment"
 
-            /// `aws.dynamodb.select`: The value of the `Select` request parameter.
+            /// `aws.dynamodb.select` **UNSTABLE**: The value of the `Select` request parameter.
             ///
             /// - Stability: development
             /// - Type: string
@@ -194,20 +194,20 @@ extension OTelAttribute {
             ///     - `COUNT`
             public static let select = "aws.dynamodb.select"
 
-            /// `aws.dynamodb.table_count`: The number of items in the `TableNames` response parameter.
+            /// `aws.dynamodb.table_count` **UNSTABLE**: The number of items in the `TableNames` response parameter.
             ///
             /// - Stability: development
             /// - Type: int
             /// - Example: `20`
             public static let tableCount = "aws.dynamodb.table_count"
 
-            /// `aws.dynamodb.table_names`: The keys in the `RequestItems` object field.
+            /// `aws.dynamodb.table_names` **UNSTABLE**: The keys in the `RequestItems` object field.
             ///
             /// - Stability: development
             /// - Type: stringArray
             public static let tableNames = "aws.dynamodb.table_names"
 
-            /// `aws.dynamodb.total_segments`: The value of the `TotalSegments` request parameter.
+            /// `aws.dynamodb.total_segments` **UNSTABLE**: The value of the `TotalSegments` request parameter.
             ///
             /// - Stability: development
             /// - Type: int
@@ -217,7 +217,7 @@ extension OTelAttribute {
 
         /// `aws.ecs` namespace
         public enum ecs {
-            /// `aws.ecs.launchtype`: The [launch type](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html) for an ECS task.
+            /// `aws.ecs.launchtype` **UNSTABLE**: The [launch type](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html) for an ECS task.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -227,7 +227,7 @@ extension OTelAttribute {
 
             /// `aws.ecs.cluster` namespace
             public enum cluster {
-                /// `aws.ecs.cluster.arn`: The ARN of an [ECS cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html).
+                /// `aws.ecs.cluster.arn` **UNSTABLE**: The ARN of an [ECS cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html).
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -237,7 +237,7 @@ extension OTelAttribute {
 
             /// `aws.ecs.container` namespace
             public enum container {
-                /// `aws.ecs.container.arn`: The Amazon Resource Name (ARN) of an [ECS container instance](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_instances.html).
+                /// `aws.ecs.container.arn` **UNSTABLE**: The Amazon Resource Name (ARN) of an [ECS container instance](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_instances.html).
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -247,7 +247,7 @@ extension OTelAttribute {
 
             /// `aws.ecs.task` namespace
             public enum task {
-                /// `aws.ecs.task.arn`: The ARN of a running [ECS task](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-account-settings.html#ecs-resource-ids).
+                /// `aws.ecs.task.arn` **UNSTABLE**: The ARN of a running [ECS task](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-account-settings.html#ecs-resource-ids).
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -256,14 +256,14 @@ extension OTelAttribute {
                 ///     - `arn:aws:ecs:us-west-1:123456789123:task/my-cluster/task-id/23ebb8ac-c18f-46c6-8bbe-d55d0e37cfbd`
                 public static let arn = "aws.ecs.task.arn"
 
-                /// `aws.ecs.task.family`: The family name of the [ECS task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) used to create the ECS task.
+                /// `aws.ecs.task.family` **UNSTABLE**: The family name of the [ECS task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) used to create the ECS task.
                 ///
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `opentelemetry-family`
                 public static let family = "aws.ecs.task.family"
 
-                /// `aws.ecs.task.id`: The ID of a running ECS task. The ID MUST be extracted from `task.arn`.
+                /// `aws.ecs.task.id` **UNSTABLE**: The ID of a running ECS task. The ID MUST be extracted from `task.arn`.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -272,7 +272,7 @@ extension OTelAttribute {
                 ///     - `23ebb8ac-c18f-46c6-8bbe-d55d0e37cfbd`
                 public static let id = "aws.ecs.task.id"
 
-                /// `aws.ecs.task.revision`: The revision for the task definition used to create the ECS task.
+                /// `aws.ecs.task.revision` **UNSTABLE**: The revision for the task definition used to create the ECS task.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -287,7 +287,7 @@ extension OTelAttribute {
         public enum eks {
             /// `aws.eks.cluster` namespace
             public enum cluster {
-                /// `aws.eks.cluster.arn`: The ARN of an EKS cluster.
+                /// `aws.eks.cluster.arn` **UNSTABLE**: The ARN of an EKS cluster.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -298,7 +298,7 @@ extension OTelAttribute {
 
         /// `aws.kinesis` namespace
         public enum kinesis {
-            /// `aws.kinesis.stream_name`: The name of the AWS Kinesis [stream](https://docs.aws.amazon.com/streams/latest/dev/introduction.html) the request refers to. Corresponds to the `--stream-name` parameter of the Kinesis [describe-stream](https://docs.aws.amazon.com/cli/latest/reference/kinesis/describe-stream.html) operation.
+            /// `aws.kinesis.stream_name` **UNSTABLE**: The name of the AWS Kinesis [stream](https://docs.aws.amazon.com/streams/latest/dev/introduction.html) the request refers to. Corresponds to the `--stream-name` parameter of the Kinesis [describe-stream](https://docs.aws.amazon.com/cli/latest/reference/kinesis/describe-stream.html) operation.
             ///
             /// - Stability: development
             /// - Type: string
@@ -308,7 +308,7 @@ extension OTelAttribute {
 
         /// `aws.lambda` namespace
         public enum lambda {
-            /// `aws.lambda.invoked_arn`: The full invoked ARN as provided on the `Context` passed to the function (`Lambda-Runtime-Invoked-Function-Arn` header on the `/runtime/invocation/next` applicable).
+            /// `aws.lambda.invoked_arn` **UNSTABLE**: The full invoked ARN as provided on the `Context` passed to the function (`Lambda-Runtime-Invoked-Function-Arn` header on the `/runtime/invocation/next` applicable).
             ///
             /// - Stability: development
             /// - Type: string
@@ -319,7 +319,7 @@ extension OTelAttribute {
 
             /// `aws.lambda.resource_mapping` namespace
             public enum resourceMapping {
-                /// `aws.lambda.resource_mapping.id`: The UUID of the [AWS Lambda EvenSource Mapping](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html). An event source is mapped to a lambda function. It's contents are read by Lambda and used to trigger a function. This isn't available in the lambda execution context or the lambda runtime environtment. This is going to be populated by the AWS SDK for each language when that UUID is present. Some of these operations are Create/Delete/Get/List/Update EventSourceMapping.
+                /// `aws.lambda.resource_mapping.id` **UNSTABLE**: The UUID of the [AWS Lambda EvenSource Mapping](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html). An event source is mapped to a lambda function. It's contents are read by Lambda and used to trigger a function. This isn't available in the lambda execution context or the lambda runtime environtment. This is going to be populated by the AWS SDK for each language when that UUID is present. Some of these operations are Create/Delete/Get/List/Update EventSourceMapping.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -332,7 +332,7 @@ extension OTelAttribute {
         public enum log {
             /// `aws.log.group` namespace
             public enum group {
-                /// `aws.log.group.arns`: The Amazon Resource Name(s) (ARN) of the AWS log group(s).
+                /// `aws.log.group.arns` **UNSTABLE**: The Amazon Resource Name(s) (ARN) of the AWS log group(s).
                 ///
                 /// - Stability: development
                 /// - Type: stringArray
@@ -340,7 +340,7 @@ extension OTelAttribute {
                 /// See the [log group ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format).
                 public static let arns = "aws.log.group.arns"
 
-                /// `aws.log.group.names`: The name(s) of the AWS log group(s) an application is writing to.
+                /// `aws.log.group.names` **UNSTABLE**: The name(s) of the AWS log group(s) an application is writing to.
                 ///
                 /// - Stability: development
                 /// - Type: stringArray
@@ -351,7 +351,7 @@ extension OTelAttribute {
 
             /// `aws.log.stream` namespace
             public enum stream {
-                /// `aws.log.stream.arns`: The ARN(s) of the AWS log stream(s).
+                /// `aws.log.stream.arns` **UNSTABLE**: The ARN(s) of the AWS log stream(s).
                 ///
                 /// - Stability: development
                 /// - Type: stringArray
@@ -359,7 +359,7 @@ extension OTelAttribute {
                 /// See the [log stream ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format). One log group can contain several log streams, so these ARNs necessarily identify both a log group and a log stream.
                 public static let arns = "aws.log.stream.arns"
 
-                /// `aws.log.stream.names`: The name(s) of the AWS log stream(s) an application is writing to.
+                /// `aws.log.stream.names` **UNSTABLE**: The name(s) of the AWS log stream(s) an application is writing to.
                 ///
                 /// - Stability: development
                 /// - Type: stringArray
@@ -369,7 +369,7 @@ extension OTelAttribute {
 
         /// `aws.s3` namespace
         public enum s3 {
-            /// `aws.s3.bucket`: The S3 bucket name the request refers to. Corresponds to the `--bucket` parameter of the [S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/index.html) operations.
+            /// `aws.s3.bucket` **UNSTABLE**: The S3 bucket name the request refers to. Corresponds to the `--bucket` parameter of the [S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/index.html) operations.
             ///
             /// - Stability: development
             /// - Type: string
@@ -379,7 +379,7 @@ extension OTelAttribute {
             /// This applies to almost all S3 operations except `list-buckets`.
             public static let bucket = "aws.s3.bucket"
 
-            /// `aws.s3.copy_source`: The source object (in the form `bucket`/`key`) for the copy operation.
+            /// `aws.s3.copy_source` **UNSTABLE**: The source object (in the form `bucket`/`key`) for the copy operation.
             ///
             /// - Stability: development
             /// - Type: string
@@ -393,7 +393,7 @@ extension OTelAttribute {
             /// - [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html)
             public static let copySource = "aws.s3.copy_source"
 
-            /// `aws.s3.delete`: The delete request container that specifies the objects to be deleted.
+            /// `aws.s3.delete` **UNSTABLE**: The delete request container that specifies the objects to be deleted.
             ///
             /// - Stability: development
             /// - Type: string
@@ -404,7 +404,7 @@ extension OTelAttribute {
             /// [delete-objects operation within the S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/delete-objects.html).
             public static let delete = "aws.s3.delete"
 
-            /// `aws.s3.key`: The S3 object key the request refers to. Corresponds to the `--key` parameter of the [S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/index.html) operations.
+            /// `aws.s3.key` **UNSTABLE**: The S3 object key the request refers to. Corresponds to the `--key` parameter of the [S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/index.html) operations.
             ///
             /// - Stability: development
             /// - Type: string
@@ -428,7 +428,7 @@ extension OTelAttribute {
             /// - [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html)
             public static let key = "aws.s3.key"
 
-            /// `aws.s3.part_number`: The part number of the part being uploaded in a multipart-upload operation. This is a positive integer between 1 and 10,000.
+            /// `aws.s3.part_number` **UNSTABLE**: The part number of the part being uploaded in a multipart-upload operation. This is a positive integer between 1 and 10,000.
             ///
             /// - Stability: development
             /// - Type: int
@@ -440,7 +440,7 @@ extension OTelAttribute {
             /// [upload-part operation within the S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html).
             public static let partNumber = "aws.s3.part_number"
 
-            /// `aws.s3.upload_id`: Upload ID that identifies the multipart upload.
+            /// `aws.s3.upload_id` **UNSTABLE**: Upload ID that identifies the multipart upload.
             ///
             /// - Stability: development
             /// - Type: string
@@ -462,7 +462,7 @@ extension OTelAttribute {
         public enum secretsmanager {
             /// `aws.secretsmanager.secret` namespace
             public enum secret {
-                /// `aws.secretsmanager.secret.arn`: The ARN of the Secret stored in the Secrets Mangger
+                /// `aws.secretsmanager.secret.arn` **UNSTABLE**: The ARN of the Secret stored in the Secrets Mangger
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -475,7 +475,7 @@ extension OTelAttribute {
         public enum sns {
             /// `aws.sns.topic` namespace
             public enum topic {
-                /// `aws.sns.topic.arn`: The ARN of the AWS SNS Topic. An Amazon SNS [topic](https://docs.aws.amazon.com/sns/latest/dg/sns-create-topic.html) is a logical access point that acts as a communication channel.
+                /// `aws.sns.topic.arn` **UNSTABLE**: The ARN of the AWS SNS Topic. An Amazon SNS [topic](https://docs.aws.amazon.com/sns/latest/dg/sns-create-topic.html) is a logical access point that acts as a communication channel.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -488,7 +488,7 @@ extension OTelAttribute {
         public enum sqs {
             /// `aws.sqs.queue` namespace
             public enum queue {
-                /// `aws.sqs.queue.url`: The URL of the AWS SQS Queue. It's a unique identifier for a queue in Amazon Simple Queue Service (SQS) and is used to access the queue and perform actions on it.
+                /// `aws.sqs.queue.url` **UNSTABLE**: The URL of the AWS SQS Queue. It's a unique identifier for a queue in Amazon Simple Queue Service (SQS) and is used to access the queue and perform actions on it.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -501,7 +501,7 @@ extension OTelAttribute {
         public enum stepFunctions {
             /// `aws.step_functions.activity` namespace
             public enum activity {
-                /// `aws.step_functions.activity.arn`: The ARN of the AWS Step Functions Activity.
+                /// `aws.step_functions.activity.arn` **UNSTABLE**: The ARN of the AWS Step Functions Activity.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -511,7 +511,7 @@ extension OTelAttribute {
 
             /// `aws.step_functions.state_machine` namespace
             public enum stateMachine {
-                /// `aws.step_functions.state_machine.arn`: The ARN of the AWS Step Functions State Machine.
+                /// `aws.step_functions.state_machine.arn` **UNSTABLE**: The ARN of the AWS Step Functions State Machine.
                 ///
                 /// - Stability: development
                 /// - Type: string

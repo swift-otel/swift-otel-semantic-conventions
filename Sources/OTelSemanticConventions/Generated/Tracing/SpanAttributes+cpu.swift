@@ -40,14 +40,14 @@ extension SpanAttributes {
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
 
-            /// `cpu.logical_number`: The logical CPU number [0..n-1]
+            /// `cpu.logical_number` **UNSTABLE**: The logical CPU number [0..n-1]
             ///
             /// - Stability: development
             /// - Type: int
             /// - Example: `1`
             public var logicalNumber: SpanAttributeKey<Int> { .init(name: OTelAttribute.cpu.logicalNumber) }
 
-            /// `cpu.mode`: The mode of the CPU
+            /// `cpu.mode` **UNSTABLE**: The mode of the CPU
             ///
             /// - Stability: development
             /// - Type: enum

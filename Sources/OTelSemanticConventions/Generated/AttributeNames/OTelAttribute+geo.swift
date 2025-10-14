@@ -17,7 +17,7 @@ extension OTelAttribute {
     #if Experimental
     /// `geo` namespace
     public enum geo {
-        /// `geo.postal_code`: Postal code associated with the location. Values appropriate for this field may also be known as a postcode or ZIP code and will vary widely from country to country.
+        /// `geo.postal_code` **UNSTABLE**: Postal code associated with the location. Values appropriate for this field may also be known as a postcode or ZIP code and will vary widely from country to country.
         ///
         /// - Stability: development
         /// - Type: string
@@ -26,7 +26,7 @@ extension OTelAttribute {
 
         /// `geo.continent` namespace
         public enum continent {
-            /// `geo.continent.code`: Two-letter code representing continent’s name.
+            /// `geo.continent.code` **UNSTABLE**: Two-letter code representing continent’s name.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -42,7 +42,7 @@ extension OTelAttribute {
 
         /// `geo.country` namespace
         public enum country {
-            /// `geo.country.iso_code`: Two-letter ISO Country Code ([ISO 3166-1 alpha2](https://wikipedia.org/wiki/ISO_3166-1#Codes)).
+            /// `geo.country.iso_code` **UNSTABLE**: Two-letter ISO Country Code ([ISO 3166-1 alpha2](https://wikipedia.org/wiki/ISO_3166-1#Codes)).
             ///
             /// - Stability: development
             /// - Type: string
@@ -52,7 +52,7 @@ extension OTelAttribute {
 
         /// `geo.locality` namespace
         public enum locality {
-            /// `geo.locality.name`: Locality name. Represents the name of a city, town, village, or similar populated place.
+            /// `geo.locality.name` **UNSTABLE**: Locality name. Represents the name of a city, town, village, or similar populated place.
             ///
             /// - Stability: development
             /// - Type: string
@@ -64,14 +64,14 @@ extension OTelAttribute {
 
         /// `geo.location` namespace
         public enum location {
-            /// `geo.location.lat`: Latitude of the geo location in [WGS84](https://wikipedia.org/wiki/World_Geodetic_System#WGS84).
+            /// `geo.location.lat` **UNSTABLE**: Latitude of the geo location in [WGS84](https://wikipedia.org/wiki/World_Geodetic_System#WGS84).
             ///
             /// - Stability: development
             /// - Type: double
             /// - Example: `45.505918`
             public static let lat = "geo.location.lat"
 
-            /// `geo.location.lon`: Longitude of the geo location in [WGS84](https://wikipedia.org/wiki/World_Geodetic_System#WGS84).
+            /// `geo.location.lon` **UNSTABLE**: Longitude of the geo location in [WGS84](https://wikipedia.org/wiki/World_Geodetic_System#WGS84).
             ///
             /// - Stability: development
             /// - Type: double
@@ -81,7 +81,7 @@ extension OTelAttribute {
 
         /// `geo.region` namespace
         public enum region {
-            /// `geo.region.iso_code`: Region ISO code ([ISO 3166-2](https://wikipedia.org/wiki/ISO_3166-2)).
+            /// `geo.region.iso_code` **UNSTABLE**: Region ISO code ([ISO 3166-2](https://wikipedia.org/wiki/ISO_3166-2)).
             ///
             /// - Stability: development
             /// - Type: string

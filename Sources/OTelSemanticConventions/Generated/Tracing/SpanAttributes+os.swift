@@ -40,7 +40,7 @@ extension SpanAttributes {
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
 
-            /// `os.build_id`: Unique identifier for a particular build or compilation of the operating system.
+            /// `os.build_id` **UNSTABLE**: Unique identifier for a particular build or compilation of the operating system.
             ///
             /// - Stability: development
             /// - Type: string
@@ -50,7 +50,7 @@ extension SpanAttributes {
             ///     - `22621`
             public var buildId: SpanAttributeKey<String> { .init(name: OTelAttribute.os.buildId) }
 
-            /// `os.description`: Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands.
+            /// `os.description` **UNSTABLE**: Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands.
             ///
             /// - Stability: development
             /// - Type: string
@@ -59,7 +59,7 @@ extension SpanAttributes {
             ///     - `Ubuntu 18.04.1 LTS`
             public var description: SpanAttributeKey<String> { .init(name: OTelAttribute.os.description) }
 
-            /// `os.name`: Human readable operating system name.
+            /// `os.name` **UNSTABLE**: Human readable operating system name.
             ///
             /// - Stability: development
             /// - Type: string
@@ -69,7 +69,7 @@ extension SpanAttributes {
             ///     - `Ubuntu`
             public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.os.name) }
 
-            /// `os.type`: The operating system type.
+            /// `os.type` **UNSTABLE**: The operating system type.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -97,7 +97,7 @@ extension SpanAttributes {
                 }
             }
 
-            /// `os.version`: The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes).
+            /// `os.version` **UNSTABLE**: The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes).
             ///
             /// - Stability: development
             /// - Type: string

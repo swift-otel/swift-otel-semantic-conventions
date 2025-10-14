@@ -17,35 +17,35 @@ extension OTelAttribute {
     #if Experimental
     /// `hw` namespace
     public enum hw {
-        /// `hw.bios_version`: BIOS version of the hardware component
+        /// `hw.bios_version` **UNSTABLE**: BIOS version of the hardware component
         ///
         /// - Stability: development
         /// - Type: string
         /// - Example: `1.2.3`
         public static let biosVersion = "hw.bios_version"
 
-        /// `hw.driver_version`: Driver version for the hardware component
+        /// `hw.driver_version` **UNSTABLE**: Driver version for the hardware component
         ///
         /// - Stability: development
         /// - Type: string
         /// - Example: `10.2.1-3`
         public static let driverVersion = "hw.driver_version"
 
-        /// `hw.firmware_version`: Firmware version of the hardware component
+        /// `hw.firmware_version` **UNSTABLE**: Firmware version of the hardware component
         ///
         /// - Stability: development
         /// - Type: string
         /// - Example: `2.0.1`
         public static let firmwareVersion = "hw.firmware_version"
 
-        /// `hw.id`: An identifier for the hardware component, unique within the monitored host
+        /// `hw.id` **UNSTABLE**: An identifier for the hardware component, unique within the monitored host
         ///
         /// - Stability: development
         /// - Type: string
         /// - Example: `win32battery_battery_testsysa33_1`
         public static let id = "hw.id"
 
-        /// `hw.limit_type`: Type of limit for hardware components
+        /// `hw.limit_type` **UNSTABLE**: Type of limit for hardware components
         ///
         /// - Stability: development
         /// - Type: enum
@@ -60,7 +60,7 @@ extension OTelAttribute {
         ///     - `turbo`: Turbo
         public static let limitType = "hw.limit_type"
 
-        /// `hw.model`: Descriptive model name of the hardware component
+        /// `hw.model` **UNSTABLE**: Descriptive model name of the hardware component
         ///
         /// - Stability: development
         /// - Type: string
@@ -70,21 +70,21 @@ extension OTelAttribute {
         ///     - `Dell XPS 15 Battery`
         public static let model = "hw.model"
 
-        /// `hw.name`: An easily-recognizable name for the hardware component
+        /// `hw.name` **UNSTABLE**: An easily-recognizable name for the hardware component
         ///
         /// - Stability: development
         /// - Type: string
         /// - Example: `eth0`
         public static let name = "hw.name"
 
-        /// `hw.parent`: Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller)
+        /// `hw.parent` **UNSTABLE**: Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller)
         ///
         /// - Stability: development
         /// - Type: string
         /// - Example: `dellStorage_perc_0`
         public static let parent = "hw.parent"
 
-        /// `hw.sensor_location`: Location of the sensor
+        /// `hw.sensor_location` **UNSTABLE**: Location of the sensor
         ///
         /// - Stability: development
         /// - Type: string
@@ -100,14 +100,14 @@ extension OTelAttribute {
         ///     - `CPU_VCORE`
         public static let sensorLocation = "hw.sensor_location"
 
-        /// `hw.serial_number`: Serial number of the hardware component
+        /// `hw.serial_number` **UNSTABLE**: Serial number of the hardware component
         ///
         /// - Stability: development
         /// - Type: string
         /// - Example: `CNFCP0123456789`
         public static let serialNumber = "hw.serial_number"
 
-        /// `hw.state`: The current state of the component
+        /// `hw.state` **UNSTABLE**: The current state of the component
         ///
         /// - Stability: development
         /// - Type: enum
@@ -118,7 +118,7 @@ extension OTelAttribute {
         ///     - `predicted_failure`: Predicted Failure
         public static let state = "hw.state"
 
-        /// `hw.type`: Type of the component
+        /// `hw.type` **UNSTABLE**: Type of the component
         ///
         /// - Stability: development
         /// - Type: enum
@@ -140,7 +140,7 @@ extension OTelAttribute {
         /// Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
         public static let `type` = "hw.type"
 
-        /// `hw.vendor`: Vendor name of the hardware component
+        /// `hw.vendor` **UNSTABLE**: Vendor name of the hardware component
         ///
         /// - Stability: development
         /// - Type: string
@@ -155,7 +155,7 @@ extension OTelAttribute {
 
         /// `hw.battery` namespace
         public enum battery {
-            /// `hw.battery.capacity`: Design capacity in Watts-hours or Amper-hours
+            /// `hw.battery.capacity` **UNSTABLE**: Design capacity in Watts-hours or Amper-hours
             ///
             /// - Stability: development
             /// - Type: string
@@ -164,7 +164,7 @@ extension OTelAttribute {
             ///     - `50Wh`
             public static let capacity = "hw.battery.capacity"
 
-            /// `hw.battery.chemistry`: Battery [chemistry](https://schemas.dmtf.org/wbem/cim-html/2.31.0/CIM_Battery.html), e.g. Lithium-Ion, Nickel-Cadmium, etc.
+            /// `hw.battery.chemistry` **UNSTABLE**: Battery [chemistry](https://schemas.dmtf.org/wbem/cim-html/2.31.0/CIM_Battery.html), e.g. Lithium-Ion, Nickel-Cadmium, etc.
             ///
             /// - Stability: development
             /// - Type: string
@@ -173,7 +173,7 @@ extension OTelAttribute {
             ///     - `NiMH`
             public static let chemistry = "hw.battery.chemistry"
 
-            /// `hw.battery.state`: The current state of the battery
+            /// `hw.battery.state` **UNSTABLE**: The current state of the battery
             ///
             /// - Stability: development
             /// - Type: enum
@@ -184,7 +184,7 @@ extension OTelAttribute {
 
         /// `hw.enclosure` namespace
         public enum enclosure {
-            /// `hw.enclosure.type`: Type of the enclosure (useful for modular systems)
+            /// `hw.enclosure.type` **UNSTABLE**: Type of the enclosure (useful for modular systems)
             ///
             /// - Stability: development
             /// - Type: string
@@ -197,7 +197,7 @@ extension OTelAttribute {
 
         /// `hw.gpu` namespace
         public enum gpu {
-            /// `hw.gpu.task`: Type of task the GPU is performing
+            /// `hw.gpu.task` **UNSTABLE**: Type of task the GPU is performing
             ///
             /// - Stability: development
             /// - Type: enum
@@ -209,7 +209,7 @@ extension OTelAttribute {
 
         /// `hw.logical_disk` namespace
         public enum logicalDisk {
-            /// `hw.logical_disk.raid_level`: RAID Level of the logical disk
+            /// `hw.logical_disk.raid_level` **UNSTABLE**: RAID Level of the logical disk
             ///
             /// - Stability: development
             /// - Type: string
@@ -219,7 +219,7 @@ extension OTelAttribute {
             ///     - `RAID10`
             public static let raidLevel = "hw.logical_disk.raid_level"
 
-            /// `hw.logical_disk.state`: State of the logical disk space usage
+            /// `hw.logical_disk.state` **UNSTABLE**: State of the logical disk space usage
             ///
             /// - Stability: development
             /// - Type: enum
@@ -230,7 +230,7 @@ extension OTelAttribute {
 
         /// `hw.memory` namespace
         public enum memory {
-            /// `hw.memory.type`: Type of the memory module
+            /// `hw.memory.type` **UNSTABLE**: Type of the memory module
             ///
             /// - Stability: development
             /// - Type: string
@@ -243,13 +243,13 @@ extension OTelAttribute {
 
         /// `hw.network` namespace
         public enum network {
-            /// `hw.network.logical_addresses`: Logical addresses of the adapter (e.g. IP address, or WWPN)
+            /// `hw.network.logical_addresses` **UNSTABLE**: Logical addresses of the adapter (e.g. IP address, or WWPN)
             ///
             /// - Stability: development
             /// - Type: stringArray
             public static let logicalAddresses = "hw.network.logical_addresses"
 
-            /// `hw.network.physical_address`: Physical address of the adapter (e.g. MAC address, or WWNN)
+            /// `hw.network.physical_address` **UNSTABLE**: Physical address of the adapter (e.g. MAC address, or WWNN)
             ///
             /// - Stability: development
             /// - Type: string
@@ -259,7 +259,7 @@ extension OTelAttribute {
 
         /// `hw.physical_disk` namespace
         public enum physicalDisk {
-            /// `hw.physical_disk.smart_attribute`: [S.M.A.R.T.](https://wikipedia.org/wiki/S.M.A.R.T.) (Self-Monitoring, Analysis, and Reporting Technology) attribute of the physical disk
+            /// `hw.physical_disk.smart_attribute` **UNSTABLE**: [S.M.A.R.T.](https://wikipedia.org/wiki/S.M.A.R.T.) (Self-Monitoring, Analysis, and Reporting Technology) attribute of the physical disk
             ///
             /// - Stability: development
             /// - Type: string
@@ -269,14 +269,14 @@ extension OTelAttribute {
             ///     - `Raw Read Error Rate`
             public static let smartAttribute = "hw.physical_disk.smart_attribute"
 
-            /// `hw.physical_disk.state`: State of the physical disk endurance utilization
+            /// `hw.physical_disk.state` **UNSTABLE**: State of the physical disk endurance utilization
             ///
             /// - Stability: development
             /// - Type: enum
             ///     - `remaining`: Remaining
             public static let state = "hw.physical_disk.state"
 
-            /// `hw.physical_disk.type`: Type of the physical disk
+            /// `hw.physical_disk.type` **UNSTABLE**: Type of the physical disk
             ///
             /// - Stability: development
             /// - Type: string
@@ -289,7 +289,7 @@ extension OTelAttribute {
 
         /// `hw.tape_drive` namespace
         public enum tapeDrive {
-            /// `hw.tape_drive.operation_type`: Type of tape drive operation
+            /// `hw.tape_drive.operation_type` **UNSTABLE**: Type of tape drive operation
             ///
             /// - Stability: development
             /// - Type: enum

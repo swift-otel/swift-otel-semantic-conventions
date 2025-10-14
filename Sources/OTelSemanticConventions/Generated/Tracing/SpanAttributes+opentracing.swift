@@ -40,7 +40,7 @@ extension SpanAttributes {
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
 
-            /// `opentracing.ref_type`: Parent-child Reference type
+            /// `opentracing.ref_type` **UNSTABLE**: Parent-child Reference type
             ///
             /// - Stability: development
             /// - Type: enum

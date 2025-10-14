@@ -19,7 +19,7 @@ extension OTelAttribute {
     public enum oci {
         /// `oci.manifest` namespace
         public enum manifest {
-            /// `oci.manifest.digest`: The digest of the OCI image manifest. For container images specifically is the digest by which the container image is known.
+            /// `oci.manifest.digest` **UNSTABLE**: The digest of the OCI image manifest. For container images specifically is the digest by which the container image is known.
             ///
             /// - Stability: development
             /// - Type: string

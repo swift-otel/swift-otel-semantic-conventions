@@ -40,7 +40,7 @@ extension SpanAttributes {
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
 
-            /// `host.arch`: The CPU architecture the host system is running on.
+            /// `host.arch` **UNSTABLE**: The CPU architecture the host system is running on.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -64,14 +64,14 @@ extension SpanAttributes {
                 }
             }
 
-            /// `host.id`: Unique host ID. For Cloud, this must be the instance_id assigned by the cloud provider. For non-containerized systems, this should be the `machine-id`. See the table below for the sources to use to determine the `machine-id` based on operating system.
+            /// `host.id` **UNSTABLE**: Unique host ID. For Cloud, this must be the instance_id assigned by the cloud provider. For non-containerized systems, this should be the `machine-id`. See the table below for the sources to use to determine the `machine-id` based on operating system.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `fdbf79e8af94cb7f9e8df36789187052`
             public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.host.id) }
 
-            /// `host.ip`: Available IP addresses of the host, excluding loopback interfaces.
+            /// `host.ip` **UNSTABLE**: Available IP addresses of the host, excluding loopback interfaces.
             ///
             /// - Stability: development
             /// - Type: stringArray
@@ -79,7 +79,7 @@ extension SpanAttributes {
             /// IPv4 Addresses MUST be specified in dotted-quad notation. IPv6 addresses MUST be specified in the [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html) format.
             public var ip: SpanAttributeKey<[String]> { .init(name: OTelAttribute.host.ip) }
 
-            /// `host.mac`: Available MAC addresses of the host, excluding loopback interfaces.
+            /// `host.mac` **UNSTABLE**: Available MAC addresses of the host, excluding loopback interfaces.
             ///
             /// - Stability: development
             /// - Type: stringArray
@@ -87,14 +87,14 @@ extension SpanAttributes {
             /// MAC Addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf): as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
             public var mac: SpanAttributeKey<[String]> { .init(name: OTelAttribute.host.mac) }
 
-            /// `host.name`: Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user.
+            /// `host.name` **UNSTABLE**: Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `opentelemetry-test`
             public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.host.name) }
 
-            /// `host.type`: Type of host. For Cloud, this must be the machine type.
+            /// `host.type` **UNSTABLE**: Type of host. For Cloud, this must be the machine type.
             ///
             /// - Stability: development
             /// - Type: string
@@ -123,7 +123,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `host.cpu.family`: Family or generation of the CPU.
+                /// `host.cpu.family` **UNSTABLE**: Family or generation of the CPU.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -132,7 +132,7 @@ extension SpanAttributes {
                 ///     - `PA-RISC 1.1e`
                 public var family: SpanAttributeKey<String> { .init(name: OTelAttribute.host.cpu.family) }
 
-                /// `host.cpu.stepping`: Stepping or core revisions.
+                /// `host.cpu.stepping` **UNSTABLE**: Stepping or core revisions.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -185,7 +185,7 @@ extension SpanAttributes {
                     public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                         public init() {}
 
-                        /// `host.cpu.cache.l2.size`: The amount of level 2 memory cache available to the processor (in Bytes).
+                        /// `host.cpu.cache.l2.size` **UNSTABLE**: The amount of level 2 memory cache available to the processor (in Bytes).
                         ///
                         /// - Stability: development
                         /// - Type: int
@@ -216,7 +216,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `host.cpu.model.id`: Model identifier. It provides more granular information about the CPU, distinguishing it from other CPUs within the same family.
+                    /// `host.cpu.model.id` **UNSTABLE**: Model identifier. It provides more granular information about the CPU, distinguishing it from other CPUs within the same family.
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -225,7 +225,7 @@ extension SpanAttributes {
                     ///     - `9000/778/B180L`
                     public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.host.cpu.model.id) }
 
-                    /// `host.cpu.model.name`: Model designation of the processor.
+                    /// `host.cpu.model.name` **UNSTABLE**: Model designation of the processor.
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -255,7 +255,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `host.cpu.vendor.id`: Processor manufacturer identifier. A maximum 12-character string.
+                    /// `host.cpu.vendor.id` **UNSTABLE**: Processor manufacturer identifier. A maximum 12-character string.
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -288,14 +288,14 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `host.image.id`: VM image ID or host OS image ID. For Cloud, this value is from the provider.
+                /// `host.image.id` **UNSTABLE**: VM image ID or host OS image ID. For Cloud, this value is from the provider.
                 ///
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `ami-07b06b442921831e5`
                 public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.host.image.id) }
 
-                /// `host.image.name`: Name of the VM image or OS install the host was instantiated from.
+                /// `host.image.name` **UNSTABLE**: Name of the VM image or OS install the host was instantiated from.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -304,7 +304,7 @@ extension SpanAttributes {
                 ///     - `CentOS-8-x86_64-1905`
                 public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.host.image.name) }
 
-                /// `host.image.version`: The version string of the VM image or host OS as defined in [Version Attributes](/docs/resource/README.md#version-attributes).
+                /// `host.image.version` **UNSTABLE**: The version string of the VM image or host OS as defined in [Version Attributes](/docs/resource/README.md#version-attributes).
                 ///
                 /// - Stability: development
                 /// - Type: string

@@ -17,7 +17,7 @@ extension OTelAttribute {
     #if Experimental
     /// `app` namespace
     public enum app {
-        /// `app.build_id`: Unique identifier for a particular build or compilation of the application.
+        /// `app.build_id` **UNSTABLE**: Unique identifier for a particular build or compilation of the application.
         ///
         /// - Stability: development
         /// - Type: string
@@ -29,7 +29,7 @@ extension OTelAttribute {
 
         /// `app.installation` namespace
         public enum installation {
-            /// `app.installation.id`: A unique identifier representing the installation of an application on a specific device
+            /// `app.installation.id` **UNSTABLE**: A unique identifier representing the installation of an application on a specific device
             ///
             /// - Stability: development
             /// - Type: string
@@ -57,7 +57,7 @@ extension OTelAttribute {
 
         /// `app.jank` namespace
         public enum jank {
-            /// `app.jank.frame_count`: A number of frame renders that experienced jank.
+            /// `app.jank.frame_count` **UNSTABLE**: A number of frame renders that experienced jank.
             ///
             /// - Stability: development
             /// - Type: int
@@ -68,7 +68,7 @@ extension OTelAttribute {
             /// Depending on platform limitations, the value provided MAY be approximation.
             public static let frameCount = "app.jank.frame_count"
 
-            /// `app.jank.period`: The time period, in seconds, for which this jank is being reported.
+            /// `app.jank.period` **UNSTABLE**: The time period, in seconds, for which this jank is being reported.
             ///
             /// - Stability: development
             /// - Type: double
@@ -78,7 +78,7 @@ extension OTelAttribute {
             ///     - `10.24`
             public static let period = "app.jank.period"
 
-            /// `app.jank.threshold`: The minimum rendering threshold for this jank, in seconds.
+            /// `app.jank.threshold` **UNSTABLE**: The minimum rendering threshold for this jank, in seconds.
             ///
             /// - Stability: development
             /// - Type: double
@@ -93,7 +93,7 @@ extension OTelAttribute {
         public enum screen {
             /// `app.screen.coordinate` namespace
             public enum coordinate {
-                /// `app.screen.coordinate.x`: The x (horizontal) coordinate of a screen coordinate, in screen pixels.
+                /// `app.screen.coordinate.x` **UNSTABLE**: The x (horizontal) coordinate of a screen coordinate, in screen pixels.
                 ///
                 /// - Stability: development
                 /// - Type: int
@@ -102,7 +102,7 @@ extension OTelAttribute {
                 ///     - `131`
                 public static let x = "app.screen.coordinate.x"
 
-                /// `app.screen.coordinate.y`: The y (vertical) component of a screen coordinate, in screen pixels.
+                /// `app.screen.coordinate.y` **UNSTABLE**: The y (vertical) component of a screen coordinate, in screen pixels.
                 ///
                 /// - Stability: development
                 /// - Type: int
@@ -115,7 +115,7 @@ extension OTelAttribute {
 
         /// `app.widget` namespace
         public enum widget {
-            /// `app.widget.id`: An identifier that uniquely differentiates this widget from other widgets in the same application.
+            /// `app.widget.id` **UNSTABLE**: An identifier that uniquely differentiates this widget from other widgets in the same application.
             ///
             /// - Stability: development
             /// - Type: string
@@ -126,7 +126,7 @@ extension OTelAttribute {
             /// A widget is an application component, typically an on-screen visual GUI element.
             public static let id = "app.widget.id"
 
-            /// `app.widget.name`: The name of an application widget.
+            /// `app.widget.name` **UNSTABLE**: The name of an application widget.
             ///
             /// - Stability: development
             /// - Type: string

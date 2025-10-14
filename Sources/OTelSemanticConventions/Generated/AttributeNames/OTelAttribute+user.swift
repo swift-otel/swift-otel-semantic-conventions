@@ -17,21 +17,21 @@ extension OTelAttribute {
     #if Experimental
     /// `user` namespace
     public enum user {
-        /// `user.email`: User email address.
+        /// `user.email` **UNSTABLE**: User email address.
         ///
         /// - Stability: development
         /// - Type: string
         /// - Example: `a.einstein@example.com`
         public static let email = "user.email"
 
-        /// `user.full_name`: User's full name
+        /// `user.full_name` **UNSTABLE**: User's full name
         ///
         /// - Stability: development
         /// - Type: string
         /// - Example: `Albert Einstein`
         public static let fullName = "user.full_name"
 
-        /// `user.hash`: Unique user hash to correlate information for a user in anonymized form.
+        /// `user.hash` **UNSTABLE**: Unique user hash to correlate information for a user in anonymized form.
         ///
         /// - Stability: development
         /// - Type: string
@@ -40,21 +40,21 @@ extension OTelAttribute {
         /// Useful if `user.id` or `user.name` contain confidential information and cannot be used.
         public static let hash = "user.hash"
 
-        /// `user.id`: Unique identifier of the user.
+        /// `user.id` **UNSTABLE**: Unique identifier of the user.
         ///
         /// - Stability: development
         /// - Type: string
         /// - Example: `S-1-5-21-202424912787-2692429404-2351956786-1000`
         public static let id = "user.id"
 
-        /// `user.name`: Short name or login/username of the user.
+        /// `user.name` **UNSTABLE**: Short name or login/username of the user.
         ///
         /// - Stability: development
         /// - Type: string
         /// - Example: `a.einstein`
         public static let name = "user.name"
 
-        /// `user.roles`: Array of user roles at the time of the event.
+        /// `user.roles` **UNSTABLE**: Array of user roles at the time of the event.
         ///
         /// - Stability: development
         /// - Type: stringArray

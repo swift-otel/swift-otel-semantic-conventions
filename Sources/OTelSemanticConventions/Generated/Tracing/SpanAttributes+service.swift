@@ -49,7 +49,7 @@ extension SpanAttributes {
             public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.service.name) }
 
             #if Experimental
-            /// `service.namespace`: A namespace for `service.name`.
+            /// `service.namespace` **UNSTABLE**: A namespace for `service.name`.
             ///
             /// - Stability: development
             /// - Type: string
@@ -91,7 +91,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `service.instance.id`: The string ID of the service instance.
+                /// `service.instance.id` **UNSTABLE**: The string ID of the service instance.
                 ///
                 /// - Stability: development
                 /// - Type: string

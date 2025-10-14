@@ -62,7 +62,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `cloudfoundry.app.id`: The guid of the application.
+                /// `cloudfoundry.app.id` **UNSTABLE**: The guid of the application.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -73,7 +73,7 @@ extension SpanAttributes {
                 /// reported by `cf app <app-name> --guid`.
                 public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.cloudfoundry.app.id) }
 
-                /// `cloudfoundry.app.name`: The name of the application.
+                /// `cloudfoundry.app.name` **UNSTABLE**: The name of the application.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -106,7 +106,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `cloudfoundry.app.instance.id`: The index of the application instance. 0 when just one instance is active.
+                    /// `cloudfoundry.app.instance.id` **UNSTABLE**: The index of the application instance. 0 when just one instance is active.
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -147,7 +147,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `cloudfoundry.org.id`: The guid of the CloudFoundry org the application is running in.
+                /// `cloudfoundry.org.id` **UNSTABLE**: The guid of the CloudFoundry org the application is running in.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -158,7 +158,7 @@ extension SpanAttributes {
                 /// reported by `cf org <org-name> --guid`.
                 public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.cloudfoundry.org.id) }
 
-                /// `cloudfoundry.org.name`: The name of the CloudFoundry organization the app is running in.
+                /// `cloudfoundry.org.name` **UNSTABLE**: The name of the CloudFoundry organization the app is running in.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -192,7 +192,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `cloudfoundry.process.id`: The UID identifying the process.
+                /// `cloudfoundry.process.id` **UNSTABLE**: The UID identifying the process.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -204,7 +204,7 @@ extension SpanAttributes {
                 /// For system components, this could be the actual PID.
                 public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.cloudfoundry.process.id) }
 
-                /// `cloudfoundry.process.type`: The type of process.
+                /// `cloudfoundry.process.type` **UNSTABLE**: The type of process.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -238,7 +238,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `cloudfoundry.space.id`: The guid of the CloudFoundry space the application is running in.
+                /// `cloudfoundry.space.id` **UNSTABLE**: The guid of the CloudFoundry space the application is running in.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -249,7 +249,7 @@ extension SpanAttributes {
                 /// reported by `cf space <space-name> --guid`.
                 public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.cloudfoundry.space.id) }
 
-                /// `cloudfoundry.space.name`: The name of the CloudFoundry space the application is running in.
+                /// `cloudfoundry.space.name` **UNSTABLE**: The name of the CloudFoundry space the application is running in.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -283,7 +283,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `cloudfoundry.system.id`: A guid or another name describing the event source.
+                /// `cloudfoundry.system.id` **UNSTABLE**: A guid or another name describing the event source.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -322,7 +322,7 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `cloudfoundry.system.instance.id`: A guid describing the concrete instance of the event source.
+                    /// `cloudfoundry.system.instance.id` **UNSTABLE**: A guid describing the concrete instance of the event source.
                     ///
                     /// - Stability: development
                     /// - Type: string

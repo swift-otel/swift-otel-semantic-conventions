@@ -19,7 +19,7 @@ extension OTelAttribute {
     public enum zos {
         /// `zos.smf` namespace
         public enum smf {
-            /// `zos.smf.id`: The System Management Facility (SMF) Identifier uniquely identified a z/OS system within a SYSPLEX or mainframe environment and is used for system and performance analysis.
+            /// `zos.smf.id` **UNSTABLE**: The System Management Facility (SMF) Identifier uniquely identified a z/OS system within a SYSPLEX or mainframe environment and is used for system and performance analysis.
             ///
             /// - Stability: development
             /// - Type: string
@@ -29,7 +29,7 @@ extension OTelAttribute {
 
         /// `zos.sysplex` namespace
         public enum sysplex {
-            /// `zos.sysplex.name`: The name of the SYSPLEX to which the z/OS system belongs too.
+            /// `zos.sysplex.name` **UNSTABLE**: The name of the SYSPLEX to which the z/OS system belongs too.
             ///
             /// - Stability: development
             /// - Type: string

@@ -62,7 +62,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `oci.manifest.digest`: The digest of the OCI image manifest. For container images specifically is the digest by which the container image is known.
+                /// `oci.manifest.digest` **UNSTABLE**: The digest of the OCI image manifest. For container images specifically is the digest by which the container image is known.
                 ///
                 /// - Stability: development
                 /// - Type: string

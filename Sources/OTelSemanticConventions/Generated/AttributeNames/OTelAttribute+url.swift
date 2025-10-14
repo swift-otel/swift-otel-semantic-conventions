@@ -17,7 +17,7 @@ extension OTelAttribute {
     /// `url` namespace
     public enum url {
         #if Experimental
-        /// `url.domain`: Domain extracted from the `url.full`, such as "opentelemetry.io".
+        /// `url.domain` **UNSTABLE**: Domain extracted from the `url.full`, such as "opentelemetry.io".
         ///
         /// - Stability: development
         /// - Type: string
@@ -32,7 +32,7 @@ extension OTelAttribute {
         #endif
 
         #if Experimental
-        /// `url.extension`: The file extension extracted from the `url.full`, excluding the leading dot.
+        /// `url.extension` **UNSTABLE**: The file extension extracted from the `url.full`, excluding the leading dot.
         ///
         /// - Stability: development
         /// - Type: string
@@ -85,7 +85,7 @@ extension OTelAttribute {
         public static let full = "url.full"
 
         #if Experimental
-        /// `url.original`: Unmodified original URL as seen in the event source.
+        /// `url.original` **UNSTABLE**: Unmodified original URL as seen in the event source.
         ///
         /// - Stability: development
         /// - Type: string
@@ -108,7 +108,7 @@ extension OTelAttribute {
         public static let path = "url.path"
 
         #if Experimental
-        /// `url.port`: Port extracted from the `url.full`
+        /// `url.port` **UNSTABLE**: Port extracted from the `url.full`
         ///
         /// - Stability: development
         /// - Type: int
@@ -139,7 +139,7 @@ extension OTelAttribute {
         public static let query = "url.query"
 
         #if Experimental
-        /// `url.registered_domain`: The highest registered url domain, stripped of the subdomain.
+        /// `url.registered_domain` **UNSTABLE**: The highest registered url domain, stripped of the subdomain.
         ///
         /// - Stability: development
         /// - Type: string
@@ -162,7 +162,7 @@ extension OTelAttribute {
         public static let scheme = "url.scheme"
 
         #if Experimental
-        /// `url.subdomain`: The subdomain portion of a fully qualified domain name includes all of the names except the host name under the registered_domain. In a partially qualified domain, or if the qualification level of the full name cannot be determined, subdomain contains all of the names below the registered domain.
+        /// `url.subdomain` **UNSTABLE**: The subdomain portion of a fully qualified domain name includes all of the names except the host name under the registered_domain. In a partially qualified domain, or if the qualification level of the full name cannot be determined, subdomain contains all of the names below the registered domain.
         ///
         /// - Stability: development
         /// - Type: string
@@ -175,7 +175,7 @@ extension OTelAttribute {
         #endif
 
         #if Experimental
-        /// `url.template`: The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2).
+        /// `url.template` **UNSTABLE**: The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2).
         ///
         /// - Stability: development
         /// - Type: string
@@ -187,7 +187,7 @@ extension OTelAttribute {
         #endif
 
         #if Experimental
-        /// `url.top_level_domain`: The effective top level domain (eTLD), also known as the domain suffix, is the last part of the domain name. For example, the top level domain for example.com is `com`.
+        /// `url.top_level_domain` **UNSTABLE**: The effective top level domain (eTLD), also known as the domain suffix, is the last part of the domain name. For example, the top level domain for example.com is `com`.
         ///
         /// - Stability: development
         /// - Type: string

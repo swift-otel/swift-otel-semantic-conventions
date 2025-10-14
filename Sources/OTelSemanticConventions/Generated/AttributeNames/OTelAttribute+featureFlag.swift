@@ -17,14 +17,14 @@ extension OTelAttribute {
     #if Experimental
     /// `feature_flag` namespace
     public enum featureFlag {
-        /// `feature_flag.key`: The lookup key of the feature flag.
+        /// `feature_flag.key` **UNSTABLE**: The lookup key of the feature flag.
         ///
         /// - Stability: releaseCandidate
         /// - Type: string
         /// - Example: `logo-color`
         public static let key = "feature_flag.key"
 
-        /// `feature_flag.provider_name`: Deprecated, use `feature_flag.provider.name` instead.
+        /// `feature_flag.provider_name` **UNSTABLE**: Deprecated, use `feature_flag.provider.name` instead.
         ///
         /// - Stability: development
         /// - Type: string
@@ -32,7 +32,7 @@ extension OTelAttribute {
         @available(*, deprecated, renamed: "OTelAttribute.featureFlag.provider.name")
         public static let providerName = "feature_flag.provider_name"
 
-        /// `feature_flag.variant`: Deprecated, use `feature_flag.result.variant` instead.
+        /// `feature_flag.variant` **UNSTABLE**: Deprecated, use `feature_flag.result.variant` instead.
         ///
         /// - Stability: development
         /// - Type: string
@@ -43,7 +43,7 @@ extension OTelAttribute {
         @available(*, deprecated, renamed: "OTelAttribute.featureFlag.result.variant")
         public static let variant = "feature_flag.variant"
 
-        /// `feature_flag.version`: The version of the ruleset used during the evaluation. This may be any stable value which uniquely identifies the ruleset.
+        /// `feature_flag.version` **UNSTABLE**: The version of the ruleset used during the evaluation. This may be any stable value which uniquely identifies the ruleset.
         ///
         /// - Stability: releaseCandidate
         /// - Type: string
@@ -54,7 +54,7 @@ extension OTelAttribute {
 
         /// `feature_flag.context` namespace
         public enum context {
-            /// `feature_flag.context.id`: The unique identifier for the flag evaluation context. For example, the targeting key.
+            /// `feature_flag.context.id` **UNSTABLE**: The unique identifier for the flag evaluation context. For example, the targeting key.
             ///
             /// - Stability: releaseCandidate
             /// - Type: string
@@ -64,7 +64,7 @@ extension OTelAttribute {
 
         /// `feature_flag.evaluation` namespace
         public enum evaluation {
-            /// `feature_flag.evaluation.reason`: Deprecated, use `feature_flag.result.reason` instead.
+            /// `feature_flag.evaluation.reason` **UNSTABLE**: Deprecated, use `feature_flag.result.reason` instead.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -87,7 +87,7 @@ extension OTelAttribute {
 
             /// `feature_flag.evaluation.error` namespace
             public enum error {
-                /// `feature_flag.evaluation.error.message`: Deprecated, use `error.message` instead.
+                /// `feature_flag.evaluation.error.message` **UNSTABLE**: Deprecated, use `error.message` instead.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -99,7 +99,7 @@ extension OTelAttribute {
 
         /// `feature_flag.provider` namespace
         public enum provider {
-            /// `feature_flag.provider.name`: Identifies the feature flag provider.
+            /// `feature_flag.provider.name` **UNSTABLE**: Identifies the feature flag provider.
             ///
             /// - Stability: releaseCandidate
             /// - Type: string
@@ -109,7 +109,7 @@ extension OTelAttribute {
 
         /// `feature_flag.result` namespace
         public enum result {
-            /// `feature_flag.result.reason`: The reason code which shows how a feature flag value was determined.
+            /// `feature_flag.result.reason` **UNSTABLE**: The reason code which shows how a feature flag value was determined.
             ///
             /// - Stability: releaseCandidate
             /// - Type: enum
@@ -129,7 +129,7 @@ extension OTelAttribute {
             ///     - `default`
             public static let reason = "feature_flag.result.reason"
 
-            /// `feature_flag.result.value`: The evaluated value of the feature flag.
+            /// `feature_flag.result.value` **UNSTABLE**: The evaluated value of the feature flag.
             ///
             /// - Stability: releaseCandidate
             /// - Type: any
@@ -145,7 +145,7 @@ extension OTelAttribute {
             /// Because the evaluated flag value is unstructured and may be any type, it is left to the instrumentation author to determine how best to achieve this.
             public static let value = "feature_flag.result.value"
 
-            /// `feature_flag.result.variant`: A semantic identifier for an evaluated flag value.
+            /// `feature_flag.result.variant` **UNSTABLE**: A semantic identifier for an evaluated flag value.
             ///
             /// - Stability: releaseCandidate
             /// - Type: string
@@ -163,7 +163,7 @@ extension OTelAttribute {
 
         /// `feature_flag.set` namespace
         public enum set {
-            /// `feature_flag.set.id`: The identifier of the [flag set](https://openfeature.dev/specification/glossary/#flag-set) to which the feature flag belongs.
+            /// `feature_flag.set.id` **UNSTABLE**: The identifier of the [flag set](https://openfeature.dev/specification/glossary/#flag-set) to which the feature flag belongs.
             ///
             /// - Stability: releaseCandidate
             /// - Type: string

@@ -19,7 +19,7 @@ extension OTelAttribute {
     public enum cpython {
         /// `cpython.gc` namespace
         public enum gc {
-            /// `cpython.gc.generation`: Value of the garbage collector collection generation.
+            /// `cpython.gc.generation` **UNSTABLE**: Value of the garbage collector collection generation.
             ///
             /// - Stability: development
             /// - Type: enum

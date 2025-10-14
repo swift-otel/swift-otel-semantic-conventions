@@ -17,7 +17,7 @@ extension OTelAttribute {
     #if Experimental
     /// `tls` namespace
     public enum tls {
-        /// `tls.cipher`: String indicating the [cipher](https://datatracker.ietf.org/doc/html/rfc5246#appendix-A.5) used during the current connection.
+        /// `tls.cipher` **UNSTABLE**: String indicating the [cipher](https://datatracker.ietf.org/doc/html/rfc5246#appendix-A.5) used during the current connection.
         ///
         /// - Stability: development
         /// - Type: string
@@ -28,28 +28,28 @@ extension OTelAttribute {
         /// The values allowed for `tls.cipher` MUST be one of the `Descriptions` of the [registered TLS Cipher Suits](https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml#table-tls-parameters-4).
         public static let cipher = "tls.cipher"
 
-        /// `tls.curve`: String indicating the curve used for the given cipher, when applicable
+        /// `tls.curve` **UNSTABLE**: String indicating the curve used for the given cipher, when applicable
         ///
         /// - Stability: development
         /// - Type: string
         /// - Example: `secp256r1`
         public static let curve = "tls.curve"
 
-        /// `tls.established`: Boolean flag indicating if the TLS negotiation was successful and transitioned to an encrypted tunnel.
+        /// `tls.established` **UNSTABLE**: Boolean flag indicating if the TLS negotiation was successful and transitioned to an encrypted tunnel.
         ///
         /// - Stability: development
         /// - Type: boolean
         /// - Example: `true`
         public static let established = "tls.established"
 
-        /// `tls.next_protocol`: String indicating the protocol being tunneled. Per the values in the [IANA registry](https://www.iana.org/assignments/tls-extensiontype-values/tls-extensiontype-values.xhtml#alpn-protocol-ids), this string should be lower case.
+        /// `tls.next_protocol` **UNSTABLE**: String indicating the protocol being tunneled. Per the values in the [IANA registry](https://www.iana.org/assignments/tls-extensiontype-values/tls-extensiontype-values.xhtml#alpn-protocol-ids), this string should be lower case.
         ///
         /// - Stability: development
         /// - Type: string
         /// - Example: `http/1.1`
         public static let nextProtocol = "tls.next_protocol"
 
-        /// `tls.resumed`: Boolean flag indicating if this TLS connection was resumed from an existing TLS negotiation.
+        /// `tls.resumed` **UNSTABLE**: Boolean flag indicating if this TLS connection was resumed from an existing TLS negotiation.
         ///
         /// - Stability: development
         /// - Type: boolean
@@ -58,48 +58,48 @@ extension OTelAttribute {
 
         /// `tls.client` namespace
         public enum client {
-            /// `tls.client.certificate`: PEM-encoded stand-alone certificate offered by the client. This is usually mutually-exclusive of `client.certificate_chain` since this value also exists in that list.
+            /// `tls.client.certificate` **UNSTABLE**: PEM-encoded stand-alone certificate offered by the client. This is usually mutually-exclusive of `client.certificate_chain` since this value also exists in that list.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `MII...`
             public static let certificate = "tls.client.certificate"
 
-            /// `tls.client.certificate_chain`: Array of PEM-encoded certificates that make up the certificate chain offered by the client. This is usually mutually-exclusive of `client.certificate` since that value should be the first certificate in the chain.
+            /// `tls.client.certificate_chain` **UNSTABLE**: Array of PEM-encoded certificates that make up the certificate chain offered by the client. This is usually mutually-exclusive of `client.certificate` since that value should be the first certificate in the chain.
             ///
             /// - Stability: development
             /// - Type: stringArray
             public static let certificateChain = "tls.client.certificate_chain"
 
-            /// `tls.client.issuer`: Distinguished name of [subject](https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.6) of the issuer of the x.509 certificate presented by the client.
+            /// `tls.client.issuer` **UNSTABLE**: Distinguished name of [subject](https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.6) of the issuer of the x.509 certificate presented by the client.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `CN=Example Root CA, OU=Infrastructure Team, DC=example, DC=com`
             public static let issuer = "tls.client.issuer"
 
-            /// `tls.client.ja3`: A hash that identifies clients based on how they perform an SSL/TLS handshake.
+            /// `tls.client.ja3` **UNSTABLE**: A hash that identifies clients based on how they perform an SSL/TLS handshake.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `d4e5b18d6b55c71272893221c96ba240`
             public static let ja3 = "tls.client.ja3"
 
-            /// `tls.client.not_after`: Date/Time indicating when client certificate is no longer considered valid.
+            /// `tls.client.not_after` **UNSTABLE**: Date/Time indicating when client certificate is no longer considered valid.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `2021-01-01T00:00:00.000Z`
             public static let notAfter = "tls.client.not_after"
 
-            /// `tls.client.not_before`: Date/Time indicating when client certificate is first considered valid.
+            /// `tls.client.not_before` **UNSTABLE**: Date/Time indicating when client certificate is first considered valid.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `1970-01-01T00:00:00.000Z`
             public static let notBefore = "tls.client.not_before"
 
-            /// `tls.client.server_name`: Deprecated, use `server.address` instead.
+            /// `tls.client.server_name` **UNSTABLE**: Deprecated, use `server.address` instead.
             ///
             /// - Stability: development
             /// - Type: string
@@ -107,14 +107,14 @@ extension OTelAttribute {
             @available(*, deprecated, renamed: "OTelAttribute.server.address")
             public static let serverName = "tls.client.server_name"
 
-            /// `tls.client.subject`: Distinguished name of subject of the x.509 certificate presented by the client.
+            /// `tls.client.subject` **UNSTABLE**: Distinguished name of subject of the x.509 certificate presented by the client.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `CN=myclient, OU=Documentation Team, DC=example, DC=com`
             public static let subject = "tls.client.subject"
 
-            /// `tls.client.supported_ciphers`: Array of ciphers offered by the client during the client hello.
+            /// `tls.client.supported_ciphers` **UNSTABLE**: Array of ciphers offered by the client during the client hello.
             ///
             /// - Stability: development
             /// - Type: stringArray
@@ -122,21 +122,21 @@ extension OTelAttribute {
 
             /// `tls.client.hash` namespace
             public enum hash {
-                /// `tls.client.hash.md5`: Certificate fingerprint using the MD5 digest of DER-encoded version of certificate offered by the client. For consistency with other hash values, this value should be formatted as an uppercase hash.
+                /// `tls.client.hash.md5` **UNSTABLE**: Certificate fingerprint using the MD5 digest of DER-encoded version of certificate offered by the client. For consistency with other hash values, this value should be formatted as an uppercase hash.
                 ///
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `0F76C7F2C55BFD7D8E8B8F4BFBF0C9EC`
                 public static let md5 = "tls.client.hash.md5"
 
-                /// `tls.client.hash.sha1`: Certificate fingerprint using the SHA1 digest of DER-encoded version of certificate offered by the client. For consistency with other hash values, this value should be formatted as an uppercase hash.
+                /// `tls.client.hash.sha1` **UNSTABLE**: Certificate fingerprint using the SHA1 digest of DER-encoded version of certificate offered by the client. For consistency with other hash values, this value should be formatted as an uppercase hash.
                 ///
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `9E393D93138888D288266C2D915214D1D1CCEB2A`
                 public static let sha1 = "tls.client.hash.sha1"
 
-                /// `tls.client.hash.sha256`: Certificate fingerprint using the SHA256 digest of DER-encoded version of certificate offered by the client. For consistency with other hash values, this value should be formatted as an uppercase hash.
+                /// `tls.client.hash.sha256` **UNSTABLE**: Certificate fingerprint using the SHA256 digest of DER-encoded version of certificate offered by the client. For consistency with other hash values, this value should be formatted as an uppercase hash.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -147,7 +147,7 @@ extension OTelAttribute {
 
         /// `tls.protocol` namespace
         public enum `protocol` {
-            /// `tls.protocol.name`: Normalized lowercase protocol name parsed from original string of the negotiated [SSL/TLS protocol version](https://docs.openssl.org/1.1.1/man3/SSL_get_version/#return-values)
+            /// `tls.protocol.name` **UNSTABLE**: Normalized lowercase protocol name parsed from original string of the negotiated [SSL/TLS protocol version](https://docs.openssl.org/1.1.1/man3/SSL_get_version/#return-values)
             ///
             /// - Stability: development
             /// - Type: enum
@@ -155,7 +155,7 @@ extension OTelAttribute {
             ///     - `tls`
             public static let name = "tls.protocol.name"
 
-            /// `tls.protocol.version`: Numeric part of the version parsed from the original string of the negotiated [SSL/TLS protocol version](https://docs.openssl.org/1.1.1/man3/SSL_get_version/#return-values)
+            /// `tls.protocol.version` **UNSTABLE**: Numeric part of the version parsed from the original string of the negotiated [SSL/TLS protocol version](https://docs.openssl.org/1.1.1/man3/SSL_get_version/#return-values)
             ///
             /// - Stability: development
             /// - Type: string
@@ -167,48 +167,48 @@ extension OTelAttribute {
 
         /// `tls.server` namespace
         public enum server {
-            /// `tls.server.certificate`: PEM-encoded stand-alone certificate offered by the server. This is usually mutually-exclusive of `server.certificate_chain` since this value also exists in that list.
+            /// `tls.server.certificate` **UNSTABLE**: PEM-encoded stand-alone certificate offered by the server. This is usually mutually-exclusive of `server.certificate_chain` since this value also exists in that list.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `MII...`
             public static let certificate = "tls.server.certificate"
 
-            /// `tls.server.certificate_chain`: Array of PEM-encoded certificates that make up the certificate chain offered by the server. This is usually mutually-exclusive of `server.certificate` since that value should be the first certificate in the chain.
+            /// `tls.server.certificate_chain` **UNSTABLE**: Array of PEM-encoded certificates that make up the certificate chain offered by the server. This is usually mutually-exclusive of `server.certificate` since that value should be the first certificate in the chain.
             ///
             /// - Stability: development
             /// - Type: stringArray
             public static let certificateChain = "tls.server.certificate_chain"
 
-            /// `tls.server.issuer`: Distinguished name of [subject](https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.6) of the issuer of the x.509 certificate presented by the client.
+            /// `tls.server.issuer` **UNSTABLE**: Distinguished name of [subject](https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.6) of the issuer of the x.509 certificate presented by the client.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `CN=Example Root CA, OU=Infrastructure Team, DC=example, DC=com`
             public static let issuer = "tls.server.issuer"
 
-            /// `tls.server.ja3s`: A hash that identifies servers based on how they perform an SSL/TLS handshake.
+            /// `tls.server.ja3s` **UNSTABLE**: A hash that identifies servers based on how they perform an SSL/TLS handshake.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `d4e5b18d6b55c71272893221c96ba240`
             public static let ja3s = "tls.server.ja3s"
 
-            /// `tls.server.not_after`: Date/Time indicating when server certificate is no longer considered valid.
+            /// `tls.server.not_after` **UNSTABLE**: Date/Time indicating when server certificate is no longer considered valid.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `2021-01-01T00:00:00.000Z`
             public static let notAfter = "tls.server.not_after"
 
-            /// `tls.server.not_before`: Date/Time indicating when server certificate is first considered valid.
+            /// `tls.server.not_before` **UNSTABLE**: Date/Time indicating when server certificate is first considered valid.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `1970-01-01T00:00:00.000Z`
             public static let notBefore = "tls.server.not_before"
 
-            /// `tls.server.subject`: Distinguished name of subject of the x.509 certificate presented by the server.
+            /// `tls.server.subject` **UNSTABLE**: Distinguished name of subject of the x.509 certificate presented by the server.
             ///
             /// - Stability: development
             /// - Type: string
@@ -217,21 +217,21 @@ extension OTelAttribute {
 
             /// `tls.server.hash` namespace
             public enum hash {
-                /// `tls.server.hash.md5`: Certificate fingerprint using the MD5 digest of DER-encoded version of certificate offered by the server. For consistency with other hash values, this value should be formatted as an uppercase hash.
+                /// `tls.server.hash.md5` **UNSTABLE**: Certificate fingerprint using the MD5 digest of DER-encoded version of certificate offered by the server. For consistency with other hash values, this value should be formatted as an uppercase hash.
                 ///
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `0F76C7F2C55BFD7D8E8B8F4BFBF0C9EC`
                 public static let md5 = "tls.server.hash.md5"
 
-                /// `tls.server.hash.sha1`: Certificate fingerprint using the SHA1 digest of DER-encoded version of certificate offered by the server. For consistency with other hash values, this value should be formatted as an uppercase hash.
+                /// `tls.server.hash.sha1` **UNSTABLE**: Certificate fingerprint using the SHA1 digest of DER-encoded version of certificate offered by the server. For consistency with other hash values, this value should be formatted as an uppercase hash.
                 ///
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `9E393D93138888D288266C2D915214D1D1CCEB2A`
                 public static let sha1 = "tls.server.hash.sha1"
 
-                /// `tls.server.hash.sha256`: Certificate fingerprint using the SHA256 digest of DER-encoded version of certificate offered by the server. For consistency with other hash values, this value should be formatted as an uppercase hash.
+                /// `tls.server.hash.sha256` **UNSTABLE**: Certificate fingerprint using the SHA256 digest of DER-encoded version of certificate offered by the server. For consistency with other hash values, this value should be formatted as an uppercase hash.
                 ///
                 /// - Stability: development
                 /// - Type: string

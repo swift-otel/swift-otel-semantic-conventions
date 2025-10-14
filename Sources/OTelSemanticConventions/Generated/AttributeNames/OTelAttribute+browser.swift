@@ -17,7 +17,7 @@ extension OTelAttribute {
     #if Experimental
     /// `browser` namespace
     public enum browser {
-        /// `browser.brands`: Array of brand name and version separated by a space
+        /// `browser.brands` **UNSTABLE**: Array of brand name and version separated by a space
         ///
         /// - Stability: development
         /// - Type: stringArray
@@ -25,7 +25,7 @@ extension OTelAttribute {
         /// This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.brands`).
         public static let brands = "browser.brands"
 
-        /// `browser.language`: Preferred language of the user using the browser
+        /// `browser.language` **UNSTABLE**: Preferred language of the user using the browser
         ///
         /// - Stability: development
         /// - Type: string
@@ -38,7 +38,7 @@ extension OTelAttribute {
         /// This value is intended to be taken from the Navigator API `navigator.language`.
         public static let language = "browser.language"
 
-        /// `browser.mobile`: A boolean that is true if the browser is running on a mobile device
+        /// `browser.mobile` **UNSTABLE**: A boolean that is true if the browser is running on a mobile device
         ///
         /// - Stability: development
         /// - Type: boolean
@@ -46,7 +46,7 @@ extension OTelAttribute {
         /// This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.mobile`). If unavailable, this attribute SHOULD be left unset.
         public static let mobile = "browser.mobile"
 
-        /// `browser.platform`: The platform on which the browser is running
+        /// `browser.platform` **UNSTABLE**: The platform on which the browser is running
         ///
         /// - Stability: development
         /// - Type: string

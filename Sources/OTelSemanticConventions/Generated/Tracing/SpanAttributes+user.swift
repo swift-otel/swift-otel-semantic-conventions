@@ -40,21 +40,21 @@ extension SpanAttributes {
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
 
-            /// `user.email`: User email address.
+            /// `user.email` **UNSTABLE**: User email address.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `a.einstein@example.com`
             public var email: SpanAttributeKey<String> { .init(name: OTelAttribute.user.email) }
 
-            /// `user.full_name`: User's full name
+            /// `user.full_name` **UNSTABLE**: User's full name
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `Albert Einstein`
             public var fullName: SpanAttributeKey<String> { .init(name: OTelAttribute.user.fullName) }
 
-            /// `user.hash`: Unique user hash to correlate information for a user in anonymized form.
+            /// `user.hash` **UNSTABLE**: Unique user hash to correlate information for a user in anonymized form.
             ///
             /// - Stability: development
             /// - Type: string
@@ -63,21 +63,21 @@ extension SpanAttributes {
             /// Useful if `user.id` or `user.name` contain confidential information and cannot be used.
             public var hash: SpanAttributeKey<String> { .init(name: OTelAttribute.user.hash) }
 
-            /// `user.id`: Unique identifier of the user.
+            /// `user.id` **UNSTABLE**: Unique identifier of the user.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `S-1-5-21-202424912787-2692429404-2351956786-1000`
             public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.user.id) }
 
-            /// `user.name`: Short name or login/username of the user.
+            /// `user.name` **UNSTABLE**: Short name or login/username of the user.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `a.einstein`
             public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.user.name) }
 
-            /// `user.roles`: Array of user roles at the time of the event.
+            /// `user.roles` **UNSTABLE**: Array of user roles at the time of the event.
             ///
             /// - Stability: development
             /// - Type: stringArray
