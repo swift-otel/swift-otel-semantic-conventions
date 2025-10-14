@@ -72,9 +72,19 @@ logger[metadataKey: .init(name: OTelAttribute.http.response.statusCode)] = "200"
 
 ### Unstable Instrumentations
 
-[Unstable](https://opentelemetry.io/docs/specs/otel/versioning-and-stability/#semantic-conventions-stability) attributes are available, but are gated behind a non-default `Experimental` trait. To use them, you must explicitly include the this trait in your `Package.swift`.
+**WARNING: unstable attributes may experience breaking changes on minor version updates of this package!**
 
-**Be aware that unstable attributes may experience breaking changes on minor version updates of this package, so use with caution!** If this breakage is unacceptable, but non-standard tags are still required, a version dependency range that only allows patch updates should be used.
+[Unstable](https://opentelemetry.io/docs/specs/otel/versioning-and-stability/#semantic-conventions-stability) attributes are available, but are gated behind a non-default `Experimental` trait that must be explicitly included in your `Package.swift`. It is recommended that you use an [`upToNextMinor`](https://developer.apple.com/documentation/swift/range/uptonextminor(from:)) dependency range when including this trait:
+
+```swift
+dependencies: [
+    .package(
+        url: "https://github.com/swift-otel/swift-otel-semantic-conventions.git",
+        .upToNextMinor(from: "1.34.0"),
+        traits: ["Experimental"]
+    )
+]
+```
 
 ## Contributing
 
