@@ -8,7 +8,14 @@ let package = Package(
     ],
     traits: [
         .trait(name: "Tracing"),
-        .default(enabledTraits: ["Tracing"]),
+        .trait(
+            name: "Experimental",
+            description:
+                "Enables experimental attributes, which haven't been stabilized yet. Using this trait requires pinning to the current minor version."
+        ),
+        .default(enabledTraits: [
+            "Tracing"
+        ]),
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-distributed-tracing.git", from: "1.0.0")

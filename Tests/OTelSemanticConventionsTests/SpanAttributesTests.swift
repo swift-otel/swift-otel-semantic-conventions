@@ -41,6 +41,14 @@ struct SpanAttributeTests {
         attributes.http.request.header.set("X-Foo", to: ["bar", "baz"])
         #expect(attributes.get(OTelAttribute.http.request.header + ".x_foo") == .stringArray(["bar", "baz"]))
     }
+
+    #if Experimental
+    @Test func experimentalSpanAttributes() async throws {
+        var attributes = SpanAttributes()
+        attributes.cassandra.page.size = 20
+        #expect(attributes.get(OTelAttribute.cassandra.page.size) == 20)
+    }
+    #endif
 }
 
 #endif

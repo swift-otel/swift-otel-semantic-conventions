@@ -16,6 +16,99 @@
 extension OTelAttribute {
     /// `http` namespace
     public enum http {
+        #if Experimental
+        /// `http.client_ip` **UNSTABLE**: Deprecated, use `client.address` instead.
+        ///
+        /// - Stability: development
+        /// - Type: string
+        /// - Example: `83.164.160.102`
+        @available(*, deprecated, renamed: "OTelAttribute.client.address")
+        public static let clientIp = "http.client_ip"
+        #endif
+
+        #if Experimental
+        /// `http.flavor` **UNSTABLE**: Deprecated, use `network.protocol.name` instead.
+        ///
+        /// - Stability: development
+        /// - Type: enum
+        ///     - `1.0`: HTTP/1.0
+        ///     - `1.1`: HTTP/1.1
+        ///     - `2.0`: HTTP/2
+        ///     - `3.0`: HTTP/3
+        ///     - `SPDY`: SPDY protocol.
+        ///     - `QUIC`: QUIC protocol.
+        @available(*, deprecated, renamed: "OTelAttribute.network.protocol.name")
+        public static let flavor = "http.flavor"
+        #endif
+
+        #if Experimental
+        /// `http.host` **UNSTABLE**: Deprecated, use one of `server.address`, `client.address` or `http.request.header.host` instead, depending on the usage.
+        ///
+        /// - Stability: development
+        /// - Type: string
+        /// - Example: `www.example.org`
+        @available(
+            *,
+            deprecated,
+            message:
+                "Replaced by one of `server.address`, `client.address` or `http.request.header.host`, depending on the usage."
+        )
+        public static let host = "http.host"
+        #endif
+
+        #if Experimental
+        /// `http.method` **UNSTABLE**: Deprecated, use `http.request.method` instead.
+        ///
+        /// - Stability: development
+        /// - Type: string
+        /// - Examples:
+        ///     - `GET`
+        ///     - `POST`
+        ///     - `HEAD`
+        @available(*, deprecated, renamed: "OTelAttribute.http.request.method")
+        public static let method = "http.method"
+        #endif
+
+        #if Experimental
+        /// `http.request_content_length` **UNSTABLE**: Deprecated, use `http.request.header.content-length` instead.
+        ///
+        /// - Stability: development
+        /// - Type: int
+        /// - Example: `3495`
+        @available(*, deprecated, message: "Replaced by `http.request.header.content-length`.")
+        public static let requestContentLength = "http.request_content_length"
+        #endif
+
+        #if Experimental
+        /// `http.request_content_length_uncompressed` **UNSTABLE**: Deprecated, use `http.request.body.size` instead.
+        ///
+        /// - Stability: development
+        /// - Type: int
+        /// - Example: `5493`
+        @available(*, deprecated, renamed: "OTelAttribute.http.request.body.size")
+        public static let requestContentLengthUncompressed = "http.request_content_length_uncompressed"
+        #endif
+
+        #if Experimental
+        /// `http.response_content_length` **UNSTABLE**: Deprecated, use `http.response.header.content-length` instead.
+        ///
+        /// - Stability: development
+        /// - Type: int
+        /// - Example: `3495`
+        @available(*, deprecated, message: "Replaced by `http.response.header.content-length`.")
+        public static let responseContentLength = "http.response_content_length"
+        #endif
+
+        #if Experimental
+        /// `http.response_content_length_uncompressed` **UNSTABLE**: Deprecated, use `http.response.body.size` instead.
+        ///
+        /// - Stability: development
+        /// - Type: int
+        /// - Example: `5493`
+        @available(*, deprecated, renamed: "OTelAttribute.http.response.body.size")
+        public static let responseContentLengthUncompressed = "http.response_content_length_uncompressed"
+        #endif
+
         /// `http.route`: The matched route, that is, the path template in the format used by the respective server framework.
         ///
         /// - Stability: stable
@@ -27,6 +120,86 @@ extension OTelAttribute {
         /// MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
         /// SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
         public static let route = "http.route"
+
+        #if Experimental
+        /// `http.scheme` **UNSTABLE**: Deprecated, use `url.scheme` instead.
+        ///
+        /// - Stability: development
+        /// - Type: string
+        /// - Examples:
+        ///     - `http`
+        ///     - `https`
+        @available(*, deprecated, renamed: "OTelAttribute.url.scheme")
+        public static let scheme = "http.scheme"
+        #endif
+
+        #if Experimental
+        /// `http.server_name` **UNSTABLE**: Deprecated, use `server.address` instead.
+        ///
+        /// - Stability: development
+        /// - Type: string
+        /// - Example: `example.com`
+        @available(*, deprecated, renamed: "OTelAttribute.server.address")
+        public static let serverName = "http.server_name"
+        #endif
+
+        #if Experimental
+        /// `http.status_code` **UNSTABLE**: Deprecated, use `http.response.status_code` instead.
+        ///
+        /// - Stability: development
+        /// - Type: int
+        /// - Example: `200`
+        @available(*, deprecated, renamed: "OTelAttribute.http.response.statusCode")
+        public static let statusCode = "http.status_code"
+        #endif
+
+        #if Experimental
+        /// `http.target` **UNSTABLE**: Deprecated, use `url.path` and `url.query` instead.
+        ///
+        /// - Stability: development
+        /// - Type: string
+        /// - Example: `/search?q=OpenTelemetry#SemConv`
+        @available(*, deprecated, message: "Obsoleted: Split to `url.path` and `url.query`.")
+        public static let target = "http.target"
+        #endif
+
+        #if Experimental
+        /// `http.url` **UNSTABLE**: Deprecated, use `url.full` instead.
+        ///
+        /// - Stability: development
+        /// - Type: string
+        /// - Example: `https://www.foo.bar/search?q=OpenTelemetry#SemConv`
+        @available(*, deprecated, renamed: "OTelAttribute.url.full")
+        public static let url = "http.url"
+        #endif
+
+        #if Experimental
+        /// `http.user_agent` **UNSTABLE**: Deprecated, use `user_agent.original` instead.
+        ///
+        /// - Stability: development
+        /// - Type: string
+        /// - Examples:
+        ///     - `CERN-LineMode/2.15 libwww/2.17b3`
+        ///     - `Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1`
+        @available(*, deprecated, renamed: "OTelAttribute.userAgent.original")
+        public static let userAgent = "http.user_agent"
+        #endif
+
+        #if Experimental
+        /// `http.connection` namespace
+        public enum connection {
+            /// `http.connection.state` **UNSTABLE**: State of the HTTP connection in the HTTP connection pool.
+            ///
+            /// - Stability: development
+            /// - Type: enum
+            ///     - `active`: active state.
+            ///     - `idle`: idle state.
+            /// - Examples:
+            ///     - `active`
+            ///     - `idle`
+            public static let state = "http.connection.state"
+        }
+        #endif
 
         /// `http.request` namespace
         public enum request {
@@ -106,6 +279,27 @@ extension OTelAttribute {
             ///
             /// The resend count SHOULD be updated each time an HTTP request gets resent by the client, regardless of what was the cause of the resending (e.g. redirection, authorization failure, 503 Server Unavailable, network issues, or any other).
             public static let resendCount = "http.request.resend_count"
+
+            #if Experimental
+            /// `http.request.size` **UNSTABLE**: The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and request body if any.
+            ///
+            /// - Stability: development
+            /// - Type: int
+            /// - Example: `1437`
+            public static let size = "http.request.size"
+            #endif
+
+            #if Experimental
+            /// `http.request.body` namespace
+            public enum body {
+                /// `http.request.body.size` **UNSTABLE**: The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
+                ///
+                /// - Stability: development
+                /// - Type: int
+                /// - Example: `3495`
+                public static let size = "http.request.body.size"
+            }
+            #endif
         }
 
         /// `http.response` namespace
@@ -132,12 +326,33 @@ extension OTelAttribute {
             ///   attribute with value `["abc", "def"]` or `["abc, def"]` depending on the HTTP library.
             public static let header = "http.response.header"
 
+            #if Experimental
+            /// `http.response.size` **UNSTABLE**: The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any.
+            ///
+            /// - Stability: development
+            /// - Type: int
+            /// - Example: `1437`
+            public static let size = "http.response.size"
+            #endif
+
             /// `http.response.status_code`: [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6).
             ///
             /// - Stability: stable
             /// - Type: int
             /// - Example: `200`
             public static let statusCode = "http.response.status_code"
+
+            #if Experimental
+            /// `http.response.body` namespace
+            public enum body {
+                /// `http.response.body.size` **UNSTABLE**: The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
+                ///
+                /// - Stability: development
+                /// - Type: int
+                /// - Example: `3495`
+                public static let size = "http.response.body.size"
+            }
+            #endif
         }
     }
 }

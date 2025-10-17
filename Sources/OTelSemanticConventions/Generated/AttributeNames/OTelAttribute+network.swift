@@ -49,6 +49,132 @@ extension OTelAttribute {
         /// The value SHOULD be normalized to lowercase.
         public static let `type` = "network.type"
 
+        #if Experimental
+        /// `network.carrier` namespace
+        public enum carrier {
+            /// `network.carrier.icc` **UNSTABLE**: The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `DE`
+            public static let icc = "network.carrier.icc"
+
+            /// `network.carrier.mcc` **UNSTABLE**: The mobile carrier country code.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `310`
+            public static let mcc = "network.carrier.mcc"
+
+            /// `network.carrier.mnc` **UNSTABLE**: The mobile carrier network code.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `001`
+            public static let mnc = "network.carrier.mnc"
+
+            /// `network.carrier.name` **UNSTABLE**: The name of the mobile carrier.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `sprint`
+            public static let name = "network.carrier.name"
+        }
+        #endif
+
+        #if Experimental
+        /// `network.connection` namespace
+        public enum connection {
+            /// `network.connection.state` **UNSTABLE**: The state of network connection
+            ///
+            /// - Stability: development
+            /// - Type: enum
+            ///     - `closed`
+            ///     - `close_wait`
+            ///     - `closing`
+            ///     - `established`
+            ///     - `fin_wait_1`
+            ///     - `fin_wait_2`
+            ///     - `last_ack`
+            ///     - `listen`
+            ///     - `syn_received`
+            ///     - `syn_sent`
+            ///     - `time_wait`
+            /// - Example: `close_wait`
+            ///
+            /// Connection states are defined as part of the [rfc9293](https://datatracker.ietf.org/doc/html/rfc9293#section-3.3.2)
+            public static let state = "network.connection.state"
+
+            /// `network.connection.subtype` **UNSTABLE**: This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection.
+            ///
+            /// - Stability: development
+            /// - Type: enum
+            ///     - `gprs`: GPRS
+            ///     - `edge`: EDGE
+            ///     - `umts`: UMTS
+            ///     - `cdma`: CDMA
+            ///     - `evdo_0`: EVDO Rel. 0
+            ///     - `evdo_a`: EVDO Rev. A
+            ///     - `cdma2000_1xrtt`: CDMA2000 1XRTT
+            ///     - `hsdpa`: HSDPA
+            ///     - `hsupa`: HSUPA
+            ///     - `hspa`: HSPA
+            ///     - `iden`: IDEN
+            ///     - `evdo_b`: EVDO Rev. B
+            ///     - `lte`: LTE
+            ///     - `ehrpd`: EHRPD
+            ///     - `hspap`: HSPAP
+            ///     - `gsm`: GSM
+            ///     - `td_scdma`: TD-SCDMA
+            ///     - `iwlan`: IWLAN
+            ///     - `nr`: 5G NR (New Radio)
+            ///     - `nrnsa`: 5G NRNSA (New Radio Non-Standalone)
+            ///     - `lte_ca`: LTE CA
+            /// - Example: `LTE`
+            public static let subtype = "network.connection.subtype"
+
+            /// `network.connection.type` **UNSTABLE**: The internet connection type.
+            ///
+            /// - Stability: development
+            /// - Type: enum
+            ///     - `wifi`
+            ///     - `wired`
+            ///     - `cell`
+            ///     - `unavailable`
+            ///     - `unknown`
+            /// - Example: `wifi`
+            public static let `type` = "network.connection.type"
+        }
+        #endif
+
+        #if Experimental
+        /// `network.interface` namespace
+        public enum interface {
+            /// `network.interface.name` **UNSTABLE**: The network interface name.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Examples:
+            ///     - `lo`
+            ///     - `eth0`
+            public static let name = "network.interface.name"
+        }
+        #endif
+
+        #if Experimental
+        /// `network.io` namespace
+        public enum io {
+            /// `network.io.direction` **UNSTABLE**: The network IO operation direction.
+            ///
+            /// - Stability: development
+            /// - Type: enum
+            ///     - `transmit`
+            ///     - `receive`
+            /// - Example: `transmit`
+            public static let direction = "network.io.direction"
+        }
+        #endif
+
         /// `network.local` namespace
         public enum local {
             /// `network.local.address`: Local address of the network connection - IP address or Unix domain socket name.

@@ -1,0 +1,175 @@
+//===----------------------------------------------------------------------===//
+//
+// This source file is part of the Swift OTel open source project
+//
+// Copyright (c) 2025 the Swift OTel project authors
+// Licensed under Apache License v2.0
+//
+// See LICENSE.txt for license information
+//
+// SPDX-License-Identifier: Apache-2.0
+//
+//===----------------------------------------------------------------------===//
+
+// DO NOT EDIT. This file is generated automatically. See README for details.
+
+extension OTelAttribute {
+    #if Experimental
+    /// `file` namespace
+    public enum file {
+        /// `file.accessed` **UNSTABLE**: Time when the file was last accessed, in ISO 8601 format.
+        ///
+        /// - Stability: development
+        /// - Type: string
+        /// - Example: `2021-01-01T12:00:00Z`
+        ///
+        /// This attribute might not be supported by some file systems — NFS, FAT32, in embedded OS, etc.
+        public static let accessed = "file.accessed"
+
+        /// `file.attributes` **UNSTABLE**: Array of file attributes.
+        ///
+        /// - Stability: development
+        /// - Type: stringArray
+        ///
+        /// Attributes names depend on the OS or file system. Here’s a non-exhaustive list of values expected for this attribute: `archive`, `compressed`, `directory`, `encrypted`, `execute`, `hidden`, `immutable`, `journaled`, `read`, `readonly`, `symbolic link`, `system`, `temporary`, `write`.
+        public static let attributes = "file.attributes"
+
+        /// `file.changed` **UNSTABLE**: Time when the file attributes or metadata was last changed, in ISO 8601 format.
+        ///
+        /// - Stability: development
+        /// - Type: string
+        /// - Example: `2021-01-01T12:00:00Z`
+        ///
+        /// `file.changed` captures the time when any of the file's properties or attributes (including the content) are changed, while `file.modified` captures the timestamp when the file content is modified.
+        public static let changed = "file.changed"
+
+        /// `file.created` **UNSTABLE**: Time when the file was created, in ISO 8601 format.
+        ///
+        /// - Stability: development
+        /// - Type: string
+        /// - Example: `2021-01-01T12:00:00Z`
+        ///
+        /// This attribute might not be supported by some file systems — NFS, FAT32, in embedded OS, etc.
+        public static let created = "file.created"
+
+        /// `file.directory` **UNSTABLE**: Directory where the file is located. It should include the drive letter, when appropriate.
+        ///
+        /// - Stability: development
+        /// - Type: string
+        /// - Examples:
+        ///     - `/home/user`
+        ///     - `C:\Program Files\MyApp`
+        public static let directory = "file.directory"
+
+        /// `file.extension` **UNSTABLE**: File extension, excluding the leading dot.
+        ///
+        /// - Stability: development
+        /// - Type: string
+        /// - Examples:
+        ///     - `png`
+        ///     - `gz`
+        ///
+        /// When the file name has multiple extensions (example.tar.gz), only the last one should be captured ("gz", not "tar.gz").
+        public static let `extension` = "file.extension"
+
+        /// `file.fork_name` **UNSTABLE**: Name of the fork. A fork is additional data associated with a filesystem object.
+        ///
+        /// - Stability: development
+        /// - Type: string
+        /// - Example: `Zone.Identifier`
+        ///
+        /// On Linux, a resource fork is used to store additional data with a filesystem object. A file always has at least one fork for the data portion, and additional forks may exist.
+        /// On NTFS, this is analogous to an Alternate Data Stream (ADS), and the default data stream for a file is just called $DATA. Zone.Identifier is commonly used by Windows to track contents downloaded from the Internet. An ADS is typically of the form: C:\path\to\filename.extension:some_fork_name, and some_fork_name is the value that should populate `fork_name`. `filename.extension` should populate `file.name`, and `extension` should populate `file.extension`. The full path, `file.path`, will include the fork name.
+        public static let forkName = "file.fork_name"
+
+        /// `file.inode` **UNSTABLE**: Inode representing the file in the filesystem.
+        ///
+        /// - Stability: development
+        /// - Type: string
+        /// - Example: `256383`
+        public static let inode = "file.inode"
+
+        /// `file.mode` **UNSTABLE**: Mode of the file in octal representation.
+        ///
+        /// - Stability: development
+        /// - Type: string
+        /// - Example: `0640`
+        public static let mode = "file.mode"
+
+        /// `file.modified` **UNSTABLE**: Time when the file content was last modified, in ISO 8601 format.
+        ///
+        /// - Stability: development
+        /// - Type: string
+        /// - Example: `2021-01-01T12:00:00Z`
+        public static let modified = "file.modified"
+
+        /// `file.name` **UNSTABLE**: Name of the file including the extension, without the directory.
+        ///
+        /// - Stability: development
+        /// - Type: string
+        /// - Example: `example.png`
+        public static let name = "file.name"
+
+        /// `file.path` **UNSTABLE**: Full path to the file, including the file name. It should include the drive letter, when appropriate.
+        ///
+        /// - Stability: development
+        /// - Type: string
+        /// - Examples:
+        ///     - `/home/alice/example.png`
+        ///     - `C:\Program Files\MyApp\myapp.exe`
+        public static let path = "file.path"
+
+        /// `file.size` **UNSTABLE**: File size in bytes.
+        ///
+        /// - Stability: development
+        /// - Type: int
+        public static let size = "file.size"
+
+        /// `file.group` namespace
+        public enum group {
+            /// `file.group.id` **UNSTABLE**: Primary Group ID (GID) of the file.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `1000`
+            public static let id = "file.group.id"
+
+            /// `file.group.name` **UNSTABLE**: Primary group name of the file.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `users`
+            public static let name = "file.group.name"
+        }
+
+        /// `file.owner` namespace
+        public enum owner {
+            /// `file.owner.id` **UNSTABLE**: The user ID (UID) or security identifier (SID) of the file owner.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `1000`
+            public static let id = "file.owner.id"
+
+            /// `file.owner.name` **UNSTABLE**: Username of the file owner.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `root`
+            public static let name = "file.owner.name"
+        }
+
+        /// `file.symbolic_link` namespace
+        public enum symbolicLink {
+            /// `file.symbolic_link.target_path` **UNSTABLE**: Path to the target of a symbolic link.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `/usr/bin/python3`
+            ///
+            /// This attribute is only applicable to symbolic links.
+            public static let targetPath = "file.symbolic_link.target_path"
+        }
+    }
+    #endif
+}

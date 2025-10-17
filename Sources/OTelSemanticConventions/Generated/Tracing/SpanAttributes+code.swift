@@ -30,14 +30,74 @@ extension SpanAttributes {
 
     @dynamicMemberLookup
     public struct CodeAttributes: SpanAttributeNamespace {
-        public var attributes: SpanAttributes
+        public var attributes: Tracing.SpanAttributes
 
-        public init(attributes: SpanAttributes) {
+        public init(attributes: Tracing.SpanAttributes) {
             self.attributes = attributes
         }
 
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
+
+            #if Experimental
+            /// `code.column` **UNSTABLE**: Deprecated, use `code.column.number`
+            ///
+            /// - Stability: development
+            /// - Type: int
+            /// - Example: `16`
+            @available(*, deprecated, renamed: "SpanAttributes.code.column.number")
+            public var _column: SpanAttributeKey<Int> { .init(name: OTelAttribute.code._column) }
+            #endif
+
+            #if Experimental
+            /// `code.filepath` **UNSTABLE**: Deprecated, use `code.file.path` instead
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `/usr/local/MyApplication/content_root/app/index.php`
+            @available(*, deprecated, renamed: "SpanAttributes.code.file.path")
+            public var filepath: SpanAttributeKey<String> { .init(name: OTelAttribute.code.filepath) }
+            #endif
+
+            #if Experimental
+            /// `code.function` **UNSTABLE**: Deprecated, use `code.function.name` instead
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `serveRequest`
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Value should be included in `code.function.name` which is expected to be a fully-qualified name."
+            )
+            public var _function: SpanAttributeKey<String> { .init(name: OTelAttribute.code._function) }
+            #endif
+
+            #if Experimental
+            /// `code.lineno` **UNSTABLE**: Deprecated, use `code.line.number` instead
+            ///
+            /// - Stability: development
+            /// - Type: int
+            /// - Example: `42`
+            @available(*, deprecated, renamed: "SpanAttributes.code.line.number")
+            public var lineno: SpanAttributeKey<Int> { .init(name: OTelAttribute.code.lineno) }
+            #endif
+
+            #if Experimental
+            /// `code.namespace` **UNSTABLE**: Deprecated, namespace is now included into `code.function.name`
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `com.example.MyHttpService`
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Value should be included in `code.function.name` which is expected to be a fully-qualified name."
+            )
+            public var namespace: SpanAttributeKey<String> { .init(name: OTelAttribute.code.namespace) }
+            #endif
 
             /// `code.stacktrace`: A stacktrace as a string in the natural representation for the language runtime. The representation is identical to [`exception.stacktrace`](/docs/exceptions/exceptions-spans.md#stacktrace-representation). This attribute MUST NOT be used on the Profile signal since the data is already captured in 'message Location'. This constraint is imposed to prevent redundancy and maintain data integrity.
             ///
@@ -60,9 +120,9 @@ extension SpanAttributes {
 
         @dynamicMemberLookup
         public struct ColumnAttributes: SpanAttributeNamespace {
-            public var attributes: SpanAttributes
+            public var attributes: Tracing.SpanAttributes
 
-            public init(attributes: SpanAttributes) {
+            public init(attributes: Tracing.SpanAttributes) {
                 self.attributes = attributes
             }
 
@@ -90,9 +150,9 @@ extension SpanAttributes {
 
         @dynamicMemberLookup
         public struct FileAttributes: SpanAttributeNamespace {
-            public var attributes: SpanAttributes
+            public var attributes: Tracing.SpanAttributes
 
-            public init(attributes: SpanAttributes) {
+            public init(attributes: Tracing.SpanAttributes) {
                 self.attributes = attributes
             }
 
@@ -120,9 +180,9 @@ extension SpanAttributes {
 
         @dynamicMemberLookup
         public struct FunctionAttributes: SpanAttributeNamespace {
-            public var attributes: SpanAttributes
+            public var attributes: Tracing.SpanAttributes
 
-            public init(attributes: SpanAttributes) {
+            public init(attributes: Tracing.SpanAttributes) {
                 self.attributes = attributes
             }
 
@@ -169,9 +229,9 @@ extension SpanAttributes {
 
         @dynamicMemberLookup
         public struct LineAttributes: SpanAttributeNamespace {
-            public var attributes: SpanAttributes
+            public var attributes: Tracing.SpanAttributes
 
-            public init(attributes: SpanAttributes) {
+            public init(attributes: Tracing.SpanAttributes) {
                 self.attributes = attributes
             }
 
