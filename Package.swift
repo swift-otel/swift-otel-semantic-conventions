@@ -8,7 +8,11 @@ let package = Package(
     ],
     traits: [
         .trait(name: "Tracing"),
-        .trait(name: "Experimental"),
+        .trait(
+            name: "Experimental",
+            description:
+                "Enables experimental attributes, which haven't been stabilized yet. Using this trait requires pinning to the current minor version."
+        ),
         .default(enabledTraits: [
             "Tracing"
         ]),
