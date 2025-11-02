@@ -31,6 +31,7 @@ extension OTelAttribute {
             /// - Stability: development
             /// - Type: int
             /// - Example: `1`
+            @available(*, deprecated, renamed: "OTelAttribute.cpu.logicalNumber")
             public static let logicalNumber = "system.cpu.logical_number"
 
             /// `system.cpu.state` **UNSTABLE**: Deprecated, use `cpu.mode` instead.
@@ -151,19 +152,32 @@ extension OTelAttribute {
             /// - Example: `free`
             public static let state = "system.paging.state"
 
-            /// `system.paging.type` **UNSTABLE**: The memory paging type
+            /// `system.paging.type` **UNSTABLE**: Deprecated, use `system.paging.fault.type` instead.
             ///
             /// - Stability: development
             /// - Type: enum
             ///     - `major`
             ///     - `minor`
             /// - Example: `minor`
+            @available(*, deprecated, renamed: "OTelAttribute.system.paging.fault.type")
             public static let `type` = "system.paging.type"
+
+            /// `system.paging.fault` namespace
+            public enum fault {
+                /// `system.paging.fault.type` **UNSTABLE**: The paging fault type
+                ///
+                /// - Stability: development
+                /// - Type: enum
+                ///     - `major`
+                ///     - `minor`
+                /// - Example: `minor`
+                public static let `type` = "system.paging.fault.type"
+            }
         }
 
         /// `system.process` namespace
         public enum process {
-            /// `system.process.status` **UNSTABLE**: The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES)
+            /// `system.process.status` **UNSTABLE**: Deprecated, use `process.state` instead.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -172,12 +186,13 @@ extension OTelAttribute {
             ///     - `stopped`
             ///     - `defunct`
             /// - Example: `running`
+            @available(*, deprecated, renamed: "OTelAttribute.process.state")
             public static let status = "system.process.status"
         }
 
         /// `system.processes` namespace
         public enum processes {
-            /// `system.processes.status` **UNSTABLE**: Deprecated, use `system.process.status` instead.
+            /// `system.processes.status` **UNSTABLE**: Deprecated, use `process.state` instead.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -186,7 +201,7 @@ extension OTelAttribute {
             ///     - `stopped`
             ///     - `defunct`
             /// - Example: `running`
-            @available(*, deprecated, renamed: "OTelAttribute.system.process.status")
+            @available(*, deprecated, renamed: "OTelAttribute.process.state")
             public static let status = "system.processes.status"
         }
     }

@@ -265,7 +265,12 @@ extension OTelAttribute {
                 /// - Stability: development
                 /// - Type: int
                 /// - Example: `2`
-                @available(*, deprecated, renamed: "OTelAttribute.messaging.destination.partition.id")
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Record string representation of the partition id in `messaging.destination.partition.id` attribute."
+                )
                 public static let partition = "messaging.kafka.destination.partition"
             }
 

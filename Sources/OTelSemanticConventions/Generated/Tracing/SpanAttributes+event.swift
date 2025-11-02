@@ -47,7 +47,12 @@ extension SpanAttributes {
             /// - Examples:
             ///     - `browser.mouse.click`
             ///     - `device.app.lifecycle`
-            @available(*, deprecated, message: "Replaced by EventName top-level field on the LogRecord.")
+            @available(
+                *,
+                deprecated,
+                message:
+                    "The value of this attribute MUST now be set as the value of the EventName field on the LogRecord to indicate that the LogRecord represents an Event."
+            )
             public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.event.name) }
         }
     }

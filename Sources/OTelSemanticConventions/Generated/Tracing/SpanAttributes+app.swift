@@ -173,6 +173,33 @@ extension SpanAttributes {
 
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
+
+                /// `app.screen.id` **UNSTABLE**: An identifier that uniquely differentiates this screen from other screens in the same application.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Examples:
+                ///     - `f9bc787d-ff05-48ad-90e1-fca1d46130b3`
+                ///     - `com.example.app.MainActivity`
+                ///     - `com.example.shop.ProductDetailFragment`
+                ///     - `MyApp.ProfileView`
+                ///     - `MyApp.ProfileViewController`
+                ///
+                /// A screen represents only the part of the device display drawn by the app. It typically contains multiple widgets or UI components and is larger in scope than individual widgets. Multiple screens can coexist on the same display simultaneously (e.g., split view on tablets).
+                public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.app.screen.id) }
+
+                /// `app.screen.name` **UNSTABLE**: The name of an application screen.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Examples:
+                ///     - `MainActivity`
+                ///     - `ProductDetailFragment`
+                ///     - `ProfileView`
+                ///     - `ProfileViewController`
+                ///
+                /// A screen represents only the part of the device display drawn by the app. It typically contains multiple widgets or UI components and is larger in scope than individual widgets. Multiple screens can coexist on the same display simultaneously (e.g., split view on tablets).
+                public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.app.screen.name) }
             }
 
             /// `app.screen.coordinate` namespace

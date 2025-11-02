@@ -69,7 +69,7 @@ extension OTelAttribute {
                 /// - Stability: development
                 /// - Type: stringArray
                 ///
-                /// Region name matches the format of `displayName` in [Azure Location API](https://learn.microsoft.com/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location)
+                /// Region name matches the format of `displayName` in [Azure Location API](https://learn.microsoft.com/rest/api/resources/subscriptions/list-locations)
                 public static let contactedRegions = "azure.cosmosdb.operation.contacted_regions"
 
                 /// `azure.cosmosdb.operation.request_charge` **UNSTABLE**: The number of request units consumed by the operation.

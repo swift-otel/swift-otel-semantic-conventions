@@ -145,7 +145,7 @@ extension OTelAttribute {
         /// - **Google Cloud Run (Services):** The [revision](https://cloud.google.com/run/docs/managing/revisions)
         ///   (i.e., the function name plus the revision suffix).
         /// - **Google Cloud Functions:** The value of the
-        ///   [`K_REVISION` environment variable](https://cloud.google.com/functions/docs/env-var#runtime_environment_variables_set_automatically).
+        ///   [`K_REVISION` environment variable](https://cloud.google.com/run/docs/container-contract#services-env-vars).
         /// - **Azure Functions:** Not applicable. Do not set this attribute.
         public static let version = "faas.version"
 

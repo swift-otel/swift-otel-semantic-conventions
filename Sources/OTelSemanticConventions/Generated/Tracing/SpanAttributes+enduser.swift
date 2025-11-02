@@ -57,7 +57,7 @@ extension SpanAttributes {
             /// - Stability: development
             /// - Type: string
             /// - Example: `admin`
-            @available(*, deprecated, renamed: "SpanAttributes.user.roles")
+            @available(*, deprecated, message: "Use `user.roles` instead.")
             public var role: SpanAttributeKey<String> { .init(name: OTelAttribute.enduser.role) }
 
             /// `enduser.scope` **UNSTABLE**: Deprecated, no replacement at this time.

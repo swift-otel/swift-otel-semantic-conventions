@@ -251,6 +251,153 @@ extension SpanAttributes {
             }
         }
 
+        /// `gen_ai.embeddings` namespace
+        public var embeddings: EmbeddingsAttributes {
+            get {
+                .init(attributes: self.attributes)
+            }
+            set {
+                self.attributes = newValue.attributes
+            }
+        }
+
+        @dynamicMemberLookup
+        public struct EmbeddingsAttributes: SpanAttributeNamespace {
+            public var attributes: Tracing.SpanAttributes
+
+            public init(attributes: Tracing.SpanAttributes) {
+                self.attributes = attributes
+            }
+
+            public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                public init() {}
+            }
+
+            /// `gen_ai.embeddings.dimension` namespace
+            public var dimension: DimensionAttributes {
+                get {
+                    .init(attributes: self.attributes)
+                }
+                set {
+                    self.attributes = newValue.attributes
+                }
+            }
+
+            @dynamicMemberLookup
+            public struct DimensionAttributes: SpanAttributeNamespace {
+                public var attributes: Tracing.SpanAttributes
+
+                public init(attributes: Tracing.SpanAttributes) {
+                    self.attributes = attributes
+                }
+
+                public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                    public init() {}
+
+                    /// `gen_ai.embeddings.dimension.count` **UNSTABLE**: The number of dimensions the resulting output embeddings should have.
+                    ///
+                    /// - Stability: development
+                    /// - Type: int
+                    /// - Examples:
+                    ///     - `512`
+                    ///     - `1024`
+                    public var count: SpanAttributeKey<Int> {
+                        .init(name: OTelAttribute.genAi.embeddings.dimension.count)
+                    }
+                }
+            }
+        }
+
+        /// `gen_ai.evaluation` namespace
+        public var evaluation: EvaluationAttributes {
+            get {
+                .init(attributes: self.attributes)
+            }
+            set {
+                self.attributes = newValue.attributes
+            }
+        }
+
+        @dynamicMemberLookup
+        public struct EvaluationAttributes: SpanAttributeNamespace {
+            public var attributes: Tracing.SpanAttributes
+
+            public init(attributes: Tracing.SpanAttributes) {
+                self.attributes = attributes
+            }
+
+            public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                public init() {}
+
+                /// `gen_ai.evaluation.explanation` **UNSTABLE**: A free-form explanation for the assigned score provided by the evaluator.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Example: `The response is factually accurate but lacks sufficient detail to fully address the question.`
+                public var explanation: SpanAttributeKey<String> {
+                    .init(name: OTelAttribute.genAi.evaluation.explanation)
+                }
+
+                /// `gen_ai.evaluation.name` **UNSTABLE**: The name of the evaluation metric used for the GenAI response.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Examples:
+                ///     - `Relevance`
+                ///     - `IntentResolution`
+                public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.genAi.evaluation.name) }
+            }
+
+            /// `gen_ai.evaluation.score` namespace
+            public var score: ScoreAttributes {
+                get {
+                    .init(attributes: self.attributes)
+                }
+                set {
+                    self.attributes = newValue.attributes
+                }
+            }
+
+            @dynamicMemberLookup
+            public struct ScoreAttributes: SpanAttributeNamespace {
+                public var attributes: Tracing.SpanAttributes
+
+                public init(attributes: Tracing.SpanAttributes) {
+                    self.attributes = attributes
+                }
+
+                public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                    public init() {}
+
+                    /// `gen_ai.evaluation.score.label` **UNSTABLE**: Human readable label for evaluation.
+                    ///
+                    /// - Stability: development
+                    /// - Type: string
+                    /// - Examples:
+                    ///     - `relevant`
+                    ///     - `not_relevant`
+                    ///     - `correct`
+                    ///     - `incorrect`
+                    ///     - `pass`
+                    ///     - `fail`
+                    ///
+                    /// This attribute provides a human-readable interpretation of the evaluation score produced by an evaluator. For example, a score value of 1 could mean "relevant" in one evaluation system and "not relevant" in another, depending on the scoring range and evaluator. The label SHOULD have low cardinality. Possible values depend on the evaluation metric and evaluator used; implementations SHOULD document the possible values.
+                    public var label: SpanAttributeKey<String> {
+                        .init(name: OTelAttribute.genAi.evaluation.score.label)
+                    }
+
+                    /// `gen_ai.evaluation.score.value` **UNSTABLE**: The evaluation score returned by the evaluator.
+                    ///
+                    /// - Stability: development
+                    /// - Type: double
+                    /// - Example: `4.0`
+                    public var value: SpanAttributeKey<Double> {
+                        .init(name: OTelAttribute.genAi.evaluation.score.value)
+                    }
+                }
+            }
+        }
+
         /// `gen_ai.input` namespace
         public var input: InputAttributes {
             get {
@@ -925,6 +1072,52 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
+                /// `gen_ai.tool.definitions` **UNSTABLE**: The list of source system tool definitions available to the GenAI agent or model.
+                ///
+                /// - Stability: development
+                /// - Type: any
+                /// - Example: `[
+                ///   {
+                ///     "type": "function",
+                ///     "name": "get_current_weather",
+                ///     "description": "Get the current weather in a given location",
+                ///     "parameters": {
+                ///       "type": "object",
+                ///       "properties": {
+                ///         "location": {
+                ///           "type": "string",
+                ///           "description": "The city and state, e.g. San Francisco, CA"
+                ///         },
+                ///         "unit": {
+                ///           "type": "string",
+                ///           "enum": [
+                ///             "celsius",
+                ///             "fahrenheit"
+                ///           ]
+                ///         }
+                ///       },
+                ///       "required": [
+                ///         "location",
+                ///         "unit"
+                ///       ]
+                ///     }
+                ///   }
+                /// ]
+                /// `
+                ///
+                /// The value of this attribute matches source system tool definition format.
+                ///
+                /// It's expected to be an array of objects where each object represents a tool definition. In case a serialized string is available
+                /// to the instrumentation, the instrumentation SHOULD do the best effort to
+                /// deserialize it to an array. When recorded on spans, it MAY be recorded as a JSON string if structured format is not supported and SHOULD be recorded in structured form otherwise.
+                ///
+                /// Since this attribute could be large, it's NOT RECOMMENDED to populate
+                /// it by default. Instrumentations MAY provide a way to enable
+                /// populating this attribute.
+                public var definitions: SpanAttributeKey<SpanAttribute> {
+                    .init(name: OTelAttribute.genAi.tool.definitions)
+                }
+
                 /// `gen_ai.tool.description` **UNSTABLE**: The tool description.
                 ///
                 /// - Stability: development
@@ -977,12 +1170,55 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
+                    /// `gen_ai.tool.call.arguments` **UNSTABLE**: Parameters passed to the tool call.
+                    ///
+                    /// - Stability: development
+                    /// - Type: any
+                    /// - Example: `{
+                    ///     "location": "San Francisco?",
+                    ///     "date": "2025-10-01"
+                    /// }
+                    /// `
+                    ///
+                    /// > [!WARNING]
+                    /// > This attribute may contain sensitive information.
+                    ///
+                    /// It's expected to be an object - in case a serialized string is available
+                    /// to the instrumentation, the instrumentation SHOULD do the best effort to
+                    /// deserialize it to an object. When recorded on spans, it MAY be recorded as a JSON string if structured format is not supported and SHOULD be recorded in structured form otherwise.
+                    public var arguments: SpanAttributeKey<SpanAttribute> {
+                        .init(name: OTelAttribute.genAi.tool.call.arguments)
+                    }
+
                     /// `gen_ai.tool.call.id` **UNSTABLE**: The tool call identifier.
                     ///
                     /// - Stability: development
                     /// - Type: string
                     /// - Example: `call_mszuSIzqtI65i1wAUOE8w5H4`
                     public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.genAi.tool.call.id) }
+
+                    /// `gen_ai.tool.call.result` **UNSTABLE**: The result returned by the tool call (if any and if execution was successful).
+                    ///
+                    /// - Stability: development
+                    /// - Type: any
+                    /// - Example: `{
+                    ///   "temperature_range": {
+                    ///     "high": 75,
+                    ///     "low": 60
+                    ///   },
+                    ///   "conditions": "sunny"
+                    /// }
+                    /// `
+                    ///
+                    /// > [!WARNING]
+                    /// > This attribute may contain sensitive information.
+                    ///
+                    /// It's expected to be an object - in case a serialized string is available
+                    /// to the instrumentation, the instrumentation SHOULD do the best effort to
+                    /// deserialize it to an object. When recorded on spans, it MAY be recorded as a JSON string if structured format is not supported and SHOULD be recorded in structured form otherwise.
+                    public var result: SpanAttributeKey<SpanAttribute> {
+                        .init(name: OTelAttribute.genAi.tool.call.result)
+                    }
                 }
             }
         }

@@ -695,7 +695,7 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `200`
                 ///     - `201`
-                @available(*, deprecated, renamed: "SpanAttributes.db.response.statusCode")
+                @available(*, deprecated, message: "Use `db.response.status_code` instead.")
                 public var statusCode: SpanAttributeKey<Int> { .init(name: OTelAttribute.db.cosmosdb.statusCode) }
 
                 /// `db.cosmosdb.sub_status_code` **UNSTABLE**: Deprecated, use `azure.cosmosdb.response.sub_status_code` instead.
@@ -1155,6 +1155,9 @@ extension SpanAttributes {
             /// `db.query.parameter.<key>` SHOULD match
             /// up with the parameterized placeholders present in `db.query.text`.
             ///
+            /// It is RECOMMENDED to capture the value as provided by the application
+            /// without attempting to do any case normalization.
+            ///
             /// `db.query.parameter.<key>` SHOULD NOT be captured on batch operations.
             ///
             /// Examples:
@@ -1162,8 +1165,8 @@ extension SpanAttributes {
             /// - For a query `SELECT * FROM users where username =  %s` with the parameter `"jdoe"`,
             ///   the attribute `db.query.parameter.0` SHOULD be set to `"jdoe"`.
             ///
-            /// - For a query `"SELECT * FROM users WHERE username = %(username)s;` with parameter
-            ///   `username = "jdoe"`, the attribute `db.query.parameter.username` SHOULD be set to `"jdoe"`.
+            /// - For a query `"SELECT * FROM users WHERE username = %(userName)s;` with parameter
+            ///   `userName = "jdoe"`, the attribute `db.query.parameter.userName` SHOULD be set to `"jdoe"`.
             public var parameter: ParameterAttributes {
                 get {
                     .init(attributes: self.attributes)
@@ -1271,7 +1274,7 @@ extension SpanAttributes {
                 ///     - `0`
                 ///     - `1`
                 ///     - `15`
-                @available(*, deprecated, renamed: "SpanAttributes.db.namespace")
+                @available(*, deprecated)
                 public var databaseIndex: SpanAttributeKey<Int> { .init(name: OTelAttribute.db.redis.databaseIndex) }
             }
         }

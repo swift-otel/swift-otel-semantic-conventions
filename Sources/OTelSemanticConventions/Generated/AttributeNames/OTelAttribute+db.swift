@@ -398,7 +398,7 @@ extension OTelAttribute {
             /// - Examples:
             ///     - `200`
             ///     - `201`
-            @available(*, deprecated, renamed: "OTelAttribute.db.response.statusCode")
+            @available(*, deprecated, message: "Use `db.response.status_code` instead.")
             public static let statusCode = "db.cosmosdb.status_code"
 
             /// `db.cosmosdb.sub_status_code` **UNSTABLE**: Deprecated, use `azure.cosmosdb.response.sub_status_code` instead.
@@ -586,6 +586,9 @@ extension OTelAttribute {
             /// `db.query.parameter.<key>` SHOULD match
             /// up with the parameterized placeholders present in `db.query.text`.
             ///
+            /// It is RECOMMENDED to capture the value as provided by the application
+            /// without attempting to do any case normalization.
+            ///
             /// `db.query.parameter.<key>` SHOULD NOT be captured on batch operations.
             ///
             /// Examples:
@@ -593,8 +596,8 @@ extension OTelAttribute {
             /// - For a query `SELECT * FROM users where username =  %s` with the parameter `"jdoe"`,
             ///   the attribute `db.query.parameter.0` SHOULD be set to `"jdoe"`.
             ///
-            /// - For a query `"SELECT * FROM users WHERE username = %(username)s;` with parameter
-            ///   `username = "jdoe"`, the attribute `db.query.parameter.username` SHOULD be set to `"jdoe"`.
+            /// - For a query `"SELECT * FROM users WHERE username = %(userName)s;` with parameter
+            ///   `userName = "jdoe"`, the attribute `db.query.parameter.userName` SHOULD be set to `"jdoe"`.
             public static let parameter = "db.query.parameter"
             #endif
 
@@ -643,7 +646,7 @@ extension OTelAttribute {
             ///     - `0`
             ///     - `1`
             ///     - `15`
-            @available(*, deprecated, renamed: "OTelAttribute.db.namespace")
+            @available(*, deprecated)
             public static let databaseIndex = "db.redis.database_index"
         }
         #endif

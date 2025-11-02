@@ -63,6 +63,8 @@ Describes attributes related to client-side applications (e.g. web apps or mobil
             - ``Tracing/SpanAttributes/AppAttributes/JankAttributes/NestedSpanAttributes/threshold``
             - ``Tracing/SpanAttributes/AppAttributes/ScreenAttributes/CoordinateAttributes/NestedSpanAttributes/x``
             - ``Tracing/SpanAttributes/AppAttributes/ScreenAttributes/CoordinateAttributes/NestedSpanAttributes/y``
+            - ``Tracing/SpanAttributes/AppAttributes/ScreenAttributes/NestedSpanAttributes/id``
+            - ``Tracing/SpanAttributes/AppAttributes/ScreenAttributes/NestedSpanAttributes/name``
             - ``Tracing/SpanAttributes/AppAttributes/WidgetAttributes/NestedSpanAttributes/id``
             - ``Tracing/SpanAttributes/AppAttributes/WidgetAttributes/NestedSpanAttributes/name``
         }
@@ -76,6 +78,8 @@ Describes attributes related to client-side applications (e.g. web apps or mobil
             - ``OTelAttribute/app/jank/threshold``
             - ``OTelAttribute/app/screen/coordinate/x``
             - ``OTelAttribute/app/screen/coordinate/y``
+            - ``OTelAttribute/app/screen/id``
+            - ``OTelAttribute/app/screen/name``
             - ``OTelAttribute/app/widget/id``
             - ``OTelAttribute/app/widget/name``
         }
@@ -956,7 +960,7 @@ Describes deprecated database attributes.
 
 ## Deprecated Database Metrics
 
-"Describes deprecated db metrics attributes."
+Describes deprecated db metrics attributes.
 
 @TabNavigator {
     @Tab("Span Attributes") {
@@ -1403,6 +1407,39 @@ This document defines attributes AppHub will apply to resources in GCP. See [App
     }
 }
 
+## GCP - AppHub Destination Attributes
+
+This document defines attributes AppHub will apply to destination resources in GCP. See [AppHub overview](https://cloud.google.com/app-hub/docs/overview).
+
+@TabNavigator {
+    @Tab("Span Attributes") {
+        @Links(visualStyle: list) {
+            - ``Tracing/SpanAttributes/GcpAttributes/ApphubDestinationAttributes/ApplicationAttributes/NestedSpanAttributes/container``
+            - ``Tracing/SpanAttributes/GcpAttributes/ApphubDestinationAttributes/ApplicationAttributes/NestedSpanAttributes/id``
+            - ``Tracing/SpanAttributes/GcpAttributes/ApphubDestinationAttributes/ApplicationAttributes/NestedSpanAttributes/location``
+            - ``Tracing/SpanAttributes/GcpAttributes/ApphubDestinationAttributes/ServiceAttributes/NestedSpanAttributes/criticalityType``
+            - ``Tracing/SpanAttributes/GcpAttributes/ApphubDestinationAttributes/ServiceAttributes/NestedSpanAttributes/environmentType``
+            - ``Tracing/SpanAttributes/GcpAttributes/ApphubDestinationAttributes/ServiceAttributes/NestedSpanAttributes/id``
+            - ``Tracing/SpanAttributes/GcpAttributes/ApphubDestinationAttributes/WorkloadAttributes/NestedSpanAttributes/criticalityType``
+            - ``Tracing/SpanAttributes/GcpAttributes/ApphubDestinationAttributes/WorkloadAttributes/NestedSpanAttributes/environmentType``
+            - ``Tracing/SpanAttributes/GcpAttributes/ApphubDestinationAttributes/WorkloadAttributes/NestedSpanAttributes/id``
+        }
+    }
+    @Tab("String Constants") {
+        @Links(visualStyle: list) {
+            - ``OTelAttribute/gcp/apphubDestination/application/container``
+            - ``OTelAttribute/gcp/apphubDestination/application/id``
+            - ``OTelAttribute/gcp/apphubDestination/application/location``
+            - ``OTelAttribute/gcp/apphubDestination/service/criticalityType``
+            - ``OTelAttribute/gcp/apphubDestination/service/environmentType``
+            - ``OTelAttribute/gcp/apphubDestination/service/id``
+            - ``OTelAttribute/gcp/apphubDestination/workload/criticalityType``
+            - ``OTelAttribute/gcp/apphubDestination/workload/environmentType``
+            - ``OTelAttribute/gcp/apphubDestination/workload/id``
+        }
+    }
+}
+
 ## GCP Client Attributes
 
 Attributes for Google Cloud client libraries.
@@ -1470,6 +1507,11 @@ This document defines the attributes used to describe telemetry in the context o
             - ``Tracing/SpanAttributes/GenAiAttributes/AgentAttributes/NestedSpanAttributes/name``
             - ``Tracing/SpanAttributes/GenAiAttributes/ConversationAttributes/NestedSpanAttributes/id``
             - ``Tracing/SpanAttributes/GenAiAttributes/DataSourceAttributes/NestedSpanAttributes/id``
+            - ``Tracing/SpanAttributes/GenAiAttributes/EmbeddingsAttributes/DimensionAttributes/NestedSpanAttributes/count``
+            - ``Tracing/SpanAttributes/GenAiAttributes/EvaluationAttributes/NestedSpanAttributes/explanation``
+            - ``Tracing/SpanAttributes/GenAiAttributes/EvaluationAttributes/NestedSpanAttributes/name``
+            - ``Tracing/SpanAttributes/GenAiAttributes/EvaluationAttributes/ScoreAttributes/NestedSpanAttributes/label``
+            - ``Tracing/SpanAttributes/GenAiAttributes/EvaluationAttributes/ScoreAttributes/NestedSpanAttributes/value``
             - ``Tracing/SpanAttributes/GenAiAttributes/InputAttributes/NestedSpanAttributes/messages``
             - ``Tracing/SpanAttributes/GenAiAttributes/OperationAttributes/NestedSpanAttributes/name``
             - ``Tracing/SpanAttributes/GenAiAttributes/OutputAttributes/NestedSpanAttributes/messages``
@@ -1491,7 +1533,10 @@ This document defines the attributes used to describe telemetry in the context o
             - ``Tracing/SpanAttributes/GenAiAttributes/ResponseAttributes/NestedSpanAttributes/model``
             - ``Tracing/SpanAttributes/GenAiAttributes/NestedSpanAttributes/systemInstructions``
             - ``Tracing/SpanAttributes/GenAiAttributes/TokenAttributes/NestedSpanAttributes/type``
+            - ``Tracing/SpanAttributes/GenAiAttributes/ToolAttributes/CallAttributes/NestedSpanAttributes/arguments``
             - ``Tracing/SpanAttributes/GenAiAttributes/ToolAttributes/CallAttributes/NestedSpanAttributes/id``
+            - ``Tracing/SpanAttributes/GenAiAttributes/ToolAttributes/CallAttributes/NestedSpanAttributes/result``
+            - ``Tracing/SpanAttributes/GenAiAttributes/ToolAttributes/NestedSpanAttributes/definitions``
             - ``Tracing/SpanAttributes/GenAiAttributes/ToolAttributes/NestedSpanAttributes/description``
             - ``Tracing/SpanAttributes/GenAiAttributes/ToolAttributes/NestedSpanAttributes/name``
             - ``Tracing/SpanAttributes/GenAiAttributes/ToolAttributes/NestedSpanAttributes/type``
@@ -1506,6 +1551,11 @@ This document defines the attributes used to describe telemetry in the context o
             - ``OTelAttribute/genAi/agent/name``
             - ``OTelAttribute/genAi/conversation/id``
             - ``OTelAttribute/genAi/dataSource/id``
+            - ``OTelAttribute/genAi/embeddings/dimension/count``
+            - ``OTelAttribute/genAi/evaluation/explanation``
+            - ``OTelAttribute/genAi/evaluation/name``
+            - ``OTelAttribute/genAi/evaluation/score/label``
+            - ``OTelAttribute/genAi/evaluation/score/value``
             - ``OTelAttribute/genAi/input/messages``
             - ``OTelAttribute/genAi/operation/name``
             - ``OTelAttribute/genAi/output/messages``
@@ -1527,7 +1577,10 @@ This document defines the attributes used to describe telemetry in the context o
             - ``OTelAttribute/genAi/response/model``
             - ``OTelAttribute/genAi/systemInstructions``
             - ``OTelAttribute/genAi/token/type``
+            - ``OTelAttribute/genAi/tool/call/arguments``
             - ``OTelAttribute/genAi/tool/call/id``
+            - ``OTelAttribute/genAi/tool/call/result``
+            - ``OTelAttribute/genAi/tool/definitions``
             - ``OTelAttribute/genAi/tool/description``
             - ``OTelAttribute/genAi/tool/name``
             - ``OTelAttribute/genAi/tool/type``
@@ -1951,6 +2004,8 @@ Kubernetes resource attributes.
             - ``Tracing/SpanAttributes/K8sAttributes/PodAttributes/annotation``
             - ``Tracing/SpanAttributes/K8sAttributes/PodAttributes/label``
             - ``Tracing/SpanAttributes/K8sAttributes/PodAttributes/NestedSpanAttributes/name``
+            - ``Tracing/SpanAttributes/K8sAttributes/PodAttributes/StatusAttributes/NestedSpanAttributes/phase``
+            - ``Tracing/SpanAttributes/K8sAttributes/PodAttributes/StatusAttributes/NestedSpanAttributes/reason``
             - ``Tracing/SpanAttributes/K8sAttributes/PodAttributes/NestedSpanAttributes/uid``
             - ``Tracing/SpanAttributes/K8sAttributes/ReplicasetAttributes/annotation``
             - ``Tracing/SpanAttributes/K8sAttributes/ReplicasetAttributes/label``
@@ -2015,6 +2070,8 @@ Kubernetes resource attributes.
             - ``OTelAttribute/k8s/pod/annotation``
             - ``OTelAttribute/k8s/pod/label``
             - ``OTelAttribute/k8s/pod/name``
+            - ``OTelAttribute/k8s/pod/status/phase``
+            - ``OTelAttribute/k8s/pod/status/reason``
             - ``OTelAttribute/k8s/pod/uid``
             - ``OTelAttribute/k8s/replicaset/annotation``
             - ``OTelAttribute/k8s/replicaset/label``
@@ -2433,6 +2490,25 @@ These attributes may be used for any network related operation.
     }
 }
 
+## NFS Attributes
+
+Describes NFS Attributes
+
+@TabNavigator {
+    @Tab("Span Attributes") {
+        @Links(visualStyle: list) {
+            - ``Tracing/SpanAttributes/NfsAttributes/OperationAttributes/NestedSpanAttributes/name``
+            - ``Tracing/SpanAttributes/NfsAttributes/ServerAttributes/RepcacheAttributes/NestedSpanAttributes/status``
+        }
+    }
+    @Tab("String Constants") {
+        @Links(visualStyle: list) {
+            - ``OTelAttribute/nfs/operation/name``
+            - ``OTelAttribute/nfs/server/repcache/status``
+        }
+    }
+}
+
 ## Open Container Initiative (OCI) Attributes
 
 An OCI image manifest.
@@ -2446,6 +2522,28 @@ An OCI image manifest.
     @Tab("String Constants") {
         @Links(visualStyle: list) {
             - ``OTelAttribute/oci/manifest/digest``
+        }
+    }
+}
+
+## ONC RPC (Sun RPC) attributes
+
+This document defines attributes for [ONC RPC (Sun RPC)](https://datatracker.ietf.org/doc/html/rfc5531)
+@TabNavigator {
+    @Tab("Span Attributes") {
+        @Links(visualStyle: list) {
+            - ``Tracing/SpanAttributes/OncRpcAttributes/ProcedureAttributes/NestedSpanAttributes/name``
+            - ``Tracing/SpanAttributes/OncRpcAttributes/ProcedureAttributes/NestedSpanAttributes/number``
+            - ``Tracing/SpanAttributes/OncRpcAttributes/ProgramAttributes/NestedSpanAttributes/name``
+            - ``Tracing/SpanAttributes/OncRpcAttributes/NestedSpanAttributes/version``
+        }
+    }
+    @Tab("String Constants") {
+        @Links(visualStyle: list) {
+            - ``OTelAttribute/oncRpc/procedure/name``
+            - ``OTelAttribute/oncRpc/procedure/number``
+            - ``OTelAttribute/oncRpc/program/name``
+            - ``OTelAttribute/oncRpc/version``
         }
     }
 }
@@ -2467,6 +2565,25 @@ This group defines attributes for OpenAI.
             - ``OTelAttribute/openai/request/serviceTier``
             - ``OTelAttribute/openai/response/serviceTier``
             - ``OTelAttribute/openai/response/systemFingerprint``
+        }
+    }
+}
+
+## Openshift Attributes
+
+OpenShift resource attributes.
+
+@TabNavigator {
+    @Tab("Span Attributes") {
+        @Links(visualStyle: list) {
+            - ``Tracing/SpanAttributes/OpenshiftAttributes/ClusterquotaAttributes/NestedSpanAttributes/name``
+            - ``Tracing/SpanAttributes/OpenshiftAttributes/ClusterquotaAttributes/NestedSpanAttributes/uid``
+        }
+    }
+    @Tab("String Constants") {
+        @Links(visualStyle: list) {
+            - ``OTelAttribute/openshift/clusterquota/name``
+            - ``OTelAttribute/openshift/clusterquota/uid``
         }
     }
 }
@@ -2592,7 +2709,7 @@ Attributes used by non-OTLP exporters to represent OpenTelemetry Scope's concept
 
 ## Peer Attributes
 
-Operations that access some remote service.
+These attribute may be used for any operation that accesses some remote service.
 
 @TabNavigator {
     @Tab("Span Attributes") {
@@ -2603,6 +2720,33 @@ Operations that access some remote service.
     @Tab("String Constants") {
         @Links(visualStyle: list) {
             - ``OTelAttribute/peer/service``
+        }
+    }
+}
+
+## Pprof specific attributes for the Profiling signal
+
+Attributes specific to pprof that help convert from pprof to Profiling signal.
+
+@TabNavigator {
+    @Tab("Span Attributes") {
+        @Links(visualStyle: list) {
+            - ``Tracing/SpanAttributes/PprofAttributes/LocationAttributes/NestedSpanAttributes/isFolded``
+            - ``Tracing/SpanAttributes/PprofAttributes/MappingAttributes/NestedSpanAttributes/hasFilenames``
+            - ``Tracing/SpanAttributes/PprofAttributes/MappingAttributes/NestedSpanAttributes/hasFunctions``
+            - ``Tracing/SpanAttributes/PprofAttributes/MappingAttributes/NestedSpanAttributes/hasInlineFrames``
+            - ``Tracing/SpanAttributes/PprofAttributes/MappingAttributes/NestedSpanAttributes/hasLineNumbers``
+            - ``Tracing/SpanAttributes/PprofAttributes/ProfileAttributes/NestedSpanAttributes/comment``
+        }
+    }
+    @Tab("String Constants") {
+        @Links(visualStyle: list) {
+            - ``OTelAttribute/pprof/location/isFolded``
+            - ``OTelAttribute/pprof/mapping/hasFilenames``
+            - ``OTelAttribute/pprof/mapping/hasFunctions``
+            - ``OTelAttribute/pprof/mapping/hasInlineFrames``
+            - ``OTelAttribute/pprof/mapping/hasLineNumbers``
+            - ``OTelAttribute/pprof/profile/comment``
         }
     }
 }
@@ -2618,7 +2762,7 @@ An operating system process.
             - ``Tracing/SpanAttributes/ProcessAttributes/NestedSpanAttributes/command``
             - ``Tracing/SpanAttributes/ProcessAttributes/NestedSpanAttributes/commandArgs``
             - ``Tracing/SpanAttributes/ProcessAttributes/NestedSpanAttributes/commandLine``
-            - ``Tracing/SpanAttributes/ProcessAttributes/NestedSpanAttributes/contextSwitchType``
+            - ``Tracing/SpanAttributes/ProcessAttributes/ContextSwitchAttributes/NestedSpanAttributes/type``
             - ``Tracing/SpanAttributes/ProcessAttributes/CreationAttributes/NestedSpanAttributes/time``
             - ``Tracing/SpanAttributes/ProcessAttributes/environmentVariable``
             - ``Tracing/SpanAttributes/ProcessAttributes/ExecutableAttributes/BuildIdAttributes/NestedSpanAttributes/gnu``
@@ -2631,7 +2775,6 @@ An operating system process.
             - ``Tracing/SpanAttributes/ProcessAttributes/GroupLeaderAttributes/NestedSpanAttributes/pid``
             - ``Tracing/SpanAttributes/ProcessAttributes/NestedSpanAttributes/interactive``
             - ``Tracing/SpanAttributes/ProcessAttributes/NestedSpanAttributes/owner``
-            - ``Tracing/SpanAttributes/ProcessAttributes/PagingAttributes/NestedSpanAttributes/faultType``
             - ``Tracing/SpanAttributes/ProcessAttributes/NestedSpanAttributes/parentPid``
             - ``Tracing/SpanAttributes/ProcessAttributes/NestedSpanAttributes/pid``
             - ``Tracing/SpanAttributes/ProcessAttributes/RealUserAttributes/NestedSpanAttributes/id``
@@ -2642,6 +2785,7 @@ An operating system process.
             - ``Tracing/SpanAttributes/ProcessAttributes/SavedUserAttributes/NestedSpanAttributes/id``
             - ``Tracing/SpanAttributes/ProcessAttributes/SavedUserAttributes/NestedSpanAttributes/name``
             - ``Tracing/SpanAttributes/ProcessAttributes/SessionLeaderAttributes/NestedSpanAttributes/pid``
+            - ``Tracing/SpanAttributes/ProcessAttributes/NestedSpanAttributes/state``
             - ``Tracing/SpanAttributes/ProcessAttributes/NestedSpanAttributes/title``
             - ``Tracing/SpanAttributes/ProcessAttributes/UserAttributes/NestedSpanAttributes/id``
             - ``Tracing/SpanAttributes/ProcessAttributes/UserAttributes/NestedSpanAttributes/name``
@@ -2655,7 +2799,7 @@ An operating system process.
             - ``OTelAttribute/process/command``
             - ``OTelAttribute/process/commandArgs``
             - ``OTelAttribute/process/commandLine``
-            - ``OTelAttribute/process/contextSwitchType``
+            - ``OTelAttribute/process/contextSwitch/type``
             - ``OTelAttribute/process/creation/time``
             - ``OTelAttribute/process/environmentVariable``
             - ``OTelAttribute/process/executable/buildId/gnu``
@@ -2668,7 +2812,6 @@ An operating system process.
             - ``OTelAttribute/process/groupLeader/pid``
             - ``OTelAttribute/process/interactive``
             - ``OTelAttribute/process/owner``
-            - ``OTelAttribute/process/paging/faultType``
             - ``OTelAttribute/process/parentPid``
             - ``OTelAttribute/process/pid``
             - ``OTelAttribute/process/realUser/id``
@@ -2679,6 +2822,7 @@ An operating system process.
             - ``OTelAttribute/process/savedUser/id``
             - ``OTelAttribute/process/savedUser/name``
             - ``OTelAttribute/process/sessionLeader/pid``
+            - ``OTelAttribute/process/state``
             - ``OTelAttribute/process/title``
             - ``OTelAttribute/process/user/id``
             - ``OTelAttribute/process/user/name``
@@ -2694,14 +2838,18 @@ Deprecated process attributes.
 @TabNavigator {
     @Tab("Span Attributes") {
         @Links(visualStyle: list) {
+            - ``Tracing/SpanAttributes/ProcessAttributes/NestedSpanAttributes/contextSwitchType``
             - ``Tracing/SpanAttributes/ProcessAttributes/CpuAttributes/NestedSpanAttributes/state``
             - ``Tracing/SpanAttributes/ProcessAttributes/ExecutableAttributes/BuildIdAttributes/NestedSpanAttributes/profiling``
+            - ``Tracing/SpanAttributes/ProcessAttributes/PagingAttributes/NestedSpanAttributes/faultType``
         }
     }
     @Tab("String Constants") {
         @Links(visualStyle: list) {
+            - ``OTelAttribute/process/contextSwitchType``
             - ``OTelAttribute/process/cpu/state``
             - ``OTelAttribute/process/executable/buildId/profiling``
+            - ``OTelAttribute/process/paging/faultType``
         }
     }
 }
@@ -2947,6 +3095,8 @@ Deprecated system attributes.
             - ``Tracing/SpanAttributes/SystemAttributes/CpuAttributes/NestedSpanAttributes/logicalNumber``
             - ``Tracing/SpanAttributes/SystemAttributes/CpuAttributes/NestedSpanAttributes/state``
             - ``Tracing/SpanAttributes/SystemAttributes/NetworkAttributes/NestedSpanAttributes/state``
+            - ``Tracing/SpanAttributes/SystemAttributes/PagingAttributes/NestedSpanAttributes/type``
+            - ``Tracing/SpanAttributes/SystemAttributes/ProcessAttributes/NestedSpanAttributes/status``
             - ``Tracing/SpanAttributes/SystemAttributes/ProcessesAttributes/NestedSpanAttributes/status``
         }
     }
@@ -2955,6 +3105,8 @@ Deprecated system attributes.
             - ``OTelAttribute/system/cpu/logicalNumber``
             - ``OTelAttribute/system/cpu/state``
             - ``OTelAttribute/system/network/state``
+            - ``OTelAttribute/system/paging/type``
+            - ``OTelAttribute/system/process/status``
             - ``OTelAttribute/system/processes/status``
         }
     }
@@ -3005,31 +3157,15 @@ Describes System Memory Paging attributes
     @Tab("Span Attributes") {
         @Links(visualStyle: list) {
             - ``Tracing/SpanAttributes/SystemAttributes/PagingAttributes/NestedSpanAttributes/direction``
+            - ``Tracing/SpanAttributes/SystemAttributes/PagingAttributes/FaultAttributes/NestedSpanAttributes/type``
             - ``Tracing/SpanAttributes/SystemAttributes/PagingAttributes/NestedSpanAttributes/state``
-            - ``Tracing/SpanAttributes/SystemAttributes/PagingAttributes/NestedSpanAttributes/type``
         }
     }
     @Tab("String Constants") {
         @Links(visualStyle: list) {
             - ``OTelAttribute/system/paging/direction``
+            - ``OTelAttribute/system/paging/fault/type``
             - ``OTelAttribute/system/paging/state``
-            - ``OTelAttribute/system/paging/type``
-        }
-    }
-}
-
-## System Process Attributes
-
-Describes System Process attributes
-@TabNavigator {
-    @Tab("Span Attributes") {
-        @Links(visualStyle: list) {
-            - ``Tracing/SpanAttributes/SystemAttributes/ProcessAttributes/NestedSpanAttributes/status``
-        }
-    }
-    @Tab("String Constants") {
-        @Links(visualStyle: list) {
-            - ``OTelAttribute/system/process/status``
         }
     }
 }
@@ -3295,7 +3431,7 @@ Describes the OS user-agent attributes.
 
 ## registry.vcs.deprecated
 
-"Describes deprecated vcs attributes."
+Describes deprecated vcs attributes.
 
 @TabNavigator {
     @Tab("Span Attributes") {
@@ -3429,6 +3565,8 @@ This document defines attributes of a z/OS resource.
 - ``Tracing/SpanAttributes/AppAttributes/JankAttributes/NestedSpanAttributes/threshold``
 - ``Tracing/SpanAttributes/AppAttributes/ScreenAttributes/CoordinateAttributes/NestedSpanAttributes/x``
 - ``Tracing/SpanAttributes/AppAttributes/ScreenAttributes/CoordinateAttributes/NestedSpanAttributes/y``
+- ``Tracing/SpanAttributes/AppAttributes/ScreenAttributes/NestedSpanAttributes/id``
+- ``Tracing/SpanAttributes/AppAttributes/ScreenAttributes/NestedSpanAttributes/name``
 - ``Tracing/SpanAttributes/AppAttributes/WidgetAttributes/NestedSpanAttributes/id``
 - ``Tracing/SpanAttributes/AppAttributes/WidgetAttributes/NestedSpanAttributes/name``
 - ``OTelAttribute/app/buildId``
@@ -3438,6 +3576,8 @@ This document defines attributes of a z/OS resource.
 - ``OTelAttribute/app/jank/threshold``
 - ``OTelAttribute/app/screen/coordinate/x``
 - ``OTelAttribute/app/screen/coordinate/y``
+- ``OTelAttribute/app/screen/id``
+- ``OTelAttribute/app/screen/name``
 - ``OTelAttribute/app/widget/id``
 - ``OTelAttribute/app/widget/name``
 
@@ -4156,6 +4296,27 @@ This document defines attributes of a z/OS resource.
 - ``OTelAttribute/gcp/apphub/workload/environmentType``
 - ``OTelAttribute/gcp/apphub/workload/id``
 
+### GCP - AppHub Destination Attributes
+
+- ``Tracing/SpanAttributes/GcpAttributes/ApphubDestinationAttributes/ApplicationAttributes/NestedSpanAttributes/container``
+- ``Tracing/SpanAttributes/GcpAttributes/ApphubDestinationAttributes/ApplicationAttributes/NestedSpanAttributes/id``
+- ``Tracing/SpanAttributes/GcpAttributes/ApphubDestinationAttributes/ApplicationAttributes/NestedSpanAttributes/location``
+- ``Tracing/SpanAttributes/GcpAttributes/ApphubDestinationAttributes/ServiceAttributes/NestedSpanAttributes/criticalityType``
+- ``Tracing/SpanAttributes/GcpAttributes/ApphubDestinationAttributes/ServiceAttributes/NestedSpanAttributes/environmentType``
+- ``Tracing/SpanAttributes/GcpAttributes/ApphubDestinationAttributes/ServiceAttributes/NestedSpanAttributes/id``
+- ``Tracing/SpanAttributes/GcpAttributes/ApphubDestinationAttributes/WorkloadAttributes/NestedSpanAttributes/criticalityType``
+- ``Tracing/SpanAttributes/GcpAttributes/ApphubDestinationAttributes/WorkloadAttributes/NestedSpanAttributes/environmentType``
+- ``Tracing/SpanAttributes/GcpAttributes/ApphubDestinationAttributes/WorkloadAttributes/NestedSpanAttributes/id``
+- ``OTelAttribute/gcp/apphubDestination/application/container``
+- ``OTelAttribute/gcp/apphubDestination/application/id``
+- ``OTelAttribute/gcp/apphubDestination/application/location``
+- ``OTelAttribute/gcp/apphubDestination/service/criticalityType``
+- ``OTelAttribute/gcp/apphubDestination/service/environmentType``
+- ``OTelAttribute/gcp/apphubDestination/service/id``
+- ``OTelAttribute/gcp/apphubDestination/workload/criticalityType``
+- ``OTelAttribute/gcp/apphubDestination/workload/environmentType``
+- ``OTelAttribute/gcp/apphubDestination/workload/id``
+
 ### GCP Client Attributes
 
 - ``Tracing/SpanAttributes/GcpAttributes/ClientAttributes/NestedSpanAttributes/service``
@@ -4182,6 +4343,11 @@ This document defines attributes of a z/OS resource.
 - ``Tracing/SpanAttributes/GenAiAttributes/AgentAttributes/NestedSpanAttributes/name``
 - ``Tracing/SpanAttributes/GenAiAttributes/ConversationAttributes/NestedSpanAttributes/id``
 - ``Tracing/SpanAttributes/GenAiAttributes/DataSourceAttributes/NestedSpanAttributes/id``
+- ``Tracing/SpanAttributes/GenAiAttributes/EmbeddingsAttributes/DimensionAttributes/NestedSpanAttributes/count``
+- ``Tracing/SpanAttributes/GenAiAttributes/EvaluationAttributes/NestedSpanAttributes/explanation``
+- ``Tracing/SpanAttributes/GenAiAttributes/EvaluationAttributes/NestedSpanAttributes/name``
+- ``Tracing/SpanAttributes/GenAiAttributes/EvaluationAttributes/ScoreAttributes/NestedSpanAttributes/label``
+- ``Tracing/SpanAttributes/GenAiAttributes/EvaluationAttributes/ScoreAttributes/NestedSpanAttributes/value``
 - ``Tracing/SpanAttributes/GenAiAttributes/InputAttributes/NestedSpanAttributes/messages``
 - ``Tracing/SpanAttributes/GenAiAttributes/OperationAttributes/NestedSpanAttributes/name``
 - ``Tracing/SpanAttributes/GenAiAttributes/OutputAttributes/NestedSpanAttributes/messages``
@@ -4203,7 +4369,10 @@ This document defines attributes of a z/OS resource.
 - ``Tracing/SpanAttributes/GenAiAttributes/ResponseAttributes/NestedSpanAttributes/model``
 - ``Tracing/SpanAttributes/GenAiAttributes/NestedSpanAttributes/systemInstructions``
 - ``Tracing/SpanAttributes/GenAiAttributes/TokenAttributes/NestedSpanAttributes/type``
+- ``Tracing/SpanAttributes/GenAiAttributes/ToolAttributes/CallAttributes/NestedSpanAttributes/arguments``
 - ``Tracing/SpanAttributes/GenAiAttributes/ToolAttributes/CallAttributes/NestedSpanAttributes/id``
+- ``Tracing/SpanAttributes/GenAiAttributes/ToolAttributes/CallAttributes/NestedSpanAttributes/result``
+- ``Tracing/SpanAttributes/GenAiAttributes/ToolAttributes/NestedSpanAttributes/definitions``
 - ``Tracing/SpanAttributes/GenAiAttributes/ToolAttributes/NestedSpanAttributes/description``
 - ``Tracing/SpanAttributes/GenAiAttributes/ToolAttributes/NestedSpanAttributes/name``
 - ``Tracing/SpanAttributes/GenAiAttributes/ToolAttributes/NestedSpanAttributes/type``
@@ -4214,6 +4383,11 @@ This document defines attributes of a z/OS resource.
 - ``OTelAttribute/genAi/agent/name``
 - ``OTelAttribute/genAi/conversation/id``
 - ``OTelAttribute/genAi/dataSource/id``
+- ``OTelAttribute/genAi/embeddings/dimension/count``
+- ``OTelAttribute/genAi/evaluation/explanation``
+- ``OTelAttribute/genAi/evaluation/name``
+- ``OTelAttribute/genAi/evaluation/score/label``
+- ``OTelAttribute/genAi/evaluation/score/value``
 - ``OTelAttribute/genAi/input/messages``
 - ``OTelAttribute/genAi/operation/name``
 - ``OTelAttribute/genAi/output/messages``
@@ -4235,7 +4409,10 @@ This document defines attributes of a z/OS resource.
 - ``OTelAttribute/genAi/response/model``
 - ``OTelAttribute/genAi/systemInstructions``
 - ``OTelAttribute/genAi/token/type``
+- ``OTelAttribute/genAi/tool/call/arguments``
 - ``OTelAttribute/genAi/tool/call/id``
+- ``OTelAttribute/genAi/tool/call/result``
+- ``OTelAttribute/genAi/tool/definitions``
 - ``OTelAttribute/genAi/tool/description``
 - ``OTelAttribute/genAi/tool/name``
 - ``OTelAttribute/genAi/tool/type``
@@ -4511,6 +4688,8 @@ This document defines attributes of a z/OS resource.
 - ``Tracing/SpanAttributes/K8sAttributes/PodAttributes/annotation``
 - ``Tracing/SpanAttributes/K8sAttributes/PodAttributes/label``
 - ``Tracing/SpanAttributes/K8sAttributes/PodAttributes/NestedSpanAttributes/name``
+- ``Tracing/SpanAttributes/K8sAttributes/PodAttributes/StatusAttributes/NestedSpanAttributes/phase``
+- ``Tracing/SpanAttributes/K8sAttributes/PodAttributes/StatusAttributes/NestedSpanAttributes/reason``
 - ``Tracing/SpanAttributes/K8sAttributes/PodAttributes/NestedSpanAttributes/uid``
 - ``Tracing/SpanAttributes/K8sAttributes/ReplicasetAttributes/annotation``
 - ``Tracing/SpanAttributes/K8sAttributes/ReplicasetAttributes/label``
@@ -4571,6 +4750,8 @@ This document defines attributes of a z/OS resource.
 - ``OTelAttribute/k8s/pod/annotation``
 - ``OTelAttribute/k8s/pod/label``
 - ``OTelAttribute/k8s/pod/name``
+- ``OTelAttribute/k8s/pod/status/phase``
+- ``OTelAttribute/k8s/pod/status/reason``
 - ``OTelAttribute/k8s/pod/uid``
 - ``OTelAttribute/k8s/replicaset/annotation``
 - ``OTelAttribute/k8s/replicaset/label``
@@ -4810,10 +4991,28 @@ This document defines attributes of a z/OS resource.
 - ``OTelAttribute/net/sock/peer/port``
 - ``OTelAttribute/net/transport``
 
+### NFS Attributes
+
+- ``Tracing/SpanAttributes/NfsAttributes/OperationAttributes/NestedSpanAttributes/name``
+- ``Tracing/SpanAttributes/NfsAttributes/ServerAttributes/RepcacheAttributes/NestedSpanAttributes/status``
+- ``OTelAttribute/nfs/operation/name``
+- ``OTelAttribute/nfs/server/repcache/status``
+
 ### Open Container Initiative (OCI) Attributes
 
 - ``Tracing/SpanAttributes/OciAttributes/ManifestAttributes/NestedSpanAttributes/digest``
 - ``OTelAttribute/oci/manifest/digest``
+
+### ONC RPC (Sun RPC) attributes
+
+- ``Tracing/SpanAttributes/OncRpcAttributes/ProcedureAttributes/NestedSpanAttributes/name``
+- ``Tracing/SpanAttributes/OncRpcAttributes/ProcedureAttributes/NestedSpanAttributes/number``
+- ``Tracing/SpanAttributes/OncRpcAttributes/ProgramAttributes/NestedSpanAttributes/name``
+- ``Tracing/SpanAttributes/OncRpcAttributes/NestedSpanAttributes/version``
+- ``OTelAttribute/oncRpc/procedure/name``
+- ``OTelAttribute/oncRpc/procedure/number``
+- ``OTelAttribute/oncRpc/program/name``
+- ``OTelAttribute/oncRpc/version``
 
 ### OpenAI Attributes
 
@@ -4823,6 +5022,13 @@ This document defines attributes of a z/OS resource.
 - ``OTelAttribute/openai/request/serviceTier``
 - ``OTelAttribute/openai/response/serviceTier``
 - ``OTelAttribute/openai/response/systemFingerprint``
+
+### Openshift Attributes
+
+- ``Tracing/SpanAttributes/OpenshiftAttributes/ClusterquotaAttributes/NestedSpanAttributes/name``
+- ``Tracing/SpanAttributes/OpenshiftAttributes/ClusterquotaAttributes/NestedSpanAttributes/uid``
+- ``OTelAttribute/openshift/clusterquota/name``
+- ``OTelAttribute/openshift/clusterquota/uid``
 
 ### OpenTracing Attributes
 
@@ -4881,13 +5087,28 @@ This document defines attributes of a z/OS resource.
 - ``Tracing/SpanAttributes/PeerAttributes/NestedSpanAttributes/service``
 - ``OTelAttribute/peer/service``
 
+### Pprof specific attributes for the Profiling signal
+
+- ``Tracing/SpanAttributes/PprofAttributes/LocationAttributes/NestedSpanAttributes/isFolded``
+- ``Tracing/SpanAttributes/PprofAttributes/MappingAttributes/NestedSpanAttributes/hasFilenames``
+- ``Tracing/SpanAttributes/PprofAttributes/MappingAttributes/NestedSpanAttributes/hasFunctions``
+- ``Tracing/SpanAttributes/PprofAttributes/MappingAttributes/NestedSpanAttributes/hasInlineFrames``
+- ``Tracing/SpanAttributes/PprofAttributes/MappingAttributes/NestedSpanAttributes/hasLineNumbers``
+- ``Tracing/SpanAttributes/PprofAttributes/ProfileAttributes/NestedSpanAttributes/comment``
+- ``OTelAttribute/pprof/location/isFolded``
+- ``OTelAttribute/pprof/mapping/hasFilenames``
+- ``OTelAttribute/pprof/mapping/hasFunctions``
+- ``OTelAttribute/pprof/mapping/hasInlineFrames``
+- ``OTelAttribute/pprof/mapping/hasLineNumbers``
+- ``OTelAttribute/pprof/profile/comment``
+
 ### Process Attributes
 
 - ``Tracing/SpanAttributes/ProcessAttributes/NestedSpanAttributes/argsCount``
 - ``Tracing/SpanAttributes/ProcessAttributes/NestedSpanAttributes/command``
 - ``Tracing/SpanAttributes/ProcessAttributes/NestedSpanAttributes/commandArgs``
 - ``Tracing/SpanAttributes/ProcessAttributes/NestedSpanAttributes/commandLine``
-- ``Tracing/SpanAttributes/ProcessAttributes/NestedSpanAttributes/contextSwitchType``
+- ``Tracing/SpanAttributes/ProcessAttributes/ContextSwitchAttributes/NestedSpanAttributes/type``
 - ``Tracing/SpanAttributes/ProcessAttributes/CreationAttributes/NestedSpanAttributes/time``
 - ``Tracing/SpanAttributes/ProcessAttributes/environmentVariable``
 - ``Tracing/SpanAttributes/ProcessAttributes/ExecutableAttributes/BuildIdAttributes/NestedSpanAttributes/gnu``
@@ -4900,7 +5121,6 @@ This document defines attributes of a z/OS resource.
 - ``Tracing/SpanAttributes/ProcessAttributes/GroupLeaderAttributes/NestedSpanAttributes/pid``
 - ``Tracing/SpanAttributes/ProcessAttributes/NestedSpanAttributes/interactive``
 - ``Tracing/SpanAttributes/ProcessAttributes/NestedSpanAttributes/owner``
-- ``Tracing/SpanAttributes/ProcessAttributes/PagingAttributes/NestedSpanAttributes/faultType``
 - ``Tracing/SpanAttributes/ProcessAttributes/NestedSpanAttributes/parentPid``
 - ``Tracing/SpanAttributes/ProcessAttributes/NestedSpanAttributes/pid``
 - ``Tracing/SpanAttributes/ProcessAttributes/RealUserAttributes/NestedSpanAttributes/id``
@@ -4911,6 +5131,7 @@ This document defines attributes of a z/OS resource.
 - ``Tracing/SpanAttributes/ProcessAttributes/SavedUserAttributes/NestedSpanAttributes/id``
 - ``Tracing/SpanAttributes/ProcessAttributes/SavedUserAttributes/NestedSpanAttributes/name``
 - ``Tracing/SpanAttributes/ProcessAttributes/SessionLeaderAttributes/NestedSpanAttributes/pid``
+- ``Tracing/SpanAttributes/ProcessAttributes/NestedSpanAttributes/state``
 - ``Tracing/SpanAttributes/ProcessAttributes/NestedSpanAttributes/title``
 - ``Tracing/SpanAttributes/ProcessAttributes/UserAttributes/NestedSpanAttributes/id``
 - ``Tracing/SpanAttributes/ProcessAttributes/UserAttributes/NestedSpanAttributes/name``
@@ -4920,7 +5141,7 @@ This document defines attributes of a z/OS resource.
 - ``OTelAttribute/process/command``
 - ``OTelAttribute/process/commandArgs``
 - ``OTelAttribute/process/commandLine``
-- ``OTelAttribute/process/contextSwitchType``
+- ``OTelAttribute/process/contextSwitch/type``
 - ``OTelAttribute/process/creation/time``
 - ``OTelAttribute/process/environmentVariable``
 - ``OTelAttribute/process/executable/buildId/gnu``
@@ -4933,7 +5154,6 @@ This document defines attributes of a z/OS resource.
 - ``OTelAttribute/process/groupLeader/pid``
 - ``OTelAttribute/process/interactive``
 - ``OTelAttribute/process/owner``
-- ``OTelAttribute/process/paging/faultType``
 - ``OTelAttribute/process/parentPid``
 - ``OTelAttribute/process/pid``
 - ``OTelAttribute/process/realUser/id``
@@ -4944,6 +5164,7 @@ This document defines attributes of a z/OS resource.
 - ``OTelAttribute/process/savedUser/id``
 - ``OTelAttribute/process/savedUser/name``
 - ``OTelAttribute/process/sessionLeader/pid``
+- ``OTelAttribute/process/state``
 - ``OTelAttribute/process/title``
 - ``OTelAttribute/process/user/id``
 - ``OTelAttribute/process/user/name``
@@ -4952,10 +5173,14 @@ This document defines attributes of a z/OS resource.
 
 ### Deprecated Process Attributes
 
+- ``Tracing/SpanAttributes/ProcessAttributes/NestedSpanAttributes/contextSwitchType``
 - ``Tracing/SpanAttributes/ProcessAttributes/CpuAttributes/NestedSpanAttributes/state``
 - ``Tracing/SpanAttributes/ProcessAttributes/ExecutableAttributes/BuildIdAttributes/NestedSpanAttributes/profiling``
+- ``Tracing/SpanAttributes/ProcessAttributes/PagingAttributes/NestedSpanAttributes/faultType``
+- ``OTelAttribute/process/contextSwitchType``
 - ``OTelAttribute/process/cpu/state``
 - ``OTelAttribute/process/executable/buildId/profiling``
+- ``OTelAttribute/process/paging/faultType``
 
 ### registry.process.linux
 
@@ -5076,10 +5301,14 @@ This document defines attributes of a z/OS resource.
 - ``Tracing/SpanAttributes/SystemAttributes/CpuAttributes/NestedSpanAttributes/logicalNumber``
 - ``Tracing/SpanAttributes/SystemAttributes/CpuAttributes/NestedSpanAttributes/state``
 - ``Tracing/SpanAttributes/SystemAttributes/NetworkAttributes/NestedSpanAttributes/state``
+- ``Tracing/SpanAttributes/SystemAttributes/PagingAttributes/NestedSpanAttributes/type``
+- ``Tracing/SpanAttributes/SystemAttributes/ProcessAttributes/NestedSpanAttributes/status``
 - ``Tracing/SpanAttributes/SystemAttributes/ProcessesAttributes/NestedSpanAttributes/status``
 - ``OTelAttribute/system/cpu/logicalNumber``
 - ``OTelAttribute/system/cpu/state``
 - ``OTelAttribute/system/network/state``
+- ``OTelAttribute/system/paging/type``
+- ``OTelAttribute/system/process/status``
 - ``OTelAttribute/system/processes/status``
 
 ### Filesystem Attributes
@@ -5101,16 +5330,11 @@ This document defines attributes of a z/OS resource.
 ### System Paging Attributes
 
 - ``Tracing/SpanAttributes/SystemAttributes/PagingAttributes/NestedSpanAttributes/direction``
+- ``Tracing/SpanAttributes/SystemAttributes/PagingAttributes/FaultAttributes/NestedSpanAttributes/type``
 - ``Tracing/SpanAttributes/SystemAttributes/PagingAttributes/NestedSpanAttributes/state``
-- ``Tracing/SpanAttributes/SystemAttributes/PagingAttributes/NestedSpanAttributes/type``
 - ``OTelAttribute/system/paging/direction``
+- ``OTelAttribute/system/paging/fault/type``
 - ``OTelAttribute/system/paging/state``
-- ``OTelAttribute/system/paging/type``
-
-### System Process Attributes
-
-- ``Tracing/SpanAttributes/SystemAttributes/ProcessAttributes/NestedSpanAttributes/status``
-- ``OTelAttribute/system/process/status``
 
 ### Telemetry Attributes
 

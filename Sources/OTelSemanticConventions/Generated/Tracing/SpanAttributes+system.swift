@@ -74,6 +74,7 @@ extension SpanAttributes {
                 /// - Stability: development
                 /// - Type: int
                 /// - Example: `1`
+                @available(*, deprecated, renamed: "SpanAttributes.cpu.logicalNumber")
                 public var logicalNumber: SpanAttributeKey<Int> { .init(name: OTelAttribute.system.cpu.logicalNumber) }
 
                 /// `system.cpu.state` **UNSTABLE**: Deprecated, use `cpu.mode` instead.
@@ -348,13 +349,14 @@ extension SpanAttributes {
                     }
                 }
 
-                /// `system.paging.type` **UNSTABLE**: The memory paging type
+                /// `system.paging.type` **UNSTABLE**: Deprecated, use `system.paging.fault.type` instead.
                 ///
                 /// - Stability: development
                 /// - Type: enum
                 ///     - `major`
                 ///     - `minor`
                 /// - Example: `minor`
+                @available(*, deprecated, renamed: "SpanAttributes.system.paging.fault.type")
                 public var `type`: SpanAttributeKey<TypeEnum> { .init(name: OTelAttribute.system.paging.`type`) }
 
                 public struct TypeEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
@@ -364,6 +366,50 @@ extension SpanAttributes {
                     }
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         .string(self.rawValue)
+                    }
+                }
+            }
+
+            /// `system.paging.fault` namespace
+            public var fault: FaultAttributes {
+                get {
+                    .init(attributes: self.attributes)
+                }
+                set {
+                    self.attributes = newValue.attributes
+                }
+            }
+
+            @dynamicMemberLookup
+            public struct FaultAttributes: SpanAttributeNamespace {
+                public var attributes: Tracing.SpanAttributes
+
+                public init(attributes: Tracing.SpanAttributes) {
+                    self.attributes = attributes
+                }
+
+                public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                    public init() {}
+
+                    /// `system.paging.fault.type` **UNSTABLE**: The paging fault type
+                    ///
+                    /// - Stability: development
+                    /// - Type: enum
+                    ///     - `major`
+                    ///     - `minor`
+                    /// - Example: `minor`
+                    public var `type`: SpanAttributeKey<TypeEnum> {
+                        .init(name: OTelAttribute.system.paging.fault.`type`)
+                    }
+
+                    public struct TypeEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
+                        public let rawValue: String
+                        public init(rawValue: String) {
+                            self.rawValue = rawValue
+                        }
+                        public func toSpanAttribute() -> Tracing.SpanAttribute {
+                            .string(self.rawValue)
+                        }
                     }
                 }
             }
@@ -390,7 +436,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `system.process.status` **UNSTABLE**: The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES)
+                /// `system.process.status` **UNSTABLE**: Deprecated, use `process.state` instead.
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -399,6 +445,7 @@ extension SpanAttributes {
                 ///     - `stopped`
                 ///     - `defunct`
                 /// - Example: `running`
+                @available(*, deprecated, renamed: "SpanAttributes.process.state")
                 public var status: SpanAttributeKey<StatusEnum> { .init(name: OTelAttribute.system.process.status) }
 
                 public struct StatusEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
@@ -434,7 +481,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `system.processes.status` **UNSTABLE**: Deprecated, use `system.process.status` instead.
+                /// `system.processes.status` **UNSTABLE**: Deprecated, use `process.state` instead.
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -443,7 +490,7 @@ extension SpanAttributes {
                 ///     - `stopped`
                 ///     - `defunct`
                 /// - Example: `running`
-                @available(*, deprecated, renamed: "SpanAttributes.system.process.status")
+                @available(*, deprecated, renamed: "SpanAttributes.process.state")
                 public var status: SpanAttributeKey<StatusEnum> { .init(name: OTelAttribute.system.processes.status) }
 
                 public struct StatusEnum: SpanAttributeConvertible, RawRepresentable, Sendable {

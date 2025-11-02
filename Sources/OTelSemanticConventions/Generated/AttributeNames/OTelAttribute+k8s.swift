@@ -605,6 +605,37 @@ extension OTelAttribute {
             /// - Type: string
             /// - Example: `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff`
             public static let uid = "k8s.pod.uid"
+
+            /// `k8s.pod.status` namespace
+            public enum status {
+                /// `k8s.pod.status.phase` **UNSTABLE**: The phase for the pod. Corresponds to the `phase` field of the: [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podstatus-v1-core)
+                ///
+                /// - Stability: development
+                /// - Type: enum
+                ///     - `Pending`: The pod has been accepted by the system, but one or more of the containers has not been started. This includes time before being bound to a node, as well as time spent pulling images onto the host.
+                ///     - `Running`: The pod has been bound to a node and all of the containers have been started. At least one container is still running or is in the process of being restarted.
+                ///     - `Succeeded`: All containers in the pod have voluntarily terminated with a container exit code of 0, and the system is not going to restart any of these containers.
+                ///     - `Failed`: All containers in the pod have terminated, and at least one container has terminated in a failure (exited with a non-zero exit code or was stopped by the system).
+                ///     - `Unknown`: For some reason the state of the pod could not be obtained, typically due to an error in communicating with the host of the pod.
+                /// - Examples:
+                ///     - `Pending`
+                ///     - `Running`
+                public static let phase = "k8s.pod.status.phase"
+
+                /// `k8s.pod.status.reason` **UNSTABLE**: The reason for the pod state. Corresponds to the `reason` field of the: [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podstatus-v1-core)
+                ///
+                /// - Stability: development
+                /// - Type: enum
+                ///     - `Evicted`: The pod is evicted.
+                ///     - `NodeAffinity`: The pod is in a status because of its node affinity
+                ///     - `NodeLost`: The reason on a pod when its state cannot be confirmed as kubelet is unresponsive on the node it is (was) running.
+                ///     - `Shutdown`: The node is shutdown
+                ///     - `UnexpectedAdmissionError`: The pod was rejected admission to the node because of an error during admission that could not be categorized.
+                /// - Examples:
+                ///     - `Evicted`
+                ///     - `NodeAffinity`
+                public static let reason = "k8s.pod.status.reason"
+            }
         }
 
         /// `k8s.replicaset` namespace
@@ -688,7 +719,7 @@ extension OTelAttribute {
             /// - Type: string
             /// - Example: `count/replicationcontrollers`
             ///
-            /// The value for this attribute can be either the full `count/<resource>[.<group>]` string (e.g., count/deployments.apps, count/pods), or, for certain core Kubernetes resources, just the resource name (e.g., pods, services, configmaps). Both forms are supported by Kubernetes for object count quotas. See [Kubernetes Resource Quotas documentation](https://kubernetes.io/docs/concepts/policy/resource-quotas/#object-count-quota) for more details.
+            /// The value for this attribute can be either the full `count/<resource>[.<group>]` string (e.g., count/deployments.apps, count/pods), or, for certain core Kubernetes resources, just the resource name (e.g., pods, services, configmaps). Both forms are supported by Kubernetes for object count quotas. See [Kubernetes Resource Quotas documentation](https://kubernetes.io/docs/concepts/policy/resource-quotas/#quota-on-object-count) for more details.
             public static let resourceName = "k8s.resourcequota.resource_name"
 
             /// `k8s.resourcequota.uid` **UNSTABLE**: The UID of the resource quota.
