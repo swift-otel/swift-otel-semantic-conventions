@@ -27,4 +27,4 @@ jobs:
       - name: Resolve Swift dependencies
         run: swift package resolve
       - name: Run Unit Tests
-        run: swift test --enable-all-traits
+        run: swift test --enable-all-traits --parallel
