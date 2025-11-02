@@ -70,7 +70,7 @@ logger[metadataKey: .init(name: OTelAttribute.http.request.method)] = "POST"
 logger[metadataKey: .init(name: OTelAttribute.http.response.statusCode)] = "200"
 ```
 
-### Unstable Instrumentations
+### Unstable Attributes
 
 **WARNING: unstable attributes may experience breaking changes on minor version updates of this package!**
 
