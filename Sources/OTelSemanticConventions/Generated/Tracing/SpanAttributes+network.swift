@@ -30,9 +30,9 @@ extension SpanAttributes {
 
     @dynamicMemberLookup
     public struct NetworkAttributes: SpanAttributeNamespace {
-        public var attributes: SpanAttributes
+        public var attributes: Tracing.SpanAttributes
 
-        public init(attributes: SpanAttributes) {
+        public init(attributes: Tracing.SpanAttributes) {
             self.attributes = attributes
         }
 
@@ -107,6 +107,256 @@ extension SpanAttributes {
             }
         }
 
+        #if Experimental
+        /// `network.carrier` namespace
+        public var carrier: CarrierAttributes {
+            get {
+                .init(attributes: self.attributes)
+            }
+            set {
+                self.attributes = newValue.attributes
+            }
+        }
+
+        @dynamicMemberLookup
+        public struct CarrierAttributes: SpanAttributeNamespace {
+            public var attributes: Tracing.SpanAttributes
+
+            public init(attributes: Tracing.SpanAttributes) {
+                self.attributes = attributes
+            }
+
+            public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                public init() {}
+
+                /// `network.carrier.icc` **UNSTABLE**: The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Example: `DE`
+                public var icc: SpanAttributeKey<String> { .init(name: OTelAttribute.network.carrier.icc) }
+
+                /// `network.carrier.mcc` **UNSTABLE**: The mobile carrier country code.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Example: `310`
+                public var mcc: SpanAttributeKey<String> { .init(name: OTelAttribute.network.carrier.mcc) }
+
+                /// `network.carrier.mnc` **UNSTABLE**: The mobile carrier network code.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Example: `001`
+                public var mnc: SpanAttributeKey<String> { .init(name: OTelAttribute.network.carrier.mnc) }
+
+                /// `network.carrier.name` **UNSTABLE**: The name of the mobile carrier.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Example: `sprint`
+                public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.network.carrier.name) }
+            }
+        }
+        #endif
+
+        #if Experimental
+        /// `network.connection` namespace
+        public var connection: ConnectionAttributes {
+            get {
+                .init(attributes: self.attributes)
+            }
+            set {
+                self.attributes = newValue.attributes
+            }
+        }
+
+        @dynamicMemberLookup
+        public struct ConnectionAttributes: SpanAttributeNamespace {
+            public var attributes: Tracing.SpanAttributes
+
+            public init(attributes: Tracing.SpanAttributes) {
+                self.attributes = attributes
+            }
+
+            public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                public init() {}
+
+                /// `network.connection.state` **UNSTABLE**: The state of network connection
+                ///
+                /// - Stability: development
+                /// - Type: enum
+                ///     - `closed`
+                ///     - `close_wait`
+                ///     - `closing`
+                ///     - `established`
+                ///     - `fin_wait_1`
+                ///     - `fin_wait_2`
+                ///     - `last_ack`
+                ///     - `listen`
+                ///     - `syn_received`
+                ///     - `syn_sent`
+                ///     - `time_wait`
+                /// - Example: `close_wait`
+                ///
+                /// Connection states are defined as part of the [rfc9293](https://datatracker.ietf.org/doc/html/rfc9293#section-3.3.2)
+                public var state: SpanAttributeKey<StateEnum> { .init(name: OTelAttribute.network.connection.state) }
+
+                public struct StateEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
+                    public let rawValue: String
+                    public init(rawValue: String) {
+                        self.rawValue = rawValue
+                    }
+                    public func toSpanAttribute() -> Tracing.SpanAttribute {
+                        .string(self.rawValue)
+                    }
+                }
+
+                /// `network.connection.subtype` **UNSTABLE**: This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection.
+                ///
+                /// - Stability: development
+                /// - Type: enum
+                ///     - `gprs`: GPRS
+                ///     - `edge`: EDGE
+                ///     - `umts`: UMTS
+                ///     - `cdma`: CDMA
+                ///     - `evdo_0`: EVDO Rel. 0
+                ///     - `evdo_a`: EVDO Rev. A
+                ///     - `cdma2000_1xrtt`: CDMA2000 1XRTT
+                ///     - `hsdpa`: HSDPA
+                ///     - `hsupa`: HSUPA
+                ///     - `hspa`: HSPA
+                ///     - `iden`: IDEN
+                ///     - `evdo_b`: EVDO Rev. B
+                ///     - `lte`: LTE
+                ///     - `ehrpd`: EHRPD
+                ///     - `hspap`: HSPAP
+                ///     - `gsm`: GSM
+                ///     - `td_scdma`: TD-SCDMA
+                ///     - `iwlan`: IWLAN
+                ///     - `nr`: 5G NR (New Radio)
+                ///     - `nrnsa`: 5G NRNSA (New Radio Non-Standalone)
+                ///     - `lte_ca`: LTE CA
+                /// - Example: `LTE`
+                public var subtype: SpanAttributeKey<SubtypeEnum> {
+                    .init(name: OTelAttribute.network.connection.subtype)
+                }
+
+                public struct SubtypeEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
+                    public let rawValue: String
+                    public init(rawValue: String) {
+                        self.rawValue = rawValue
+                    }
+                    public func toSpanAttribute() -> Tracing.SpanAttribute {
+                        .string(self.rawValue)
+                    }
+                }
+
+                /// `network.connection.type` **UNSTABLE**: The internet connection type.
+                ///
+                /// - Stability: development
+                /// - Type: enum
+                ///     - `wifi`
+                ///     - `wired`
+                ///     - `cell`
+                ///     - `unavailable`
+                ///     - `unknown`
+                /// - Example: `wifi`
+                public var `type`: SpanAttributeKey<TypeEnum> { .init(name: OTelAttribute.network.connection.`type`) }
+
+                public struct TypeEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
+                    public let rawValue: String
+                    public init(rawValue: String) {
+                        self.rawValue = rawValue
+                    }
+                    public func toSpanAttribute() -> Tracing.SpanAttribute {
+                        .string(self.rawValue)
+                    }
+                }
+            }
+        }
+        #endif
+
+        #if Experimental
+        /// `network.interface` namespace
+        public var interface: InterfaceAttributes {
+            get {
+                .init(attributes: self.attributes)
+            }
+            set {
+                self.attributes = newValue.attributes
+            }
+        }
+
+        @dynamicMemberLookup
+        public struct InterfaceAttributes: SpanAttributeNamespace {
+            public var attributes: Tracing.SpanAttributes
+
+            public init(attributes: Tracing.SpanAttributes) {
+                self.attributes = attributes
+            }
+
+            public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                public init() {}
+
+                /// `network.interface.name` **UNSTABLE**: The network interface name.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Examples:
+                ///     - `lo`
+                ///     - `eth0`
+                public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.network.interface.name) }
+            }
+        }
+        #endif
+
+        #if Experimental
+        /// `network.io` namespace
+        public var io: IoAttributes {
+            get {
+                .init(attributes: self.attributes)
+            }
+            set {
+                self.attributes = newValue.attributes
+            }
+        }
+
+        @dynamicMemberLookup
+        public struct IoAttributes: SpanAttributeNamespace {
+            public var attributes: Tracing.SpanAttributes
+
+            public init(attributes: Tracing.SpanAttributes) {
+                self.attributes = attributes
+            }
+
+            public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                public init() {}
+
+                /// `network.io.direction` **UNSTABLE**: The network IO operation direction.
+                ///
+                /// - Stability: development
+                /// - Type: enum
+                ///     - `transmit`
+                ///     - `receive`
+                /// - Example: `transmit`
+                public var direction: SpanAttributeKey<DirectionEnum> {
+                    .init(name: OTelAttribute.network.io.direction)
+                }
+
+                public struct DirectionEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
+                    public let rawValue: String
+                    public init(rawValue: String) {
+                        self.rawValue = rawValue
+                    }
+                    public func toSpanAttribute() -> Tracing.SpanAttribute {
+                        .string(self.rawValue)
+                    }
+                }
+            }
+        }
+        #endif
+
         /// `network.local` namespace
         public var local: LocalAttributes {
             get {
@@ -119,9 +369,9 @@ extension SpanAttributes {
 
         @dynamicMemberLookup
         public struct LocalAttributes: SpanAttributeNamespace {
-            public var attributes: SpanAttributes
+            public var attributes: Tracing.SpanAttributes
 
-            public init(attributes: SpanAttributes) {
+            public init(attributes: Tracing.SpanAttributes) {
                 self.attributes = attributes
             }
 
@@ -158,9 +408,9 @@ extension SpanAttributes {
 
         @dynamicMemberLookup
         public struct PeerAttributes: SpanAttributeNamespace {
-            public var attributes: SpanAttributes
+            public var attributes: Tracing.SpanAttributes
 
-            public init(attributes: SpanAttributes) {
+            public init(attributes: Tracing.SpanAttributes) {
                 self.attributes = attributes
             }
 
@@ -197,9 +447,9 @@ extension SpanAttributes {
 
         @dynamicMemberLookup
         public struct ProtocolAttributes: SpanAttributeNamespace {
-            public var attributes: SpanAttributes
+            public var attributes: Tracing.SpanAttributes
 
-            public init(attributes: SpanAttributes) {
+            public init(attributes: Tracing.SpanAttributes) {
                 self.attributes = attributes
             }
 

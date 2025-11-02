@@ -62,11 +62,6 @@ struct Generator: AsyncParsableCommand {
             semConvModelsDirectory: semConvModelsDirectory
         )
 
-        // Filter out attributes that are not stable
-        parsedAttributes = parsedAttributes.filter { id, attribute in
-            attribute.stability == .stable
-        }
-
         // Create semconv namespace tree
         let namespaceTree = try constructNamespaceTree(attributes: parsedAttributes)
 
@@ -373,6 +368,15 @@ class Namespace {
     var memberName: String {
         nameGenerator.swiftMemberName(for: name)
     }
+
+    lazy var containsNoStableAttributes: Bool = {
+        attributes.allSatisfy {
+            $0.1.stability != .stable
+        }
+            && subNamespaces.values.allSatisfy {
+                $0.containsNoStableAttributes
+            }
+    }()
 }
 
 let generatedFileHeader = """

@@ -30,14 +30,125 @@ extension SpanAttributes {
 
     @dynamicMemberLookup
     public struct HttpAttributes: SpanAttributeNamespace {
-        public var attributes: SpanAttributes
+        public var attributes: Tracing.SpanAttributes
 
-        public init(attributes: SpanAttributes) {
+        public init(attributes: Tracing.SpanAttributes) {
             self.attributes = attributes
         }
 
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
+
+            #if Experimental
+            /// `http.client_ip` **UNSTABLE**: Deprecated, use `client.address` instead.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `83.164.160.102`
+            @available(*, deprecated, renamed: "SpanAttributes.client.address")
+            public var clientIp: SpanAttributeKey<String> { .init(name: OTelAttribute.http.clientIp) }
+            #endif
+
+            #if Experimental
+            /// `http.flavor` **UNSTABLE**: Deprecated, use `network.protocol.name` instead.
+            ///
+            /// - Stability: development
+            /// - Type: enum
+            ///     - `1.0`: HTTP/1.0
+            ///     - `1.1`: HTTP/1.1
+            ///     - `2.0`: HTTP/2
+            ///     - `3.0`: HTTP/3
+            ///     - `SPDY`: SPDY protocol.
+            ///     - `QUIC`: QUIC protocol.
+            @available(*, deprecated, renamed: "SpanAttributes.network.protocol.name")
+            public var flavor: SpanAttributeKey<FlavorEnum> { .init(name: OTelAttribute.http.flavor) }
+
+            public struct FlavorEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
+                public let rawValue: String
+                public init(rawValue: String) {
+                    self.rawValue = rawValue
+                }
+                public func toSpanAttribute() -> Tracing.SpanAttribute {
+                    .string(self.rawValue)
+                }
+            }
+            #endif
+
+            #if Experimental
+            /// `http.host` **UNSTABLE**: Deprecated, use one of `server.address`, `client.address` or `http.request.header.host` instead, depending on the usage.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `www.example.org`
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Replaced by one of `server.address`, `client.address` or `http.request.header.host`, depending on the usage."
+            )
+            public var host: SpanAttributeKey<String> { .init(name: OTelAttribute.http.host) }
+            #endif
+
+            #if Experimental
+            /// `http.method` **UNSTABLE**: Deprecated, use `http.request.method` instead.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Examples:
+            ///     - `GET`
+            ///     - `POST`
+            ///     - `HEAD`
+            @available(*, deprecated, renamed: "SpanAttributes.http.request.method")
+            public var method: SpanAttributeKey<String> { .init(name: OTelAttribute.http.method) }
+            #endif
+
+            #if Experimental
+            /// `http.request_content_length` **UNSTABLE**: Deprecated, use `http.request.header.content-length` instead.
+            ///
+            /// - Stability: development
+            /// - Type: int
+            /// - Example: `3495`
+            @available(*, deprecated, message: "Replaced by `http.request.header.content-length`.")
+            public var requestContentLength: SpanAttributeKey<Int> {
+                .init(name: OTelAttribute.http.requestContentLength)
+            }
+            #endif
+
+            #if Experimental
+            /// `http.request_content_length_uncompressed` **UNSTABLE**: Deprecated, use `http.request.body.size` instead.
+            ///
+            /// - Stability: development
+            /// - Type: int
+            /// - Example: `5493`
+            @available(*, deprecated, renamed: "SpanAttributes.http.request.body.size")
+            public var requestContentLengthUncompressed: SpanAttributeKey<Int> {
+                .init(name: OTelAttribute.http.requestContentLengthUncompressed)
+            }
+            #endif
+
+            #if Experimental
+            /// `http.response_content_length` **UNSTABLE**: Deprecated, use `http.response.header.content-length` instead.
+            ///
+            /// - Stability: development
+            /// - Type: int
+            /// - Example: `3495`
+            @available(*, deprecated, message: "Replaced by `http.response.header.content-length`.")
+            public var responseContentLength: SpanAttributeKey<Int> {
+                .init(name: OTelAttribute.http.responseContentLength)
+            }
+            #endif
+
+            #if Experimental
+            /// `http.response_content_length_uncompressed` **UNSTABLE**: Deprecated, use `http.response.body.size` instead.
+            ///
+            /// - Stability: development
+            /// - Type: int
+            /// - Example: `5493`
+            @available(*, deprecated, renamed: "SpanAttributes.http.response.body.size")
+            public var responseContentLengthUncompressed: SpanAttributeKey<Int> {
+                .init(name: OTelAttribute.http.responseContentLengthUncompressed)
+            }
+            #endif
 
             /// `http.route`: The matched route, that is, the path template in the format used by the respective server framework.
             ///
@@ -50,7 +161,117 @@ extension SpanAttributes {
             /// MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
             /// SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
             public var route: SpanAttributeKey<String> { .init(name: OTelAttribute.http.route) }
+
+            #if Experimental
+            /// `http.scheme` **UNSTABLE**: Deprecated, use `url.scheme` instead.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Examples:
+            ///     - `http`
+            ///     - `https`
+            @available(*, deprecated, renamed: "SpanAttributes.url.scheme")
+            public var scheme: SpanAttributeKey<String> { .init(name: OTelAttribute.http.scheme) }
+            #endif
+
+            #if Experimental
+            /// `http.server_name` **UNSTABLE**: Deprecated, use `server.address` instead.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `example.com`
+            @available(*, deprecated, renamed: "SpanAttributes.server.address")
+            public var serverName: SpanAttributeKey<String> { .init(name: OTelAttribute.http.serverName) }
+            #endif
+
+            #if Experimental
+            /// `http.status_code` **UNSTABLE**: Deprecated, use `http.response.status_code` instead.
+            ///
+            /// - Stability: development
+            /// - Type: int
+            /// - Example: `200`
+            @available(*, deprecated, renamed: "SpanAttributes.http.response.statusCode")
+            public var statusCode: SpanAttributeKey<Int> { .init(name: OTelAttribute.http.statusCode) }
+            #endif
+
+            #if Experimental
+            /// `http.target` **UNSTABLE**: Deprecated, use `url.path` and `url.query` instead.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `/search?q=OpenTelemetry#SemConv`
+            @available(*, deprecated, message: "Obsoleted: Split to `url.path` and `url.query`.")
+            public var target: SpanAttributeKey<String> { .init(name: OTelAttribute.http.target) }
+            #endif
+
+            #if Experimental
+            /// `http.url` **UNSTABLE**: Deprecated, use `url.full` instead.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `https://www.foo.bar/search?q=OpenTelemetry#SemConv`
+            @available(*, deprecated, renamed: "SpanAttributes.url.full")
+            public var url: SpanAttributeKey<String> { .init(name: OTelAttribute.http.url) }
+            #endif
+
+            #if Experimental
+            /// `http.user_agent` **UNSTABLE**: Deprecated, use `user_agent.original` instead.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Examples:
+            ///     - `CERN-LineMode/2.15 libwww/2.17b3`
+            ///     - `Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1`
+            @available(*, deprecated, renamed: "SpanAttributes.userAgent.original")
+            public var userAgent: SpanAttributeKey<String> { .init(name: OTelAttribute.http.userAgent) }
+            #endif
         }
+
+        #if Experimental
+        /// `http.connection` namespace
+        public var connection: ConnectionAttributes {
+            get {
+                .init(attributes: self.attributes)
+            }
+            set {
+                self.attributes = newValue.attributes
+            }
+        }
+
+        @dynamicMemberLookup
+        public struct ConnectionAttributes: SpanAttributeNamespace {
+            public var attributes: Tracing.SpanAttributes
+
+            public init(attributes: Tracing.SpanAttributes) {
+                self.attributes = attributes
+            }
+
+            public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                public init() {}
+
+                /// `http.connection.state` **UNSTABLE**: State of the HTTP connection in the HTTP connection pool.
+                ///
+                /// - Stability: development
+                /// - Type: enum
+                ///     - `active`: active state.
+                ///     - `idle`: idle state.
+                /// - Examples:
+                ///     - `active`
+                ///     - `idle`
+                public var state: SpanAttributeKey<StateEnum> { .init(name: OTelAttribute.http.connection.state) }
+
+                public struct StateEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
+                    public let rawValue: String
+                    public init(rawValue: String) {
+                        self.rawValue = rawValue
+                    }
+                    public func toSpanAttribute() -> Tracing.SpanAttribute {
+                        .string(self.rawValue)
+                    }
+                }
+            }
+        }
+        #endif
 
         /// `http.request` namespace
         public var request: RequestAttributes {
@@ -64,9 +285,9 @@ extension SpanAttributes {
 
         @dynamicMemberLookup
         public struct RequestAttributes: SpanAttributeNamespace {
-            public var attributes: SpanAttributes
+            public var attributes: Tracing.SpanAttributes
 
-            public init(attributes: SpanAttributes) {
+            public init(attributes: Tracing.SpanAttributes) {
                 self.attributes = attributes
             }
 
@@ -101,9 +322,9 @@ extension SpanAttributes {
             }
 
             public struct HeaderAttributes {
-                public var attributes: SpanAttributes
+                public var attributes: Tracing.SpanAttributes
 
-                public init(attributes: SpanAttributes) {
+                public init(attributes: Tracing.SpanAttributes) {
                     self.attributes = attributes
                 }
 
@@ -217,7 +438,48 @@ extension SpanAttributes {
                 ///
                 /// The resend count SHOULD be updated each time an HTTP request gets resent by the client, regardless of what was the cause of the resending (e.g. redirection, authorization failure, 503 Server Unavailable, network issues, or any other).
                 public var resendCount: SpanAttributeKey<Int> { .init(name: OTelAttribute.http.request.resendCount) }
+
+                #if Experimental
+                /// `http.request.size` **UNSTABLE**: The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and request body if any.
+                ///
+                /// - Stability: development
+                /// - Type: int
+                /// - Example: `1437`
+                public var size: SpanAttributeKey<Int> { .init(name: OTelAttribute.http.request.size) }
+                #endif
             }
+
+            #if Experimental
+            /// `http.request.body` namespace
+            public var body: BodyAttributes {
+                get {
+                    .init(attributes: self.attributes)
+                }
+                set {
+                    self.attributes = newValue.attributes
+                }
+            }
+
+            @dynamicMemberLookup
+            public struct BodyAttributes: SpanAttributeNamespace {
+                public var attributes: Tracing.SpanAttributes
+
+                public init(attributes: Tracing.SpanAttributes) {
+                    self.attributes = attributes
+                }
+
+                public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                    public init() {}
+
+                    /// `http.request.body.size` **UNSTABLE**: The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
+                    ///
+                    /// - Stability: development
+                    /// - Type: int
+                    /// - Example: `3495`
+                    public var size: SpanAttributeKey<Int> { .init(name: OTelAttribute.http.request.body.size) }
+                }
+            }
+            #endif
         }
 
         /// `http.response` namespace
@@ -232,9 +494,9 @@ extension SpanAttributes {
 
         @dynamicMemberLookup
         public struct ResponseAttributes: SpanAttributeNamespace {
-            public var attributes: SpanAttributes
+            public var attributes: Tracing.SpanAttributes
 
-            public init(attributes: SpanAttributes) {
+            public init(attributes: Tracing.SpanAttributes) {
                 self.attributes = attributes
             }
 
@@ -268,9 +530,9 @@ extension SpanAttributes {
             }
 
             public struct HeaderAttributes {
-                public var attributes: SpanAttributes
+                public var attributes: Tracing.SpanAttributes
 
-                public init(attributes: SpanAttributes) {
+                public init(attributes: Tracing.SpanAttributes) {
                     self.attributes = attributes
                 }
 
@@ -299,6 +561,15 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
+                #if Experimental
+                /// `http.response.size` **UNSTABLE**: The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any.
+                ///
+                /// - Stability: development
+                /// - Type: int
+                /// - Example: `1437`
+                public var size: SpanAttributeKey<Int> { .init(name: OTelAttribute.http.response.size) }
+                #endif
+
                 /// `http.response.status_code`: [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6).
                 ///
                 /// - Stability: stable
@@ -306,6 +577,38 @@ extension SpanAttributes {
                 /// - Example: `200`
                 public var statusCode: SpanAttributeKey<Int> { .init(name: OTelAttribute.http.response.statusCode) }
             }
+
+            #if Experimental
+            /// `http.response.body` namespace
+            public var body: BodyAttributes {
+                get {
+                    .init(attributes: self.attributes)
+                }
+                set {
+                    self.attributes = newValue.attributes
+                }
+            }
+
+            @dynamicMemberLookup
+            public struct BodyAttributes: SpanAttributeNamespace {
+                public var attributes: Tracing.SpanAttributes
+
+                public init(attributes: Tracing.SpanAttributes) {
+                    self.attributes = attributes
+                }
+
+                public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                    public init() {}
+
+                    /// `http.response.body.size` **UNSTABLE**: The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
+                    ///
+                    /// - Stability: development
+                    /// - Type: int
+                    /// - Example: `3495`
+                    public var size: SpanAttributeKey<Int> { .init(name: OTelAttribute.http.response.body.size) }
+                }
+            }
+            #endif
         }
     }
 }

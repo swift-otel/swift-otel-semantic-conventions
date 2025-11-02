@@ -30,9 +30,9 @@ extension SpanAttributes {
 
     @dynamicMemberLookup
     public struct ExceptionAttributes: SpanAttributeNamespace {
-        public var attributes: SpanAttributes
+        public var attributes: Tracing.SpanAttributes
 
-        public init(attributes: SpanAttributes) {
+        public init(attributes: Tracing.SpanAttributes) {
             self.attributes = attributes
         }
 

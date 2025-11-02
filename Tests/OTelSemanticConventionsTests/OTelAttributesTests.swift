@@ -23,4 +23,11 @@ struct OTelAttributesTests {
         // Check Swift keywords are escaped (in this case, type)
         #expect(OTelAttribute.error.type == "error.type")
     }
+
+    #if Experimental
+    @Test func experimentalAttributes() {
+        // Check experimental attributes are available
+        #expect(OTelAttribute.cassandra.page.size == "cassandra.page.size")
+    }
+    #endif
 }
