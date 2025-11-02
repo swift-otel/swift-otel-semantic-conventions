@@ -123,12 +123,13 @@ extension SpanAttributes {
             /// - Example: `C:\cmd\otecol --config="my directory\config.yaml"`
             public var commandLine: SpanAttributeKey<String> { .init(name: OTelAttribute.process.commandLine) }
 
-            /// `process.context_switch_type` **UNSTABLE**: Specifies whether the context switches for this data point were voluntary or involuntary.
+            /// `process.context_switch_type` **UNSTABLE**: "Deprecated, use `process.context_switch.type` instead."
             ///
             /// - Stability: development
             /// - Type: enum
             ///     - `voluntary`
             ///     - `involuntary`
+            @available(*, deprecated, renamed: "SpanAttributes.process.contextSwitch.type")
             public var contextSwitchType: SpanAttributeKey<ContextSwitchTypeEnum> {
                 .init(name: OTelAttribute.process.contextSwitchType)
             }
@@ -170,6 +171,27 @@ extension SpanAttributes {
             /// - Example: `1234`
             public var pid: SpanAttributeKey<Int> { .init(name: OTelAttribute.process.pid) }
 
+            /// `process.state` **UNSTABLE**: The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES)
+            ///
+            /// - Stability: development
+            /// - Type: enum
+            ///     - `running`
+            ///     - `sleeping`
+            ///     - `stopped`
+            ///     - `defunct`
+            /// - Example: `running`
+            public var state: SpanAttributeKey<StateEnum> { .init(name: OTelAttribute.process.state) }
+
+            public struct StateEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
+                public let rawValue: String
+                public init(rawValue: String) {
+                    self.rawValue = rawValue
+                }
+                public func toSpanAttribute() -> Tracing.SpanAttribute {
+                    .string(self.rawValue)
+                }
+            }
+
             /// `process.title` **UNSTABLE**: Process title (proctitle)
             ///
             /// - Stability: development
@@ -198,6 +220,49 @@ extension SpanAttributes {
             /// - Example: `/root`
             public var workingDirectory: SpanAttributeKey<String> {
                 .init(name: OTelAttribute.process.workingDirectory)
+            }
+        }
+
+        /// `process.context_switch` namespace
+        public var contextSwitch: ContextSwitchAttributes {
+            get {
+                .init(attributes: self.attributes)
+            }
+            set {
+                self.attributes = newValue.attributes
+            }
+        }
+
+        @dynamicMemberLookup
+        public struct ContextSwitchAttributes: SpanAttributeNamespace {
+            public var attributes: Tracing.SpanAttributes
+
+            public init(attributes: Tracing.SpanAttributes) {
+                self.attributes = attributes
+            }
+
+            public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                public init() {}
+
+                /// `process.context_switch.type` **UNSTABLE**: Specifies whether the context switches for this data point were voluntary or involuntary.
+                ///
+                /// - Stability: development
+                /// - Type: enum
+                ///     - `voluntary`
+                ///     - `involuntary`
+                public var `type`: SpanAttributeKey<TypeEnum> {
+                    .init(name: OTelAttribute.process.contextSwitch.`type`)
+                }
+
+                public struct TypeEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
+                    public let rawValue: String
+                    public init(rawValue: String) {
+                        self.rawValue = rawValue
+                    }
+                    public func toSpanAttribute() -> Tracing.SpanAttribute {
+                        .string(self.rawValue)
+                    }
+                }
             }
         }
 
@@ -491,12 +556,13 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `process.paging.fault_type` **UNSTABLE**: The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor` is for minor/soft page faults.
+                /// `process.paging.fault_type` **UNSTABLE**: Deprecated, use `system.paging.fault.type` instead.
                 ///
                 /// - Stability: development
                 /// - Type: enum
                 ///     - `major`
                 ///     - `minor`
+                @available(*, deprecated, renamed: "SpanAttributes.system.paging.fault.type")
                 public var faultType: SpanAttributeKey<FaultTypeEnum> {
                     .init(name: OTelAttribute.process.paging.faultType)
                 }

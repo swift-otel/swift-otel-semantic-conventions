@@ -46,12 +46,13 @@ extension OTelAttribute {
         /// - Example: `C:\cmd\otecol --config="my directory\config.yaml"`
         public static let commandLine = "process.command_line"
 
-        /// `process.context_switch_type` **UNSTABLE**: Specifies whether the context switches for this data point were voluntary or involuntary.
+        /// `process.context_switch_type` **UNSTABLE**: "Deprecated, use `process.context_switch.type` instead."
         ///
         /// - Stability: development
         /// - Type: enum
         ///     - `voluntary`
         ///     - `involuntary`
+        @available(*, deprecated, renamed: "OTelAttribute.process.contextSwitch.type")
         public static let contextSwitchType = "process.context_switch_type"
 
         /// `process.environment_variable` **UNSTABLE**: Process environment variables, `<key>` being the environment variable name, the value being the environment variable value.
@@ -99,6 +100,17 @@ extension OTelAttribute {
         /// - Example: `1234`
         public static let pid = "process.pid"
 
+        /// `process.state` **UNSTABLE**: The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES)
+        ///
+        /// - Stability: development
+        /// - Type: enum
+        ///     - `running`
+        ///     - `sleeping`
+        ///     - `stopped`
+        ///     - `defunct`
+        /// - Example: `running`
+        public static let state = "process.state"
+
         /// `process.title` **UNSTABLE**: Process title (proctitle)
         ///
         /// - Stability: development
@@ -126,6 +138,17 @@ extension OTelAttribute {
         /// - Type: string
         /// - Example: `/root`
         public static let workingDirectory = "process.working_directory"
+
+        /// `process.context_switch` namespace
+        public enum contextSwitch {
+            /// `process.context_switch.type` **UNSTABLE**: Specifies whether the context switches for this data point were voluntary or involuntary.
+            ///
+            /// - Stability: development
+            /// - Type: enum
+            ///     - `voluntary`
+            ///     - `involuntary`
+            public static let `type` = "process.context_switch.type"
+        }
 
         /// `process.cpu` namespace
         public enum cpu {
@@ -242,12 +265,13 @@ extension OTelAttribute {
 
         /// `process.paging` namespace
         public enum paging {
-            /// `process.paging.fault_type` **UNSTABLE**: The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor` is for minor/soft page faults.
+            /// `process.paging.fault_type` **UNSTABLE**: Deprecated, use `system.paging.fault.type` instead.
             ///
             /// - Stability: development
             /// - Type: enum
             ///     - `major`
             ///     - `minor`
+            @available(*, deprecated, renamed: "OTelAttribute.system.paging.fault.type")
             public static let faultType = "process.paging.fault_type"
         }
 

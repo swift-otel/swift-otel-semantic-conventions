@@ -40,13 +40,11 @@ extension SpanAttributes {
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
 
-            /// `rpc.method` **UNSTABLE**: The name of the (logical) method being called, must be equal to the $method part in the span name.
+            /// `rpc.method` **UNSTABLE**: This is the logical name of the method from the RPC interface perspective.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `exampleMethod`
-            ///
-            /// This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
             public var method: SpanAttributeKey<String> { .init(name: OTelAttribute.rpc.method) }
 
             /// `rpc.service` **UNSTABLE**: The full (logical) name of the service being called, including its package name, if applicable.
@@ -54,8 +52,6 @@ extension SpanAttributes {
             /// - Stability: development
             /// - Type: string
             /// - Example: `myservice.EchoService`
-            ///
-            /// This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
             public var service: SpanAttributeKey<String> { .init(name: OTelAttribute.rpc.service) }
 
             /// `rpc.system` **UNSTABLE**: A string identifying the remoting system. See below for a list of well-known identifiers.
@@ -67,6 +63,8 @@ extension SpanAttributes {
             ///     - `dotnet_wcf`: .NET WCF
             ///     - `apache_dubbo`: Apache Dubbo
             ///     - `connect_rpc`: Connect RPC
+            ///     - `onc_rpc`: [ONC RPC (Sun RPC)](https://datatracker.ietf.org/doc/html/rfc5531)
+            ///     - `jsonrpc`: JSON-RPC
             public var system: SpanAttributeKey<SystemEnum> { .init(name: OTelAttribute.rpc.system) }
 
             public struct SystemEnum: SpanAttributeConvertible, RawRepresentable, Sendable {

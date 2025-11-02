@@ -268,6 +268,231 @@ extension SpanAttributes {
             }
         }
 
+        /// `gcp.apphub_destination` namespace
+        public var apphubDestination: ApphubDestinationAttributes {
+            get {
+                .init(attributes: self.attributes)
+            }
+            set {
+                self.attributes = newValue.attributes
+            }
+        }
+
+        @dynamicMemberLookup
+        public struct ApphubDestinationAttributes: SpanAttributeNamespace {
+            public var attributes: Tracing.SpanAttributes
+
+            public init(attributes: Tracing.SpanAttributes) {
+                self.attributes = attributes
+            }
+
+            public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                public init() {}
+            }
+
+            /// `gcp.apphub_destination.application` namespace
+            public var application: ApplicationAttributes {
+                get {
+                    .init(attributes: self.attributes)
+                }
+                set {
+                    self.attributes = newValue.attributes
+                }
+            }
+
+            @dynamicMemberLookup
+            public struct ApplicationAttributes: SpanAttributeNamespace {
+                public var attributes: Tracing.SpanAttributes
+
+                public init(attributes: Tracing.SpanAttributes) {
+                    self.attributes = attributes
+                }
+
+                public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                    public init() {}
+
+                    /// `gcp.apphub_destination.application.container` **UNSTABLE**: The container within GCP where the AppHub destination application is defined.
+                    ///
+                    /// - Stability: development
+                    /// - Type: string
+                    /// - Example: `projects/my-container-project`
+                    public var container: SpanAttributeKey<String> {
+                        .init(name: OTelAttribute.gcp.apphubDestination.application.container)
+                    }
+
+                    /// `gcp.apphub_destination.application.id` **UNSTABLE**: The name of the destination application as configured in AppHub.
+                    ///
+                    /// - Stability: development
+                    /// - Type: string
+                    /// - Example: `my-application`
+                    public var id: SpanAttributeKey<String> {
+                        .init(name: OTelAttribute.gcp.apphubDestination.application.id)
+                    }
+
+                    /// `gcp.apphub_destination.application.location` **UNSTABLE**: The GCP zone or region where the destination application is defined.
+                    ///
+                    /// - Stability: development
+                    /// - Type: string
+                    /// - Example: `us-central1`
+                    public var location: SpanAttributeKey<String> {
+                        .init(name: OTelAttribute.gcp.apphubDestination.application.location)
+                    }
+                }
+            }
+
+            /// `gcp.apphub_destination.service` namespace
+            public var service: ServiceAttributes {
+                get {
+                    .init(attributes: self.attributes)
+                }
+                set {
+                    self.attributes = newValue.attributes
+                }
+            }
+
+            @dynamicMemberLookup
+            public struct ServiceAttributes: SpanAttributeNamespace {
+                public var attributes: Tracing.SpanAttributes
+
+                public init(attributes: Tracing.SpanAttributes) {
+                    self.attributes = attributes
+                }
+
+                public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                    public init() {}
+
+                    /// `gcp.apphub_destination.service.criticality_type` **UNSTABLE**: Criticality of a destination workload indicates its importance to the business as specified in [AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
+                    ///
+                    /// - Stability: development
+                    /// - Type: enum
+                    ///     - `MISSION_CRITICAL`: Mission critical service.
+                    ///     - `HIGH`: High impact.
+                    ///     - `MEDIUM`: Medium impact.
+                    ///     - `LOW`: Low impact.
+                    public var criticalityType: SpanAttributeKey<CriticalityTypeEnum> {
+                        .init(name: OTelAttribute.gcp.apphubDestination.service.criticalityType)
+                    }
+
+                    public struct CriticalityTypeEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
+                        public let rawValue: String
+                        public init(rawValue: String) {
+                            self.rawValue = rawValue
+                        }
+                        public func toSpanAttribute() -> Tracing.SpanAttribute {
+                            .string(self.rawValue)
+                        }
+                    }
+
+                    /// `gcp.apphub_destination.service.environment_type` **UNSTABLE**: Software lifecycle stage of a destination service as defined [AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
+                    ///
+                    /// - Stability: development
+                    /// - Type: enum
+                    ///     - `PRODUCTION`: Production environment.
+                    ///     - `STAGING`: Staging environment.
+                    ///     - `TEST`: Test environment.
+                    ///     - `DEVELOPMENT`: Development environment.
+                    public var environmentType: SpanAttributeKey<EnvironmentTypeEnum> {
+                        .init(name: OTelAttribute.gcp.apphubDestination.service.environmentType)
+                    }
+
+                    public struct EnvironmentTypeEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
+                        public let rawValue: String
+                        public init(rawValue: String) {
+                            self.rawValue = rawValue
+                        }
+                        public func toSpanAttribute() -> Tracing.SpanAttribute {
+                            .string(self.rawValue)
+                        }
+                    }
+
+                    /// `gcp.apphub_destination.service.id` **UNSTABLE**: The name of the destination service as configured in AppHub.
+                    ///
+                    /// - Stability: development
+                    /// - Type: string
+                    /// - Example: `my-service`
+                    public var id: SpanAttributeKey<String> {
+                        .init(name: OTelAttribute.gcp.apphubDestination.service.id)
+                    }
+                }
+            }
+
+            /// `gcp.apphub_destination.workload` namespace
+            public var workload: WorkloadAttributes {
+                get {
+                    .init(attributes: self.attributes)
+                }
+                set {
+                    self.attributes = newValue.attributes
+                }
+            }
+
+            @dynamicMemberLookup
+            public struct WorkloadAttributes: SpanAttributeNamespace {
+                public var attributes: Tracing.SpanAttributes
+
+                public init(attributes: Tracing.SpanAttributes) {
+                    self.attributes = attributes
+                }
+
+                public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                    public init() {}
+
+                    /// `gcp.apphub_destination.workload.criticality_type` **UNSTABLE**: Criticality of a destination workload indicates its importance to the business as specified in [AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
+                    ///
+                    /// - Stability: development
+                    /// - Type: enum
+                    ///     - `MISSION_CRITICAL`: Mission critical service.
+                    ///     - `HIGH`: High impact.
+                    ///     - `MEDIUM`: Medium impact.
+                    ///     - `LOW`: Low impact.
+                    public var criticalityType: SpanAttributeKey<CriticalityTypeEnum> {
+                        .init(name: OTelAttribute.gcp.apphubDestination.workload.criticalityType)
+                    }
+
+                    public struct CriticalityTypeEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
+                        public let rawValue: String
+                        public init(rawValue: String) {
+                            self.rawValue = rawValue
+                        }
+                        public func toSpanAttribute() -> Tracing.SpanAttribute {
+                            .string(self.rawValue)
+                        }
+                    }
+
+                    /// `gcp.apphub_destination.workload.environment_type` **UNSTABLE**: Environment of a destination workload is the stage of a software lifecycle as provided in the [AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
+                    ///
+                    /// - Stability: development
+                    /// - Type: enum
+                    ///     - `PRODUCTION`: Production environment.
+                    ///     - `STAGING`: Staging environment.
+                    ///     - `TEST`: Test environment.
+                    ///     - `DEVELOPMENT`: Development environment.
+                    public var environmentType: SpanAttributeKey<EnvironmentTypeEnum> {
+                        .init(name: OTelAttribute.gcp.apphubDestination.workload.environmentType)
+                    }
+
+                    public struct EnvironmentTypeEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
+                        public let rawValue: String
+                        public init(rawValue: String) {
+                            self.rawValue = rawValue
+                        }
+                        public func toSpanAttribute() -> Tracing.SpanAttribute {
+                            .string(self.rawValue)
+                        }
+                    }
+
+                    /// `gcp.apphub_destination.workload.id` **UNSTABLE**: The name of the destination workload as configured in AppHub.
+                    ///
+                    /// - Stability: development
+                    /// - Type: string
+                    /// - Example: `my-workload`
+                    public var id: SpanAttributeKey<String> {
+                        .init(name: OTelAttribute.gcp.apphubDestination.workload.id)
+                    }
+                }
+            }
+        }
+
         /// `gcp.client` namespace
         public var client: ClientAttributes {
             get {

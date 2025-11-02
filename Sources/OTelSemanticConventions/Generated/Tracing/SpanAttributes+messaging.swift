@@ -650,7 +650,12 @@ extension SpanAttributes {
                     /// - Stability: development
                     /// - Type: int
                     /// - Example: `2`
-                    @available(*, deprecated, renamed: "SpanAttributes.messaging.destination.partition.id")
+                    @available(
+                        *,
+                        deprecated,
+                        message:
+                            "Record string representation of the partition id in `messaging.destination.partition.id` attribute."
+                    )
                     public var partition: SpanAttributeKey<Int> {
                         .init(name: OTelAttribute.messaging.kafka.destination.partition)
                     }

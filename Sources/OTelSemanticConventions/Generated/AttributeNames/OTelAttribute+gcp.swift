@@ -112,6 +112,93 @@ extension OTelAttribute {
             }
         }
 
+        /// `gcp.apphub_destination` namespace
+        public enum apphubDestination {
+            /// `gcp.apphub_destination.application` namespace
+            public enum application {
+                /// `gcp.apphub_destination.application.container` **UNSTABLE**: The container within GCP where the AppHub destination application is defined.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Example: `projects/my-container-project`
+                public static let container = "gcp.apphub_destination.application.container"
+
+                /// `gcp.apphub_destination.application.id` **UNSTABLE**: The name of the destination application as configured in AppHub.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Example: `my-application`
+                public static let id = "gcp.apphub_destination.application.id"
+
+                /// `gcp.apphub_destination.application.location` **UNSTABLE**: The GCP zone or region where the destination application is defined.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Example: `us-central1`
+                public static let location = "gcp.apphub_destination.application.location"
+            }
+
+            /// `gcp.apphub_destination.service` namespace
+            public enum service {
+                /// `gcp.apphub_destination.service.criticality_type` **UNSTABLE**: Criticality of a destination workload indicates its importance to the business as specified in [AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
+                ///
+                /// - Stability: development
+                /// - Type: enum
+                ///     - `MISSION_CRITICAL`: Mission critical service.
+                ///     - `HIGH`: High impact.
+                ///     - `MEDIUM`: Medium impact.
+                ///     - `LOW`: Low impact.
+                public static let criticalityType = "gcp.apphub_destination.service.criticality_type"
+
+                /// `gcp.apphub_destination.service.environment_type` **UNSTABLE**: Software lifecycle stage of a destination service as defined [AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
+                ///
+                /// - Stability: development
+                /// - Type: enum
+                ///     - `PRODUCTION`: Production environment.
+                ///     - `STAGING`: Staging environment.
+                ///     - `TEST`: Test environment.
+                ///     - `DEVELOPMENT`: Development environment.
+                public static let environmentType = "gcp.apphub_destination.service.environment_type"
+
+                /// `gcp.apphub_destination.service.id` **UNSTABLE**: The name of the destination service as configured in AppHub.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Example: `my-service`
+                public static let id = "gcp.apphub_destination.service.id"
+            }
+
+            /// `gcp.apphub_destination.workload` namespace
+            public enum workload {
+                /// `gcp.apphub_destination.workload.criticality_type` **UNSTABLE**: Criticality of a destination workload indicates its importance to the business as specified in [AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
+                ///
+                /// - Stability: development
+                /// - Type: enum
+                ///     - `MISSION_CRITICAL`: Mission critical service.
+                ///     - `HIGH`: High impact.
+                ///     - `MEDIUM`: Medium impact.
+                ///     - `LOW`: Low impact.
+                public static let criticalityType = "gcp.apphub_destination.workload.criticality_type"
+
+                /// `gcp.apphub_destination.workload.environment_type` **UNSTABLE**: Environment of a destination workload is the stage of a software lifecycle as provided in the [AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
+                ///
+                /// - Stability: development
+                /// - Type: enum
+                ///     - `PRODUCTION`: Production environment.
+                ///     - `STAGING`: Staging environment.
+                ///     - `TEST`: Test environment.
+                ///     - `DEVELOPMENT`: Development environment.
+                public static let environmentType = "gcp.apphub_destination.workload.environment_type"
+
+                /// `gcp.apphub_destination.workload.id` **UNSTABLE**: The name of the destination workload as configured in AppHub.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Example: `my-workload`
+                public static let id = "gcp.apphub_destination.workload.id"
+            }
+        }
+
         /// `gcp.client` namespace
         public enum client {
             /// `gcp.client.service` **UNSTABLE**: Identifies the Google Cloud service for which the official client library is intended.

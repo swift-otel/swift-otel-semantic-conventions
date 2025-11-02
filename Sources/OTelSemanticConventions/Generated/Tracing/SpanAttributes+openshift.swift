@@ -19,8 +19,8 @@ import Tracing
 
 extension SpanAttributes {
     #if Experimental
-    /// `dns` namespace
-    public var dns: DnsAttributes {
+    /// `openshift` namespace
+    public var openshift: OpenshiftAttributes {
         get {
             .init(attributes: self)
         }
@@ -30,7 +30,7 @@ extension SpanAttributes {
     }
 
     @dynamicMemberLookup
-    public struct DnsAttributes: SpanAttributeNamespace {
+    public struct OpenshiftAttributes: SpanAttributeNamespace {
         public var attributes: Tracing.SpanAttributes
 
         public init(attributes: Tracing.SpanAttributes) {
@@ -39,16 +39,10 @@ extension SpanAttributes {
 
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
-
-            /// `dns.answers` **UNSTABLE**: The list of IPv4 or IPv6 addresses resolved during DNS lookup.
-            ///
-            /// - Stability: development
-            /// - Type: stringArray
-            public var answers: SpanAttributeKey<[String]> { .init(name: OTelAttribute.dns.answers) }
         }
 
-        /// `dns.question` namespace
-        public var question: QuestionAttributes {
+        /// `openshift.clusterquota` namespace
+        public var clusterquota: ClusterquotaAttributes {
             get {
                 .init(attributes: self.attributes)
             }
@@ -58,7 +52,7 @@ extension SpanAttributes {
         }
 
         @dynamicMemberLookup
-        public struct QuestionAttributes: SpanAttributeNamespace {
+        public struct ClusterquotaAttributes: SpanAttributeNamespace {
             public var attributes: Tracing.SpanAttributes
 
             public init(attributes: Tracing.SpanAttributes) {
@@ -68,16 +62,19 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `dns.question.name` **UNSTABLE**: The name being queried.
+                /// `openshift.clusterquota.name` **UNSTABLE**: The name of the cluster quota.
                 ///
                 /// - Stability: development
                 /// - Type: string
-                /// - Examples:
-                ///     - `www.example.com`
-                ///     - `opentelemetry.io`
+                /// - Example: `opentelemetry`
+                public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.openshift.clusterquota.name) }
+
+                /// `openshift.clusterquota.uid` **UNSTABLE**: The UID of the cluster quota.
                 ///
-                /// The name represents the queried domain name as it appears in the DNS query without any additional normalization.
-                public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.dns.question.name) }
+                /// - Stability: development
+                /// - Type: string
+                /// - Example: `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff`
+                public var uid: SpanAttributeKey<String> { .init(name: OTelAttribute.openshift.clusterquota.uid) }
             }
         }
     }

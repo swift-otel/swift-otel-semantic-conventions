@@ -22,6 +22,17 @@ extension OTelAttribute {
         /// - Stability: development
         /// - Type: int
         /// - Example: `42`
+        ///
+        /// Examples of where the value can be extracted from:
+        ///
+        /// | Language or platform  | Source |
+        /// | --- | --- |
+        /// | JVM | `Thread.currentThread().threadId()` |
+        /// | .NET | `Thread.CurrentThread.ManagedThreadId` |
+        /// | Python | `threading.current_thread().ident` |
+        /// | Ruby | `Thread.current.object_id` |
+        /// | C++ | `std::this_thread::get_id()` |
+        /// | Erlang | `erlang:self()` |
         public static let id = "thread.id"
 
         /// `thread.name` **UNSTABLE**: Current thread name.
@@ -29,6 +40,16 @@ extension OTelAttribute {
         /// - Stability: development
         /// - Type: string
         /// - Example: `main`
+        ///
+        /// Examples of where the value can be extracted from:
+        ///
+        /// | Language or platform  | Source |
+        /// | --- | --- |
+        /// | JVM | `Thread.currentThread().getName()` |
+        /// | .NET | `Thread.CurrentThread.Name` |
+        /// | Python | `threading.current_thread().name` |
+        /// | Ruby | `Thread.current.name` |
+        /// | Erlang | `erlang:process_info(self(), registered_name)` |
         public static let name = "thread.name"
     }
     #endif

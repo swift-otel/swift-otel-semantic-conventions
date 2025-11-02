@@ -216,7 +216,7 @@ extension SpanAttributes {
                     /// - Stability: development
                     /// - Type: stringArray
                     ///
-                    /// Region name matches the format of `displayName` in [Azure Location API](https://learn.microsoft.com/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location)
+                    /// Region name matches the format of `displayName` in [Azure Location API](https://learn.microsoft.com/rest/api/resources/subscriptions/list-locations)
                     public var contactedRegions: SpanAttributeKey<[String]> {
                         .init(name: OTelAttribute.azure.cosmosdb.operation.contactedRegions)
                     }

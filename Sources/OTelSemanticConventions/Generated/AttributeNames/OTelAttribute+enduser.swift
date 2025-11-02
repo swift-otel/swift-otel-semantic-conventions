@@ -34,7 +34,7 @@ extension OTelAttribute {
         /// - Stability: development
         /// - Type: string
         /// - Example: `admin`
-        @available(*, deprecated, renamed: "OTelAttribute.user.roles")
+        @available(*, deprecated, message: "Use `user.roles` instead.")
         public static let role = "enduser.role"
 
         /// `enduser.scope` **UNSTABLE**: Deprecated, no replacement at this time.

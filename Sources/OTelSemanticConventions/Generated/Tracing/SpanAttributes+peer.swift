@@ -45,6 +45,11 @@ extension SpanAttributes {
             /// - Stability: development
             /// - Type: string
             /// - Example: `AuthTokenCache`
+            ///
+            /// Examples of `peer.service` that users may specify:
+            ///
+            /// - A Redis cache of auth tokens as `peer.service="AuthTokenCache"`.
+            /// - A gRPC service `rpc.service="io.opentelemetry.AuthService"` may be hosted in both a gateway, `peer.service="ExternalApiService"` and a backend, `peer.service="AuthService"`.
             public var service: SpanAttributeKey<String> { .init(name: OTelAttribute.peer.service) }
         }
     }
