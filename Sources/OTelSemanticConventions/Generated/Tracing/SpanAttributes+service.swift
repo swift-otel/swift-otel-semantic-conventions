@@ -59,7 +59,7 @@ extension SpanAttributes {
             public var namespace: SpanAttributeKey<String> { .init(name: OTelAttribute.service.namespace) }
             #endif
 
-            /// `service.version`: The version string of the service API or implementation. The format is not defined by these conventions.
+            /// `service.version`: The version string of the service component. The format is not defined by these conventions.
             ///
             /// - Stability: stable
             /// - Type: string
@@ -124,6 +124,45 @@ extension SpanAttributes {
                 /// for that telemetry. This is typically the case for scraping receivers, as they know the target address and
                 /// port.
                 public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.service.instance.id) }
+            }
+        }
+        #endif
+
+        #if Experimental
+        /// `service.peer` namespace
+        public var peer: PeerAttributes {
+            get {
+                .init(attributes: self.attributes)
+            }
+            set {
+                self.attributes = newValue.attributes
+            }
+        }
+
+        @dynamicMemberLookup
+        public struct PeerAttributes: SpanAttributeNamespace {
+            public var attributes: Tracing.SpanAttributes
+
+            public init(attributes: Tracing.SpanAttributes) {
+                self.attributes = attributes
+            }
+
+            public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                public init() {}
+
+                /// `service.peer.name` **UNSTABLE**: Logical name of the service on the other side of the connection. SHOULD be equal to the actual [`service.name`](/docs/resource/README.md#service) resource attribute of the remote service if any.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Example: `shoppingcart`
+                public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.service.peer.name) }
+
+                /// `service.peer.namespace` **UNSTABLE**: Logical namespace of the service on the other side of the connection. SHOULD be equal to the actual [`service.namespace`](/docs/resource/README.md#service) resource attribute of the remote service if any.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Example: `Shop`
+                public var namespace: SpanAttributeKey<String> { .init(name: OTelAttribute.service.peer.namespace) }
             }
         }
         #endif

@@ -31,7 +31,7 @@ extension OTelAttribute {
         /// - Type: string
         /// - Example: `[{'role': 'user', 'content': 'What is the capital of France?'}]`
         @available(*, deprecated, message: "Obsoleted: Removed, no replacement at this time.")
-        public static let prompt = "gen_ai.prompt"
+        public static let _prompt = "gen_ai.prompt"
 
         /// `gen_ai.system` **UNSTABLE**: Deprecated, use `gen_ai.provider.name` instead.
         ///
@@ -399,6 +399,16 @@ extension OTelAttribute {
             /// This attribute specifies the output modality and not the actual output format. For example, if an image is requested, the actual output could be a URL pointing to an image file.
             /// Additional output format details may be recorded in the future in the `gen_ai.output.{type}.*` attributes.
             public static let `type` = "gen_ai.output.type"
+        }
+
+        /// `gen_ai.prompt` namespace
+        public enum prompt {
+            /// `gen_ai.prompt.name` **UNSTABLE**: The name of the prompt that uniquely identifies it.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `analyze-code`
+            public static let name = "gen_ai.prompt.name"
         }
 
         /// `gen_ai.provider` namespace

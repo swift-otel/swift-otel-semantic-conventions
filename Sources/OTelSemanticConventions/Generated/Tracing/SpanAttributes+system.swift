@@ -233,6 +233,75 @@ extension SpanAttributes {
                     }
                 }
             }
+
+            /// `system.memory.linux` namespace
+            public var linux: LinuxAttributes {
+                get {
+                    .init(attributes: self.attributes)
+                }
+                set {
+                    self.attributes = newValue.attributes
+                }
+            }
+
+            @dynamicMemberLookup
+            public struct LinuxAttributes: SpanAttributeNamespace {
+                public var attributes: Tracing.SpanAttributes
+
+                public init(attributes: Tracing.SpanAttributes) {
+                    self.attributes = attributes
+                }
+
+                public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                    public init() {}
+                }
+
+                /// `system.memory.linux.slab` namespace
+                public var slab: SlabAttributes {
+                    get {
+                        .init(attributes: self.attributes)
+                    }
+                    set {
+                        self.attributes = newValue.attributes
+                    }
+                }
+
+                @dynamicMemberLookup
+                public struct SlabAttributes: SpanAttributeNamespace {
+                    public var attributes: Tracing.SpanAttributes
+
+                    public init(attributes: Tracing.SpanAttributes) {
+                        self.attributes = attributes
+                    }
+
+                    public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                        public init() {}
+
+                        /// `system.memory.linux.slab.state` **UNSTABLE**: The Linux Slab memory state
+                        ///
+                        /// - Stability: development
+                        /// - Type: enum
+                        ///     - `reclaimable`
+                        ///     - `unreclaimable`
+                        /// - Examples:
+                        ///     - `reclaimable`
+                        ///     - `unreclaimable`
+                        public var state: SpanAttributeKey<StateEnum> {
+                            .init(name: OTelAttribute.system.memory.linux.slab.state)
+                        }
+
+                        public struct StateEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
+                            public let rawValue: String
+                            public init(rawValue: String) {
+                                self.rawValue = rawValue
+                            }
+                            public func toSpanAttribute() -> Tracing.SpanAttribute {
+                                .string(self.rawValue)
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         /// `system.network` namespace

@@ -93,6 +93,7 @@ extension SpanAttributes {
                     /// - Examples:
                     ///     - `reclaimable`
                     ///     - `unreclaimable`
+                    @available(*, deprecated, renamed: "SpanAttributes.system.memory.linux.slab.state")
                     public var state: SpanAttributeKey<StateEnum> { .init(name: OTelAttribute.linux.memory.slab.state) }
 
                     public struct StateEnum: SpanAttributeConvertible, RawRepresentable, Sendable {

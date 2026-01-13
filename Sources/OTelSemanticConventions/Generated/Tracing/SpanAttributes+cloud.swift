@@ -53,6 +53,7 @@ extension SpanAttributes {
             ///
             /// - Stability: development
             /// - Type: enum
+            ///     - `akamai_cloud.compute`: Akamai Cloud Compute
             ///     - `alibaba_cloud_ecs`: Alibaba Cloud Elastic Compute Service
             ///     - `alibaba_cloud_fc`: Alibaba Cloud Function Compute
             ///     - `alibaba_cloud_openshift`: Red Hat OpenShift on Alibaba Cloud
@@ -77,6 +78,7 @@ extension SpanAttributes {
             ///     - `azure_functions`: Azure Functions
             ///     - `azure_app_service`: Azure App Service
             ///     - `azure_openshift`: Azure Red Hat OpenShift
+            ///     - `gcp.agent_engine`: Google Vertex AI Agent Engine
             ///     - `gcp_bare_metal_solution`: Google Bare Metal Solution (BMS)
             ///     - `gcp_compute_engine`: Google Cloud Compute Engine (GCE)
             ///     - `gcp_cloud_run`: Google Cloud Run
@@ -84,12 +86,14 @@ extension SpanAttributes {
             ///     - `gcp_cloud_functions`: Google Cloud Functions (GCF)
             ///     - `gcp_app_engine`: Google Cloud App Engine (GAE)
             ///     - `gcp_openshift`: Red Hat OpenShift on Google Cloud
+            ///     - `hetzner.cloud_server`: Server on Hetzner Cloud
             ///     - `ibm_cloud_openshift`: Red Hat OpenShift on IBM Cloud
             ///     - `oracle_cloud_compute`: Compute on Oracle Cloud Infrastructure (OCI)
             ///     - `oracle_cloud_oke`: Kubernetes Engine (OKE) on Oracle Cloud Infrastructure (OCI)
             ///     - `tencent_cloud_cvm`: Tencent Cloud Cloud Virtual Machine (CVM)
             ///     - `tencent_cloud_eks`: Tencent Cloud Elastic Kubernetes Service (EKS)
             ///     - `tencent_cloud_scf`: Tencent Cloud Serverless Cloud Function (SCF)
+            ///     - `vultr.cloud_compute`: Vultr Cloud Compute
             ///
             /// The prefix of the service SHOULD match the one specified in `cloud.provider`.
             public var platform: SpanAttributeKey<PlatformEnum> { .init(name: OTelAttribute.cloud.platform) }
@@ -108,14 +112,17 @@ extension SpanAttributes {
             ///
             /// - Stability: development
             /// - Type: enum
+            ///     - `akamai_cloud`: Akamai Cloud
             ///     - `alibaba_cloud`: Alibaba Cloud
             ///     - `aws`: Amazon Web Services
             ///     - `azure`: Microsoft Azure
             ///     - `gcp`: Google Cloud Platform
             ///     - `heroku`: Heroku Platform as a Service
+            ///     - `hetzner`: Hetzner
             ///     - `ibm_cloud`: IBM Cloud
             ///     - `oracle_cloud`: Oracle Cloud Infrastructure (OCI)
             ///     - `tencent_cloud`: Tencent Cloud
+            ///     - `vultr`: Vultr
             public var provider: SpanAttributeKey<ProviderEnum> { .init(name: OTelAttribute.cloud.provider) }
 
             public struct ProviderEnum: SpanAttributeConvertible, RawRepresentable, Sendable {

@@ -54,7 +54,7 @@ extension SpanAttributes {
             /// - Type: string
             /// - Example: `[{'role': 'user', 'content': 'What is the capital of France?'}]`
             @available(*, deprecated, message: "Obsoleted: Removed, no replacement at this time.")
-            public var prompt: SpanAttributeKey<String> { .init(name: OTelAttribute.genAi.prompt) }
+            public var _prompt: SpanAttributeKey<String> { .init(name: OTelAttribute.genAi._prompt) }
 
             /// `gen_ai.system` **UNSTABLE**: Deprecated, use `gen_ai.provider.name` instead.
             ///
@@ -752,6 +752,36 @@ extension SpanAttributes {
                         .string(self.rawValue)
                     }
                 }
+            }
+        }
+
+        /// `gen_ai.prompt` namespace
+        public var prompt: PromptAttributes {
+            get {
+                .init(attributes: self.attributes)
+            }
+            set {
+                self.attributes = newValue.attributes
+            }
+        }
+
+        @dynamicMemberLookup
+        public struct PromptAttributes: SpanAttributeNamespace {
+            public var attributes: Tracing.SpanAttributes
+
+            public init(attributes: Tracing.SpanAttributes) {
+                self.attributes = attributes
+            }
+
+            public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                public init() {}
+
+                /// `gen_ai.prompt.name` **UNSTABLE**: The name of the prompt that uniquely identifies it.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Example: `analyze-code`
+                public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.genAi.prompt.name) }
             }
         }
 

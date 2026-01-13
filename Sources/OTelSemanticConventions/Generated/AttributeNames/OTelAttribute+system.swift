@@ -107,6 +107,23 @@ extension OTelAttribute {
             ///     - `free`
             ///     - `cached`
             public static let state = "system.memory.state"
+
+            /// `system.memory.linux` namespace
+            public enum linux {
+                /// `system.memory.linux.slab` namespace
+                public enum slab {
+                    /// `system.memory.linux.slab.state` **UNSTABLE**: The Linux Slab memory state
+                    ///
+                    /// - Stability: development
+                    /// - Type: enum
+                    ///     - `reclaimable`
+                    ///     - `unreclaimable`
+                    /// - Examples:
+                    ///     - `reclaimable`
+                    ///     - `unreclaimable`
+                    public static let state = "system.memory.linux.slab.state"
+                }
+            }
         }
 
         /// `system.network` namespace

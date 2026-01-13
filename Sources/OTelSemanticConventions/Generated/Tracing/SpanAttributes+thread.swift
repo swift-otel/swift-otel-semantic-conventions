@@ -48,7 +48,7 @@ extension SpanAttributes {
             ///
             /// Examples of where the value can be extracted from:
             ///
-            /// | Language or platform  | Source |
+            /// | Language or platform | Source |
             /// | --- | --- |
             /// | JVM | `Thread.currentThread().threadId()` |
             /// | .NET | `Thread.CurrentThread.ManagedThreadId` |
@@ -66,7 +66,7 @@ extension SpanAttributes {
             ///
             /// Examples of where the value can be extracted from:
             ///
-            /// | Language or platform  | Source |
+            /// | Language or platform | Source |
             /// | --- | --- |
             /// | JVM | `Thread.currentThread().getName()` |
             /// | .NET | `Thread.CurrentThread.Name` |

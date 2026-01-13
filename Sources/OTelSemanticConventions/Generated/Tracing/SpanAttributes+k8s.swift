@@ -64,14 +64,14 @@ extension SpanAttributes {
 
                 /// `k8s.cluster.name` **UNSTABLE**: The name of the cluster.
                 ///
-                /// - Stability: development
+                /// - Stability: alpha
                 /// - Type: string
                 /// - Example: `opentelemetry-cluster`
                 public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.k8s.cluster.name) }
 
                 /// `k8s.cluster.uid` **UNSTABLE**: A pseudo-ID for the cluster, set to the UID of the `kube-system` namespace.
                 ///
-                /// - Stability: development
+                /// - Stability: alpha
                 /// - Type: string
                 /// - Example: `218fc5a9-a5f1-4b54-aa05-46717d0ab26d`
                 ///
@@ -124,14 +124,14 @@ extension SpanAttributes {
 
                 /// `k8s.container.name` **UNSTABLE**: The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`).
                 ///
-                /// - Stability: development
+                /// - Stability: alpha
                 /// - Type: string
                 /// - Example: `redis`
                 public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.k8s.container.name) }
 
                 /// `k8s.container.restart_count` **UNSTABLE**: Number of times the container was restarted. This attribute can be used to identify a particular container (running or stopped) within a container spec.
                 ///
-                /// - Stability: development
+                /// - Stability: alpha
                 /// - Type: int
                 public var restartCount: SpanAttributeKey<Int> { .init(name: OTelAttribute.k8s.container.restartCount) }
             }
@@ -253,7 +253,7 @@ extension SpanAttributes {
 
             /// `k8s.cronjob.annotation` **UNSTABLE**: The cronjob annotation placed on the CronJob, the `<key>` being the annotation name, the value being the annotation value.
             ///
-            /// - Stability: development
+            /// - Stability: alpha
             /// - Type: templateString
             /// - Examples:
             ///     - `4`
@@ -305,7 +305,7 @@ extension SpanAttributes {
 
             /// `k8s.cronjob.label` **UNSTABLE**: The label placed on the CronJob, the `<key>` being the label name, the value being the label value.
             ///
-            /// - Stability: development
+            /// - Stability: alpha
             /// - Type: templateString
             /// - Examples:
             ///     - `weekly`
@@ -360,14 +360,14 @@ extension SpanAttributes {
 
                 /// `k8s.cronjob.name` **UNSTABLE**: The name of the CronJob.
                 ///
-                /// - Stability: development
+                /// - Stability: alpha
                 /// - Type: string
                 /// - Example: `opentelemetry`
                 public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.k8s.cronjob.name) }
 
                 /// `k8s.cronjob.uid` **UNSTABLE**: The UID of the CronJob.
                 ///
-                /// - Stability: development
+                /// - Stability: alpha
                 /// - Type: string
                 /// - Example: `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff`
                 public var uid: SpanAttributeKey<String> { .init(name: OTelAttribute.k8s.cronjob.uid) }
@@ -394,7 +394,7 @@ extension SpanAttributes {
 
             /// `k8s.daemonset.annotation` **UNSTABLE**: The annotation placed on the DaemonSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
             ///
-            /// - Stability: development
+            /// - Stability: alpha
             /// - Type: templateString
             /// - Examples:
             ///     - `1`
@@ -446,7 +446,7 @@ extension SpanAttributes {
 
             /// `k8s.daemonset.label` **UNSTABLE**: The label placed on the DaemonSet, the `<key>` being the label name, the value being the label value, even if the value is empty.
             ///
-            /// - Stability: development
+            /// - Stability: alpha
             /// - Type: templateString
             /// - Examples:
             ///     - `guestbook`
@@ -501,14 +501,14 @@ extension SpanAttributes {
 
                 /// `k8s.daemonset.name` **UNSTABLE**: The name of the DaemonSet.
                 ///
-                /// - Stability: development
+                /// - Stability: alpha
                 /// - Type: string
                 /// - Example: `opentelemetry`
                 public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.k8s.daemonset.name) }
 
                 /// `k8s.daemonset.uid` **UNSTABLE**: The UID of the DaemonSet.
                 ///
-                /// - Stability: development
+                /// - Stability: alpha
                 /// - Type: string
                 /// - Example: `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff`
                 public var uid: SpanAttributeKey<String> { .init(name: OTelAttribute.k8s.daemonset.uid) }
@@ -535,7 +535,7 @@ extension SpanAttributes {
 
             /// `k8s.deployment.annotation` **UNSTABLE**: The annotation placed on the Deployment, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
             ///
-            /// - Stability: development
+            /// - Stability: alpha
             /// - Type: templateString
             /// - Examples:
             ///     - `1`
@@ -587,7 +587,7 @@ extension SpanAttributes {
 
             /// `k8s.deployment.label` **UNSTABLE**: The label placed on the Deployment, the `<key>` being the label name, the value being the label value, even if the value is empty.
             ///
-            /// - Stability: development
+            /// - Stability: alpha
             /// - Type: templateString
             /// - Examples:
             ///     - `guestbook`
@@ -642,14 +642,14 @@ extension SpanAttributes {
 
                 /// `k8s.deployment.name` **UNSTABLE**: The name of the Deployment.
                 ///
-                /// - Stability: development
+                /// - Stability: alpha
                 /// - Type: string
                 /// - Example: `opentelemetry`
                 public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.k8s.deployment.name) }
 
                 /// `k8s.deployment.uid` **UNSTABLE**: The UID of the Deployment.
                 ///
-                /// - Stability: development
+                /// - Stability: alpha
                 /// - Type: string
                 /// - Example: `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff`
                 public var uid: SpanAttributeKey<String> { .init(name: OTelAttribute.k8s.deployment.uid) }
@@ -835,7 +835,7 @@ extension SpanAttributes {
 
             /// `k8s.job.annotation` **UNSTABLE**: The annotation placed on the Job, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
             ///
-            /// - Stability: development
+            /// - Stability: alpha
             /// - Type: templateString
             /// - Examples:
             ///     - `1`
@@ -887,7 +887,7 @@ extension SpanAttributes {
 
             /// `k8s.job.label` **UNSTABLE**: The label placed on the Job, the `<key>` being the label name, the value being the label value, even if the value is empty.
             ///
-            /// - Stability: development
+            /// - Stability: alpha
             /// - Type: templateString
             /// - Examples:
             ///     - `ci`
@@ -942,14 +942,14 @@ extension SpanAttributes {
 
                 /// `k8s.job.name` **UNSTABLE**: The name of the Job.
                 ///
-                /// - Stability: development
+                /// - Stability: alpha
                 /// - Type: string
                 /// - Example: `opentelemetry`
                 public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.k8s.job.name) }
 
                 /// `k8s.job.uid` **UNSTABLE**: The UID of the Job.
                 ///
-                /// - Stability: development
+                /// - Stability: alpha
                 /// - Type: string
                 /// - Example: `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff`
                 public var uid: SpanAttributeKey<String> { .init(name: OTelAttribute.k8s.job.uid) }
@@ -976,7 +976,7 @@ extension SpanAttributes {
 
             /// `k8s.namespace.annotation` **UNSTABLE**: The annotation placed on the Namespace, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
             ///
-            /// - Stability: development
+            /// - Stability: alpha
             /// - Type: templateString
             /// - Examples:
             ///     - `0`
@@ -1028,7 +1028,7 @@ extension SpanAttributes {
 
             /// `k8s.namespace.label` **UNSTABLE**: The label placed on the Namespace, the `<key>` being the label name, the value being the label value, even if the value is empty.
             ///
-            /// - Stability: development
+            /// - Stability: alpha
             /// - Type: templateString
             /// - Examples:
             ///     - `default`
@@ -1083,7 +1083,7 @@ extension SpanAttributes {
 
                 /// `k8s.namespace.name` **UNSTABLE**: The name of the namespace that the pod is running in.
                 ///
-                /// - Stability: development
+                /// - Stability: alpha
                 /// - Type: string
                 /// - Example: `default`
                 public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.k8s.namespace.name) }
@@ -1134,7 +1134,7 @@ extension SpanAttributes {
 
             /// `k8s.node.annotation` **UNSTABLE**: The annotation placed on the Node, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
             ///
-            /// - Stability: development
+            /// - Stability: alpha
             /// - Type: templateString
             /// - Examples:
             ///     - `0`
@@ -1186,7 +1186,7 @@ extension SpanAttributes {
 
             /// `k8s.node.label` **UNSTABLE**: The label placed on the Node, the `<key>` being the label name, the value being the label value, even if the value is empty.
             ///
-            /// - Stability: development
+            /// - Stability: alpha
             /// - Type: templateString
             /// - Examples:
             ///     - `arm64`
@@ -1241,14 +1241,14 @@ extension SpanAttributes {
 
                 /// `k8s.node.name` **UNSTABLE**: The name of the Node.
                 ///
-                /// - Stability: development
+                /// - Stability: alpha
                 /// - Type: string
                 /// - Example: `node-1`
                 public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.k8s.node.name) }
 
                 /// `k8s.node.uid` **UNSTABLE**: The UID of the Node.
                 ///
-                /// - Stability: development
+                /// - Stability: alpha
                 /// - Type: string
                 /// - Example: `1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2`
                 public var uid: SpanAttributeKey<String> { .init(name: OTelAttribute.k8s.node.uid) }
@@ -1362,7 +1362,7 @@ extension SpanAttributes {
 
             /// `k8s.pod.annotation` **UNSTABLE**: The annotation placed on the Pod, the `<key>` being the annotation name, the value being the annotation value.
             ///
-            /// - Stability: development
+            /// - Stability: alpha
             /// - Type: templateString
             /// - Examples:
             ///     - `true`
@@ -1417,7 +1417,7 @@ extension SpanAttributes {
 
             /// `k8s.pod.label` **UNSTABLE**: The label placed on the Pod, the `<key>` being the label name, the value being the label value.
             ///
-            /// - Stability: development
+            /// - Stability: alpha
             /// - Type: templateString
             /// - Examples:
             ///     - `my-app`
@@ -1516,16 +1516,54 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
+                /// `k8s.pod.hostname` **UNSTABLE**: Specifies the hostname of the Pod.
+                ///
+                /// - Stability: alpha
+                /// - Type: string
+                /// - Example: `collector-gateway`
+                ///
+                /// The K8s Pod spec has an optional hostname field, which can be used to specify a hostname.
+                /// Refer to [K8s docs](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-hostname-and-subdomain-field)
+                /// for more information about this field.
+                ///
+                /// This attribute aligns with the `hostname` field of the
+                /// [K8s PodSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#podspec-v1-core).
+                public var hostname: SpanAttributeKey<String> { .init(name: OTelAttribute.k8s.pod.hostname) }
+
+                /// `k8s.pod.ip` **UNSTABLE**: IP address allocated to the Pod.
+                ///
+                /// - Stability: alpha
+                /// - Type: string
+                /// - Example: `172.18.0.2`
+                ///
+                /// This attribute aligns with the `podIP` field of the
+                /// [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#podstatus-v1-core).
+                public var ip: SpanAttributeKey<String> { .init(name: OTelAttribute.k8s.pod.ip) }
+
                 /// `k8s.pod.name` **UNSTABLE**: The name of the Pod.
                 ///
-                /// - Stability: development
+                /// - Stability: alpha
                 /// - Type: string
                 /// - Example: `opentelemetry-pod-autoconf`
                 public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.k8s.pod.name) }
 
+                /// `k8s.pod.start_time` **UNSTABLE**: The start timestamp of the Pod.
+                ///
+                /// - Stability: alpha
+                /// - Type: string
+                /// - Example: `2025-12-04T08:41:03Z`
+                ///
+                /// Date and time at which the object was acknowledged by the Kubelet.
+                /// This is before the Kubelet pulled the container image(s) for the pod.
+                ///
+                /// This attribute aligns with the `startTime` field of the
+                /// [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#podstatus-v1-core),
+                /// in ISO 8601 (RFC 3339 compatible) format.
+                public var startTime: SpanAttributeKey<String> { .init(name: OTelAttribute.k8s.pod.startTime) }
+
                 /// `k8s.pod.uid` **UNSTABLE**: The UID of the Pod.
                 ///
-                /// - Stability: development
+                /// - Stability: alpha
                 /// - Type: string
                 /// - Example: `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff`
                 public var uid: SpanAttributeKey<String> { .init(name: OTelAttribute.k8s.pod.uid) }
@@ -1623,7 +1661,7 @@ extension SpanAttributes {
 
             /// `k8s.replicaset.annotation` **UNSTABLE**: The annotation placed on the ReplicaSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
             ///
-            /// - Stability: development
+            /// - Stability: alpha
             /// - Type: templateString
             /// - Examples:
             ///     - `0`
@@ -1675,7 +1713,7 @@ extension SpanAttributes {
 
             /// `k8s.replicaset.label` **UNSTABLE**: The label placed on the ReplicaSet, the `<key>` being the label name, the value being the label value, even if the value is empty.
             ///
-            /// - Stability: development
+            /// - Stability: alpha
             /// - Type: templateString
             /// - Examples:
             ///     - `guestbook`
@@ -1730,14 +1768,14 @@ extension SpanAttributes {
 
                 /// `k8s.replicaset.name` **UNSTABLE**: The name of the ReplicaSet.
                 ///
-                /// - Stability: development
+                /// - Stability: alpha
                 /// - Type: string
                 /// - Example: `opentelemetry`
                 public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.k8s.replicaset.name) }
 
                 /// `k8s.replicaset.uid` **UNSTABLE**: The UID of the ReplicaSet.
                 ///
-                /// - Stability: development
+                /// - Stability: alpha
                 /// - Type: string
                 /// - Example: `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff`
                 public var uid: SpanAttributeKey<String> { .init(name: OTelAttribute.k8s.replicaset.uid) }
@@ -1849,7 +1887,7 @@ extension SpanAttributes {
 
             /// `k8s.statefulset.annotation` **UNSTABLE**: The annotation placed on the StatefulSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
             ///
-            /// - Stability: development
+            /// - Stability: alpha
             /// - Type: templateString
             /// - Examples:
             ///     - `1`
@@ -1901,7 +1939,7 @@ extension SpanAttributes {
 
             /// `k8s.statefulset.label` **UNSTABLE**: The label placed on the StatefulSet, the `<key>` being the label name, the value being the label value, even if the value is empty.
             ///
-            /// - Stability: development
+            /// - Stability: alpha
             /// - Type: templateString
             /// - Examples:
             ///     - `guestbook`
@@ -1956,14 +1994,14 @@ extension SpanAttributes {
 
                 /// `k8s.statefulset.name` **UNSTABLE**: The name of the StatefulSet.
                 ///
-                /// - Stability: development
+                /// - Stability: alpha
                 /// - Type: string
                 /// - Example: `opentelemetry`
                 public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.k8s.statefulset.name) }
 
                 /// `k8s.statefulset.uid` **UNSTABLE**: The UID of the StatefulSet.
                 ///
-                /// - Stability: development
+                /// - Stability: alpha
                 /// - Type: string
                 /// - Example: `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff`
                 public var uid: SpanAttributeKey<String> { .init(name: OTelAttribute.k8s.statefulset.uid) }

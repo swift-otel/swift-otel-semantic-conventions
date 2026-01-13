@@ -156,6 +156,42 @@ extension SpanAttributes {
         #endif
 
         #if Experimental
+        /// `otel.event` namespace
+        public var event: EventAttributes {
+            get {
+                .init(attributes: self.attributes)
+            }
+            set {
+                self.attributes = newValue.attributes
+            }
+        }
+
+        @dynamicMemberLookup
+        public struct EventAttributes: SpanAttributeNamespace {
+            public var attributes: Tracing.SpanAttributes
+
+            public init(attributes: Tracing.SpanAttributes) {
+                self.attributes = attributes
+            }
+
+            public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                public init() {}
+
+                /// `otel.event.name` **UNSTABLE**: Identifies the class / type of event.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Examples:
+                ///     - `browser.mouse.click`
+                ///     - `device.app.lifecycle`
+                ///
+                /// This attribute SHOULD be used by non-OTLP exporters when destination does not support `EventName` or equivalent field. This attribute MAY be used by applications using existing logging libraries so that it can be used to set the `EventName` field by Collector or SDK components.
+                public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.otel.event.name) }
+            }
+        }
+        #endif
+
+        #if Experimental
         /// `otel.library` namespace
         public var library: LibraryAttributes {
             get {

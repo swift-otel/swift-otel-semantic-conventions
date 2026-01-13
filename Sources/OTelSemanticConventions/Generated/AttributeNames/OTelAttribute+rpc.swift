@@ -17,21 +17,63 @@ extension OTelAttribute {
     #if Experimental
     /// `rpc` namespace
     public enum rpc {
-        /// `rpc.method` **UNSTABLE**: This is the logical name of the method from the RPC interface perspective.
+        /// `rpc.method` **UNSTABLE**: The fully-qualified logical name of the method from the RPC interface perspective.
         ///
         /// - Stability: development
         /// - Type: string
-        /// - Example: `exampleMethod`
+        /// - Examples:
+        ///     - `com.example.ExampleService/exampleMethod`
+        ///     - `EchoService/Echo`
+        ///     - `_OTHER`
+        ///
+        /// The method name MAY have unbounded cardinality in edge or error cases.
+        ///
+        /// Some RPC frameworks or libraries provide a fixed set of recognized methods
+        /// for client stubs and server implementations. Instrumentations for such
+        /// frameworks MUST set this attribute to the original method name only
+        /// when the method is recognized by the framework or library.
+        ///
+        /// When the method is not recognized, for example, when the server receives
+        /// a request for a method that is not predefined on the server, or when
+        /// instrumentation is not able to reliably detect if the method is predefined,
+        /// the attribute MUST be set to `_OTHER`. In such cases, tracing
+        /// instrumentations MUST also set `rpc.method_original` attribute to
+        /// the original method value.
+        ///
+        /// If the RPC instrumentation could end up converting valid RPC methods to
+        /// `_OTHER`, then it SHOULD provide a way to configure the list of recognized
+        /// RPC methods.
+        ///
+        /// The `rpc.method` can be different from the name of any implementing
+        /// method/function.
+        /// The `code.function.name` attribute may be used to record the fully-qualified
+        /// method actually executing the call on the server side, or the
+        /// RPC client stub method on the client side.
         public static let method = "rpc.method"
 
-        /// `rpc.service` **UNSTABLE**: The full (logical) name of the service being called, including its package name, if applicable.
+        /// `rpc.method_original` **UNSTABLE**: The original name of the method used by the client.
+        ///
+        /// - Stability: development
+        /// - Type: string
+        /// - Examples:
+        ///     - `com.myservice.EchoService/catchAll`
+        ///     - `com.myservice.EchoService/unknownMethod`
+        ///     - `InvalidMethod`
+        public static let methodOriginal = "rpc.method_original"
+
+        /// `rpc.service` **UNSTABLE**: Deprecated, use fully-qualified `rpc.method` instead.
         ///
         /// - Stability: development
         /// - Type: string
         /// - Example: `myservice.EchoService`
+        @available(
+            *,
+            deprecated,
+            message: "Value should be included in `rpc.method` which is expected to be a fully-qualified name."
+        )
         public static let service = "rpc.service"
 
-        /// `rpc.system` **UNSTABLE**: A string identifying the remoting system. See below for a list of well-known identifiers.
+        /// `rpc.system` **UNSTABLE**: Deprecated, use `rpc.system.name` attribute instead.
         ///
         /// - Stability: development
         /// - Type: enum
@@ -42,11 +84,12 @@ extension OTelAttribute {
         ///     - `connect_rpc`: Connect RPC
         ///     - `onc_rpc`: [ONC RPC (Sun RPC)](https://datatracker.ietf.org/doc/html/rfc5531)
         ///     - `jsonrpc`: JSON-RPC
-        public static let system = "rpc.system"
+        @available(*, deprecated, renamed: "OTelAttribute.rpc.system.name")
+        public static let _system = "rpc.system"
 
         /// `rpc.connect_rpc` namespace
         public enum connectRpc {
-            /// `rpc.connect_rpc.error_code` **UNSTABLE**: The [error codes](https://connectrpc.com//docs/protocol/#error-codes) of the Connect request. Error codes are always string values.
+            /// `rpc.connect_rpc.error_code` **UNSTABLE**: Deprecated, use `rpc.response.status_code` attribute instead.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -66,42 +109,33 @@ extension OTelAttribute {
             ///     - `unavailable`
             ///     - `data_loss`
             ///     - `unauthenticated`
+            @available(*, deprecated, renamed: "OTelAttribute.rpc.response.statusCode")
             public static let errorCode = "rpc.connect_rpc.error_code"
 
             /// `rpc.connect_rpc.request` namespace
             public enum request {
-                /// `rpc.connect_rpc.request.metadata` **UNSTABLE**: Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
+                /// `rpc.connect_rpc.request.metadata` **UNSTABLE**: Deprecated, use `rpc.request.metadata` instead.
                 ///
                 /// - Stability: development
                 /// - Type: templateStringArray
-                ///
-                /// Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
-                /// Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
-                ///
-                /// For example, a property `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` SHOULD be recorded as
-                /// the `rpc.connect_rpc.request.metadata.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`
+                @available(*, deprecated, renamed: "OTelAttribute.rpc.request.metadata")
                 public static let metadata = "rpc.connect_rpc.request.metadata"
             }
 
             /// `rpc.connect_rpc.response` namespace
             public enum response {
-                /// `rpc.connect_rpc.response.metadata` **UNSTABLE**: Connect response metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
+                /// `rpc.connect_rpc.response.metadata` **UNSTABLE**: Deprecated, use `rpc.response.metadata` instead.
                 ///
                 /// - Stability: development
                 /// - Type: templateStringArray
-                ///
-                /// Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
-                /// Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
-                ///
-                /// For example, a property `my-custom-key` with value `"attribute_value"` SHOULD be recorded as
-                /// the `rpc.connect_rpc.response.metadata.my-custom-key` attribute with value `["attribute_value"]`
+                @available(*, deprecated, renamed: "OTelAttribute.rpc.response.metadata")
                 public static let metadata = "rpc.connect_rpc.response.metadata"
             }
         }
 
         /// `rpc.grpc` namespace
         public enum grpc {
-            /// `rpc.grpc.status_code` **UNSTABLE**: The [numeric status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md) of the gRPC request.
+            /// `rpc.grpc.status_code` **UNSTABLE**: Deprecated, use string representation on the `rpc.response.status_code` attribute instead.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -122,60 +156,66 @@ extension OTelAttribute {
             ///     - `14`: UNAVAILABLE
             ///     - `15`: DATA_LOSS
             ///     - `16`: UNAUTHENTICATED
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Use string representation of the gRPC status code on the `rpc.response.status_code` attribute."
+            )
             public static let statusCode = "rpc.grpc.status_code"
 
             /// `rpc.grpc.request` namespace
             public enum request {
-                /// `rpc.grpc.request.metadata` **UNSTABLE**: gRPC request metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values.
+                /// `rpc.grpc.request.metadata` **UNSTABLE**: Deprecated, use `rpc.request.metadata` instead.
                 ///
                 /// - Stability: development
                 /// - Type: templateStringArray
-                ///
-                /// Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
-                /// Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
-                ///
-                /// For example, a property `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` SHOULD be recorded as
-                /// `rpc.grpc.request.metadata.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`
+                @available(*, deprecated, renamed: "OTelAttribute.rpc.request.metadata")
                 public static let metadata = "rpc.grpc.request.metadata"
             }
 
             /// `rpc.grpc.response` namespace
             public enum response {
-                /// `rpc.grpc.response.metadata` **UNSTABLE**: gRPC response metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values.
+                /// `rpc.grpc.response.metadata` **UNSTABLE**: Deprecated, use `rpc.response.metadata` instead.
                 ///
                 /// - Stability: development
                 /// - Type: templateStringArray
-                ///
-                /// Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
-                /// Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
-                ///
-                /// For example, a property `my-custom-key` with value `["attribute_value"]` SHOULD be recorded as
-                /// the `rpc.grpc.response.metadata.my-custom-key` attribute with value `["attribute_value"]`
+                @available(*, deprecated, renamed: "OTelAttribute.rpc.response.metadata")
                 public static let metadata = "rpc.grpc.response.metadata"
             }
         }
 
         /// `rpc.jsonrpc` namespace
         public enum jsonrpc {
-            /// `rpc.jsonrpc.error_code` **UNSTABLE**: `error.code` property of response if it is an error response.
+            /// `rpc.jsonrpc.error_code` **UNSTABLE**: Deprecated, use string representation on the `rpc.response.status_code` attribute instead.
             ///
             /// - Stability: development
             /// - Type: int
             /// - Examples:
             ///     - `-32700`
             ///     - `100`
+            @available(
+                *,
+                deprecated,
+                message: "Use string representation of the error code on the `rpc.response.status_code` attribute."
+            )
             public static let errorCode = "rpc.jsonrpc.error_code"
 
-            /// `rpc.jsonrpc.error_message` **UNSTABLE**: `error.message` property of response if it is an error response.
+            /// `rpc.jsonrpc.error_message` **UNSTABLE**: Deprecated, use span status description or `error.message` attribute on other signals.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Examples:
             ///     - `Parse error`
             ///     - `User already exists`
+            @available(
+                *,
+                deprecated,
+                message: "Use the span status description or `error.message` attribute on other signals."
+            )
             public static let errorMessage = "rpc.jsonrpc.error_message"
 
-            /// `rpc.jsonrpc.request_id` **UNSTABLE**: `id` property of request or response. Since protocol allows id to be int, string, `null` or missing (for notifications), value is expected to be cast to string for simplicity. Use empty string in case of `null` value. Omit entirely if this is a notification.
+            /// `rpc.jsonrpc.request_id` **UNSTABLE**: Deprecated, use `jsonrpc.request.id` instead.
             ///
             /// - Stability: development
             /// - Type: string
@@ -183,15 +223,17 @@ extension OTelAttribute {
             ///     - `10`
             ///     - `request-7`
             ///     - ``
+            @available(*, deprecated, renamed: "OTelAttribute.jsonrpc.request.id")
             public static let requestId = "rpc.jsonrpc.request_id"
 
-            /// `rpc.jsonrpc.version` **UNSTABLE**: Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 doesn't specify this, the value can be omitted.
+            /// `rpc.jsonrpc.version` **UNSTABLE**: Deprecated, use `jsonrpc.protocol.version` instead.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Examples:
             ///     - `2.0`
             ///     - `1.0`
+            @available(*, deprecated, renamed: "OTelAttribute.jsonrpc.protocol.version")
             public static let version = "rpc.jsonrpc.version"
         }
 
@@ -224,6 +266,64 @@ extension OTelAttribute {
             /// - Stability: development
             /// - Type: int
             public static let uncompressedSize = "rpc.message.uncompressed_size"
+        }
+
+        /// `rpc.request` namespace
+        public enum request {
+            /// `rpc.request.metadata` **UNSTABLE**: RPC request metadata, `<key>` being the normalized RPC metadata key (lowercase), the value being the metadata values.
+            ///
+            /// - Stability: development
+            /// - Type: templateStringArray
+            ///
+            /// Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
+            /// Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
+            ///
+            /// For example, a property `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` SHOULD be recorded as
+            /// `rpc.request.metadata.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`
+            public static let metadata = "rpc.request.metadata"
+        }
+
+        /// `rpc.response` namespace
+        public enum response {
+            /// `rpc.response.metadata` **UNSTABLE**: RPC response metadata, `<key>` being the normalized RPC metadata key (lowercase), the value being the metadata values.
+            ///
+            /// - Stability: development
+            /// - Type: templateStringArray
+            ///
+            /// Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
+            /// Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
+            ///
+            /// For example, a property `my-custom-key` with value `["attribute_value"]` SHOULD be recorded as
+            /// the `rpc.response.metadata.my-custom-key` attribute with value `["attribute_value"]`
+            public static let metadata = "rpc.response.metadata"
+
+            /// `rpc.response.status_code` **UNSTABLE**: Status code of the RPC returned by the RPC server or generated by the client
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Examples:
+            ///     - `OK`
+            ///     - `DEADLINE_EXCEEDED`
+            ///     - `-32602`
+            ///
+            /// Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
+            /// Semantic conventions for individual RPC frameworks SHOULD document what `rpc.response.status_code` means in the context of that system and which values are considered to represent errors.
+            public static let statusCode = "rpc.response.status_code"
+        }
+
+        /// `rpc.system` namespace
+        public enum system {
+            /// `rpc.system.name` **UNSTABLE**: The Remote Procedure Call (RPC) system.
+            ///
+            /// - Stability: development
+            /// - Type: enum
+            ///     - `grpc`: [gRPC](https://grpc.io/)
+            ///     - `dubbo`: [Apache Dubbo](https://dubbo.apache.org/)
+            ///     - `connectrpc`: [Connect RPC](https://connectrpc.com/)
+            ///     - `jsonrpc`: [JSON-RPC](https://www.jsonrpc.org/)
+            ///
+            /// The client and server RPC systems may differ for the same RPC interaction. For example, a client may use Apache Dubbo or Connect RPC to communicate with a server that uses gRPC since both protocols provide compatibility with gRPC.
+            public static let name = "rpc.system.name"
         }
     }
     #endif
