@@ -11,7 +11,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with: { 'fetch-depth': 0 }
       - name: Install Swift
         uses: vapor/swiftly-action@v0.2
@@ -28,7 +28,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Install Swift
         uses: vapor/swiftly-action@v0.2
         with:
@@ -44,6 +44,6 @@ jobs:
     timeout-minutes: 1
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Run license header check
         run: ./scripts/check-license-headers.sh
