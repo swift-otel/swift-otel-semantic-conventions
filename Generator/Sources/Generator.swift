@@ -57,7 +57,7 @@ struct Generator: AsyncParsableCommand {
 
         // Parse semconv registry files
         let semConvModelsDirectory = semConvRepoDirectory.appending(path: "model/")
-        var (groups, parsedAttributes) = try await parseAttributes(
+        let (groups, parsedAttributes) = try await parseAttributes(
             fileManager: fileManager,
             semConvModelsDirectory: semConvModelsDirectory
         )

@@ -30,6 +30,7 @@ extension OTelAttribute {
                 /// - Examples:
                 ///     - `reclaimable`
                 ///     - `unreclaimable`
+                @available(*, deprecated, renamed: "OTelAttribute.system.memory.linux.slab.state")
                 public static let state = "linux.memory.slab.state"
             }
         }

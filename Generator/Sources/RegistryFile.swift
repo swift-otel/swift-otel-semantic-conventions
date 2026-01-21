@@ -250,6 +250,7 @@ enum Deprecated: Codable, Equatable {
 }
 
 enum Stability: String, Codable {
+    case alpha
     case development
     case experimental
     case releaseCandidate = "release_candidate"

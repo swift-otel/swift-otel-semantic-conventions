@@ -36,7 +36,7 @@ extension OTelAttribute {
         public static let namespace = "service.namespace"
         #endif
 
-        /// `service.version`: The version string of the service API or implementation. The format is not defined by these conventions.
+        /// `service.version`: The version string of the service component. The format is not defined by these conventions.
         ///
         /// - Stability: stable
         /// - Type: string
@@ -81,6 +81,25 @@ extension OTelAttribute {
             /// for that telemetry. This is typically the case for scraping receivers, as they know the target address and
             /// port.
             public static let id = "service.instance.id"
+        }
+        #endif
+
+        #if Experimental
+        /// `service.peer` namespace
+        public enum peer {
+            /// `service.peer.name` **UNSTABLE**: Logical name of the service on the other side of the connection. SHOULD be equal to the actual [`service.name`](/docs/resource/README.md#service) resource attribute of the remote service if any.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `shoppingcart`
+            public static let name = "service.peer.name"
+
+            /// `service.peer.namespace` **UNSTABLE**: Logical namespace of the service on the other side of the connection. SHOULD be equal to the actual [`service.namespace`](/docs/resource/README.md#service) resource attribute of the remote service if any.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `Shop`
+            public static let namespace = "service.peer.namespace"
         }
         #endif
     }

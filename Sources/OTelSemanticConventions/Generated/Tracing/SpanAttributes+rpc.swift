@@ -40,21 +40,63 @@ extension SpanAttributes {
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
 
-            /// `rpc.method` **UNSTABLE**: This is the logical name of the method from the RPC interface perspective.
+            /// `rpc.method` **UNSTABLE**: The fully-qualified logical name of the method from the RPC interface perspective.
             ///
             /// - Stability: development
             /// - Type: string
-            /// - Example: `exampleMethod`
+            /// - Examples:
+            ///     - `com.example.ExampleService/exampleMethod`
+            ///     - `EchoService/Echo`
+            ///     - `_OTHER`
+            ///
+            /// The method name MAY have unbounded cardinality in edge or error cases.
+            ///
+            /// Some RPC frameworks or libraries provide a fixed set of recognized methods
+            /// for client stubs and server implementations. Instrumentations for such
+            /// frameworks MUST set this attribute to the original method name only
+            /// when the method is recognized by the framework or library.
+            ///
+            /// When the method is not recognized, for example, when the server receives
+            /// a request for a method that is not predefined on the server, or when
+            /// instrumentation is not able to reliably detect if the method is predefined,
+            /// the attribute MUST be set to `_OTHER`. In such cases, tracing
+            /// instrumentations MUST also set `rpc.method_original` attribute to
+            /// the original method value.
+            ///
+            /// If the RPC instrumentation could end up converting valid RPC methods to
+            /// `_OTHER`, then it SHOULD provide a way to configure the list of recognized
+            /// RPC methods.
+            ///
+            /// The `rpc.method` can be different from the name of any implementing
+            /// method/function.
+            /// The `code.function.name` attribute may be used to record the fully-qualified
+            /// method actually executing the call on the server side, or the
+            /// RPC client stub method on the client side.
             public var method: SpanAttributeKey<String> { .init(name: OTelAttribute.rpc.method) }
 
-            /// `rpc.service` **UNSTABLE**: The full (logical) name of the service being called, including its package name, if applicable.
+            /// `rpc.method_original` **UNSTABLE**: The original name of the method used by the client.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Examples:
+            ///     - `com.myservice.EchoService/catchAll`
+            ///     - `com.myservice.EchoService/unknownMethod`
+            ///     - `InvalidMethod`
+            public var methodOriginal: SpanAttributeKey<String> { .init(name: OTelAttribute.rpc.methodOriginal) }
+
+            /// `rpc.service` **UNSTABLE**: Deprecated, use fully-qualified `rpc.method` instead.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `myservice.EchoService`
+            @available(
+                *,
+                deprecated,
+                message: "Value should be included in `rpc.method` which is expected to be a fully-qualified name."
+            )
             public var service: SpanAttributeKey<String> { .init(name: OTelAttribute.rpc.service) }
 
-            /// `rpc.system` **UNSTABLE**: A string identifying the remoting system. See below for a list of well-known identifiers.
+            /// `rpc.system` **UNSTABLE**: Deprecated, use `rpc.system.name` attribute instead.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -65,7 +107,8 @@ extension SpanAttributes {
             ///     - `connect_rpc`: Connect RPC
             ///     - `onc_rpc`: [ONC RPC (Sun RPC)](https://datatracker.ietf.org/doc/html/rfc5531)
             ///     - `jsonrpc`: JSON-RPC
-            public var system: SpanAttributeKey<SystemEnum> { .init(name: OTelAttribute.rpc.system) }
+            @available(*, deprecated, renamed: "SpanAttributes.rpc.system.name")
+            public var _system: SpanAttributeKey<SystemEnum> { .init(name: OTelAttribute.rpc._system) }
 
             public struct SystemEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
                 public let rawValue: String
@@ -99,7 +142,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `rpc.connect_rpc.error_code` **UNSTABLE**: The [error codes](https://connectrpc.com//docs/protocol/#error-codes) of the Connect request. Error codes are always string values.
+                /// `rpc.connect_rpc.error_code` **UNSTABLE**: Deprecated, use `rpc.response.status_code` attribute instead.
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -119,6 +162,7 @@ extension SpanAttributes {
                 ///     - `unavailable`
                 ///     - `data_loss`
                 ///     - `unauthenticated`
+                @available(*, deprecated, renamed: "SpanAttributes.rpc.response.statusCode")
                 public var errorCode: SpanAttributeKey<ErrorCodeEnum> {
                     .init(name: OTelAttribute.rpc.connectRpc.errorCode)
                 }
@@ -152,16 +196,10 @@ extension SpanAttributes {
                     self.attributes = attributes
                 }
 
-                /// `rpc.connect_rpc.request.metadata` **UNSTABLE**: Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
+                /// `rpc.connect_rpc.request.metadata` **UNSTABLE**: Deprecated, use `rpc.request.metadata` instead.
                 ///
                 /// - Stability: development
                 /// - Type: templateStringArray
-                ///
-                /// Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
-                /// Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
-                ///
-                /// For example, a property `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` SHOULD be recorded as
-                /// the `rpc.connect_rpc.request.metadata.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`
                 public var metadata: MetadataAttributes {
                     get {
                         .init(attributes: self.attributes)
@@ -223,16 +261,10 @@ extension SpanAttributes {
                     self.attributes = attributes
                 }
 
-                /// `rpc.connect_rpc.response.metadata` **UNSTABLE**: Connect response metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
+                /// `rpc.connect_rpc.response.metadata` **UNSTABLE**: Deprecated, use `rpc.response.metadata` instead.
                 ///
                 /// - Stability: development
                 /// - Type: templateStringArray
-                ///
-                /// Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
-                /// Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
-                ///
-                /// For example, a property `my-custom-key` with value `"attribute_value"` SHOULD be recorded as
-                /// the `rpc.connect_rpc.response.metadata.my-custom-key` attribute with value `["attribute_value"]`
                 public var metadata: MetadataAttributes {
                     get {
                         .init(attributes: self.attributes)
@@ -298,7 +330,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `rpc.grpc.status_code` **UNSTABLE**: The [numeric status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md) of the gRPC request.
+                /// `rpc.grpc.status_code` **UNSTABLE**: Deprecated, use string representation on the `rpc.response.status_code` attribute instead.
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -319,6 +351,12 @@ extension SpanAttributes {
                 ///     - `14`: UNAVAILABLE
                 ///     - `15`: DATA_LOSS
                 ///     - `16`: UNAUTHENTICATED
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Use string representation of the gRPC status code on the `rpc.response.status_code` attribute."
+                )
                 public var statusCode: SpanAttributeKey<StatusCodeEnum> {
                     .init(name: OTelAttribute.rpc.grpc.statusCode)
                 }
@@ -352,16 +390,10 @@ extension SpanAttributes {
                     self.attributes = attributes
                 }
 
-                /// `rpc.grpc.request.metadata` **UNSTABLE**: gRPC request metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values.
+                /// `rpc.grpc.request.metadata` **UNSTABLE**: Deprecated, use `rpc.request.metadata` instead.
                 ///
                 /// - Stability: development
                 /// - Type: templateStringArray
-                ///
-                /// Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
-                /// Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
-                ///
-                /// For example, a property `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` SHOULD be recorded as
-                /// `rpc.grpc.request.metadata.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`
                 public var metadata: MetadataAttributes {
                     get {
                         .init(attributes: self.attributes)
@@ -423,16 +455,10 @@ extension SpanAttributes {
                     self.attributes = attributes
                 }
 
-                /// `rpc.grpc.response.metadata` **UNSTABLE**: gRPC response metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values.
+                /// `rpc.grpc.response.metadata` **UNSTABLE**: Deprecated, use `rpc.response.metadata` instead.
                 ///
                 /// - Stability: development
                 /// - Type: templateStringArray
-                ///
-                /// Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
-                /// Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
-                ///
-                /// For example, a property `my-custom-key` with value `["attribute_value"]` SHOULD be recorded as
-                /// the `rpc.grpc.response.metadata.my-custom-key` attribute with value `["attribute_value"]`
                 public var metadata: MetadataAttributes {
                     get {
                         .init(attributes: self.attributes)
@@ -498,27 +524,37 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `rpc.jsonrpc.error_code` **UNSTABLE**: `error.code` property of response if it is an error response.
+                /// `rpc.jsonrpc.error_code` **UNSTABLE**: Deprecated, use string representation on the `rpc.response.status_code` attribute instead.
                 ///
                 /// - Stability: development
                 /// - Type: int
                 /// - Examples:
                 ///     - `-32700`
                 ///     - `100`
+                @available(
+                    *,
+                    deprecated,
+                    message: "Use string representation of the error code on the `rpc.response.status_code` attribute."
+                )
                 public var errorCode: SpanAttributeKey<Int> { .init(name: OTelAttribute.rpc.jsonrpc.errorCode) }
 
-                /// `rpc.jsonrpc.error_message` **UNSTABLE**: `error.message` property of response if it is an error response.
+                /// `rpc.jsonrpc.error_message` **UNSTABLE**: Deprecated, use span status description or `error.message` attribute on other signals.
                 ///
                 /// - Stability: development
                 /// - Type: string
                 /// - Examples:
                 ///     - `Parse error`
                 ///     - `User already exists`
+                @available(
+                    *,
+                    deprecated,
+                    message: "Use the span status description or `error.message` attribute on other signals."
+                )
                 public var errorMessage: SpanAttributeKey<String> {
                     .init(name: OTelAttribute.rpc.jsonrpc.errorMessage)
                 }
 
-                /// `rpc.jsonrpc.request_id` **UNSTABLE**: `id` property of request or response. Since protocol allows id to be int, string, `null` or missing (for notifications), value is expected to be cast to string for simplicity. Use empty string in case of `null` value. Omit entirely if this is a notification.
+                /// `rpc.jsonrpc.request_id` **UNSTABLE**: Deprecated, use `jsonrpc.request.id` instead.
                 ///
                 /// - Stability: development
                 /// - Type: string
@@ -526,15 +562,17 @@ extension SpanAttributes {
                 ///     - `10`
                 ///     - `request-7`
                 ///     - ``
+                @available(*, deprecated, renamed: "SpanAttributes.jsonrpc.request.id")
                 public var requestId: SpanAttributeKey<String> { .init(name: OTelAttribute.rpc.jsonrpc.requestId) }
 
-                /// `rpc.jsonrpc.version` **UNSTABLE**: Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 doesn't specify this, the value can be omitted.
+                /// `rpc.jsonrpc.version` **UNSTABLE**: Deprecated, use `jsonrpc.protocol.version` instead.
                 ///
                 /// - Stability: development
                 /// - Type: string
                 /// - Examples:
                 ///     - `2.0`
                 ///     - `1.0`
+                @available(*, deprecated, renamed: "SpanAttributes.jsonrpc.protocol.version")
                 public var version: SpanAttributeKey<String> { .init(name: OTelAttribute.rpc.jsonrpc.version) }
             }
         }
@@ -600,6 +638,206 @@ extension SpanAttributes {
                 /// - Type: int
                 public var uncompressedSize: SpanAttributeKey<Int> {
                     .init(name: OTelAttribute.rpc.message.uncompressedSize)
+                }
+            }
+        }
+
+        /// `rpc.request` namespace
+        public var request: RequestAttributes {
+            get {
+                .init(attributes: self.attributes)
+            }
+            set {
+                self.attributes = newValue.attributes
+            }
+        }
+
+        @dynamicMemberLookup
+        public struct RequestAttributes: SpanAttributeNamespace {
+            public var attributes: Tracing.SpanAttributes
+
+            public init(attributes: Tracing.SpanAttributes) {
+                self.attributes = attributes
+            }
+
+            /// `rpc.request.metadata` **UNSTABLE**: RPC request metadata, `<key>` being the normalized RPC metadata key (lowercase), the value being the metadata values.
+            ///
+            /// - Stability: development
+            /// - Type: templateStringArray
+            ///
+            /// Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
+            /// Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
+            ///
+            /// For example, a property `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` SHOULD be recorded as
+            /// `rpc.request.metadata.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`
+            public var metadata: MetadataAttributes {
+                get {
+                    .init(attributes: self.attributes)
+                }
+                set {
+                    self.attributes = newValue.attributes
+                }
+            }
+
+            public struct MetadataAttributes {
+                public var attributes: Tracing.SpanAttributes
+
+                public init(attributes: Tracing.SpanAttributes) {
+                    self.attributes = attributes
+                }
+
+                public mutating func set(_ key: String, to value: [String]) {
+                    let attributeID = self.attributeID(forKey: key)
+                    self.attributes[attributeID] = value
+                }
+
+                private func attributeID(forKey key: String) -> String {
+                    var attributeID = "rpc.request.metadata."
+
+                    for index in key.indices {
+                        let character = key[index]
+
+                        if character == "-" {
+                            attributeID.append("_")
+                        } else {
+                            attributeID.append(character.lowercased())
+                        }
+                    }
+
+                    return attributeID
+                }
+            }
+
+            public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                public init() {}
+            }
+        }
+
+        /// `rpc.response` namespace
+        public var response: ResponseAttributes {
+            get {
+                .init(attributes: self.attributes)
+            }
+            set {
+                self.attributes = newValue.attributes
+            }
+        }
+
+        @dynamicMemberLookup
+        public struct ResponseAttributes: SpanAttributeNamespace {
+            public var attributes: Tracing.SpanAttributes
+
+            public init(attributes: Tracing.SpanAttributes) {
+                self.attributes = attributes
+            }
+
+            /// `rpc.response.metadata` **UNSTABLE**: RPC response metadata, `<key>` being the normalized RPC metadata key (lowercase), the value being the metadata values.
+            ///
+            /// - Stability: development
+            /// - Type: templateStringArray
+            ///
+            /// Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
+            /// Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
+            ///
+            /// For example, a property `my-custom-key` with value `["attribute_value"]` SHOULD be recorded as
+            /// the `rpc.response.metadata.my-custom-key` attribute with value `["attribute_value"]`
+            public var metadata: MetadataAttributes {
+                get {
+                    .init(attributes: self.attributes)
+                }
+                set {
+                    self.attributes = newValue.attributes
+                }
+            }
+
+            public struct MetadataAttributes {
+                public var attributes: Tracing.SpanAttributes
+
+                public init(attributes: Tracing.SpanAttributes) {
+                    self.attributes = attributes
+                }
+
+                public mutating func set(_ key: String, to value: [String]) {
+                    let attributeID = self.attributeID(forKey: key)
+                    self.attributes[attributeID] = value
+                }
+
+                private func attributeID(forKey key: String) -> String {
+                    var attributeID = "rpc.response.metadata."
+
+                    for index in key.indices {
+                        let character = key[index]
+
+                        if character == "-" {
+                            attributeID.append("_")
+                        } else {
+                            attributeID.append(character.lowercased())
+                        }
+                    }
+
+                    return attributeID
+                }
+            }
+
+            public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                public init() {}
+
+                /// `rpc.response.status_code` **UNSTABLE**: Status code of the RPC returned by the RPC server or generated by the client
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Examples:
+                ///     - `OK`
+                ///     - `DEADLINE_EXCEEDED`
+                ///     - `-32602`
+                ///
+                /// Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
+                /// Semantic conventions for individual RPC frameworks SHOULD document what `rpc.response.status_code` means in the context of that system and which values are considered to represent errors.
+                public var statusCode: SpanAttributeKey<String> { .init(name: OTelAttribute.rpc.response.statusCode) }
+            }
+        }
+
+        /// `rpc.system` namespace
+        public var system: SystemAttributes {
+            get {
+                .init(attributes: self.attributes)
+            }
+            set {
+                self.attributes = newValue.attributes
+            }
+        }
+
+        @dynamicMemberLookup
+        public struct SystemAttributes: SpanAttributeNamespace {
+            public var attributes: Tracing.SpanAttributes
+
+            public init(attributes: Tracing.SpanAttributes) {
+                self.attributes = attributes
+            }
+
+            public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                public init() {}
+
+                /// `rpc.system.name` **UNSTABLE**: The Remote Procedure Call (RPC) system.
+                ///
+                /// - Stability: development
+                /// - Type: enum
+                ///     - `grpc`: [gRPC](https://grpc.io/)
+                ///     - `dubbo`: [Apache Dubbo](https://dubbo.apache.org/)
+                ///     - `connectrpc`: [Connect RPC](https://connectrpc.com/)
+                ///     - `jsonrpc`: [JSON-RPC](https://www.jsonrpc.org/)
+                ///
+                /// The client and server RPC systems may differ for the same RPC interaction. For example, a client may use Apache Dubbo or Connect RPC to communicate with a server that uses gRPC since both protocols provide compatibility with gRPC.
+                public var name: SpanAttributeKey<NameEnum> { .init(name: OTelAttribute.rpc.system.name) }
+
+                public struct NameEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
+                    public let rawValue: String
+                    public init(rawValue: String) {
+                        self.rawValue = rawValue
+                    }
+                    public func toSpanAttribute() -> Tracing.SpanAttribute {
+                        .string(self.rawValue)
+                    }
                 }
             }
         }
