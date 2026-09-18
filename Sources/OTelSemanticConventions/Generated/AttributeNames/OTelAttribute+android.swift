@@ -38,7 +38,7 @@ extension OTelAttribute {
             ///     - `foreground`: Any time after Activity.onResume() or, if the app has no Activity, Context.startService() has been called when the app was in either the created or background states.
             /// - Example: `created`
             ///
-            /// The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc), and from which the `OS identifiers` are derived.
+            /// The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lifecycle-callbacks), and from which the `OS identifiers` are derived.
             public static let state = "android.app.state"
         }
 

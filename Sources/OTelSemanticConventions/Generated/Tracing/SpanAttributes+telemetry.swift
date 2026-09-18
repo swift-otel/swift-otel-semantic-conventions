@@ -110,6 +110,7 @@ extension SpanAttributes {
                 ///     - `erlang`
                 ///     - `go`
                 ///     - `java`
+                ///     - `kotlin`
                 ///     - `nodejs`
                 ///     - `php`
                 ///     - `python`
@@ -136,6 +137,8 @@ extension SpanAttributes {
                     public static let go = Self.init(rawValue: "go")
                     /// `java`
                     public static let java = Self.init(rawValue: "java")
+                    /// `kotlin`
+                    public static let kotlin = Self.init(rawValue: "kotlin")
                     /// `nodejs`
                     public static let nodejs = Self.init(rawValue: "nodejs")
                     /// `php`

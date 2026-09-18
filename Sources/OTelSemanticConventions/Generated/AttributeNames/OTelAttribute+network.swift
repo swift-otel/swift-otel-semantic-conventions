@@ -164,9 +164,9 @@ extension OTelAttribute {
         #if Experimental
         /// `network.io` namespace
         public enum io {
-            /// `network.io.direction` **UNSTABLE**: The network IO operation direction.
+            /// `network.io.direction` **UNSTABLE**: The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow.
             ///
-            /// - Stability: development
+            /// - Stability: releaseCandidate
             /// - Type: enum
             ///     - `transmit`
             ///     - `receive`

@@ -39,7 +39,7 @@ extension SpanAttributes {
 
         /// `process.environment_variable` **UNSTABLE**: Process environment variables, `<key>` being the environment variable name, the value being the environment variable value.
         ///
-        /// - Stability: development
+        /// - Stability: releaseCandidate
         /// - Type: templateString
         /// - Examples:
         ///     - `ubuntu`
@@ -96,7 +96,7 @@ extension SpanAttributes {
 
             /// `process.args_count` **UNSTABLE**: Length of the process.command_args array
             ///
-            /// - Stability: development
+            /// - Stability: releaseCandidate
             /// - Type: int
             /// - Example: `4`
             ///
@@ -105,20 +105,20 @@ extension SpanAttributes {
 
             /// `process.command` **UNSTABLE**: The command used to launch the process (i.e. the command name). On Linux based systems, can be set to the zeroth string in `proc/[pid]/cmdline`. On Windows, can be set to the first parameter extracted from `GetCommandLineW`.
             ///
-            /// - Stability: development
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Example: `cmd/otelcol`
             public var command: SpanAttributeKey<String> { .init(name: OTelAttribute.process.command) }
 
             /// `process.command_args` **UNSTABLE**: All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data.
             ///
-            /// - Stability: development
+            /// - Stability: releaseCandidate
             /// - Type: stringArray
             public var commandArgs: SpanAttributeKey<[String]> { .init(name: OTelAttribute.process.commandArgs) }
 
             /// `process.command_line` **UNSTABLE**: The full command used to launch the process as a single string representing the full command. On Windows, can be set to the result of `GetCommandLineW`. Do not set this if you have to assemble it just for monitoring; use `process.command_args` instead. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data.
             ///
-            /// - Stability: development
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Example: `C:\cmd\otecol --config="my directory\config.yaml"`
             public var commandLine: SpanAttributeKey<String> { .init(name: OTelAttribute.process.commandLine) }
@@ -146,34 +146,34 @@ extension SpanAttributes {
 
             /// `process.interactive` **UNSTABLE**: Whether the process is connected to an interactive shell.
             ///
-            /// - Stability: development
+            /// - Stability: releaseCandidate
             /// - Type: boolean
             public var interactive: SpanAttributeKey<Bool> { .init(name: OTelAttribute.process.interactive) }
 
             /// `process.owner` **UNSTABLE**: The username of the user that owns the process.
             ///
-            /// - Stability: development
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Example: `root`
             public var owner: SpanAttributeKey<String> { .init(name: OTelAttribute.process.owner) }
 
             /// `process.parent_pid` **UNSTABLE**: Parent Process identifier (PPID).
             ///
-            /// - Stability: development
+            /// - Stability: releaseCandidate
             /// - Type: int
             /// - Example: `111`
             public var parentPid: SpanAttributeKey<Int> { .init(name: OTelAttribute.process.parentPid) }
 
             /// `process.pid` **UNSTABLE**: Process identifier (PID).
             ///
-            /// - Stability: development
+            /// - Stability: releaseCandidate
             /// - Type: int
             /// - Example: `1234`
             public var pid: SpanAttributeKey<Int> { .init(name: OTelAttribute.process.pid) }
 
             /// `process.state` **UNSTABLE**: The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES)
             ///
-            /// - Stability: development
+            /// - Stability: releaseCandidate
             /// - Type: enum
             ///     - `running`
             ///     - `sleeping`
@@ -194,7 +194,7 @@ extension SpanAttributes {
 
             /// `process.title` **UNSTABLE**: Process title (proctitle)
             ///
-            /// - Stability: development
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Examples:
             ///     - `cat /etc/hostname`
@@ -206,7 +206,7 @@ extension SpanAttributes {
 
             /// `process.vpid` **UNSTABLE**: Virtual process identifier.
             ///
-            /// - Stability: development
+            /// - Stability: releaseCandidate
             /// - Type: int
             /// - Example: `12`
             ///
@@ -215,7 +215,7 @@ extension SpanAttributes {
 
             /// `process.working_directory` **UNSTABLE**: The working directory of the process.
             ///
-            /// - Stability: development
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Example: `/root`
             public var workingDirectory: SpanAttributeKey<String> {
@@ -246,7 +246,7 @@ extension SpanAttributes {
 
                 /// `process.context_switch.type` **UNSTABLE**: Specifies whether the context switches for this data point were voluntary or involuntary.
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: enum
                 ///     - `voluntary`
                 ///     - `involuntary`
@@ -332,7 +332,7 @@ extension SpanAttributes {
 
                 /// `process.creation.time` **UNSTABLE**: The date and time the process was created, in ISO 8601 format.
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: string
                 /// - Example: `2023-11-21T09:25:34.853Z`
                 public var time: SpanAttributeKey<String> { .init(name: OTelAttribute.process.creation.time) }
@@ -362,14 +362,14 @@ extension SpanAttributes {
 
                 /// `process.executable.name` **UNSTABLE**: The name of the process executable. On Linux based systems, this SHOULD be set to the base name of the target of `/proc/[pid]/exe`. On Windows, this SHOULD be set to the base name of `GetProcessImageFileNameW`.
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: string
                 /// - Example: `otelcol`
                 public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.process.executable.name) }
 
                 /// `process.executable.path` **UNSTABLE**: The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`.
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: string
                 /// - Example: `/usr/bin/cmd/otelcol`
                 public var path: SpanAttributeKey<String> { .init(name: OTelAttribute.process.executable.path) }
@@ -398,7 +398,7 @@ extension SpanAttributes {
 
                     /// `process.executable.build_id.gnu` **UNSTABLE**: The GNU build ID as found in the `.note.gnu.build-id` ELF section (hex string).
                     ///
-                    /// - Stability: development
+                    /// - Stability: releaseCandidate
                     /// - Type: string
                     /// - Example: `c89b11207f6479603b0d49bf291c092c2b719293`
                     public var gnu: SpanAttributeKey<String> {
@@ -407,14 +407,14 @@ extension SpanAttributes {
 
                     /// `process.executable.build_id.go` **UNSTABLE**: The Go build ID as retrieved by `go tool buildid <go executable>`.
                     ///
-                    /// - Stability: development
+                    /// - Stability: releaseCandidate
                     /// - Type: string
                     /// - Example: `foh3mEXu7BLZjsN9pOwG/kATcXlYVCDEFouRMQed_/WwRFB1hPo9LBkekthSPG/x8hMC8emW2cCjXD0_1aY`
                     public var go: SpanAttributeKey<String> { .init(name: OTelAttribute.process.executable.buildId.go) }
 
                     /// `process.executable.build_id.htlhash` **UNSTABLE**: Deterministic build ID for executables.
                     ///
-                    /// - Stability: development
+                    /// - Stability: releaseCandidate
                     /// - Type: string
                     /// - Example: `600DCAFE4A110000F2BF38C493F5FB92`
                     ///
@@ -471,14 +471,14 @@ extension SpanAttributes {
 
                 /// `process.exit.code` **UNSTABLE**: The exit code of the process.
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: int
                 /// - Example: `127`
                 public var code: SpanAttributeKey<Int> { .init(name: OTelAttribute.process.exit.code) }
 
                 /// `process.exit.time` **UNSTABLE**: The date and time the process exited, in ISO 8601 format.
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: string
                 /// - Example: `2023-11-21T09:26:12.315Z`
                 public var time: SpanAttributeKey<String> { .init(name: OTelAttribute.process.exit.time) }
@@ -508,7 +508,7 @@ extension SpanAttributes {
 
                 /// `process.group_leader.pid` **UNSTABLE**: The PID of the process's group leader. This is also the process group ID (PGID) of the process.
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: int
                 /// - Example: `23`
                 public var pid: SpanAttributeKey<Int> { .init(name: OTelAttribute.process.groupLeader.pid) }
@@ -538,7 +538,7 @@ extension SpanAttributes {
 
                 /// `process.linux.cgroup` **UNSTABLE**: The control group associated with the process.
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: string
                 /// - Examples:
                 ///     - `1:name=systemd:/user.slice/user-1000.slice/session-3.scope`
@@ -616,14 +616,14 @@ extension SpanAttributes {
 
                 /// `process.real_user.id` **UNSTABLE**: The real user ID (RUID) of the process.
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: int
                 /// - Example: `1000`
                 public var id: SpanAttributeKey<Int> { .init(name: OTelAttribute.process.realUser.id) }
 
                 /// `process.real_user.name` **UNSTABLE**: The username of the real user of the process.
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: string
                 /// - Example: `operator`
                 public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.process.realUser.name) }
@@ -653,7 +653,7 @@ extension SpanAttributes {
 
                 /// `process.runtime.description` **UNSTABLE**: An additional description about the runtime of the process, for example a specific vendor customization of the runtime environment.
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: string
                 /// - Example: `Eclipse OpenJ9 Eclipse OpenJ9 VM openj9-0.21.0`
                 public var description: SpanAttributeKey<String> {
@@ -662,14 +662,14 @@ extension SpanAttributes {
 
                 /// `process.runtime.name` **UNSTABLE**: The name of the runtime of this process.
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: string
                 /// - Example: `OpenJDK Runtime Environment`
                 public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.process.runtime.name) }
 
                 /// `process.runtime.version` **UNSTABLE**: The version of the runtime of this process, as returned by the runtime without modification.
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: string
                 /// - Example: `14.0.2`
                 public var version: SpanAttributeKey<String> { .init(name: OTelAttribute.process.runtime.version) }
@@ -699,14 +699,14 @@ extension SpanAttributes {
 
                 /// `process.saved_user.id` **UNSTABLE**: The saved user ID (SUID) of the process.
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: int
                 /// - Example: `1002`
                 public var id: SpanAttributeKey<Int> { .init(name: OTelAttribute.process.savedUser.id) }
 
                 /// `process.saved_user.name` **UNSTABLE**: The username of the saved user.
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: string
                 /// - Example: `operator`
                 public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.process.savedUser.name) }
@@ -736,7 +736,7 @@ extension SpanAttributes {
 
                 /// `process.session_leader.pid` **UNSTABLE**: The PID of the process's session leader. This is also the session ID (SID) of the process.
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: int
                 /// - Example: `14`
                 public var pid: SpanAttributeKey<Int> { .init(name: OTelAttribute.process.sessionLeader.pid) }
@@ -766,14 +766,14 @@ extension SpanAttributes {
 
                 /// `process.user.id` **UNSTABLE**: The effective user ID (EUID) of the process.
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: int
                 /// - Example: `1001`
                 public var id: SpanAttributeKey<Int> { .init(name: OTelAttribute.process.user.id) }
 
                 /// `process.user.name` **UNSTABLE**: The username of the effective user of the process.
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: string
                 /// - Example: `root`
                 public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.process.user.name) }

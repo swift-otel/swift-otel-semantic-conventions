@@ -26,7 +26,7 @@ extension OTelAttribute {
 
         /// `cpu.mode` **UNSTABLE**: The mode of the CPU
         ///
-        /// - Stability: development
+        /// - Stability: releaseCandidate
         /// - Type: enum
         ///     - `user`: User
         ///     - `system`: System
@@ -35,7 +35,7 @@ extension OTelAttribute {
         ///     - `iowait`: IO Wait
         ///     - `interrupt`: Interrupt
         ///     - `steal`: Steal
-        ///     - `kernel`: Kernel
+        ///     - `kernel`: Deprecated. Use `system` instead.
         /// - Examples:
         ///     - `user`
         ///     - `system`

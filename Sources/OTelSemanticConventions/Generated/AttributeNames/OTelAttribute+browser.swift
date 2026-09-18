@@ -58,6 +58,19 @@ extension OTelAttribute {
         /// This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.platform`). If unavailable, the legacy `navigator.platform` API SHOULD NOT be used instead and this attribute SHOULD be left unset in order for the values to be consistent.
         /// The list of possible values is defined in the [W3C User-Agent Client Hints specification](https://wicg.github.io/ua-client-hints/#sec-ch-ua-platform). Note that some (but not all) of these values can overlap with values in the [`os.type` and `os.name` attributes](./os.md). However, for consistency, the values in the `browser.platform` attribute should capture the exact value that the user agent provides.
         public static let platform = "browser.platform"
+
+        /// `browser.document` namespace
+        public enum document {
+            /// `browser.document.url` namespace
+            public enum url {
+                /// `browser.document.url.full` **UNSTABLE**: Absolute URL of the current browser document according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986).
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Example: `https://www.example.com/search?q=OpenTelemetry#SemConv`
+                public static let full = "browser.document.url.full"
+            }
+        }
     }
     #endif
 }

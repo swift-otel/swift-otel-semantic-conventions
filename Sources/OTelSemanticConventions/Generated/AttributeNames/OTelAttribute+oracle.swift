@@ -21,7 +21,7 @@ extension OTelAttribute {
         public enum db {
             /// `oracle.db.domain` **UNSTABLE**: The database domain associated with the connection.
             ///
-            /// - Stability: development
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Examples:
             ///     - `example.com`
@@ -37,7 +37,7 @@ extension OTelAttribute {
 
             /// `oracle.db.name` **UNSTABLE**: The database name associated with the connection.
             ///
-            /// - Stability: development
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Examples:
             ///     - `ORCL1`
@@ -48,7 +48,7 @@ extension OTelAttribute {
 
             /// `oracle.db.pdb` **UNSTABLE**: The pluggable database (PDB) name associated with the connection.
             ///
-            /// - Stability: development
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Examples:
             ///     - `PDB1`
@@ -62,7 +62,7 @@ extension OTelAttribute {
 
             /// `oracle.db.service` **UNSTABLE**: The service name currently associated with the database connection.
             ///
-            /// - Stability: development
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Examples:
             ///     - `order-processing-service`
@@ -80,7 +80,7 @@ extension OTelAttribute {
             public enum instance {
                 /// `oracle.db.instance.name` **UNSTABLE**: The instance name associated with the connection in an Oracle Real Application Clusters environment.
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: string
                 /// - Examples:
                 ///     - `ORCL1`

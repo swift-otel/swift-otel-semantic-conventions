@@ -57,6 +57,7 @@ Describes attributes related to client-side applications (e.g. web apps or mobil
     @Tab("Span Attributes") {
         @Links(visualStyle: list) {
             - ``Tracing/SpanAttributes/AppAttributes/NestedSpanAttributes/buildId``
+            - ``Tracing/SpanAttributes/AppAttributes/CrashAttributes/NestedSpanAttributes/id``
             - ``Tracing/SpanAttributes/AppAttributes/InstallationAttributes/NestedSpanAttributes/id``
             - ``Tracing/SpanAttributes/AppAttributes/JankAttributes/NestedSpanAttributes/frameCount``
             - ``Tracing/SpanAttributes/AppAttributes/JankAttributes/NestedSpanAttributes/period``
@@ -72,6 +73,7 @@ Describes attributes related to client-side applications (e.g. web apps or mobil
     @Tab("String Constants") {
         @Links(visualStyle: list) {
             - ``OTelAttribute/app/buildId``
+            - ``OTelAttribute/app/crash/id``
             - ``OTelAttribute/app/installation/id``
             - ``OTelAttribute/app/jank/frameCount``
             - ``OTelAttribute/app/jank/period``
@@ -414,6 +416,23 @@ This document defines attributes for AWS Step Functions.
     }
 }
 
+## General Azure Attributes
+
+This section defines generic attributes for Azure services.
+
+@TabNavigator {
+    @Tab("Span Attributes") {
+        @Links(visualStyle: list) {
+            - ``Tracing/SpanAttributes/AzureAttributes/ResourceGroupAttributes/NestedSpanAttributes/name``
+        }
+    }
+    @Tab("String Constants") {
+        @Links(visualStyle: list) {
+            - ``OTelAttribute/azure/resourceGroup/name``
+        }
+    }
+}
+
 ## Azure Client Library Attributes
 
 This section defines generic attributes used by Azure Client Libraries.
@@ -489,6 +508,7 @@ The web browser attributes
     @Tab("Span Attributes") {
         @Links(visualStyle: list) {
             - ``Tracing/SpanAttributes/BrowserAttributes/NestedSpanAttributes/brands``
+            - ``Tracing/SpanAttributes/BrowserAttributes/DocumentAttributes/UrlAttributes/NestedSpanAttributes/full``
             - ``Tracing/SpanAttributes/BrowserAttributes/NestedSpanAttributes/language``
             - ``Tracing/SpanAttributes/BrowserAttributes/NestedSpanAttributes/mobile``
             - ``Tracing/SpanAttributes/BrowserAttributes/NestedSpanAttributes/platform``
@@ -497,6 +517,7 @@ The web browser attributes
     @Tab("String Constants") {
         @Links(visualStyle: list) {
             - ``OTelAttribute/browser/brands``
+            - ``OTelAttribute/browser/document/url/full``
             - ``OTelAttribute/browser/language``
             - ``OTelAttribute/browser/mobile``
             - ``OTelAttribute/browser/platform``
@@ -1391,6 +1412,27 @@ Describes file attributes.
     }
 }
 
+## File Lock Attributes
+
+These attributes may be used for any filesystem lock or related operation
+
+@TabNavigator {
+    @Tab("Span Attributes") {
+        @Links(visualStyle: list) {
+            - ``Tracing/SpanAttributes/FileAttributes/LockAttributes/NestedSpanAttributes/mechanism``
+            - ``Tracing/SpanAttributes/FileAttributes/LockAttributes/NestedSpanAttributes/mode``
+            - ``Tracing/SpanAttributes/FileAttributes/LockAttributes/NestedSpanAttributes/type``
+        }
+    }
+    @Tab("String Constants") {
+        @Links(visualStyle: list) {
+            - ``OTelAttribute/file/lock/mechanism``
+            - ``OTelAttribute/file/lock/mode``
+            - ``OTelAttribute/file/lock/type``
+        }
+    }
+}
+
 ## GCP - AppHub Attributes
 
 This document defines attributes AppHub will apply to resources in GCP. See [AppHub overview](https://cloud.google.com/app-hub/docs/overview).
@@ -1504,6 +1546,7 @@ This document defines attributes for Google Compute Engine (GCE).
             - ``Tracing/SpanAttributes/GcpAttributes/GceAttributes/InstanceGroupManagerAttributes/NestedSpanAttributes/region``
             - ``Tracing/SpanAttributes/GcpAttributes/GceAttributes/InstanceGroupManagerAttributes/NestedSpanAttributes/zone``
             - ``Tracing/SpanAttributes/GcpAttributes/GceAttributes/InstanceAttributes/NestedSpanAttributes/hostname``
+            - ``Tracing/SpanAttributes/GcpAttributes/GceAttributes/InstanceAttributes/labels``
             - ``Tracing/SpanAttributes/GcpAttributes/GceAttributes/InstanceAttributes/NestedSpanAttributes/name``
         }
     }
@@ -1513,14 +1556,15 @@ This document defines attributes for Google Compute Engine (GCE).
             - ``OTelAttribute/gcp/gce/instanceGroupManager/region``
             - ``OTelAttribute/gcp/gce/instanceGroupManager/zone``
             - ``OTelAttribute/gcp/gce/instance/hostname``
+            - ``OTelAttribute/gcp/gce/instance/labels``
             - ``OTelAttribute/gcp/gce/instance/name``
         }
     }
 }
 
-## GenAI Attributes
+## GenAI Attributes (Moved)
 
-This document defines the attributes used to describe telemetry in the context of Generative Artificial Intelligence (GenAI) Models requests and responses.
+Generative AI (GenAI) attributes have moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
 
 @TabNavigator {
     @Tab("Span Attributes") {
@@ -2030,6 +2074,7 @@ Kubernetes resource attributes.
         @Links(visualStyle: list) {
             - ``Tracing/SpanAttributes/K8sAttributes/ClusterAttributes/NestedSpanAttributes/name``
             - ``Tracing/SpanAttributes/K8sAttributes/ClusterAttributes/NestedSpanAttributes/uid``
+            - ``Tracing/SpanAttributes/K8sAttributes/ContainerAttributes/EphemeralStorageAttributes/NestedSpanAttributes/fsType``
             - ``Tracing/SpanAttributes/K8sAttributes/ContainerAttributes/NestedSpanAttributes/name``
             - ``Tracing/SpanAttributes/K8sAttributes/ContainerAttributes/NestedSpanAttributes/restartCount``
             - ``Tracing/SpanAttributes/K8sAttributes/ContainerAttributes/StatusAttributes/NestedSpanAttributes/lastTerminatedReason``
@@ -2122,6 +2167,7 @@ Kubernetes resource attributes.
         @Links(visualStyle: list) {
             - ``OTelAttribute/k8s/cluster/name``
             - ``OTelAttribute/k8s/cluster/uid``
+            - ``OTelAttribute/k8s/container/ephemeralStorage/fsType``
             - ``OTelAttribute/k8s/container/name``
             - ``OTelAttribute/k8s/container/restartCount``
             - ``OTelAttribute/k8s/container/status/lastTerminatedReason``
@@ -2303,9 +2349,9 @@ This document defines the generic attributes that may be used in any Log Record.
     }
 }
 
-## registry.mcp
+## MCP Attributes (Moved)
 
-[Model Context Protocol (MCP)](https://modelcontextprotocol.io) attributes
+[Model Context Protocol (MCP)](https://modelcontextprotocol.io) attributes have moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
 
 @TabNavigator {
     @Tab("Span Attributes") {
@@ -2690,9 +2736,9 @@ This document defines attributes for [ONC RPC (Sun RPC)](https://datatracker.iet
     }
 }
 
-## OpenAI Attributes
+## OpenAI Attributes (Moved)
 
-This group defines attributes for OpenAI.
+OpenAI attributes have moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
 
 @TabNavigator {
     @Tab("Span Attributes") {
@@ -3789,6 +3835,7 @@ This document defines attributes of a z/OS resource.
 ### Application Attributes
 
 - ``Tracing/SpanAttributes/AppAttributes/NestedSpanAttributes/buildId``
+- ``Tracing/SpanAttributes/AppAttributes/CrashAttributes/NestedSpanAttributes/id``
 - ``Tracing/SpanAttributes/AppAttributes/InstallationAttributes/NestedSpanAttributes/id``
 - ``Tracing/SpanAttributes/AppAttributes/JankAttributes/NestedSpanAttributes/frameCount``
 - ``Tracing/SpanAttributes/AppAttributes/JankAttributes/NestedSpanAttributes/period``
@@ -3800,6 +3847,7 @@ This document defines attributes of a z/OS resource.
 - ``Tracing/SpanAttributes/AppAttributes/WidgetAttributes/NestedSpanAttributes/id``
 - ``Tracing/SpanAttributes/AppAttributes/WidgetAttributes/NestedSpanAttributes/name``
 - ``OTelAttribute/app/buildId``
+- ``OTelAttribute/app/crash/id``
 - ``OTelAttribute/app/installation/id``
 - ``OTelAttribute/app/jank/frameCount``
 - ``OTelAttribute/app/jank/period``
@@ -3971,6 +4019,11 @@ This document defines attributes of a z/OS resource.
 - ``OTelAttribute/aws/stepFunctions/activity/arn``
 - ``OTelAttribute/aws/stepFunctions/stateMachine/arn``
 
+### General Azure Attributes
+
+- ``Tracing/SpanAttributes/AzureAttributes/ResourceGroupAttributes/NestedSpanAttributes/name``
+- ``OTelAttribute/azure/resourceGroup/name``
+
 ### Azure Client Library Attributes
 
 - ``Tracing/SpanAttributes/AzureAttributes/ClientAttributes/NestedSpanAttributes/id``
@@ -4005,10 +4058,12 @@ This document defines attributes of a z/OS resource.
 ### Browser Attributes
 
 - ``Tracing/SpanAttributes/BrowserAttributes/NestedSpanAttributes/brands``
+- ``Tracing/SpanAttributes/BrowserAttributes/DocumentAttributes/UrlAttributes/NestedSpanAttributes/full``
 - ``Tracing/SpanAttributes/BrowserAttributes/NestedSpanAttributes/language``
 - ``Tracing/SpanAttributes/BrowserAttributes/NestedSpanAttributes/mobile``
 - ``Tracing/SpanAttributes/BrowserAttributes/NestedSpanAttributes/platform``
 - ``OTelAttribute/browser/brands``
+- ``OTelAttribute/browser/document/url/full``
 - ``OTelAttribute/browser/language``
 - ``OTelAttribute/browser/mobile``
 - ``OTelAttribute/browser/platform``
@@ -4510,6 +4565,15 @@ This document defines attributes of a z/OS resource.
 - ``OTelAttribute/file/size``
 - ``OTelAttribute/file/symbolicLink/targetPath``
 
+### File Lock Attributes
+
+- ``Tracing/SpanAttributes/FileAttributes/LockAttributes/NestedSpanAttributes/mechanism``
+- ``Tracing/SpanAttributes/FileAttributes/LockAttributes/NestedSpanAttributes/mode``
+- ``Tracing/SpanAttributes/FileAttributes/LockAttributes/NestedSpanAttributes/type``
+- ``OTelAttribute/file/lock/mechanism``
+- ``OTelAttribute/file/lock/mode``
+- ``OTelAttribute/file/lock/type``
+
 ### GCP - AppHub Attributes
 
 - ``Tracing/SpanAttributes/GcpAttributes/ApphubAttributes/ApplicationAttributes/NestedSpanAttributes/container``
@@ -4570,14 +4634,16 @@ This document defines attributes of a z/OS resource.
 - ``Tracing/SpanAttributes/GcpAttributes/GceAttributes/InstanceGroupManagerAttributes/NestedSpanAttributes/region``
 - ``Tracing/SpanAttributes/GcpAttributes/GceAttributes/InstanceGroupManagerAttributes/NestedSpanAttributes/zone``
 - ``Tracing/SpanAttributes/GcpAttributes/GceAttributes/InstanceAttributes/NestedSpanAttributes/hostname``
+- ``Tracing/SpanAttributes/GcpAttributes/GceAttributes/InstanceAttributes/labels``
 - ``Tracing/SpanAttributes/GcpAttributes/GceAttributes/InstanceAttributes/NestedSpanAttributes/name``
 - ``OTelAttribute/gcp/gce/instanceGroupManager/name``
 - ``OTelAttribute/gcp/gce/instanceGroupManager/region``
 - ``OTelAttribute/gcp/gce/instanceGroupManager/zone``
 - ``OTelAttribute/gcp/gce/instance/hostname``
+- ``OTelAttribute/gcp/gce/instance/labels``
 - ``OTelAttribute/gcp/gce/instance/name``
 
-### GenAI Attributes
+### GenAI Attributes (Moved)
 
 - ``Tracing/SpanAttributes/GenAiAttributes/AgentAttributes/NestedSpanAttributes/description``
 - ``Tracing/SpanAttributes/GenAiAttributes/AgentAttributes/NestedSpanAttributes/id``
@@ -4921,6 +4987,7 @@ This document defines attributes of a z/OS resource.
 
 - ``Tracing/SpanAttributes/K8sAttributes/ClusterAttributes/NestedSpanAttributes/name``
 - ``Tracing/SpanAttributes/K8sAttributes/ClusterAttributes/NestedSpanAttributes/uid``
+- ``Tracing/SpanAttributes/K8sAttributes/ContainerAttributes/EphemeralStorageAttributes/NestedSpanAttributes/fsType``
 - ``Tracing/SpanAttributes/K8sAttributes/ContainerAttributes/NestedSpanAttributes/name``
 - ``Tracing/SpanAttributes/K8sAttributes/ContainerAttributes/NestedSpanAttributes/restartCount``
 - ``Tracing/SpanAttributes/K8sAttributes/ContainerAttributes/StatusAttributes/NestedSpanAttributes/lastTerminatedReason``
@@ -5009,6 +5076,7 @@ This document defines attributes of a z/OS resource.
 - ``Tracing/SpanAttributes/K8sAttributes/VolumeAttributes/NestedSpanAttributes/type``
 - ``OTelAttribute/k8s/cluster/name``
 - ``OTelAttribute/k8s/cluster/uid``
+- ``OTelAttribute/k8s/container/ephemeralStorage/fsType``
 - ``OTelAttribute/k8s/container/name``
 - ``OTelAttribute/k8s/container/restartCount``
 - ``OTelAttribute/k8s/container/status/lastTerminatedReason``
@@ -5129,7 +5197,7 @@ This document defines attributes of a z/OS resource.
 - ``OTelAttribute/log/record/original``
 - ``OTelAttribute/log/record/uid``
 
-### registry.mcp
+### MCP Attributes (Moved)
 
 - ``Tracing/SpanAttributes/McpAttributes/MethodAttributes/NestedSpanAttributes/name``
 - ``Tracing/SpanAttributes/McpAttributes/ProtocolAttributes/NestedSpanAttributes/version``
@@ -5351,7 +5419,7 @@ This document defines attributes of a z/OS resource.
 - ``OTelAttribute/oncRpc/program/name``
 - ``OTelAttribute/oncRpc/version``
 
-### OpenAI Attributes
+### OpenAI Attributes (Moved)
 
 - ``Tracing/SpanAttributes/OpenaiAttributes/ApiAttributes/NestedSpanAttributes/type``
 - ``Tracing/SpanAttributes/OpenaiAttributes/RequestAttributes/NestedSpanAttributes/serviceTier``

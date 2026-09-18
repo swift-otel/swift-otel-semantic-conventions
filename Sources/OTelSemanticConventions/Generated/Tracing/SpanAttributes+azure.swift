@@ -323,6 +323,38 @@ extension SpanAttributes {
             }
         }
 
+        /// `azure.resource_group` namespace
+        public var resourceGroup: ResourceGroupAttributes {
+            get {
+                .init(attributes: self.attributes)
+            }
+            set {
+                self.attributes = newValue.attributes
+            }
+        }
+
+        @dynamicMemberLookup
+        public struct ResourceGroupAttributes: SpanAttributeNamespace {
+            public var attributes: Tracing.SpanAttributes
+
+            public init(attributes: Tracing.SpanAttributes) {
+                self.attributes = attributes
+            }
+
+            public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                public init() {}
+
+                /// `azure.resource_group.name` **UNSTABLE**: The name of the Azure [resource group](https://learn.microsoft.com/azure/azure-resource-manager/management/manage-resource-groups-portal) the resource belongs to.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Examples:
+                ///     - `my-resource-group`
+                ///     - `rg-myapp-prod`
+                public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.azure.resourceGroup.name) }
+            }
+        }
+
         /// `azure.resource_provider` namespace
         public var resourceProvider: ResourceProviderAttributes {
             get {

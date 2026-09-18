@@ -21,7 +21,7 @@ extension OTelAttribute {
         public enum pipeline {
             /// `cicd.pipeline.name` **UNSTABLE**: The human readable name of the pipeline within a CI/CD system.
             ///
-            /// - Stability: development
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Examples:
             ///     - `Build and Test`
@@ -32,11 +32,11 @@ extension OTelAttribute {
 
             /// `cicd.pipeline.result` **UNSTABLE**: The result of a pipeline run.
             ///
-            /// - Stability: development
+            /// - Stability: releaseCandidate
             /// - Type: enum
             ///     - `success`: The pipeline run finished successfully.
             ///     - `failure`: The pipeline run did not finish successfully, eg. due to a compile error or a failing test. Such failures are usually detected by non-zero exit codes of the tools executed in the pipeline run.
-            ///     - `error`: The pipeline run failed due to an error in the CICD system, eg. due to the worker being killed.
+            ///     - `error`: The pipeline run failed due to an error in the CI/CD system, eg. due to the worker being killed.
             ///     - `timeout`: A timeout caused the pipeline run to be interrupted.
             ///     - `cancellation`: The pipeline run was cancelled, eg. by a user manually cancelling the pipeline run.
             ///     - `skip`: The pipeline run was skipped, eg. due to a precondition not being met.
@@ -44,14 +44,14 @@ extension OTelAttribute {
             ///     - `success`
             ///     - `failure`
             ///     - `timeout`
-            ///     - `skipped`
+            ///     - `skip`
             public static let result = "cicd.pipeline.result"
 
             /// `cicd.pipeline.action` namespace
             public enum action {
                 /// `cicd.pipeline.action.name` **UNSTABLE**: The kind of action a pipeline run is performing.
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: enum
                 ///     - `BUILD`: The pipeline run is executing a build.
                 ///     - `RUN`: The pipeline run is executing.
@@ -67,14 +67,14 @@ extension OTelAttribute {
             public enum run {
                 /// `cicd.pipeline.run.id` **UNSTABLE**: The unique identifier of a pipeline run within a CI/CD system.
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: string
                 /// - Example: `120912`
                 public static let id = "cicd.pipeline.run.id"
 
                 /// `cicd.pipeline.run.state` **UNSTABLE**: The pipeline run goes through these states during its lifecycle.
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: enum
                 ///     - `pending`: The run pending state spans from the event triggering the pipeline run until the execution of the run starts (eg. time spent in a queue, provisioning agents, creating run resources).
                 ///     - `executing`: The executing state spans the execution of any run tasks (eg. build, test).
@@ -89,7 +89,7 @@ extension OTelAttribute {
                 public enum url {
                     /// `cicd.pipeline.run.url.full` **UNSTABLE**: The [URL](https://wikipedia.org/wiki/URL) of the pipeline run, providing the complete address in order to locate and identify the pipeline run.
                     ///
-                    /// - Stability: development
+                    /// - Stability: releaseCandidate
                     /// - Type: string
                     /// - Example: `https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075`
                     public static let full = "cicd.pipeline.run.url.full"
@@ -100,7 +100,7 @@ extension OTelAttribute {
             public enum task {
                 /// `cicd.pipeline.task.name` **UNSTABLE**: The human readable name of a task within a pipeline. Task here most closely aligns with a [computing process](https://wikipedia.org/wiki/Pipeline_(computing)) in a pipeline. Other terms for tasks include commands, steps, and procedures.
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: string
                 /// - Examples:
                 ///     - `Run GoLang Linter`
@@ -111,7 +111,7 @@ extension OTelAttribute {
 
                 /// `cicd.pipeline.task.type` **UNSTABLE**: The type of the task within a pipeline.
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: enum
                 ///     - `build`: build
                 ///     - `test`: test
@@ -126,7 +126,7 @@ extension OTelAttribute {
                 public enum run {
                     /// `cicd.pipeline.task.run.id` **UNSTABLE**: The unique identifier of a task run within a pipeline.
                     ///
-                    /// - Stability: development
+                    /// - Stability: releaseCandidate
                     /// - Type: string
                     /// - Example: `12097`
                     ///
@@ -135,11 +135,11 @@ extension OTelAttribute {
 
                     /// `cicd.pipeline.task.run.result` **UNSTABLE**: The result of a task run.
                     ///
-                    /// - Stability: development
+                    /// - Stability: releaseCandidate
                     /// - Type: enum
                     ///     - `success`: The task run finished successfully.
                     ///     - `failure`: The task run did not finish successfully, eg. due to a compile error or a failing test. Such failures are usually detected by non-zero exit codes of the tools executed in the task run.
-                    ///     - `error`: The task run failed due to an error in the CICD system, eg. due to the worker being killed.
+                    ///     - `error`: The task run failed due to an error in the CI/CD system, eg. due to the worker being killed.
                     ///     - `timeout`: A timeout caused the task run to be interrupted.
                     ///     - `cancellation`: The task run was cancelled, eg. by a user manually cancelling the task run.
                     ///     - `skip`: The task run was skipped, eg. due to a precondition not being met.
@@ -147,14 +147,14 @@ extension OTelAttribute {
                     ///     - `success`
                     ///     - `failure`
                     ///     - `timeout`
-                    ///     - `skipped`
+                    ///     - `skip`
                     public static let result = "cicd.pipeline.task.run.result"
 
                     /// `cicd.pipeline.task.run.url` namespace
                     public enum url {
                         /// `cicd.pipeline.task.run.url.full` **UNSTABLE**: The [URL](https://wikipedia.org/wiki/URL) of the pipeline task run, providing the complete address in order to locate and identify the pipeline task run.
                         ///
-                        /// - Stability: development
+                        /// - Stability: releaseCandidate
                         /// - Type: string
                         /// - Example: `https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763/job/26920038674?pr=1075`
                         public static let full = "cicd.pipeline.task.run.url.full"
@@ -165,9 +165,9 @@ extension OTelAttribute {
 
         /// `cicd.system` namespace
         public enum system {
-            /// `cicd.system.component` **UNSTABLE**: The name of a component of the CICD system.
+            /// `cicd.system.component` **UNSTABLE**: The name of a component of the CI/CD system.
             ///
-            /// - Stability: development
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Examples:
             ///     - `controller`
@@ -178,9 +178,9 @@ extension OTelAttribute {
 
         /// `cicd.worker` namespace
         public enum worker {
-            /// `cicd.worker.id` **UNSTABLE**: The unique identifier of a worker within a CICD system.
+            /// `cicd.worker.id` **UNSTABLE**: The unique identifier of a worker within a CI/CD system.
             ///
-            /// - Stability: development
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Examples:
             ///     - `abc123`
@@ -188,9 +188,9 @@ extension OTelAttribute {
             ///     - `controller`
             public static let id = "cicd.worker.id"
 
-            /// `cicd.worker.name` **UNSTABLE**: The name of a worker within a CICD system.
+            /// `cicd.worker.name` **UNSTABLE**: The name of a worker within a CI/CD system.
             ///
-            /// - Stability: development
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Examples:
             ///     - `agent-abc`
@@ -198,24 +198,24 @@ extension OTelAttribute {
             ///     - `Ubuntu LTS`
             public static let name = "cicd.worker.name"
 
-            /// `cicd.worker.state` **UNSTABLE**: The state of a CICD worker / agent.
+            /// `cicd.worker.state` **UNSTABLE**: The state of a CI/CD worker / agent.
             ///
-            /// - Stability: development
+            /// - Stability: releaseCandidate
             /// - Type: enum
-            ///     - `available`: The worker is not performing work for the CICD system. It is available to the CICD system to perform work on (online / idle).
-            ///     - `busy`: The worker is performing work for the CICD system.
-            ///     - `offline`: The worker is not available to the CICD system (disconnected / down).
+            ///     - `available`: The worker is not performing work for the CI/CD system. It is available to the CI/CD system to perform work on (online / idle).
+            ///     - `busy`: The worker is performing work for the CI/CD system.
+            ///     - `offline`: The worker is not available to the CI/CD system (disconnected / down).
             /// - Examples:
-            ///     - `idle`
+            ///     - `available`
             ///     - `busy`
-            ///     - `down`
+            ///     - `offline`
             public static let state = "cicd.worker.state"
 
             /// `cicd.worker.url` namespace
             public enum url {
                 /// `cicd.worker.url.full` **UNSTABLE**: The [URL](https://wikipedia.org/wiki/URL) of the worker, providing the complete address in order to locate and identify the worker.
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: string
                 /// - Example: `https://cicd.example.org/worker/abc123`
                 public static let full = "cicd.worker.url.full"

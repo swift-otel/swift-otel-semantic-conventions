@@ -203,6 +203,9 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `111111111111`
                 ///     - `opentelemetry`
+                ///     - `22222222-2222-2222-2222-222222222222`
+                ///
+                /// For Azure, this is the subscription ID.
                 public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.cloud.account.id) }
             }
         }

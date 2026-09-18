@@ -49,7 +49,7 @@ extension SpanAttributes {
 
             /// `cpu.mode` **UNSTABLE**: The mode of the CPU
             ///
-            /// - Stability: development
+            /// - Stability: releaseCandidate
             /// - Type: enum
             ///     - `user`: User
             ///     - `system`: System
@@ -58,7 +58,7 @@ extension SpanAttributes {
             ///     - `iowait`: IO Wait
             ///     - `interrupt`: Interrupt
             ///     - `steal`: Steal
-            ///     - `kernel`: Kernel
+            ///     - `kernel`: Deprecated. Use `system` instead.
             /// - Examples:
             ///     - `user`
             ///     - `system`

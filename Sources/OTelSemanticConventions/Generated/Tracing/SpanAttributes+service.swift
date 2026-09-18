@@ -42,7 +42,7 @@ extension SpanAttributes {
             #if Experimental
             /// `service.criticality` **UNSTABLE**: The operational criticality of the service.
             ///
-            /// - Stability: development
+            /// - Stability: alpha
             /// - Type: enum
             ///     - `critical`: Service is business-critical; downtime directly impacts revenue, user experience, or core functionality.
             ///     - `high`: Service is important but has degradation tolerance or fallback mechanisms.

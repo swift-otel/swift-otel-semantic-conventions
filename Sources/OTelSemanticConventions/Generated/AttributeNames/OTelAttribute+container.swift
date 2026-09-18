@@ -14,9 +14,9 @@
 // DO NOT EDIT. This file is generated automatically. See README for details.
 
 extension OTelAttribute {
-    #if Experimental
     /// `container` namespace
     public enum container {
+        #if Experimental
         /// `container.command` **UNSTABLE**: The command used to run the container (i.e. the command name).
         ///
         /// - Stability: development
@@ -25,27 +25,33 @@ extension OTelAttribute {
         ///
         /// If using embedded credentials or sensitive data, it is recommended to remove them to prevent potential leakage.
         public static let command = "container.command"
+        #endif
 
+        #if Experimental
         /// `container.command_args` **UNSTABLE**: All the command arguments (including the command/executable itself) run by the container.
         ///
         /// - Stability: development
         /// - Type: stringArray
         public static let commandArgs = "container.command_args"
+        #endif
 
+        #if Experimental
         /// `container.command_line` **UNSTABLE**: The full command run by the container as a single string representing the full command.
         ///
         /// - Stability: development
         /// - Type: string
         /// - Example: `otelcontribcol --config config.yaml`
         public static let commandLine = "container.command_line"
+        #endif
 
-        /// `container.id` **UNSTABLE**: Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/containers/run/#container-identification). The UUID might be abbreviated.
+        /// `container.id`: Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/containers/run/#container-identification). The UUID might be abbreviated.
         ///
-        /// - Stability: releaseCandidate
+        /// - Stability: stable
         /// - Type: string
         /// - Example: `a3bf90e006b2`
         public static let id = "container.id"
 
+        #if Experimental
         /// `container.label` **UNSTABLE**: Container labels, `<key>` being the label name, the value being the label value.
         ///
         /// - Stability: development
@@ -54,7 +60,9 @@ extension OTelAttribute {
         ///
         /// For example, a docker container label `app` with value `nginx` SHOULD be recorded as the `container.label.app` attribute with value `"nginx"`.
         public static let label = "container.label"
+        #endif
 
+        #if Experimental
         /// `container.labels` **UNSTABLE**: Deprecated, use `container.label` instead.
         ///
         /// - Stability: development
@@ -62,14 +70,18 @@ extension OTelAttribute {
         /// - Example: `nginx`
         @available(*, deprecated, renamed: "OTelAttribute.container.label")
         public static let labels = "container.labels"
+        #endif
 
+        #if Experimental
         /// `container.name` **UNSTABLE**: Container name used by container runtime.
         ///
         /// - Stability: development
         /// - Type: string
         /// - Example: `opentelemetry-autoconf`
         public static let name = "container.name"
+        #endif
 
+        #if Experimental
         /// `container.runtime` **UNSTABLE**: The container runtime managing this container.
         ///
         /// - Stability: development
@@ -80,7 +92,9 @@ extension OTelAttribute {
         ///     - `rkt`
         @available(*, deprecated, renamed: "OTelAttribute.container.runtime.name")
         public static let _runtime = "container.runtime"
+        #endif
 
+        #if Experimental
         /// `container.cpu` namespace
         public enum cpu {
             /// `container.cpu.state` **UNSTABLE**: Deprecated, use `cpu.mode` instead.
@@ -96,7 +110,9 @@ extension OTelAttribute {
             @available(*, deprecated, renamed: "OTelAttribute.cpu.mode")
             public static let state = "container.cpu.state"
         }
+        #endif
 
+        #if Experimental
         /// `container.csi` namespace
         public enum csi {
             /// `container.csi.plugin` namespace
@@ -123,9 +139,11 @@ extension OTelAttribute {
                 public static let id = "container.csi.volume.id"
             }
         }
+        #endif
 
         /// `container.image` namespace
         public enum image {
+            #if Experimental
             /// `container.image.id` **UNSTABLE**: Runtime specific image identifier. Usually a hash algorithm followed by a UUID.
             ///
             /// - Stability: development
@@ -136,29 +154,31 @@ extension OTelAttribute {
             /// K8s defines a link to the container registry repository with digest `"imageID": "registry.azurecr.io /namespace/service/dockerfile@sha256:bdeabd40c3a8a492eaf9e8e44d0ebbb84bac7ee25ac0cf8a7159d25f62555625"`.
             /// The ID is assigned by the container runtime and can vary in different environments. Consider using `oci.manifest.digest` if it is important to identify the same image in different environments/runtimes.
             public static let id = "container.image.id"
+            #endif
 
-            /// `container.image.name` **UNSTABLE**: Name of the image the container was built on.
+            /// `container.image.name`: Name of the image the container was built on.
             ///
-            /// - Stability: releaseCandidate
+            /// - Stability: stable
             /// - Type: string
             /// - Example: `gcr.io/opentelemetry/operator`
             public static let name = "container.image.name"
 
-            /// `container.image.repo_digests` **UNSTABLE**: Repo digests of the container image as provided by the container runtime.
+            /// `container.image.repo_digests`: Repo digests of the container image as provided by the container runtime.
             ///
-            /// - Stability: releaseCandidate
+            /// - Stability: stable
             /// - Type: stringArray
             ///
             /// [Docker](https://docs.docker.com/reference/api/engine/version/v1.52/#tag/Image/operation/ImageInspect) and [CRI](https://github.com/kubernetes/cri-api/blob/c75ef5b473bbe2d0a4fc92f82235efd665ea8e9f/pkg/apis/runtime/v1/api.proto#L1237-L1238) report those under the `RepoDigests` field.
             public static let repoDigests = "container.image.repo_digests"
 
-            /// `container.image.tags` **UNSTABLE**: Container image tags. An example can be found in [Docker Image Inspect](https://docs.docker.com/reference/api/engine/version/v1.52/#tag/Image/operation/ImageInspect). Should be only the `<tag>` section of the full name for example from `registry.example.com/my-org/my-image:<tag>`.
+            /// `container.image.tags`: Container image tags. An example can be found in [Docker Image Inspect](https://docs.docker.com/reference/api/engine/version/v1.52/#tag/Image/operation/ImageInspect). Should be only the `<tag>` section of the full name for example from `registry.example.com/my-org/my-image:<tag>`.
             ///
-            /// - Stability: releaseCandidate
+            /// - Stability: stable
             /// - Type: stringArray
             public static let tags = "container.image.tags"
         }
 
+        #if Experimental
         /// `container.runtime` namespace
         public enum runtime {
             /// `container.runtime.description` **UNSTABLE**: A description about the runtime which could include, for example details about the CRI/API version being used or other customizations.
@@ -185,6 +205,6 @@ extension OTelAttribute {
             /// - Example: `1.0.0`
             public static let version = "container.runtime.version"
         }
+        #endif
     }
-    #endif
 }

@@ -21,7 +21,7 @@ extension OTelAttribute {
         public enum io {
             /// `disk.io.direction` **UNSTABLE**: The disk IO operation direction.
             ///
-            /// - Stability: development
+            /// - Stability: releaseCandidate
             /// - Type: enum
             ///     - `read`
             ///     - `write`

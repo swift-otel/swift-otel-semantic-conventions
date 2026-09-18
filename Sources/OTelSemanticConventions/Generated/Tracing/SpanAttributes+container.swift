@@ -18,7 +18,6 @@
 import Tracing
 
 extension SpanAttributes {
-    #if Experimental
     /// `container` namespace
     public var container: ContainerAttributes {
         get {
@@ -37,6 +36,7 @@ extension SpanAttributes {
             self.attributes = attributes
         }
 
+        #if Experimental
         /// `container.label` **UNSTABLE**: Container labels, `<key>` being the label name, the value being the label value.
         ///
         /// - Stability: development
@@ -81,7 +81,9 @@ extension SpanAttributes {
                 return attributeID
             }
         }
+        #endif
 
+        #if Experimental
         /// `container.labels` **UNSTABLE**: Deprecated, use `container.label` instead.
         ///
         /// - Stability: development
@@ -124,10 +126,12 @@ extension SpanAttributes {
                 return attributeID
             }
         }
+        #endif
 
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
 
+            #if Experimental
             /// `container.command` **UNSTABLE**: The command used to run the container (i.e. the command name).
             ///
             /// - Stability: development
@@ -136,34 +140,42 @@ extension SpanAttributes {
             ///
             /// If using embedded credentials or sensitive data, it is recommended to remove them to prevent potential leakage.
             public var command: SpanAttributeKey<String> { .init(name: OTelAttribute.container.command) }
+            #endif
 
+            #if Experimental
             /// `container.command_args` **UNSTABLE**: All the command arguments (including the command/executable itself) run by the container.
             ///
             /// - Stability: development
             /// - Type: stringArray
             public var commandArgs: SpanAttributeKey<[String]> { .init(name: OTelAttribute.container.commandArgs) }
+            #endif
 
+            #if Experimental
             /// `container.command_line` **UNSTABLE**: The full command run by the container as a single string representing the full command.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `otelcontribcol --config config.yaml`
             public var commandLine: SpanAttributeKey<String> { .init(name: OTelAttribute.container.commandLine) }
+            #endif
 
-            /// `container.id` **UNSTABLE**: Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/containers/run/#container-identification). The UUID might be abbreviated.
+            /// `container.id`: Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/containers/run/#container-identification). The UUID might be abbreviated.
             ///
-            /// - Stability: releaseCandidate
+            /// - Stability: stable
             /// - Type: string
             /// - Example: `a3bf90e006b2`
             public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.container.id) }
 
+            #if Experimental
             /// `container.name` **UNSTABLE**: Container name used by container runtime.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `opentelemetry-autoconf`
             public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.container.name) }
+            #endif
 
+            #if Experimental
             /// `container.runtime` **UNSTABLE**: The container runtime managing this container.
             ///
             /// - Stability: development
@@ -174,8 +186,10 @@ extension SpanAttributes {
             ///     - `rkt`
             @available(*, deprecated, renamed: "SpanAttributes.container.runtime.name")
             public var _runtime: SpanAttributeKey<String> { .init(name: OTelAttribute.container._runtime) }
+            #endif
         }
 
+        #if Experimental
         /// `container.cpu` namespace
         public var cpu: CpuAttributes {
             get {
@@ -221,7 +235,9 @@ extension SpanAttributes {
                 }
             }
         }
+        #endif
 
+        #if Experimental
         /// `container.csi` namespace
         public var csi: CsiAttributes {
             get {
@@ -308,6 +324,7 @@ extension SpanAttributes {
                 }
             }
         }
+        #endif
 
         /// `container.image` namespace
         public var image: ImageAttributes {
@@ -330,6 +347,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
+                #if Experimental
                 /// `container.image.id` **UNSTABLE**: Runtime specific image identifier. Usually a hash algorithm followed by a UUID.
                 ///
                 /// - Stability: development
@@ -340,17 +358,18 @@ extension SpanAttributes {
                 /// K8s defines a link to the container registry repository with digest `"imageID": "registry.azurecr.io /namespace/service/dockerfile@sha256:bdeabd40c3a8a492eaf9e8e44d0ebbb84bac7ee25ac0cf8a7159d25f62555625"`.
                 /// The ID is assigned by the container runtime and can vary in different environments. Consider using `oci.manifest.digest` if it is important to identify the same image in different environments/runtimes.
                 public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.container.image.id) }
+                #endif
 
-                /// `container.image.name` **UNSTABLE**: Name of the image the container was built on.
+                /// `container.image.name`: Name of the image the container was built on.
                 ///
-                /// - Stability: releaseCandidate
+                /// - Stability: stable
                 /// - Type: string
                 /// - Example: `gcr.io/opentelemetry/operator`
                 public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.container.image.name) }
 
-                /// `container.image.repo_digests` **UNSTABLE**: Repo digests of the container image as provided by the container runtime.
+                /// `container.image.repo_digests`: Repo digests of the container image as provided by the container runtime.
                 ///
-                /// - Stability: releaseCandidate
+                /// - Stability: stable
                 /// - Type: stringArray
                 ///
                 /// [Docker](https://docs.docker.com/reference/api/engine/version/v1.52/#tag/Image/operation/ImageInspect) and [CRI](https://github.com/kubernetes/cri-api/blob/c75ef5b473bbe2d0a4fc92f82235efd665ea8e9f/pkg/apis/runtime/v1/api.proto#L1237-L1238) report those under the `RepoDigests` field.
@@ -358,14 +377,15 @@ extension SpanAttributes {
                     .init(name: OTelAttribute.container.image.repoDigests)
                 }
 
-                /// `container.image.tags` **UNSTABLE**: Container image tags. An example can be found in [Docker Image Inspect](https://docs.docker.com/reference/api/engine/version/v1.52/#tag/Image/operation/ImageInspect). Should be only the `<tag>` section of the full name for example from `registry.example.com/my-org/my-image:<tag>`.
+                /// `container.image.tags`: Container image tags. An example can be found in [Docker Image Inspect](https://docs.docker.com/reference/api/engine/version/v1.52/#tag/Image/operation/ImageInspect). Should be only the `<tag>` section of the full name for example from `registry.example.com/my-org/my-image:<tag>`.
                 ///
-                /// - Stability: releaseCandidate
+                /// - Stability: stable
                 /// - Type: stringArray
                 public var tags: SpanAttributeKey<[String]> { .init(name: OTelAttribute.container.image.tags) }
             }
         }
 
+        #if Experimental
         /// `container.runtime` namespace
         public var runtime: RuntimeAttributes {
             get {
@@ -414,8 +434,8 @@ extension SpanAttributes {
                 public var version: SpanAttributeKey<String> { .init(name: OTelAttribute.container.runtime.version) }
             }
         }
+        #endif
     }
-    #endif
 }
 
 #endif

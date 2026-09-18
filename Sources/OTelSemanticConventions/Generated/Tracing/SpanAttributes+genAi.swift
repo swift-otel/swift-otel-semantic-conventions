@@ -79,7 +79,12 @@ extension SpanAttributes {
             ///     - `deepseek`: DeepSeek
             ///     - `groq`: Groq
             ///     - `mistral_ai`: Mistral AI
-            @available(*, deprecated, renamed: "SpanAttributes.genAi.provider.name")
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Replaced by `gen_ai.provider.name`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public var system: SpanAttributeKey<SystemEnum> { .init(name: OTelAttribute.genAi.system) }
 
             public struct SystemEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
@@ -123,7 +128,7 @@ extension SpanAttributes {
             /// Instructions that are part of the chat history SHOULD be recorded in
             /// `gen_ai.input.messages` attribute instead.
             ///
-            /// Instrumentations MUST follow [System instructions JSON schema](/docs/gen-ai/gen-ai-system-instructions.json).
+            /// Instrumentations MUST follow [System instructions JSON schema](https://github.com/open-telemetry/semantic-conventions/blob/v1.41.0/docs/gen-ai/gen-ai-system-instructions.json).
             ///
             /// When recorded on spans, it MAY be recorded as a JSON string if structured
             /// format is not supported and SHOULD be recorded in structured form otherwise.
@@ -134,8 +139,14 @@ extension SpanAttributes {
             /// > [!Warning]
             /// > This attribute may contain sensitive information.
             ///
-            /// See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
+            /// See [Recording content on attributes](https://github.com/open-telemetry/semantic-conventions/blob/v1.41.0/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
             /// section for more details.
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public var systemInstructions: SpanAttributeKey<SpanAttribute> {
                 .init(name: OTelAttribute.genAi.systemInstructions)
             }
@@ -169,6 +180,12 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `Helps with math problems`
                 ///     - `Generates fiction stories`
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var description: SpanAttributeKey<String> { .init(name: OTelAttribute.genAi.agent.description) }
 
                 /// `gen_ai.agent.id` **UNSTABLE**: The unique identifier of the GenAI agent.
@@ -176,6 +193,12 @@ extension SpanAttributes {
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `asst_5j66UpCpwteGg4YSxUnt7lPY`
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.genAi.agent.id) }
 
                 /// `gen_ai.agent.name` **UNSTABLE**: Human-readable name of the GenAI agent provided by the application.
@@ -185,6 +208,12 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `Math Tutor`
                 ///     - `Fiction Writer`
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.genAi.agent.name) }
 
                 /// `gen_ai.agent.version` **UNSTABLE**: The version of the GenAI agent.
@@ -194,6 +223,12 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `1.0.0`
                 ///     - `2025-05-01`
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var version: SpanAttributeKey<String> { .init(name: OTelAttribute.genAi.agent.version) }
             }
         }
@@ -224,6 +259,12 @@ extension SpanAttributes {
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `conv_5j66UpCpwteGg4YSxUnt7lPY`
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.genAi.conversation.id) }
             }
         }
@@ -256,6 +297,12 @@ extension SpanAttributes {
                 /// - Example: `H7STPQYOND`
                 ///
                 /// Data sources are used by AI agents and RAG applications to store grounding data. A data source may be an external database, object store, document collection, website, or any other storage system used by the GenAI agent or application. The `gen_ai.data_source.id` SHOULD match the identifier used by the GenAI system rather than a name specific to the external storage, such as a database or object store. Semantic conventions referencing `gen_ai.data_source.id` MAY also leverage additional attributes, such as `db.*`, to further identify and describe the data source.
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.genAi.dataSource.id) }
             }
         }
@@ -310,6 +357,12 @@ extension SpanAttributes {
                     /// - Examples:
                     ///     - `512`
                     ///     - `1024`
+                    @available(
+                        *,
+                        deprecated,
+                        message:
+                            "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                    )
                     public var count: SpanAttributeKey<Int> {
                         .init(name: OTelAttribute.genAi.embeddings.dimension.count)
                     }
@@ -343,6 +396,12 @@ extension SpanAttributes {
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `The response is factually accurate but lacks sufficient detail to fully address the question.`
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var explanation: SpanAttributeKey<String> {
                     .init(name: OTelAttribute.genAi.evaluation.explanation)
                 }
@@ -354,6 +413,12 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `Relevance`
                 ///     - `IntentResolution`
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.genAi.evaluation.name) }
             }
 
@@ -391,6 +456,12 @@ extension SpanAttributes {
                     ///     - `fail`
                     ///
                     /// This attribute provides a human-readable interpretation of the evaluation score produced by an evaluator. For example, a score value of 1 could mean "relevant" in one evaluation system and "not relevant" in another, depending on the scoring range and evaluator. The label SHOULD have low cardinality. Possible values depend on the evaluation metric and evaluator used; implementations SHOULD document the possible values.
+                    @available(
+                        *,
+                        deprecated,
+                        message:
+                            "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                    )
                     public var label: SpanAttributeKey<String> {
                         .init(name: OTelAttribute.genAi.evaluation.score.label)
                     }
@@ -400,6 +471,12 @@ extension SpanAttributes {
                     /// - Stability: development
                     /// - Type: double
                     /// - Example: `4.0`
+                    @available(
+                        *,
+                        deprecated,
+                        message:
+                            "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                    )
                     public var value: SpanAttributeKey<Double> {
                         .init(name: OTelAttribute.genAi.evaluation.score.value)
                     }
@@ -468,7 +545,7 @@ extension SpanAttributes {
                 /// ]
                 /// `
                 ///
-                /// Instrumentations MUST follow [Input messages JSON schema](/docs/gen-ai/gen-ai-input-messages.json).
+                /// Instrumentations MUST follow [Input messages JSON schema](https://github.com/open-telemetry/semantic-conventions/blob/v1.41.0/docs/gen-ai/gen-ai-input-messages.json).
                 /// When the attribute is recorded on events, it MUST be recorded in structured
                 /// form. When recorded on spans, it MAY be recorded as a JSON string if structured
                 /// format is not supported and SHOULD be recorded in structured form otherwise.
@@ -480,8 +557,14 @@ extension SpanAttributes {
                 /// > [!Warning]
                 /// > This attribute is likely to contain sensitive information including user/PII data.
                 ///
-                /// See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
+                /// See [Recording content on attributes](https://github.com/open-telemetry/semantic-conventions/blob/v1.41.0/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
                 /// section for more details.
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var messages: SpanAttributeKey<SpanAttribute> { .init(name: OTelAttribute.genAi.input.messages) }
             }
         }
@@ -536,7 +619,12 @@ extension SpanAttributes {
                     ///     - `text`: Text response format
                     ///     - `json_object`: JSON object response format
                     ///     - `json_schema`: JSON schema response format
-                    @available(*, deprecated, renamed: "SpanAttributes.genAi.output.type")
+                    @available(
+                        *,
+                        deprecated,
+                        message:
+                            "Replaced by `gen_ai.output.type`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                    )
                     public var responseFormat: SpanAttributeKey<ResponseFormatEnum> {
                         .init(name: OTelAttribute.genAi.openai.request.responseFormat)
                     }
@@ -556,7 +644,12 @@ extension SpanAttributes {
                     /// - Stability: development
                     /// - Type: int
                     /// - Example: `100`
-                    @available(*, deprecated, renamed: "SpanAttributes.genAi.request.seed")
+                    @available(
+                        *,
+                        deprecated,
+                        message:
+                            "Replaced by `gen_ai.request.seed`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                    )
                     public var seed: SpanAttributeKey<Int> { .init(name: OTelAttribute.genAi.openai.request.seed) }
 
                     /// `gen_ai.openai.request.service_tier` **UNSTABLE**: Deprecated, use `openai.request.service_tier`.
@@ -565,7 +658,12 @@ extension SpanAttributes {
                     /// - Type: enum
                     ///     - `auto`: The system will utilize scale tier credits until they are exhausted.
                     ///     - `default`: The system will utilize the default scale tier.
-                    @available(*, deprecated, renamed: "SpanAttributes.openai.request.serviceTier")
+                    @available(
+                        *,
+                        deprecated,
+                        message:
+                            "Replaced by `openai.request.service_tier`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                    )
                     public var serviceTier: SpanAttributeKey<ServiceTierEnum> {
                         .init(name: OTelAttribute.genAi.openai.request.serviceTier)
                     }
@@ -610,7 +708,12 @@ extension SpanAttributes {
                     /// - Examples:
                     ///     - `scale`
                     ///     - `default`
-                    @available(*, deprecated, renamed: "SpanAttributes.openai.response.serviceTier")
+                    @available(
+                        *,
+                        deprecated,
+                        message:
+                            "Replaced by `openai.response.service_tier`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                    )
                     public var serviceTier: SpanAttributeKey<String> {
                         .init(name: OTelAttribute.genAi.openai.response.serviceTier)
                     }
@@ -620,7 +723,12 @@ extension SpanAttributes {
                     /// - Stability: development
                     /// - Type: string
                     /// - Example: `fp_44709d6fcb`
-                    @available(*, deprecated, renamed: "SpanAttributes.openai.response.systemFingerprint")
+                    @available(
+                        *,
+                        deprecated,
+                        message:
+                            "Replaced by `openai.response.system_fingerprint`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                    )
                     public var systemFingerprint: SpanAttributeKey<String> {
                         .init(name: OTelAttribute.genAi.openai.response.systemFingerprint)
                     }
@@ -664,6 +772,12 @@ extension SpanAttributes {
                 ///     - `invoke_workflow`: Invoke GenAI workflow
                 ///
                 /// If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var name: SpanAttributeKey<NameEnum> { .init(name: OTelAttribute.genAi.operation.name) }
 
                 public struct NameEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
@@ -717,7 +831,7 @@ extension SpanAttributes {
                 /// ]
                 /// `
                 ///
-                /// Instrumentations MUST follow [Output messages JSON schema](/docs/gen-ai/gen-ai-output-messages.json)
+                /// Instrumentations MUST follow [Output messages JSON schema](https://github.com/open-telemetry/semantic-conventions/blob/v1.41.0/docs/gen-ai/gen-ai-output-messages.json)
                 ///
                 /// Each message represents a single output choice/candidate generated by
                 /// the model. Each message corresponds to exactly one generation
@@ -734,8 +848,14 @@ extension SpanAttributes {
                 /// > [!Warning]
                 /// > This attribute is likely to contain sensitive information including user/PII data.
                 ///
-                /// See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
+                /// See [Recording content on attributes](https://github.com/open-telemetry/semantic-conventions/blob/v1.41.0/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
                 /// section for more details.
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var messages: SpanAttributeKey<SpanAttribute> {
                     .init(name: OTelAttribute.genAi.output.messages)
                 }
@@ -752,6 +872,12 @@ extension SpanAttributes {
                 /// This attribute SHOULD be used when the client requests output of a specific type. The model may return zero or more outputs of this type.
                 /// This attribute specifies the output modality and not the actual output format. For example, if an image is requested, the actual output could be a URL pointing to an image file.
                 /// Additional output format details may be recorded in the future in the `gen_ai.output.{type}.*` attributes.
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var `type`: SpanAttributeKey<TypeEnum> { .init(name: OTelAttribute.genAi.output.`type`) }
 
                 public struct TypeEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
@@ -792,6 +918,12 @@ extension SpanAttributes {
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `analyze-code`
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.genAi.prompt.name) }
             }
         }
@@ -855,6 +987,12 @@ extension SpanAttributes {
                 /// should have the `gen_ai.provider.name` set to `aws.bedrock` and include
                 /// applicable `aws.bedrock.*` attributes and are not expected to include
                 /// `openai.*` attributes.
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var name: SpanAttributeKey<NameEnum> { .init(name: OTelAttribute.genAi.provider.name) }
 
                 public struct NameEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
@@ -896,6 +1034,12 @@ extension SpanAttributes {
                 /// - Type: stringArray
                 ///
                 /// In some GenAI systems the encoding formats are called embedding types. Also, some GenAI systems only accept a single format per request.
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var encodingFormats: SpanAttributeKey<[String]> {
                     .init(name: OTelAttribute.genAi.request.encodingFormats)
                 }
@@ -905,6 +1049,12 @@ extension SpanAttributes {
                 /// - Stability: development
                 /// - Type: double
                 /// - Example: `0.1`
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var frequencyPenalty: SpanAttributeKey<Double> {
                     .init(name: OTelAttribute.genAi.request.frequencyPenalty)
                 }
@@ -914,6 +1064,12 @@ extension SpanAttributes {
                 /// - Stability: development
                 /// - Type: int
                 /// - Example: `100`
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var maxTokens: SpanAttributeKey<Int> { .init(name: OTelAttribute.genAi.request.maxTokens) }
 
                 /// `gen_ai.request.model` **UNSTABLE**: The name of the GenAI model a request is being made to.
@@ -921,6 +1077,12 @@ extension SpanAttributes {
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `gpt-4`
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var model: SpanAttributeKey<String> { .init(name: OTelAttribute.genAi.request.model) }
 
                 /// `gen_ai.request.presence_penalty` **UNSTABLE**: The presence penalty setting for the GenAI request.
@@ -928,6 +1090,12 @@ extension SpanAttributes {
                 /// - Stability: development
                 /// - Type: double
                 /// - Example: `0.1`
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var presencePenalty: SpanAttributeKey<Double> {
                     .init(name: OTelAttribute.genAi.request.presencePenalty)
                 }
@@ -937,12 +1105,24 @@ extension SpanAttributes {
                 /// - Stability: development
                 /// - Type: int
                 /// - Example: `100`
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var seed: SpanAttributeKey<Int> { .init(name: OTelAttribute.genAi.request.seed) }
 
                 /// `gen_ai.request.stop_sequences` **UNSTABLE**: List of sequences that the model will use to stop generating further tokens.
                 ///
                 /// - Stability: development
                 /// - Type: stringArray
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var stopSequences: SpanAttributeKey<[String]> {
                     .init(name: OTelAttribute.genAi.request.stopSequences)
                 }
@@ -951,6 +1131,12 @@ extension SpanAttributes {
                 ///
                 /// - Stability: development
                 /// - Type: boolean
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var stream: SpanAttributeKey<Bool> { .init(name: OTelAttribute.genAi.request.stream) }
 
                 /// `gen_ai.request.temperature` **UNSTABLE**: The temperature setting for the GenAI request.
@@ -958,6 +1144,12 @@ extension SpanAttributes {
                 /// - Stability: development
                 /// - Type: double
                 /// - Example: `0.0`
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var temperature: SpanAttributeKey<Double> {
                     .init(name: OTelAttribute.genAi.request.temperature)
                 }
@@ -967,6 +1159,12 @@ extension SpanAttributes {
                 /// - Stability: development
                 /// - Type: double
                 /// - Example: `1.0`
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var topK: SpanAttributeKey<Double> { .init(name: OTelAttribute.genAi.request.topK) }
 
                 /// `gen_ai.request.top_p` **UNSTABLE**: The top_p sampling setting for the GenAI request.
@@ -974,6 +1172,12 @@ extension SpanAttributes {
                 /// - Stability: development
                 /// - Type: double
                 /// - Example: `1.0`
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var topP: SpanAttributeKey<Double> { .init(name: OTelAttribute.genAi.request.topP) }
             }
 
@@ -1003,6 +1207,12 @@ extension SpanAttributes {
                     /// - Stability: development
                     /// - Type: int
                     /// - Example: `3`
+                    @available(
+                        *,
+                        deprecated,
+                        message:
+                            "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                    )
                     public var count: SpanAttributeKey<Int> { .init(name: OTelAttribute.genAi.request.choice.count) }
                 }
             }
@@ -1033,6 +1243,12 @@ extension SpanAttributes {
                 ///
                 /// - Stability: development
                 /// - Type: stringArray
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var finishReasons: SpanAttributeKey<[String]> {
                     .init(name: OTelAttribute.genAi.response.finishReasons)
                 }
@@ -1042,6 +1258,12 @@ extension SpanAttributes {
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `chatcmpl-123`
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.genAi.response.id) }
 
                 /// `gen_ai.response.model` **UNSTABLE**: The name of the model that generated the response.
@@ -1049,6 +1271,12 @@ extension SpanAttributes {
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `gpt-4-0613`
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var model: SpanAttributeKey<String> { .init(name: OTelAttribute.genAi.response.model) }
 
                 /// `gen_ai.response.time_to_first_chunk` **UNSTABLE**: Time to first chunk in a streaming response, measured from request issuance, in seconds. The value is measured from when the client issues the generation request to when the first chunk is received in the response stream.
@@ -1058,6 +1286,12 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `0.5`
                 ///     - `1.2`
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var timeToFirstChunk: SpanAttributeKey<Double> {
                     .init(name: OTelAttribute.genAi.response.timeToFirstChunk)
                 }
@@ -1105,13 +1339,19 @@ extension SpanAttributes {
                 /// ]
                 /// `
                 ///
-                /// Instrumentations MUST follow [Retrieval documents JSON schema](/docs/gen-ai/gen-ai-retrieval-documents.json).
+                /// Instrumentations MUST follow [Retrieval documents JSON schema](https://github.com/open-telemetry/semantic-conventions/blob/v1.41.0/docs/gen-ai/gen-ai-retrieval-documents.json).
                 /// When the attribute is recorded on events, it MUST be recorded in structured
                 /// form. When recorded on spans, it MAY be recorded as a JSON string if structured
                 /// format is not supported and SHOULD be recorded in structured form otherwise.
                 ///
                 /// Each document object SHOULD contain at least the following properties:
                 /// `id` (string): A unique identifier for the document, `score` (double): The relevance score of the document
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var documents: SpanAttributeKey<SpanAttribute> {
                     .init(name: OTelAttribute.genAi.retrieval.documents)
                 }
@@ -1148,6 +1388,12 @@ extension SpanAttributes {
                     ///
                     /// > [!Warning]
                     /// > This attribute may contain sensitive information.
+                    @available(
+                        *,
+                        deprecated,
+                        message:
+                            "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                    )
                     public var text: SpanAttributeKey<String> { .init(name: OTelAttribute.genAi.retrieval.query.text) }
                 }
             }
@@ -1184,6 +1430,12 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `input`
                 ///     - `output`
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var `type`: SpanAttributeKey<TypeEnum> { .init(name: OTelAttribute.genAi.token.`type`) }
 
                 public struct TypeEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
@@ -1252,7 +1504,7 @@ extension SpanAttributes {
                 /// ]
                 /// `
                 ///
-                /// Instrumentations MUST follow [Tool Definitions JSON Schema](/docs/gen-ai/gen-ai-tool-definitions.json).
+                /// Instrumentations MUST follow [Tool Definitions JSON Schema](https://github.com/open-telemetry/semantic-conventions/blob/v1.41.0/docs/gen-ai/gen-ai-tool-definitions.json).
                 ///
                 /// When the attribute is recorded on events, it MUST be recorded in structured
                 /// form. When recorded on spans, it MAY be recorded as a JSON string if structured
@@ -1261,6 +1513,12 @@ extension SpanAttributes {
                 /// Since this attribute could be large, it's NOT RECOMMENDED to populate
                 /// non-required properties by default. Instrumentations MAY provide a way
                 /// to enable populating optional properties.
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var definitions: SpanAttributeKey<SpanAttribute> {
                     .init(name: OTelAttribute.genAi.tool.definitions)
                 }
@@ -1270,6 +1528,12 @@ extension SpanAttributes {
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `Multiply two numbers`
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var description: SpanAttributeKey<String> { .init(name: OTelAttribute.genAi.tool.description) }
 
                 /// `gen_ai.tool.name` **UNSTABLE**: Name of the tool utilized by the agent.
@@ -1277,6 +1541,12 @@ extension SpanAttributes {
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `Flights`
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.genAi.tool.name) }
 
                 /// `gen_ai.tool.type` **UNSTABLE**: Type of the tool utilized by the agent
@@ -1293,6 +1563,12 @@ extension SpanAttributes {
                 /// Function: A tool executed on the client-side, where the agent generates parameters for a predefined function, and the client executes the logic.
                 ///   Client-side operations are actions taken on the user's end or within the client application.
                 /// Datastore: A tool used by the agent to access and query structured or unstructured external data for retrieval-augmented tasks or knowledge updates.
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var `type`: SpanAttributeKey<String> { .init(name: OTelAttribute.genAi.tool.`type`) }
             }
 
@@ -1333,6 +1609,12 @@ extension SpanAttributes {
                     /// It's expected to be an object - in case a serialized string is available
                     /// to the instrumentation, the instrumentation SHOULD do the best effort to
                     /// deserialize it to an object. When recorded on spans, it MAY be recorded as a JSON string if structured format is not supported and SHOULD be recorded in structured form otherwise.
+                    @available(
+                        *,
+                        deprecated,
+                        message:
+                            "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                    )
                     public var arguments: SpanAttributeKey<SpanAttribute> {
                         .init(name: OTelAttribute.genAi.tool.call.arguments)
                     }
@@ -1342,6 +1624,12 @@ extension SpanAttributes {
                     /// - Stability: development
                     /// - Type: string
                     /// - Example: `call_mszuSIzqtI65i1wAUOE8w5H4`
+                    @available(
+                        *,
+                        deprecated,
+                        message:
+                            "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                    )
                     public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.genAi.tool.call.id) }
 
                     /// `gen_ai.tool.call.result` **UNSTABLE**: The result returned by the tool call (if any and if execution was successful).
@@ -1363,6 +1651,12 @@ extension SpanAttributes {
                     /// It's expected to be an object - in case a serialized string is available
                     /// to the instrumentation, the instrumentation SHOULD do the best effort to
                     /// deserialize it to an object. When recorded on spans, it MAY be recorded as a JSON string if structured format is not supported and SHOULD be recorded in structured form otherwise.
+                    @available(
+                        *,
+                        deprecated,
+                        message:
+                            "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                    )
                     public var result: SpanAttributeKey<SpanAttribute> {
                         .init(name: OTelAttribute.genAi.tool.call.result)
                     }
@@ -1396,7 +1690,12 @@ extension SpanAttributes {
                 /// - Stability: development
                 /// - Type: int
                 /// - Example: `42`
-                @available(*, deprecated, renamed: "SpanAttributes.genAi.usage.outputTokens")
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Replaced by `gen_ai.usage.output_tokens`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var completionTokens: SpanAttributeKey<Int> {
                     .init(name: OTelAttribute.genAi.usage.completionTokens)
                 }
@@ -1411,6 +1710,12 @@ extension SpanAttributes {
                 /// Instrumentations SHOULD make a best effort to populate this value, using a total
                 /// provided by the provider when available or, depending on the provider API,
                 /// by summing different token types parsed from the provider output.
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var inputTokens: SpanAttributeKey<Int> { .init(name: OTelAttribute.genAi.usage.inputTokens) }
 
                 /// `gen_ai.usage.output_tokens` **UNSTABLE**: The number of tokens used in the GenAI response (completion).
@@ -1418,6 +1723,12 @@ extension SpanAttributes {
                 /// - Stability: development
                 /// - Type: int
                 /// - Example: `180`
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var outputTokens: SpanAttributeKey<Int> { .init(name: OTelAttribute.genAi.usage.outputTokens) }
 
                 /// `gen_ai.usage.prompt_tokens` **UNSTABLE**: Deprecated, use `gen_ai.usage.input_tokens` instead.
@@ -1425,7 +1736,12 @@ extension SpanAttributes {
                 /// - Stability: development
                 /// - Type: int
                 /// - Example: `42`
-                @available(*, deprecated, renamed: "SpanAttributes.genAi.usage.inputTokens")
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Replaced by `gen_ai.usage.input_tokens`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var promptTokens: SpanAttributeKey<Int> { .init(name: OTelAttribute.genAi.usage.promptTokens) }
             }
 
@@ -1457,6 +1773,12 @@ extension SpanAttributes {
                     /// - Example: `25`
                     ///
                     /// The value SHOULD be included in `gen_ai.usage.input_tokens`.
+                    @available(
+                        *,
+                        deprecated,
+                        message:
+                            "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                    )
                     public var inputTokens: SpanAttributeKey<Int> {
                         .init(name: OTelAttribute.genAi.usage.cacheCreation.inputTokens)
                     }
@@ -1491,6 +1813,12 @@ extension SpanAttributes {
                     /// - Example: `50`
                     ///
                     /// The value SHOULD be included in `gen_ai.usage.input_tokens`.
+                    @available(
+                        *,
+                        deprecated,
+                        message:
+                            "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                    )
                     public var inputTokens: SpanAttributeKey<Int> {
                         .init(name: OTelAttribute.genAi.usage.cacheRead.inputTokens)
                     }
@@ -1525,6 +1853,12 @@ extension SpanAttributes {
                     /// - Example: `50`
                     ///
                     /// The value SHOULD be included in `gen_ai.usage.output_tokens`.
+                    @available(
+                        *,
+                        deprecated,
+                        message:
+                            "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                    )
                     public var outputTokens: SpanAttributeKey<Int> {
                         .init(name: OTelAttribute.genAi.usage.reasoning.outputTokens)
                     }
@@ -1562,6 +1896,12 @@ extension SpanAttributes {
                 ///     - `customer_support_pipeline`
                 ///
                 /// This attribute can be populated in different frameworks eg: name of the first chain in LangChain OR name of the crew in CrewAI.
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.genAi.workflow.name) }
             }
         }

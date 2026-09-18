@@ -107,6 +107,18 @@ extension OTelAttribute {
             }
         }
 
+        /// `azure.resource_group` namespace
+        public enum resourceGroup {
+            /// `azure.resource_group.name` **UNSTABLE**: The name of the Azure [resource group](https://learn.microsoft.com/azure/azure-resource-manager/management/manage-resource-groups-portal) the resource belongs to.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Examples:
+            ///     - `my-resource-group`
+            ///     - `rg-myapp-prod`
+            public static let name = "azure.resource_group.name"
+        }
+
         /// `azure.resource_provider` namespace
         public enum resourceProvider {
             /// `azure.resource_provider.namespace` **UNSTABLE**: [Azure Resource Provider Namespace](https://learn.microsoft.com/azure/azure-resource-manager/management/azure-services-resource-providers) as recognized by the client.

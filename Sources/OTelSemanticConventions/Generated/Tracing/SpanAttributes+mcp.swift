@@ -91,6 +91,12 @@ extension SpanAttributes {
                 ///     - `roots/list`: Request to list roots available on server.
                 ///     - `notifications/roots/list_changed`: Notification indicating that the list of roots has changed.
                 ///     - `elicitation/create`: Request from the server to elicit additional information from the user via the client
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var name: SpanAttributeKey<NameEnum> { .init(name: OTelAttribute.mcp.method.name) }
 
                 public struct NameEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
@@ -131,6 +137,12 @@ extension SpanAttributes {
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `2025-06-18`
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var version: SpanAttributeKey<String> { .init(name: OTelAttribute.mcp.`protocol`.version) }
             }
         }
@@ -165,6 +177,12 @@ extension SpanAttributes {
                 ///     - `file:///home/user/documents/report.pdf`
                 ///
                 /// This is a URI of the resource provided in the following requests or notifications: `resources/read`, `resources/subscribe`, `resources/unsubscribe`, or `notifications/resources/updated`.
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var uri: SpanAttributeKey<String> { .init(name: OTelAttribute.mcp.resource.uri) }
             }
         }
@@ -195,6 +213,12 @@ extension SpanAttributes {
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `191c4850af6c49e08843a3f6c80e5046`
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.mcp.session.id) }
             }
         }

@@ -64,7 +64,7 @@ extension SpanAttributes {
 
                 /// `oracle.db.domain` **UNSTABLE**: The database domain associated with the connection.
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: string
                 /// - Examples:
                 ///     - `example.com`
@@ -80,7 +80,7 @@ extension SpanAttributes {
 
                 /// `oracle.db.name` **UNSTABLE**: The database name associated with the connection.
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: string
                 /// - Examples:
                 ///     - `ORCL1`
@@ -91,7 +91,7 @@ extension SpanAttributes {
 
                 /// `oracle.db.pdb` **UNSTABLE**: The pluggable database (PDB) name associated with the connection.
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: string
                 /// - Examples:
                 ///     - `PDB1`
@@ -105,7 +105,7 @@ extension SpanAttributes {
 
                 /// `oracle.db.service` **UNSTABLE**: The service name currently associated with the database connection.
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: string
                 /// - Examples:
                 ///     - `order-processing-service`
@@ -143,7 +143,7 @@ extension SpanAttributes {
 
                     /// `oracle.db.instance.name` **UNSTABLE**: The instance name associated with the connection in an Oracle Real Application Clusters environment.
                     ///
-                    /// - Stability: development
+                    /// - Stability: releaseCandidate
                     /// - Type: string
                     /// - Examples:
                     ///     - `ORCL1`

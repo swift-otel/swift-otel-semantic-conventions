@@ -47,6 +47,7 @@ extension OTelAttribute {
             ///     - `erlang`
             ///     - `go`
             ///     - `java`
+            ///     - `kotlin`
             ///     - `nodejs`
             ///     - `php`
             ///     - `python`

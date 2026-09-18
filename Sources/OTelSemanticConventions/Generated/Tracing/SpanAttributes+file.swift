@@ -186,6 +186,71 @@ extension SpanAttributes {
             }
         }
 
+        /// `file.lock` namespace
+        public var lock: LockAttributes {
+            get {
+                .init(attributes: self.attributes)
+            }
+            set {
+                self.attributes = newValue.attributes
+            }
+        }
+
+        @dynamicMemberLookup
+        public struct LockAttributes: SpanAttributeNamespace {
+            public var attributes: Tracing.SpanAttributes
+
+            public init(attributes: Tracing.SpanAttributes) {
+                self.attributes = attributes
+            }
+
+            public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                public init() {}
+
+                /// `file.lock.mechanism` **UNSTABLE**: The lock mechanism such as noted by [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html)
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Examples:
+                ///     - `POSIX`
+                ///     - `FLOCK`
+                ///     - `DELEG`
+                ///     - `LEASE`
+                public var mechanism: SpanAttributeKey<String> { .init(name: OTelAttribute.file.lock.mechanism) }
+
+                /// `file.lock.mode` **UNSTABLE**: Mode of lock or operation such as documented by [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html)
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Examples:
+                ///     - `ADVISORY`
+                ///     - `MANDATORY`
+                ///     - `BREAKING`
+                ///     - `ACTIVE`
+                ///     - `BREAKER`
+                public var mode: SpanAttributeKey<String> { .init(name: OTelAttribute.file.lock.mode) }
+
+                /// `file.lock.type` **UNSTABLE**: The lock type as represented by i.e. [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html)'s l_type.
+                ///
+                /// - Stability: development
+                /// - Type: enum
+                ///     - `read`
+                ///     - `write`
+                /// - Example: `read`
+                public var `type`: SpanAttributeKey<TypeEnum> { .init(name: OTelAttribute.file.lock.`type`) }
+
+                public struct TypeEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
+                    public let rawValue: String
+                    public init(rawValue: String) {
+                        self.rawValue = rawValue
+                    }
+                    public func toSpanAttribute() -> Tracing.SpanAttribute {
+                        .string(self.rawValue)
+                    }
+                }
+            }
+        }
+
         /// `file.owner` namespace
         public var owner: OwnerAttributes {
             get {

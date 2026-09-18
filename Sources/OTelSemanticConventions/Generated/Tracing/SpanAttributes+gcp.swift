@@ -638,6 +638,51 @@ extension SpanAttributes {
                     self.attributes = attributes
                 }
 
+                /// `gcp.gce.instance.labels` **UNSTABLE**: GCE instance labels, `<key>` being the label name and the value being the label value.
+                ///
+                /// - Stability: development
+                /// - Type: templateString
+                /// - Example: `observability`
+                ///
+                /// For example, a GCE instance label `team` with value `observability` SHOULD be recorded as the `gcp.gce.instance.labels.team` attribute with value `"observability"`. The `<key>` MUST be the exact GCE instance label key.
+                public var labels: LabelsAttributes {
+                    get {
+                        .init(attributes: self.attributes)
+                    }
+                    set {
+                        self.attributes = newValue.attributes
+                    }
+                }
+
+                public struct LabelsAttributes {
+                    public var attributes: Tracing.SpanAttributes
+
+                    public init(attributes: Tracing.SpanAttributes) {
+                        self.attributes = attributes
+                    }
+
+                    public mutating func set(_ key: String, to value: String) {
+                        let attributeID = self.attributeID(forKey: key)
+                        self.attributes[attributeID] = value
+                    }
+
+                    private func attributeID(forKey key: String) -> String {
+                        var attributeID = "gcp.gce.instance.labels."
+
+                        for index in key.indices {
+                            let character = key[index]
+
+                            if character == "-" {
+                                attributeID.append("_")
+                            } else {
+                                attributeID.append(character.lowercased())
+                            }
+                        }
+
+                        return attributeID
+                    }
+                }
+
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 

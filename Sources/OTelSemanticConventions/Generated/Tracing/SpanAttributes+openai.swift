@@ -68,6 +68,12 @@ extension SpanAttributes {
                 /// - Type: enum
                 ///     - `chat_completions`: The OpenAI [Chat Completions API](https://developers.openai.com/api/reference/chat-completions/overview).
                 ///     - `responses`: The OpenAI [Responses API](https://developers.openai.com/api/reference/responses/overview).
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var `type`: SpanAttributeKey<TypeEnum> { .init(name: OTelAttribute.openai.api.`type`) }
 
                 public struct TypeEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
@@ -112,6 +118,12 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `auto`
                 ///     - `default`
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var serviceTier: SpanAttributeKey<ServiceTierEnum> {
                     .init(name: OTelAttribute.openai.request.serviceTier)
                 }
@@ -156,6 +168,12 @@ extension SpanAttributes {
                 /// - Examples:
                 ///     - `scale`
                 ///     - `default`
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var serviceTier: SpanAttributeKey<String> {
                     .init(name: OTelAttribute.openai.response.serviceTier)
                 }
@@ -165,6 +183,12 @@ extension SpanAttributes {
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `fp_44709d6fcb`
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public var systemFingerprint: SpanAttributeKey<String> {
                     .init(name: OTelAttribute.openai.response.systemFingerprint)
                 }

@@ -142,6 +142,41 @@ extension OTelAttribute {
             public static let name = "file.group.name"
         }
 
+        /// `file.lock` namespace
+        public enum lock {
+            /// `file.lock.mechanism` **UNSTABLE**: The lock mechanism such as noted by [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html)
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Examples:
+            ///     - `POSIX`
+            ///     - `FLOCK`
+            ///     - `DELEG`
+            ///     - `LEASE`
+            public static let mechanism = "file.lock.mechanism"
+
+            /// `file.lock.mode` **UNSTABLE**: Mode of lock or operation such as documented by [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html)
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Examples:
+            ///     - `ADVISORY`
+            ///     - `MANDATORY`
+            ///     - `BREAKING`
+            ///     - `ACTIVE`
+            ///     - `BREAKER`
+            public static let mode = "file.lock.mode"
+
+            /// `file.lock.type` **UNSTABLE**: The lock type as represented by i.e. [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html)'s l_type.
+            ///
+            /// - Stability: development
+            /// - Type: enum
+            ///     - `read`
+            ///     - `write`
+            /// - Example: `read`
+            public static let `type` = "file.lock.type"
+        }
+
         /// `file.owner` namespace
         public enum owner {
             /// `file.owner.id` **UNSTABLE**: The user ID (UID) or security identifier (SID) of the file owner.

@@ -56,7 +56,12 @@ extension OTelAttribute {
         ///     - `deepseek`: DeepSeek
         ///     - `groq`: Groq
         ///     - `mistral_ai`: Mistral AI
-        @available(*, deprecated, renamed: "OTelAttribute.genAi.provider.name")
+        @available(
+            *,
+            deprecated,
+            message:
+                "Replaced by `gen_ai.provider.name`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+        )
         public static let system = "gen_ai.system"
 
         /// `gen_ai.system_instructions` **UNSTABLE**: The system message or instructions provided to the GenAI model separately from the chat history.
@@ -90,7 +95,7 @@ extension OTelAttribute {
         /// Instructions that are part of the chat history SHOULD be recorded in
         /// `gen_ai.input.messages` attribute instead.
         ///
-        /// Instrumentations MUST follow [System instructions JSON schema](/docs/gen-ai/gen-ai-system-instructions.json).
+        /// Instrumentations MUST follow [System instructions JSON schema](https://github.com/open-telemetry/semantic-conventions/blob/v1.41.0/docs/gen-ai/gen-ai-system-instructions.json).
         ///
         /// When recorded on spans, it MAY be recorded as a JSON string if structured
         /// format is not supported and SHOULD be recorded in structured form otherwise.
@@ -101,8 +106,14 @@ extension OTelAttribute {
         /// > [!Warning]
         /// > This attribute may contain sensitive information.
         ///
-        /// See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
+        /// See [Recording content on attributes](https://github.com/open-telemetry/semantic-conventions/blob/v1.41.0/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
         /// section for more details.
+        @available(
+            *,
+            deprecated,
+            message:
+                "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+        )
         public static let systemInstructions = "gen_ai.system_instructions"
 
         /// `gen_ai.agent` namespace
@@ -114,6 +125,12 @@ extension OTelAttribute {
             /// - Examples:
             ///     - `Helps with math problems`
             ///     - `Generates fiction stories`
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let description = "gen_ai.agent.description"
 
             /// `gen_ai.agent.id` **UNSTABLE**: The unique identifier of the GenAI agent.
@@ -121,6 +138,12 @@ extension OTelAttribute {
             /// - Stability: development
             /// - Type: string
             /// - Example: `asst_5j66UpCpwteGg4YSxUnt7lPY`
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let id = "gen_ai.agent.id"
 
             /// `gen_ai.agent.name` **UNSTABLE**: Human-readable name of the GenAI agent provided by the application.
@@ -130,6 +153,12 @@ extension OTelAttribute {
             /// - Examples:
             ///     - `Math Tutor`
             ///     - `Fiction Writer`
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let name = "gen_ai.agent.name"
 
             /// `gen_ai.agent.version` **UNSTABLE**: The version of the GenAI agent.
@@ -139,6 +168,12 @@ extension OTelAttribute {
             /// - Examples:
             ///     - `1.0.0`
             ///     - `2025-05-01`
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let version = "gen_ai.agent.version"
         }
 
@@ -149,6 +184,12 @@ extension OTelAttribute {
             /// - Stability: development
             /// - Type: string
             /// - Example: `conv_5j66UpCpwteGg4YSxUnt7lPY`
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let id = "gen_ai.conversation.id"
         }
 
@@ -161,6 +202,12 @@ extension OTelAttribute {
             /// - Example: `H7STPQYOND`
             ///
             /// Data sources are used by AI agents and RAG applications to store grounding data. A data source may be an external database, object store, document collection, website, or any other storage system used by the GenAI agent or application. The `gen_ai.data_source.id` SHOULD match the identifier used by the GenAI system rather than a name specific to the external storage, such as a database or object store. Semantic conventions referencing `gen_ai.data_source.id` MAY also leverage additional attributes, such as `db.*`, to further identify and describe the data source.
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let id = "gen_ai.data_source.id"
         }
 
@@ -175,6 +222,12 @@ extension OTelAttribute {
                 /// - Examples:
                 ///     - `512`
                 ///     - `1024`
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public static let count = "gen_ai.embeddings.dimension.count"
             }
         }
@@ -186,6 +239,12 @@ extension OTelAttribute {
             /// - Stability: development
             /// - Type: string
             /// - Example: `The response is factually accurate but lacks sufficient detail to fully address the question.`
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let explanation = "gen_ai.evaluation.explanation"
 
             /// `gen_ai.evaluation.name` **UNSTABLE**: The name of the evaluation metric used for the GenAI response.
@@ -195,6 +254,12 @@ extension OTelAttribute {
             /// - Examples:
             ///     - `Relevance`
             ///     - `IntentResolution`
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let name = "gen_ai.evaluation.name"
 
             /// `gen_ai.evaluation.score` namespace
@@ -212,6 +277,12 @@ extension OTelAttribute {
                 ///     - `fail`
                 ///
                 /// This attribute provides a human-readable interpretation of the evaluation score produced by an evaluator. For example, a score value of 1 could mean "relevant" in one evaluation system and "not relevant" in another, depending on the scoring range and evaluator. The label SHOULD have low cardinality. Possible values depend on the evaluation metric and evaluator used; implementations SHOULD document the possible values.
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public static let label = "gen_ai.evaluation.score.label"
 
                 /// `gen_ai.evaluation.score.value` **UNSTABLE**: The evaluation score returned by the evaluator.
@@ -219,6 +290,12 @@ extension OTelAttribute {
                 /// - Stability: development
                 /// - Type: double
                 /// - Example: `4.0`
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public static let value = "gen_ai.evaluation.score.value"
             }
         }
@@ -265,7 +342,7 @@ extension OTelAttribute {
             /// ]
             /// `
             ///
-            /// Instrumentations MUST follow [Input messages JSON schema](/docs/gen-ai/gen-ai-input-messages.json).
+            /// Instrumentations MUST follow [Input messages JSON schema](https://github.com/open-telemetry/semantic-conventions/blob/v1.41.0/docs/gen-ai/gen-ai-input-messages.json).
             /// When the attribute is recorded on events, it MUST be recorded in structured
             /// form. When recorded on spans, it MAY be recorded as a JSON string if structured
             /// format is not supported and SHOULD be recorded in structured form otherwise.
@@ -277,8 +354,14 @@ extension OTelAttribute {
             /// > [!Warning]
             /// > This attribute is likely to contain sensitive information including user/PII data.
             ///
-            /// See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
+            /// See [Recording content on attributes](https://github.com/open-telemetry/semantic-conventions/blob/v1.41.0/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
             /// section for more details.
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let messages = "gen_ai.input.messages"
         }
 
@@ -293,7 +376,12 @@ extension OTelAttribute {
                 ///     - `text`: Text response format
                 ///     - `json_object`: JSON object response format
                 ///     - `json_schema`: JSON schema response format
-                @available(*, deprecated, renamed: "OTelAttribute.genAi.output.type")
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Replaced by `gen_ai.output.type`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public static let responseFormat = "gen_ai.openai.request.response_format"
 
                 /// `gen_ai.openai.request.seed` **UNSTABLE**: Deprecated, use `gen_ai.request.seed`.
@@ -301,7 +389,12 @@ extension OTelAttribute {
                 /// - Stability: development
                 /// - Type: int
                 /// - Example: `100`
-                @available(*, deprecated, renamed: "OTelAttribute.genAi.request.seed")
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Replaced by `gen_ai.request.seed`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public static let seed = "gen_ai.openai.request.seed"
 
                 /// `gen_ai.openai.request.service_tier` **UNSTABLE**: Deprecated, use `openai.request.service_tier`.
@@ -310,7 +403,12 @@ extension OTelAttribute {
                 /// - Type: enum
                 ///     - `auto`: The system will utilize scale tier credits until they are exhausted.
                 ///     - `default`: The system will utilize the default scale tier.
-                @available(*, deprecated, renamed: "OTelAttribute.openai.request.serviceTier")
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Replaced by `openai.request.service_tier`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public static let serviceTier = "gen_ai.openai.request.service_tier"
             }
 
@@ -323,7 +421,12 @@ extension OTelAttribute {
                 /// - Examples:
                 ///     - `scale`
                 ///     - `default`
-                @available(*, deprecated, renamed: "OTelAttribute.openai.response.serviceTier")
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Replaced by `openai.response.service_tier`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public static let serviceTier = "gen_ai.openai.response.service_tier"
 
                 /// `gen_ai.openai.response.system_fingerprint` **UNSTABLE**: Deprecated, use `openai.response.system_fingerprint`.
@@ -331,7 +434,12 @@ extension OTelAttribute {
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `fp_44709d6fcb`
-                @available(*, deprecated, renamed: "OTelAttribute.openai.response.systemFingerprint")
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Replaced by `openai.response.system_fingerprint`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public static let systemFingerprint = "gen_ai.openai.response.system_fingerprint"
             }
         }
@@ -353,6 +461,12 @@ extension OTelAttribute {
             ///     - `invoke_workflow`: Invoke GenAI workflow
             ///
             /// If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let name = "gen_ai.operation.name"
         }
 
@@ -376,7 +490,7 @@ extension OTelAttribute {
             /// ]
             /// `
             ///
-            /// Instrumentations MUST follow [Output messages JSON schema](/docs/gen-ai/gen-ai-output-messages.json)
+            /// Instrumentations MUST follow [Output messages JSON schema](https://github.com/open-telemetry/semantic-conventions/blob/v1.41.0/docs/gen-ai/gen-ai-output-messages.json)
             ///
             /// Each message represents a single output choice/candidate generated by
             /// the model. Each message corresponds to exactly one generation
@@ -393,8 +507,14 @@ extension OTelAttribute {
             /// > [!Warning]
             /// > This attribute is likely to contain sensitive information including user/PII data.
             ///
-            /// See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
+            /// See [Recording content on attributes](https://github.com/open-telemetry/semantic-conventions/blob/v1.41.0/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
             /// section for more details.
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let messages = "gen_ai.output.messages"
 
             /// `gen_ai.output.type` **UNSTABLE**: Represents the content type requested by the client.
@@ -409,6 +529,12 @@ extension OTelAttribute {
             /// This attribute SHOULD be used when the client requests output of a specific type. The model may return zero or more outputs of this type.
             /// This attribute specifies the output modality and not the actual output format. For example, if an image is requested, the actual output could be a URL pointing to an image file.
             /// Additional output format details may be recorded in the future in the `gen_ai.output.{type}.*` attributes.
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let `type` = "gen_ai.output.type"
         }
 
@@ -419,6 +545,12 @@ extension OTelAttribute {
             /// - Stability: development
             /// - Type: string
             /// - Example: `analyze-code`
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let name = "gen_ai.prompt.name"
         }
 
@@ -462,6 +594,12 @@ extension OTelAttribute {
             /// should have the `gen_ai.provider.name` set to `aws.bedrock` and include
             /// applicable `aws.bedrock.*` attributes and are not expected to include
             /// `openai.*` attributes.
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let name = "gen_ai.provider.name"
         }
 
@@ -473,6 +611,12 @@ extension OTelAttribute {
             /// - Type: stringArray
             ///
             /// In some GenAI systems the encoding formats are called embedding types. Also, some GenAI systems only accept a single format per request.
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let encodingFormats = "gen_ai.request.encoding_formats"
 
             /// `gen_ai.request.frequency_penalty` **UNSTABLE**: The frequency penalty setting for the GenAI request.
@@ -480,6 +624,12 @@ extension OTelAttribute {
             /// - Stability: development
             /// - Type: double
             /// - Example: `0.1`
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let frequencyPenalty = "gen_ai.request.frequency_penalty"
 
             /// `gen_ai.request.max_tokens` **UNSTABLE**: The maximum number of tokens the model generates for a request.
@@ -487,6 +637,12 @@ extension OTelAttribute {
             /// - Stability: development
             /// - Type: int
             /// - Example: `100`
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let maxTokens = "gen_ai.request.max_tokens"
 
             /// `gen_ai.request.model` **UNSTABLE**: The name of the GenAI model a request is being made to.
@@ -494,6 +650,12 @@ extension OTelAttribute {
             /// - Stability: development
             /// - Type: string
             /// - Example: `gpt-4`
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let model = "gen_ai.request.model"
 
             /// `gen_ai.request.presence_penalty` **UNSTABLE**: The presence penalty setting for the GenAI request.
@@ -501,6 +663,12 @@ extension OTelAttribute {
             /// - Stability: development
             /// - Type: double
             /// - Example: `0.1`
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let presencePenalty = "gen_ai.request.presence_penalty"
 
             /// `gen_ai.request.seed` **UNSTABLE**: Requests with same seed value more likely to return same result.
@@ -508,18 +676,36 @@ extension OTelAttribute {
             /// - Stability: development
             /// - Type: int
             /// - Example: `100`
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let seed = "gen_ai.request.seed"
 
             /// `gen_ai.request.stop_sequences` **UNSTABLE**: List of sequences that the model will use to stop generating further tokens.
             ///
             /// - Stability: development
             /// - Type: stringArray
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let stopSequences = "gen_ai.request.stop_sequences"
 
             /// `gen_ai.request.stream` **UNSTABLE**: Indicates whether the GenAI request was made in streaming mode.
             ///
             /// - Stability: development
             /// - Type: boolean
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let stream = "gen_ai.request.stream"
 
             /// `gen_ai.request.temperature` **UNSTABLE**: The temperature setting for the GenAI request.
@@ -527,6 +713,12 @@ extension OTelAttribute {
             /// - Stability: development
             /// - Type: double
             /// - Example: `0.0`
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let temperature = "gen_ai.request.temperature"
 
             /// `gen_ai.request.top_k` **UNSTABLE**: The top_k sampling setting for the GenAI request.
@@ -534,6 +726,12 @@ extension OTelAttribute {
             /// - Stability: development
             /// - Type: double
             /// - Example: `1.0`
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let topK = "gen_ai.request.top_k"
 
             /// `gen_ai.request.top_p` **UNSTABLE**: The top_p sampling setting for the GenAI request.
@@ -541,6 +739,12 @@ extension OTelAttribute {
             /// - Stability: development
             /// - Type: double
             /// - Example: `1.0`
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let topP = "gen_ai.request.top_p"
 
             /// `gen_ai.request.choice` namespace
@@ -550,6 +754,12 @@ extension OTelAttribute {
                 /// - Stability: development
                 /// - Type: int
                 /// - Example: `3`
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public static let count = "gen_ai.request.choice.count"
             }
         }
@@ -560,6 +770,12 @@ extension OTelAttribute {
             ///
             /// - Stability: development
             /// - Type: stringArray
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let finishReasons = "gen_ai.response.finish_reasons"
 
             /// `gen_ai.response.id` **UNSTABLE**: The unique identifier for the completion.
@@ -567,6 +783,12 @@ extension OTelAttribute {
             /// - Stability: development
             /// - Type: string
             /// - Example: `chatcmpl-123`
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let id = "gen_ai.response.id"
 
             /// `gen_ai.response.model` **UNSTABLE**: The name of the model that generated the response.
@@ -574,6 +796,12 @@ extension OTelAttribute {
             /// - Stability: development
             /// - Type: string
             /// - Example: `gpt-4-0613`
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let model = "gen_ai.response.model"
 
             /// `gen_ai.response.time_to_first_chunk` **UNSTABLE**: Time to first chunk in a streaming response, measured from request issuance, in seconds. The value is measured from when the client issues the generation request to when the first chunk is received in the response stream.
@@ -583,6 +811,12 @@ extension OTelAttribute {
             /// - Examples:
             ///     - `0.5`
             ///     - `1.2`
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let timeToFirstChunk = "gen_ai.response.time_to_first_chunk"
         }
 
@@ -608,13 +842,19 @@ extension OTelAttribute {
             /// ]
             /// `
             ///
-            /// Instrumentations MUST follow [Retrieval documents JSON schema](/docs/gen-ai/gen-ai-retrieval-documents.json).
+            /// Instrumentations MUST follow [Retrieval documents JSON schema](https://github.com/open-telemetry/semantic-conventions/blob/v1.41.0/docs/gen-ai/gen-ai-retrieval-documents.json).
             /// When the attribute is recorded on events, it MUST be recorded in structured
             /// form. When recorded on spans, it MAY be recorded as a JSON string if structured
             /// format is not supported and SHOULD be recorded in structured form otherwise.
             ///
             /// Each document object SHOULD contain at least the following properties:
             /// `id` (string): A unique identifier for the document, `score` (double): The relevance score of the document
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let documents = "gen_ai.retrieval.documents"
 
             /// `gen_ai.retrieval.query` namespace
@@ -629,6 +869,12 @@ extension OTelAttribute {
                 ///
                 /// > [!Warning]
                 /// > This attribute may contain sensitive information.
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public static let text = "gen_ai.retrieval.query.text"
             }
         }
@@ -645,6 +891,12 @@ extension OTelAttribute {
             /// - Examples:
             ///     - `input`
             ///     - `output`
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let `type` = "gen_ai.token.type"
         }
 
@@ -683,7 +935,7 @@ extension OTelAttribute {
             /// ]
             /// `
             ///
-            /// Instrumentations MUST follow [Tool Definitions JSON Schema](/docs/gen-ai/gen-ai-tool-definitions.json).
+            /// Instrumentations MUST follow [Tool Definitions JSON Schema](https://github.com/open-telemetry/semantic-conventions/blob/v1.41.0/docs/gen-ai/gen-ai-tool-definitions.json).
             ///
             /// When the attribute is recorded on events, it MUST be recorded in structured
             /// form. When recorded on spans, it MAY be recorded as a JSON string if structured
@@ -692,6 +944,12 @@ extension OTelAttribute {
             /// Since this attribute could be large, it's NOT RECOMMENDED to populate
             /// non-required properties by default. Instrumentations MAY provide a way
             /// to enable populating optional properties.
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let definitions = "gen_ai.tool.definitions"
 
             /// `gen_ai.tool.description` **UNSTABLE**: The tool description.
@@ -699,6 +957,12 @@ extension OTelAttribute {
             /// - Stability: development
             /// - Type: string
             /// - Example: `Multiply two numbers`
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let description = "gen_ai.tool.description"
 
             /// `gen_ai.tool.name` **UNSTABLE**: Name of the tool utilized by the agent.
@@ -706,6 +970,12 @@ extension OTelAttribute {
             /// - Stability: development
             /// - Type: string
             /// - Example: `Flights`
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let name = "gen_ai.tool.name"
 
             /// `gen_ai.tool.type` **UNSTABLE**: Type of the tool utilized by the agent
@@ -722,6 +992,12 @@ extension OTelAttribute {
             /// Function: A tool executed on the client-side, where the agent generates parameters for a predefined function, and the client executes the logic.
             ///   Client-side operations are actions taken on the user's end or within the client application.
             /// Datastore: A tool used by the agent to access and query structured or unstructured external data for retrieval-augmented tasks or knowledge updates.
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let `type` = "gen_ai.tool.type"
 
             /// `gen_ai.tool.call` namespace
@@ -742,6 +1018,12 @@ extension OTelAttribute {
                 /// It's expected to be an object - in case a serialized string is available
                 /// to the instrumentation, the instrumentation SHOULD do the best effort to
                 /// deserialize it to an object. When recorded on spans, it MAY be recorded as a JSON string if structured format is not supported and SHOULD be recorded in structured form otherwise.
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public static let arguments = "gen_ai.tool.call.arguments"
 
                 /// `gen_ai.tool.call.id` **UNSTABLE**: The tool call identifier.
@@ -749,6 +1031,12 @@ extension OTelAttribute {
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `call_mszuSIzqtI65i1wAUOE8w5H4`
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public static let id = "gen_ai.tool.call.id"
 
                 /// `gen_ai.tool.call.result` **UNSTABLE**: The result returned by the tool call (if any and if execution was successful).
@@ -770,6 +1058,12 @@ extension OTelAttribute {
                 /// It's expected to be an object - in case a serialized string is available
                 /// to the instrumentation, the instrumentation SHOULD do the best effort to
                 /// deserialize it to an object. When recorded on spans, it MAY be recorded as a JSON string if structured format is not supported and SHOULD be recorded in structured form otherwise.
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public static let result = "gen_ai.tool.call.result"
             }
         }
@@ -781,7 +1075,12 @@ extension OTelAttribute {
             /// - Stability: development
             /// - Type: int
             /// - Example: `42`
-            @available(*, deprecated, renamed: "OTelAttribute.genAi.usage.outputTokens")
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Replaced by `gen_ai.usage.output_tokens`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let completionTokens = "gen_ai.usage.completion_tokens"
 
             /// `gen_ai.usage.input_tokens` **UNSTABLE**: The number of tokens used in the GenAI input (prompt).
@@ -794,6 +1093,12 @@ extension OTelAttribute {
             /// Instrumentations SHOULD make a best effort to populate this value, using a total
             /// provided by the provider when available or, depending on the provider API,
             /// by summing different token types parsed from the provider output.
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let inputTokens = "gen_ai.usage.input_tokens"
 
             /// `gen_ai.usage.output_tokens` **UNSTABLE**: The number of tokens used in the GenAI response (completion).
@@ -801,6 +1106,12 @@ extension OTelAttribute {
             /// - Stability: development
             /// - Type: int
             /// - Example: `180`
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let outputTokens = "gen_ai.usage.output_tokens"
 
             /// `gen_ai.usage.prompt_tokens` **UNSTABLE**: Deprecated, use `gen_ai.usage.input_tokens` instead.
@@ -808,7 +1119,12 @@ extension OTelAttribute {
             /// - Stability: development
             /// - Type: int
             /// - Example: `42`
-            @available(*, deprecated, renamed: "OTelAttribute.genAi.usage.inputTokens")
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Replaced by `gen_ai.usage.input_tokens`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let promptTokens = "gen_ai.usage.prompt_tokens"
 
             /// `gen_ai.usage.cache_creation` namespace
@@ -820,6 +1136,12 @@ extension OTelAttribute {
                 /// - Example: `25`
                 ///
                 /// The value SHOULD be included in `gen_ai.usage.input_tokens`.
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public static let inputTokens = "gen_ai.usage.cache_creation.input_tokens"
             }
 
@@ -832,6 +1154,12 @@ extension OTelAttribute {
                 /// - Example: `50`
                 ///
                 /// The value SHOULD be included in `gen_ai.usage.input_tokens`.
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public static let inputTokens = "gen_ai.usage.cache_read.input_tokens"
             }
 
@@ -844,6 +1172,12 @@ extension OTelAttribute {
                 /// - Example: `50`
                 ///
                 /// The value SHOULD be included in `gen_ai.usage.output_tokens`.
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+                )
                 public static let outputTokens = "gen_ai.usage.reasoning.output_tokens"
             }
         }
@@ -859,6 +1193,12 @@ extension OTelAttribute {
             ///     - `customer_support_pipeline`
             ///
             /// This attribute can be populated in different frameworks eg: name of the first chain in LangChain OR name of the crew in CrewAI.
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let name = "gen_ai.workflow.name"
         }
     }

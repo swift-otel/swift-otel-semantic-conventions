@@ -82,6 +82,59 @@ extension SpanAttributes {
             /// The list of possible values is defined in the [W3C User-Agent Client Hints specification](https://wicg.github.io/ua-client-hints/#sec-ch-ua-platform). Note that some (but not all) of these values can overlap with values in the [`os.type` and `os.name` attributes](./os.md). However, for consistency, the values in the `browser.platform` attribute should capture the exact value that the user agent provides.
             public var platform: SpanAttributeKey<String> { .init(name: OTelAttribute.browser.platform) }
         }
+
+        /// `browser.document` namespace
+        public var document: DocumentAttributes {
+            get {
+                .init(attributes: self.attributes)
+            }
+            set {
+                self.attributes = newValue.attributes
+            }
+        }
+
+        @dynamicMemberLookup
+        public struct DocumentAttributes: SpanAttributeNamespace {
+            public var attributes: Tracing.SpanAttributes
+
+            public init(attributes: Tracing.SpanAttributes) {
+                self.attributes = attributes
+            }
+
+            public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                public init() {}
+            }
+
+            /// `browser.document.url` namespace
+            public var url: UrlAttributes {
+                get {
+                    .init(attributes: self.attributes)
+                }
+                set {
+                    self.attributes = newValue.attributes
+                }
+            }
+
+            @dynamicMemberLookup
+            public struct UrlAttributes: SpanAttributeNamespace {
+                public var attributes: Tracing.SpanAttributes
+
+                public init(attributes: Tracing.SpanAttributes) {
+                    self.attributes = attributes
+                }
+
+                public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                    public init() {}
+
+                    /// `browser.document.url.full` **UNSTABLE**: Absolute URL of the current browser document according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986).
+                    ///
+                    /// - Stability: development
+                    /// - Type: string
+                    /// - Example: `https://www.example.com/search?q=OpenTelemetry#SemConv`
+                    public var full: SpanAttributeKey<String> { .init(name: OTelAttribute.browser.document.url.full) }
+                }
+            }
+        }
     }
     #endif
 }

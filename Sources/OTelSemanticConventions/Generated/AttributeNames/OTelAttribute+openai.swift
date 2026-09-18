@@ -25,6 +25,12 @@ extension OTelAttribute {
             /// - Type: enum
             ///     - `chat_completions`: The OpenAI [Chat Completions API](https://developers.openai.com/api/reference/chat-completions/overview).
             ///     - `responses`: The OpenAI [Responses API](https://developers.openai.com/api/reference/responses/overview).
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let `type` = "openai.api.type"
         }
 
@@ -39,6 +45,12 @@ extension OTelAttribute {
             /// - Examples:
             ///     - `auto`
             ///     - `default`
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let serviceTier = "openai.request.service_tier"
         }
 
@@ -51,6 +63,12 @@ extension OTelAttribute {
             /// - Examples:
             ///     - `scale`
             ///     - `default`
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let serviceTier = "openai.response.service_tier"
 
             /// `openai.response.system_fingerprint` **UNSTABLE**: A fingerprint to track any eventual change in the Generative AI environment.
@@ -58,6 +76,12 @@ extension OTelAttribute {
             /// - Stability: development
             /// - Type: string
             /// - Example: `fp_44709d6fcb`
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai)."
+            )
             public static let systemFingerprint = "openai.response.system_fingerprint"
         }
     }

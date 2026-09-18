@@ -508,7 +508,7 @@ extension SpanAttributes {
 
                     /// `system.paging.fault.type` **UNSTABLE**: The paging fault type
                     ///
-                    /// - Stability: development
+                    /// - Stability: releaseCandidate
                     /// - Type: enum
                     ///     - `major`
                     ///     - `minor`

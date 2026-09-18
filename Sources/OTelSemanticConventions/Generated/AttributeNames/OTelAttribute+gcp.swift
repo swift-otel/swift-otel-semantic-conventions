@@ -253,6 +253,15 @@ extension OTelAttribute {
                 ///     - `sample-vm.us-west1-b.c.my-project.internal`
                 public static let hostname = "gcp.gce.instance.hostname"
 
+                /// `gcp.gce.instance.labels` **UNSTABLE**: GCE instance labels, `<key>` being the label name and the value being the label value.
+                ///
+                /// - Stability: development
+                /// - Type: templateString
+                /// - Example: `observability`
+                ///
+                /// For example, a GCE instance label `team` with value `observability` SHOULD be recorded as the `gcp.gce.instance.labels.team` attribute with value `"observability"`. The `<key>` MUST be the exact GCE instance label key.
+                public static let labels = "gcp.gce.instance.labels"
+
                 /// `gcp.gce.instance.name` **UNSTABLE**: The instance name of a GCE instance. This is the value provided by `host.name`, the visible name of the instance in the Cloud Console UI, and the prefix for the default hostname of the instance as defined by the [default internal DNS name](https://cloud.google.com/compute/docs/internal-dns#instance-fully-qualified-domain-names).
                 ///
                 /// - Stability: development
