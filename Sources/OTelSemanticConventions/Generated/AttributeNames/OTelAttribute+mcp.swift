@@ -75,7 +75,7 @@ extension OTelAttribute {
 
         /// `mcp.resource` namespace
         public enum resource {
-            /// `mcp.resource.uri` **UNSTABLE**: The value of the resource uri.
+            /// `mcp.resource.uri` **UNSTABLE**: The value of the resource URI.
             ///
             /// - Stability: development
             /// - Type: string

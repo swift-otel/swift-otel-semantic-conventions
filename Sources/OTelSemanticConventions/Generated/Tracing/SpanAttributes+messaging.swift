@@ -257,8 +257,8 @@ extension SpanAttributes {
                 ///     - `MyQueue`
                 ///     - `MyTopic`
                 ///
-                /// Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
-                /// the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
+                /// SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
+                /// the broker doesn't have such notion, it SHOULD uniquely identify the broker.
                 public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.messaging.destination.name) }
 
                 /// `messaging.destination.template` **UNSTABLE**: Low cardinality representation of the messaging destination name
@@ -267,7 +267,7 @@ extension SpanAttributes {
                 /// - Type: string
                 /// - Example: `/customers/{customerId}`
                 ///
-                /// Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
+                /// Destination names could be constructed from templates. An example would be a destination name involving a username or product ID. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
                 public var template: SpanAttributeKey<String> {
                     .init(name: OTelAttribute.messaging.destination.template)
                 }
@@ -532,7 +532,7 @@ extension SpanAttributes {
                         .init(name: OTelAttribute.messaging.gcpPubsub.message.ackDeadline)
                     }
 
-                    /// `messaging.gcp_pubsub.message.ack_id` **UNSTABLE**: The ack id for a given message.
+                    /// `messaging.gcp_pubsub.message.ack_id` **UNSTABLE**: The ack ID for a given message.
                     ///
                     /// - Stability: development
                     /// - Type: string
@@ -589,6 +589,38 @@ extension SpanAttributes {
                 /// - Type: int
                 /// - Example: `42`
                 public var offset: SpanAttributeKey<Int> { .init(name: OTelAttribute.messaging.kafka.offset) }
+            }
+
+            /// `messaging.kafka.cluster` namespace
+            public var cluster: ClusterAttributes {
+                get {
+                    .init(attributes: self.attributes)
+                }
+                set {
+                    self.attributes = newValue.attributes
+                }
+            }
+
+            @dynamicMemberLookup
+            public struct ClusterAttributes: SpanAttributeNamespace {
+                public var attributes: Tracing.SpanAttributes
+
+                public init(attributes: Tracing.SpanAttributes) {
+                    self.attributes = attributes
+                }
+
+                public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                    public init() {}
+
+                    /// `messaging.kafka.cluster.id` **UNSTABLE**: The Kafka cluster ID, obtained from the broker metadata exposed through the Kafka client (or AdminClient) API.
+                    ///
+                    /// - Stability: development
+                    /// - Type: string
+                    /// - Example: `MkU3OEVBNTcwNTJENDM2Qk`
+                    ///
+                    /// The cluster ID is a unique identifier reported by the Kafka broker. It identifies the cluster independently of the individual brokers the client is configured to connect to, and remains stable even if broker hostnames, IP addresses, or ports change.
+                    public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.messaging.kafka.cluster.id) }
+                }
             }
 
             /// `messaging.kafka.consumer` namespace
@@ -654,7 +686,7 @@ extension SpanAttributes {
                         *,
                         deprecated,
                         message:
-                            "Record string representation of the partition id in `messaging.destination.partition.id` attribute."
+                            "Record string representation of the partition ID in `messaging.destination.partition.id` attribute."
                     )
                     public var partition: SpanAttributeKey<Int> {
                         .init(name: OTelAttribute.messaging.kafka.destination.partition)
@@ -1079,7 +1111,7 @@ extension SpanAttributes {
                         .init(name: OTelAttribute.messaging.rocketmq.message.group)
                     }
 
-                    /// `messaging.rocketmq.message.keys` **UNSTABLE**: Key(s) of message, another way to mark message besides message id.
+                    /// `messaging.rocketmq.message.keys` **UNSTABLE**: Key(s) of message, another way to mark message besides message ID.
                     ///
                     /// - Stability: development
                     /// - Type: stringArray

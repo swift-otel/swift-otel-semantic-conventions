@@ -17,7 +17,7 @@ extension OTelAttribute {
     #if Experimental
     /// `source` namespace
     public enum source {
-        /// `source.address` **UNSTABLE**: Source address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+        /// `source.address` **UNSTABLE**: Source address - domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
         ///
         /// - Stability: development
         /// - Type: string

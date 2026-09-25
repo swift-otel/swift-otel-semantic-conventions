@@ -43,7 +43,7 @@ extension SpanAttributes {
         /// - Type: templateString
         /// - Example: `nginx`
         ///
-        /// For example, a docker container label `app` with value `nginx` SHOULD be recorded as the `container.label.app` attribute with value `"nginx"`.
+        /// For example, a Docker container label `app` with value `nginx` SHOULD be recorded as the `container.label.app` attribute with value `"nginx"`.
         public var label: LabelAttributes {
             get {
                 .init(attributes: self.attributes)
@@ -354,7 +354,7 @@ extension SpanAttributes {
                 /// - Type: string
                 /// - Example: `sha256:19c92d0a00d1b66d897bceaa7319bee0dd38a10a851c60bcec9474aa3f01e50f`
                 ///
-                /// Docker defines a sha256 of the image id; `container.image.id` corresponds to the `Image` field from the Docker container inspect [API](https://docs.docker.com/reference/api/engine/version/v1.52/#tag/Container/operation/ContainerInspect) endpoint.
+                /// Docker defines a sha256 of the image ID; `container.image.id` corresponds to the `Image` field from the Docker container inspect [API](https://docs.docker.com/reference/api/engine/version/v1.52/#tag/Container/operation/ContainerInspect) endpoint.
                 /// K8s defines a link to the container registry repository with digest `"imageID": "registry.azurecr.io /namespace/service/dockerfile@sha256:bdeabd40c3a8a492eaf9e8e44d0ebbb84bac7ee25ac0cf8a7159d25f62555625"`.
                 /// The ID is assigned by the container runtime and can vary in different environments. Consider using `oci.manifest.digest` if it is important to identify the same image in different environments/runtimes.
                 public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.container.image.id) }
@@ -367,7 +367,7 @@ extension SpanAttributes {
                 /// - Example: `gcr.io/opentelemetry/operator`
                 public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.container.image.name) }
 
-                /// `container.image.repo_digests`: Repo digests of the container image as provided by the container runtime.
+                /// `container.image.repo_digests`: Repository digests of the container image as provided by the container runtime.
                 ///
                 /// - Stability: stable
                 /// - Type: stringArray

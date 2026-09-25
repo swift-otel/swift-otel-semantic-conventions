@@ -121,7 +121,7 @@ extension OTelAttribute {
             /// - Type: enum
             ///     - `inet`: IPv4 address
             ///     - `inet6`: IPv6 address
-            ///     - `unix`: Unix domain socket path
+            ///     - `unix`: UNIX domain socket path
             @available(*, deprecated, message: "Split to `network.transport` and `network.type`.")
             public static let family = "net.sock.family"
 

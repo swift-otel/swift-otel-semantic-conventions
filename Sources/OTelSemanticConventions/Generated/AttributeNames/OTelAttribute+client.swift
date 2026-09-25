@@ -16,7 +16,7 @@
 extension OTelAttribute {
     /// `client` namespace
     public enum client {
-        /// `client.address`: Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+        /// `client.address`: Client address - domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
         ///
         /// - Stability: stable
         /// - Type: string

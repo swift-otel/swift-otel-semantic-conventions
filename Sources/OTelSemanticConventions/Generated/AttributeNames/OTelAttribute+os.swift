@@ -57,7 +57,7 @@ extension OTelAttribute {
         ///     - `netbsd`: NetBSD
         ///     - `openbsd`: OpenBSD
         ///     - `dragonflybsd`: DragonFly BSD
-        ///     - `hpux`: HP-UX (Hewlett Packard Unix)
+        ///     - `hpux`: HP-UX (Hewlett Packard UNIX)
         ///     - `aix`: AIX (Advanced Interactive eXecutive)
         ///     - `solaris`: SunOS, Oracle Solaris
         ///     - `z_os`: Deprecated. Use `zos` instead.

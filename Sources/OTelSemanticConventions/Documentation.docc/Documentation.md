@@ -512,6 +512,12 @@ The web browser attributes
             - ``Tracing/SpanAttributes/BrowserAttributes/NestedSpanAttributes/language``
             - ``Tracing/SpanAttributes/BrowserAttributes/NestedSpanAttributes/mobile``
             - ``Tracing/SpanAttributes/BrowserAttributes/NestedSpanAttributes/platform``
+            - ``Tracing/SpanAttributes/BrowserAttributes/WebVitalAttributes/NestedSpanAttributes/delta``
+            - ``Tracing/SpanAttributes/BrowserAttributes/WebVitalAttributes/NestedSpanAttributes/id``
+            - ``Tracing/SpanAttributes/BrowserAttributes/WebVitalAttributes/NestedSpanAttributes/name``
+            - ``Tracing/SpanAttributes/BrowserAttributes/WebVitalAttributes/NestedSpanAttributes/navigationType``
+            - ``Tracing/SpanAttributes/BrowserAttributes/WebVitalAttributes/NestedSpanAttributes/rating``
+            - ``Tracing/SpanAttributes/BrowserAttributes/WebVitalAttributes/NestedSpanAttributes/value``
         }
     }
     @Tab("String Constants") {
@@ -521,6 +527,12 @@ The web browser attributes
             - ``OTelAttribute/browser/language``
             - ``OTelAttribute/browser/mobile``
             - ``OTelAttribute/browser/platform``
+            - ``OTelAttribute/browser/webVital/delta``
+            - ``OTelAttribute/browser/webVital/id``
+            - ``OTelAttribute/browser/webVital/name``
+            - ``OTelAttribute/browser/webVital/navigationType``
+            - ``OTelAttribute/browser/webVital/rating``
+            - ``OTelAttribute/browser/webVital/value``
         }
     }
 }
@@ -600,8 +612,6 @@ This group describes attributes specific to pipelines within a Continuous Integr
 }
 
 ## Client Attributes
-
-These attributes may be used to describe the client in a connection-based network interaction where there is one side that initiates the connection (the client is the side that initiates the connection). This covers all TCP network interactions since TCP is connection-based and one side initiates the connection (an exception is made for peer-to-peer communication over TCP where the "user-facing" surface of the protocol / API doesn't expose a clear notion of client and server). This also covers UDP network interactions where one side initiates the interaction, e.g. QUIC (HTTP/3) and DNS.
 
 @TabNavigator {
     @Tab("Span Attributes") {
@@ -824,7 +834,7 @@ Describes deprecated container attributes.
 
 ## CPU Attributes
 
-Attributes specific to a cpu instance.
+Attributes specific to a CPU instance.
 @TabNavigator {
     @Tab("Span Attributes") {
         @Links(visualStyle: list) {
@@ -1042,8 +1052,6 @@ Describes deprecated deployment attributes.
 
 ## Destination Attributes
 
-These attributes may be used to describe the receiver of a network exchange/packet. These should be used when there is no client/server relationship between the two sides, or when that relationship is unknown. This covers low-level network interactions (e.g. packet tracing) where you don't know if there was a connection or which side initiated it. This also covers unidirectional UDP flows and peer-to-peer communication where the "user-facing" surface of the protocol / API doesn't expose a clear notion of client and server.
-
 @TabNavigator {
     @Tab("Span Attributes") {
         @Links(visualStyle: list) {
@@ -1156,7 +1164,7 @@ Describes the end user.
 
 ## Deprecated End User Attributes
 
-Describes deprecated enduser attributes.
+Describes deprecated end user attributes.
 @TabNavigator {
     @Tab("Span Attributes") {
         @Links(visualStyle: list) {
@@ -1728,7 +1736,7 @@ Describes deprecated `gen_ai.openai` attributes.
 ## registry.geo
 
 Geo fields can carry data about a specific location related to an event. This geolocation information can be derived from techniques such as Geo IP, or be user-supplied.
-Note: Geo attributes are typically used under another namespace, such as client.* and describe the location of the corresponding entity (device, end-user, etc). Semantic conventions that reference geo attributes (as a root namespace) or embed them (under their own namespace) SHOULD document what geo attributes describe in the scope of that convention.
+Note: Geo attributes are typically used under another namespace, such as client.* and describe the location of the corresponding entity (device, end user, etc). Semantic conventions that reference geo attributes (as a root namespace) or embed them (under their own namespace) SHOULD document what geo attributes describe in the scope of that convention.
 
 @TabNavigator {
     @Tab("Span Attributes") {
@@ -2260,7 +2268,7 @@ Kubernetes resource attributes.
 
 ## Deprecated Kubernetes Attributes
 
-Describes deprecated k8s attributes.
+Describes deprecated K8s attributes.
 @TabNavigator {
     @Tab("Span Attributes") {
         @Links(visualStyle: list) {
@@ -2499,6 +2507,7 @@ This group describes attributes specific to Apache Kafka.
 @TabNavigator {
     @Tab("Span Attributes") {
         @Links(visualStyle: list) {
+            - ``Tracing/SpanAttributes/MessagingAttributes/KafkaAttributes/ClusterAttributes/NestedSpanAttributes/id``
             - ``Tracing/SpanAttributes/MessagingAttributes/KafkaAttributes/MessageAttributes/NestedSpanAttributes/key``
             - ``Tracing/SpanAttributes/MessagingAttributes/KafkaAttributes/MessageAttributes/NestedSpanAttributes/tombstone``
             - ``Tracing/SpanAttributes/MessagingAttributes/KafkaAttributes/NestedSpanAttributes/offset``
@@ -2506,6 +2515,7 @@ This group describes attributes specific to Apache Kafka.
     }
     @Tab("String Constants") {
         @Links(visualStyle: list) {
+            - ``OTelAttribute/messaging/kafka/cluster/id``
             - ``OTelAttribute/messaging/kafka/message/key``
             - ``OTelAttribute/messaging/kafka/message/tombstone``
             - ``OTelAttribute/messaging/kafka/offset``
@@ -3241,8 +3251,6 @@ Describes security rule attributes. Rule fields are used to capture the specific
 
 ## Server Attributes
 
-These attributes may be used to describe the server in a connection-based network interaction where there is one side that initiates the connection (the client is the side that initiates the connection). This covers all TCP network interactions since TCP is connection-based and one side initiates the connection (an exception is made for peer-to-peer communication over TCP where the "user-facing" surface of the protocol / API doesn't expose a clear notion of client and server). This also covers UDP network interactions where one side initiates the interaction, e.g. QUIC (HTTP/3) and DNS.
-
 @TabNavigator {
     @Tab("Span Attributes") {
         @Links(visualStyle: list) {
@@ -3324,8 +3332,6 @@ When a session reaches end of life, typically due to user inactivity or session 
 }
 
 ## Source Attributes
-
-These attributes may be used to describe the sender of a network exchange/packet. These should be used when there is no client/server relationship between the two sides, or when that relationship is unknown. This covers low-level network interactions (e.g. packet tracing) where you don't know if there was a connection or which side initiated it. This also covers unidirectional UDP flows and peer-to-peer communication where the "user-facing" surface of the protocol / API doesn't expose a clear notion of client and server.
 
 @TabNavigator {
     @Tab("Span Attributes") {
@@ -4062,11 +4068,23 @@ This document defines attributes of a z/OS resource.
 - ``Tracing/SpanAttributes/BrowserAttributes/NestedSpanAttributes/language``
 - ``Tracing/SpanAttributes/BrowserAttributes/NestedSpanAttributes/mobile``
 - ``Tracing/SpanAttributes/BrowserAttributes/NestedSpanAttributes/platform``
+- ``Tracing/SpanAttributes/BrowserAttributes/WebVitalAttributes/NestedSpanAttributes/delta``
+- ``Tracing/SpanAttributes/BrowserAttributes/WebVitalAttributes/NestedSpanAttributes/id``
+- ``Tracing/SpanAttributes/BrowserAttributes/WebVitalAttributes/NestedSpanAttributes/name``
+- ``Tracing/SpanAttributes/BrowserAttributes/WebVitalAttributes/NestedSpanAttributes/navigationType``
+- ``Tracing/SpanAttributes/BrowserAttributes/WebVitalAttributes/NestedSpanAttributes/rating``
+- ``Tracing/SpanAttributes/BrowserAttributes/WebVitalAttributes/NestedSpanAttributes/value``
 - ``OTelAttribute/browser/brands``
 - ``OTelAttribute/browser/document/url/full``
 - ``OTelAttribute/browser/language``
 - ``OTelAttribute/browser/mobile``
 - ``OTelAttribute/browser/platform``
+- ``OTelAttribute/browser/webVital/delta``
+- ``OTelAttribute/browser/webVital/id``
+- ``OTelAttribute/browser/webVital/name``
+- ``OTelAttribute/browser/webVital/navigationType``
+- ``OTelAttribute/browser/webVital/rating``
+- ``OTelAttribute/browser/webVital/value``
 
 ### Cassandra Attributes
 
@@ -5284,9 +5302,11 @@ This document defines attributes of a z/OS resource.
 
 ### Kafka Attributes
 
+- ``Tracing/SpanAttributes/MessagingAttributes/KafkaAttributes/ClusterAttributes/NestedSpanAttributes/id``
 - ``Tracing/SpanAttributes/MessagingAttributes/KafkaAttributes/MessageAttributes/NestedSpanAttributes/key``
 - ``Tracing/SpanAttributes/MessagingAttributes/KafkaAttributes/MessageAttributes/NestedSpanAttributes/tombstone``
 - ``Tracing/SpanAttributes/MessagingAttributes/KafkaAttributes/NestedSpanAttributes/offset``
+- ``OTelAttribute/messaging/kafka/cluster/id``
 - ``OTelAttribute/messaging/kafka/message/key``
 - ``OTelAttribute/messaging/kafka/message/tombstone``
 - ``OTelAttribute/messaging/kafka/offset``

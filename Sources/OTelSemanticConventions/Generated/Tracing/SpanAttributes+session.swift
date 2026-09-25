@@ -40,7 +40,7 @@ extension SpanAttributes {
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
 
-            /// `session.id` **UNSTABLE**: A unique id to identify a session.
+            /// `session.id` **UNSTABLE**: A unique ID to identify a session.
             ///
             /// - Stability: development
             /// - Type: string

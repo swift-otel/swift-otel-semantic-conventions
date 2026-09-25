@@ -40,7 +40,7 @@ extension SpanAttributes {
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
 
-            /// `destination.address` **UNSTABLE**: Destination address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+            /// `destination.address` **UNSTABLE**: Destination address - domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
             ///
             /// - Stability: development
             /// - Type: string

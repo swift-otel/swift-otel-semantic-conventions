@@ -87,7 +87,7 @@ extension SpanAttributes {
             /// MAC Addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf): as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
             public var mac: SpanAttributeKey<[String]> { .init(name: OTelAttribute.host.mac) }
 
-            /// `host.name` **UNSTABLE**: Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user.
+            /// `host.name` **UNSTABLE**: Name of the host. On UNIX systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user.
             ///
             /// - Stability: development
             /// - Type: string

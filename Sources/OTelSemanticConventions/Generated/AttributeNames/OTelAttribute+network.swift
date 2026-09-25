@@ -23,7 +23,7 @@ extension OTelAttribute {
         ///     - `tcp`: TCP
         ///     - `udp`: UDP
         ///     - `pipe`: Named or anonymous pipe.
-        ///     - `unix`: Unix domain socket
+        ///     - `unix`: UNIX domain socket
         ///     - `quic`: QUIC
         /// - Examples:
         ///     - `tcp`
@@ -105,7 +105,7 @@ extension OTelAttribute {
             /// Connection states are defined as part of the [rfc9293](https://datatracker.ietf.org/doc/html/rfc9293#section-3.3.2)
             public static let state = "network.connection.state"
 
-            /// `network.connection.subtype` **UNSTABLE**: This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection.
+            /// `network.connection.subtype` **UNSTABLE**: This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a Wi-Fi connection.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -137,7 +137,7 @@ extension OTelAttribute {
             ///
             /// - Stability: development
             /// - Type: enum
-            ///     - `wifi`
+            ///     - `wifi`: Wi-Fi
             ///     - `wired`
             ///     - `cell`
             ///     - `unavailable`
@@ -152,7 +152,7 @@ extension OTelAttribute {
         public enum interface {
             /// `network.interface.name` **UNSTABLE**: The network interface name.
             ///
-            /// - Stability: development
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Examples:
             ///     - `lo`
@@ -177,7 +177,7 @@ extension OTelAttribute {
 
         /// `network.local` namespace
         public enum local {
-            /// `network.local.address`: Local address of the network connection - IP address or Unix domain socket name.
+            /// `network.local.address`: Local address of the network connection - IP address or UNIX domain socket name.
             ///
             /// - Stability: stable
             /// - Type: string
@@ -196,7 +196,7 @@ extension OTelAttribute {
 
         /// `network.peer` namespace
         public enum peer {
-            /// `network.peer.address`: Peer address of the network connection - IP address or Unix domain socket name.
+            /// `network.peer.address`: Peer address of the network connection - IP address or UNIX domain socket name.
             ///
             /// - Stability: stable
             /// - Type: string

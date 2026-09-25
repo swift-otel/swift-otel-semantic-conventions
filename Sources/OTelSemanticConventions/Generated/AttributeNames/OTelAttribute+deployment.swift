@@ -29,7 +29,7 @@ extension OTelAttribute {
         #endif
 
         #if Experimental
-        /// `deployment.id` **UNSTABLE**: The id of the deployment.
+        /// `deployment.id` **UNSTABLE**: The ID of the deployment.
         ///
         /// - Stability: development
         /// - Type: string

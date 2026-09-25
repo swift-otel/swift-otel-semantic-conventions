@@ -168,7 +168,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `mcp.resource.uri` **UNSTABLE**: The value of the resource uri.
+                /// `mcp.resource.uri` **UNSTABLE**: The value of the resource URI.
                 ///
                 /// - Stability: development
                 /// - Type: string

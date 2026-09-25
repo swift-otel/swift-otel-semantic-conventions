@@ -39,7 +39,7 @@ extension SpanAttributes {
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
 
-            /// `server.address`: Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+            /// `server.address`: Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
             ///
             /// - Stability: stable
             /// - Type: string
