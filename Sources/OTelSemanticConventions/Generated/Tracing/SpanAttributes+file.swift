@@ -92,7 +92,7 @@ extension SpanAttributes {
             ///     - `png`
             ///     - `gz`
             ///
-            /// When the file name has multiple extensions (example.tar.gz), only the last one should be captured ("gz", not "tar.gz").
+            /// When the filename has multiple extensions (example.tar.gz), only the last one should be captured ("gz", not "tar.gz").
             public var `extension`: SpanAttributeKey<String> { .init(name: OTelAttribute.file.`extension`) }
 
             /// `file.fork_name` **UNSTABLE**: Name of the fork. A fork is additional data associated with a filesystem object.
@@ -102,7 +102,7 @@ extension SpanAttributes {
             /// - Example: `Zone.Identifier`
             ///
             /// On Linux, a resource fork is used to store additional data with a filesystem object. A file always has at least one fork for the data portion, and additional forks may exist.
-            /// On NTFS, this is analogous to an Alternate Data Stream (ADS), and the default data stream for a file is just called $DATA. Zone.Identifier is commonly used by Windows to track contents downloaded from the Internet. An ADS is typically of the form: C:\path\to\filename.extension:some_fork_name, and some_fork_name is the value that should populate `fork_name`. `filename.extension` should populate `file.name`, and `extension` should populate `file.extension`. The full path, `file.path`, will include the fork name.
+            /// On NTFS, this is analogous to an Alternate Data Stream (ADS), and the default data stream for a file is just called $DATA. Zone.Identifier is commonly used by Windows to track contents downloaded from the internet. An ADS is typically of the form: C:\path\to\filename.extension:some_fork_name, and some_fork_name is the value that should populate `fork_name`. `filename.extension` should populate `file.name`, and `extension` should populate `file.extension`. The full path, `file.path`, will include the fork name.
             public var forkName: SpanAttributeKey<String> { .init(name: OTelAttribute.file.forkName) }
 
             /// `file.inode` **UNSTABLE**: Inode representing the file in the filesystem.
@@ -133,7 +133,7 @@ extension SpanAttributes {
             /// - Example: `example.png`
             public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.file.name) }
 
-            /// `file.path` **UNSTABLE**: Full path to the file, including the file name. It should include the drive letter, when appropriate.
+            /// `file.path` **UNSTABLE**: Full path to the file, including the filename. It should include the drive letter, when appropriate.
             ///
             /// - Stability: development
             /// - Type: string

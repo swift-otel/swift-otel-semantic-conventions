@@ -42,19 +42,19 @@ extension OTelAttribute {
             ///
             /// - Stability: stable
             /// - Type: enum
-            ///     - `cpp`
-            ///     - `dotnet`
-            ///     - `erlang`
-            ///     - `go`
-            ///     - `java`
-            ///     - `kotlin`
-            ///     - `nodejs`
-            ///     - `php`
-            ///     - `python`
-            ///     - `ruby`
-            ///     - `rust`
-            ///     - `swift`
-            ///     - `webjs`
+            ///     - `cpp`: [C++](https://opentelemetry.io/docs/languages/cpp/)
+            ///     - `dotnet`: [.NET](https://opentelemetry.io/docs/languages/dotnet/)
+            ///     - `erlang`: [Erlang/Elixir](https://opentelemetry.io/docs/languages/erlang/)
+            ///     - `go`: [Go](https://opentelemetry.io/docs/languages/go/)
+            ///     - `java`: [Java](https://opentelemetry.io/docs/languages/java/)
+            ///     - `kotlin`: [Kotlin](https://opentelemetry.io/docs/languages/kotlin/)
+            ///     - `nodejs`: [Node.js](https://opentelemetry.io/docs/languages/js/)
+            ///     - `php`: [PHP](https://opentelemetry.io/docs/languages/php/)
+            ///     - `python`: [Python](https://opentelemetry.io/docs/languages/python/)
+            ///     - `ruby`: [Ruby](https://opentelemetry.io/docs/languages/ruby/)
+            ///     - `rust`: [Rust](https://opentelemetry.io/docs/languages/rust/)
+            ///     - `swift`: [Swift](https://opentelemetry.io/docs/languages/swift/)
+            ///     - `webjs`: [Browser](https://opentelemetry.io/docs/languages/js/)
             public static let language = "telemetry.sdk.language"
 
             /// `telemetry.sdk.name`: The name of the telemetry SDK as defined above.

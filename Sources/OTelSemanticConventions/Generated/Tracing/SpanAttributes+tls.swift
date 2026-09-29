@@ -238,8 +238,8 @@ extension SpanAttributes {
                 ///
                 /// - Stability: development
                 /// - Type: enum
-                ///     - `ssl`
-                ///     - `tls`
+                ///     - `ssl`: SSL
+                ///     - `tls`: TLS
                 public var name: SpanAttributeKey<NameEnum> { .init(name: OTelAttribute.tls.`protocol`.name) }
 
                 public struct NameEnum: SpanAttributeConvertible, RawRepresentable, Sendable {

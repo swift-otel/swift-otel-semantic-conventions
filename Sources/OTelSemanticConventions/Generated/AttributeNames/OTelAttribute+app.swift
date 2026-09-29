@@ -29,7 +29,7 @@ extension OTelAttribute {
 
         /// `app.crash` namespace
         public enum crash {
-            /// `app.crash.id` **UNSTABLE**: A unique identifier representing an instance of an end-user facing app crash.
+            /// `app.crash.id` **UNSTABLE**: A unique identifier representing an instance of an end user facing app crash.
             ///
             /// - Stability: development
             /// - Type: string

@@ -1,0 +1,261 @@
+//===----------------------------------------------------------------------===//
+//
+// This source file is part of the Swift OTel open source project
+//
+// Copyright (c) 2025 the Swift OTel project authors
+// Licensed under Apache License v2.0
+//
+// See LICENSE.txt for license information
+//
+// SPDX-License-Identifier: Apache-2.0
+//
+//===----------------------------------------------------------------------===//
+
+/// This file defines the Semantic Convenetions Definition Language v1.
+/// See: https://github.com/open-telemetry/weaver/blob/main/schemas/semconv-syntax.md
+enum SDLCv1 {
+    /// Structure of an OTel semconv registry.yaml file.
+    struct Document: Decodable {
+        let groups: [Group]
+    }
+
+    struct Group: Decodable {
+        let id: String
+        let type: GroupType
+        let stability: Stability?
+        let display_name: String?
+        let brief: String?
+        let attributes: [AttributeContainer]
+
+        var documentationTopic: String {
+            display_name ?? id
+        }
+
+        enum GroupType: String, Codable {
+            case attribute_group
+            case metric
+            case span
+        }
+
+        enum Instrument: String, Codable {
+            case gauge
+            case updowncounter
+        }
+    }
+
+    enum AttributeContainer: Decodable {
+        case attribute(Attribute)
+        case reference(AttributeRef)
+
+        init(from decoder: Decoder) throws {
+            let container = try decoder.singleValueContainer()
+            do {
+                let attribute = try container.decode(Attribute.self)
+                self = .attribute(attribute)
+            } catch let attributeError {
+                do {
+                    let reference = try container.decode(AttributeRef.self)
+                    self = .reference(reference)
+                } catch {
+                    throw attributeError
+                }
+            }
+        }
+    }
+
+    struct AttributeRef: Decodable {
+        let ref: String
+    }
+
+    struct Attribute: Decodable {
+        let id: String
+        let type: AttributeType
+        let stability: Stability
+        let brief: String?
+        let note: String?
+        let deprecated: Deprecated?
+        let examples: [String]?
+
+        enum RequirementLevel: String, Codable {
+            case required
+        }
+
+        init(
+            id: String,
+            type: AttributeType,
+            stability: Stability = .experimental,
+            brief: String? = nil,
+            note: String? = nil,
+            deprecated: Deprecated? = nil,
+            examples: [String]? = nil
+        ) {
+            self.id = id
+            self.type = type
+            self.stability = stability
+            self.brief = brief
+            self.note = note
+            self.deprecated = deprecated
+            self.examples = examples
+        }
+
+        init(from decoder: any Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            id = try container.decode(String.self, forKey: .id)
+            do {
+                let type = try container.decode(StandardType.self, forKey: .type)
+                self.type = type
+            } catch let standardTypeError {
+                do {
+                    let type = try container.decode(EnumType.self, forKey: .type)
+                    self.type = type
+                } catch let enumTypeError {
+                    throw DecodingError.dataCorrupted(
+                        .init(
+                            codingPath: container.codingPath,
+                            debugDescription:
+                                "Unexpected `type` value: StandardType error: \(standardTypeError), EnumType error: \(enumTypeError)"
+                        )
+                    )
+                }
+            }
+            stability = try container.decodeIfPresent(Stability.self, forKey: .stability) ?? .experimental
+            brief = try container.decodeIfPresent(String.self, forKey: .brief)
+            note = try container.decodeIfPresent(String.self, forKey: .note)
+            deprecated = try container.decodeIfPresent(Deprecated.self, forKey: .deprecated)
+            if !container.contains(.examples) {
+                examples = nil
+            } else if let example = try? container.decode(String.self, forKey: .examples) {
+                examples = [example]
+            } else {
+                let examples = try? container.decode([String].self, forKey: .examples)
+                self.examples = examples
+            }
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case id
+            case type
+            case stability
+            case brief
+            case note
+            case deprecated
+            case examples
+        }
+
+        // Attributes may have a declared type or be a list of enum values
+        protocol AttributeType: Codable, Sendable {}
+
+        enum StandardType: String, Codable, AttributeType {
+            case boolean
+            case booleanArray = "boolean[]"
+            case templateBoolean = "template[boolean]"
+            case templateBooleanArray = "template[boolean[]]"
+            case double
+            case doubleArray = "double[]"
+            case templateDouble = "template[double]"
+            case templateDoubleArray = "template[double[]]"
+            case int
+            case intArray = "int[]"
+            case templateInt = "template[int]"
+            case templateIntArray = "template[int[]]"
+            case string
+            case stringArray = "string[]"
+            case templateString = "template[string]"
+            case templateStringArray = "template[string[]]"
+            case any
+        }
+
+        struct EnumType: AttributeType {
+            let members: [EnumMember]
+
+            struct EnumMember: Codable {
+                let id: String
+                let value: String
+                let deprecated: Deprecated?
+                let brief: String?
+                let stability: Stability?
+            }
+        }
+    }
+
+    // Attributes examples can vary in format
+    protocol AttributeExample: Codable {}
+
+    enum Deprecated: Codable, Equatable {
+        case obsoleted(note: String?)
+        case renamed(renamed_to: String, note: String?)
+        case uncategorized(note: String?)
+
+        init(from decoder: any Decoder) throws {
+            if let container = try? decoder.singleValueContainer(),
+                let note = try? container.decode(String.self)
+            {
+                self = .uncategorized(note: note)
+            } else if let container = try? decoder.container(keyedBy: CodingKeys.self),
+                let reason = try? container.decode(Reason.self, forKey: .reason)
+            {
+                switch reason {
+                case .obsoleted:
+                    let note = try container.decodeIfPresent(String.self, forKey: .note)
+                    self = .obsoleted(note: note)
+                case .renamed:
+                    let renamed_to = try container.decode(String.self, forKey: .renamed_to)
+                    let note = try container.decodeIfPresent(String.self, forKey: .note)
+                    self = .renamed(renamed_to: renamed_to, note: note)
+                case .uncategorized:
+                    let note = try container.decodeIfPresent(String.self, forKey: .note)
+                    self = .uncategorized(note: note)
+                }
+            } else {
+                throw DecodingError.dataCorrupted(
+                    .init(
+                        codingPath: decoder.codingPath,
+                        debugDescription: "Unexpected format for `deprecated`. Expected an object or string."
+                    )
+                )
+            }
+        }
+
+        func encode(to encoder: any Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            switch self {
+            case .obsoleted(let note):
+                try container.encode(Reason.obsoleted, forKey: .reason)
+                try container.encodeIfPresent(note, forKey: .note)
+            case .renamed(let renamed_to, let note):
+                try container.encode(Reason.renamed, forKey: .reason)
+                try container.encode(renamed_to, forKey: .renamed_to)
+                try container.encodeIfPresent(note, forKey: .note)
+            case .uncategorized(let note):
+                try container.encode(Reason.uncategorized, forKey: .reason)
+                try container.encodeIfPresent(note, forKey: .note)
+            }
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case reason
+            case renamed_to
+            case note
+        }
+
+        private enum Reason: String, Codable {
+            case obsoleted
+            case renamed
+            case uncategorized
+        }
+    }
+
+    enum Stability: String, Codable {
+        case alpha
+        case beta
+        case development
+        case experimental
+        case releaseCandidate = "release_candidate"
+        case stable
+    }
+}
+
+extension Bool: SDLCv1.AttributeExample {}
+extension Double: SDLCv1.AttributeExample {}
+extension Int: SDLCv1.AttributeExample {}
+extension String: SDLCv1.AttributeExample {}

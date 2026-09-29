@@ -118,10 +118,10 @@ extension SpanAttributes {
                 ///
                 /// - Stability: development
                 /// - Type: enum
-                ///     - `batching_span_processor`: The builtin SDK batching span processor
-                ///     - `simple_span_processor`: The builtin SDK simple span processor
-                ///     - `batching_log_processor`: The builtin SDK batching log record processor
-                ///     - `simple_log_processor`: The builtin SDK simple log record processor
+                ///     - `batching_span_processor`: The built-in SDK batching span processor
+                ///     - `simple_span_processor`: The built-in SDK simple span processor
+                ///     - `batching_log_processor`: The built-in SDK batching log record processor
+                ///     - `simple_log_processor`: The built-in SDK simple log record processor
                 ///     - `otlp_grpc_span_exporter`: OTLP span exporter over gRPC with protobuf serialization
                 ///     - `otlp_http_span_exporter`: OTLP span exporter over HTTP with protobuf serialization
                 ///     - `otlp_http_json_span_exporter`: OTLP span exporter over HTTP with JSON serialization
@@ -129,7 +129,7 @@ extension SpanAttributes {
                 ///     - `otlp_grpc_log_exporter`: OTLP log record exporter over gRPC with protobuf serialization
                 ///     - `otlp_http_log_exporter`: OTLP log record exporter over HTTP with protobuf serialization
                 ///     - `otlp_http_json_log_exporter`: OTLP log record exporter over HTTP with JSON serialization
-                ///     - `periodic_metric_reader`: The builtin SDK periodically exporting metric reader
+                ///     - `periodic_metric_reader`: The built-in SDK periodically exporting metric reader
                 ///     - `otlp_grpc_metric_exporter`: OTLP metric exporter over gRPC with protobuf serialization
                 ///     - `otlp_http_metric_exporter`: OTLP metric exporter over HTTP with protobuf serialization
                 ///     - `otlp_http_json_metric_exporter`: OTLP metric exporter over HTTP with JSON serialization

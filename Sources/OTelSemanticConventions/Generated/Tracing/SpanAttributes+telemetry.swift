@@ -105,19 +105,19 @@ extension SpanAttributes {
                 ///
                 /// - Stability: stable
                 /// - Type: enum
-                ///     - `cpp`
-                ///     - `dotnet`
-                ///     - `erlang`
-                ///     - `go`
-                ///     - `java`
-                ///     - `kotlin`
-                ///     - `nodejs`
-                ///     - `php`
-                ///     - `python`
-                ///     - `ruby`
-                ///     - `rust`
-                ///     - `swift`
-                ///     - `webjs`
+                ///     - `cpp`: [C++](https://opentelemetry.io/docs/languages/cpp/)
+                ///     - `dotnet`: [.NET](https://opentelemetry.io/docs/languages/dotnet/)
+                ///     - `erlang`: [Erlang/Elixir](https://opentelemetry.io/docs/languages/erlang/)
+                ///     - `go`: [Go](https://opentelemetry.io/docs/languages/go/)
+                ///     - `java`: [Java](https://opentelemetry.io/docs/languages/java/)
+                ///     - `kotlin`: [Kotlin](https://opentelemetry.io/docs/languages/kotlin/)
+                ///     - `nodejs`: [Node.js](https://opentelemetry.io/docs/languages/js/)
+                ///     - `php`: [PHP](https://opentelemetry.io/docs/languages/php/)
+                ///     - `python`: [Python](https://opentelemetry.io/docs/languages/python/)
+                ///     - `ruby`: [Ruby](https://opentelemetry.io/docs/languages/ruby/)
+                ///     - `rust`: [Rust](https://opentelemetry.io/docs/languages/rust/)
+                ///     - `swift`: [Swift](https://opentelemetry.io/docs/languages/swift/)
+                ///     - `webjs`: [Browser](https://opentelemetry.io/docs/languages/js/)
                 public var language: SpanAttributeKey<LanguageEnum> {
                     .init(name: OTelAttribute.telemetry.sdk.language)
                 }
@@ -127,31 +127,31 @@ extension SpanAttributes {
                     public init(rawValue: String) {
                         self.rawValue = rawValue
                     }
-                    /// `cpp`
+                    /// `cpp`: [C++](https://opentelemetry.io/docs/languages/cpp/)
                     public static let cpp = Self.init(rawValue: "cpp")
-                    /// `dotnet`
+                    /// `dotnet`: [.NET](https://opentelemetry.io/docs/languages/dotnet/)
                     public static let dotnet = Self.init(rawValue: "dotnet")
-                    /// `erlang`
+                    /// `erlang`: [Erlang/Elixir](https://opentelemetry.io/docs/languages/erlang/)
                     public static let erlang = Self.init(rawValue: "erlang")
-                    /// `go`
+                    /// `go`: [Go](https://opentelemetry.io/docs/languages/go/)
                     public static let go = Self.init(rawValue: "go")
-                    /// `java`
+                    /// `java`: [Java](https://opentelemetry.io/docs/languages/java/)
                     public static let java = Self.init(rawValue: "java")
-                    /// `kotlin`
+                    /// `kotlin`: [Kotlin](https://opentelemetry.io/docs/languages/kotlin/)
                     public static let kotlin = Self.init(rawValue: "kotlin")
-                    /// `nodejs`
+                    /// `nodejs`: [Node.js](https://opentelemetry.io/docs/languages/js/)
                     public static let nodejs = Self.init(rawValue: "nodejs")
-                    /// `php`
+                    /// `php`: [PHP](https://opentelemetry.io/docs/languages/php/)
                     public static let php = Self.init(rawValue: "php")
-                    /// `python`
+                    /// `python`: [Python](https://opentelemetry.io/docs/languages/python/)
                     public static let python = Self.init(rawValue: "python")
-                    /// `ruby`
+                    /// `ruby`: [Ruby](https://opentelemetry.io/docs/languages/ruby/)
                     public static let ruby = Self.init(rawValue: "ruby")
-                    /// `rust`
+                    /// `rust`: [Rust](https://opentelemetry.io/docs/languages/rust/)
                     public static let rust = Self.init(rawValue: "rust")
-                    /// `swift`
+                    /// `swift`: [Swift](https://opentelemetry.io/docs/languages/swift/)
                     public static let swift = Self.init(rawValue: "swift")
-                    /// `webjs`
+                    /// `webjs`: [Browser](https://opentelemetry.io/docs/languages/js/)
                     public static let webjs = Self.init(rawValue: "webjs")
                     public func toSpanAttribute() -> Tracing.SpanAttribute {
                         .string(self.rawValue)

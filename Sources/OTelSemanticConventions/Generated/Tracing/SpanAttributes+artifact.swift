@@ -40,7 +40,7 @@ extension SpanAttributes {
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
 
-            /// `artifact.filename` **UNSTABLE**: The human readable file name of the artifact, typically generated during build and release processes. Often includes the package name and version in the file name.
+            /// `artifact.filename` **UNSTABLE**: The human readable filename of the artifact, typically generated during build and release processes. Often includes the package name and version in the filename.
             ///
             /// - Stability: development
             /// - Type: string
@@ -50,7 +50,7 @@ extension SpanAttributes {
             ///     - `release-1.tar.gz`
             ///     - `file-name-package.tar.gz`
             ///
-            /// This file name can also act as the [Package Name](https://slsa.dev/spec/v1.0/terminology#package-model)
+            /// This filename can also act as the [Package Name](https://slsa.dev/spec/v1.0/terminology#package-model)
             /// in cases where the package ecosystem maps accordingly.
             /// Additionally, the artifact [can be published](https://slsa.dev/spec/v1.0/terminology#software-supply-chain)
             /// for others, but that is not a guarantee.
@@ -133,7 +133,7 @@ extension SpanAttributes {
                 /// - Example: `1b31dfcd5b7f9267bf2ff47651df1cfb9147b9e4df1f335accf65b4cda498408`
                 public var hash: SpanAttributeKey<String> { .init(name: OTelAttribute.artifact.attestation.hash) }
 
-                /// `artifact.attestation.id` **UNSTABLE**: The id of the build [software attestation](https://slsa.dev/attestation-model).
+                /// `artifact.attestation.id` **UNSTABLE**: The ID of the build [software attestation](https://slsa.dev/attestation-model).
                 ///
                 /// - Stability: development
                 /// - Type: string

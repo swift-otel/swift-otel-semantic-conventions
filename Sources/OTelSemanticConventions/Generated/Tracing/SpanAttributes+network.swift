@@ -46,7 +46,7 @@ extension SpanAttributes {
             ///     - `tcp`: TCP
             ///     - `udp`: UDP
             ///     - `pipe`: Named or anonymous pipe.
-            ///     - `unix`: Unix domain socket
+            ///     - `unix`: UNIX domain socket
             ///     - `quic`: QUIC
             /// - Examples:
             ///     - `tcp`
@@ -70,7 +70,7 @@ extension SpanAttributes {
                 public static let udp = Self.init(rawValue: "udp")
                 /// `pipe`: Named or anonymous pipe.
                 public static let pipe = Self.init(rawValue: "pipe")
-                /// `unix`: Unix domain socket
+                /// `unix`: UNIX domain socket
                 public static let unix = Self.init(rawValue: "unix")
                 /// `quic`: QUIC
                 public static let quic = Self.init(rawValue: "quic")
@@ -212,7 +212,7 @@ extension SpanAttributes {
                     }
                 }
 
-                /// `network.connection.subtype` **UNSTABLE**: This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection.
+                /// `network.connection.subtype` **UNSTABLE**: This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a Wi-Fi connection.
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -256,7 +256,7 @@ extension SpanAttributes {
                 ///
                 /// - Stability: development
                 /// - Type: enum
-                ///     - `wifi`
+                ///     - `wifi`: Wi-Fi
                 ///     - `wired`
                 ///     - `cell`
                 ///     - `unavailable`
@@ -301,7 +301,7 @@ extension SpanAttributes {
 
                 /// `network.interface.name` **UNSTABLE**: The network interface name.
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: string
                 /// - Examples:
                 ///     - `lo`
@@ -378,7 +378,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `network.local.address`: Local address of the network connection - IP address or Unix domain socket name.
+                /// `network.local.address`: Local address of the network connection - IP address or UNIX domain socket name.
                 ///
                 /// - Stability: stable
                 /// - Type: string
@@ -417,7 +417,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `network.peer.address`: Peer address of the network connection - IP address or Unix domain socket name.
+                /// `network.peer.address`: Peer address of the network connection - IP address or UNIX domain socket name.
                 ///
                 /// - Stability: stable
                 /// - Type: string

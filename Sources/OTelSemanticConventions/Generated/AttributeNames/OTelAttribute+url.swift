@@ -40,7 +40,7 @@ extension OTelAttribute {
         ///     - `png`
         ///     - `gz`
         ///
-        /// The file extension is only set if it exists, as not every url has a file extension. When the file name has multiple extensions `example.tar.gz`, only the last one should be captured `gz`, not `tar.gz`.
+        /// The file extension is only set if it exists, as not every URL has a file extension. When the filename has multiple extensions `example.tar.gz`, only the last one should be captured `gz`, not `tar.gz`.
         public static let `extension` = "url.extension"
         #endif
 
@@ -160,7 +160,7 @@ extension OTelAttribute {
         public static let query = "url.query"
 
         #if Experimental
-        /// `url.registered_domain` **UNSTABLE**: The highest registered url domain, stripped of the subdomain.
+        /// `url.registered_domain` **UNSTABLE**: The highest registered URL domain, stripped of the subdomain.
         ///
         /// - Stability: development
         /// - Type: string
@@ -183,7 +183,7 @@ extension OTelAttribute {
         public static let scheme = "url.scheme"
 
         #if Experimental
-        /// `url.subdomain` **UNSTABLE**: The subdomain portion of a fully qualified domain name includes all of the names except the host name under the registered_domain. In a partially qualified domain, or if the qualification level of the full name cannot be determined, subdomain contains all of the names below the registered domain.
+        /// `url.subdomain` **UNSTABLE**: The subdomain portion of a fully qualified domain name includes all of the names except the hostname under the registered_domain. In a partially qualified domain, or if the qualification level of the full name cannot be determined, subdomain contains all of the names below the registered domain.
         ///
         /// - Stability: development
         /// - Type: string

@@ -151,8 +151,8 @@ extension OTelAttribute {
             ///
             /// - Stability: development
             /// - Type: enum
-            ///     - `ssl`
-            ///     - `tls`
+            ///     - `ssl`: SSL
+            ///     - `tls`: TLS
             public static let name = "tls.protocol.name"
 
             /// `tls.protocol.version` **UNSTABLE**: Numeric part of the version parsed from the original string of the negotiated [SSL/TLS protocol version](https://docs.openssl.org/1.1.1/man3/SSL_get_version/#return-values)

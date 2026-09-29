@@ -17,7 +17,7 @@ extension OTelAttribute {
     #if Experimental
     /// `destination` namespace
     public enum destination {
-        /// `destination.address` **UNSTABLE**: Destination address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+        /// `destination.address` **UNSTABLE**: Destination address - domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
         ///
         /// - Stability: development
         /// - Type: string

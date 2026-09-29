@@ -90,6 +90,7 @@ extension SpanAttributes {
             ///     - `ibm_cloud_openshift`: Red Hat OpenShift on IBM Cloud
             ///     - `oracle_cloud_compute`: Compute on Oracle Cloud Infrastructure (OCI)
             ///     - `oracle_cloud_oke`: Kubernetes Engine (OKE) on Oracle Cloud Infrastructure (OCI)
+            ///     - `scaleway_cloud_compute`: Compute on Scaleway Cloud
             ///     - `tencent_cloud_cvm`: Tencent Cloud Cloud Virtual Machine (CVM)
             ///     - `tencent_cloud_eks`: Tencent Cloud Elastic Kubernetes Service (EKS)
             ///     - `tencent_cloud_scf`: Tencent Cloud Serverless Cloud Function (SCF)
@@ -121,6 +122,7 @@ extension SpanAttributes {
             ///     - `hetzner`: Hetzner
             ///     - `ibm_cloud`: IBM Cloud
             ///     - `oracle_cloud`: Oracle Cloud Infrastructure (OCI)
+            ///     - `scaleway_cloud`: Scaleway Cloud
             ///     - `tencent_cloud`: Tencent Cloud
             ///     - `vultr`: Vultr
             public var provider: SpanAttributeKey<ProviderEnum> { .init(name: OTelAttribute.cloud.provider) }

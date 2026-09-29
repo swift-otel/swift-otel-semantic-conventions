@@ -150,24 +150,65 @@ struct Generator: AsyncParsableCommand {
                 print("warning: No data found at \(filePath.path())")
                 continue
             }
-            let file: RegistryFile
             do {
-                file = try YAMLDecoder().decode(RegistryFile.self, from: fileContents)
-            } catch {
-                print("Error decoding \(filePath.path())")
-                throw error
-            }
+                let document = try YAMLDecoder().decode(SDLCv2.Document.self, from: fileContents)
+                // Back-convert to v1
+                let attributes = document.attributes.map(\.v1)
 
-            for group in file.groups {
-                groups.append(group)
-                for groupAttribute in group.attributes {
-                    switch groupAttribute {
-                    case let .attribute(attribute):
-                        parsedAttributes[attribute.id] = attribute
-                    default:
-                        // Since refs don't introduce new names, we just resolve them later
-                        break
+                // Find longest common namespace prefix
+                let namespaces = attributes.map { $0.id.split(separator: ".") }
+                var commonNamespaces = [String.SubSequence]()
+                if namespaces.count >= 1 {
+                    prefixLoop: for i in 0..<10 {  // only support namespace nesting of 10.
+                        guard i < namespaces[0].count - 1 else {
+                            break prefixLoop
+                        }
+                        let first = namespaces[0][i]
+                        for namespace in namespaces[1...] {
+                            guard
+                                i < namespaces[i].count - 1,
+                                namespace[i] == first
+                            else {
+                                break prefixLoop
+                            }
+                        }
+                        commonNamespaces.append(first)
                     }
+                }
+                guard let lastNamespace = commonNamespaces.last else {
+                    continue
+                }
+                let commonPrefix = commonNamespaces.joined(separator: ".")
+                groups.append(
+                    Group(
+                        id: "registry.\(commonPrefix)",
+                        type: .attribute_group,
+                        stability: nil,
+                        display_name: "\(lastNamespace.capitalized) Attributes",
+                        brief: nil,
+                        attributes: attributes.map { .attribute($0) }
+                    )
+                )
+                for attribute in attributes {
+                    parsedAttributes[attribute.id] = attribute
+                }
+            } catch {
+                if let document = try? YAMLDecoder().decode(SDLCv1.Document.self, from: fileContents) {
+                    for group in document.groups {
+                        groups.append(group)
+                        for groupAttribute in group.attributes {
+                            switch groupAttribute {
+                            case let .attribute(attribute):
+                                parsedAttributes[attribute.id] = attribute
+                            default:
+                                // Since refs don't introduce new names, we just resolve them later
+                                break
+                            }
+                        }
+                    }
+                } else {
+                    print("Error decoding \(filePath.path())")
+                    throw error
                 }
             }
         }
