@@ -69,7 +69,23 @@ enum SDLCv2 {
         init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             key = try container.decode(String.self, forKey: .key)
-            type = try container.decode(Attribute.StandardType.self, forKey: .type)
+            do {
+                let type = try container.decode(Attribute.StandardType.self, forKey: .type)
+                self.type = type
+            } catch let standardTypeError {
+                do {
+                    let type = try container.decode(Attribute.EnumType.self, forKey: .type)
+                    self.type = type
+                } catch let enumTypeError {
+                    throw DecodingError.dataCorrupted(
+                        .init(
+                            codingPath: container.codingPath,
+                            debugDescription:
+                                "Unexpected `type` value: StandardType error: \(standardTypeError), EnumType error: \(enumTypeError)"
+                        )
+                    )
+                }
+            }
             brief = try container.decode(String.self, forKey: .brief)
             stability = try container.decode(Stability.self, forKey: .stability)
             note = try container.decodeIfPresent(String.self, forKey: .note)
