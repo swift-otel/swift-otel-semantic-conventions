@@ -61,7 +61,7 @@ extension SpanAttributes {
             @available(*, deprecated, renamed: "SpanAttributes.messaging.operation.type")
             public var _operation: SpanAttributeKey<String> { .init(name: OTelAttribute.messaging._operation) }
 
-            /// `messaging.system` **UNSTABLE**: The messaging system as identified by the client instrumentation.
+            /// `messaging.system` **UNSTABLE**: Deprecated, use `messaging.system.name` instead.
             ///
             /// - Stability: development
             /// - Type: enum
@@ -78,8 +78,21 @@ extension SpanAttributes {
             ///     - `rocketmq`: Apache RocketMQ
             ///     - `pulsar`: Apache Pulsar
             ///
-            /// The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
-            public var system: SpanAttributeKey<SystemEnum> { .init(name: OTelAttribute.messaging.system) }
+            /// The actual messaging system may differ from the one known by the client.
+            /// For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system`
+            /// is set to `kafka` based on the instrumentation's best knowledge.
+            ///
+            /// When migrating to `messaging.system.name`, update the following values:
+            ///
+            /// - `aws_sqs` to `aws.sqs`
+            /// - `eventgrid` to `azure.eventgrid`
+            /// - `eventhubs` to `azure.eventhubs`
+            /// - `servicebus` to `azure.servicebus`
+            /// - `gcp_pubsub` to `gcp.pubsub`
+            ///
+            /// All other values are unchanged.
+            @available(*, deprecated, renamed: "SpanAttributes.messaging.system.name")
+            public var _system: SpanAttributeKey<SystemEnum> { .init(name: OTelAttribute.messaging._system) }
 
             public struct SystemEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
                 public let rawValue: String
@@ -468,11 +481,12 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `messaging.eventhubs.message.enqueued_time` **UNSTABLE**: The UTC epoch seconds at which the message has been accepted and stored in the entity.
+                    /// `messaging.eventhubs.message.enqueued_time` **UNSTABLE**: Deprecated, use `azure.eventhubs.message.enqueued_time` instead.
                     ///
                     /// - Stability: development
                     /// - Type: int
                     /// - Example: `1701393730`
+                    @available(*, deprecated, renamed: "SpanAttributes.azure.eventhubs.message.enqueuedTime")
                     public var enqueuedTime: SpanAttributeKey<Int> {
                         .init(name: OTelAttribute.messaging.eventhubs.message.enqueuedTime)
                     }
@@ -523,38 +537,42 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `messaging.gcp_pubsub.message.ack_deadline` **UNSTABLE**: The ack deadline in seconds set for the modify ack deadline request.
+                    /// `messaging.gcp_pubsub.message.ack_deadline` **UNSTABLE**: Deprecated, use `gcp.pubsub.message.ack_deadline` instead.
                     ///
                     /// - Stability: development
                     /// - Type: int
                     /// - Example: `10`
+                    @available(*, deprecated, renamed: "SpanAttributes.gcp.pubsub.message.ackDeadline")
                     public var ackDeadline: SpanAttributeKey<Int> {
                         .init(name: OTelAttribute.messaging.gcpPubsub.message.ackDeadline)
                     }
 
-                    /// `messaging.gcp_pubsub.message.ack_id` **UNSTABLE**: The ack ID for a given message.
+                    /// `messaging.gcp_pubsub.message.ack_id` **UNSTABLE**: Deprecated, use `gcp.pubsub.message.ack_id` instead.
                     ///
                     /// - Stability: development
                     /// - Type: string
                     /// - Example: `ack_id`
+                    @available(*, deprecated, renamed: "SpanAttributes.gcp.pubsub.message.ackId")
                     public var ackId: SpanAttributeKey<String> {
                         .init(name: OTelAttribute.messaging.gcpPubsub.message.ackId)
                     }
 
-                    /// `messaging.gcp_pubsub.message.delivery_attempt` **UNSTABLE**: The delivery attempt for a given message.
+                    /// `messaging.gcp_pubsub.message.delivery_attempt` **UNSTABLE**: Deprecated, use `gcp.pubsub.message.delivery_attempt` instead.
                     ///
                     /// - Stability: development
                     /// - Type: int
                     /// - Example: `2`
+                    @available(*, deprecated, renamed: "SpanAttributes.gcp.pubsub.message.deliveryAttempt")
                     public var deliveryAttempt: SpanAttributeKey<Int> {
                         .init(name: OTelAttribute.messaging.gcpPubsub.message.deliveryAttempt)
                     }
 
-                    /// `messaging.gcp_pubsub.message.ordering_key` **UNSTABLE**: The ordering key for a given message. If the attribute is not present, the message does not have an ordering key.
+                    /// `messaging.gcp_pubsub.message.ordering_key` **UNSTABLE**: Deprecated, use `gcp.pubsub.message.ordering_key` instead.
                     ///
                     /// - Stability: development
                     /// - Type: string
                     /// - Example: `ordering_key`
+                    @available(*, deprecated, renamed: "SpanAttributes.gcp.pubsub.message.orderingKey")
                     public var orderingKey: SpanAttributeKey<String> {
                         .init(name: OTelAttribute.messaging.gcpPubsub.message.orderingKey)
                     }
@@ -583,11 +601,12 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `messaging.kafka.offset` **UNSTABLE**: The offset of a record in the corresponding Kafka partition.
+                /// `messaging.kafka.offset` **UNSTABLE**: Deprecated, use `kafka.offset` instead.
                 ///
                 /// - Stability: development
                 /// - Type: int
                 /// - Example: `42`
+                @available(*, deprecated, renamed: "SpanAttributes.kafka.offset")
                 public var offset: SpanAttributeKey<Int> { .init(name: OTelAttribute.messaging.kafka.offset) }
             }
 
@@ -612,13 +631,14 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `messaging.kafka.cluster.id` **UNSTABLE**: The Kafka cluster ID, obtained from the broker metadata exposed through the Kafka client (or AdminClient) API.
+                    /// `messaging.kafka.cluster.id` **UNSTABLE**: Deprecated, use `kafka.cluster.id` instead.
                     ///
                     /// - Stability: development
                     /// - Type: string
                     /// - Example: `MkU3OEVBNTcwNTJENDM2Qk`
                     ///
                     /// The cluster ID is a unique identifier reported by the Kafka broker. It identifies the cluster independently of the individual brokers the client is configured to connect to, and remains stable even if broker hostnames, IP addresses, or ports change.
+                    @available(*, deprecated, renamed: "SpanAttributes.kafka.cluster.id")
                     public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.messaging.kafka.cluster.id) }
                 }
             }
@@ -715,29 +735,31 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `messaging.kafka.message.key` **UNSTABLE**: Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set.
+                    /// `messaging.kafka.message.key` **UNSTABLE**: Deprecated, use `kafka.message.key` instead.
                     ///
                     /// - Stability: development
                     /// - Type: string
                     /// - Example: `myKey`
                     ///
                     /// If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
+                    @available(*, deprecated, renamed: "SpanAttributes.kafka.message.key")
                     public var key: SpanAttributeKey<String> { .init(name: OTelAttribute.messaging.kafka.message.key) }
 
-                    /// `messaging.kafka.message.offset` **UNSTABLE**: Deprecated, use `messaging.kafka.offset` instead.
+                    /// `messaging.kafka.message.offset` **UNSTABLE**: Deprecated, use `kafka.offset` instead.
                     ///
                     /// - Stability: development
                     /// - Type: int
                     /// - Example: `42`
-                    @available(*, deprecated, renamed: "SpanAttributes.messaging.kafka.offset")
+                    @available(*, deprecated, renamed: "SpanAttributes.kafka.offset")
                     public var offset: SpanAttributeKey<Int> {
                         .init(name: OTelAttribute.messaging.kafka.message.offset)
                     }
 
-                    /// `messaging.kafka.message.tombstone` **UNSTABLE**: A boolean that is true if the message is a tombstone.
+                    /// `messaging.kafka.message.tombstone` **UNSTABLE**: Deprecated, use `kafka.message.tombstone` instead.
                     ///
                     /// - Stability: development
                     /// - Type: boolean
+                    @available(*, deprecated, renamed: "SpanAttributes.kafka.message.tombstone")
                     public var tombstone: SpanAttributeKey<Bool> {
                         .init(name: OTelAttribute.messaging.kafka.message.tombstone)
                     }
@@ -953,11 +975,12 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `messaging.rabbitmq.destination.routing_key` **UNSTABLE**: RabbitMQ message routing key.
+                    /// `messaging.rabbitmq.destination.routing_key` **UNSTABLE**: Deprecated, use `rabbitmq.destination.routing_key` instead.
                     ///
                     /// - Stability: development
                     /// - Type: string
                     /// - Example: `myKey`
+                    @available(*, deprecated, renamed: "SpanAttributes.rabbitmq.destination.routingKey")
                     public var routingKey: SpanAttributeKey<String> {
                         .init(name: OTelAttribute.messaging.rabbitmq.destination.routingKey)
                     }
@@ -985,11 +1008,12 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `messaging.rabbitmq.message.delivery_tag` **UNSTABLE**: RabbitMQ message delivery tag
+                    /// `messaging.rabbitmq.message.delivery_tag` **UNSTABLE**: Deprecated, use `rabbitmq.message.delivery_tag` instead.
                     ///
                     /// - Stability: development
                     /// - Type: int
                     /// - Example: `123`
+                    @available(*, deprecated, renamed: "SpanAttributes.rabbitmq.message.deliveryTag")
                     public var deliveryTag: SpanAttributeKey<Int> {
                         .init(name: OTelAttribute.messaging.rabbitmq.message.deliveryTag)
                     }
@@ -1033,12 +1057,13 @@ extension SpanAttributes {
                     .init(name: OTelAttribute.messaging.rocketmq.clientGroup)
                 }
 
-                /// `messaging.rocketmq.consumption_model` **UNSTABLE**: Model of message consumption. This only applies to consumer spans.
+                /// `messaging.rocketmq.consumption_model` **UNSTABLE**: Deprecated, use `rocketmq.consumption_model` instead.
                 ///
                 /// - Stability: development
                 /// - Type: enum
                 ///     - `clustering`: Clustering consumption model
                 ///     - `broadcasting`: Broadcasting consumption model
+                @available(*, deprecated, renamed: "SpanAttributes.rocketmq.consumptionModel")
                 public var consumptionModel: SpanAttributeKey<ConsumptionModelEnum> {
                     .init(name: OTelAttribute.messaging.rocketmq.consumptionModel)
                 }
@@ -1053,11 +1078,12 @@ extension SpanAttributes {
                     }
                 }
 
-                /// `messaging.rocketmq.namespace` **UNSTABLE**: Namespace of RocketMQ resources, resources in different namespaces are individual.
+                /// `messaging.rocketmq.namespace` **UNSTABLE**: Deprecated, use `rocketmq.namespace` instead.
                 ///
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `myNamespace`
+                @available(*, deprecated, renamed: "SpanAttributes.rocketmq.namespace")
                 public var namespace: SpanAttributeKey<String> {
                     .init(name: OTelAttribute.messaging.rocketmq.namespace)
                 }
@@ -1084,51 +1110,56 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `messaging.rocketmq.message.delay_time_level` **UNSTABLE**: The delay time level for delay message, which determines the message delay time.
+                    /// `messaging.rocketmq.message.delay_time_level` **UNSTABLE**: Deprecated, use `rocketmq.message.delay_time_level` instead.
                     ///
                     /// - Stability: development
                     /// - Type: int
                     /// - Example: `3`
+                    @available(*, deprecated, renamed: "SpanAttributes.rocketmq.message.delayTimeLevel")
                     public var delayTimeLevel: SpanAttributeKey<Int> {
                         .init(name: OTelAttribute.messaging.rocketmq.message.delayTimeLevel)
                     }
 
-                    /// `messaging.rocketmq.message.delivery_timestamp` **UNSTABLE**: The timestamp in milliseconds that the delay message is expected to be delivered to consumer.
+                    /// `messaging.rocketmq.message.delivery_timestamp` **UNSTABLE**: Deprecated, use `rocketmq.message.delivery_timestamp` instead.
                     ///
                     /// - Stability: development
                     /// - Type: int
                     /// - Example: `1665987217045`
+                    @available(*, deprecated, renamed: "SpanAttributes.rocketmq.message.deliveryTimestamp")
                     public var deliveryTimestamp: SpanAttributeKey<Int> {
                         .init(name: OTelAttribute.messaging.rocketmq.message.deliveryTimestamp)
                     }
 
-                    /// `messaging.rocketmq.message.group` **UNSTABLE**: It is essential for FIFO message. Messages that belong to the same message group are always processed one by one within the same consumer group.
+                    /// `messaging.rocketmq.message.group` **UNSTABLE**: Deprecated, use `rocketmq.message.group` instead.
                     ///
                     /// - Stability: development
                     /// - Type: string
                     /// - Example: `myMessageGroup`
+                    @available(*, deprecated, renamed: "SpanAttributes.rocketmq.message.group")
                     public var group: SpanAttributeKey<String> {
                         .init(name: OTelAttribute.messaging.rocketmq.message.group)
                     }
 
-                    /// `messaging.rocketmq.message.keys` **UNSTABLE**: Key(s) of message, another way to mark message besides message ID.
+                    /// `messaging.rocketmq.message.keys` **UNSTABLE**: Deprecated, use `rocketmq.message.keys` instead.
                     ///
                     /// - Stability: development
                     /// - Type: stringArray
+                    @available(*, deprecated, renamed: "SpanAttributes.rocketmq.message.keys")
                     public var keys: SpanAttributeKey<[String]> {
                         .init(name: OTelAttribute.messaging.rocketmq.message.keys)
                     }
 
-                    /// `messaging.rocketmq.message.tag` **UNSTABLE**: The secondary classifier of message besides topic.
+                    /// `messaging.rocketmq.message.tag` **UNSTABLE**: Deprecated, use `rocketmq.message.tag` instead.
                     ///
                     /// - Stability: development
                     /// - Type: string
                     /// - Example: `tagA`
+                    @available(*, deprecated, renamed: "SpanAttributes.rocketmq.message.tag")
                     public var tag: SpanAttributeKey<String> {
                         .init(name: OTelAttribute.messaging.rocketmq.message.tag)
                     }
 
-                    /// `messaging.rocketmq.message.type` **UNSTABLE**: Type of message.
+                    /// `messaging.rocketmq.message.type` **UNSTABLE**: Deprecated, use `rocketmq.message.type` instead.
                     ///
                     /// - Stability: development
                     /// - Type: enum
@@ -1136,6 +1167,7 @@ extension SpanAttributes {
                     ///     - `fifo`: FIFO message
                     ///     - `delay`: Delay message
                     ///     - `transaction`: Transaction message
+                    @available(*, deprecated, renamed: "SpanAttributes.rocketmq.message.type")
                     public var `type`: SpanAttributeKey<TypeEnum> {
                         .init(name: OTelAttribute.messaging.rocketmq.message.`type`)
                     }
@@ -1174,7 +1206,7 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `messaging.servicebus.disposition_status` **UNSTABLE**: Describes the [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock).
+                /// `messaging.servicebus.disposition_status` **UNSTABLE**: Deprecated, use `azure.servicebus.disposition_status` instead.
                 ///
                 /// - Stability: development
                 /// - Type: enum
@@ -1182,6 +1214,7 @@ extension SpanAttributes {
                 ///     - `abandon`: Message is abandoned
                 ///     - `dead_letter`: Message is sent to dead letter queue
                 ///     - `defer`: Message is deferred
+                @available(*, deprecated, renamed: "SpanAttributes.azure.servicebus.dispositionStatus")
                 public var dispositionStatus: SpanAttributeKey<DispositionStatusEnum> {
                     .init(name: OTelAttribute.messaging.servicebus.dispositionStatus)
                 }
@@ -1251,22 +1284,77 @@ extension SpanAttributes {
                 public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                     public init() {}
 
-                    /// `messaging.servicebus.message.delivery_count` **UNSTABLE**: Number of deliveries that have been attempted for this message.
+                    /// `messaging.servicebus.message.delivery_count` **UNSTABLE**: Deprecated, use `azure.servicebus.message.delivery_count` instead.
                     ///
                     /// - Stability: development
                     /// - Type: int
                     /// - Example: `2`
+                    @available(*, deprecated, renamed: "SpanAttributes.azure.servicebus.message.deliveryCount")
                     public var deliveryCount: SpanAttributeKey<Int> {
                         .init(name: OTelAttribute.messaging.servicebus.message.deliveryCount)
                     }
 
-                    /// `messaging.servicebus.message.enqueued_time` **UNSTABLE**: The UTC epoch seconds at which the message has been accepted and stored in the entity.
+                    /// `messaging.servicebus.message.enqueued_time` **UNSTABLE**: Deprecated, use `azure.servicebus.message.enqueued_time` instead.
                     ///
                     /// - Stability: development
                     /// - Type: int
                     /// - Example: `1701393730`
+                    @available(*, deprecated, renamed: "SpanAttributes.azure.servicebus.message.enqueuedTime")
                     public var enqueuedTime: SpanAttributeKey<Int> {
                         .init(name: OTelAttribute.messaging.servicebus.message.enqueuedTime)
+                    }
+                }
+            }
+        }
+
+        /// `messaging.system` namespace
+        public var system: SystemAttributes {
+            get {
+                .init(attributes: self.attributes)
+            }
+            set {
+                self.attributes = newValue.attributes
+            }
+        }
+
+        @dynamicMemberLookup
+        public struct SystemAttributes: SpanAttributeNamespace {
+            public var attributes: Tracing.SpanAttributes
+
+            public init(attributes: Tracing.SpanAttributes) {
+                self.attributes = attributes
+            }
+
+            public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                public init() {}
+
+                /// `messaging.system.name` **UNSTABLE**: The messaging system as identified by the client instrumentation.
+                ///
+                /// - Stability: development
+                /// - Type: enum
+                ///     - `activemq`: Apache ActiveMQ
+                ///     - `aws.sns`: Amazon Simple Notification Service (SNS)
+                ///     - `aws.sqs`: Amazon Simple Queue Service (SQS)
+                ///     - `azure.eventgrid`: Azure Event Grid
+                ///     - `azure.eventhubs`: Azure Event Hubs
+                ///     - `azure.servicebus`: Azure Service Bus
+                ///     - `gcp.pubsub`: Google Cloud Pub/Sub
+                ///     - `jms`: Java Message Service
+                ///     - `kafka`: Apache Kafka
+                ///     - `rabbitmq`: RabbitMQ
+                ///     - `rocketmq`: Apache RocketMQ
+                ///     - `pulsar`: Apache Pulsar
+                ///
+                /// The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system.name` is set to `kafka` based on the instrumentation's best knowledge.
+                public var name: SpanAttributeKey<NameEnum> { .init(name: OTelAttribute.messaging.system.name) }
+
+                public struct NameEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
+                    public let rawValue: String
+                    public init(rawValue: String) {
+                        self.rawValue = rawValue
+                    }
+                    public func toSpanAttribute() -> Tracing.SpanAttribute {
+                        .string(self.rawValue)
                     }
                 }
             }

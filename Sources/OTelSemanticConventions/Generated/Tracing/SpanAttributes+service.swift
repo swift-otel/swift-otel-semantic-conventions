@@ -152,6 +152,60 @@ extension SpanAttributes {
                 /// port.
                 public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.service.instance.id) }
             }
+
+            #if Experimental
+            /// `service.instance.cost_center` namespace
+            public var costCenter: CostCenterAttributes {
+                get {
+                    .init(attributes: self.attributes)
+                }
+                set {
+                    self.attributes = newValue.attributes
+                }
+            }
+
+            @dynamicMemberLookup
+            public struct CostCenterAttributes: SpanAttributeNamespace {
+                public var attributes: Tracing.SpanAttributes
+
+                public init(attributes: Tracing.SpanAttributes) {
+                    self.attributes = attributes
+                }
+
+                public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                    public init() {}
+
+                    /// `service.instance.cost_center.id` **UNSTABLE**: Identifier of the cost center associated with the service instance.
+                    ///
+                    /// - Stability: development
+                    /// - Type: string
+                    /// - Examples:
+                    ///     - `94002`
+                    ///     - `111111111111`
+                    ///     - `cc-eng-402`
+                    ///     - `acc-83921`
+                    ///
+                    /// The cost center identifier enables tracking and attribution of service resource costs to organizational units, billing accounts, or teams. It is typically a string identifier such as a billing account ID, cost allocation code, or internal accounting ID.
+                    public var id: SpanAttributeKey<String> {
+                        .init(name: OTelAttribute.service.instance.costCenter.id)
+                    }
+
+                    /// `service.instance.cost_center.name` **UNSTABLE**: Name of the cost center associated with the service instance.
+                    ///
+                    /// - Stability: development
+                    /// - Type: string
+                    /// - Examples:
+                    ///     - `engineering-platform`
+                    ///     - `marketing-campaigns`
+                    ///     - `research-and-development`
+                    ///
+                    /// A human-readable name of the cost center, department, or organizational unit responsible for the service instance costs.
+                    public var name: SpanAttributeKey<String> {
+                        .init(name: OTelAttribute.service.instance.costCenter.name)
+                    }
+                }
+            }
+            #endif
         }
 
         #if Experimental
@@ -181,6 +235,11 @@ extension SpanAttributes {
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `shoppingcart`
+                @available(
+                    *,
+                    deprecated,
+                    message: "Use `server.service.name` on the client side or `client.service.name` on the server side."
+                )
                 public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.service.peer.name) }
 
                 /// `service.peer.namespace` **UNSTABLE**: Logical namespace of the service on the other side of the connection. SHOULD be equal to the actual [`service.namespace`](/docs/resource/README.md#service) resource attribute of the remote service if any.
@@ -188,6 +247,12 @@ extension SpanAttributes {
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `Shop`
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Use `server.service.namespace` on the client side or `client.service.namespace` on the server side."
+                )
                 public var namespace: SpanAttributeKey<String> { .init(name: OTelAttribute.service.peer.namespace) }
             }
         }

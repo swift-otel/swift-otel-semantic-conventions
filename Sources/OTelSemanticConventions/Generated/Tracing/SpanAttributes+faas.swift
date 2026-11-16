@@ -64,9 +64,10 @@ extension SpanAttributes {
 
             /// `faas.invocation_id` **UNSTABLE**: The invocation ID of the current function invocation.
             ///
-            /// - Stability: development
+            /// - Stability: experimental
             /// - Type: string
             /// - Example: `af9d5aa4-a685-4c5f-a22b-444f80b3cc28`
+            @available(*, deprecated, renamed: "SpanAttributes.faas.invocation.id")
             public var invocationId: SpanAttributeKey<String> { .init(name: OTelAttribute.faas.invocationId) }
 
             /// `faas.invoked_name` **UNSTABLE**: The name of the invoked function.
@@ -149,9 +150,10 @@ extension SpanAttributes {
 
             /// `faas.time` **UNSTABLE**: A string containing the function invocation time in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime).
             ///
-            /// - Stability: development
+            /// - Stability: experimental
             /// - Type: string
             /// - Example: `2020-01-23T13:47:06Z`
+            @available(*, deprecated, renamed: "SpanAttributes.faas.invocation.startTime")
             public var time: SpanAttributeKey<String> { .init(name: OTelAttribute.faas.time) }
 
             /// `faas.trigger` **UNSTABLE**: Type of the trigger which caused this function invocation.
@@ -261,6 +263,43 @@ extension SpanAttributes {
                 /// - Type: string
                 /// - Example: `2020-01-23T13:47:06Z`
                 public var time: SpanAttributeKey<String> { .init(name: OTelAttribute.faas.document.time) }
+            }
+        }
+
+        /// `faas.invocation` namespace
+        public var invocation: InvocationAttributes {
+            get {
+                .init(attributes: self.attributes)
+            }
+            set {
+                self.attributes = newValue.attributes
+            }
+        }
+
+        @dynamicMemberLookup
+        public struct InvocationAttributes: SpanAttributeNamespace {
+            public var attributes: Tracing.SpanAttributes
+
+            public init(attributes: Tracing.SpanAttributes) {
+                self.attributes = attributes
+            }
+
+            public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                public init() {}
+
+                /// `faas.invocation.id` **UNSTABLE**: The invocation ID of the current function invocation.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Example: `af9d5aa4-a685-4c5f-a22b-444f80b3cc28`
+                public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.faas.invocation.id) }
+
+                /// `faas.invocation.start_time` **UNSTABLE**: A string containing the function invocation time in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime).
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Example: `2020-01-23T13:47:06Z`
+                public var startTime: SpanAttributeKey<String> { .init(name: OTelAttribute.faas.invocation.startTime) }
             }
         }
     }

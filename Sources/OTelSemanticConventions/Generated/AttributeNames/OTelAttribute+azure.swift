@@ -107,6 +107,19 @@ extension OTelAttribute {
             }
         }
 
+        /// `azure.eventhubs` namespace
+        public enum eventhubs {
+            /// `azure.eventhubs.message` namespace
+            public enum message {
+                /// `azure.eventhubs.message.enqueued_time` **UNSTABLE**: The UTC epoch seconds at which the message has been accepted and stored in the entity.
+                ///
+                /// - Stability: development
+                /// - Type: int
+                /// - Example: `1701393730`
+                public static let enqueuedTime = "azure.eventhubs.message.enqueued_time"
+            }
+        }
+
         /// `azure.resource_group` namespace
         public enum resourceGroup {
             /// `azure.resource_group.name` **UNSTABLE**: The name of the Azure [resource group](https://learn.microsoft.com/azure/azure-resource-manager/management/manage-resource-groups-portal) the resource belongs to.
@@ -142,6 +155,36 @@ extension OTelAttribute {
                 /// - Type: string
                 /// - Example: `00000000-0000-0000-0000-000000000000`
                 public static let id = "azure.service.request.id"
+            }
+        }
+
+        /// `azure.servicebus` namespace
+        public enum servicebus {
+            /// `azure.servicebus.disposition_status` **UNSTABLE**: Describes the [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock).
+            ///
+            /// - Stability: development
+            /// - Type: enum
+            ///     - `complete`: Message is completed
+            ///     - `abandon`: Message is abandoned
+            ///     - `dead_letter`: Message is sent to dead letter queue
+            ///     - `defer`: Message is deferred
+            public static let dispositionStatus = "azure.servicebus.disposition_status"
+
+            /// `azure.servicebus.message` namespace
+            public enum message {
+                /// `azure.servicebus.message.delivery_count` **UNSTABLE**: Number of deliveries that have been attempted for this message.
+                ///
+                /// - Stability: development
+                /// - Type: int
+                /// - Example: `2`
+                public static let deliveryCount = "azure.servicebus.message.delivery_count"
+
+                /// `azure.servicebus.message.enqueued_time` **UNSTABLE**: The UTC epoch seconds at which the message has been accepted and stored in the entity.
+                ///
+                /// - Stability: development
+                /// - Type: int
+                /// - Example: `1701393730`
+                public static let enqueuedTime = "azure.servicebus.message.enqueued_time"
             }
         }
     }

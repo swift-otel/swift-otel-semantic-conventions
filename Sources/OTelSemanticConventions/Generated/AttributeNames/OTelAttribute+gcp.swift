@@ -302,6 +302,40 @@ extension OTelAttribute {
                 public static let zone = "gcp.gce.instance_group_manager.zone"
             }
         }
+
+        /// `gcp.pubsub` namespace
+        public enum pubsub {
+            /// `gcp.pubsub.message` namespace
+            public enum message {
+                /// `gcp.pubsub.message.ack_deadline` **UNSTABLE**: The ack deadline in seconds set for the modify ack deadline request.
+                ///
+                /// - Stability: development
+                /// - Type: int
+                /// - Example: `10`
+                public static let ackDeadline = "gcp.pubsub.message.ack_deadline"
+
+                /// `gcp.pubsub.message.ack_id` **UNSTABLE**: The ack ID for a given message.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Example: `ack_id`
+                public static let ackId = "gcp.pubsub.message.ack_id"
+
+                /// `gcp.pubsub.message.delivery_attempt` **UNSTABLE**: The delivery attempt for a given message.
+                ///
+                /// - Stability: development
+                /// - Type: int
+                /// - Example: `2`
+                public static let deliveryAttempt = "gcp.pubsub.message.delivery_attempt"
+
+                /// `gcp.pubsub.message.ordering_key` **UNSTABLE**: The ordering key for a given message. If the attribute is not present, the message does not have an ordering key.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Example: `ordering_key`
+                public static let orderingKey = "gcp.pubsub.message.ordering_key"
+            }
+        }
     }
     #endif
 }

@@ -764,6 +764,86 @@ extension SpanAttributes {
                 }
             }
         }
+
+        /// `gcp.pubsub` namespace
+        public var pubsub: PubsubAttributes {
+            get {
+                .init(attributes: self.attributes)
+            }
+            set {
+                self.attributes = newValue.attributes
+            }
+        }
+
+        @dynamicMemberLookup
+        public struct PubsubAttributes: SpanAttributeNamespace {
+            public var attributes: Tracing.SpanAttributes
+
+            public init(attributes: Tracing.SpanAttributes) {
+                self.attributes = attributes
+            }
+
+            public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                public init() {}
+            }
+
+            /// `gcp.pubsub.message` namespace
+            public var message: MessageAttributes {
+                get {
+                    .init(attributes: self.attributes)
+                }
+                set {
+                    self.attributes = newValue.attributes
+                }
+            }
+
+            @dynamicMemberLookup
+            public struct MessageAttributes: SpanAttributeNamespace {
+                public var attributes: Tracing.SpanAttributes
+
+                public init(attributes: Tracing.SpanAttributes) {
+                    self.attributes = attributes
+                }
+
+                public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                    public init() {}
+
+                    /// `gcp.pubsub.message.ack_deadline` **UNSTABLE**: The ack deadline in seconds set for the modify ack deadline request.
+                    ///
+                    /// - Stability: development
+                    /// - Type: int
+                    /// - Example: `10`
+                    public var ackDeadline: SpanAttributeKey<Int> {
+                        .init(name: OTelAttribute.gcp.pubsub.message.ackDeadline)
+                    }
+
+                    /// `gcp.pubsub.message.ack_id` **UNSTABLE**: The ack ID for a given message.
+                    ///
+                    /// - Stability: development
+                    /// - Type: string
+                    /// - Example: `ack_id`
+                    public var ackId: SpanAttributeKey<String> { .init(name: OTelAttribute.gcp.pubsub.message.ackId) }
+
+                    /// `gcp.pubsub.message.delivery_attempt` **UNSTABLE**: The delivery attempt for a given message.
+                    ///
+                    /// - Stability: development
+                    /// - Type: int
+                    /// - Example: `2`
+                    public var deliveryAttempt: SpanAttributeKey<Int> {
+                        .init(name: OTelAttribute.gcp.pubsub.message.deliveryAttempt)
+                    }
+
+                    /// `gcp.pubsub.message.ordering_key` **UNSTABLE**: The ordering key for a given message. If the attribute is not present, the message does not have an ordering key.
+                    ///
+                    /// - Stability: development
+                    /// - Type: string
+                    /// - Example: `ordering_key`
+                    public var orderingKey: SpanAttributeKey<String> {
+                        .init(name: OTelAttribute.gcp.pubsub.message.orderingKey)
+                    }
+                }
+            }
+        }
     }
     #endif
 }

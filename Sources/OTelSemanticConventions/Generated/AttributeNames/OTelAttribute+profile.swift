@@ -36,6 +36,7 @@ extension OTelAttribute {
             ///     - `go`: [Go](https://wikipedia.org/wiki/Go_(programming_language)),
             ///     - `rust`: [Rust](https://wikipedia.org/wiki/Rust_(programming_language))
             ///     - `luajit`: [LuaJIT](https://en.wikipedia.org/wiki/LuaJIT)
+            ///     - `cuda`: [CUDA](https://wikipedia.org/wiki/CUDA)
             /// - Example: `cpython`
             public static let `type` = "profile.frame.type"
         }

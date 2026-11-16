@@ -27,6 +27,12 @@ extension OTelAttribute {
         ///
         /// > [!Warning]
         /// > This field contains sensitive (PII) information.
+        @available(
+            *,
+            deprecated,
+            message:
+                "Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side)."
+        )
         public static let id = "enduser.id"
 
         /// `enduser.role` **UNSTABLE**: Deprecated, use `user.roles` instead.
@@ -57,6 +63,12 @@ extension OTelAttribute {
             ///
             /// > [!Warning]
             /// > This field contains sensitive (linkable PII) information.
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side)."
+            )
             public static let id = "enduser.pseudo.id"
         }
     }
