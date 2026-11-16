@@ -184,7 +184,7 @@ extension SpanAttributes {
 
                 /// `network.connection.state` **UNSTABLE**: The state of network connection
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: enum
                 ///     - `closed`
                 ///     - `close_wait`
@@ -393,7 +393,132 @@ extension SpanAttributes {
                 /// - Type: int
                 /// - Example: `65123`
                 public var port: SpanAttributeKey<Int> { .init(name: OTelAttribute.network.local.port) }
+
+                #if Experimental
+                /// `network.local.prefix` **UNSTABLE**: The IP prefix associated with the local IP address, in CIDR notation.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Examples:
+                ///     - `192.0.2.0/24`
+                ///     - `2001:db8::/32`
+                ///
+                /// > [!WARNING]
+                /// >
+                /// > This attribute may contain sensitive (PII) information. A `/32` IPv4 prefix
+                /// > or `/128` IPv6 prefix preserves the complete endpoint IP address.
+                /// > Using CIDR notation does not guarantee that the data is anonymous.
+                ///
+                /// The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
+                /// [RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html) for IPv4 and
+                /// [RFC 4291](https://www.rfc-editor.org/rfc/rfc4291.html#section-2.3) for IPv6.
+                /// IPv4 prefixes MUST use a dotted-decimal address followed by `/` and a decimal
+                /// prefix length from 0 to 32. IPv6 prefixes MUST use the canonical address text
+                /// representation defined in [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html),
+                /// followed by `/` and a decimal prefix length from 0 to 128. All host bits in
+                /// the address MUST be set to zero. The value MUST NOT contain a domain name,
+                /// UNIX domain socket name, or IPv6 zone identifier.
+                ///
+                /// Instrumentation or Collector receivers that populate this attribute MUST
+                /// convert native representations, such as an address and subnet mask or an
+                /// address and prefix length, to equivalent CIDR notation before emitting it.
+                ///
+                /// This attribute MAY be set whether or not `network.local.address` is set. If
+                /// `network.local.address` is also set to an IP address, it MUST use the same IP version
+                /// and be contained in this prefix.
+                public var prefix: SpanAttributeKey<String> { .init(name: OTelAttribute.network.local.prefix) }
+                #endif
             }
+
+            #if Experimental
+            /// `network.local.as` namespace
+            public var `as`: AsAttributes {
+                get {
+                    .init(attributes: self.attributes)
+                }
+                set {
+                    self.attributes = newValue.attributes
+                }
+            }
+
+            @dynamicMemberLookup
+            public struct AsAttributes: SpanAttributeNamespace {
+                public var attributes: Tracing.SpanAttributes
+
+                public init(attributes: Tracing.SpanAttributes) {
+                    self.attributes = attributes
+                }
+
+                public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                    public init() {}
+
+                    /// `network.local.as.number` **UNSTABLE**: The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the local IP address.
+                    ///
+                    /// - Stability: development
+                    /// - Type: int
+                    /// - Examples:
+                    ///     - `64496`
+                    ///     - `15169`
+                    ///
+                    /// This attribute SHOULD only be set when the local address is an IP address and the ASN is available from routing, enrichment, or lookup data. The value SHOULD be represented as an integer without the `AS` prefix.
+                    public var number: SpanAttributeKey<Int> { .init(name: OTelAttribute.network.local.`as`.number) }
+
+                    /// `network.local.as.organization` **UNSTABLE**: The name of the organization associated with the autonomous system of the local IP address.
+                    ///
+                    /// - Stability: development
+                    /// - Type: string
+                    /// - Examples:
+                    ///     - `Example Networks Inc.`
+                    ///     - `Google LLC`
+                    ///
+                    /// This attribute SHOULD only be set when `network.local.as.number` is set and the organization name is available. The value SHOULD be the organization name as provided by the lookup or enrichment source, not the AS name or short code.
+                    public var organization: SpanAttributeKey<String> {
+                        .init(name: OTelAttribute.network.local.`as`.organization)
+                    }
+                }
+            }
+            #endif
+
+            #if Experimental
+            /// `network.local.mac` namespace
+            public var mac: MacAttributes {
+                get {
+                    .init(attributes: self.attributes)
+                }
+                set {
+                    self.attributes = newValue.attributes
+                }
+            }
+
+            @dynamicMemberLookup
+            public struct MacAttributes: SpanAttributeNamespace {
+                public var attributes: Tracing.SpanAttributes
+
+                public init(attributes: Tracing.SpanAttributes) {
+                    self.attributes = attributes
+                }
+
+                public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                    public init() {}
+
+                    /// `network.local.mac.address` **UNSTABLE**: Local Media Access Control (MAC) address of the network connection.
+                    ///
+                    /// - Stability: development
+                    /// - Type: string
+                    /// - Example: `00-00-5E-00-53-23`
+                    ///
+                    /// MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
+                    /// as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
+                    ///
+                    /// > [!WARNING]
+                    /// >
+                    /// > This attribute may contain sensitive (PII) information.
+                    public var address: SpanAttributeKey<String> {
+                        .init(name: OTelAttribute.network.local.mac.address)
+                    }
+                }
+            }
+            #endif
         }
 
         /// `network.peer` namespace
@@ -432,7 +557,130 @@ extension SpanAttributes {
                 /// - Type: int
                 /// - Example: `65123`
                 public var port: SpanAttributeKey<Int> { .init(name: OTelAttribute.network.peer.port) }
+
+                #if Experimental
+                /// `network.peer.prefix` **UNSTABLE**: The IP prefix associated with the peer IP address, in CIDR notation.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Examples:
+                ///     - `192.0.2.0/24`
+                ///     - `2001:db8::/32`
+                ///
+                /// > [!WARNING]
+                /// >
+                /// > This attribute may contain sensitive (PII) information. A `/32` IPv4 prefix
+                /// > or `/128` IPv6 prefix preserves the complete endpoint IP address.
+                /// > Using CIDR notation does not guarantee that the data is anonymous.
+                ///
+                /// The value MUST be an IPv4 or IPv6 network prefix in CIDR notation, as defined in
+                /// [RFC 4632](https://www.rfc-editor.org/rfc/rfc4632.html) for IPv4 and
+                /// [RFC 4291](https://www.rfc-editor.org/rfc/rfc4291.html#section-2.3) for IPv6.
+                /// IPv4 prefixes MUST use a dotted-decimal address followed by `/` and a decimal
+                /// prefix length from 0 to 32. IPv6 prefixes MUST use the canonical address text
+                /// representation defined in [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html),
+                /// followed by `/` and a decimal prefix length from 0 to 128. All host bits in
+                /// the address MUST be set to zero. The value MUST NOT contain a domain name,
+                /// UNIX domain socket name, or IPv6 zone identifier.
+                ///
+                /// Instrumentation or Collector receivers that populate this attribute MUST
+                /// convert native representations, such as an address and subnet mask or an
+                /// address and prefix length, to equivalent CIDR notation before emitting it.
+                ///
+                /// This attribute MAY be set whether or not `network.peer.address` is set. If
+                /// `network.peer.address` is also set to an IP address, it MUST use the same IP version
+                /// and be contained in this prefix.
+                public var prefix: SpanAttributeKey<String> { .init(name: OTelAttribute.network.peer.prefix) }
+                #endif
             }
+
+            #if Experimental
+            /// `network.peer.as` namespace
+            public var `as`: AsAttributes {
+                get {
+                    .init(attributes: self.attributes)
+                }
+                set {
+                    self.attributes = newValue.attributes
+                }
+            }
+
+            @dynamicMemberLookup
+            public struct AsAttributes: SpanAttributeNamespace {
+                public var attributes: Tracing.SpanAttributes
+
+                public init(attributes: Tracing.SpanAttributes) {
+                    self.attributes = attributes
+                }
+
+                public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                    public init() {}
+
+                    /// `network.peer.as.number` **UNSTABLE**: The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the peer IP address.
+                    ///
+                    /// - Stability: development
+                    /// - Type: int
+                    /// - Examples:
+                    ///     - `64496`
+                    ///     - `15169`
+                    ///
+                    /// This attribute SHOULD only be set when the peer address is an IP address and the ASN is available from routing, enrichment, or lookup data. The value SHOULD be represented as an integer without the `AS` prefix.
+                    public var number: SpanAttributeKey<Int> { .init(name: OTelAttribute.network.peer.`as`.number) }
+
+                    /// `network.peer.as.organization` **UNSTABLE**: The name of the organization associated with the autonomous system of the peer IP address.
+                    ///
+                    /// - Stability: development
+                    /// - Type: string
+                    /// - Examples:
+                    ///     - `Example Networks Inc.`
+                    ///     - `Google LLC`
+                    ///
+                    /// This attribute SHOULD only be set when `network.peer.as.number` is set and the organization name is available. The value SHOULD be the organization name as provided by the lookup or enrichment source, not the AS name or short code.
+                    public var organization: SpanAttributeKey<String> {
+                        .init(name: OTelAttribute.network.peer.`as`.organization)
+                    }
+                }
+            }
+            #endif
+
+            #if Experimental
+            /// `network.peer.mac` namespace
+            public var mac: MacAttributes {
+                get {
+                    .init(attributes: self.attributes)
+                }
+                set {
+                    self.attributes = newValue.attributes
+                }
+            }
+
+            @dynamicMemberLookup
+            public struct MacAttributes: SpanAttributeNamespace {
+                public var attributes: Tracing.SpanAttributes
+
+                public init(attributes: Tracing.SpanAttributes) {
+                    self.attributes = attributes
+                }
+
+                public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                    public init() {}
+
+                    /// `network.peer.mac.address` **UNSTABLE**: Peer Media Access Control (MAC) address of the network connection.
+                    ///
+                    /// - Stability: development
+                    /// - Type: string
+                    /// - Example: `00-00-5E-00-53-23`
+                    ///
+                    /// MAC addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
+                    /// as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
+                    ///
+                    /// > [!WARNING]
+                    /// >
+                    /// > This attribute may contain sensitive (PII) information.
+                    public var address: SpanAttributeKey<String> { .init(name: OTelAttribute.network.peer.mac.address) }
+                }
+            }
+            #endif
         }
 
         /// `network.protocol` namespace

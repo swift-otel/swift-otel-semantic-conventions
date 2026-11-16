@@ -500,6 +500,44 @@ This section describes deprecated Azure attributes.
     }
 }
 
+## Azure Event Hubs Attributes
+
+This group describes attributes specific to Azure Event Hubs.
+
+@TabNavigator {
+    @Tab("Span Attributes") {
+        @Links(visualStyle: list) {
+            - ``Tracing/SpanAttributes/AzureAttributes/EventhubsAttributes/MessageAttributes/NestedSpanAttributes/enqueuedTime``
+        }
+    }
+    @Tab("String Constants") {
+        @Links(visualStyle: list) {
+            - ``OTelAttribute/azure/eventhubs/message/enqueuedTime``
+        }
+    }
+}
+
+## Azure Service Bus Attributes
+
+This group describes attributes specific to Azure Service Bus.
+
+@TabNavigator {
+    @Tab("Span Attributes") {
+        @Links(visualStyle: list) {
+            - ``Tracing/SpanAttributes/AzureAttributes/ServicebusAttributes/NestedSpanAttributes/dispositionStatus``
+            - ``Tracing/SpanAttributes/AzureAttributes/ServicebusAttributes/MessageAttributes/NestedSpanAttributes/deliveryCount``
+            - ``Tracing/SpanAttributes/AzureAttributes/ServicebusAttributes/MessageAttributes/NestedSpanAttributes/enqueuedTime``
+        }
+    }
+    @Tab("String Constants") {
+        @Links(visualStyle: list) {
+            - ``OTelAttribute/azure/servicebus/dispositionStatus``
+            - ``OTelAttribute/azure/servicebus/message/deliveryCount``
+            - ``OTelAttribute/azure/servicebus/message/enqueuedTime``
+        }
+    }
+}
+
 ## Browser Attributes
 
 The web browser attributes
@@ -617,13 +655,25 @@ This group describes attributes specific to pipelines within a Continuous Integr
     @Tab("Span Attributes") {
         @Links(visualStyle: list) {
             - ``Tracing/SpanAttributes/ClientAttributes/NestedSpanAttributes/address``
+            - ``Tracing/SpanAttributes/ClientAttributes/AsAttributes/NestedSpanAttributes/number``
+            - ``Tracing/SpanAttributes/ClientAttributes/AsAttributes/NestedSpanAttributes/organization``
+            - ``Tracing/SpanAttributes/ClientAttributes/MacAttributes/NestedSpanAttributes/address``
             - ``Tracing/SpanAttributes/ClientAttributes/NestedSpanAttributes/port``
+            - ``Tracing/SpanAttributes/ClientAttributes/NestedSpanAttributes/prefix``
+            - ``Tracing/SpanAttributes/ClientAttributes/ServiceAttributes/NestedSpanAttributes/name``
+            - ``Tracing/SpanAttributes/ClientAttributes/ServiceAttributes/NestedSpanAttributes/namespace``
         }
     }
     @Tab("String Constants") {
         @Links(visualStyle: list) {
             - ``OTelAttribute/client/address``
+            - ``OTelAttribute/client/as/number``
+            - ``OTelAttribute/client/as/organization``
+            - ``OTelAttribute/client/mac/address``
             - ``OTelAttribute/client/port``
+            - ``OTelAttribute/client/prefix``
+            - ``OTelAttribute/client/service/name``
+            - ``OTelAttribute/client/service/namespace``
         }
     }
 }
@@ -1056,13 +1106,21 @@ Describes deprecated deployment attributes.
     @Tab("Span Attributes") {
         @Links(visualStyle: list) {
             - ``Tracing/SpanAttributes/DestinationAttributes/NestedSpanAttributes/address``
+            - ``Tracing/SpanAttributes/DestinationAttributes/AsAttributes/NestedSpanAttributes/number``
+            - ``Tracing/SpanAttributes/DestinationAttributes/AsAttributes/NestedSpanAttributes/organization``
+            - ``Tracing/SpanAttributes/DestinationAttributes/MacAttributes/NestedSpanAttributes/address``
             - ``Tracing/SpanAttributes/DestinationAttributes/NestedSpanAttributes/port``
+            - ``Tracing/SpanAttributes/DestinationAttributes/NestedSpanAttributes/prefix``
         }
     }
     @Tab("String Constants") {
         @Links(visualStyle: list) {
             - ``OTelAttribute/destination/address``
+            - ``OTelAttribute/destination/as/number``
+            - ``OTelAttribute/destination/as/organization``
+            - ``OTelAttribute/destination/mac/address``
             - ``OTelAttribute/destination/port``
+            - ``OTelAttribute/destination/prefix``
         }
     }
 }
@@ -1143,9 +1201,9 @@ This section defines attributes for Elasticsearch.
     }
 }
 
-## End User Attributes
+## End User Attributes (Moved)
 
-Describes the end user.
+End user attributes have moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side).
 
 @TabNavigator {
     @Tab("Span Attributes") {
@@ -1282,13 +1340,13 @@ FaaS attributes
             - ``Tracing/SpanAttributes/FaasAttributes/DocumentAttributes/NestedSpanAttributes/operation``
             - ``Tracing/SpanAttributes/FaasAttributes/DocumentAttributes/NestedSpanAttributes/time``
             - ``Tracing/SpanAttributes/FaasAttributes/NestedSpanAttributes/instance``
-            - ``Tracing/SpanAttributes/FaasAttributes/NestedSpanAttributes/invocationId``
+            - ``Tracing/SpanAttributes/FaasAttributes/InvocationAttributes/NestedSpanAttributes/id``
+            - ``Tracing/SpanAttributes/FaasAttributes/InvocationAttributes/NestedSpanAttributes/startTime``
             - ``Tracing/SpanAttributes/FaasAttributes/NestedSpanAttributes/invokedName``
             - ``Tracing/SpanAttributes/FaasAttributes/NestedSpanAttributes/invokedProvider``
             - ``Tracing/SpanAttributes/FaasAttributes/NestedSpanAttributes/invokedRegion``
             - ``Tracing/SpanAttributes/FaasAttributes/NestedSpanAttributes/maxMemory``
             - ``Tracing/SpanAttributes/FaasAttributes/NestedSpanAttributes/name``
-            - ``Tracing/SpanAttributes/FaasAttributes/NestedSpanAttributes/time``
             - ``Tracing/SpanAttributes/FaasAttributes/NestedSpanAttributes/trigger``
             - ``Tracing/SpanAttributes/FaasAttributes/NestedSpanAttributes/version``
         }
@@ -1302,15 +1360,33 @@ FaaS attributes
             - ``OTelAttribute/faas/document/operation``
             - ``OTelAttribute/faas/document/time``
             - ``OTelAttribute/faas/instance``
-            - ``OTelAttribute/faas/invocationId``
+            - ``OTelAttribute/faas/invocation/id``
+            - ``OTelAttribute/faas/invocation/startTime``
             - ``OTelAttribute/faas/invokedName``
             - ``OTelAttribute/faas/invokedProvider``
             - ``OTelAttribute/faas/invokedRegion``
             - ``OTelAttribute/faas/maxMemory``
             - ``OTelAttribute/faas/name``
-            - ``OTelAttribute/faas/time``
             - ``OTelAttribute/faas/trigger``
             - ``OTelAttribute/faas/version``
+        }
+    }
+}
+
+## Deprecated Function as a Service Attributes
+
+Deprecated FaaS attributes
+@TabNavigator {
+    @Tab("Span Attributes") {
+        @Links(visualStyle: list) {
+            - ``Tracing/SpanAttributes/FaasAttributes/NestedSpanAttributes/invocationId``
+            - ``Tracing/SpanAttributes/FaasAttributes/NestedSpanAttributes/time``
+        }
+    }
+    @Tab("String Constants") {
+        @Links(visualStyle: list) {
+            - ``OTelAttribute/faas/invocationId``
+            - ``OTelAttribute/faas/time``
         }
     }
 }
@@ -1566,6 +1642,29 @@ This document defines attributes for Google Compute Engine (GCE).
             - ``OTelAttribute/gcp/gce/instance/hostname``
             - ``OTelAttribute/gcp/gce/instance/labels``
             - ``OTelAttribute/gcp/gce/instance/name``
+        }
+    }
+}
+
+## GCP Pub/Sub Attributes
+
+This group describes attributes specific to GCP Pub/Sub.
+
+@TabNavigator {
+    @Tab("Span Attributes") {
+        @Links(visualStyle: list) {
+            - ``Tracing/SpanAttributes/GcpAttributes/PubsubAttributes/MessageAttributes/NestedSpanAttributes/ackDeadline``
+            - ``Tracing/SpanAttributes/GcpAttributes/PubsubAttributes/MessageAttributes/NestedSpanAttributes/ackId``
+            - ``Tracing/SpanAttributes/GcpAttributes/PubsubAttributes/MessageAttributes/NestedSpanAttributes/deliveryAttempt``
+            - ``Tracing/SpanAttributes/GcpAttributes/PubsubAttributes/MessageAttributes/NestedSpanAttributes/orderingKey``
+        }
+    }
+    @Tab("String Constants") {
+        @Links(visualStyle: list) {
+            - ``OTelAttribute/gcp/pubsub/message/ackDeadline``
+            - ``OTelAttribute/gcp/pubsub/message/ackId``
+            - ``OTelAttribute/gcp/pubsub/message/deliveryAttempt``
+            - ``OTelAttribute/gcp/pubsub/message/orderingKey``
         }
     }
 }
@@ -1948,12 +2047,14 @@ This document defines semantic convention attributes in the HTTP namespace.
     @Tab("Span Attributes") {
         @Links(visualStyle: list) {
             - ``Tracing/SpanAttributes/HttpAttributes/ConnectionAttributes/NestedSpanAttributes/state``
+            - ``Tracing/SpanAttributes/HttpAttributes/RequestAttributes/BodyAttributes/NestedSpanAttributes/content``
             - ``Tracing/SpanAttributes/HttpAttributes/RequestAttributes/BodyAttributes/NestedSpanAttributes/size``
             - ``Tracing/SpanAttributes/HttpAttributes/RequestAttributes/header``
             - ``Tracing/SpanAttributes/HttpAttributes/RequestAttributes/NestedSpanAttributes/method``
             - ``Tracing/SpanAttributes/HttpAttributes/RequestAttributes/NestedSpanAttributes/methodOriginal``
             - ``Tracing/SpanAttributes/HttpAttributes/RequestAttributes/NestedSpanAttributes/resendCount``
             - ``Tracing/SpanAttributes/HttpAttributes/RequestAttributes/NestedSpanAttributes/size``
+            - ``Tracing/SpanAttributes/HttpAttributes/ResponseAttributes/BodyAttributes/NestedSpanAttributes/content``
             - ``Tracing/SpanAttributes/HttpAttributes/ResponseAttributes/BodyAttributes/NestedSpanAttributes/size``
             - ``Tracing/SpanAttributes/HttpAttributes/ResponseAttributes/header``
             - ``Tracing/SpanAttributes/HttpAttributes/ResponseAttributes/NestedSpanAttributes/size``
@@ -1964,12 +2065,14 @@ This document defines semantic convention attributes in the HTTP namespace.
     @Tab("String Constants") {
         @Links(visualStyle: list) {
             - ``OTelAttribute/http/connection/state``
+            - ``OTelAttribute/http/request/body/content``
             - ``OTelAttribute/http/request/body/size``
             - ``OTelAttribute/http/request/header``
             - ``OTelAttribute/http/request/method``
             - ``OTelAttribute/http/request/methodOriginal``
             - ``OTelAttribute/http/request/resendCount``
             - ``OTelAttribute/http/request/size``
+            - ``OTelAttribute/http/response/body/content``
             - ``OTelAttribute/http/response/body/size``
             - ``OTelAttribute/http/response/header``
             - ``OTelAttribute/http/response/size``
@@ -2282,6 +2385,29 @@ Describes deprecated K8s attributes.
     }
 }
 
+## Kafka Attributes
+
+This group describes attributes specific to Apache Kafka.
+
+@TabNavigator {
+    @Tab("Span Attributes") {
+        @Links(visualStyle: list) {
+            - ``Tracing/SpanAttributes/KafkaAttributes/ClusterAttributes/NestedSpanAttributes/id``
+            - ``Tracing/SpanAttributes/KafkaAttributes/MessageAttributes/NestedSpanAttributes/key``
+            - ``Tracing/SpanAttributes/KafkaAttributes/MessageAttributes/NestedSpanAttributes/tombstone``
+            - ``Tracing/SpanAttributes/KafkaAttributes/NestedSpanAttributes/offset``
+        }
+    }
+    @Tab("String Constants") {
+        @Links(visualStyle: list) {
+            - ``OTelAttribute/kafka/cluster/id``
+            - ``OTelAttribute/kafka/message/key``
+            - ``OTelAttribute/kafka/message/tombstone``
+            - ``OTelAttribute/kafka/offset``
+        }
+    }
+}
+
 ## Deprecated Linux Attributes
 
 Deprecated Linux attributes.
@@ -2317,7 +2443,7 @@ This document defines log attributes
 
 ## Log File Attributes
 
-Attributes for a file to which log was emitted.
+Attributes for a file to which the log record was emitted.
 
 @TabNavigator {
     @Tab("Span Attributes") {
@@ -2401,7 +2527,7 @@ Attributes describing telemetry around messaging systems and messaging activitie
             - ``Tracing/SpanAttributes/MessagingAttributes/MessageAttributes/NestedSpanAttributes/id``
             - ``Tracing/SpanAttributes/MessagingAttributes/OperationAttributes/NestedSpanAttributes/name``
             - ``Tracing/SpanAttributes/MessagingAttributes/OperationAttributes/NestedSpanAttributes/type``
-            - ``Tracing/SpanAttributes/MessagingAttributes/NestedSpanAttributes/system``
+            - ``Tracing/SpanAttributes/MessagingAttributes/SystemAttributes/NestedSpanAttributes/name``
         }
     }
     @Tab("String Constants") {
@@ -2421,7 +2547,7 @@ Attributes describing telemetry around messaging systems and messaging activitie
             - ``OTelAttribute/messaging/message/id``
             - ``OTelAttribute/messaging/operation/name``
             - ``OTelAttribute/messaging/operation/type``
-            - ``OTelAttribute/messaging/system``
+            - ``OTelAttribute/messaging/system/name``
         }
     }
 }
@@ -2436,119 +2562,22 @@ Describes deprecated messaging attributes.
             - ``Tracing/SpanAttributes/MessagingAttributes/DestinationPublishAttributes/NestedSpanAttributes/anonymous``
             - ``Tracing/SpanAttributes/MessagingAttributes/DestinationPublishAttributes/NestedSpanAttributes/name``
             - ``Tracing/SpanAttributes/MessagingAttributes/EventhubsAttributes/ConsumerAttributes/NestedSpanAttributes/group``
-            - ``Tracing/SpanAttributes/MessagingAttributes/KafkaAttributes/ConsumerAttributes/NestedSpanAttributes/group``
-            - ``Tracing/SpanAttributes/MessagingAttributes/KafkaAttributes/DestinationAttributes/NestedSpanAttributes/partition``
-            - ``Tracing/SpanAttributes/MessagingAttributes/KafkaAttributes/MessageAttributes/NestedSpanAttributes/offset``
-            - ``Tracing/SpanAttributes/MessagingAttributes/NestedSpanAttributes/_operation``
-            - ``Tracing/SpanAttributes/MessagingAttributes/RocketmqAttributes/NestedSpanAttributes/clientGroup``
-            - ``Tracing/SpanAttributes/MessagingAttributes/ServicebusAttributes/DestinationAttributes/NestedSpanAttributes/subscriptionName``
-        }
-    }
-    @Tab("String Constants") {
-        @Links(visualStyle: list) {
-            - ``OTelAttribute/messaging/clientId``
-            - ``OTelAttribute/messaging/destinationPublish/anonymous``
-            - ``OTelAttribute/messaging/destinationPublish/name``
-            - ``OTelAttribute/messaging/eventhubs/consumer/group``
-            - ``OTelAttribute/messaging/kafka/consumer/group``
-            - ``OTelAttribute/messaging/kafka/destination/partition``
-            - ``OTelAttribute/messaging/kafka/message/offset``
-            - ``OTelAttribute/messaging/_operation``
-            - ``OTelAttribute/messaging/rocketmq/clientGroup``
-            - ``OTelAttribute/messaging/servicebus/destination/subscriptionName``
-        }
-    }
-}
-
-## Azure Event Hubs Attributes
-
-This group describes attributes specific to Azure Event Hubs.
-
-@TabNavigator {
-    @Tab("Span Attributes") {
-        @Links(visualStyle: list) {
             - ``Tracing/SpanAttributes/MessagingAttributes/EventhubsAttributes/MessageAttributes/NestedSpanAttributes/enqueuedTime``
-        }
-    }
-    @Tab("String Constants") {
-        @Links(visualStyle: list) {
-            - ``OTelAttribute/messaging/eventhubs/message/enqueuedTime``
-        }
-    }
-}
-
-## GCP Pub/Sub Attributes
-
-This group describes attributes specific to GCP Pub/Sub.
-
-@TabNavigator {
-    @Tab("Span Attributes") {
-        @Links(visualStyle: list) {
             - ``Tracing/SpanAttributes/MessagingAttributes/GcpPubsubAttributes/MessageAttributes/NestedSpanAttributes/ackDeadline``
             - ``Tracing/SpanAttributes/MessagingAttributes/GcpPubsubAttributes/MessageAttributes/NestedSpanAttributes/ackId``
             - ``Tracing/SpanAttributes/MessagingAttributes/GcpPubsubAttributes/MessageAttributes/NestedSpanAttributes/deliveryAttempt``
             - ``Tracing/SpanAttributes/MessagingAttributes/GcpPubsubAttributes/MessageAttributes/NestedSpanAttributes/orderingKey``
-        }
-    }
-    @Tab("String Constants") {
-        @Links(visualStyle: list) {
-            - ``OTelAttribute/messaging/gcpPubsub/message/ackDeadline``
-            - ``OTelAttribute/messaging/gcpPubsub/message/ackId``
-            - ``OTelAttribute/messaging/gcpPubsub/message/deliveryAttempt``
-            - ``OTelAttribute/messaging/gcpPubsub/message/orderingKey``
-        }
-    }
-}
-
-## Kafka Attributes
-
-This group describes attributes specific to Apache Kafka.
-
-@TabNavigator {
-    @Tab("Span Attributes") {
-        @Links(visualStyle: list) {
             - ``Tracing/SpanAttributes/MessagingAttributes/KafkaAttributes/ClusterAttributes/NestedSpanAttributes/id``
+            - ``Tracing/SpanAttributes/MessagingAttributes/KafkaAttributes/ConsumerAttributes/NestedSpanAttributes/group``
+            - ``Tracing/SpanAttributes/MessagingAttributes/KafkaAttributes/DestinationAttributes/NestedSpanAttributes/partition``
             - ``Tracing/SpanAttributes/MessagingAttributes/KafkaAttributes/MessageAttributes/NestedSpanAttributes/key``
+            - ``Tracing/SpanAttributes/MessagingAttributes/KafkaAttributes/MessageAttributes/NestedSpanAttributes/offset``
             - ``Tracing/SpanAttributes/MessagingAttributes/KafkaAttributes/MessageAttributes/NestedSpanAttributes/tombstone``
             - ``Tracing/SpanAttributes/MessagingAttributes/KafkaAttributes/NestedSpanAttributes/offset``
-        }
-    }
-    @Tab("String Constants") {
-        @Links(visualStyle: list) {
-            - ``OTelAttribute/messaging/kafka/cluster/id``
-            - ``OTelAttribute/messaging/kafka/message/key``
-            - ``OTelAttribute/messaging/kafka/message/tombstone``
-            - ``OTelAttribute/messaging/kafka/offset``
-        }
-    }
-}
-
-## RabbitMQ Attributes
-
-This group describes attributes specific to RabbitMQ.
-
-@TabNavigator {
-    @Tab("Span Attributes") {
-        @Links(visualStyle: list) {
+            - ``Tracing/SpanAttributes/MessagingAttributes/NestedSpanAttributes/_operation``
             - ``Tracing/SpanAttributes/MessagingAttributes/RabbitmqAttributes/DestinationAttributes/NestedSpanAttributes/routingKey``
             - ``Tracing/SpanAttributes/MessagingAttributes/RabbitmqAttributes/MessageAttributes/NestedSpanAttributes/deliveryTag``
-        }
-    }
-    @Tab("String Constants") {
-        @Links(visualStyle: list) {
-            - ``OTelAttribute/messaging/rabbitmq/destination/routingKey``
-            - ``OTelAttribute/messaging/rabbitmq/message/deliveryTag``
-        }
-    }
-}
-
-## RocketMQ Attributes
-
-This group describes attributes specific to RocketMQ.
-
-@TabNavigator {
-    @Tab("Span Attributes") {
-        @Links(visualStyle: list) {
+            - ``Tracing/SpanAttributes/MessagingAttributes/RocketmqAttributes/NestedSpanAttributes/clientGroup``
             - ``Tracing/SpanAttributes/MessagingAttributes/RocketmqAttributes/NestedSpanAttributes/consumptionModel``
             - ``Tracing/SpanAttributes/MessagingAttributes/RocketmqAttributes/MessageAttributes/NestedSpanAttributes/delayTimeLevel``
             - ``Tracing/SpanAttributes/MessagingAttributes/RocketmqAttributes/MessageAttributes/NestedSpanAttributes/deliveryTimestamp``
@@ -2557,10 +2586,35 @@ This group describes attributes specific to RocketMQ.
             - ``Tracing/SpanAttributes/MessagingAttributes/RocketmqAttributes/MessageAttributes/NestedSpanAttributes/tag``
             - ``Tracing/SpanAttributes/MessagingAttributes/RocketmqAttributes/MessageAttributes/NestedSpanAttributes/type``
             - ``Tracing/SpanAttributes/MessagingAttributes/RocketmqAttributes/NestedSpanAttributes/namespace``
+            - ``Tracing/SpanAttributes/MessagingAttributes/ServicebusAttributes/DestinationAttributes/NestedSpanAttributes/subscriptionName``
+            - ``Tracing/SpanAttributes/MessagingAttributes/ServicebusAttributes/NestedSpanAttributes/dispositionStatus``
+            - ``Tracing/SpanAttributes/MessagingAttributes/ServicebusAttributes/MessageAttributes/NestedSpanAttributes/deliveryCount``
+            - ``Tracing/SpanAttributes/MessagingAttributes/ServicebusAttributes/MessageAttributes/NestedSpanAttributes/enqueuedTime``
+            - ``Tracing/SpanAttributes/MessagingAttributes/NestedSpanAttributes/_system``
         }
     }
     @Tab("String Constants") {
         @Links(visualStyle: list) {
+            - ``OTelAttribute/messaging/clientId``
+            - ``OTelAttribute/messaging/destinationPublish/anonymous``
+            - ``OTelAttribute/messaging/destinationPublish/name``
+            - ``OTelAttribute/messaging/eventhubs/consumer/group``
+            - ``OTelAttribute/messaging/eventhubs/message/enqueuedTime``
+            - ``OTelAttribute/messaging/gcpPubsub/message/ackDeadline``
+            - ``OTelAttribute/messaging/gcpPubsub/message/ackId``
+            - ``OTelAttribute/messaging/gcpPubsub/message/deliveryAttempt``
+            - ``OTelAttribute/messaging/gcpPubsub/message/orderingKey``
+            - ``OTelAttribute/messaging/kafka/cluster/id``
+            - ``OTelAttribute/messaging/kafka/consumer/group``
+            - ``OTelAttribute/messaging/kafka/destination/partition``
+            - ``OTelAttribute/messaging/kafka/message/key``
+            - ``OTelAttribute/messaging/kafka/message/offset``
+            - ``OTelAttribute/messaging/kafka/message/tombstone``
+            - ``OTelAttribute/messaging/kafka/offset``
+            - ``OTelAttribute/messaging/_operation``
+            - ``OTelAttribute/messaging/rabbitmq/destination/routingKey``
+            - ``OTelAttribute/messaging/rabbitmq/message/deliveryTag``
+            - ``OTelAttribute/messaging/rocketmq/clientGroup``
             - ``OTelAttribute/messaging/rocketmq/consumptionModel``
             - ``OTelAttribute/messaging/rocketmq/message/delayTimeLevel``
             - ``OTelAttribute/messaging/rocketmq/message/deliveryTimestamp``
@@ -2569,27 +2623,11 @@ This group describes attributes specific to RocketMQ.
             - ``OTelAttribute/messaging/rocketmq/message/tag``
             - ``OTelAttribute/messaging/rocketmq/message/type``
             - ``OTelAttribute/messaging/rocketmq/namespace``
-        }
-    }
-}
-
-## Azure Service Bus Attributes
-
-This group describes attributes specific to Azure Service Bus.
-
-@TabNavigator {
-    @Tab("Span Attributes") {
-        @Links(visualStyle: list) {
-            - ``Tracing/SpanAttributes/MessagingAttributes/ServicebusAttributes/NestedSpanAttributes/dispositionStatus``
-            - ``Tracing/SpanAttributes/MessagingAttributes/ServicebusAttributes/MessageAttributes/NestedSpanAttributes/deliveryCount``
-            - ``Tracing/SpanAttributes/MessagingAttributes/ServicebusAttributes/MessageAttributes/NestedSpanAttributes/enqueuedTime``
-        }
-    }
-    @Tab("String Constants") {
-        @Links(visualStyle: list) {
+            - ``OTelAttribute/messaging/servicebus/destination/subscriptionName``
             - ``OTelAttribute/messaging/servicebus/dispositionStatus``
             - ``OTelAttribute/messaging/servicebus/message/deliveryCount``
             - ``OTelAttribute/messaging/servicebus/message/enqueuedTime``
+            - ``OTelAttribute/messaging/_system``
         }
     }
 }
@@ -2611,9 +2649,17 @@ These attributes may be used for any network related operation.
             - ``Tracing/SpanAttributes/NetworkAttributes/InterfaceAttributes/NestedSpanAttributes/name``
             - ``Tracing/SpanAttributes/NetworkAttributes/IoAttributes/NestedSpanAttributes/direction``
             - ``Tracing/SpanAttributes/NetworkAttributes/LocalAttributes/NestedSpanAttributes/address``
+            - ``Tracing/SpanAttributes/NetworkAttributes/LocalAttributes/AsAttributes/NestedSpanAttributes/number``
+            - ``Tracing/SpanAttributes/NetworkAttributes/LocalAttributes/AsAttributes/NestedSpanAttributes/organization``
+            - ``Tracing/SpanAttributes/NetworkAttributes/LocalAttributes/MacAttributes/NestedSpanAttributes/address``
             - ``Tracing/SpanAttributes/NetworkAttributes/LocalAttributes/NestedSpanAttributes/port``
+            - ``Tracing/SpanAttributes/NetworkAttributes/LocalAttributes/NestedSpanAttributes/prefix``
             - ``Tracing/SpanAttributes/NetworkAttributes/PeerAttributes/NestedSpanAttributes/address``
+            - ``Tracing/SpanAttributes/NetworkAttributes/PeerAttributes/AsAttributes/NestedSpanAttributes/number``
+            - ``Tracing/SpanAttributes/NetworkAttributes/PeerAttributes/AsAttributes/NestedSpanAttributes/organization``
+            - ``Tracing/SpanAttributes/NetworkAttributes/PeerAttributes/MacAttributes/NestedSpanAttributes/address``
             - ``Tracing/SpanAttributes/NetworkAttributes/PeerAttributes/NestedSpanAttributes/port``
+            - ``Tracing/SpanAttributes/NetworkAttributes/PeerAttributes/NestedSpanAttributes/prefix``
             - ``Tracing/SpanAttributes/NetworkAttributes/ProtocolAttributes/NestedSpanAttributes/name``
             - ``Tracing/SpanAttributes/NetworkAttributes/ProtocolAttributes/NestedSpanAttributes/version``
             - ``Tracing/SpanAttributes/NetworkAttributes/NestedSpanAttributes/transport``
@@ -2632,9 +2678,17 @@ These attributes may be used for any network related operation.
             - ``OTelAttribute/network/interface/name``
             - ``OTelAttribute/network/io/direction``
             - ``OTelAttribute/network/local/address``
+            - ``OTelAttribute/network/local/as/number``
+            - ``OTelAttribute/network/local/as/organization``
+            - ``OTelAttribute/network/local/mac/address``
             - ``OTelAttribute/network/local/port``
+            - ``OTelAttribute/network/local/prefix``
             - ``OTelAttribute/network/peer/address``
+            - ``OTelAttribute/network/peer/as/number``
+            - ``OTelAttribute/network/peer/as/organization``
+            - ``OTelAttribute/network/peer/mac/address``
             - ``OTelAttribute/network/peer/port``
+            - ``OTelAttribute/network/peer/prefix``
             - ``OTelAttribute/network/protocol/name``
             - ``OTelAttribute/network/protocol/version``
             - ``OTelAttribute/network/transport``
@@ -2788,9 +2842,8 @@ OpenShift resource attributes.
     }
 }
 
-## OpenTracing Attributes
+## Opentracing Attributes
 
-Attributes used by the OpenTracing Shim layer.
 @TabNavigator {
     @Tab("Span Attributes") {
         @Links(visualStyle: list) {
@@ -3138,6 +3191,56 @@ Describes the origin of a single frame in a Profile.
     }
 }
 
+## RabbitMQ Attributes
+
+This group describes attributes specific to RabbitMQ.
+
+@TabNavigator {
+    @Tab("Span Attributes") {
+        @Links(visualStyle: list) {
+            - ``Tracing/SpanAttributes/RabbitmqAttributes/DestinationAttributes/NestedSpanAttributes/routingKey``
+            - ``Tracing/SpanAttributes/RabbitmqAttributes/MessageAttributes/NestedSpanAttributes/deliveryTag``
+        }
+    }
+    @Tab("String Constants") {
+        @Links(visualStyle: list) {
+            - ``OTelAttribute/rabbitmq/destination/routingKey``
+            - ``OTelAttribute/rabbitmq/message/deliveryTag``
+        }
+    }
+}
+
+## RocketMQ Attributes
+
+This group describes attributes specific to RocketMQ.
+
+@TabNavigator {
+    @Tab("Span Attributes") {
+        @Links(visualStyle: list) {
+            - ``Tracing/SpanAttributes/RocketmqAttributes/NestedSpanAttributes/consumptionModel``
+            - ``Tracing/SpanAttributes/RocketmqAttributes/MessageAttributes/NestedSpanAttributes/delayTimeLevel``
+            - ``Tracing/SpanAttributes/RocketmqAttributes/MessageAttributes/NestedSpanAttributes/deliveryTimestamp``
+            - ``Tracing/SpanAttributes/RocketmqAttributes/MessageAttributes/NestedSpanAttributes/group``
+            - ``Tracing/SpanAttributes/RocketmqAttributes/MessageAttributes/NestedSpanAttributes/keys``
+            - ``Tracing/SpanAttributes/RocketmqAttributes/MessageAttributes/NestedSpanAttributes/tag``
+            - ``Tracing/SpanAttributes/RocketmqAttributes/MessageAttributes/NestedSpanAttributes/type``
+            - ``Tracing/SpanAttributes/RocketmqAttributes/NestedSpanAttributes/namespace``
+        }
+    }
+    @Tab("String Constants") {
+        @Links(visualStyle: list) {
+            - ``OTelAttribute/rocketmq/consumptionModel``
+            - ``OTelAttribute/rocketmq/message/delayTimeLevel``
+            - ``OTelAttribute/rocketmq/message/deliveryTimestamp``
+            - ``OTelAttribute/rocketmq/message/group``
+            - ``OTelAttribute/rocketmq/message/keys``
+            - ``OTelAttribute/rocketmq/message/tag``
+            - ``OTelAttribute/rocketmq/message/type``
+            - ``OTelAttribute/rocketmq/namespace``
+        }
+    }
+}
+
 ## Remote Procedure Call (RPC) Attributes
 
 This document defines attributes for remote procedure calls.
@@ -3146,9 +3249,10 @@ This document defines attributes for remote procedure calls.
         @Links(visualStyle: list) {
             - ``Tracing/SpanAttributes/RpcAttributes/NestedSpanAttributes/method``
             - ``Tracing/SpanAttributes/RpcAttributes/NestedSpanAttributes/methodOriginal``
-            - ``Tracing/SpanAttributes/RpcAttributes/RequestAttributes/metadata``
-            - ``Tracing/SpanAttributes/RpcAttributes/ResponseAttributes/metadata``
-            - ``Tracing/SpanAttributes/RpcAttributes/ResponseAttributes/NestedSpanAttributes/statusCode``
+            - ``Tracing/SpanAttributes/RpcAttributes/RequestAttributes/header``
+            - ``Tracing/SpanAttributes/RpcAttributes/ResponseAttributes/header``
+            - ``Tracing/SpanAttributes/RpcAttributes/ResponseAttributes/trailer``
+            - ``Tracing/SpanAttributes/RpcAttributes/NestedSpanAttributes/statusCode``
             - ``Tracing/SpanAttributes/RpcAttributes/SystemAttributes/NestedSpanAttributes/name``
         }
     }
@@ -3156,9 +3260,10 @@ This document defines attributes for remote procedure calls.
         @Links(visualStyle: list) {
             - ``OTelAttribute/rpc/method``
             - ``OTelAttribute/rpc/methodOriginal``
-            - ``OTelAttribute/rpc/request/metadata``
-            - ``OTelAttribute/rpc/response/metadata``
-            - ``OTelAttribute/rpc/response/statusCode``
+            - ``OTelAttribute/rpc/request/header``
+            - ``OTelAttribute/rpc/response/header``
+            - ``OTelAttribute/rpc/response/trailer``
+            - ``OTelAttribute/rpc/statusCode``
             - ``OTelAttribute/rpc/system/name``
         }
     }
@@ -3188,6 +3293,9 @@ Deprecated rpc message attributes.
             - ``Tracing/SpanAttributes/RpcAttributes/MessageAttributes/NestedSpanAttributes/id``
             - ``Tracing/SpanAttributes/RpcAttributes/MessageAttributes/NestedSpanAttributes/type``
             - ``Tracing/SpanAttributes/RpcAttributes/MessageAttributes/NestedSpanAttributes/uncompressedSize``
+            - ``Tracing/SpanAttributes/RpcAttributes/RequestAttributes/metadata``
+            - ``Tracing/SpanAttributes/RpcAttributes/ResponseAttributes/metadata``
+            - ``Tracing/SpanAttributes/RpcAttributes/ResponseAttributes/NestedSpanAttributes/statusCode``
             - ``Tracing/SpanAttributes/RpcAttributes/NestedSpanAttributes/service``
             - ``Tracing/SpanAttributes/RpcAttributes/NestedSpanAttributes/_system``
         }
@@ -3212,6 +3320,9 @@ Deprecated rpc message attributes.
             - ``OTelAttribute/rpc/message/id``
             - ``OTelAttribute/rpc/message/type``
             - ``OTelAttribute/rpc/message/uncompressedSize``
+            - ``OTelAttribute/rpc/request/metadata``
+            - ``OTelAttribute/rpc/response/metadata``
+            - ``OTelAttribute/rpc/response/statusCode``
             - ``OTelAttribute/rpc/service``
             - ``OTelAttribute/rpc/_system``
         }
@@ -3255,13 +3366,25 @@ Describes security rule attributes. Rule fields are used to capture the specific
     @Tab("Span Attributes") {
         @Links(visualStyle: list) {
             - ``Tracing/SpanAttributes/ServerAttributes/NestedSpanAttributes/address``
+            - ``Tracing/SpanAttributes/ServerAttributes/AsAttributes/NestedSpanAttributes/number``
+            - ``Tracing/SpanAttributes/ServerAttributes/AsAttributes/NestedSpanAttributes/organization``
+            - ``Tracing/SpanAttributes/ServerAttributes/MacAttributes/NestedSpanAttributes/address``
             - ``Tracing/SpanAttributes/ServerAttributes/NestedSpanAttributes/port``
+            - ``Tracing/SpanAttributes/ServerAttributes/NestedSpanAttributes/prefix``
+            - ``Tracing/SpanAttributes/ServerAttributes/ServiceAttributes/NestedSpanAttributes/name``
+            - ``Tracing/SpanAttributes/ServerAttributes/ServiceAttributes/NestedSpanAttributes/namespace``
         }
     }
     @Tab("String Constants") {
         @Links(visualStyle: list) {
             - ``OTelAttribute/server/address``
+            - ``OTelAttribute/server/as/number``
+            - ``OTelAttribute/server/as/organization``
+            - ``OTelAttribute/server/mac/address``
             - ``OTelAttribute/server/port``
+            - ``OTelAttribute/server/prefix``
+            - ``OTelAttribute/server/service/name``
+            - ``OTelAttribute/server/service/namespace``
         }
     }
 }
@@ -3274,6 +3397,8 @@ A service instance.
     @Tab("Span Attributes") {
         @Links(visualStyle: list) {
             - ``Tracing/SpanAttributes/ServiceAttributes/NestedSpanAttributes/criticality``
+            - ``Tracing/SpanAttributes/ServiceAttributes/InstanceAttributes/CostCenterAttributes/NestedSpanAttributes/id``
+            - ``Tracing/SpanAttributes/ServiceAttributes/InstanceAttributes/CostCenterAttributes/NestedSpanAttributes/name``
             - ``Tracing/SpanAttributes/ServiceAttributes/InstanceAttributes/NestedSpanAttributes/id``
             - ``Tracing/SpanAttributes/ServiceAttributes/NestedSpanAttributes/name``
             - ``Tracing/SpanAttributes/ServiceAttributes/NestedSpanAttributes/namespace``
@@ -3283,6 +3408,8 @@ A service instance.
     @Tab("String Constants") {
         @Links(visualStyle: list) {
             - ``OTelAttribute/service/criticality``
+            - ``OTelAttribute/service/instance/costCenter/id``
+            - ``OTelAttribute/service/instance/costCenter/name``
             - ``OTelAttribute/service/instance/id``
             - ``OTelAttribute/service/name``
             - ``OTelAttribute/service/namespace``
@@ -3312,10 +3439,6 @@ How to describe the service on the other side of a request.
 
 ## Session Attributes
 
-Session is defined as the period of time encompassing all activities performed by the application and the actions executed by the end user.
-Consequently, a Session is represented as a collection of Logs, Events, and Spans emitted by the Client Application throughout the Session's duration. Each Session is assigned a unique identifier, which is included as an attribute in the Logs, Events, and Spans generated during the Session's lifecycle.
-When a session reaches end of life, typically due to user inactivity or session timeout, a new session identifier will be assigned. The previous session identifier may be provided by the instrumentation so that telemetry backends can link the two sessions.
-
 @TabNavigator {
     @Tab("Span Attributes") {
         @Links(visualStyle: list) {
@@ -3337,13 +3460,21 @@ When a session reaches end of life, typically due to user inactivity or session 
     @Tab("Span Attributes") {
         @Links(visualStyle: list) {
             - ``Tracing/SpanAttributes/SourceAttributes/NestedSpanAttributes/address``
+            - ``Tracing/SpanAttributes/SourceAttributes/AsAttributes/NestedSpanAttributes/number``
+            - ``Tracing/SpanAttributes/SourceAttributes/AsAttributes/NestedSpanAttributes/organization``
+            - ``Tracing/SpanAttributes/SourceAttributes/MacAttributes/NestedSpanAttributes/address``
             - ``Tracing/SpanAttributes/SourceAttributes/NestedSpanAttributes/port``
+            - ``Tracing/SpanAttributes/SourceAttributes/NestedSpanAttributes/prefix``
         }
     }
     @Tab("String Constants") {
         @Links(visualStyle: list) {
             - ``OTelAttribute/source/address``
+            - ``OTelAttribute/source/as/number``
+            - ``OTelAttribute/source/as/organization``
+            - ``OTelAttribute/source/mac/address``
             - ``OTelAttribute/source/port``
+            - ``OTelAttribute/source/prefix``
         }
     }
 }
@@ -3354,12 +3485,12 @@ Describes System attributes
 @TabNavigator {
     @Tab("Span Attributes") {
         @Links(visualStyle: list) {
-            - ``Tracing/SpanAttributes/SystemAttributes/NestedSpanAttributes/device``
+            - ``Tracing/SpanAttributes/SystemAttributes/DeviceAttributes/NestedSpanAttributes/name``
         }
     }
     @Tab("String Constants") {
         @Links(visualStyle: list) {
-            - ``OTelAttribute/system/device``
+            - ``OTelAttribute/system/device/name``
         }
     }
 }
@@ -3372,6 +3503,7 @@ Deprecated system attributes.
         @Links(visualStyle: list) {
             - ``Tracing/SpanAttributes/SystemAttributes/CpuAttributes/NestedSpanAttributes/logicalNumber``
             - ``Tracing/SpanAttributes/SystemAttributes/CpuAttributes/NestedSpanAttributes/state``
+            - ``Tracing/SpanAttributes/SystemAttributes/NestedSpanAttributes/_device``
             - ``Tracing/SpanAttributes/SystemAttributes/NetworkAttributes/NestedSpanAttributes/state``
             - ``Tracing/SpanAttributes/SystemAttributes/PagingAttributes/NestedSpanAttributes/type``
             - ``Tracing/SpanAttributes/SystemAttributes/ProcessAttributes/NestedSpanAttributes/status``
@@ -3382,6 +3514,7 @@ Deprecated system attributes.
         @Links(visualStyle: list) {
             - ``OTelAttribute/system/cpu/logicalNumber``
             - ``OTelAttribute/system/cpu/state``
+            - ``OTelAttribute/system/_device``
             - ``OTelAttribute/system/network/state``
             - ``OTelAttribute/system/paging/type``
             - ``OTelAttribute/system/process/status``
@@ -3501,8 +3634,6 @@ This group describes attributes specific to [software tests](https://wikipedia.o
 }
 
 ## Thread Attributes
-
-These attributes may be used for any operation to store information about a thread that started a span.
 
 @TabNavigator {
     @Tab("Span Attributes") {
@@ -3804,9 +3935,9 @@ This document defines the attributes used to describe the packaged software runn
     }
 }
 
-## z/OS attributes
+## z/OS Attributes (Moved)
 
-This document defines attributes of a z/OS resource.
+z/OS attributes have moved to the [OpenTelemetry Mainframe semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-mainframe).
 
 @TabNavigator {
     @Tab("Span Attributes") {
@@ -4061,6 +4192,20 @@ This document defines attributes of a z/OS resource.
 - ``OTelAttribute/az/namespace``
 - ``OTelAttribute/az/serviceRequestId``
 
+### Azure Event Hubs Attributes
+
+- ``Tracing/SpanAttributes/AzureAttributes/EventhubsAttributes/MessageAttributes/NestedSpanAttributes/enqueuedTime``
+- ``OTelAttribute/azure/eventhubs/message/enqueuedTime``
+
+### Azure Service Bus Attributes
+
+- ``Tracing/SpanAttributes/AzureAttributes/ServicebusAttributes/NestedSpanAttributes/dispositionStatus``
+- ``Tracing/SpanAttributes/AzureAttributes/ServicebusAttributes/MessageAttributes/NestedSpanAttributes/deliveryCount``
+- ``Tracing/SpanAttributes/AzureAttributes/ServicebusAttributes/MessageAttributes/NestedSpanAttributes/enqueuedTime``
+- ``OTelAttribute/azure/servicebus/dispositionStatus``
+- ``OTelAttribute/azure/servicebus/message/deliveryCount``
+- ``OTelAttribute/azure/servicebus/message/enqueuedTime``
+
 ### Browser Attributes
 
 - ``Tracing/SpanAttributes/BrowserAttributes/NestedSpanAttributes/brands``
@@ -4139,9 +4284,21 @@ This document defines attributes of a z/OS resource.
 ### Client Attributes
 
 - ``Tracing/SpanAttributes/ClientAttributes/NestedSpanAttributes/address``
+- ``Tracing/SpanAttributes/ClientAttributes/AsAttributes/NestedSpanAttributes/number``
+- ``Tracing/SpanAttributes/ClientAttributes/AsAttributes/NestedSpanAttributes/organization``
+- ``Tracing/SpanAttributes/ClientAttributes/MacAttributes/NestedSpanAttributes/address``
 - ``Tracing/SpanAttributes/ClientAttributes/NestedSpanAttributes/port``
+- ``Tracing/SpanAttributes/ClientAttributes/NestedSpanAttributes/prefix``
+- ``Tracing/SpanAttributes/ClientAttributes/ServiceAttributes/NestedSpanAttributes/name``
+- ``Tracing/SpanAttributes/ClientAttributes/ServiceAttributes/NestedSpanAttributes/namespace``
 - ``OTelAttribute/client/address``
+- ``OTelAttribute/client/as/number``
+- ``OTelAttribute/client/as/organization``
+- ``OTelAttribute/client/mac/address``
 - ``OTelAttribute/client/port``
+- ``OTelAttribute/client/prefix``
+- ``OTelAttribute/client/service/name``
+- ``OTelAttribute/client/service/namespace``
 
 ### Cloud Attributes
 
@@ -4402,9 +4559,17 @@ This document defines attributes of a z/OS resource.
 ### Destination Attributes
 
 - ``Tracing/SpanAttributes/DestinationAttributes/NestedSpanAttributes/address``
+- ``Tracing/SpanAttributes/DestinationAttributes/AsAttributes/NestedSpanAttributes/number``
+- ``Tracing/SpanAttributes/DestinationAttributes/AsAttributes/NestedSpanAttributes/organization``
+- ``Tracing/SpanAttributes/DestinationAttributes/MacAttributes/NestedSpanAttributes/address``
 - ``Tracing/SpanAttributes/DestinationAttributes/NestedSpanAttributes/port``
+- ``Tracing/SpanAttributes/DestinationAttributes/NestedSpanAttributes/prefix``
 - ``OTelAttribute/destination/address``
+- ``OTelAttribute/destination/as/number``
+- ``OTelAttribute/destination/as/organization``
+- ``OTelAttribute/destination/mac/address``
 - ``OTelAttribute/destination/port``
+- ``OTelAttribute/destination/prefix``
 
 ### Device Attributes
 
@@ -4434,7 +4599,7 @@ This document defines attributes of a z/OS resource.
 - ``Tracing/SpanAttributes/ElasticsearchAttributes/NodeAttributes/NestedSpanAttributes/name``
 - ``OTelAttribute/elasticsearch/node/name``
 
-### End User Attributes
+### End User Attributes (Moved)
 
 - ``Tracing/SpanAttributes/EnduserAttributes/NestedSpanAttributes/id``
 - ``Tracing/SpanAttributes/EnduserAttributes/PseudoAttributes/NestedSpanAttributes/id``
@@ -4486,13 +4651,13 @@ This document defines attributes of a z/OS resource.
 - ``Tracing/SpanAttributes/FaasAttributes/DocumentAttributes/NestedSpanAttributes/operation``
 - ``Tracing/SpanAttributes/FaasAttributes/DocumentAttributes/NestedSpanAttributes/time``
 - ``Tracing/SpanAttributes/FaasAttributes/NestedSpanAttributes/instance``
-- ``Tracing/SpanAttributes/FaasAttributes/NestedSpanAttributes/invocationId``
+- ``Tracing/SpanAttributes/FaasAttributes/InvocationAttributes/NestedSpanAttributes/id``
+- ``Tracing/SpanAttributes/FaasAttributes/InvocationAttributes/NestedSpanAttributes/startTime``
 - ``Tracing/SpanAttributes/FaasAttributes/NestedSpanAttributes/invokedName``
 - ``Tracing/SpanAttributes/FaasAttributes/NestedSpanAttributes/invokedProvider``
 - ``Tracing/SpanAttributes/FaasAttributes/NestedSpanAttributes/invokedRegion``
 - ``Tracing/SpanAttributes/FaasAttributes/NestedSpanAttributes/maxMemory``
 - ``Tracing/SpanAttributes/FaasAttributes/NestedSpanAttributes/name``
-- ``Tracing/SpanAttributes/FaasAttributes/NestedSpanAttributes/time``
 - ``Tracing/SpanAttributes/FaasAttributes/NestedSpanAttributes/trigger``
 - ``Tracing/SpanAttributes/FaasAttributes/NestedSpanAttributes/version``
 - ``OTelAttribute/faas/coldstart``
@@ -4502,15 +4667,22 @@ This document defines attributes of a z/OS resource.
 - ``OTelAttribute/faas/document/operation``
 - ``OTelAttribute/faas/document/time``
 - ``OTelAttribute/faas/instance``
-- ``OTelAttribute/faas/invocationId``
+- ``OTelAttribute/faas/invocation/id``
+- ``OTelAttribute/faas/invocation/startTime``
 - ``OTelAttribute/faas/invokedName``
 - ``OTelAttribute/faas/invokedProvider``
 - ``OTelAttribute/faas/invokedRegion``
 - ``OTelAttribute/faas/maxMemory``
 - ``OTelAttribute/faas/name``
-- ``OTelAttribute/faas/time``
 - ``OTelAttribute/faas/trigger``
 - ``OTelAttribute/faas/version``
+
+### Deprecated Function as a Service Attributes
+
+- ``Tracing/SpanAttributes/FaasAttributes/NestedSpanAttributes/invocationId``
+- ``Tracing/SpanAttributes/FaasAttributes/NestedSpanAttributes/time``
+- ``OTelAttribute/faas/invocationId``
+- ``OTelAttribute/faas/time``
 
 ### Feature Flag Attributes
 
@@ -4660,6 +4832,17 @@ This document defines attributes of a z/OS resource.
 - ``OTelAttribute/gcp/gce/instance/hostname``
 - ``OTelAttribute/gcp/gce/instance/labels``
 - ``OTelAttribute/gcp/gce/instance/name``
+
+### GCP Pub/Sub Attributes
+
+- ``Tracing/SpanAttributes/GcpAttributes/PubsubAttributes/MessageAttributes/NestedSpanAttributes/ackDeadline``
+- ``Tracing/SpanAttributes/GcpAttributes/PubsubAttributes/MessageAttributes/NestedSpanAttributes/ackId``
+- ``Tracing/SpanAttributes/GcpAttributes/PubsubAttributes/MessageAttributes/NestedSpanAttributes/deliveryAttempt``
+- ``Tracing/SpanAttributes/GcpAttributes/PubsubAttributes/MessageAttributes/NestedSpanAttributes/orderingKey``
+- ``OTelAttribute/gcp/pubsub/message/ackDeadline``
+- ``OTelAttribute/gcp/pubsub/message/ackId``
+- ``OTelAttribute/gcp/pubsub/message/deliveryAttempt``
+- ``OTelAttribute/gcp/pubsub/message/orderingKey``
 
 ### GenAI Attributes (Moved)
 
@@ -4929,24 +5112,28 @@ This document defines attributes of a z/OS resource.
 ### HTTP Attributes
 
 - ``Tracing/SpanAttributes/HttpAttributes/ConnectionAttributes/NestedSpanAttributes/state``
+- ``Tracing/SpanAttributes/HttpAttributes/RequestAttributes/BodyAttributes/NestedSpanAttributes/content``
 - ``Tracing/SpanAttributes/HttpAttributes/RequestAttributes/BodyAttributes/NestedSpanAttributes/size``
 - ``Tracing/SpanAttributes/HttpAttributes/RequestAttributes/header``
 - ``Tracing/SpanAttributes/HttpAttributes/RequestAttributes/NestedSpanAttributes/method``
 - ``Tracing/SpanAttributes/HttpAttributes/RequestAttributes/NestedSpanAttributes/methodOriginal``
 - ``Tracing/SpanAttributes/HttpAttributes/RequestAttributes/NestedSpanAttributes/resendCount``
 - ``Tracing/SpanAttributes/HttpAttributes/RequestAttributes/NestedSpanAttributes/size``
+- ``Tracing/SpanAttributes/HttpAttributes/ResponseAttributes/BodyAttributes/NestedSpanAttributes/content``
 - ``Tracing/SpanAttributes/HttpAttributes/ResponseAttributes/BodyAttributes/NestedSpanAttributes/size``
 - ``Tracing/SpanAttributes/HttpAttributes/ResponseAttributes/header``
 - ``Tracing/SpanAttributes/HttpAttributes/ResponseAttributes/NestedSpanAttributes/size``
 - ``Tracing/SpanAttributes/HttpAttributes/ResponseAttributes/NestedSpanAttributes/statusCode``
 - ``Tracing/SpanAttributes/HttpAttributes/NestedSpanAttributes/route``
 - ``OTelAttribute/http/connection/state``
+- ``OTelAttribute/http/request/body/content``
 - ``OTelAttribute/http/request/body/size``
 - ``OTelAttribute/http/request/header``
 - ``OTelAttribute/http/request/method``
 - ``OTelAttribute/http/request/methodOriginal``
 - ``OTelAttribute/http/request/resendCount``
 - ``OTelAttribute/http/request/size``
+- ``OTelAttribute/http/response/body/content``
 - ``OTelAttribute/http/response/body/size``
 - ``OTelAttribute/http/response/header``
 - ``OTelAttribute/http/response/size``
@@ -5187,6 +5374,17 @@ This document defines attributes of a z/OS resource.
 - ``Tracing/SpanAttributes/K8sAttributes/PodAttributes/labels``
 - ``OTelAttribute/k8s/pod/labels``
 
+### Kafka Attributes
+
+- ``Tracing/SpanAttributes/KafkaAttributes/ClusterAttributes/NestedSpanAttributes/id``
+- ``Tracing/SpanAttributes/KafkaAttributes/MessageAttributes/NestedSpanAttributes/key``
+- ``Tracing/SpanAttributes/KafkaAttributes/MessageAttributes/NestedSpanAttributes/tombstone``
+- ``Tracing/SpanAttributes/KafkaAttributes/NestedSpanAttributes/offset``
+- ``OTelAttribute/kafka/cluster/id``
+- ``OTelAttribute/kafka/message/key``
+- ``OTelAttribute/kafka/message/tombstone``
+- ``OTelAttribute/kafka/offset``
+
 ### Deprecated Linux Attributes
 
 - ``Tracing/SpanAttributes/LinuxAttributes/MemoryAttributes/SlabAttributes/NestedSpanAttributes/state``
@@ -5243,7 +5441,7 @@ This document defines attributes of a z/OS resource.
 - ``Tracing/SpanAttributes/MessagingAttributes/MessageAttributes/NestedSpanAttributes/id``
 - ``Tracing/SpanAttributes/MessagingAttributes/OperationAttributes/NestedSpanAttributes/name``
 - ``Tracing/SpanAttributes/MessagingAttributes/OperationAttributes/NestedSpanAttributes/type``
-- ``Tracing/SpanAttributes/MessagingAttributes/NestedSpanAttributes/system``
+- ``Tracing/SpanAttributes/MessagingAttributes/SystemAttributes/NestedSpanAttributes/name``
 - ``OTelAttribute/messaging/batch/messageCount``
 - ``OTelAttribute/messaging/client/id``
 - ``OTelAttribute/messaging/consumer/group/name``
@@ -5259,7 +5457,7 @@ This document defines attributes of a z/OS resource.
 - ``OTelAttribute/messaging/message/id``
 - ``OTelAttribute/messaging/operation/name``
 - ``OTelAttribute/messaging/operation/type``
-- ``OTelAttribute/messaging/system``
+- ``OTelAttribute/messaging/system/name``
 
 ### Deprecated Messaging Attributes
 
@@ -5267,59 +5465,22 @@ This document defines attributes of a z/OS resource.
 - ``Tracing/SpanAttributes/MessagingAttributes/DestinationPublishAttributes/NestedSpanAttributes/anonymous``
 - ``Tracing/SpanAttributes/MessagingAttributes/DestinationPublishAttributes/NestedSpanAttributes/name``
 - ``Tracing/SpanAttributes/MessagingAttributes/EventhubsAttributes/ConsumerAttributes/NestedSpanAttributes/group``
-- ``Tracing/SpanAttributes/MessagingAttributes/KafkaAttributes/ConsumerAttributes/NestedSpanAttributes/group``
-- ``Tracing/SpanAttributes/MessagingAttributes/KafkaAttributes/DestinationAttributes/NestedSpanAttributes/partition``
-- ``Tracing/SpanAttributes/MessagingAttributes/KafkaAttributes/MessageAttributes/NestedSpanAttributes/offset``
-- ``Tracing/SpanAttributes/MessagingAttributes/NestedSpanAttributes/_operation``
-- ``Tracing/SpanAttributes/MessagingAttributes/RocketmqAttributes/NestedSpanAttributes/clientGroup``
-- ``Tracing/SpanAttributes/MessagingAttributes/ServicebusAttributes/DestinationAttributes/NestedSpanAttributes/subscriptionName``
-- ``OTelAttribute/messaging/clientId``
-- ``OTelAttribute/messaging/destinationPublish/anonymous``
-- ``OTelAttribute/messaging/destinationPublish/name``
-- ``OTelAttribute/messaging/eventhubs/consumer/group``
-- ``OTelAttribute/messaging/kafka/consumer/group``
-- ``OTelAttribute/messaging/kafka/destination/partition``
-- ``OTelAttribute/messaging/kafka/message/offset``
-- ``OTelAttribute/messaging/_operation``
-- ``OTelAttribute/messaging/rocketmq/clientGroup``
-- ``OTelAttribute/messaging/servicebus/destination/subscriptionName``
-
-### Azure Event Hubs Attributes
-
 - ``Tracing/SpanAttributes/MessagingAttributes/EventhubsAttributes/MessageAttributes/NestedSpanAttributes/enqueuedTime``
-- ``OTelAttribute/messaging/eventhubs/message/enqueuedTime``
-
-### GCP Pub/Sub Attributes
-
 - ``Tracing/SpanAttributes/MessagingAttributes/GcpPubsubAttributes/MessageAttributes/NestedSpanAttributes/ackDeadline``
 - ``Tracing/SpanAttributes/MessagingAttributes/GcpPubsubAttributes/MessageAttributes/NestedSpanAttributes/ackId``
 - ``Tracing/SpanAttributes/MessagingAttributes/GcpPubsubAttributes/MessageAttributes/NestedSpanAttributes/deliveryAttempt``
 - ``Tracing/SpanAttributes/MessagingAttributes/GcpPubsubAttributes/MessageAttributes/NestedSpanAttributes/orderingKey``
-- ``OTelAttribute/messaging/gcpPubsub/message/ackDeadline``
-- ``OTelAttribute/messaging/gcpPubsub/message/ackId``
-- ``OTelAttribute/messaging/gcpPubsub/message/deliveryAttempt``
-- ``OTelAttribute/messaging/gcpPubsub/message/orderingKey``
-
-### Kafka Attributes
-
 - ``Tracing/SpanAttributes/MessagingAttributes/KafkaAttributes/ClusterAttributes/NestedSpanAttributes/id``
+- ``Tracing/SpanAttributes/MessagingAttributes/KafkaAttributes/ConsumerAttributes/NestedSpanAttributes/group``
+- ``Tracing/SpanAttributes/MessagingAttributes/KafkaAttributes/DestinationAttributes/NestedSpanAttributes/partition``
 - ``Tracing/SpanAttributes/MessagingAttributes/KafkaAttributes/MessageAttributes/NestedSpanAttributes/key``
+- ``Tracing/SpanAttributes/MessagingAttributes/KafkaAttributes/MessageAttributes/NestedSpanAttributes/offset``
 - ``Tracing/SpanAttributes/MessagingAttributes/KafkaAttributes/MessageAttributes/NestedSpanAttributes/tombstone``
 - ``Tracing/SpanAttributes/MessagingAttributes/KafkaAttributes/NestedSpanAttributes/offset``
-- ``OTelAttribute/messaging/kafka/cluster/id``
-- ``OTelAttribute/messaging/kafka/message/key``
-- ``OTelAttribute/messaging/kafka/message/tombstone``
-- ``OTelAttribute/messaging/kafka/offset``
-
-### RabbitMQ Attributes
-
+- ``Tracing/SpanAttributes/MessagingAttributes/NestedSpanAttributes/_operation``
 - ``Tracing/SpanAttributes/MessagingAttributes/RabbitmqAttributes/DestinationAttributes/NestedSpanAttributes/routingKey``
 - ``Tracing/SpanAttributes/MessagingAttributes/RabbitmqAttributes/MessageAttributes/NestedSpanAttributes/deliveryTag``
-- ``OTelAttribute/messaging/rabbitmq/destination/routingKey``
-- ``OTelAttribute/messaging/rabbitmq/message/deliveryTag``
-
-### RocketMQ Attributes
-
+- ``Tracing/SpanAttributes/MessagingAttributes/RocketmqAttributes/NestedSpanAttributes/clientGroup``
 - ``Tracing/SpanAttributes/MessagingAttributes/RocketmqAttributes/NestedSpanAttributes/consumptionModel``
 - ``Tracing/SpanAttributes/MessagingAttributes/RocketmqAttributes/MessageAttributes/NestedSpanAttributes/delayTimeLevel``
 - ``Tracing/SpanAttributes/MessagingAttributes/RocketmqAttributes/MessageAttributes/NestedSpanAttributes/deliveryTimestamp``
@@ -5328,6 +5489,31 @@ This document defines attributes of a z/OS resource.
 - ``Tracing/SpanAttributes/MessagingAttributes/RocketmqAttributes/MessageAttributes/NestedSpanAttributes/tag``
 - ``Tracing/SpanAttributes/MessagingAttributes/RocketmqAttributes/MessageAttributes/NestedSpanAttributes/type``
 - ``Tracing/SpanAttributes/MessagingAttributes/RocketmqAttributes/NestedSpanAttributes/namespace``
+- ``Tracing/SpanAttributes/MessagingAttributes/ServicebusAttributes/DestinationAttributes/NestedSpanAttributes/subscriptionName``
+- ``Tracing/SpanAttributes/MessagingAttributes/ServicebusAttributes/NestedSpanAttributes/dispositionStatus``
+- ``Tracing/SpanAttributes/MessagingAttributes/ServicebusAttributes/MessageAttributes/NestedSpanAttributes/deliveryCount``
+- ``Tracing/SpanAttributes/MessagingAttributes/ServicebusAttributes/MessageAttributes/NestedSpanAttributes/enqueuedTime``
+- ``Tracing/SpanAttributes/MessagingAttributes/NestedSpanAttributes/_system``
+- ``OTelAttribute/messaging/clientId``
+- ``OTelAttribute/messaging/destinationPublish/anonymous``
+- ``OTelAttribute/messaging/destinationPublish/name``
+- ``OTelAttribute/messaging/eventhubs/consumer/group``
+- ``OTelAttribute/messaging/eventhubs/message/enqueuedTime``
+- ``OTelAttribute/messaging/gcpPubsub/message/ackDeadline``
+- ``OTelAttribute/messaging/gcpPubsub/message/ackId``
+- ``OTelAttribute/messaging/gcpPubsub/message/deliveryAttempt``
+- ``OTelAttribute/messaging/gcpPubsub/message/orderingKey``
+- ``OTelAttribute/messaging/kafka/cluster/id``
+- ``OTelAttribute/messaging/kafka/consumer/group``
+- ``OTelAttribute/messaging/kafka/destination/partition``
+- ``OTelAttribute/messaging/kafka/message/key``
+- ``OTelAttribute/messaging/kafka/message/offset``
+- ``OTelAttribute/messaging/kafka/message/tombstone``
+- ``OTelAttribute/messaging/kafka/offset``
+- ``OTelAttribute/messaging/_operation``
+- ``OTelAttribute/messaging/rabbitmq/destination/routingKey``
+- ``OTelAttribute/messaging/rabbitmq/message/deliveryTag``
+- ``OTelAttribute/messaging/rocketmq/clientGroup``
 - ``OTelAttribute/messaging/rocketmq/consumptionModel``
 - ``OTelAttribute/messaging/rocketmq/message/delayTimeLevel``
 - ``OTelAttribute/messaging/rocketmq/message/deliveryTimestamp``
@@ -5336,15 +5522,11 @@ This document defines attributes of a z/OS resource.
 - ``OTelAttribute/messaging/rocketmq/message/tag``
 - ``OTelAttribute/messaging/rocketmq/message/type``
 - ``OTelAttribute/messaging/rocketmq/namespace``
-
-### Azure Service Bus Attributes
-
-- ``Tracing/SpanAttributes/MessagingAttributes/ServicebusAttributes/NestedSpanAttributes/dispositionStatus``
-- ``Tracing/SpanAttributes/MessagingAttributes/ServicebusAttributes/MessageAttributes/NestedSpanAttributes/deliveryCount``
-- ``Tracing/SpanAttributes/MessagingAttributes/ServicebusAttributes/MessageAttributes/NestedSpanAttributes/enqueuedTime``
+- ``OTelAttribute/messaging/servicebus/destination/subscriptionName``
 - ``OTelAttribute/messaging/servicebus/dispositionStatus``
 - ``OTelAttribute/messaging/servicebus/message/deliveryCount``
 - ``OTelAttribute/messaging/servicebus/message/enqueuedTime``
+- ``OTelAttribute/messaging/_system``
 
 ### Network Attributes
 
@@ -5358,9 +5540,17 @@ This document defines attributes of a z/OS resource.
 - ``Tracing/SpanAttributes/NetworkAttributes/InterfaceAttributes/NestedSpanAttributes/name``
 - ``Tracing/SpanAttributes/NetworkAttributes/IoAttributes/NestedSpanAttributes/direction``
 - ``Tracing/SpanAttributes/NetworkAttributes/LocalAttributes/NestedSpanAttributes/address``
+- ``Tracing/SpanAttributes/NetworkAttributes/LocalAttributes/AsAttributes/NestedSpanAttributes/number``
+- ``Tracing/SpanAttributes/NetworkAttributes/LocalAttributes/AsAttributes/NestedSpanAttributes/organization``
+- ``Tracing/SpanAttributes/NetworkAttributes/LocalAttributes/MacAttributes/NestedSpanAttributes/address``
 - ``Tracing/SpanAttributes/NetworkAttributes/LocalAttributes/NestedSpanAttributes/port``
+- ``Tracing/SpanAttributes/NetworkAttributes/LocalAttributes/NestedSpanAttributes/prefix``
 - ``Tracing/SpanAttributes/NetworkAttributes/PeerAttributes/NestedSpanAttributes/address``
+- ``Tracing/SpanAttributes/NetworkAttributes/PeerAttributes/AsAttributes/NestedSpanAttributes/number``
+- ``Tracing/SpanAttributes/NetworkAttributes/PeerAttributes/AsAttributes/NestedSpanAttributes/organization``
+- ``Tracing/SpanAttributes/NetworkAttributes/PeerAttributes/MacAttributes/NestedSpanAttributes/address``
 - ``Tracing/SpanAttributes/NetworkAttributes/PeerAttributes/NestedSpanAttributes/port``
+- ``Tracing/SpanAttributes/NetworkAttributes/PeerAttributes/NestedSpanAttributes/prefix``
 - ``Tracing/SpanAttributes/NetworkAttributes/ProtocolAttributes/NestedSpanAttributes/name``
 - ``Tracing/SpanAttributes/NetworkAttributes/ProtocolAttributes/NestedSpanAttributes/version``
 - ``Tracing/SpanAttributes/NetworkAttributes/NestedSpanAttributes/transport``
@@ -5375,9 +5565,17 @@ This document defines attributes of a z/OS resource.
 - ``OTelAttribute/network/interface/name``
 - ``OTelAttribute/network/io/direction``
 - ``OTelAttribute/network/local/address``
+- ``OTelAttribute/network/local/as/number``
+- ``OTelAttribute/network/local/as/organization``
+- ``OTelAttribute/network/local/mac/address``
 - ``OTelAttribute/network/local/port``
+- ``OTelAttribute/network/local/prefix``
 - ``OTelAttribute/network/peer/address``
+- ``OTelAttribute/network/peer/as/number``
+- ``OTelAttribute/network/peer/as/organization``
+- ``OTelAttribute/network/peer/mac/address``
 - ``OTelAttribute/network/peer/port``
+- ``OTelAttribute/network/peer/prefix``
 - ``OTelAttribute/network/protocol/name``
 - ``OTelAttribute/network/protocol/version``
 - ``OTelAttribute/network/transport``
@@ -5457,7 +5655,7 @@ This document defines attributes of a z/OS resource.
 - ``OTelAttribute/openshift/clusterquota/name``
 - ``OTelAttribute/openshift/clusterquota/uid``
 
-### OpenTracing Attributes
+### Opentracing Attributes
 
 - ``Tracing/SpanAttributes/OpentracingAttributes/NestedSpanAttributes/refType``
 - ``OTelAttribute/opentracing/refType``
@@ -5647,19 +5845,47 @@ This document defines attributes of a z/OS resource.
 - ``Tracing/SpanAttributes/ProfileAttributes/FrameAttributes/NestedSpanAttributes/type``
 - ``OTelAttribute/profile/frame/type``
 
+### RabbitMQ Attributes
+
+- ``Tracing/SpanAttributes/RabbitmqAttributes/DestinationAttributes/NestedSpanAttributes/routingKey``
+- ``Tracing/SpanAttributes/RabbitmqAttributes/MessageAttributes/NestedSpanAttributes/deliveryTag``
+- ``OTelAttribute/rabbitmq/destination/routingKey``
+- ``OTelAttribute/rabbitmq/message/deliveryTag``
+
+### RocketMQ Attributes
+
+- ``Tracing/SpanAttributes/RocketmqAttributes/NestedSpanAttributes/consumptionModel``
+- ``Tracing/SpanAttributes/RocketmqAttributes/MessageAttributes/NestedSpanAttributes/delayTimeLevel``
+- ``Tracing/SpanAttributes/RocketmqAttributes/MessageAttributes/NestedSpanAttributes/deliveryTimestamp``
+- ``Tracing/SpanAttributes/RocketmqAttributes/MessageAttributes/NestedSpanAttributes/group``
+- ``Tracing/SpanAttributes/RocketmqAttributes/MessageAttributes/NestedSpanAttributes/keys``
+- ``Tracing/SpanAttributes/RocketmqAttributes/MessageAttributes/NestedSpanAttributes/tag``
+- ``Tracing/SpanAttributes/RocketmqAttributes/MessageAttributes/NestedSpanAttributes/type``
+- ``Tracing/SpanAttributes/RocketmqAttributes/NestedSpanAttributes/namespace``
+- ``OTelAttribute/rocketmq/consumptionModel``
+- ``OTelAttribute/rocketmq/message/delayTimeLevel``
+- ``OTelAttribute/rocketmq/message/deliveryTimestamp``
+- ``OTelAttribute/rocketmq/message/group``
+- ``OTelAttribute/rocketmq/message/keys``
+- ``OTelAttribute/rocketmq/message/tag``
+- ``OTelAttribute/rocketmq/message/type``
+- ``OTelAttribute/rocketmq/namespace``
+
 ### Remote Procedure Call (RPC) Attributes
 
 - ``Tracing/SpanAttributes/RpcAttributes/NestedSpanAttributes/method``
 - ``Tracing/SpanAttributes/RpcAttributes/NestedSpanAttributes/methodOriginal``
-- ``Tracing/SpanAttributes/RpcAttributes/RequestAttributes/metadata``
-- ``Tracing/SpanAttributes/RpcAttributes/ResponseAttributes/metadata``
-- ``Tracing/SpanAttributes/RpcAttributes/ResponseAttributes/NestedSpanAttributes/statusCode``
+- ``Tracing/SpanAttributes/RpcAttributes/RequestAttributes/header``
+- ``Tracing/SpanAttributes/RpcAttributes/ResponseAttributes/header``
+- ``Tracing/SpanAttributes/RpcAttributes/ResponseAttributes/trailer``
+- ``Tracing/SpanAttributes/RpcAttributes/NestedSpanAttributes/statusCode``
 - ``Tracing/SpanAttributes/RpcAttributes/SystemAttributes/NestedSpanAttributes/name``
 - ``OTelAttribute/rpc/method``
 - ``OTelAttribute/rpc/methodOriginal``
-- ``OTelAttribute/rpc/request/metadata``
-- ``OTelAttribute/rpc/response/metadata``
-- ``OTelAttribute/rpc/response/statusCode``
+- ``OTelAttribute/rpc/request/header``
+- ``OTelAttribute/rpc/response/header``
+- ``OTelAttribute/rpc/response/trailer``
+- ``OTelAttribute/rpc/statusCode``
 - ``OTelAttribute/rpc/system/name``
 
 ### Deprecated RPC Attributes
@@ -5682,6 +5908,9 @@ This document defines attributes of a z/OS resource.
 - ``Tracing/SpanAttributes/RpcAttributes/MessageAttributes/NestedSpanAttributes/id``
 - ``Tracing/SpanAttributes/RpcAttributes/MessageAttributes/NestedSpanAttributes/type``
 - ``Tracing/SpanAttributes/RpcAttributes/MessageAttributes/NestedSpanAttributes/uncompressedSize``
+- ``Tracing/SpanAttributes/RpcAttributes/RequestAttributes/metadata``
+- ``Tracing/SpanAttributes/RpcAttributes/ResponseAttributes/metadata``
+- ``Tracing/SpanAttributes/RpcAttributes/ResponseAttributes/NestedSpanAttributes/statusCode``
 - ``Tracing/SpanAttributes/RpcAttributes/NestedSpanAttributes/service``
 - ``Tracing/SpanAttributes/RpcAttributes/NestedSpanAttributes/_system``
 - ``OTelAttribute/message/compressedSize``
@@ -5702,6 +5931,9 @@ This document defines attributes of a z/OS resource.
 - ``OTelAttribute/rpc/message/id``
 - ``OTelAttribute/rpc/message/type``
 - ``OTelAttribute/rpc/message/uncompressedSize``
+- ``OTelAttribute/rpc/request/metadata``
+- ``OTelAttribute/rpc/response/metadata``
+- ``OTelAttribute/rpc/response/statusCode``
 - ``OTelAttribute/rpc/service``
 - ``OTelAttribute/rpc/_system``
 
@@ -5727,18 +5959,34 @@ This document defines attributes of a z/OS resource.
 ### Server Attributes
 
 - ``Tracing/SpanAttributes/ServerAttributes/NestedSpanAttributes/address``
+- ``Tracing/SpanAttributes/ServerAttributes/AsAttributes/NestedSpanAttributes/number``
+- ``Tracing/SpanAttributes/ServerAttributes/AsAttributes/NestedSpanAttributes/organization``
+- ``Tracing/SpanAttributes/ServerAttributes/MacAttributes/NestedSpanAttributes/address``
 - ``Tracing/SpanAttributes/ServerAttributes/NestedSpanAttributes/port``
+- ``Tracing/SpanAttributes/ServerAttributes/NestedSpanAttributes/prefix``
+- ``Tracing/SpanAttributes/ServerAttributes/ServiceAttributes/NestedSpanAttributes/name``
+- ``Tracing/SpanAttributes/ServerAttributes/ServiceAttributes/NestedSpanAttributes/namespace``
 - ``OTelAttribute/server/address``
+- ``OTelAttribute/server/as/number``
+- ``OTelAttribute/server/as/organization``
+- ``OTelAttribute/server/mac/address``
 - ``OTelAttribute/server/port``
+- ``OTelAttribute/server/prefix``
+- ``OTelAttribute/server/service/name``
+- ``OTelAttribute/server/service/namespace``
 
 ### Service Attributes
 
 - ``Tracing/SpanAttributes/ServiceAttributes/NestedSpanAttributes/criticality``
+- ``Tracing/SpanAttributes/ServiceAttributes/InstanceAttributes/CostCenterAttributes/NestedSpanAttributes/id``
+- ``Tracing/SpanAttributes/ServiceAttributes/InstanceAttributes/CostCenterAttributes/NestedSpanAttributes/name``
 - ``Tracing/SpanAttributes/ServiceAttributes/InstanceAttributes/NestedSpanAttributes/id``
 - ``Tracing/SpanAttributes/ServiceAttributes/NestedSpanAttributes/name``
 - ``Tracing/SpanAttributes/ServiceAttributes/NestedSpanAttributes/namespace``
 - ``Tracing/SpanAttributes/ServiceAttributes/NestedSpanAttributes/version``
 - ``OTelAttribute/service/criticality``
+- ``OTelAttribute/service/instance/costCenter/id``
+- ``OTelAttribute/service/instance/costCenter/name``
 - ``OTelAttribute/service/instance/id``
 - ``OTelAttribute/service/name``
 - ``OTelAttribute/service/namespace``
@@ -5761,25 +6009,35 @@ This document defines attributes of a z/OS resource.
 ### Source Attributes
 
 - ``Tracing/SpanAttributes/SourceAttributes/NestedSpanAttributes/address``
+- ``Tracing/SpanAttributes/SourceAttributes/AsAttributes/NestedSpanAttributes/number``
+- ``Tracing/SpanAttributes/SourceAttributes/AsAttributes/NestedSpanAttributes/organization``
+- ``Tracing/SpanAttributes/SourceAttributes/MacAttributes/NestedSpanAttributes/address``
 - ``Tracing/SpanAttributes/SourceAttributes/NestedSpanAttributes/port``
+- ``Tracing/SpanAttributes/SourceAttributes/NestedSpanAttributes/prefix``
 - ``OTelAttribute/source/address``
+- ``OTelAttribute/source/as/number``
+- ``OTelAttribute/source/as/organization``
+- ``OTelAttribute/source/mac/address``
 - ``OTelAttribute/source/port``
+- ``OTelAttribute/source/prefix``
 
 ### General System Attributes
 
-- ``Tracing/SpanAttributes/SystemAttributes/NestedSpanAttributes/device``
-- ``OTelAttribute/system/device``
+- ``Tracing/SpanAttributes/SystemAttributes/DeviceAttributes/NestedSpanAttributes/name``
+- ``OTelAttribute/system/device/name``
 
 ### Deprecated System Attributes
 
 - ``Tracing/SpanAttributes/SystemAttributes/CpuAttributes/NestedSpanAttributes/logicalNumber``
 - ``Tracing/SpanAttributes/SystemAttributes/CpuAttributes/NestedSpanAttributes/state``
+- ``Tracing/SpanAttributes/SystemAttributes/NestedSpanAttributes/_device``
 - ``Tracing/SpanAttributes/SystemAttributes/NetworkAttributes/NestedSpanAttributes/state``
 - ``Tracing/SpanAttributes/SystemAttributes/PagingAttributes/NestedSpanAttributes/type``
 - ``Tracing/SpanAttributes/SystemAttributes/ProcessAttributes/NestedSpanAttributes/status``
 - ``Tracing/SpanAttributes/SystemAttributes/ProcessesAttributes/NestedSpanAttributes/status``
 - ``OTelAttribute/system/cpu/logicalNumber``
 - ``OTelAttribute/system/cpu/state``
+- ``OTelAttribute/system/_device``
 - ``OTelAttribute/system/network/state``
 - ``OTelAttribute/system/paging/type``
 - ``OTelAttribute/system/process/status``
@@ -6028,7 +6286,7 @@ This document defines attributes of a z/OS resource.
 - ``OTelAttribute/webengine/name``
 - ``OTelAttribute/webengine/version``
 
-### z/OS attributes
+### z/OS Attributes (Moved)
 
 - ``Tracing/SpanAttributes/ZosAttributes/SmfAttributes/NestedSpanAttributes/id``
 - ``Tracing/SpanAttributes/ZosAttributes/SysplexAttributes/NestedSpanAttributes/name``

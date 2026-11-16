@@ -323,6 +323,61 @@ extension SpanAttributes {
             }
         }
 
+        /// `azure.eventhubs` namespace
+        public var eventhubs: EventhubsAttributes {
+            get {
+                .init(attributes: self.attributes)
+            }
+            set {
+                self.attributes = newValue.attributes
+            }
+        }
+
+        @dynamicMemberLookup
+        public struct EventhubsAttributes: SpanAttributeNamespace {
+            public var attributes: Tracing.SpanAttributes
+
+            public init(attributes: Tracing.SpanAttributes) {
+                self.attributes = attributes
+            }
+
+            public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                public init() {}
+            }
+
+            /// `azure.eventhubs.message` namespace
+            public var message: MessageAttributes {
+                get {
+                    .init(attributes: self.attributes)
+                }
+                set {
+                    self.attributes = newValue.attributes
+                }
+            }
+
+            @dynamicMemberLookup
+            public struct MessageAttributes: SpanAttributeNamespace {
+                public var attributes: Tracing.SpanAttributes
+
+                public init(attributes: Tracing.SpanAttributes) {
+                    self.attributes = attributes
+                }
+
+                public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                    public init() {}
+
+                    /// `azure.eventhubs.message.enqueued_time` **UNSTABLE**: The UTC epoch seconds at which the message has been accepted and stored in the entity.
+                    ///
+                    /// - Stability: development
+                    /// - Type: int
+                    /// - Example: `1701393730`
+                    public var enqueuedTime: SpanAttributeKey<Int> {
+                        .init(name: OTelAttribute.azure.eventhubs.message.enqueuedTime)
+                    }
+                }
+            }
+        }
+
         /// `azure.resource_group` namespace
         public var resourceGroup: ResourceGroupAttributes {
             get {
@@ -439,6 +494,92 @@ extension SpanAttributes {
                     /// - Type: string
                     /// - Example: `00000000-0000-0000-0000-000000000000`
                     public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.azure.service.request.id) }
+                }
+            }
+        }
+
+        /// `azure.servicebus` namespace
+        public var servicebus: ServicebusAttributes {
+            get {
+                .init(attributes: self.attributes)
+            }
+            set {
+                self.attributes = newValue.attributes
+            }
+        }
+
+        @dynamicMemberLookup
+        public struct ServicebusAttributes: SpanAttributeNamespace {
+            public var attributes: Tracing.SpanAttributes
+
+            public init(attributes: Tracing.SpanAttributes) {
+                self.attributes = attributes
+            }
+
+            public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                public init() {}
+
+                /// `azure.servicebus.disposition_status` **UNSTABLE**: Describes the [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock).
+                ///
+                /// - Stability: development
+                /// - Type: enum
+                ///     - `complete`: Message is completed
+                ///     - `abandon`: Message is abandoned
+                ///     - `dead_letter`: Message is sent to dead letter queue
+                ///     - `defer`: Message is deferred
+                public var dispositionStatus: SpanAttributeKey<DispositionStatusEnum> {
+                    .init(name: OTelAttribute.azure.servicebus.dispositionStatus)
+                }
+
+                public struct DispositionStatusEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
+                    public let rawValue: String
+                    public init(rawValue: String) {
+                        self.rawValue = rawValue
+                    }
+                    public func toSpanAttribute() -> Tracing.SpanAttribute {
+                        .string(self.rawValue)
+                    }
+                }
+            }
+
+            /// `azure.servicebus.message` namespace
+            public var message: MessageAttributes {
+                get {
+                    .init(attributes: self.attributes)
+                }
+                set {
+                    self.attributes = newValue.attributes
+                }
+            }
+
+            @dynamicMemberLookup
+            public struct MessageAttributes: SpanAttributeNamespace {
+                public var attributes: Tracing.SpanAttributes
+
+                public init(attributes: Tracing.SpanAttributes) {
+                    self.attributes = attributes
+                }
+
+                public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                    public init() {}
+
+                    /// `azure.servicebus.message.delivery_count` **UNSTABLE**: Number of deliveries that have been attempted for this message.
+                    ///
+                    /// - Stability: development
+                    /// - Type: int
+                    /// - Example: `2`
+                    public var deliveryCount: SpanAttributeKey<Int> {
+                        .init(name: OTelAttribute.azure.servicebus.message.deliveryCount)
+                    }
+
+                    /// `azure.servicebus.message.enqueued_time` **UNSTABLE**: The UTC epoch seconds at which the message has been accepted and stored in the entity.
+                    ///
+                    /// - Stability: development
+                    /// - Type: int
+                    /// - Example: `1701393730`
+                    public var enqueuedTime: SpanAttributeKey<Int> {
+                        .init(name: OTelAttribute.azure.servicebus.message.enqueuedTime)
+                    }
                 }
             }
         }

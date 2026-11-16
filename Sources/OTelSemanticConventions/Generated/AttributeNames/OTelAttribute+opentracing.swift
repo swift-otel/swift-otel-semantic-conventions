@@ -25,6 +25,12 @@ extension OTelAttribute {
         ///     - `follows_from`: The parent Span doesn't depend in any way on the result of the child Span
         ///
         /// The causal relationship between a child Span and a parent Span.
+        @available(
+            *,
+            deprecated,
+            message:
+                "Obsoleted: OpenTracing compatibility requirements are [deprecated in OpenTelemetry Specification](https://opentelemetry.io/docs/specs/otel/compatibility/opentracing/)"
+        )
         public static let refType = "opentracing.ref_type"
     }
     #endif

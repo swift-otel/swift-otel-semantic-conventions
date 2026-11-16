@@ -41,9 +41,10 @@ extension OTelAttribute {
 
         /// `faas.invocation_id` **UNSTABLE**: The invocation ID of the current function invocation.
         ///
-        /// - Stability: development
+        /// - Stability: experimental
         /// - Type: string
         /// - Example: `af9d5aa4-a685-4c5f-a22b-444f80b3cc28`
+        @available(*, deprecated, renamed: "OTelAttribute.faas.invocation.id")
         public static let invocationId = "faas.invocation_id"
 
         /// `faas.invoked_name` **UNSTABLE**: The name of the invoked function.
@@ -114,9 +115,10 @@ extension OTelAttribute {
 
         /// `faas.time` **UNSTABLE**: A string containing the function invocation time in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime).
         ///
-        /// - Stability: development
+        /// - Stability: experimental
         /// - Type: string
         /// - Example: `2020-01-23T13:47:06Z`
+        @available(*, deprecated, renamed: "OTelAttribute.faas.invocation.startTime")
         public static let time = "faas.time"
 
         /// `faas.trigger` **UNSTABLE**: Type of the trigger which caused this function invocation.
@@ -184,6 +186,23 @@ extension OTelAttribute {
             /// - Type: string
             /// - Example: `2020-01-23T13:47:06Z`
             public static let time = "faas.document.time"
+        }
+
+        /// `faas.invocation` namespace
+        public enum invocation {
+            /// `faas.invocation.id` **UNSTABLE**: The invocation ID of the current function invocation.
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `af9d5aa4-a685-4c5f-a22b-444f80b3cc28`
+            public static let id = "faas.invocation.id"
+
+            /// `faas.invocation.start_time` **UNSTABLE**: A string containing the function invocation time in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime).
+            ///
+            /// - Stability: development
+            /// - Type: string
+            /// - Example: `2020-01-23T13:47:06Z`
+            public static let startTime = "faas.invocation.start_time"
         }
     }
     #endif

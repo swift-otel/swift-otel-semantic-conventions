@@ -50,6 +50,12 @@ extension SpanAttributes {
             ///
             /// > [!Warning]
             /// > This field contains sensitive (PII) information.
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side)."
+            )
             public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.enduser.id) }
 
             /// `enduser.role` **UNSTABLE**: Deprecated, use `user.roles` instead.
@@ -100,6 +106,12 @@ extension SpanAttributes {
                 ///
                 /// > [!Warning]
                 /// > This field contains sensitive (linkable PII) information.
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry Client-Side semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-client-side)."
+                )
                 public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.enduser.pseudo.id) }
             }
         }

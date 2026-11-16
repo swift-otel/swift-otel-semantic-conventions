@@ -40,12 +40,13 @@ extension SpanAttributes {
         public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
             public init() {}
 
-            /// `system.device` **UNSTABLE**: The device identifier
+            /// `system.device` **UNSTABLE**: Deprecated, use `system.device.name` instead.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `(identifier)`
-            public var device: SpanAttributeKey<String> { .init(name: OTelAttribute.system.device) }
+            @available(*, deprecated, renamed: "SpanAttributes.system.device.name")
+            public var _device: SpanAttributeKey<String> { .init(name: OTelAttribute.system._device) }
         }
 
         /// `system.cpu` namespace
@@ -106,6 +107,39 @@ extension SpanAttributes {
             }
         }
 
+        /// `system.device` namespace
+        public var device: DeviceAttributes {
+            get {
+                .init(attributes: self.attributes)
+            }
+            set {
+                self.attributes = newValue.attributes
+            }
+        }
+
+        @dynamicMemberLookup
+        public struct DeviceAttributes: SpanAttributeNamespace {
+            public var attributes: Tracing.SpanAttributes
+
+            public init(attributes: Tracing.SpanAttributes) {
+                self.attributes = attributes
+            }
+
+            public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
+                public init() {}
+
+                /// `system.device.name` **UNSTABLE**: The OS level identifier for a device, such as disk, partition or network interface.
+                ///
+                /// - Stability: releaseCandidate
+                /// - Type: string
+                /// - Examples:
+                ///     - `/dev/sda`
+                ///     - `eth0`
+                ///     - `\network-drive`
+                public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.system.device.name) }
+            }
+        }
+
         /// `system.filesystem` namespace
         public var filesystem: FilesystemAttributes {
             get {
@@ -129,14 +163,14 @@ extension SpanAttributes {
 
                 /// `system.filesystem.mode` **UNSTABLE**: The filesystem mode
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: string
                 /// - Example: `rw, ro`
                 public var mode: SpanAttributeKey<String> { .init(name: OTelAttribute.system.filesystem.mode) }
 
                 /// `system.filesystem.mountpoint` **UNSTABLE**: The filesystem mount path
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: string
                 /// - Example: `/mnt/data`
                 public var mountpoint: SpanAttributeKey<String> {
@@ -145,7 +179,7 @@ extension SpanAttributes {
 
                 /// `system.filesystem.state` **UNSTABLE**: The filesystem state
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: enum
                 ///     - `used`
                 ///     - `free`
@@ -165,7 +199,7 @@ extension SpanAttributes {
 
                 /// `system.filesystem.type` **UNSTABLE**: The filesystem type
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: enum
                 ///     - `fat32`
                 ///     - `exfat`
@@ -214,13 +248,14 @@ extension SpanAttributes {
                 /// - Stability: development
                 /// - Type: enum
                 ///     - `used`: Actual used virtual memory in bytes.
+                ///     - `available`: An estimate of how much memory is available for starting new applications, without causing swapping.
                 ///     - `free`
                 ///     - `shared`
                 ///     - `buffers`
                 ///     - `cached`
                 /// - Examples:
-                ///     - `free`
-                ///     - `cached`
+                ///     - `used`
+                ///     - `available`
                 public var state: SpanAttributeKey<StateEnum> { .init(name: OTelAttribute.system.memory.state) }
 
                 public struct StateEnum: SpanAttributeConvertible, RawRepresentable, Sendable {
@@ -279,7 +314,7 @@ extension SpanAttributes {
 
                         /// `system.memory.linux.hugepages.state` **UNSTABLE**: The Linux HugePages memory state
                         ///
-                        /// - Stability: development
+                        /// - Stability: releaseCandidate
                         /// - Type: enum
                         ///     - `free`
                         ///     - `used`
@@ -325,7 +360,7 @@ extension SpanAttributes {
 
                         /// `system.memory.linux.slab.state` **UNSTABLE**: The Linux Slab memory state
                         ///
-                        /// - Stability: development
+                        /// - Stability: releaseCandidate
                         /// - Type: enum
                         ///     - `reclaimable`
                         ///     - `unreclaimable`
@@ -426,7 +461,7 @@ extension SpanAttributes {
 
                 /// `system.paging.direction` **UNSTABLE**: The paging access direction
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: enum
                 ///     - `in`
                 ///     - `out`
@@ -447,7 +482,7 @@ extension SpanAttributes {
 
                 /// `system.paging.state` **UNSTABLE**: The memory paging state
                 ///
-                /// - Stability: development
+                /// - Stability: releaseCandidate
                 /// - Type: enum
                 ///     - `used`
                 ///     - `free`

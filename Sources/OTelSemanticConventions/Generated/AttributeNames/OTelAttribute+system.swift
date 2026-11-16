@@ -17,12 +17,13 @@ extension OTelAttribute {
     #if Experimental
     /// `system` namespace
     public enum system {
-        /// `system.device` **UNSTABLE**: The device identifier
+        /// `system.device` **UNSTABLE**: Deprecated, use `system.device.name` instead.
         ///
         /// - Stability: development
         /// - Type: string
         /// - Example: `(identifier)`
-        public static let device = "system.device"
+        @available(*, deprecated, renamed: "OTelAttribute.system.device.name")
+        public static let _device = "system.device"
 
         /// `system.cpu` namespace
         public enum cpu {
@@ -52,25 +53,38 @@ extension OTelAttribute {
             public static let state = "system.cpu.state"
         }
 
+        /// `system.device` namespace
+        public enum device {
+            /// `system.device.name` **UNSTABLE**: The OS level identifier for a device, such as disk, partition or network interface.
+            ///
+            /// - Stability: releaseCandidate
+            /// - Type: string
+            /// - Examples:
+            ///     - `/dev/sda`
+            ///     - `eth0`
+            ///     - `\network-drive`
+            public static let name = "system.device.name"
+        }
+
         /// `system.filesystem` namespace
         public enum filesystem {
             /// `system.filesystem.mode` **UNSTABLE**: The filesystem mode
             ///
-            /// - Stability: development
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Example: `rw, ro`
             public static let mode = "system.filesystem.mode"
 
             /// `system.filesystem.mountpoint` **UNSTABLE**: The filesystem mount path
             ///
-            /// - Stability: development
+            /// - Stability: releaseCandidate
             /// - Type: string
             /// - Example: `/mnt/data`
             public static let mountpoint = "system.filesystem.mountpoint"
 
             /// `system.filesystem.state` **UNSTABLE**: The filesystem state
             ///
-            /// - Stability: development
+            /// - Stability: releaseCandidate
             /// - Type: enum
             ///     - `used`
             ///     - `free`
@@ -80,7 +94,7 @@ extension OTelAttribute {
 
             /// `system.filesystem.type` **UNSTABLE**: The filesystem type
             ///
-            /// - Stability: development
+            /// - Stability: releaseCandidate
             /// - Type: enum
             ///     - `fat32`
             ///     - `exfat`
@@ -99,13 +113,14 @@ extension OTelAttribute {
             /// - Stability: development
             /// - Type: enum
             ///     - `used`: Actual used virtual memory in bytes.
+            ///     - `available`: An estimate of how much memory is available for starting new applications, without causing swapping.
             ///     - `free`
             ///     - `shared`
             ///     - `buffers`
             ///     - `cached`
             /// - Examples:
-            ///     - `free`
-            ///     - `cached`
+            ///     - `used`
+            ///     - `available`
             public static let state = "system.memory.state"
 
             /// `system.memory.linux` namespace
@@ -114,7 +129,7 @@ extension OTelAttribute {
                 public enum hugepages {
                     /// `system.memory.linux.hugepages.state` **UNSTABLE**: The Linux HugePages memory state
                     ///
-                    /// - Stability: development
+                    /// - Stability: releaseCandidate
                     /// - Type: enum
                     ///     - `free`
                     ///     - `used`
@@ -128,7 +143,7 @@ extension OTelAttribute {
                 public enum slab {
                     /// `system.memory.linux.slab.state` **UNSTABLE**: The Linux Slab memory state
                     ///
-                    /// - Stability: development
+                    /// - Stability: releaseCandidate
                     /// - Type: enum
                     ///     - `reclaimable`
                     ///     - `unreclaimable`
@@ -167,7 +182,7 @@ extension OTelAttribute {
         public enum paging {
             /// `system.paging.direction` **UNSTABLE**: The paging access direction
             ///
-            /// - Stability: development
+            /// - Stability: releaseCandidate
             /// - Type: enum
             ///     - `in`
             ///     - `out`
@@ -176,7 +191,7 @@ extension OTelAttribute {
 
             /// `system.paging.state` **UNSTABLE**: The memory paging state
             ///
-            /// - Stability: development
+            /// - Stability: releaseCandidate
             /// - Type: enum
             ///     - `used`
             ///     - `free`

@@ -62,11 +62,17 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `zos.smf.id` **UNSTABLE**: The System Management Facility (SMF) Identifier uniquely identified a z/OS system within a SYSPLEX or mainframe environment and is used for system and performance analysis.
+                /// `zos.smf.id` **UNSTABLE**: The System Management Facility (SMF) identifier that uniquely identifies a z/OS system within a sysplex or mainframe environment and is used for system and performance analysis.
                 ///
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `SYS1`
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry Mainframe semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-mainframe)."
+                )
                 public var id: SpanAttributeKey<String> { .init(name: OTelAttribute.zos.smf.id) }
             }
         }
@@ -92,11 +98,17 @@ extension SpanAttributes {
             public struct NestedSpanAttributes: NestedSpanAttributesProtocol {
                 public init() {}
 
-                /// `zos.sysplex.name` **UNSTABLE**: The name of the SYSPLEX to which the z/OS system belongs too.
+                /// `zos.sysplex.name` **UNSTABLE**: The name of the sysplex to which the z/OS system belongs.
                 ///
                 /// - Stability: development
                 /// - Type: string
                 /// - Example: `SYSPLEX1`
+                @available(
+                    *,
+                    deprecated,
+                    message:
+                        "Moved to the [OpenTelemetry Mainframe semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-mainframe)."
+                )
                 public var name: SpanAttributeKey<String> { .init(name: OTelAttribute.zos.sysplex.name) }
             }
         }

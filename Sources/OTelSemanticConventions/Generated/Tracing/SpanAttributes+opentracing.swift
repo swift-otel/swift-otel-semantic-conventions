@@ -48,6 +48,12 @@ extension SpanAttributes {
             ///     - `follows_from`: The parent Span doesn't depend in any way on the result of the child Span
             ///
             /// The causal relationship between a child Span and a parent Span.
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Obsoleted: OpenTracing compatibility requirements are [deprecated in OpenTelemetry Specification](https://opentelemetry.io/docs/specs/otel/compatibility/opentracing/)"
+            )
             public var refType: SpanAttributeKey<RefTypeEnum> { .init(name: OTelAttribute.opentracing.refType) }
 
             public struct RefTypeEnum: SpanAttributeConvertible, RawRepresentable, Sendable {

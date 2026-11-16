@@ -98,6 +98,36 @@ extension OTelAttribute {
             /// for that telemetry. This is typically the case for scraping receivers, as they know the target address and
             /// port.
             public static let id = "service.instance.id"
+
+            #if Experimental
+            /// `service.instance.cost_center` namespace
+            public enum costCenter {
+                /// `service.instance.cost_center.id` **UNSTABLE**: Identifier of the cost center associated with the service instance.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Examples:
+                ///     - `94002`
+                ///     - `111111111111`
+                ///     - `cc-eng-402`
+                ///     - `acc-83921`
+                ///
+                /// The cost center identifier enables tracking and attribution of service resource costs to organizational units, billing accounts, or teams. It is typically a string identifier such as a billing account ID, cost allocation code, or internal accounting ID.
+                public static let id = "service.instance.cost_center.id"
+
+                /// `service.instance.cost_center.name` **UNSTABLE**: Name of the cost center associated with the service instance.
+                ///
+                /// - Stability: development
+                /// - Type: string
+                /// - Examples:
+                ///     - `engineering-platform`
+                ///     - `marketing-campaigns`
+                ///     - `research-and-development`
+                ///
+                /// A human-readable name of the cost center, department, or organizational unit responsible for the service instance costs.
+                public static let name = "service.instance.cost_center.name"
+            }
+            #endif
         }
 
         #if Experimental
@@ -108,6 +138,11 @@ extension OTelAttribute {
             /// - Stability: development
             /// - Type: string
             /// - Example: `shoppingcart`
+            @available(
+                *,
+                deprecated,
+                message: "Use `server.service.name` on the client side or `client.service.name` on the server side."
+            )
             public static let name = "service.peer.name"
 
             /// `service.peer.namespace` **UNSTABLE**: Logical namespace of the service on the other side of the connection. SHOULD be equal to the actual [`service.namespace`](/docs/resource/README.md#service) resource attribute of the remote service if any.
@@ -115,6 +150,12 @@ extension OTelAttribute {
             /// - Stability: development
             /// - Type: string
             /// - Example: `Shop`
+            @available(
+                *,
+                deprecated,
+                message:
+                    "Use `server.service.namespace` on the client side or `client.service.namespace` on the server side."
+            )
             public static let namespace = "service.peer.namespace"
         }
         #endif

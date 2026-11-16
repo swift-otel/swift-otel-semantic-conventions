@@ -237,7 +237,7 @@ extension OTelAttribute {
 
             /// `aws.ecs.container` namespace
             public enum container {
-                /// `aws.ecs.container.arn` **UNSTABLE**: The Amazon Resource Name (ARN) of an [ECS container instance](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_instances.html).
+                /// `aws.ecs.container.arn` **UNSTABLE**: The Amazon Resource Name (ARN) of an [ECS container](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-metadata-endpoint-v4-response.html).
                 ///
                 /// - Stability: development
                 /// - Type: string

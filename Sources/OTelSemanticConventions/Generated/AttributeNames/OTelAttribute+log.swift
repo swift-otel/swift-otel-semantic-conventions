@@ -17,7 +17,7 @@ extension OTelAttribute {
     #if Experimental
     /// `log` namespace
     public enum log {
-        /// `log.iostream` **UNSTABLE**: The stream associated with the log. See below for a list of well-known values.
+        /// `log.iostream` **UNSTABLE**: The stream the log record was emitted to.
         ///
         /// - Stability: development
         /// - Type: enum
@@ -27,28 +27,28 @@ extension OTelAttribute {
 
         /// `log.file` namespace
         public enum file {
-            /// `log.file.name` **UNSTABLE**: The basename of the file.
+            /// `log.file.name` **UNSTABLE**: The basename of the file to which the log record was emitted.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `audit.log`
             public static let name = "log.file.name"
 
-            /// `log.file.name_resolved` **UNSTABLE**: The basename of the file, with symlinks resolved.
+            /// `log.file.name_resolved` **UNSTABLE**: The basename of the file to which the log record was emitted, with symlinks resolved.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `uuid.log`
             public static let nameResolved = "log.file.name_resolved"
 
-            /// `log.file.path` **UNSTABLE**: The full path to the file.
+            /// `log.file.path` **UNSTABLE**: The full path to the file to which the log record was emitted.
             ///
             /// - Stability: development
             /// - Type: string
             /// - Example: `/var/log/mysql/audit.log`
             public static let path = "log.file.path"
 
-            /// `log.file.path_resolved` **UNSTABLE**: The full path to the file, with symlinks resolved.
+            /// `log.file.path_resolved` **UNSTABLE**: The full path to the file to which the log record was emitted, with symlinks resolved.
             ///
             /// - Stability: development
             /// - Type: string
